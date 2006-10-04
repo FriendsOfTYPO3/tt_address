@@ -1,0 +1,16 @@
+content.tt_address {
+    # cat=address/typo; type=wrap; label=Wrap, name
+  name.wrap = <h3> |</h3>
+    # cat=address/typo; type=options[,upper,lower]; label=Case, name
+  name.case = upper
+    # cat=address/typo; type=wrap; label=Wrap, address information
+  info.wrap = <font color="maroon"> |</font>
+    # cat=address/dims; type=int+; label=Width, information field
+  info.width = 300
+    # cat=address/dims; type=int+; label=Width, image
+  image.width = 120
+    # cat=address//; type=options[name,company,phone,city]; label=SQL "ORDER BY"
+  orderBy = name
+    # cat=address//; type=options[,DESC]; label=Reverse order (DESC)?
+  desc = 
+}

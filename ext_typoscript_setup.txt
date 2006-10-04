@@ -1,0 +1,61 @@
+
+## Introducing rendering information for tt_address:
+tt_address = COA
+tt_address {
+  wrap = <table border="0" cellpadding="0" cellspacing="0"><tr><td valign="top"> | </tr></table><br />
+
+  10 = TEXT
+  10.field = name
+  10.case = {$content.tt_address.name.case}
+  10.wrap = {$content.tt_address.name.wrap}
+
+  20 = COA
+  20.wrap = {$content.tt_address.info.wrap}
+  20 {
+    20 = TEXT
+    20.if.isTrue.field = company
+    20.dataWrap = Company: {field:company}<br />
+
+    21 = TEXT
+    21.dataWrap = {field:address}<br />{field:zip} {field:city}
+
+    22 = TEXT
+    22.if.isTrue.field = phone
+    22.dataWrap = <br />Phone: {field:phone}
+
+    23 = TEXT
+    23.if.isTrue.field = fax
+    23.dataWrap = <br />Fax: {field:fax}
+
+    25 = TEXT
+    25.if.isTrue.field = email
+    25.dataWrap = <br /><a href="mailto:{field:email}">{field:email}</a>
+
+    27 = TEXT
+    27.if.isTrue.field = www
+    27.dataWrap = <br /><a href="{field:www}" target="_top">Hjemmeside</a>
+  }
+
+  40 = TEXT
+  40.value = <br /><img src="clear.gif" width="{$content.tt_address.info.width}" height="1" alt="" /></td><td>&nbsp;</td>
+
+  60 = IMAGE
+  60.file.import = uploads/pics/
+  60.file.import.field = image
+  60.file.import.listNum = 0
+  60.file.width = {$content.tt_address.image.width}
+  60.wrap = <td valign="top">|</td>
+}
+
+
+## Transfering to the tt_content.list object:
+tt_content.list.20.0 >
+tt_content.list.20.0 = CASE
+tt_content.list.20.0.key.field = layout
+tt_content.list.20.0.0 = CONTENT
+tt_content.list.20.0.0 {
+  table = tt_address
+  select.pidInList.field = pages
+  select.orderBy = {$content.tt_address.orderBy} {$content.tt_address.desc}
+}
+

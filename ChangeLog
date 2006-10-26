@@ -1,6 +1,7 @@
 2006-10-26 Ingo Renner	typo3@ingo-renner.com>
 
 	* CHG Converted locallang files to xml
+	* RMV removed now obsolete php locallang files
 	* ADD added fields first name and last name
 	* ADD added option to disable the old combined name field
 	* ADD added wizard to migrate/update from the old combined name field to first and last name fields

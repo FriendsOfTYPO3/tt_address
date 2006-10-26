@@ -7,6 +7,8 @@ CREATE TABLE tt_address (
   tstamp int(11) unsigned DEFAULT '0' NOT NULL,
   hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
   name tinytext NOT NULL,
+  first_name tinytext NOT NULL,
+  last_name tinytext NOT NULL,
   title varchar(40) DEFAULT '' NOT NULL,
   email varchar(80) DEFAULT '' NOT NULL,
   phone varchar(30) DEFAULT '' NOT NULL,

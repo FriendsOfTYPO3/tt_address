@@ -1,0 +1,3 @@
+
+  # cat=basic/enable/10; type=boolean; label= Check to disable the original tt_address name field after you updated your address records to the separate first and last name fields.
+disableCombinedNameField = 0

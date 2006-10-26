@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+    <meta type="array">
+        <description>tt_address database labels</description>
+        <type>database</type>
+        <csh_table></csh_table>
+        <fileId>EXT:tt_address/locallang_tca.xml</fileId>
+        <labelContext type="array">
+        	<label index="tt_address"></label>
+            <label index="tt_address.first_name"></label>
+            <label index="tt_address.last_name"></label>
+            <label index="tt_address.mobile"></label>
+            <label index="pi_tt_address"></label>
+        </labelContext>
+    </meta>
+    <data type="array">
+        <languageKey index="default" type="array">
+            <label index="tt_address">Address</label>
+            <label index="tt_address.mobile">Mobile:</label>
+            <label index="tt_address.first_name">First Name:</label>
+            <label index="tt_address.last_name">Last Name:</label>
+            <label index="pi_tt_address">Addresses</label>
+        </languageKey>
+        <languageKey index="dk" type="array">
+            <label index="tt_address">Adresse</label>
+            <label index="tt_address.mobile">Mobil:</label>
+            <label index="pi_tt_address">Adresser</label>
+        </languageKey>
+        <languageKey index="de" type="array">
+            <label index="tt_address">Adresse</label>
+            <label index="tt_address.first_name">Vorname:</label>
+            <label index="tt_address.last_name">Nachname:</label>
+            <label index="tt_address.mobile">Mobil:</label>
+            <label index="pi_tt_address">Adressen</label>
+        </languageKey>
+        <languageKey index="no" type="array">
+            <label index="tt_address">Adresse</label>
+            <label index="tt_address.mobile">Mobil:</label>
+            <label index="pi_tt_address">Adresser</label>
+        </languageKey>
+        <languageKey index="it" type="array">
+            <label index="tt_address">Indirizzo</label>
+            <label index="tt_address.mobile">Cellulare:</label>
+            <label index="pi_tt_address">Indirizzi</label>
+        </languageKey>
+        <languageKey index="fr" type="array">
+            <label index="tt_address">Adresse</label>
+            <label index="tt_address.mobile">Mobile:</label>
+            <label index="pi_tt_address">Adresses</label>
+        </languageKey>
+        <languageKey index="es" type="array">
+            <label index="tt_address">Dirección</label>
+            <label index="tt_address.mobile">Celular:</label>
+            <label index="pi_tt_address">Direcciones</label>
+        </languageKey>
+        <languageKey index="nl" type="array">
+            <label index="tt_address">Adres</label>
+            <label index="tt_address.mobile">GSM:</label>
+            <label index="pi_tt_address">Adres</label>
+        </languageKey>
+        <languageKey index="cz" type="array">
+            <label index="tt_address">Adresa</label>
+            <label index="tt_address.mobile">Mobil:</label>
+            <label index="pi_tt_address">Adresa</label>
+        </languageKey>
+        <languageKey index="pl" type="array">
+            <label index="tt_address">Adres</label>
+            <label index="tt_address.mobile">Kom:</label>
+            <label index="pi_tt_address">Adresy</label>
+        </languageKey>
+        <languageKey index="si" type="array">
+            <label index="tt_address">Naslov</label>
+            <label index="tt_address.mobile">Mobitel:</label>
+            <label index="pi_tt_address">Naslovi</label>
+        </languageKey>
+        <languageKey index="fi" type="array">
+            <label index="tt_address">Osoite:</label>
+            <label index="tt_address.mobile">Mobile:</label>
+            <label index="pi_tt_address">Osoitteet</label>
+        </languageKey>
+        <languageKey index="tr" type="array">
+            <label index="tt_address">Adres</label>
+            <label index="tt_address.mobile">Cep telefonu:</label>
+            <label index="pi_tt_address">Adresler</label>
+        </languageKey>
+        <languageKey index="se" type="array">
+        </languageKey>
+        <languageKey index="pt" type="array">
+        </languageKey>
+        <languageKey index="ru" type="array">
+        </languageKey>
+    </data>
+    <orig_hash type="array">
+        <languageKey index="default" type="array">
+            <label index="tt_address" type="integer">232242979</label>
+            <label index="tt_address.mobile" type="integer">268218508</label>
+            <label index="pi_tt_address" type="integer">42251387</label>
+        </languageKey>
+        <languageKey index="dk" type="array">
+            <label index="tt_address" type="integer">232242979</label>
+            <label index="tt_address.mobile" type="integer">268218508</label>
+            <label index="pi_tt_address" type="integer">42251387</label>
+        </languageKey>
+        <languageKey index="de" type="array">
+            <label index="tt_address" type="integer">232242979</label>
+            <label index="tt_address.mobile" type="integer">268218508</label>
+            <label index="pi_tt_address" type="integer">42251387</label>
+        </languageKey>
+        <languageKey index="no" type="array">
+            <label index="tt_address" type="integer">232242979</label>
+            <label index="tt_address.mobile" type="integer">268218508</label>
+            <label index="pi_tt_address" type="integer">42251387</label>
+        </languageKey>
+        <languageKey index="it" type="array">
+            <label index="tt_address" type="integer">232242979</label>
+            <label index="tt_address.mobile" type="integer">268218508</label>
+            <label index="pi_tt_address" type="integer">42251387</label>
+        </languageKey>
+        <languageKey index="fr" type="array">
+            <label index="tt_address" type="integer">232242979</label>
+            <label index="tt_address.mobile" type="integer">268218508</label>
+            <label index="pi_tt_address" type="integer">42251387</label>
+        </languageKey>
+        <languageKey index="es" type="array">
+            <label index="tt_address" type="integer">232242979</label>
+            <label index="tt_address.mobile" type="integer">268218508</label>
+            <label index="pi_tt_address" type="integer">42251387</label>
+        </languageKey>
+        <languageKey index="nl" type="array">
+            <label index="tt_address" type="integer">232242979</label>
+            <label index="tt_address.mobile" type="integer">268218508</label>
+            <label index="pi_tt_address" type="integer">42251387</label>
+        </languageKey>
+        <languageKey index="cz" type="array">
+            <label index="tt_address" type="integer">232242979</label>
+            <label index="tt_address.mobile" type="integer">268218508</label>
+            <label index="pi_tt_address" type="integer">42251387</label>
+        </languageKey>
+        <languageKey index="pl" type="array">
+            <label index="tt_address" type="integer">232242979</label>
+            <label index="tt_address.mobile" type="integer">268218508</label>
+            <label index="pi_tt_address" type="integer">42251387</label>
+        </languageKey>
+        <languageKey index="si" type="array">
+            <label index="tt_address" type="integer">232242979</label>
+            <label index="tt_address.mobile" type="integer">268218508</label>
+            <label index="pi_tt_address" type="integer">42251387</label>
+        </languageKey>
+        <languageKey index="fi" type="array">
+            <label index="tt_address" type="integer">232242979</label>
+            <label index="tt_address.mobile" type="integer">268218508</label>
+            <label index="pi_tt_address" type="integer">42251387</label>
+        </languageKey>
+        <languageKey index="tr" type="array">
+            <label index="tt_address" type="integer">232242979</label>
+            <label index="tt_address.mobile" type="integer">268218508</label>
+            <label index="pi_tt_address" type="integer">42251387</label>
+        </languageKey>
+        <languageKey index="se" type="array">
+        </languageKey>
+        <languageKey index="pt" type="array">
+        </languageKey>
+        <languageKey index="ru" type="array">
+        </languageKey>
+    </orig_hash>
+    <orig_text type="array">
+        <languageKey index="default" type="array">
+        </languageKey>
+        <languageKey index="dk" type="array">
+        </languageKey>
+        <languageKey index="de" type="array">
+        </languageKey>
+        <languageKey index="no" type="array">
+        </languageKey>
+        <languageKey index="it" type="array">
+        </languageKey>
+        <languageKey index="fr" type="array">
+        </languageKey>
+        <languageKey index="es" type="array">
+        </languageKey>
+        <languageKey index="nl" type="array">
+        </languageKey>
+        <languageKey index="cz" type="array">
+        </languageKey>
+        <languageKey index="pl" type="array">
+        </languageKey>
+        <languageKey index="si" type="array">
+        </languageKey>
+        <languageKey index="fi" type="array">
+        </languageKey>
+        <languageKey index="tr" type="array">
+        </languageKey>
+        <languageKey index="se" type="array">
+        </languageKey>
+        <languageKey index="pt" type="array">
+        </languageKey>
+        <languageKey index="ru" type="array">
+        </languageKey>
+    </orig_text>
+</T3locallang>

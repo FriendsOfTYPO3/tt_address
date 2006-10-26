@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!-- ====================================================================== 
+     2006-10-26 11:57                                                        
+
+     copies the EXT:tt_address files without .svn folders from dev environment 
+     the test environment and clears cache in typo3conf
+                   
+     typo3@ingo-renner.com                                                                
+     ====================================================================== -->
+<project name="tx_ttaddress" default="all" basedir=".">
+    <description>
+    	copies the EXT:tt_address files without .svn folders from dev 
+    	environment the test environment and clears cache in typo3conf
+    </description>
+	
+	<target name="all" depends="clean, deploy" description="deploy tx_ttaddress"/>
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: init                      
+         - - - - - - - - - - - - - - - - - -->
+	
+    <target name="init">
+    	
+    	<!-- set parameter -->
+		<property name="dir.src"         value="/Users/ingo/Projects/Extensions/tx_ttaddress" />
+    	<property name="dir.target"      value="/Users/ingo/Projects/h_da/www.h-da.de/www/html/typo3conf/ext/tt_address" />
+    	<property name="dir.target.conf" value="/Users/ingo/Projects/h_da/www.h-da.de/www/html/typo3conf"/>
+    	    	
+    </target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: prepare                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="prepare" depends="init">        
+    	<mkdir dir="${dir.target}" />    	
+    </target>
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: clean                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="clean" depends="init" description="cleans build/">
+		<delete dir="${dir.target}" />		
+		<delete>
+			<fileset dir="${dir.target.conf}">
+			    <include name="temp_CACHED_*"/>
+			</fileset>
+		</delete>
+	</target>
+	
+	<!-- ================================= 
+          target: deploy              
+         ================================= -->
+    <target name="deploy" depends="prepare" description="deploy build">
+
+        <copy todir="${dir.target}">
+            <fileset dir="${dir.src}">
+            	<exclude name=".project" />
+            	<exclude name=".svn" />
+            	<exclude name="build.xml" />
+            </fileset>
+        </copy>
+    	
+    </target>
+
+</project>
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+    <meta type="array">
+        <description>CSH for tt_address</description>
+        <type>CSH</type>
+        <csh_table></csh_table>
+        <labelContext type="array">
+        	<label index=".description"></label>
+            <label index=".details"></label>
+        </labelContext>
+    </meta>
+    <data type="array">
+        <languageKey index="default" type="array">
+            <label index=".description">Built-in address database.</label>
+            <label index=".details">You may use it to build address lists in TYPO3. There are in fact default TypoScript code which allows you to implement a online administration of the address information by each person in the list himself. This table is also used by the Direct Mail system as the default subscription table for newsletters.</label>
+        </languageKey>
+    </data>
+    <orig_hash type="array">
+        <languageKey index="default" type="array">
+            <label index=".description" type="integer">44491534</label>
+            <label index=".details" type="integer">175245063</label>
+        </languageKey>
+    </orig_hash>
+    <orig_text type="array">
+        <languageKey index="default" type="array">
+        </languageKey>
+    </orig_text>
+</T3locallang>

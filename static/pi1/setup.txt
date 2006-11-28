@@ -1,0 +1,11 @@
+plugin.tt_address_pi1 = USER
+plugin.tt_address_pi1 {
+	userFunc = tx_ttaddress_pi1->main
+	
+	templatePath = fileadmin/templates/
+	defaultTemplateFileName = tt_address_default.htm
+	pidList = 0
+	recursive = 0
+	sortByColumn = name
+	sortOrder = ASC
+}

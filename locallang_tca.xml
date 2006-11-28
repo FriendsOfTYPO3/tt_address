@@ -19,6 +19,10 @@
             <label index="tt_address.mobile">Mobile:</label>
             <label index="tt_address.first_name">First Name:</label>
             <label index="tt_address.last_name">Last Name:</label>
+            <label index="tt_address.addressgroup">Group:</label>
+            <label index="tt_address_group">Address Group</label>
+            <label index="tt_address_group.parent_group">Parent Group:</label>
+            <label index="tt_content.list_type_pi1">Address Selection</label>
             <label index="pi_tt_address">Addresses</label>
         </languageKey>
         <languageKey index="dk" type="array">
@@ -28,9 +32,13 @@
         </languageKey>
         <languageKey index="de" type="array">
             <label index="tt_address">Adresse</label>
+            <label index="tt_address.mobile">Mobil:</label>
             <label index="tt_address.first_name">Vorname:</label>
             <label index="tt_address.last_name">Nachname:</label>
-            <label index="tt_address.mobile">Mobil:</label>
+            <label index="tt_address.addressgroup">Gruppe:</label>
+            <label index="tt_address_group">Adressgruppe</label>
+            <label index="tt_address_group.parent_group">Übergeordnete Gruppe:</label>
+            <label index="tt_content.list_type_pi1">Adressauswahl</label>
             <label index="pi_tt_address">Adressen</label>
         </languageKey>
         <languageKey index="no" type="array">

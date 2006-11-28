@@ -1,4 +1,8 @@
-2006-10-26 Ingo Renner	typo3@ingo-renner.com>
+2006-11-28 Ingo Renner	<typo3@ingo-renner.com>
+
+	* ADD !!! merged EXT:addressgroups into tt_address
+
+2006-10-26 Ingo Renner	<typo3@ingo-renner.com>
 
 	* CHG Converted locallang files to xml
 	* RMV removed now obsolete php locallang files
@@ -6,7 +10,6 @@
 	* ADD added option to disable the old combined name field
 	* ADD added wizard to migrate/update from the old combined name field to first and last name fields
 
-
-2006-10-04	Ingo Renner  <typo3@ingo-renner.com>
+2006-10-04	Ingo Renner	<typo3@ingo-renner.com>
 	
 	* CHG Taking over tt_address from Kasper

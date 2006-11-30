@@ -66,7 +66,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		}
 		array_multisort($sort, $this->conf['sortOrder'], $addresses);
 		
-		// output the remaining addresses - should be the groupSelection	
+		// output the addresses	
 		foreach($addresses as $address) {
 			if(!empty($address)) {
 				$markerArray = $this->getItemMarkerArray($address);
@@ -95,38 +95,18 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		$this->pi_loadLL();
 		$this->pi_initPIflexForm();
 		
-		$this->ffData = array(
-			'singleRecords'  => $this->pi_getFFvalue(
-				$this->cObj->data['pi_flexform'], 
-				'singleRecords',  
-				'sDEF'
-			),
-			'groupSelection' => $this->pi_getFFvalue(
-				$this->cObj->data['pi_flexform'], 
-				'groupSelection', 
-				'sDEF'
-			),
-			'combination'    => $this->pi_getFFvalue(
-				$this->cObj->data['pi_flexform'], 
-				'combination',    
-				'sDEF'
-			),
-			'pages'          => $this->pi_getFFvalue(
-				$this->cObj->data['pi_flexform'], 
-				'pages',          
-				'sDEF'
-			),
-			'recursive'      => $this->pi_getFFvalue(
-				$this->cObj->data['pi_flexform'], 
-				'recursive',      
-				'sDEF'
-			),
-			'templateFile'   => $this->pi_getFFvalue(
-				$this->cObj->data['pi_flexform'], 
-				'templateFile',   
-				'sDISPLAY'
-			),
+			// flexform data
+		$flexKeyMapping = array(
+			'sDEF.singleRecords'    => 'singleRecords',
+			'sDEF.groupSelection'   => 'groupSelection',
+			'sDEF.combination'      => 'combination',
+			'sDEF.pages'            => 'pages',
+			'sDEF.recursive'        => 'recursive',
+			'sDEF.pages'            => 'pages',
+			'sDEF.recursive'        => 'recursive',
+			'sDISPLAY.templateFile' => 'templateFile',
 		);
+		$this->ffData = $this->getFlexFormConfig($flexKeyMapping);
 		
 		//set default combination to AND if no combination set
 		$this->ffData['combination'] = intval($this->ffData['combination']) ?
@@ -303,6 +283,8 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		$markerArray['###UID###']         = $address['uid'];
 				
 		$markerArray['###NAME###']        = $lcObj->stdWrap($address['name'],               $lConf['name.']);
+		$markerArray['###FIRSTNAME###']   = $lcObj->stdWrap($address['first_name'],         $lConf['first_name.']);
+		$markerArray['###LASTNAME###']    = $lcObj->stdWrap($address['last_name'],          $lConf['last_name.']);
 		$markerArray['###TITLE###']       = $lcObj->stdWrap($address['title'],              $lConf['title.']);
 		$markerArray['###EMAIL###']       = $lcObj->stdWrap(
 			$lcObj->getTypoLink($address['email'], $address['email']),
@@ -403,6 +385,27 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		
 		return $sortBy;
 	}
+	
+	/**
+	 * gets the flexform values as an array like defined by $flexKeyMapping
+	 * 
+	 * @param	array	$flexKeyMapping: mapping of sheet.flexformFieldName => variable name
+	 * @return	array	flexform configuration as an array
+	 */
+	function getFlexFormConfig($flexKeyMapping) {
+		$conf = array();		
+		foreach($flexKeyMapping as $k => $v) {			
+			list($sheet, $field) = explode('.', $k);			
+			$conf[$v] = $this->pi_getFFvalue(
+				$this->cObj->data['pi_flexform'], 
+				$field,   
+				$sheet
+			);
+		}
+		
+		return $conf;
+	}
+	
 }
 
 

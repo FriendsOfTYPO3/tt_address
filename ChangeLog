@@ -1,3 +1,7 @@
+2006-11-29 Ingo Renner	<typo3@ingo-renner.com>
+
+	* ADD pi1 can use the new first and last name fields now
+
 2006-11-28 Ingo Renner	<typo3@ingo-renner.com>
 
 	* ADD !!! merged EXT:addressgroups into tt_address

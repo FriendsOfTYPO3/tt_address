@@ -8,6 +8,7 @@ CREATE TABLE tt_address (
   hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
   name tinytext NOT NULL,
   first_name tinytext NOT NULL,
+  middle_name tinytext NOT NULL,
   last_name tinytext NOT NULL,
   title varchar(40) DEFAULT '' NOT NULL,
   email varchar(80) DEFAULT '' NOT NULL,

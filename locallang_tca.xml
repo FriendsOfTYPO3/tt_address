@@ -8,6 +8,7 @@
         <labelContext type="array">
         	<label index="tt_address"></label>
             <label index="tt_address.first_name"></label>
+            <label index="tt_address.middle_name"></label>
             <label index="tt_address.last_name"></label>
             <label index="tt_address.mobile"></label>
             <label index="pi_tt_address"></label>
@@ -18,6 +19,7 @@
             <label index="tt_address">Address</label>
             <label index="tt_address.mobile">Mobile:</label>
             <label index="tt_address.first_name">First Name:</label>
+            <label index="tt_address.middle_name">Middle Name:</label>
             <label index="tt_address.last_name">Last Name:</label>
             <label index="tt_address.addressgroup">Group:</label>
             <label index="tt_address_group">Address Group</label>
@@ -34,6 +36,7 @@
             <label index="tt_address">Adresse</label>
             <label index="tt_address.mobile">Mobil:</label>
             <label index="tt_address.first_name">Vorname:</label>
+            <label index="tt_address.middle_name">Mittelname:</label>
             <label index="tt_address.last_name">Nachname:</label>
             <label index="tt_address.addressgroup">Gruppe:</label>
             <label index="tt_address_group">Adressgruppe</label>

@@ -35,6 +35,16 @@ $TCA['tt_address'] = array (
 				'max' => '256'
 			)
 		),
+		'middle_name' => array (		
+			'exclude' => 0,		
+			'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.middle_name',		
+			'config' => array (
+				'type' => 'input',
+				'size' => '40',
+				'eval' => 'trim',
+				'max' => '256'
+			)
+		),
 		'last_name' => array (		
 			'exclude' => 0,		
 			'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.last_name',		
@@ -308,6 +318,7 @@ $TCA['tt_address_group'] = array(
 //-- start splitting name into first and last name
 
 $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address']);
+debug(unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_news']));
 
 // original values
 $showitemOrig            = $TCA['tt_address']['types'][1]['showitem'];
@@ -315,22 +326,22 @@ $showRecordFieldListOrig = $TCA['tt_address']['interface']['showRecordFieldList'
 $fe_admin_fieldListOrig  = $TCA['tt_address']['feInterface']['fe_admin_fieldList'];
 
 // shows both, the old and the new fields while converting to the new fields
-$showItemReplace = ' name;;;;3-3-3, first_name, last_name;;2;;,'; 
-$showRecordFieldListReplace = 'name,first_name,last_name,';
-$fe_admin_fieldListReplace  = 'name,first_name,last_name,';
+$showItemReplace = ' name;;;;3-3-3, first_name, middle_name, last_name;;2;;,'; 
+$showRecordFieldListReplace = 'name,first_name,middle_name,last_name,';
+$fe_admin_fieldListReplace  = 'name,first_name,middle_name,last_name,';
 
 
 if($extConf['disableCombinedNameField']) {
 	unset($TCA['tt_address']['columns']['name']);
 	
 	// shows only the new fields
-	$showItemReplace            = ' first_name;;;;1-1-1, last_name;;2;;,';
-	$showRecordFieldListReplace = 'first_name,last_name,';
-	$fe_admin_fieldListReplace  = 'first_name,last_name,';
+	$showItemReplace            = ' first_name;;;;1-1-1, middle_name;;;;, last_name;;2;;,';
+	$showRecordFieldListReplace = 'first_name,middle_name,last_name,';
+	$fe_admin_fieldListReplace  = 'first_name,middle_name,last_name,';
 
 	$TCA['tt_address']['ctrl']['label_alt']       = 'last_name, first_name';
 	$TCA['tt_address']['ctrl']['label_alt_force'] = 1;
-	$TCA['tt_address']['ctrl']['default_sortby']  = 'ORDER BY last_name, first_name';
+	$TCA['tt_address']['ctrl']['default_sortby']  = 'ORDER BY last_name, first_name, middle_name';
 }
 
 $showitemNew = str_replace(' name;;2;;3-3-3,', $showItemReplace, $showitemOrig);

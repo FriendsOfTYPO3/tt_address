@@ -6,7 +6,7 @@
 $TCA['tt_address'] = array (
 	'ctrl' => $TCA['tt_address']['ctrl'],
 	'interface' => array (
-		'showRecordFieldList' => 'name,address,city,zip,country,phone,fax,email,www,title,company,image'
+		'showRecordFieldList' => 'name,address,city,zip,region,country,phone,fax,email,www,title,company,image'
 	),
 	'feInterface' => $TCA['tt_address']['feInterface'],
 	'columns' => array (
@@ -123,7 +123,7 @@ $TCA['tt_address'] = array (
 		),
 		'company' => array (
 			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.company',
+			'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.organization',
 			'config' => array (
 				'type' => 'input',
 				'eval' => 'trim',
@@ -147,6 +147,16 @@ $TCA['tt_address'] = array (
 				'eval' => 'trim',
 				'size' => '10',
 				'max' => '20'
+			)
+		),
+		'region' => array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.region',
+			'config' => array (
+				'type' => 'input',
+				'size' => '20',
+				'eval' => 'trim',
+				'max' => '30'
 			)
 		),
 		'country' => array (
@@ -205,7 +215,7 @@ $TCA['tt_address'] = array (
 	),
 	'palettes' => array (
 		'2' => array('showitem' => 'title, company'),
-		'3' => array('showitem' => 'country'),
+		'3' => array('showitem' => 'region, country'),
 		'4' => array('showitem' => 'mobile, fax'),
 		'5' => array('showitem' => 'www')
 	)
@@ -318,7 +328,6 @@ $TCA['tt_address_group'] = array(
 //-- start splitting name into first and last name
 
 $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address']);
-debug(unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_news']));
 
 // original values
 $showitemOrig            = $TCA['tt_address']['types'][1]['showitem'];

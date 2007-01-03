@@ -1,3 +1,12 @@
+2007-01-02 Ingo Renner	<typo3@ingo-renner.com>
+
+	* CHG !!! changed company marker and configuration to "organization" to be closer to the hcard standard, the table field used however is still "company"
+	* CHG increased length fpr country field to 100
+	* ADD !!! implemented hcard microformat standard
+	* ADD added first_name, middle_name, last_name fields to allowed sort fields
+	* ADD added region field
+	* FIX the "default" TS configuraion was not used when the default template file name was not default.htm
+
 2006-12-29 Ingo Renner	<typo3@ingo-renner.com>
 
 	* ADD added middle name field
@@ -13,7 +22,7 @@
 2006-10-26 Ingo Renner	<typo3@ingo-renner.com>
 
 	* CHG Converted locallang files to xml
-	* RMV removed now obsolete php locallang files
+	* RMV removed obsolete php locallang files
 	* ADD added fields first name and last name
 	* ADD added option to disable the old combined name field
 	* ADD added wizard to migrate/update from the old combined name field to first and last name fields

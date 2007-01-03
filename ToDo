@@ -1,0 +1,5 @@
+
+	* add table listing with first and last name in web->page view
+	* see irfaq
+	* remove references from core (TYPO3 4.1)
+	* check for TYPO3 version and (re)add listing (version >= TYPO3 4.1) 

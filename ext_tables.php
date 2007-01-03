@@ -18,7 +18,7 @@ $TCA['tt_address'] = array (
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon.gif'
 	),
 	'feInterface' => array (
-		'fe_admin_fieldList' => 'pid,hidden,name,title,address,phone,fax,mobile,www,email,city,zip,company,country,description'
+		'fe_admin_fieldList' => 'pid,hidden,name,title,address,phone,fax,mobile,www,email,city,zip,company,region,country,description'
 	)
 );
 
@@ -51,7 +51,7 @@ $TCA['tt_address_group'] = array(
 t3lib_extMgm::addPlugin( 
 	array(
 		'LLL:EXT:tt_address/locallang_tca.xml:pi_tt_address', 
-		'0'
+		$_EXTKEY.'_pi1'
 	)
 );
 t3lib_extMgm::allowTableOnStandardPages('tt_address');
@@ -66,7 +66,6 @@ $TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY.'_pi1'] = 'pi_f
 $TCA['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY.'_pi1'] = 'layout,select_key,pages,recursive';
 t3lib_extMgm::addPiFlexFormValue($_EXTKEY .'_pi1', 'FILE:EXT:tt_address/pi1/flexform.xml');
 
-t3lib_extMgm::addPlugin(array('LLL:EXT:tt_address/locallang_tca.xml:tt_content.list_type_pi1', $_EXTKEY.'_pi1'),'list_type');
 t3lib_extMgm::addStaticFile($_EXTKEY, 'static/pi1/', 'Addresses');
 
 

@@ -7,10 +7,15 @@
         <fileId>EXT:tt_address/locallang_tca.xml</fileId>
         <labelContext type="array">
         	<label index="tt_address"></label>
+            <label index="tt_address.mobile"></label>
             <label index="tt_address.first_name"></label>
             <label index="tt_address.middle_name"></label>
             <label index="tt_address.last_name"></label>
-            <label index="tt_address.mobile"></label>
+            <label index="tt_address.organization"></label>
+            <label index="tt_address.region"></label>
+            <label index="tt_address.addressgroup"></label>
+            <label index="tt_address_group"></label>
+            <label index="tt_address_group.parent_group"></label>
             <label index="pi_tt_address"></label>
         </labelContext>
     </meta>
@@ -21,10 +26,11 @@
             <label index="tt_address.first_name">First Name:</label>
             <label index="tt_address.middle_name">Middle Name:</label>
             <label index="tt_address.last_name">Last Name:</label>
+            <label index="tt_address.organization">Organization:</label>
+            <label index="tt_address.region">Region/State:</label>
             <label index="tt_address.addressgroup">Group:</label>
             <label index="tt_address_group">Address Group</label>
             <label index="tt_address_group.parent_group">Parent Group:</label>
-            <label index="tt_content.list_type_pi1">Address Selection</label>
             <label index="pi_tt_address">Addresses</label>
         </languageKey>
         <languageKey index="dk" type="array">
@@ -38,10 +44,11 @@
             <label index="tt_address.first_name">Vorname:</label>
             <label index="tt_address.middle_name">Mittelname:</label>
             <label index="tt_address.last_name">Nachname:</label>
+            <label index="tt_address.organization">Organisation:</label>
+            <label index="tt_address.region">Region/Bundesland:</label>
             <label index="tt_address.addressgroup">Gruppe:</label>
             <label index="tt_address_group">Adressgruppe</label>
             <label index="tt_address_group.parent_group">Übergeordnete Gruppe:</label>
-            <label index="tt_content.list_type_pi1">Adressauswahl</label>
             <label index="pi_tt_address">Adressen</label>
         </languageKey>
         <languageKey index="no" type="array">

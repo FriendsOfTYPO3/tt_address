@@ -8,7 +8,15 @@ t3lib_extMgm::addUserTSConfig('
 	options.saveDocNew.tt_address = 1
 ');
 
-$GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address']['useStoragePid'] = 0;
+t3lib_extMgm::addPItoST43(
+	$_EXTKEY,
+	'pi1/class.tx_ttaddress_pi1.php',
+	'_pi1',
+	'list_type',
+	1
+);
+
+//$GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address']['useStoragePid'] = 0;
 
 	/**
 	 * TODO: add backwardscompatibility function which hooks into TCEmain and

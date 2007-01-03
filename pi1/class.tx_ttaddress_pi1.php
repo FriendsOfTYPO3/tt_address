@@ -50,7 +50,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	function main($content, $conf) {
 		$this->init($conf);
 		$content = '';
-	
+
 		$singleSelection = $this->getSingleRecords();		
 		$groupSelection  = $this->getRecordsFromGroups();
 		// merge both arrays so that we do not have any duplicates		
@@ -69,15 +69,20 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		// output the addresses	
 		foreach($addresses as $address) {
 			if(!empty($address)) {
-				$markerArray = $this->getItemMarkerArray($address);
+				$markerArray  = $this->getItemMarkerArray($address);
+				$subpartArray = $this->getSubpartArray($templateCode, $markerArray, $address);
 			
 				$content .= $this->cObj->substituteMarkerArrayCached(
 					$templateCode,
-					$markerArray
+					$markerArray,
+					$subpartArray
 				);
 				$content .= chr(10).chr(10);	
 			}			
 		}		
+	
+		//debug
+		$content .= '<br /><br /><br /><textarea cols="50" rows="40">'.htmlspecialchars($content).'</textarea>';
 	
 		return $this->pi_wrapInBaseClass($content);
 	}
@@ -282,24 +287,19 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		
 		$markerArray['###UID###']         = $address['uid'];
 				
-		$markerArray['###NAME###']        = $lcObj->stdWrap($address['name'],               $lConf['name.']);
 		$markerArray['###FIRSTNAME###']   = $lcObj->stdWrap($address['first_name'],         $lConf['first_name.']);
+		$markerArray['###MIDDLENAME###']  = $lcObj->stdWrap($address['middle_name'],        $lConf['middle_name.']);
 		$markerArray['###LASTNAME###']    = $lcObj->stdWrap($address['last_name'],          $lConf['last_name.']);
 		$markerArray['###TITLE###']       = $lcObj->stdWrap($address['title'],              $lConf['title.']);
-		$markerArray['###EMAIL###']       = $lcObj->stdWrap(
-			$lcObj->getTypoLink($address['email'], $address['email']),
-			$lConf['email.']
-		);
+		$markerArray['###EMAIL###']       = $lcObj->stdWrap($address['email'],              $lConf['email.']);
 		$markerArray['###PHONE###']       = $lcObj->stdWrap($address['phone'],              $lConf['phone.']);
 		$markerArray['###MOBILE###']      = $lcObj->stdWrap($address['mobile'],             $lConf['mobile.']);
-		$markerArray['###WWW###']         = $lcObj->stdWrap(
-			$lcObj->getTypoLink($address['www'], $address['www']),
-			$lConf['www.']
-		);
+		$markerArray['###WWW###']         = $lcObj->stdWrap($address['www'],                $lConf['www.']);
 		$markerArray['###ADDRESS###']     = $lcObj->stdWrap($address['address'],            $lConf['address.']);
-		$markerArray['###COMPANY###']     = $lcObj->stdWrap($address['company'],            $lConf['company.']);
+		$markerArray['###ORGANIZATION###']= $lcObj->stdWrap($address['company'],            $lConf['organization.']);
 		$markerArray['###CITY###']        = $lcObj->stdWrap($address['city'],               $lConf['city.']);
 		$markerArray['###ZIP###']         = $lcObj->stdWrap($address['zip'],                $lConf['zip.']);
+		$markerArray['###REGION###']      = $lcObj->stdWrap($address['region'],             $lConf['region.']);
 		$markerArray['###COUNTRY###']     = $lcObj->stdWrap($address['country'],            $lConf['country.']);
 		$markerArray['###FAX###']         = $lcObj->stdWrap($address['fax'],                $lConf['fax.']);
 		$markerArray['###DESCRIPTION###'] = $lcObj->stdWrap($address['description'],        $lConf['description.']);
@@ -309,16 +309,54 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		$markerArray['###IMAGE###'] = '';
 		if(!empty($address['image'])) {
 			
-			$iConf['image.'] = $lConf['image.'];
-			$iConf['image.']['file']          = 'uploads/pics/'.$address['image'];
-			$iConf['image.']['altText']       = $address['name'];
-			$iConf['image.']['titleText']     = $address['name'];
-			
-			$image                      = $lcObj->IMAGE($iConf['image.']);
-			$markerArray['###IMAGE###'] = $lcObj->stdWrap($image, $lConf['image.']);
+			$iConf = $lConf['image.'];
+			$iConf['file']          = 'uploads/pics/'.$address['image'];
+			$iConf['altText']       = !empty($iConf['altText']) ? 
+				$iConf['altText'] : 
+				$address['name'];
+			$iConf['titleText']     = !empty($iConf['titleText']) ? 
+				$iConf['titleText'] : 
+				$address['name'];
+
+			$markerArray['###IMAGE###'] = $lcObj->IMAGE($iConf);
 		}			
 	
 		return $markerArray;
+	}
+	
+	/**
+	 * gets the user defined subparts and returns their content as an array
+	 * 
+	 * @param	string	$templateCode: (HTML) template code
+	 * @param	array	$markerArray: markers with content
+	 * @param	array	$address: a tt_address record
+	 * @return	array	array of subparts
+	 */
+	function getSubpartArray($templateCode, $markerArray, $address) {
+		$subpartArray = array();
+		$lcObj = t3lib_div::makeInstance('tslib_cObj'); // local cObj
+		$lcObj->data = $address;
+		
+		foreach($this->conf['templates.'][$this->conf['templateName'].'.']['subparts.'] as $spName => $spConf) {
+			$spName = '###SUBPART_'.strtoupper(substr($spName, 0, -1)).'###';
+			
+			$spTemplate = $lcObj->getSubpart($templateCode, $spName);
+			$content    = $lcObj->stdWrap(
+				$lcObj->substituteMarkerArrayCached(
+					$spTemplate,
+					$markerArray
+				),
+				$spConf
+			);
+
+			if($spConf['hasOneOf'] && !$this->hasOneOf($spConf['hasOneOf'], $address)) {
+				$content = '';
+			}			
+			
+			$subpartArray[$spName] = $content;
+		}
+		
+		return $subpartArray;
 	}
 	
 	/**
@@ -330,12 +368,15 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		$templateName = '';
 		$templateFile = $this->ffData['templateFile'];
 		
-		if($templateFile == 'default') {
-			$templateFile = $this->conf['defaultTemplateFileName'];
-		} 
+		if($templateFile == $this->conf['defaultTemplateFileName'] ||
+		   $templateFile == 'default') {
+			$templateName = 'default';
+		}
 		
 		//cutting off the file extension
-		$templateName = substr($templateFile, 0, strrpos($templateFile, '.'));
+		if($templateName != 'default') {
+			$templateName = substr($templateFile, 0, strrpos($templateFile, '.'));
+		}		
 		
 		return $templateName;
 	}
@@ -375,8 +416,9 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	function checkSorting($sortBy) {
 		$validSortings = array(
 			'uid', 'pid', 'tstamp',
-			'name', 'title', 'email', 'phone', 'mobile', 'www', 'address',
-			'company', 'ciy', 'zip', 'country', 'image', 'fax', 'description'
+			'name', 'first_name', 'middle_name', 'last_name', 'title', 'email', 
+			'phone', 'mobile', 'www', 'address', 'company', 'ciy', 'zip', 
+			'region', 'country', 'image', 'fax', 'description'
 		);
 		
 		if(!in_array($sortBy, $validSortings)) {
@@ -404,6 +446,28 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		}
 		
 		return $conf;
+	}
+	
+	/**
+	 * checks for the 'hasOneOf' constraint, at least one of the fields in
+	 * $fieldList must not be empty to return true
+	 * 
+	 * @param	string	$fieldList: comma separated list of field names to check
+	 * @param	array	$address: a tt_address record
+	 * @return	boolean	true if at least one of the given fields is not empty
+	 */
+	function hasOneOf($fieldList, $address) {
+		$checkFields = t3lib_div::trimExplode(',', $fieldList, 1);
+		$flag = false;
+		
+		foreach($checkFields as $fieldName) {
+			if(!empty($address[$fieldName])) {
+				$flag = true;
+				break;
+			}
+		}
+		
+		return $flag;
 	}
 	
 }

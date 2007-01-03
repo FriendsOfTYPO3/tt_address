@@ -8,7 +8,9 @@
 <!--
 Markers you can use:
 
-###NAME###
+###FIRSTNAME###
+###MIDDLENAME###
+###LASTNAME###
 ###TITLE###
 ###EMAIL###
 ###PHONE###
@@ -18,30 +20,32 @@ Markers you can use:
 ###COMPANY###
 ###CITY###
 ###ZIP###
+###REGION###
 ###COUNTRY###
 ###IMAGE###
 ###FAX###
 ###DESCRIPTION###
 ###MAINGROUP###
 
+
 -->
 
 <!-- ###TEMPLATE_ADDRESS### beginn -->
-
-<div class="address">
-
-###NAME###
-###ADDRESS###
-###ZIP### ###CITY###
-<br />
+<div class="vcard">
+###IMAGE###
+<!-- ###SUBPART_URL### begin -->
+###FIRSTNAME### ###MIDDLENAME### ###LASTNAME###
+<!-- ###SUBPART_URL### end -->
+###ORGANIZATION###
 ###EMAIL###
-###PHONE###
-###FAX###
-###WWW###
-
-<br />
+<!-- ###SUBPART_ADR### begin -->
+<div class="adr">
+###ADDRESS###
+###CITY### ###REGION### ###ZIP### ###COUNTRY###
 </div>
-
+<!-- ###SUBPART_ADR### end -->
+###PHONE###
+</div>
 <!-- ###TEMPLATE_ADDRESS### end -->
 
 </body>

@@ -81,8 +81,8 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 			}			
 		}		
 	
-		//debug
-		$content .= '<br /><br /><br /><textarea cols="50" rows="40">'.htmlspecialchars($content).'</textarea>';
+		#debug
+		#$content .= '<br /><br /><br /><textarea cols="50" rows="40">'.htmlspecialchars($content).'</textarea>';
 	
 		return $this->pi_wrapInBaseClass($content);
 	}

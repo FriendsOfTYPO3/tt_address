@@ -360,7 +360,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	}
 	
 	/**
-	 * gets the filename fron the template file without the file extension
+	 * gets the filename from the template file without the file extension
 	 * 
 	 * @return	string	the file name portion without the file extension
 	 */
@@ -373,7 +373,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 			$templateName = 'default';
 		}
 		
-		//cutting off the file extension
+			//cutting off the file extension
 		if($templateName != 'default') {
 			$templateName = substr($templateFile, 0, strrpos($templateFile, '.'));
 		}		
@@ -436,9 +436,9 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	 */
 	function getFlexFormConfig($flexKeyMapping) {
 		$conf = array();		
-		foreach($flexKeyMapping as $k => $v) {			
-			list($sheet, $field) = explode('.', $k);			
-			$conf[$v] = $this->pi_getFFvalue(
+		foreach($flexKeyMapping as $sheetField => $confName) {			
+			list($sheet, $field) = explode('.', $sheetField);			
+			$conf[$confName] = $this->pi_getFFvalue(
 				$this->cObj->data['pi_flexform'], 
 				$field,   
 				$sheet

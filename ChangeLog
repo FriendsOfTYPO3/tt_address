@@ -1,7 +1,17 @@
+2007-03-26 Ingo Renner	<typo3@ingo-renner.com>
+
+	* ADD added update routines for transition from addressgroups to tt_address
+	* ADD added backwards compatibility function so that other extensions building on tt_address will still work when they use the combined name field
+	* ADD added hook to process extra/own markers
+	* UPD updated manual
+	* FIX template path was not read correctly
+	* ADD single records and groups can be selecty via TS
+	* ADD added chanes from Uwe Schlüter, thanks!
+
 2007-01-02 Ingo Renner	<typo3@ingo-renner.com>
 
 	* CHG !!! changed company marker and configuration to "organization" to be closer to the hcard standard, the table field used however is still "company"
-	* CHG increased length fpr country field to 100
+	* CHG increased length for country field to 100
 	* ADD !!! implemented hcard microformat standard
 	* ADD added first_name, middle_name, last_name fields to allowed sort fields
 	* ADD added region field

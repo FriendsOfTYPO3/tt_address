@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *  
-*  (c) 2006 Ingo Renner (typo3@ingo-renner.com)
+*  (c) 2007 Ingo Renner <typo3@ingo-renner.com>
 *  All  rights reserved
 * 
 *  This script is part of the Typo3 project. The Typo3 project is 
@@ -57,7 +57,7 @@ class tx_ttaddress_addfilestosel {
 
 		// get value for the path containing the template files
 		$readPath = t3lib_div::getFileAbsFileName(
-			$template->setup['plugin.']['tt_address_pi1.']['templatePath']
+			$template->setup['plugin.']['tx_ttaddress_pi1.']['templatePath']
 		);
 	     
 		// if that direcotry is valid and is a directory then select files in it

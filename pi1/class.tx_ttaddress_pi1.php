@@ -116,7 +116,9 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		//set default combination to AND if no combination set
 		$this->ffData['combination'] = intval($this->ffData['combination']) ?
 			$this->ffData['combination'] :
-			0;
+				$this->conf['combination'] ?
+				intval($this->conf['combination']) :
+				0;
 			
 		//set default sorting to name
 		$this->conf['sortByColumn'] = $this->conf['sortByColumn'] ? 
@@ -153,6 +155,14 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 			$recursive
 		);
 		
+		$this->conf['singleSelection'] = $this->ffData['singleRecords'] ?
+			$this->ffData['singleRecords'] :
+			$this->conf['singleSelection'];
+		
+		$this->conf['groupSelection'] = $this->ffData['groupSelection'] ?
+			$this->ffData['groupSelection'] :
+			$this->conf['groupSelection'];
+		
 		$this->conf['templateName'] = $this->getTemplateName();
 	}
 	
@@ -164,7 +174,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	function getSingleRecords() {
 		$singleRecords = array();
 		$uidList = $GLOBALS['TYPO3_DB']->cleanIntList(
-			$this->ffData['singleRecords']
+			$this->conf['singleSelection']
 		);
 		
 		if(!empty($uidList) && !empty($this->conf['pidList'])) {
@@ -192,7 +202,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		$groupRecords = array();
 		
 		// similar to t3lib_db::cleanIntList(), but we need the count for AND combination
-		$groups    = t3lib_div::intExplode(',',$this->ffData['groupSelection']);
+		$groups    = t3lib_div::intExplode(',',$this->conf['groupSelection']);
 		$count     = count($groups);		
 		$groupList = implode(',', $groups);
 		
@@ -239,6 +249,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	 * @return	array	the address plus its groups
 	 */
 	function getGroupsForAddress($address) {
+		$groupTitles = array();		
 		
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECT_mm_query(
 			'tt_address_group.uid, tt_address_group.pid,  
@@ -264,8 +275,13 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 			}
 			
 			$address['groups'][] = $group;
+			$groupTitles[]       = $group['title'];
 			unset($group);
-		}		
+		}
+		
+		$groupList = implode(', ', $groupTitles);
+		$address['groupList'] = $groupList;
+		unset($groupTitles);	
 		
 		return $address;
 	}
@@ -297,6 +313,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		$markerArray['###WWW###']         = $lcObj->stdWrap($address['www'],                $lConf['www.']);
 		$markerArray['###ADDRESS###']     = $lcObj->stdWrap($address['address'],            $lConf['address.']);
 		$markerArray['###ORGANIZATION###']= $lcObj->stdWrap($address['company'],            $lConf['organization.']);
+		$markerArray['###COMPANY###']     = $markerArray['###ORGANIZATION###'];
 		$markerArray['###CITY###']        = $lcObj->stdWrap($address['city'],               $lConf['city.']);
 		$markerArray['###ZIP###']         = $lcObj->stdWrap($address['zip'],                $lConf['zip.']);
 		$markerArray['###REGION###']      = $lcObj->stdWrap($address['region'],             $lConf['region.']);
@@ -304,7 +321,8 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		$markerArray['###FAX###']         = $lcObj->stdWrap($address['fax'],                $lConf['fax.']);
 		$markerArray['###DESCRIPTION###'] = $lcObj->stdWrap($address['description'],        $lConf['description.']);
 		$markerArray['###MAINGROUP###']   = $lcObj->stdWrap($address['groups'][0]['title'], $lConf['mainGroup.']);
-	
+		$markerArray['###GROUPLIST###']   = $lcObj->stdWrap($address['groupList'], 			$lConf['groupList.']);
+
 		//the image
 		$markerArray['###IMAGE###'] = '';
 		if(!empty($address['image'])) {
@@ -319,7 +337,15 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 				$address['name'];
 
 			$markerArray['###IMAGE###'] = $lcObj->IMAGE($iConf);
-		}			
+		}
+		
+			// adds hook for processing of extra item markers
+		if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tt_address']['extraItemMarkerHook'])) {
+			foreach($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tt_address']['extraItemMarkerHook'] as $_classRef) {
+				$_procObj = & t3lib_div::getUserObj($_classRef);
+				$markerArray = $_procObj->extraItemMarkerProcessor($markerArray, $address, $lConf, $this);
+			}
+		}		
 	
 		return $markerArray;
 	}
@@ -334,27 +360,30 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	 */
 	function getSubpartArray($templateCode, $markerArray, $address) {
 		$subpartArray = array();
-		$lcObj = t3lib_div::makeInstance('tslib_cObj'); // local cObj
-		$lcObj->data = $address;
-		
-		foreach($this->conf['templates.'][$this->conf['templateName'].'.']['subparts.'] as $spName => $spConf) {
-			$spName = '###SUBPART_'.strtoupper(substr($spName, 0, -1)).'###';
+	
+		if(is_array($this->conf['templates.'][$this->conf['templateName'].'.']['subparts.'])) {
+			$lcObj = t3lib_div::makeInstance('tslib_cObj'); // local cObj
+			$lcObj->data = $address;
 			
-			$spTemplate = $lcObj->getSubpart($templateCode, $spName);
-			$content    = $lcObj->stdWrap(
-				$lcObj->substituteMarkerArrayCached(
-					$spTemplate,
-					$markerArray
-				),
-				$spConf
-			);
-
-			if($spConf['hasOneOf'] && !$this->hasOneOf($spConf['hasOneOf'], $address)) {
-				$content = '';
-			}			
-			
-			$subpartArray[$spName] = $content;
-		}
+			foreach($this->conf['templates.'][$this->conf['templateName'].'.']['subparts.'] as $spName => $spConf) {
+				$spName = '###SUBPART_'.strtoupper(substr($spName, 0, -1)).'###';
+				
+				$spTemplate = $lcObj->getSubpart($templateCode, $spName);
+				$content    = $lcObj->stdWrap(
+					$lcObj->substituteMarkerArrayCached(
+						$spTemplate,
+						$markerArray
+					),
+					$spConf
+				);
+	
+				if($spConf['hasOneOf'] && !$this->hasOneOf($spConf['hasOneOf'], $address)) {
+					$content = '';
+				}			
+				
+				$subpartArray[$spName] = $content;
+			}
+		}		
 		
 		return $subpartArray;
 	}

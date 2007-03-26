@@ -340,10 +340,8 @@ $showRecordFieldListReplace = 'name,first_name,middle_name,last_name,';
 $fe_admin_fieldListReplace  = 'name,first_name,middle_name,last_name,';
 
 
-if($extConf['disableCombinedNameField']) {
-	unset($TCA['tt_address']['columns']['name']);
-	
-	// shows only the new fields
+if($extConf['disableCombinedNameField']) {	
+		// shows only the new fields
 	$showItemReplace            = ' first_name;;;;1-1-1, middle_name;;;;, last_name;;2;;,';
 	$showRecordFieldListReplace = 'first_name,middle_name,last_name,';
 	$fe_admin_fieldListReplace  = 'first_name,middle_name,last_name,';

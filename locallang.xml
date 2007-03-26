@@ -9,7 +9,7 @@
     </meta>
     <data type="array">
         <languageKey index="default" type="array">
-            <label index="pi1_title">addresses</label>
+            <label index="pi1_title">Addresses</label>
             <label index="pi1_plus_wiz_description">Displays one or more addresses.</label>
         </languageKey>
         <languageKey index="dk" type="array">

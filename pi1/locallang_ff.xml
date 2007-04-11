@@ -16,6 +16,10 @@
             <label index="pi1_flexform.combination">Combination</label>
             <label index="pi1_flexform.combination.and">AND</label>
             <label index="pi1_flexform.combination.or">OR</label>
+            <label index="pi1_flexform.sortBy">Sort By</label>
+            <label index="pi1_flexform.sortOrder">Sort Order</label>
+            <label index="pi1_flexform.sortOrder.ascending">Ascending</label>
+            <label index="pi1_flexform.sortOrder.descending">Descending</label>
             <label index="pi1_flexform.sheet_display">Display</label>
             <label index="pi1_flexform.templateFile">Template</label>
             <label index="pi1_flexform.templateFile.I.0">Default</label>
@@ -29,6 +33,10 @@
             <label index="pi1_flexform.combination">Kombination</label>
             <label index="pi1_flexform.combination.and">UND</label>
             <label index="pi1_flexform.combination.or">ODER</label>
+            <label index="pi1_flexform.sortBy">Sortieren nach</label>
+            <label index="pi1_flexform.sortOrder">Reihenfolge</label>
+            <label index="pi1_flexform.sortOrder.ascending">Ansteigend</label>
+            <label index="pi1_flexform.sortOrder.descending">Absteigend</label>
             <label index="pi1_flexform.sheet_display">Darstellung</label>
             <label index="pi1_flexform.templateFile">Template</label>
             <label index="pi1_flexform.templateFile.I.0">Standard</label>

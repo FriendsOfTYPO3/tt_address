@@ -72,10 +72,11 @@ t3lib_extMgm::addStaticFile($_EXTKEY, 'static/pi1/', 'Addresses');
 if (TYPO3_MODE=='BE') {
 	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['tx_ttaddress_pi1_wizicon'] = t3lib_extMgm::extPath($_EXTKEY).'pi1/class.tx_ttaddress_pi1_wizicon.php';
 	
-			// class for displaying the group tree in BE forms.
+			// classes for displaying the group tree and manipulating flexforms
 	include_once(t3lib_extMgm::extPath($_EXTKEY).'class.tx_ttaddress_tcefunc_selecttreeview.php');
 	include_once(t3lib_extMgm::extPath($_EXTKEY).'class.tx_ttaddress_treeview.php');
 	include_once(t3lib_extMgm::extPath($_EXTKEY).'class.tx_ttaddress_addfilestosel.php');
+	include_once(t3lib_extMgm::extPath($_EXTKEY).'class.tx_ttaddress_addfieldstosel.php');
 
 }
 

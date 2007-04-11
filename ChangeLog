@@ -1,3 +1,9 @@
+2007-04-11 Ingo Renner	<typo3@ingo-renner.com>
+
+	* FIX fixed label when old combined name field is turned off
+	* ADD added sorting settings to the flexform
+	* ADD added some wraps
+
 2007-03-26 Ingo Renner	<typo3@ingo-renner.com>
 
 	* ADD added update routines for transition from addressgroups to tt_address

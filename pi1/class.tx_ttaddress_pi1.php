@@ -53,37 +53,42 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 
 		$singleSelection = $this->getSingleRecords();		
 		$groupSelection  = $this->getRecordsFromGroups();
-		// merge both arrays so that we do not have any duplicates		
+		
+			// merge both arrays so that we do not have any duplicates		
 		$addresses = t3lib_div::array_merge($singleSelection, $groupSelection);
 
 		$templateCode = $this->getTemplate();		
 		$sorting = explode(',', $this->ffData['singleRecords']);
 
-		// sorting the addresses by name
-		$sort = array();
+			// sorting the addresses
+		$sortBy = array();
 		foreach($addresses as $k => $v) {
-			$sort[$k] = $v[$this->conf['sortByColumn']];
+			$sortBy[$k] = $v[$this->conf['sortByColumn']];
 		}
-		array_multisort($sort, $this->conf['sortOrder'], $addresses);
+		array_multisort($sortBy, $this->conf['sortOrder'], $addresses);
 		
-		// output the addresses	
+			// output
 		foreach($addresses as $address) {
 			if(!empty($address)) {
 				$markerArray  = $this->getItemMarkerArray($address);
 				$subpartArray = $this->getSubpartArray($templateCode, $markerArray, $address);
 			
-				$content .= $this->cObj->substituteMarkerArrayCached(
+				$addressContent = $this->cObj->substituteMarkerArrayCached(
 					$templateCode,
 					$markerArray,
 					$subpartArray
 				);
+				
+				$wrap = $this->conf['templates.'][$this->conf['templateName'].'.']['wrap'];
+				$content .= $this->cObj->wrap($addressContent, $wrap);
+				
 				$content .= chr(10).chr(10);	
 			}			
-		}		
-	
-		#debug
-		#$content .= '<br /><br /><br /><textarea cols="50" rows="40">'.htmlspecialchars($content).'</textarea>';
-	
+		}
+		
+		$allWrap = $this->conf['wrap'];
+		$content = $this->cObj->wrap($content, $allWrap);
+		
 		return $this->pi_wrapInBaseClass($content);
 	}
 	
@@ -105,6 +110,8 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 			'sDEF.singleRecords'    => 'singleRecords',
 			'sDEF.groupSelection'   => 'groupSelection',
 			'sDEF.combination'      => 'combination',
+			'sDEF.sortBy'           => 'sortBy',
+			'sDEF.sortOrder'        => 'sortOrder',
 			'sDEF.pages'            => 'pages',
 			'sDEF.recursive'        => 'recursive',
 			'sDEF.pages'            => 'pages',
@@ -113,22 +120,26 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		);
 		$this->ffData = $this->getFlexFormConfig($flexKeyMapping);
 		
-		//set default combination to AND if no combination set
+			//set default combination to AND if no combination set
 		$this->ffData['combination'] = intval($this->ffData['combination']) ?
 			$this->ffData['combination'] :
 				$this->conf['combination'] ?
 				intval($this->conf['combination']) :
 				0;
 			
-		//set default sorting to name
-		$this->conf['sortByColumn'] = $this->conf['sortByColumn'] ? 
-			$this->conf['sortByColumn'] : 
-			'name';
-		//check a userdefined sorting criteria for validity
+			//set default sorting to name
+		$this->conf['sortByColumn'] = $this->ffData['sortBy'] ? 
+			$this->ffData['sortBy'] :
+				$this->conf['sortByColumn'] ? 
+					$this->conf['sortByColumn'] : 
+					'name';
+			//check a userdefined sorting criteria for validity
 		$this->conf['sortByColumn'] = $this->checkSorting($this->conf['sortByColumn']);
 		
-		//set sorting, set to ASC if not valid
-		$sortOrder = $this->conf['sortOrder'];
+			//set sorting, set to ASC if not valid
+		$sortOrder = $this->ffData['sortOrder'] ? 
+			$this->ffData['sortOrder'] :
+			$this->conf['sortOrder'];
 		if(strtoupper($sortOrder) == 'DESC') {
 			$sortOrder = SORT_DESC;
 		} else {
@@ -136,7 +147,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		}
 		$this->conf['sortOrder'] = $sortOrder;
 				
-		// overwrite TS pidList if set in flexform
+			// overwrite TS pidList if set in flexform
 		$pages = !empty($this->ffData['pages']) ? 
 			$this->ffData['pages'] : 
 			trim($this->cObj->stdWrap(
@@ -201,14 +212,14 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	function getRecordsFromGroups() {
 		$groupRecords = array();
 		
-		// similar to t3lib_db::cleanIntList(), but we need the count for AND combination
+			// similar to t3lib_db::cleanIntList(), but we need the count for AND combination
 		$groups    = t3lib_div::intExplode(',',$this->conf['groupSelection']);
 		$count     = count($groups);		
 		$groupList = implode(',', $groups);
 		
 		if(!empty($groupList) && !empty($this->conf['pidList'])) {
 			if($this->ffData['combination'] == '0') {
-				//AND
+					//AND
 				$res = $GLOBALS['TYPO3_DB']->sql_query(
 					'SELECT tt_address.*, COUNT(tt_address.uid) AS c '.
 					'FROM tt_address '. 
@@ -222,7 +233,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 				);
 				
 			} elseif($this->ffData['combination'] == '1') {
-				//OR
+					//OR
 				$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 					'DISTINCT tt_address.*',
 					'tt_address, tt_address_group_mm, tt_address_group',
@@ -265,7 +276,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		
 		while($group = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 			
-			// localization handling
+				// localization handling
 			if($GLOBALS['TSFE']->sys_language_content) {
 				$group = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
 					'tt_address_group',
@@ -296,7 +307,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	function getItemMarkerArray($address) {
 		$markerArray = array();
 		
-		//local configuration and local cObj
+			//local configuration and local cObj
 		$lConf = $this->conf['templates.'][$this->conf['templateName'].'.'];
 		$lcObj = t3lib_div::makeInstance('tslib_cObj');
 		$lcObj->data = $address;
@@ -323,7 +334,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		$markerArray['###MAINGROUP###']   = $lcObj->stdWrap($address['groups'][0]['title'], $lConf['mainGroup.']);
 		$markerArray['###GROUPLIST###']   = $lcObj->stdWrap($address['groupList'], 			$lConf['groupList.']);
 
-		//the image
+			//the image
 		$markerArray['###IMAGE###'] = '';
 		if(!empty($address['image'])) {
 			

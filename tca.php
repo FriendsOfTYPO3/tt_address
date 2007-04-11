@@ -346,7 +346,8 @@ if($extConf['disableCombinedNameField']) {
 	$showRecordFieldListReplace = 'first_name,middle_name,last_name,';
 	$fe_admin_fieldListReplace  = 'first_name,middle_name,last_name,';
 
-	$TCA['tt_address']['ctrl']['label_alt']       = 'last_name, first_name';
+	$TCA['tt_address']['ctrl']['label']           = 'last_name';
+	$TCA['tt_address']['ctrl']['label_alt']       = 'first_name';
 	$TCA['tt_address']['ctrl']['label_alt_force'] = 1;
 	$TCA['tt_address']['ctrl']['default_sortby']  = 'ORDER BY last_name, first_name, middle_name';
 }

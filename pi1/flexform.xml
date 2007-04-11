@@ -66,7 +66,41 @@
 								<default>0</default>
 							</config>
 						</TCEforms>
-					</combination>		  
+					</combination>
+					<sortBy>
+						<TCEforms>
+							<label>LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.sortBy</label>
+							<config>
+								<type>select</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0"> </numIndex>
+										<numIndex index="1">default</numIndex>
+									</numIndex>
+								</items>
+								<itemsProcFunc>tx_ttaddress_addfieldstosel->main</itemsProcFunc>
+							</config>
+						</TCEforms>
+					</sortBy>
+					<sortOrder>
+						<TCEforms>
+							<label>LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.sortOrder</label>
+							<config>
+								<type>radio</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.sortOrder.ascending</numIndex>
+										<numIndex index="1">ASC</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.sortOrder.descending</numIndex>
+										<numIndex index="1">DESC</numIndex>
+									</numIndex>					
+								</items>
+								<default>ASC</default>
+							</config>
+						</TCEforms>
+					</sortOrder>		  
 					<pages>
 					  	<TCEforms>
 						<exclude>1</exclude>

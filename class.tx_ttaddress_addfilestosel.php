@@ -38,7 +38,9 @@ class tx_ttaddress_addfilestosel {
    /**
     * Manipulating the input array, $params, adding new selectorbox items.
     * 
-    * 
+    * @param	array	array of select field options (reference)
+    * @param	object	parent object (reference)
+    * @return	void
     */
 	function main(&$params,&$pObj)	{
 

@@ -44,52 +44,52 @@ class tx_ttaddress_addfilestosel {
     */
 	function main(&$params,&$pObj)	{
 
-		// get the current page ID
+			// get the current page ID
 		$thePageId = $params['row']['pid']; 
 
 		$template = t3lib_div::makeInstance('t3lib_tsparser_ext');
-		// do not log time-performance information
+			// do not log time-performance information
 		$template->tt_track = 0;
 		$template->init();
 		$sys_page = t3lib_div::makeInstance('t3lib_pageSelect');
 		$rootLine = $sys_page->getRootLine($thePageId);
-		// generate the constants/config + hierarchy info for the template.
+			// generate the constants/config + hierarchy info for the template.
 		$template->runThroughTemplates($rootLine);
 		$template->generateConfig();
 
-		// get value for the path containing the template files
+			// get value for the path containing the template files
 		$readPath = t3lib_div::getFileAbsFileName(
 			$template->setup['plugin.']['tx_ttaddress_pi1.']['templatePath']
 		);
 	     
-		// if that direcotry is valid and is a directory then select files in it
+			// if that direcotry is valid and is a directory then select files in it
 		if (@is_dir($readPath)) {
 
 			$template_files = t3lib_div::getFilesInDir($readPath,'tmpl,html,htm',1,1);
 			$parseHTML = t3lib_div::makeInstance('t3lib_parseHTML');
 	      		      
 			foreach ($template_files as $htmlFilePath) {
-				// reset vars
+					// reset vars
 				$selectorBoxItem_title = '';
 				$selectorBoxItem_icon  = '';
  
-				// read template content
+					// read template content
 				$content = t3lib_div::getUrl($htmlFilePath);
-				// ... and extract content of the title-tags
+					// ... and extract content of the title-tags
 				$parts = $parseHTML->splitIntoBlock('title', $content);
 				$titleTagContent = $parseHTML->removeFirstAndLastTag($parts[1]);
 				
-				// set the item label
+					// set the item label
 				$selectorBoxItem_title = trim($titleTagContent.' ('.basename($htmlFilePath).')');
  
-				// try to look up an image icon for the template
+					// try to look up an image icon for the template
 				$fI = t3lib_div::split_fileref($htmlFilePath);
 				$testImageFilename=$readPath.$fI['filebody'].'.gif';
 				if(@is_file($testImageFilename)) {
 					$selectorBoxItem_icon = '../'.substr($testImageFilename, strlen(PATH_site));
 				}
  
-				// finally add the new item
+					// finally add the new item
 				$params['items'][] = array(
 					$selectorBoxItem_title,
 					basename($htmlFilePath),

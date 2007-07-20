@@ -9,8 +9,8 @@ content.tt_address {
   info.width = 300
     # cat=address/dims; type=int+; label=Width, image
   image.width = 120
-    # cat=address//; type=options[name,company,phone,city]; label=SQL "ORDER BY"
-  orderBy = first_name,last_name,birthday,gender,company,zip,country
+    # cat=address//; type=options[first_name,last_name,birthday,gender,company,zip,country; label=SQL "ORDER BY"
+  orderBy = last_name
     # cat=address//; type=options[,DESC]; label=Reverse order (DESC)?
   desc = 
 }

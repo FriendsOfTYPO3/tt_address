@@ -18,7 +18,7 @@ $TCA['tt_address'] = array (
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon.gif'
 	),
 	'feInterface' => array (
-		'fe_admin_fieldList' => 'pid,hidden,name,title,address,phone,fax,mobile,www,email,city,zip,company,region,country,description'
+		'fe_admin_fieldList' => 'pid,hidden,gender,name,title,address,birthday,phone,fax,mobile,www,email,city,zip,company,region,country,image,description'
 	)
 );
 
@@ -67,7 +67,7 @@ $TCA['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY.'_pi1'] = '
 t3lib_extMgm::addPiFlexFormValue($_EXTKEY .'_pi1', 'FILE:EXT:tt_address/pi1/flexform.xml');
 
 t3lib_extMgm::addStaticFile($_EXTKEY, 'static/pi1/', 'Addresses');
-
+t3lib_extMgm::addStaticFile($_EXTKEY, 'static/old/', 'Addresses (!!!old, only use if you need to!!!)');
 
 if (TYPO3_MODE=='BE') {
 	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['tx_ttaddress_pi1_wizicon'] = t3lib_extMgm::extPath($_EXTKEY).'pi1/class.tx_ttaddress_pi1_wizicon.php';

@@ -1,3 +1,14 @@
+2007-10-15 Ingo Renner	<typo3@ingo-renner.com>
+
+	!!! moved old TS constants and setup (content.tt_address) into static templates
+
+	* UPD updated manual
+	* FIX added image to the fe_admin_fieldList in TCA
+	* FIX fixed typo in sorting criteria city
+	* ADD added gender field, new marker ###GENDER###
+	* ADD added birthday field, new marker ###BIRTHDAY###
+	* ADD added max items in list feature (bug 5436: Featurewish: a possibiliy to limit the max items shows in FE per page)
+
 2007-04-11 Ingo Renner	<typo3@ingo-renner.com>
 
 	* FIX fixed label when old combined name field is turned off
@@ -44,5 +55,5 @@
 	* ADD added wizard to migrate/update from the old combined name field to first and last name fields
 
 2006-10-04	Ingo Renner	<typo3@ingo-renner.com>
-	
+
 	* CHG Taking over tt_address from Kasper

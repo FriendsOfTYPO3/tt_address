@@ -8,6 +8,7 @@ plugin.tx_ttaddress_pi1 {
 	recursive = 0
 	sortByColumn = name
 	sortOrder = ASC
+	listMaxItems = 0
 	
 	templates.default {
 		# supports the hcard microformats standard

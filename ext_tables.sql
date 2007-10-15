@@ -7,9 +7,11 @@ CREATE TABLE tt_address (
   tstamp int(11) unsigned DEFAULT '0' NOT NULL,
   hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
   name tinytext NOT NULL,
+  gender varchar(1) DEFAULT '' NOT NULL,
   first_name tinytext NOT NULL,
   middle_name tinytext NOT NULL,
   last_name tinytext NOT NULL,
+  birthday int(11) UNSIGNED DEFAULT '0' NOT NULL
   title varchar(40) DEFAULT '' NOT NULL,
   email varchar(80) DEFAULT '' NOT NULL,
   phone varchar(30) DEFAULT '' NOT NULL,
@@ -23,7 +25,7 @@ CREATE TABLE tt_address (
   country varchar(100) DEFAULT '' NOT NULL,
   image tinyblob NOT NULL,
   fax varchar(30) DEFAULT '' NOT NULL,
-  deleted tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  deleted tinyint(3) UMSIGNED DEFAULT '0' NOT NULL,
   description text NOT NULL,
   addressgroup int(11) DEFAULT '0' NOT NULL
   PRIMARY KEY (uid),

@@ -23,7 +23,7 @@ t3lib_extMgm::addPItoST43(
  * field in a configurable format - first name first or last name first and
  * which glue string (comma, space, whatever)
  */
-if (TYPO3_MODE == 'BE')	{
+if (TYPO3_MODE)	{
 	require_once(t3lib_extMgm::extPath('tt_address').'class.tx_ttaddress_compat.php');
 }
 $TYPO3_CONF_VARS['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = 'tx_ttaddress_compat'; 

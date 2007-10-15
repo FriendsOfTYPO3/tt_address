@@ -8,9 +8,13 @@
         <labelContext type="array">
         	<label index="tt_address"></label>
             <label index="tt_address.mobile"></label>
+            <label index="tt_address.gender"></label>            
+            <label index="tt_address.gender.m"></label>
+            <label index="tt_address.gender.f"></label>
             <label index="tt_address.first_name"></label>
             <label index="tt_address.middle_name"></label>
             <label index="tt_address.last_name"></label>
+            <label index="tt_address.birthday"></label>
             <label index="tt_address.organization"></label>
             <label index="tt_address.region"></label>
             <label index="tt_address.addressgroup"></label>
@@ -23,9 +27,13 @@
         <languageKey index="default" type="array">
             <label index="tt_address">Address</label>
             <label index="tt_address.mobile">Mobile:</label>
+            <label index="tt_address.gender">Gender:</label>
+            <label index="tt_address.gender.m">Male (Mr)</label>
+            <label index="tt_address.gender.f">Female (Mrs)</label>
             <label index="tt_address.first_name">First Name:</label>
             <label index="tt_address.middle_name">Middle Name:</label>
             <label index="tt_address.last_name">Last Name:</label>
+            <label index="tt_address.birthday">Birthday:</label>
             <label index="tt_address.organization">Organization:</label>
             <label index="tt_address.region">Region/State:</label>
             <label index="tt_address.addressgroup">Group:</label>
@@ -41,9 +49,13 @@
         <languageKey index="de" type="array">
             <label index="tt_address">Adresse</label>
             <label index="tt_address.mobile">Mobil:</label>
+            <label index="tt_address.gender">Geschlecht (Anrede):</label>
+            <label index="tt_address.gender.m">Männlich (Herr)</label>
+            <label index="tt_address.gender.f">Weiblich (Frau)</label>
             <label index="tt_address.first_name">Vorname:</label>
             <label index="tt_address.middle_name">Mittelname:</label>
             <label index="tt_address.last_name">Nachname:</label>
+            <label index="tt_address.birthday">Geburtstag:</label>
             <label index="tt_address.organization">Organisation:</label>
             <label index="tt_address.region">Region/Bundesland:</label>
             <label index="tt_address.addressgroup">Gruppe:</label>

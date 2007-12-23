@@ -1,8 +1,8 @@
 2007-12-23 Ingo Renner	<typo3@ingo-renner.com>
 
 	* ADD added building and room fields
-	* ADD added stdWrap on singleSelection
-	* ADD added support for up to TT_ADDRESS_MAX_IMAGES images, credits Christian Tauscher
+	* ADD added feature #5859, stdWrap on singleSelection
+	* ADD added feature #5867, support for up to TT_ADDRESS_MAX_IMAGES images, credits Christian Tauscher
 	* CHG now the compatibility function updates the old name field only if the new separated name fields are not empty
 	* UPD updated manual
 
@@ -12,10 +12,10 @@
 
 	* UPD updated manual
 	* FIX added image to the fe_admin_fieldList in TCA
-	* FIX fixed typo in sorting criteria city
-	* ADD added gender field, new marker ###GENDER###
+	* FIX fixed issue #6448, typo in sorting criteria city
+	* ADD added feature #1818, gender field, new marker ###GENDER###
 	* ADD added birthday field, new marker ###BIRTHDAY###
-	* ADD added max items in list feature (bug 5436: Featurewish: a possibiliy to limit the max items shows in FE per page)
+	* ADD added feature #5436, max items in list feature (bug 5436: Featurewish: a possibiliy to limit the max items shows in FE per page)
 
 2007-04-11 Ingo Renner	<typo3@ingo-renner.com>
 

@@ -91,8 +91,11 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 			}
 		}
 
-		$allWrap = $this->conf['wrap'];
-		$content = $this->cObj->wrap($content, $allWrap);
+		$templateAllWrap = $this->conf['templates.'][$this->conf['templateName'].'.']['allWrap'];
+		$content = $this->cObj->wrap($content, $templateAllWrap);
+
+		$overallWrap = $this->conf['wrap'];
+		$content = $this->cObj->wrap($content, $overallWrap);
 
 		return $this->pi_wrapInBaseClass($content);
 	}

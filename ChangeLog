@@ -3,6 +3,7 @@
 	* ADD added building and room fields
 	* ADD added feature #5859, stdWrap on singleSelection
 	* ADD added feature #5867, support for up to TT_ADDRESS_MAX_IMAGES images, credits Christian Tauscher
+	* ADD added allWrap property for templates
 	* CHG now the compatibility function updates the old name field only if the new separated name fields are not empty
 	* FIX fixed bug #5861: configure Frontend Plugin: AND / OR allways works as AND
 	* UPD updated manual

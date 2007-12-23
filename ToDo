@@ -1,6 +1,5 @@
 
 	* add example to the manual how to do a listing and a single view
-	* add table listing with first and last name in web->page view
-	* see irfaq
+	* add table listing with first and last name in web->page view (see irfaq)
 	* remove references from core (TYPO3 4.1)
 	* check for TYPO3 version and (re)add listing (version >= TYPO3 4.1)

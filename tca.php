@@ -7,7 +7,7 @@
 $TCA['tt_address'] = array (
 	'ctrl' => $TCA['tt_address']['ctrl'],
 	'interface' => array (
-		'showRecordFieldList' => 'name,address,city,zip,region,country,phone,fax,email,www,title,company,image'
+		'showRecordFieldList' => 'name,address,building,room,city,zip,region,country,phone,fax,email,www,title,company,image'
 	),
 	'feInterface' => $TCA['tt_address']['feInterface'],
 	'columns' => array (
@@ -34,12 +34,13 @@ $TCA['tt_address'] = array (
 			'config' => array (
 				'type' => 'input',
 				'size' => '40',
+				'eval' => 'trim',
 				'max'  => '256'
 			)
 		),
-		'first_name' => array (		
-			'exclude' => 0,		
-			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.first_name',		
+		'first_name' => array (
+			'exclude' => 0,
+			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.first_name',
 			'config'  => array (
 				'type' => 'input',
 				'size' => '40',
@@ -47,9 +48,9 @@ $TCA['tt_address'] = array (
 				'max'  => '256'
 			)
 		),
-		'middle_name' => array (		
-			'exclude' => 0,		
-			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.middle_name',		
+		'middle_name' => array (
+			'exclude' => 0,
+			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.middle_name',
 			'config'  => array (
 				'type' => 'input',
 				'size' => '40',
@@ -57,9 +58,9 @@ $TCA['tt_address'] = array (
 				'max'  => '256'
 			)
 		),
-		'last_name' => array (		
-			'exclude' => 0,		
-			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.last_name',		
+		'last_name' => array (
+			'exclude' => 0,
+			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.last_name',
 			'config'  => array (
 				'type' => 'input',
 				'size' => '40',
@@ -93,6 +94,24 @@ $TCA['tt_address'] = array (
 				'type' => 'text',
 				'cols' => '20',
 				'rows' => '3'
+			)
+		),
+		'building' => array (
+			'label'  => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.building',
+			'config' => array (
+				'type' => 'input',
+				'eval' => 'trim',
+				'size' => '20',
+				'max'  => '15'
+			)
+		),
+		'room' => array (
+			'label'  => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.room',
+			'config' => array (
+				'type' => 'input',
+				'eval' => 'trim',
+				'size' => '20',
+				'max'  => '15'
 			)
 		),
 		'phone' => array (
@@ -216,8 +235,8 @@ $TCA['tt_address'] = array (
 			)
 		),
 		'addressgroup' => array(
-			'exclude' => 1,		
-			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.addressgroup',		
+			'exclude' => 1,
+			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.addressgroup',
 			'config'  => array(
 				'type'          => 'select',
 				'form_type'     => 'user',
@@ -233,13 +252,14 @@ $TCA['tt_address'] = array (
 		)
 	),
 	'types' => array (
-		'1' => array('showitem' => 'hidden;;;;1-1-1, gender;;;;3-3-3, name;;2, birthday, address, zip, city;;3, email;;5, phone;;4, image;;;;4-4-4, description, addressgroup;;;;1-1-1')
+		'1' => array('showitem' => 'hidden;;;;1-1-1, gender;;;;3-3-3, name;;2, birthday, address;;6, zip, city;;3, email;;5, phone;;4, image;;;;4-4-4, description, addressgroup;;;;1-1-1')
 	),
 	'palettes' => array (
 		'2' => array('showitem' => 'title, company'),
 		'3' => array('showitem' => 'country, region'),
 		'4' => array('showitem' => 'mobile, fax'),
-		'5' => array('showitem' => 'www')
+		'5' => array('showitem' => 'www'),
+		'6' => array('showitem' => 'building, room')
 	)
 );
 
@@ -251,7 +271,7 @@ $TCA['tt_address_group'] = array(
 	'feInterface' => $TCA['tt_address_group']['feInterface'],
 	'columns' => array(
 		'hidden' => array(
-			'l10n_mode' => 'mergeIfNotBlank',	
+			'l10n_mode' => 'mergeIfNotBlank',
 			'exclude'   => 1,
 			'label'     => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
 			'config'    => array(
@@ -259,7 +279,7 @@ $TCA['tt_address_group'] = array(
 				'default' => '1'
 			)
 		),
-		'fe_group' => array(		
+		'fe_group' => array(
 			'exclude' => 1,
 			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.fe_group',
 			'config'  => array(
@@ -273,18 +293,18 @@ $TCA['tt_address_group'] = array(
 				'foreign_table' => 'fe_groups'
 			)
 		),
-		'title' => array(		
-			'exclude' => 1,		
-			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.title',		
+		'title' => array(
+			'exclude' => 1,
+			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.title',
 			'config'  => array(
-				'type' => 'input',	
-				'size' => '30',	
+				'type' => 'input',
+				'size' => '30',
 				'eval' => 'required',
 			)
 		),
-		'parent_group' => array(		
-			'exclude' => 1,		
-			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address_group.parent_group',		
+		'parent_group' => array(
+			'exclude' => 1,
+			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address_group.parent_group',
 			'config'  => array(
 				'type'          => 'select',
 				'form_type'     => 'user',
@@ -297,12 +317,12 @@ $TCA['tt_address_group'] = array(
 				'foreign_table' => 'tt_address_group',
 			)
 		),
-		'description' => array(		
-			'exclude' => 1,		
-			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.description',		
+		'description' => array(
+			'exclude' => 1,
+			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.description',
 			'config'  => array(
 				'type' => 'text',
-				'cols' => '30',	
+				'cols' => '30',
 				'rows' => '5',
 			)
 		),
@@ -357,12 +377,12 @@ $showRecordFieldListOrig = $TCA['tt_address']['interface']['showRecordFieldList'
 $fe_admin_fieldListOrig  = $TCA['tt_address']['feInterface']['fe_admin_fieldList'];
 
 // shows both, the old and the new fields while converting to the new fields
-$showItemReplace = ' name, first_name, middle_name, last_name;;2;;,'; 
+$showItemReplace = ' name, first_name, middle_name, last_name;;2;;,';
 $showRecordFieldListReplace = 'name,first_name,middle_name,last_name,';
 $fe_admin_fieldListReplace  = 'name,first_name,middle_name,last_name,';
 
 
-if($extConf['disableCombinedNameField']) {	
+if($extConf['disableCombinedNameField']) {
 		// shows only the new fields
 	$showItemReplace            = ' first_name, middle_name;;;;, last_name;;2;;,';
 	$showRecordFieldListReplace = 'first_name,middle_name,last_name,';
@@ -374,7 +394,11 @@ if($extConf['disableCombinedNameField']) {
 	$TCA['tt_address']['ctrl']['default_sortby']  = 'ORDER BY last_name, first_name, middle_name';
 }
 
-$showitemNew = str_replace(' name;;2,', $showItemReplace, $showitemOrig);
+$showitemNew = str_replace(
+	' name;;2,',
+	$showItemReplace,
+	$showitemOrig
+);
 $showRecordFieldListNew = str_replace(
 	'name,',
 	$showRecordFieldListReplace,

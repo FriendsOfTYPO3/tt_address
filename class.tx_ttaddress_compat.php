@@ -1,20 +1,20 @@
 <?php
 /***************************************************************
 *  Copyright notice
-*  
+*
 *  (c)  2007 Ingo Renner (typo3@ingo-renner.com)
-* 
+*
 *  All rights reserved
-* 
-*  This script is part of the Typo3 project. The Typo3 project is 
+*
+*  This script is part of the Typo3 project. The Typo3 project is
 *  free software; you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
 *  the Free Software Foundation; either version 2 of the License, or
 *  (at your option) any later version.
-* 
+*
 *  The GNU General Public License can be found at
 *  http://www.gnu.org/copyleft/gpl.html.
-* 
+*
 *  This script is distributed in the hope that it will be useful,
 *  but WITHOUT ANY WARRANTY; without even the implied warranty of
 *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -24,16 +24,16 @@
 ***************************************************************/
 
 
-/** 
+/**
  * Class to maintain backwards compatibility with extensions building on
  * tt_address
  *
  * @author	Ingo Renner <typo3@ingo-renner.com>
  */
 class tx_ttaddress_compat {
-   
+
    	/**
-	 * watches for tt_address records with changes to the first, middle, and
+	 * looks for tt_address records with changes to the first, middle, and
 	 * last name fields to come by. This function will then write changes back
 	 * to the old combined name field in a configurable format
 	 *
@@ -52,26 +52,30 @@ class tx_ttaddress_compat {
 			} else {
 				$address = $fieldArray;
 			}
-			
+
 			$extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address']);
 			$format = $extConf['backwardsCompatFormat'];
 
 			$newRecord = array_merge($address, $fieldArray);
 
-			$combinedName = sprintf(
-				$format, 
-				$newRecord['first_name'],
-				$newRecord['middle_name'],
-				$newRecord['last_name']
-			);
-			
-			$fieldArray['name'] = $combinedName;
+			if(!empty($newRecord['first_name'])
+			&& !empty($newRecord['middle_name'])
+			&& !empty($newRecord['last_name'])) {
+				$combinedName = sprintf(
+					$format,
+					$newRecord['first_name'],
+					$newRecord['middle_name'],
+					$newRecord['last_name']
+				);
+
+				$fieldArray['name'] = $combinedName;
+			}
 		}
 	}
-	
+
 	/**
 	 * gets a full tt_address record
-	 * 
+	 *
 	 * @param	integer	$uid: unique id of the tt_address record to get
 	 * @return	array	full tt_address record with associative keys
 	 */
@@ -81,10 +85,10 @@ class tx_ttaddress_compat {
 			'tt_address',
 			'uid = '.$uid
 		);
-		
+
 		return $row[0];
 	}
-   
+
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/tt_address/class.tx_ttaddress_compat.php'])	{

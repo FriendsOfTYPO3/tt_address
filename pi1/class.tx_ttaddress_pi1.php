@@ -173,7 +173,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 
 		$this->conf['singleSelection'] = $this->ffData['singleRecords'] ?
 			$this->ffData['singleRecords'] :
-			$this->conf['singleSelection'];
+			$this->cObj->stdWrap($this->conf['singleSelection'], $this->conf['singleSelection.']);
 
 		$this->conf['groupSelection'] = $this->ffData['groupSelection'] ?
 			$this->ffData['groupSelection'] :
@@ -329,6 +329,8 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		$markerArray['###MOBILE###']       = $lcObj->stdWrap($address['mobile'],             $lConf['mobile.']);
 		$markerArray['###WWW###']          = $lcObj->stdWrap($address['www'],                $lConf['www.']);
 		$markerArray['###ADDRESS###']      = $lcObj->stdWrap($address['address'],            $lConf['address.']);
+		$markerArray['###BUILDING###']     = $lcObj->stdWrap($address['building'],           $lConf['building.']);
+		$markerArray['###ROOM###']         = $lcObj->stdWrap($address['room'],               $lConf['room.']);
 		$markerArray['###BIRTHDAY###']     = $lcObj->stdWrap($address['birthday'],           $lConf['birthday.']);
 		$markerArray['###ORGANIZATION###'] = $lcObj->stdWrap($address['company'],            $lConf['organization.']);
 		$markerArray['###COMPANY###']      = $markerArray['###ORGANIZATION###']; // alias
@@ -465,7 +467,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		$validSortings = array(
 			'uid', 'pid', 'tstamp',
 			'name', 'gender', 'first_name', 'middle_name', 'last_name', 'title', 'email',
-			'phone', 'mobile', 'www', 'address', 'birthday', 'company', 'city', 'zip',
+			'phone', 'mobile', 'www', 'address', 'building', 'room', 'birthday', 'company', 'city', 'zip',
 			'region', 'country', 'image', 'fax', 'description'
 		);
 

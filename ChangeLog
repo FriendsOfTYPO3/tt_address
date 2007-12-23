@@ -1,3 +1,9 @@
+2007-12-23 Ingo Renner	<typo3@ingo-renner.com>
+
+	* ADD added building and room fields
+	* ADD added stdWrap on singleSelection
+	* CHG now the compatibility function updates the old name field only if the new separated name fields are not empty
+
 2007-10-15 Ingo Renner	<typo3@ingo-renner.com>
 
 	!!! moved old TS constants and setup (content.tt_address) into static templates

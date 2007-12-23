@@ -1,6 +1,8 @@
 <?php
 if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 
+define('TT_ADDRESS_MAX_IMAGES', 6);
+
 $TCA['tt_address'] = array (
 	'ctrl' => array (
 		'label'             => 'name',

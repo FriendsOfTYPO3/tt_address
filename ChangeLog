@@ -2,6 +2,7 @@
 
 	* ADD added building and room fields
 	* ADD added stdWrap on singleSelection
+	* ADD added support for up to TT_ADDRESS_MAX_IMAGES images, credits Christian Tauscher
 	* CHG now the compatibility function updates the old name field only if the new separated name fields are not empty
 	* UPD updated manual
 

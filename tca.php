@@ -221,7 +221,7 @@ $TCA['tt_address'] = array (
 				'uploadfolder'  => 'uploads/pics',
 				'show_thumbs'   => '1',
 				'size'          => '3',
-				'maxitems'      => '6',
+				'maxitems'      => TT_ADDRESS_MAX_IMAGES,
 				'minitems'      => '0'
 			)
 		),

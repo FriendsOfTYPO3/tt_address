@@ -224,7 +224,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 
 		if(!empty($groupList) && !empty($this->conf['pidList'])) {
 			if($this->ffData['combination'] == '0') {
-					//AND
+					// AND
 				$res = $GLOBALS['TYPO3_DB']->sql_query(
 					'SELECT tt_address.*, COUNT(tt_address.uid) AS c '.
 					'FROM tt_address '.
@@ -236,9 +236,8 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 					'GROUP BY tt_address.uid '.
 					'HAVING c = '.$count.' '
 				);
-
 			} elseif($this->ffData['combination'] == '1') {
-					//OR
+					// OR
 				$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 					'DISTINCT tt_address.*',
 					'tt_address, tt_address_group_mm, tt_address_group',

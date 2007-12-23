@@ -126,11 +126,12 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		$this->ffData = $this->getFlexFormConfig($flexKeyMapping);
 
 			//set default combination to AND if no combination set
-		$this->ffData['combination'] = intval($this->ffData['combination']) ?
-			$this->ffData['combination'] :
-				$this->conf['combination'] ?
-				intval($this->conf['combination']) :
-				0;
+		$combination = 'AND';
+		if(!empty($this->ffData['combination']) || !empty($this->conf['combination'])) {
+				// 0 and '0' are considered empty, therefore anything else means 1/true => OR
+			$combination = 'OR';
+		}
+		$this->conf['combination'] = $combination;
 
 			//set default sorting to name
 		$this->conf['sortByColumn'] = $this->ffData['sortBy'] ?
@@ -223,7 +224,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		$groupList = implode(',', $groups);
 
 		if(!empty($groupList) && !empty($this->conf['pidList'])) {
-			if($this->ffData['combination'] == '0') {
+			if($this->conf['combination'] == 'AND') {
 					// AND
 				$res = $GLOBALS['TYPO3_DB']->sql_query(
 					'SELECT tt_address.*, COUNT(tt_address.uid) AS c '.
@@ -236,7 +237,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 					'GROUP BY tt_address.uid '.
 					'HAVING c = '.$count.' '
 				);
-			} elseif($this->ffData['combination'] == '1') {
+			} elseif($this->conf['combination'] == 'OR') {
 					// OR
 				$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 					'DISTINCT tt_address.*',
@@ -500,7 +501,6 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 				$sheet
 			);
 		}
-
 		return $conf;
 	}
 

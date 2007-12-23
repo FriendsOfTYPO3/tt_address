@@ -1,6 +1,6 @@
 <T3DataStructure>
 	<meta>
-		<langDisable>1</langDisable> 
+		<langDisable>1</langDisable>
 	</meta>
 	<sheets>
 		<sDEF>
@@ -25,7 +25,7 @@
 								<show_thumbs>0</show_thumbs>
 							</config>
 						</TCEforms>
-					</singleRecords>					
+					</singleRecords>
 					<groupSelection>
 						<TCEforms>
 							<label>LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.group_selection</label>
@@ -42,7 +42,7 @@
 								<maxitems>20</maxitems>
 								<itemsHeader>LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.itemsHeader</itemsHeader>
 								<items type="array">
-									
+
 								</items>
 								<allowNonIdValues>1</allowNonIdValues>
 							</config>
@@ -52,7 +52,7 @@
 						<TCEforms>
 							<label>LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.combination</label>
 							<config>
-								<type>radio</type>
+								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.combination.and</numIndex>
@@ -61,7 +61,7 @@
 									<numIndex index="1" type="array">
 										<numIndex index="0">LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.combination.or</numIndex>
 										<numIndex index="1">1</numIndex>
-									</numIndex>					
+									</numIndex>
 								</items>
 								<default>0</default>
 							</config>
@@ -86,7 +86,7 @@
 						<TCEforms>
 							<label>LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.sortOrder</label>
 							<config>
-								<type>radio</type>
+								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.sortOrder.ascending</numIndex>
@@ -95,12 +95,12 @@
 									<numIndex index="1" type="array">
 										<numIndex index="0">LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.sortOrder.descending</numIndex>
 										<numIndex index="1">DESC</numIndex>
-									</numIndex>					
+									</numIndex>
 								</items>
 								<default>ASC</default>
 							</config>
 						</TCEforms>
-					</sortOrder>		  
+					</sortOrder>
 					<pages>
 					  	<TCEforms>
 						<exclude>1</exclude>
@@ -125,7 +125,7 @@
 									<numIndex index="0" type="array">
 										<numIndex index="0"></numIndex>
 										<numIndex index="1"></numIndex>
-									</numIndex>					
+									</numIndex>
 									<numIndex index="1" type="array">
 										<numIndex index="0">LLL:EXT:cms/locallang_ttc.php:recursive.I.1</numIndex>
 										<numIndex index="1">1</numIndex>
@@ -156,7 +156,7 @@
 				</el>
 			</ROOT>
 		</sDEF>
-		
+
 		<sDISPLAY>
 			<ROOT>
 				<TCEforms>
@@ -179,10 +179,10 @@
 								<itemsProcFunc>tx_ttaddress_addfilestosel->main</itemsProcFunc>
 							</config>
 						</TCEforms>
-					</templateFile>					
+					</templateFile>
 			    </el>
 	  		</ROOT>
     	</sDISPLAY>
-    	
+
     </sheets>
 </T3DataStructure>

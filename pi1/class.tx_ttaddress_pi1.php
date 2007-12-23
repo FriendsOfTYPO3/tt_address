@@ -347,10 +347,10 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		$markerArray['###IMAGE###'] = '';
 		if(!empty($address['image'])) {
 			$iConf = $lConf['image.'];
-
 			$images = explode(',', $address['image']);
 
-			for($i = 0; $i < TT_ADDRESS_MAX_IMAGES; $i++) {
+				// somehow (at least on my dev machine) the TT_ADDRESS_MAX_IMAGES constant doesn't work here
+			for($i = 0; $i < 6; $i++) {
 				$iConf['file'] = 'uploads/pics/'.$images[$i];
 
 				$iConf['altText'] = !empty($iConf['altText']) ?
@@ -363,6 +363,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 					// ensuring compatibility with the ###IMAGE### marker
 				$markerArray['###IMAGE'.($i == 0 ? '' : $i).'###'] = $lcObj->IMAGE($iConf);
 			}
+
 		}
 
 			// adds hook for processing of extra item markers

@@ -3,6 +3,7 @@
 	* ADD added building and room fields
 	* ADD added stdWrap on singleSelection
 	* CHG now the compatibility function updates the old name field only if the new separated name fields are not empty
+	* UPD updated manual
 
 2007-10-15 Ingo Renner	<typo3@ingo-renner.com>
 

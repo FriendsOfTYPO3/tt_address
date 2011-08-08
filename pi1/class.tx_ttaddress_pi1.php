@@ -181,7 +181,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 
 		$this->conf['groupSelection'] = $this->ffData['groupSelection'] ?
 			$this->ffData['groupSelection'] :
-			$this->conf['groupSelection'];
+			$this->cObj->stdWrap($this->conf['groupSelection'], $this->conf['groupSelection.']);
 
 		$this->conf['templateName'] = $this->getTemplateName();
 	}

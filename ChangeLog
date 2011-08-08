@@ -1,6 +1,7 @@
 2011-08-08 Michael Miousse <mmiousse@infoglobe.ca>
-	* FIX fixed issue 16711: Do not limit the size of varchar fields
-	* FIX fixed issue 10603, SQL Errors in ext_tables.sql prevent correct installation (tt_address 2.2.1), credits Jochen Rieger
+	* ADD added feature #18242, Missing stdWrap on groupSelection
+	* FIX fixed issue #16711, Do not limit the size of varchar fields
+	* FIX fixed issue #10603, SQL Errors in ext_tables.sql prevent correct installation (tt_address 2.2.1), credits Jochen Rieger
 
 2007-12-23 Ingo Renner	<typo3@ingo-renner.com>
 

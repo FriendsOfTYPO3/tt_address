@@ -2,7 +2,7 @@
 # Table structure for table 'tt_address'
 #
 CREATE TABLE tt_address (
-  uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
+  uid int(11) unsigned NOT NULL auto_increment,
   pid int(11) unsigned DEFAULT '0' NOT NULL,
   tstamp int(11) unsigned DEFAULT '0' NOT NULL,
   hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE tt_address (
   first_name tinytext NOT NULL,
   middle_name tinytext NOT NULL,
   last_name tinytext NOT NULL,
-  birthday int(11) DEFAULT '0' NOT NULL
+  birthday int(11) DEFAULT '0' NOT NULL,
   title varchar(40) DEFAULT '' NOT NULL,
   email varchar(80) DEFAULT '' NOT NULL,
   phone varchar(30) DEFAULT '' NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE tt_address (
   fax varchar(30) DEFAULT '' NOT NULL,
   deleted tinyint(3) DEFAULT '0',
   description text NOT NULL,
-  addressgroup int(11) DEFAULT '0' NOT NULL
+  addressgroup int(11) DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid),
   KEY parent (pid),
   KEY pid (pid,email)

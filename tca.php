@@ -35,7 +35,7 @@ $TCA['tt_address'] = array (
 				'type' => 'input',
 				'size' => '40',
 				'eval' => 'trim',
-				'max'  => '256'
+				'max'  => '255'
 			)
 		),
 		'first_name' => array (
@@ -45,7 +45,7 @@ $TCA['tt_address'] = array (
 				'type' => 'input',
 				'size' => '40',
 				'eval' => 'trim',
-				'max'  => '256'
+				'max'  => '255'
 			)
 		),
 		'middle_name' => array (
@@ -55,7 +55,7 @@ $TCA['tt_address'] = array (
 				'type' => 'input',
 				'size' => '40',
 				'eval' => 'trim',
-				'max'  => '256'
+				'max'  => '255'
 			)
 		),
 		'last_name' => array (
@@ -65,7 +65,7 @@ $TCA['tt_address'] = array (
 				'type' => 'input',
 				'size' => '40',
 				'eval' => 'trim',
-				'max'  => '256'
+				'max'  => '255'
 			)
 		),
 		'birthday' => array (
@@ -85,7 +85,7 @@ $TCA['tt_address'] = array (
 				'type' => 'input',
 				'size' => '20',
 				'eval' => 'trim',
-				'max'  => '40'
+				'max'  => '255'
 			)
 		),
 		'address' => array (
@@ -102,7 +102,7 @@ $TCA['tt_address'] = array (
 				'type' => 'input',
 				'eval' => 'trim',
 				'size' => '20',
-				'max'  => '15'
+				'max'  => '20'
 			)
 		),
 		'room' => array (
@@ -150,7 +150,7 @@ $TCA['tt_address'] = array (
 				'type' => 'input',
 				'eval' => 'trim',
 				'size' => '20',
-				'max'  => '80'
+				'max'  => '255'
 			)
 		),
 		'email' => array (
@@ -159,7 +159,7 @@ $TCA['tt_address'] = array (
 				'type' => 'input',
 				'size' => '40',
 				'eval' => 'trim',
-				'max'  => '80'
+				'max'  => '255'
 			)
 		),
 		'company' => array (
@@ -169,7 +169,7 @@ $TCA['tt_address'] = array (
 				'type' => 'input',
 				'eval' => 'trim',
 				'size' => '20',
-				'max'  => '80'
+				'max'  => '255'
 			)
 		),
 		'city' => array (
@@ -178,7 +178,7 @@ $TCA['tt_address'] = array (
 				'type' => 'input',
 				'size' => '20',
 				'eval' => 'trim',
-				'max'  => '80'
+				'max'  => '255'
 			)
 		),
 		'zip' => array (
@@ -197,7 +197,7 @@ $TCA['tt_address'] = array (
 				'type' => 'input',
 				'size' => '20',
 				'eval' => 'trim',
-				'max'  => '30'
+				'max'  => '255'
 			)
 		),
 		'country' => array (
@@ -207,7 +207,7 @@ $TCA['tt_address'] = array (
 				'type' => 'input',
 				'size' => '20',
 				'eval' => 'trim',
-				'max'  => '30'
+				'max'  => '128'
 			)
 		),
 		'image' => array (

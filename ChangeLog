@@ -1,3 +1,7 @@
+2011-08-08 Michael Miousse <mmiousse@infoglobe.ca>
+	* FIX fixed issue 16711: Do not limit the size of varchar fields
+	* FIX fixed issue 10603, SQL Errors in ext_tables.sql prevent correct installation (tt_address 2.2.1), credits Jochen Rieger
+
 2007-12-23 Ingo Renner	<typo3@ingo-renner.com>
 
 	* ADD added building and room fields
@@ -33,7 +37,7 @@
 	* UPD updated manual
 	* FIX template path was not read correctly
 	* ADD single records and groups can be selecty via TS
-	* ADD added chanes from Uwe Schlüter, thanks!
+	* ADD added chanes from Uwe Schlï¿½ter, thanks!
 
 2007-01-02 Ingo Renner	<typo3@ingo-renner.com>
 

@@ -49,6 +49,7 @@ plugin.tx_ttaddress_pi1 {
 		}
 
 		email.typolink.parameter.field = email
+		email.typolink.ATagParams = class="email"
 		email.required = 1
 
 		address {
@@ -83,8 +84,14 @@ plugin.tx_ttaddress_pi1 {
 			required = 1
 		}
 
-		phone.wrap = <div class="tel">|</div>
+		phone.wrap = <div class="tel phone">|</div>
 		phone.required = 1
+
+		mobile.wrap = <div class="tel mobile">|</div>
+		mobile.required = 1
+
+		fax.wrap = <div class="tel fax">|</div>
+		fax.required = 1
 
 		subparts {
 			adr.hasOneOf = address, city, region, zip, country

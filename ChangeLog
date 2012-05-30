@@ -5,6 +5,7 @@
 	* FIX issue #M7060: Sorting of address items not working if set in FlexForm (Thanks Uwe Schmelzer)
 	* FIX issue #M18391: tt_address cannot be configured using TypoScript anymore (Thanks Gabriel Kaufmann)
 	* FIX issue #36351: Name fields modification (first_name, ...) fails for fe_admin_fieldList in "media/scripts/fe_adminLib.inc" (Thanks Andy Grunwald)
+	* FIX issue #18140: Trim combinedName after applying the format
 
 2011-08-08 Michael Miousse <mmiousse@infoglobe.ca>
 	* ADD added feature #18242, Missing stdWrap on groupSelection

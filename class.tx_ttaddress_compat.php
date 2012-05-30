@@ -58,12 +58,12 @@ class tx_ttaddress_compat {
 
 			$newRecord = array_merge($address, $fieldArray);
 
-			$combinedName = sprintf(
+			$combinedName = trim(sprintf(
 				$format,
 				$newRecord['first_name'],
 				$newRecord['middle_name'],
 				$newRecord['last_name']
-			);
+			));
 
 			if(!empty($combinedName)) {
 				$fieldArray['name'] = $combinedName;

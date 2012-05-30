@@ -187,6 +187,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 			$this->cObj->stdWrap($this->conf['groupSelection'], $this->conf['groupSelection.']);
 
 		$this->conf['templateName'] = $this->getTemplateName();
+
 	}
 
 	/**
@@ -428,15 +429,20 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	 */
 	function getTemplateName() {
 		$templateName = '';
-		$templateFile = $this->ffData['templateFile'];
 
-		if($templateFile == $this->conf['defaultTemplateFileName'] ||
+		if (isset($this->ffData['templateFile'])) {
+			$templateFile = $this->ffData['templateFile'];
+		} elseif (isset($this->conf['defaultTemplateFileName'])) {
+			$templateFile = $this->conf['defaultTemplateFileName'];
+		}
+
+		if ($templateFile == $this->conf['defaultTemplateFileName'] ||
 		   $templateFile == 'default') {
 			$templateName = 'default';
 		}
 
-			//cutting off the file extension
-		if($templateName != 'default') {
+			// cutting off the file extension
+		if ($templateName != 'default') {
 			$templateName = substr($templateFile, 0, strrpos($templateFile, '.'));
 		}
 
@@ -450,14 +456,19 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	 * @return	string	html template code
 	 */
 	function getTemplate() {
-		$templateFile = $this->ffData['templateFile'];
 
-		if($templateFile == 'default') {
+        if (isset($this->ffData['templateFile'])) {
+            $templateFile = $this->ffData['templateFile'];
+        } elseif (isset($this->conf['defaultTemplateFileName'])) {
+            $templateFile = $this->conf['defaultTemplateFileName'];
+        }
+
+		if ($templateFile == 'default') {
 			$templateFile = $this->conf['defaultTemplateFileName'];
 		}
 
 		$templateCode = $this->cObj->fileResource(
-			$this->conf['templatePath'].$templateFile
+			$this->conf['templatePath'] . $templateFile
 		);
 
 		$subPart = $this->cObj->getSubpart(

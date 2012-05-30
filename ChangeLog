@@ -2,6 +2,7 @@
 	* FIX issue #M18489: Fatal error using non existing int() function
 	* FIX issue #M8725: Missing microformat classes for email, mobile, fax
 	* FIX issue #M7095: Add link wizard to www field
+	* FIX issue #M7060: Sorting of address items not working if set in FlexForm (Thanks Uwe Schmelzer)
 
 2011-08-08 Michael Miousse <mmiousse@infoglobe.ca>
 	* ADD added feature #18242, Missing stdWrap on groupSelection

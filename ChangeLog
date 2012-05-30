@@ -1,3 +1,6 @@
+2012-05-30 Lorenz Ulrich <lorenz.ulrich@visol.ch>
+	* FIX issue #M18489: Fatal error using non existing int() function
+
 2011-08-08 Michael Miousse <mmiousse@infoglobe.ca>
 	* ADD added feature #18242, Missing stdWrap on groupSelection
 	* FIX fixed issue #16711, Do not limit the size of varchar fields

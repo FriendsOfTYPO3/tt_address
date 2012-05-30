@@ -68,8 +68,8 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		array_multisort($sortBy, $this->conf['sortOrder'], $addresses);
 
 			// limit output to max listMaxItems addresses
-		if( ((int) $this->conf['listMaxItems']) > 0) {
-			$addresses = array_slice($addresses, 0, int($this->conf['listMaxItems']));
+		if (((int)$this->conf['listMaxItems']) > 0) {
+			$addresses = array_slice($addresses, 0, (int)$this->conf['listMaxItems']);
 		}
 
 			// output

@@ -49,6 +49,25 @@ $TCA['tt_address_group'] = array(
 	)
 );
 
+	// start splitting name into first and last name
+$extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address']);
+
+$fe_admin_fieldListOrig  = $TCA['tt_address']['feInterface']['fe_admin_fieldList'];
+$fe_admin_fieldListReplace  = 'name,first_name,middle_name,last_name,';
+
+if ($extConf['disableCombinedNameField']) {
+		// shows only the new fields
+	$fe_admin_fieldListReplace  = 'first_name,middle_name,last_name,';
+}
+
+$fe_admin_fieldListNew = str_replace(
+	'name,',
+	$fe_admin_fieldListReplace,
+	$fe_admin_fieldListOrig
+);
+$TCA['tt_address']['feInterface']['fe_admin_fieldList'] = $fe_admin_fieldListNew;
+	// end splitting name
+
 
 t3lib_extMgm::addPlugin(
 	array(

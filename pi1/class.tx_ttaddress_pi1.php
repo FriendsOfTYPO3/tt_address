@@ -80,7 +80,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 				// sorting the addresses by any other field
 			$sortBy = array();
 			foreach($addresses as $k => $v) {
-				$sortBy[$k] = $v[$this->conf['sortByColumn']];
+				$sortBy[$k] = $this->normalizeSortingString($v[$this->conf['sortByColumn']]);
 			}
 			array_multisort($sortBy, $this->conf['sortOrder'], $addresses);
 
@@ -560,6 +560,33 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		}
 
 		return $flag;
+	}
+
+	/**
+	 * Removes whitespaces, hyphens and replaces umlauts to allow a correct
+	 * sorting with multisort.
+	 *
+	 * @param mixed $value: value to clean
+	 * @return cleaned value
+	 */
+	protected function normalizeSortingString($value) {
+			if (!is_string($value)) {
+					// return if value is not a string
+				return $value;
+			}
+
+			$value = $GLOBALS['TSFE']->csConvObj->conv_case($GLOBALS['TSFE']->renderCharset, $value, 'toLower'); // lowercase
+			$value = preg_replace("/\s+/", "", $value); // remove whitespace
+			$value = preg_replace("/-/", "", $value); // remove hyphens e.g. from double names
+			$value = preg_replace("/ü/", "u", $value); // remove umlauts
+			$value = preg_replace("/ä/", "a", $value);
+			$value = preg_replace("/ö/", "o", $value);
+			$value = preg_replace("/ë/", "e", $value);
+			$value = preg_replace("/é/", "e", $value);
+			$value = preg_replace("/è/", "e", $value);
+			$value = preg_replace("/ç/", "c", $value);
+
+			return $value;
 	}
 
 }

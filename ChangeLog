@@ -4,6 +4,7 @@
 	* FIX issue #M12776: Incorrect sorting with umlauts and whitespace
 	* FIX issue #M18558: Compatibility with TYPO3 4.6+
 	* ADD feature #36511: Use TCA suggest wizard for single selection and starting point
+	* ADD feature #37698: Add configuration for searchFields to TCA
 
 2012-05-30 Lorenz Ulrich <lorenz.ulrich@visol.ch>
 	* FIX issue #M18489: Fatal error using non existing int() function

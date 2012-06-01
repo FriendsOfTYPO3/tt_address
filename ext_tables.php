@@ -76,6 +76,7 @@ t3lib_extMgm::addPlugin(
 	)
 );
 t3lib_extMgm::allowTableOnStandardPages('tt_address');
+t3lib_extMgm::allowTableOnStandardPages('tt_address_group');
 t3lib_extMgm::addToInsertRecords('tt_address');
 
 t3lib_extMgm::addLLrefForTCAdescr('tt_address','EXT:tt_address/locallang_csh_ttaddress.xml');

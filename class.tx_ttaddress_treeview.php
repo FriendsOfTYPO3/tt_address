@@ -110,9 +110,9 @@ class tx_ttaddress_treeview {
 				$item.= '<input type="hidden" name="'.$PA['itemFormElName'].'_mul" value="'.($config['multiple']?1:0).'" />';
 
 					// Set max and min items:
-				$maxitems = t3lib_div::intInRange($config['maxitems'],0);
+				$maxitems = self::forceIntegerInRange($config['maxitems'],0);
 				if (!$maxitems)	$maxitems=100000;
-				$minitems = t3lib_div::intInRange($config['minitems'],0);
+				$minitems = self::forceIntegerInRange($config['minitems'],0);
 
 					// Register the required number of elements:
 				$this->pObj->requiredElements[$PA['itemFormElName']] = array($minitems,$maxitems,'imgName'=>$table.'_'.$row['uid'].'_'.$field);
@@ -178,8 +178,8 @@ class tx_ttaddress_treeview {
 						$width = 320;
 					}
 
-					$config['autoSizeMax'] = t3lib_div::intInRange($config['autoSizeMax'],0);
-					$height = $config['autoSizeMax'] ? t3lib_div::intInRange($treeItemC+2,t3lib_div::intInRange($size,1),$config['autoSizeMax']) : $size;
+					$config['autoSizeMax'] = self::forceIntegerInRange($config['autoSizeMax'],0);
+					$height = $config['autoSizeMax'] ? self::forceIntegerInRange($treeItemC+2, self::forceIntegerInRange($size,1),$config['autoSizeMax']) : $size;
 						// hardcoded: 16 is the height of the icons
 					$height = $height*16;
 
@@ -194,7 +194,7 @@ class tx_ttaddress_treeview {
 
 						// Put together the select form with selected elements:
 					$selector_itemListStyle = isset($config['itemListStyle']) ? ' style="'.htmlspecialchars($config['itemListStyle']).'"' : ' style="'.$this->pObj->defaultMultipleSelectorStyle.'"';
-					$size = $config['autoSizeMax'] ? t3lib_div::intInRange(count($itemArray)+1,t3lib_div::intInRange($size,1),$config['autoSizeMax']) : $size;
+					$size = $config['autoSizeMax'] ? self::forceIntegerInRange(count($itemArray)+1,self::forceIntegerInRange($size,1),$config['autoSizeMax']) : $size;
 					$thumbnails = '<select style="width:150px;" name="'.$PA['itemFormElName'].'_sel"'.$this->pObj->insertDefStyle('select').($size?' size="'.$size.'"':'').' onchange="'.htmlspecialchars($sOnChange).'"'.$PA['onFocus'].$selector_itemListStyle.'>';
 					#$thumbnails = '<select                       name="'.$PA['itemFormElName'].'_sel"'.$this->pObj->insertDefStyle('select').($size?' size="'.$size.'"':'').' onchange="'.htmlspecialchars($sOnChange).'"'.$PA['onFocus'].$selector_itemListStyle.'>';
 					foreach($selItems as $p)	{
@@ -220,7 +220,7 @@ class tx_ttaddress_treeview {
 				
 				$params=array(
 					'size' => $size,
-					'autoSizeMax' => t3lib_div::intInRange($config['autoSizeMax'],0),
+					'autoSizeMax' => self::forceIntegerInRange($config['autoSizeMax'],0),
 					#'style' => isset($config['selectedListStyle']) ? ' style="'.htmlspecialchars($config['selectedListStyle']).'"' : ' style="'.$this->pObj->defaultMultipleSelectorStyle.'"',
 					'style' => ' style="width: 150px;"',
 					'dontShowMoveIcons' => ($maxitems<=1),
@@ -313,6 +313,22 @@ class tx_ttaddress_treeview {
 			$rcList = implode($rcArr,', ');
 		}
 		return $rcList;
+	}
+
+	/**
+	 * Wrapper for t3lib_div::intInRange (TYPO3 4.5)/t3lib_utility_Math::forceIntegerInRange (TYPO3 4.6+)
+	 *
+	 * @param $var mixed Any input variable to test
+	 * @return boolean Returns TRUE if string is an integer
+	 */
+	public static function forceIntegerInRange($theInt, $min, $max = 2000000000, $defaultValue = 0) {
+
+		if (version_compare(TYPO3_branch, '4.6', '<')) {
+			return t3lib_div::intInRange($theInt, $min, $max, $defaultValue);
+		}
+
+		return t3lib_utility_Math::forceIntegerInRange($theInt, $min, $max, $defaultValue);
+
 	}
 
 }

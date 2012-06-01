@@ -2,6 +2,7 @@
 	* FIX issue #M11276: Enable sorting by single selection
 	* Updated documentation for #M11276 and #M18242
 	* FIX issue #M12776: Incorrect sorting with umlauts and whitespace
+	* FIX issue #M18558: Compatibility with TYPO3 4.6+
 
 2012-05-30 Lorenz Ulrich <lorenz.ulrich@visol.ch>
 	* FIX issue #M18489: Fatal error using non existing int() function

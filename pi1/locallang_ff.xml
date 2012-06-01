@@ -17,6 +17,7 @@
             <label index="pi1_flexform.combination.and">AND</label>
             <label index="pi1_flexform.combination.or">OR</label>
             <label index="pi1_flexform.sortBy">Sort By</label>
+            <label index="pi1_flexform.sortBy.singleSelection">Order of single addresses</label>
             <label index="pi1_flexform.sortOrder">Sort Order</label>
             <label index="pi1_flexform.sortOrder.ascending">Ascending</label>
             <label index="pi1_flexform.sortOrder.descending">Descending</label>
@@ -34,6 +35,7 @@
             <label index="pi1_flexform.combination.and">UND</label>
             <label index="pi1_flexform.combination.or">ODER</label>
             <label index="pi1_flexform.sortBy">Sortieren nach</label>
+            <label index="pi1_flexform.sortBy.singleSelection">Reihenfolge einzelne Adressen</label>
             <label index="pi1_flexform.sortOrder">Reihenfolge</label>
             <label index="pi1_flexform.sortOrder.ascending">Ansteigend</label>
             <label index="pi1_flexform.sortOrder.descending">Absteigend</label>

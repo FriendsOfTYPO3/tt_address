@@ -1,3 +1,7 @@
+2012-06-01 Lorenz Ulrich <lorenz.ulrich@visol.ch>
+	* FIX issue #M11276: Enable sorting by single selection
+	* Updated documentation for #M11276 and #M18242
+
 2012-05-30 Lorenz Ulrich <lorenz.ulrich@visol.ch>
 	* FIX issue #M18489: Fatal error using non existing int() function
 	* FIX issue #M8725: Missing microformat classes for email, mobile, fax

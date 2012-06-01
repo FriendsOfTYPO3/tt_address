@@ -60,6 +60,12 @@ class tx_ttaddress_addfieldstosel {
 			);
 		}
 
+			// add sorting by order of single selection
+		$selectOptions[] = array (
+			'field' => 'singleSelection',
+			'label' => $GLOBALS['LANG']->sL('LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.sortBy.singleSelection')
+		);
+
 			// sort by labels
 		$labels = array();
 		foreach($selectOptions as $key => $v) {

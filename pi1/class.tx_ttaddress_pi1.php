@@ -58,14 +58,33 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		$addresses = t3lib_div::array_merge($singleSelection, $groupSelection);
 
 		$templateCode = $this->getTemplate();
-		$sorting = explode(',', $this->ffData['singleRecords']);
 
-			// sorting the addresses
-		$sortBy = array();
-		foreach($addresses as $k => $v) {
-			$sortBy[$k] = $v[$this->conf['sortByColumn']];
+			// apply sorting
+		if ($this->conf['sortByColumn'] === 'singleSelection' && count($groupSelection) === 0) {
+
+				// we want to sort by single selection and only have single record selection
+			$sortedAdressesUid = explode(',', $this->conf['singleSelection']);
+			$sortedAddresses = array();
+
+			foreach($sortedAdressesUid as $uid) {
+				$sortedAddresses[] = $addresses[$uid];
+			}
+			$addresses = $sortedAddresses;
+
+		} else {
+				// if sortByColumn was set to singleSelection, but we don't have a single selection, switch to default column "name"
+			if ($this->conf['sortByColumn'] === 'singleSelection') {
+				$this->conf['sortByColumn'] = 'name';
+			}
+
+				// sorting the addresses by any other field
+			$sortBy = array();
+			foreach($addresses as $k => $v) {
+				$sortBy[$k] = $v[$this->conf['sortByColumn']];
+			}
+			array_multisort($sortBy, $this->conf['sortOrder'], $addresses);
+
 		}
-		array_multisort($sortBy, $this->conf['sortOrder'], $addresses);
 
 			// limit output to max listMaxItems addresses
 		if (((int)$this->conf['listMaxItems']) > 0) {
@@ -492,7 +511,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 			'uid', 'pid', 'tstamp',
 			'name', 'gender', 'first_name', 'middle_name', 'last_name', 'title', 'email',
 			'phone', 'mobile', 'www', 'address', 'building', 'room', 'birthday', 'company', 'city', 'zip',
-			'region', 'country', 'image', 'fax', 'description'
+			'region', 'country', 'image', 'fax', 'description', 'singleSelection'
 		);
 
 		if(!in_array($sortBy, $validSortings)) {

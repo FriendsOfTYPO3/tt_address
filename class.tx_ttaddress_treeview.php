@@ -87,7 +87,7 @@ class tx_ttaddress_treeview {
 
 		} else {
 			
-			if ($row['sys_language_uid'] && $row['l18n_parent'] ) {
+			if ($table !== 'tt_content' && $row['sys_language_uid'] && $row['l18n_parent'] ) {
 				// the current record is a translation of another record
 				$errorMsg = array();
 									

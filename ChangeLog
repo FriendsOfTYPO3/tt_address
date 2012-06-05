@@ -1,3 +1,6 @@
+2012-06-05 Lorenz Ulrich <lorenz.ulrich@visol.ch>
+	* ADD feature #33888 Placeholder image if none is selected for the tt_address record
+
 2012-06-01 Lorenz Ulrich <lorenz.ulrich@visol.ch>
 	* FIX issue #M11276: Enable sorting by single selection
 	* Updated documentation for #M11276 and #M18242

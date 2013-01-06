@@ -71,7 +71,7 @@ class tx_ttaddress_pi1_wizicon {
 				break;
 			case '6.0':
 			default:
-				$llFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('tt_address').'pi1/locallang.xml';
+				$llFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('tt_address') . 'locallang.xml';
 
 				$localLanguageParser = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Localization\\Parser\\LocallangXmlParser');
 				$LOCAL_LANG = $localLanguageParser->getParsedData($llFile, $GLOBALS['LANG']->lang);

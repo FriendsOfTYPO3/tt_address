@@ -30,7 +30,7 @@
  * @author	Ingo Renner <typo3@ingo-renner.com>
  */
 class tx_ttaddress_pi1_wizicon {
-	
+
 	/**
 	 * Adds the tt_address pi1 wizard icon
 	 *
@@ -52,16 +52,31 @@ class tx_ttaddress_pi1_wizicon {
 
 		return $wizardItems;
 	}
-	
+
 	/**
 	 * Includes the locallang file for the 'tt_address' extension
 	 *
 	 * @return	array		The LOCAL_LANG array
 	 */
 	function includeLocalLang()	{
-		$llFile     = t3lib_extMgm::extPath('tt_address').'locallang.xml';
-		$LOCAL_LANG = t3lib_div::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
-		
+		switch (TYPO3_version) {
+			case '4.5':
+				$llFile     = t3lib_extMgm::extPath('tt_address').'locallang.xml';
+				$LOCAL_LANG = t3lib_div::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
+				break;
+			case '4.6':
+			case '4.7':
+				$llFile     = t3lib_extMgm::extPath('tt_address').'locallang.xml';
+				$LOCAL_LANG = t3lib_l10n_parser_Llxml::getParsedData($llFile, $GLOBALS['LANG']->lang);
+				break;
+			case '6.0':
+			default:
+				$llFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('tt_address') . 'locallang.xml';
+
+				$localLanguageParser = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Localization\\Parser\\LocallangXmlParser');
+				$LOCAL_LANG = $localLanguageParser->getParsedData($llFile, $GLOBALS['LANG']->lang);
+		}
+
 		return $LOCAL_LANG;
 	}
 }

@@ -59,18 +59,20 @@ class tx_ttaddress_pi1_wizicon {
 	 * @return	array		The LOCAL_LANG array
 	 */
 	function includeLocalLang()	{
-		$llFile     = t3lib_extMgm::extPath('tt_address').'locallang.xml';
-
 		switch (TYPO3_version) {
 			case '4.5':
+				$llFile     = t3lib_extMgm::extPath('tt_address').'locallang.xml';
 				$LOCAL_LANG = t3lib_div::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
 				break;
 			case '4.6':
 			case '4.7':
+				$llFile     = t3lib_extMgm::extPath('tt_address').'locallang.xml';
 				$LOCAL_LANG = t3lib_l10n_parser_Llxml::getParsedData($llFile, $GLOBALS['LANG']->lang);
 				break;
 			case '6.0':
 			default:
+				$llFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('tt_address').'pi1/locallang.xml';
+
 				$localLanguageParser = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Localization\\Parser\\LocallangXmlParser');
 				$LOCAL_LANG = $localLanguageParser->getParsedData($llFile, $GLOBALS['LANG']->lang);
 		}

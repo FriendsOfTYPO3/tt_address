@@ -48,7 +48,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	 * @param	array	$conf: configuration array with TS configuration
 	 * @return	string	the processed addresses
 	 */
-	function main($content, $conf) {
+	public function main($content, $conf) {
 		$this->init($conf);
 		$content = '';
 
@@ -127,7 +127,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	 * @param	array	$conf: array with TS configuration
 	 * @return	void
 	 */
-	function init($conf) {
+	protected function init($conf) {
 		$this->conf = $conf;
 		$this->pi_setPiVarDefaults();
 		$this->pi_loadLL();
@@ -215,7 +215,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	 *
 	 * @return	array	array of addresses with their uids as array keys
 	 */
-	function getSingleRecords() {
+	public function getSingleRecords() {
 		$singleRecords = array();
 		$uidList = $GLOBALS['TYPO3_DB']->cleanIntList(
 			$this->conf['singleSelection']
@@ -242,7 +242,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	 *
 	 * @return	array	array of addresses with their uids as array keys
 	 */
-	function getRecordsFromGroups() {
+	public function getRecordsFromGroups() {
 		$groupRecords = array();
 
 			// similar to t3lib_db::cleanIntList(), but we need the count for AND combination
@@ -291,7 +291,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	 * @param	array	$address: an address record
 	 * @return	array	the address plus its groups
 	 */
-	function getGroupsForAddress($address) {
+	public function getGroupsForAddress($address) {
 		$groupTitles = array();
 
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECT_mm_query(
@@ -336,7 +336,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	 * @return	array	a marker array with filled markers acording to the
 	 * address given
 	 */
-	function getItemMarkerArray($address) {
+	protected function getItemMarkerArray($address) {
 		$markerArray = array();
 
 			//local configuration and local cObj
@@ -420,7 +420,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	 * @param	array	$address: a tt_address record
 	 * @return	array	array of subparts
 	 */
-	function getSubpartArray($templateCode, $markerArray, $address) {
+	protected function getSubpartArray($templateCode, $markerArray, $address) {
 		$subpartArray = array();
 
 		if(is_array($this->conf['templates.'][$this->conf['templateName'].'.']['subparts.'])) {
@@ -455,7 +455,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	 *
 	 * @return	string	the file name portion without the file extension
 	 */
-	function getTemplateName() {
+	protected function getTemplateName() {
 		$templateName = '';
 
 		if (isset($this->ffData['templateFile'])) {
@@ -483,7 +483,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	 *
 	 * @return	string	html template code
 	 */
-	function getTemplate() {
+	protected function getTemplate() {
 
         if (isset($this->ffData['templateFile'])) {
             $templateFile = $this->ffData['templateFile'];
@@ -514,7 +514,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	 * @param	string	$sortBy: criteria you want to sort the addresses by
 	 * @return	string	the given sorting criteria if it was valid, 'name' otherwise
 	 */
-	function checkSorting($sortBy) {
+	protected function checkSorting($sortBy) {
 			// TODO add all fields from TCA (extract them from TCA) or add a method to add new sorting fields
 		$validSortings = array(
 			'uid', 'pid', 'tstamp',
@@ -536,7 +536,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	 * @param	array	$flexKeyMapping: mapping of sheet.flexformFieldName => variable name
 	 * @return	array	flexform configuration as an array
 	 */
-	function getFlexFormConfig($flexKeyMapping) {
+	protected function getFlexFormConfig($flexKeyMapping) {
 		$conf = array();
 		foreach($flexKeyMapping as $sheetField => $confName) {
 			list($sheet, $field) = explode('.', $sheetField);
@@ -557,7 +557,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	 * @param	array	$address: a tt_address record
 	 * @return	boolean	true if at least one of the given fields is not empty
 	 */
-	function hasOneOf($fieldList, $address) {
+	protected function hasOneOf($fieldList, $address) {
 		$checkFields = t3lib_div::trimExplode(',', $fieldList, 1);
 		$flag = false;
 

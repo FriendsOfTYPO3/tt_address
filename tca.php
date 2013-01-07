@@ -171,7 +171,7 @@ $TCA['tt_address'] = array (
 			'label'  => 'LLL:EXT:lang/locallang_general.xml:LGL.email',
 			'config' => array (
 				'type' => 'input',
-				'size' => '40',
+				'size' => '20',
 				'eval' => 'trim',
 				'max'  => '255'
 			)

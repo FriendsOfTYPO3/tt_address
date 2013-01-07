@@ -1,6 +1,3 @@
 
-  # cat=basic/enable/10; type=boolean; label= Disable combined name field: Check to disable the original tt_address name field after you updated your address records to the separate first, middle, and last name fields.
-disableCombinedNameField = 0
-
   # cat=basic//20 type=text; label= Backwardscompatibility format: tt_address v2.0.0 uses separate fields for first, middle, and last name. Everytime a change is made to a name field tt_address writes the changes back to the internal old combined field. Here you can specify a format for this: use %1$s for the fist name, %2$s for the middle name, and %3$s for the last name. everything else is up to you (see php.net/sprintf)
 backwardsCompatFormat = %1$s %3$s

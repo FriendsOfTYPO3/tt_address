@@ -20,6 +20,10 @@
             <label index="tt_address.organization"></label>
             <label index="tt_address.position"></label>
             <label index="tt_address.region"></label>
+            <label index="tt_address.skype"></label>
+            <label index="tt_address.twitter"></label>
+            <label index="tt_address.facebook"></label>
+            <label index="tt_address.linkedin"></label>
             <label index="tt_address.addressgroup"></label>
             <label index="tt_address_group"></label>
             <label index="tt_address_group.parent_group"></label>
@@ -30,6 +34,7 @@
             <label index="tt_address_palette.address"></label>
             <label index="tt_address_palette.building"></label>
             <label index="tt_address_palette.contact"></label>
+            <label index="tt_address_palette.social"></label>
             <label index="pi_tt_address"></label>
         </labelContext>
     </meta>
@@ -49,6 +54,10 @@
             <label index="tt_address.organization">Organization:</label>
             <label index="tt_address.position">Position:</label>
             <label index="tt_address.region">Region/State:</label>
+            <label index="tt_address.skype">Skype:</label>
+            <label index="tt_address.twitter">twitter:</label>
+            <label index="tt_address.facebook">Facebook:</label>
+            <label index="tt_address.linkedin">LinkedIn:</label>
             <label index="tt_address.addressgroup">Group:</label>
             <label index="tt_address_group">Address Group</label>
             <label index="tt_address_group.parent_group">Parent Group:</label>
@@ -59,6 +68,7 @@
             <label index="tt_address_palette.address">Address</label>
             <label index="tt_address_palette.building">Building</label>
             <label index="tt_address_palette.contact">Contact</label>
+            <label index="tt_address_palette.social">Social Networks</label>
             <label index="pi_tt_address">Addresses</label>
         </languageKey>
         <languageKey index="dk" type="array">
@@ -91,6 +101,7 @@
             <label index="tt_address_palette.address">Adresse</label>
             <label index="tt_address_palette.building">Gebäude</label>
             <label index="tt_address_palette.contact">Kontakt</label>
+            <label index="tt_address_palette.social">Soziale Netzwerke</label>
             <label index="pi_tt_address">Adressen</label>
         </languageKey>
         <languageKey index="no" type="array">

@@ -176,6 +176,50 @@ $TCA['tt_address'] = array (
 				'max'  => '255'
 			)
 		),
+		'skype' => array (
+			'exclude' => 1,
+			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.skype',
+			'config'  => array (
+				'type' => 'input',
+				'size' => '20',
+				'eval' => 'trim',
+				'max'  => '50',
+				'placeholder' => 'johndoe'
+			)
+		),
+		'twitter' => array (
+			'exclude' => 1,
+			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.twitter',
+			'config'  => array (
+				'type' => 'input',
+				'size' => '20',
+				'eval' => 'trim',
+				'max'  => '50',
+				'placeholder' => '@johndoe'
+			)
+		),
+		'facebook' => array (
+			'exclude' => 1,
+			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.facebook',
+			'config'  => array (
+				'type' => 'input',
+				'size' => '20',
+				'eval' => 'trim',
+				'max'  => '50',
+				'placeholder' => '/johndoe'
+			)
+		),
+		'linkedin' => array (
+			'exclude' => 1,
+			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.linkedin',
+			'config'  => array (
+				'type' => 'input',
+				'size' => '20',
+				'eval' => 'trim',
+				'max'  => '50',
+				'placeholder' => 'johndoe'
+			)
+		),
 		'company' => array (
 			'exclude' => 1,
 			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.organization',
@@ -285,6 +329,7 @@ $TCA['tt_address'] = array (
 				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.building;building,
 				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.organization;organization,
 				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.contact;contact,
+				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.social;social,
 			--div--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_tab.groups,
 				addressgroup
 			')
@@ -321,6 +366,14 @@ $TCA['tt_address'] = array (
 							phone, fax, --linebreak--,
 							mobile, --linebreak--,
 							www',
+			'canNotCollapse' => 1
+		),
+
+		'social' => array(
+			'showitem' => 'skype, --linebreak--,
+							twitter, --linebreak--,
+							facebook, --linebreak--,
+							linkedin',
 			'canNotCollapse' => 1
 		),
 	)

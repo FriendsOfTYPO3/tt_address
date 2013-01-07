@@ -22,6 +22,13 @@
             <label index="tt_address.addressgroup"></label>
             <label index="tt_address_group"></label>
             <label index="tt_address_group.parent_group"></label>
+            <label index="tt_address_tab.contact"></label>
+            <label index="tt_address_tab.groups"></label>
+            <label index="tt_address_palette.name"></label>
+            <label index="tt_address_palette.organization"></label>
+            <label index="tt_address_palette.address"></label>
+            <label index="tt_address_palette.building"></label>
+            <label index="tt_address_palette.contact"></label>
             <label index="pi_tt_address"></label>
         </labelContext>
     </meta>
@@ -43,6 +50,13 @@
             <label index="tt_address.addressgroup">Group:</label>
             <label index="tt_address_group">Address Group</label>
             <label index="tt_address_group.parent_group">Parent Group:</label>
+            <label index="tt_address_tab.contact">Contact</label>
+            <label index="tt_address_tab.groups">Groups</label>
+            <label index="tt_address_palette.name">Name</label>
+            <label index="tt_address_palette.organization">Organization</label>
+            <label index="tt_address_palette.address">Address</label>
+            <label index="tt_address_palette.building">Building</label>
+            <label index="tt_address_palette.contact">Contact</label>
             <label index="pi_tt_address">Addresses</label>
         </languageKey>
         <languageKey index="dk" type="array">
@@ -67,6 +81,13 @@
             <label index="tt_address.addressgroup">Gruppe:</label>
             <label index="tt_address_group">Adressgruppe</label>
             <label index="tt_address_group.parent_group">Übergeordnete Gruppe:</label>
+            <label index="tt_address_tab.contact">Kontakt</label>
+            <label index="tt_address_tab.groups">Gruppen</label>
+            <label index="tt_address_palette.name">Name</label>
+            <label index="tt_address_palette.organization">Organisation</label>
+            <label index="tt_address_palette.address">Adresse</label>
+            <label index="tt_address_palette.building">Gebäude</label>
+            <label index="tt_address_palette.contact">Kontakt</label>
             <label index="pi_tt_address">Adressen</label>
         </languageKey>
         <languageKey index="no" type="array">

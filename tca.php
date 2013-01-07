@@ -29,6 +29,16 @@ $TCA['tt_address'] = array (
 				)
 			)
 		),
+		'title' => array (
+			'exclude' => 1,
+			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.title_person',
+			'config'  => array (
+				'type' => 'input',
+				'size' => '8',
+				'eval' => 'trim',
+				'max'  => '255'
+			)
+		),
 		'name' => array (
 			'label'  => 'LLL:EXT:lang/locallang_general.xml:LGL.name',
 			'config' => array (
@@ -44,7 +54,7 @@ $TCA['tt_address'] = array (
 			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.first_name',
 			'config'  => array (
 				'type' => 'input',
-				'size' => '40',
+				'size' => '20',
 				'eval' => 'trim',
 				'max'  => '255'
 			)
@@ -54,7 +64,7 @@ $TCA['tt_address'] = array (
 			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.middle_name',
 			'config'  => array (
 				'type' => 'input',
-				'size' => '40',
+				'size' => '20',
 				'eval' => 'trim',
 				'max'  => '255'
 			)
@@ -64,7 +74,7 @@ $TCA['tt_address'] = array (
 			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.last_name',
 			'config'  => array (
 				'type' => 'input',
-				'size' => '40',
+				'size' => '20',
 				'eval' => 'trim',
 				'max'  => '255'
 			)
@@ -77,16 +87,6 @@ $TCA['tt_address'] = array (
 				'eval' => 'date',
 				'size' => '8',
 				'max'  => '20'
-			)
-		),
-		'title' => array (
-			'exclude' => 1,
-			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.title_person',
-			'config'  => array (
-				'type' => 'input',
-				'size' => '20',
-				'eval' => 'trim',
-				'max'  => '255'
 			)
 		),
 		'address' => array (
@@ -111,7 +111,7 @@ $TCA['tt_address'] = array (
 			'config' => array (
 				'type' => 'input',
 				'eval' => 'trim',
-				'size' => '20',
+				'size' => '5',
 				'max'  => '15'
 			)
 		),
@@ -209,7 +209,7 @@ $TCA['tt_address'] = array (
 			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.region',
 			'config'  => array (
 				'type' => 'input',
-				'size' => '20',
+				'size' => '10',
 				'eval' => 'trim',
 				'max'  => '255'
 			)
@@ -266,14 +266,52 @@ $TCA['tt_address'] = array (
 		)
 	),
 	'types' => array (
-		'1' => array('showitem' => 'hidden;;;;1-1-1, gender;;;;3-3-3, name, first_name, middle_name, last_name;;2;;, birthday, address;;6, zip, city;;3, email;;5, phone;;4, image;;;;4-4-4, description, addressgroup;;;;1-1-1')
+		'1' => array('showitem' =>
+			'hidden,
+			--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.name;name,
+			image, description,
+			--div--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_tab.contact,
+				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.address;address,
+				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.building;building,
+				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.organization;organization,
+				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.contact;contact,
+			--div--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_tab.groups,
+				addressgroup
+			')
 	),
 	'palettes' => array (
-		'2' => array('showitem' => 'title, company'),
-		'3' => array('showitem' => 'country, region'),
-		'4' => array('showitem' => 'mobile, fax'),
-		'5' => array('showitem' => 'www'),
-		'6' => array('showitem' => 'building, room')
+		'name' => array(
+			'showitem' => 'name, --linebreak--,
+							gender, title, --linebreak--,
+							first_name, middle_name, --linebreak--,
+							last_name',
+			'canNotCollapse' => 1
+		),
+
+		'organization' => array(
+			'showitem' => 'company',
+			'canNotCollapse' => 1
+		),
+
+		'address' => array(
+			'showitem' => 'address, --linebreak--,
+							city, zip, region, --linebreak--,
+							country',
+			'canNotCollapse' => 1
+		),
+
+		'building' => array(
+			'showitem' => 'building, room',
+			'canNotCollapse' => 1
+		),
+
+		'contact' => array(
+			'showitem' => 'email, --linebreak--,
+							phone, --linebreak--,
+							mobile, fax, --linebreak--,
+							www',
+			'canNotCollapse' => 1
+		),
 	)
 );
 

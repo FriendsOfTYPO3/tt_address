@@ -325,7 +325,7 @@ $TCA['tt_address'] = array (
 			--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.name;name,
 			image, description,
 			--div--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_tab.contact,
-				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.address;address,
+				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.address;address_usa,
 				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.building;building,
 				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.organization;organization,
 				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.contact;contact,
@@ -349,7 +349,7 @@ $TCA['tt_address'] = array (
 			'canNotCollapse' => 1
 		),
 
-		'address' => array(
+		'address_usa' => array(
 			'showitem' => 'address, --linebreak--,
 							city, zip, region, --linebreak--,
 							country',

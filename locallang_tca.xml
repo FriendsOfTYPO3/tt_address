@@ -18,6 +18,7 @@
             <label index="tt_address.building"></label>
             <label index="tt_address.room"></label>
             <label index="tt_address.organization"></label>
+            <label index="tt_address.position"></label>
             <label index="tt_address.region"></label>
             <label index="tt_address.addressgroup"></label>
             <label index="tt_address_group"></label>
@@ -46,6 +47,7 @@
             <label index="tt_address.building">Building:</label>
             <label index="tt_address.room">Room:</label>
             <label index="tt_address.organization">Organization:</label>
+            <label index="tt_address.position">Position:</label>
             <label index="tt_address.region">Region/State:</label>
             <label index="tt_address.addressgroup">Group:</label>
             <label index="tt_address_group">Address Group</label>
@@ -77,6 +79,7 @@
             <label index="tt_address.building">Gebäude:</label>
             <label index="tt_address.room">Raum:</label>
             <label index="tt_address.organization">Organisation:</label>
+            <label index="tt_address.position">Position:</label>
             <label index="tt_address.region">Region/Bundesland:</label>
             <label index="tt_address.addressgroup">Gruppe:</label>
             <label index="tt_address_group">Adressgruppe</label>

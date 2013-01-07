@@ -186,6 +186,16 @@ $TCA['tt_address'] = array (
 				'max'  => '255'
 			)
 		),
+		'position' => array (
+			'exclude' => 1,
+			'label'   => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.position',
+			'config'  => array (
+				'type' => 'input',
+				'size' => '20',
+				'eval' => 'trim',
+				'max'  => '255'
+			)
+		),
 		'city' => array (
 			'label'  => 'LLL:EXT:lang/locallang_general.xml:LGL.city',
 			'config' => array (
@@ -289,7 +299,8 @@ $TCA['tt_address'] = array (
 		),
 
 		'organization' => array(
-			'showitem' => 'company',
+			'showitem' => 'company, --linebreak--,
+							position',
 			'canNotCollapse' => 1
 		),
 

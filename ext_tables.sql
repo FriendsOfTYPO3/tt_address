@@ -21,6 +21,7 @@ CREATE TABLE tt_address (
   building varchar(20) DEFAULT '' NOT NULL,
   room varchar(15) DEFAULT '' NOT NULL,
   company varchar(255) DEFAULT '' NOT NULL,
+  position varchar(255) DEFAULT '' NOT NULL,
   city varchar(255) DEFAULT '' NOT NULL,
   zip varchar(20) DEFAULT '' NOT NULL,
   region varchar(255) DEFAULT '' NOT NULL,

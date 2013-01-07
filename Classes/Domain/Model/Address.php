@@ -128,6 +128,12 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 	protected $company;
 
 	/**
+	 * Position
+	 * @var string
+	 */
+	protected $position;
+
+	/**
 	 * City
 	 * @var string
 	 */
@@ -479,8 +485,27 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 	}
 
 	/**
+	 * sets the position attribute
+	 *
+	 * @param	string	 $position
+	 * @return	void
+	 */
+	public function setPosition($position) {
+		$this->position = $position;
+	}
+
+	/**
+	 * returns the position attribute
+	 *
+	 * @return	string
+	 */
+	public function getPosition() {
+		return $this->position;
+	}
+
+	/**
 	 * sets the city attribute
-	 * 
+	 *
 	 * @param	string	 $city
 	 * @return	void
 	 */

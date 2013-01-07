@@ -356,6 +356,13 @@ $TCA['tt_address'] = array (
 			'canNotCollapse' => 1
 		),
 
+		'address_germany' => array(
+			'showitem' => 'address, --linebreak--,
+							zip, city, --linebreak--,
+							country, region',
+			'canNotCollapse' => 1
+		),
+
 		'building' => array(
 			'showitem' => 'building, room',
 			'canNotCollapse' => 1

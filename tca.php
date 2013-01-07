@@ -318,8 +318,8 @@ $TCA['tt_address'] = array (
 
 		'contact' => array(
 			'showitem' => 'email, --linebreak--,
-							phone, --linebreak--,
-							mobile, fax, --linebreak--,
+							phone, fax, --linebreak--,
+							mobile, --linebreak--,
 							www',
 			'canNotCollapse' => 1
 		),

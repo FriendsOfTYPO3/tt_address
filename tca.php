@@ -33,6 +33,7 @@ $TCA['tt_address'] = array (
 			'label'  => 'LLL:EXT:lang/locallang_general.xml:LGL.name',
 			'config' => array (
 				'type' => 'input',
+				'readOnly' => TRUE,
 				'size' => '40',
 				'eval' => 'trim',
 				'max'  => '255'

@@ -344,8 +344,7 @@ $TCA['tt_address'] = array (
 		),
 
 		'organization' => array(
-			'showitem' => 'company, --linebreak--,
-							position',
+			'showitem' => 'position, company',
 			'canNotCollapse' => 1
 		),
 

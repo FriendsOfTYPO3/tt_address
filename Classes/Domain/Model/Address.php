@@ -30,7 +30,7 @@
  * @entity
  */
 class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_AbstractEntity {
-	
+
 	/**
 	 * Gender
 	 * @var string
@@ -182,7 +182,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the gender attribute
-	 * 
+	 *
 	 * @param	string	 $gender
 	 * @return	void
 	 */
@@ -192,7 +192,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the gender attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getGender() {
@@ -201,7 +201,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the name attribute
-	 * 
+	 *
 	 * @param	string	 $name
 	 * @return	void
 	 */
@@ -211,7 +211,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the name attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getName() {
@@ -220,7 +220,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the firstName attribute
-	 * 
+	 *
 	 * @param	string	 $firstName
 	 * @return	void
 	 */
@@ -230,7 +230,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the firstName attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getFirstName() {
@@ -239,7 +239,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the middleName attribute
-	 * 
+	 *
 	 * @param	string	 $middleName
 	 * @return	void
 	 */
@@ -249,7 +249,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the middleName attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getMiddleName() {
@@ -258,7 +258,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the lastName attribute
-	 * 
+	 *
 	 * @param	string	 $lastName
 	 * @return	void
 	 */
@@ -268,7 +268,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the lastName attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getLastName() {
@@ -277,7 +277,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the birthday attribute
-	 * 
+	 *
 	 * @param	DateTime	 $birthday
 	 * @return	void
 	 */
@@ -287,7 +287,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the birthday attribute
-	 * 
+	 *
 	 * @return	DateTime
 	 */
 	public function getBirthday() {
@@ -296,7 +296,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the title attribute
-	 * 
+	 *
 	 * @param	string	 $title
 	 * @return	void
 	 */
@@ -306,7 +306,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the title attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getTitle() {
@@ -315,7 +315,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the address attribute
-	 * 
+	 *
 	 * @param	string	 $address
 	 * @return	void
 	 */
@@ -325,7 +325,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the address attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getAddress() {
@@ -334,7 +334,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the building attribute
-	 * 
+	 *
 	 * @param	string	 $building
 	 * @return	void
 	 */
@@ -344,7 +344,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the building attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getBuilding() {
@@ -353,7 +353,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the room attribute
-	 * 
+	 *
 	 * @param	string	 $room
 	 * @return	void
 	 */
@@ -363,7 +363,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the room attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getRoom() {
@@ -372,7 +372,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the phone attribute
-	 * 
+	 *
 	 * @param	string	 $phone
 	 * @return	void
 	 */
@@ -382,7 +382,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the phone attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getPhone() {
@@ -391,7 +391,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the fax attribute
-	 * 
+	 *
 	 * @param	string	 $fax
 	 * @return	void
 	 */
@@ -401,7 +401,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the fax attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getFax() {
@@ -410,7 +410,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the mobile attribute
-	 * 
+	 *
 	 * @param	string	 $mobile
 	 * @return	void
 	 */
@@ -420,7 +420,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the mobile attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getMobile() {
@@ -429,7 +429,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the www attribute
-	 * 
+	 *
 	 * @param	string	 $www
 	 * @return	void
 	 */
@@ -439,7 +439,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the www attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getWww() {
@@ -448,7 +448,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the email attribute
-	 * 
+	 *
 	 * @param	string	 $email
 	 * @return	void
 	 */
@@ -458,7 +458,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the email attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getEmail() {
@@ -467,7 +467,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the company attribute
-	 * 
+	 *
 	 * @param	string	 $company
 	 * @return	void
 	 */
@@ -477,7 +477,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the company attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getCompany() {
@@ -515,7 +515,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the city attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getCity() {
@@ -524,7 +524,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the zip attribute
-	 * 
+	 *
 	 * @param	string	 $zip
 	 * @return	void
 	 */
@@ -534,7 +534,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the zip attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getZip() {
@@ -543,7 +543,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the region attribute
-	 * 
+	 *
 	 * @param	string	 $region
 	 * @return	void
 	 */
@@ -553,7 +553,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the region attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getRegion() {
@@ -562,7 +562,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the country attribute
-	 * 
+	 *
 	 * @param	string	 $country
 	 * @return	void
 	 */
@@ -572,7 +572,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the country attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getCountry() {
@@ -581,7 +581,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the image attribute
-	 * 
+	 *
 	 * @param	string	 $image
 	 * @return	void
 	 */
@@ -591,7 +591,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the image attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getImage() {
@@ -600,7 +600,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the description attribute
-	 * 
+	 *
 	 * @param	string	 $description
 	 * @return	void
 	 */
@@ -610,7 +610,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the description attribute
-	 * 
+	 *
 	 * @return	string
 	 */
 	public function getDescription() {
@@ -619,7 +619,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * sets the addressgroup attribute
-	 * 
+	 *
 	 * @param	Tx_Extbase_Persistence_ObjectStorage<Tx_TtAddress_Domain_Model_AddressGroup>	 $addressgroup
 	 * @return	void
 	 */
@@ -629,7 +629,7 @@ class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_Abstract
 
 	/**
 	 * returns the addressgroup attribute
-	 * 
+	 *
 	 * @return	Tx_Extbase_Persistence_ObjectStorage<Tx_TtAddress_Domain_Model_AddressGroup>
 	 */
 	public function getAddressgroup() {

@@ -347,12 +347,14 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		$markerArray['###UID###']          = $address['uid'];
 
 		$markerArray['###GENDER###']       = $lcObj->stdWrap($address['gender'],             $lConf['gender.']);
+		$markerArray['###NAME###']         = $lcObj->stdWrap($address['name'],               $lConf['name.']);
 		$markerArray['###FIRSTNAME###']    = $lcObj->stdWrap($address['first_name'],         $lConf['first_name.']);
 		$markerArray['###MIDDLENAME###']   = $lcObj->stdWrap($address['middle_name'],        $lConf['middle_name.']);
 		$markerArray['###LASTNAME###']     = $lcObj->stdWrap($address['last_name'],          $lConf['last_name.']);
 		$markerArray['###TITLE###']        = $lcObj->stdWrap($address['title'],              $lConf['title.']);
 		$markerArray['###EMAIL###']        = $lcObj->stdWrap($address['email'],              $lConf['email.']);
 		$markerArray['###PHONE###']        = $lcObj->stdWrap($address['phone'],              $lConf['phone.']);
+		$markerArray['###FAX###']          = $lcObj->stdWrap($address['fax'],                $lConf['fax.']);
 		$markerArray['###MOBILE###']       = $lcObj->stdWrap($address['mobile'],             $lConf['mobile.']);
 		$markerArray['###WWW###']          = $lcObj->stdWrap($address['www'],                $lConf['www.']);
 		$markerArray['###ADDRESS###']      = $lcObj->stdWrap($address['address'],            $lConf['address.']);
@@ -361,14 +363,18 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		$markerArray['###BIRTHDAY###']     = $lcObj->stdWrap($address['birthday'],           $lConf['birthday.']);
 		$markerArray['###ORGANIZATION###'] = $lcObj->stdWrap($address['company'],            $lConf['organization.']);
 		$markerArray['###COMPANY###']      = $markerArray['###ORGANIZATION###']; // alias
+		$markerArray['###POSITION###']     = $lcObj->stdWrap($address['position'],           $lConf['position.']);
 		$markerArray['###CITY###']         = $lcObj->stdWrap($address['city'],               $lConf['city.']);
 		$markerArray['###ZIP###']          = $lcObj->stdWrap($address['zip'],                $lConf['zip.']);
 		$markerArray['###REGION###']       = $lcObj->stdWrap($address['region'],             $lConf['region.']);
 		$markerArray['###COUNTRY###']      = $lcObj->stdWrap($address['country'],            $lConf['country.']);
-		$markerArray['###FAX###']          = $lcObj->stdWrap($address['fax'],                $lConf['fax.']);
 		$markerArray['###DESCRIPTION###']  = $lcObj->stdWrap($address['description'],        $lConf['description.']);
+		$markerArray['###SKYPE###']        = $lcObj->stdWrap($address['skype'],              $lConf['skype.']);
+		$markerArray['###TWITTER###']      = $lcObj->stdWrap($address['twitter'],            $lConf['twitter.']);
+		$markerArray['###FACEBOOK###']     = $lcObj->stdWrap($address['facebook'],           $lConf['facebook.']);
+		$markerArray['###LINKEDIN###']     = $lcObj->stdWrap($address['linkedin'],           $lConf['inkedin.']);
 		$markerArray['###MAINGROUP###']    = $lcObj->stdWrap($address['groups'][0]['title'], $lConf['mainGroup.']);
-		$markerArray['###GROUPLIST###']    = $lcObj->stdWrap($address['groupList'], 			$lConf['groupList.']);
+		$markerArray['###GROUPLIST###']    = $lcObj->stdWrap($address['groupList'],          $lConf['groupList.']);
 
 			// the image
 		$markerArray['###IMAGE###'] = '';

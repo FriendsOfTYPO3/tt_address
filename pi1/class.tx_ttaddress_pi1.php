@@ -32,13 +32,14 @@ require_once(PATH_tslib.'class.tslib_pibase.php');
  * @author Ingo Renner <typo3@ingo-renner.com>
  */
 class tx_ttaddress_pi1 extends tslib_pibase {
-	var $prefixId      = 'tx_ttaddress_pi1';		// Same as class name
-	var $scriptRelPath = 'pi1/class.tx_ttaddress_pi1.php';	// Path to this script relative to the extension dir.
-	var $extKey        = 'tt_address';	// The extension key.
-	var $pi_checkCHash = true;
 
-	var $conf;
-	var $ffData;
+	public $prefixId      = 'tx_ttaddress_pi1';		// Same as class name
+	public $scriptRelPath = 'pi1/class.tx_ttaddress_pi1.php';	// Path to this script relative to the extension dir.
+	public $extKey        = 'tt_address';	// The extension key.
+	public $pi_checkCHash = TRUE;
+
+	public $conf;
+	protected $ffData;
 
 	/**
 	 * main method which controls the data flow and outputs the addresses

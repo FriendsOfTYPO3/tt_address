@@ -18,7 +18,7 @@ $TCA['tt_address'] = array (
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY).'tca.php',
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon.gif',
-        'searchFields'		=> 'name, first_name, middle_name, last_name, email'
+		'searchFields'      => 'name, first_name, middle_name, last_name, email'
 	),
 	'feInterface' => array (
 		'fe_admin_fieldList' => 'pid,hidden,gender,name,title,address,building,room,birthday,phone,fax,mobile,www,email,city,zip,company,region,country,image,description'

@@ -1,4 +1,6 @@
 <?php
+namespace TYPO3\TtAddress\Domain\Modell;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -22,14 +24,14 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+
 /**
  * The domain model of a Address
  *
- * @package Tx_TtAddress
- * @subpackage Domain\Model
  * @entity
  */
-class Tx_TtAddress_Domain_Model_Address extends Tx_Extbase_DomainObject_AbstractEntity {
+class Address extends AbstractEntity {
 
 	/**
 	 * Gender

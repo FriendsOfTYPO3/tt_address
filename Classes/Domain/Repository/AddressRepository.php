@@ -1,4 +1,6 @@
 <?php
+namespace TYPO3\TtAddress\Domain\Repository;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -22,13 +24,13 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Extbase\Persistence\Repository;
+
 /**
  * The repository for the domain model Address
  *
- * @package Tx_TtAddress
- * @subpackage Domain\Repository
  */
-class Tx_TtAddress_Domain_Repository_AddressRepository extends Tx_Extbase_Persistence_Repository {
+class AddressRepository extends Repository {
 
 }
 

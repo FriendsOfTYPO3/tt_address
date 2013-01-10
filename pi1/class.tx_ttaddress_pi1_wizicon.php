@@ -59,7 +59,7 @@ class tx_ttaddress_pi1_wizicon {
 	 * @return	array		The LOCAL_LANG array
 	 */
 	function includeLocalLang()	{
-		switch (TYPO3_version) {
+		switch (TYPO3_branch) {
 			case '4.5':
 				$llFile     = t3lib_extMgm::extPath('tt_address').'locallang.xml';
 				$LOCAL_LANG = t3lib_div::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);

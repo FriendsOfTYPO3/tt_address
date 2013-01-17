@@ -66,8 +66,9 @@ class tx_ttaddress_pi1_wizicon {
 				break;
 			case '4.6':
 			case '4.7':
-				$llFile     = t3lib_extMgm::extPath('tt_address').'locallang.xml';
-				$LOCAL_LANG = t3lib_l10n_parser_Llxml::getParsedData($llFile, $GLOBALS['LANG']->lang);
+				$llFile       = t3lib_extMgm::extPath('tt_address').'locallang.xml';
+				$llFileParser = t3lib_div::makeInstance('t3lib_l10n_parser_Llxml');
+				$LOCAL_LANG   = $llFileParser->getParsedData($llFile, $GLOBALS['LANG']->lang);
 				break;
 			case '6.0':
 			default:

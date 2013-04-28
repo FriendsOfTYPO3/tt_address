@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\TtAddress\Domain\Modell;
+namespace TYPO3\TtAddress\Domain\Model;
 
 /***************************************************************
  *  Copyright notice

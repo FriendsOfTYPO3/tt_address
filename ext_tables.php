@@ -35,7 +35,6 @@ ExtensionManagementUtility::makeCategorizable(
 	'tt_address'
 );
 
-
 	// start splitting name into first and last name
 $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address']);
 
@@ -79,6 +78,11 @@ t3lib_extMgm::addStaticFile($_EXTKEY, 'static/old/', 'Addresses (!!!old, only us
 
 if (TYPO3_MODE=='BE') {
 	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['tx_ttaddress_pi1_wizicon'] = t3lib_extMgm::extPath($_EXTKEY).'pi1/class.tx_ttaddress_pi1_wizicon.php';
+
+			// classes for manipulating flexforms
+	include_once(t3lib_extMgm::extPath($_EXTKEY) . 'class.tx_ttaddress_addfilestosel.php');
+	include_once(t3lib_extMgm::extPath($_EXTKEY) . 'class.tx_ttaddress_addfieldstosel.php');
+
 }
 
 

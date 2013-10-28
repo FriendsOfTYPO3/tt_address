@@ -301,7 +301,7 @@ $TCA['tt_address'] = array (
 				'rows' => 5,
 				'cols' => 48
 			)
-		)
+		),
 	),
 	'types' => array (
 		'1' => array('showitem' =>
@@ -366,5 +366,4 @@ $TCA['tt_address'] = array (
 		),
 	)
 );
-
 ?>

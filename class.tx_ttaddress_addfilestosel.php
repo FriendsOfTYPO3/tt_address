@@ -22,12 +22,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-require_once(PATH_t3lib.'class.t3lib_page.php');
-require_once(PATH_t3lib.'class.t3lib_tstemplate.php');
-require_once(PATH_t3lib.'class.t3lib_tsparser_ext.php');
-
-
-/** 
+/**
  * Class/Function which manipulates the item-array for the pi1 template
  * selector in the flexform.
  *

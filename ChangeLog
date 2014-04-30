@@ -1,3 +1,9 @@
+2014-04-30  Benni Mack <benni@typo3.org>
+
+	* Release of version 2.3.4
+	* Add ext_autoload.php and remove require_once statements
+	* Raise compatibility from TYPO3 4.3 to TYPO3 CMS 6.2
+
 2013-01-17  Ingo Renner  <ingo@typo3.org>
 
 	* Release of version 2.3.3

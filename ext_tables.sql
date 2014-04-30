@@ -48,7 +48,7 @@ CREATE TABLE tt_address_group (
 	sorting int(10) DEFAULT '0' NOT NULL,
 	deleted tinyint(4) DEFAULT '0' NOT NULL,
 	hidden tinyint(4) DEFAULT '0' NOT NULL,
-	fe_group int(11) DEFAULT '0' NOT NULL,
+	fe_group tinytext,
 	title tinytext NOT NULL,
 	parent_group int(11) DEFAULT '0' NOT NULL,
 	description text NOT NULL,

@@ -23,17 +23,14 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-
-require_once(PATH_t3lib.'class.t3lib_treeview.php');
-	
 /**
  * extends t3lib_treeview to change function wrapTitle().
  * 
  * This function displays a selector with nested groups. The original code is
  * borrowed from the extension "Digital Asset Management" (tx_dam), 
- * author: RenŽ Fritz <r.fritz@colorcube.de>
+ * author: Renï¿½ Fritz <r.fritz@colorcube.de>
  *
- * @author	RenŽ Fritz <r.fritz@colorcube.de>
+ * @author	Renï¿½ Fritz <r.fritz@colorcube.de>
  * @author	Ingo Renner <typo3@ingo-renner.com>
  * @package TYPO3
  * @subpackage tt_address

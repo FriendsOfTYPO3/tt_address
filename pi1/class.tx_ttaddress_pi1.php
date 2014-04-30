@@ -22,9 +22,6 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-require_once(PATH_tslib.'class.tslib_pibase.php');
-
-
 /**
  * main class for the tt_address plugin, outputs addresses either by direct
  * selection or by selection via groups or a combination of both

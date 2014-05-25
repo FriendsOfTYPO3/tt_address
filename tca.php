@@ -4,12 +4,12 @@
 // This is the standard TypoScript address table, tt_address
 // ******************************************************************
 
-$TCA['tt_address'] = array (
-	'ctrl' => $TCA['tt_address']['ctrl'],
+$GLOBALS['TCA']['tt_address'] = array (
+	'ctrl' => $GLOBALS['TCA']['tt_address']['ctrl'],
 	'interface' => array (
 		'showRecordFieldList' => 'name,first_name,middle_name,last_name,address,building,room,city,zip,region,country,phone,fax,email,www,title,company,image'
 	),
-	'feInterface' => $TCA['tt_address']['feInterface'],
+	'feInterface' => $GLOBALS['TCA']['tt_address']['feInterface'],
 	'columns' => array (
 		'hidden' => array (
 			'exclude' => 1,

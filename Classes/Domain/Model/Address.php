@@ -24,14 +24,13 @@ namespace TYPO3\TtAddress\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
  * The domain model of a Address
  *
  * @entity
  */
-class Address extends AbstractEntity {
+class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Gender
@@ -65,7 +64,7 @@ class Address extends AbstractEntity {
 
 	/**
 	 * Birthday
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $birthday;
 
@@ -196,17 +195,6 @@ class Address extends AbstractEntity {
 	protected $description;
 
 	/**
-	 * Address Group
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_TtAddress_Domain_Model_AddressGroup>
-	 */
-	protected $addressgroup;
-
-
-	public function __construct() {
-		$this->addressgroup = new Tx_Extbase_Persistence_ObjectStorage();
-	}
-
-	/**
 	 * sets the gender attribute
 	 *
 	 * @param	string	 $gender
@@ -304,7 +292,7 @@ class Address extends AbstractEntity {
 	/**
 	 * sets the birthday attribute
 	 *
-	 * @param	DateTime	 $birthday
+	 * @param	\DateTime	 $birthday
 	 * @return	void
 	 */
 	public function setBirthday($birthday) {
@@ -314,7 +302,7 @@ class Address extends AbstractEntity {
 	/**
 	 * returns the birthday attribute
 	 *
-	 * @return	DateTime
+	 * @return	\DateTime
 	 */
 	public function getBirthday() {
 		return $this->birthday;
@@ -521,7 +509,7 @@ class Address extends AbstractEntity {
 	 * @return	void
 	 */
 	public function setFacebook($facebook) {
-		if (substr($twitter, 0, 1) != '/') {
+		if (substr($facebook, 0, 1) != '/') {
 			throw new \InvalidArgumentException('Facebook name must start with /', 1357530471);
 		}
 
@@ -725,25 +713,6 @@ class Address extends AbstractEntity {
 	 */
 	public function getDescription() {
 		return $this->description;
-	}
-
-	/**
-	 * sets the addressgroup attribute
-	 *
-	 * @param	Tx_Extbase_Persistence_ObjectStorage<Tx_TtAddress_Domain_Model_AddressGroup>	 $addressgroup
-	 * @return	void
-	 */
-	public function setAddressgroup($addressgroup) {
-		$this->addressgroup = $addressgroup;
-	}
-
-	/**
-	 * returns the addressgroup attribute
-	 *
-	 * @return	Tx_Extbase_Persistence_ObjectStorage<Tx_TtAddress_Domain_Model_AddressGroup>
-	 */
-	public function getAddressgroup() {
-		return $this->addressgroup;
 	}
 
 }

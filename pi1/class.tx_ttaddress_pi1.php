@@ -157,7 +157,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		$this->conf['combination'] = $combination;
 
 			// check sorting, priorize FlexForm configuration over TypoScript
-        if ($this->ffData['sortBy']) {
+        if ($this->ffData['sortBy'] && $this->ffData['sortBy'] != 'default') {
             	// sortBy from FlexForm overrides TypoScript configuration
             $this->conf['sortByColumn'] = $this->ffData['sortBy'];
         } elseif ($this->conf['sortByColumn']) {

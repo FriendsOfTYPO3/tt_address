@@ -19,6 +19,7 @@ $EM_CONF[$_EXTKEY] = array (
 	'uploadfolder' => 0,
 	'createDirs' => '',
 	'clearcacheonload' => 1,
+	'shy' => 0,
 	'author' => 'Ingo Renner',
 	'author_email' => 'typo3@ingo-renner.com',
 	'constraints' => 

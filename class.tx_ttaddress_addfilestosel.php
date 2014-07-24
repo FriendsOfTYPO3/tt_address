@@ -42,7 +42,7 @@ class tx_ttaddress_addfilestosel {
 			// get the current page ID
 		$thePageId = $params['row']['pid']; 
 
-		$template = t3lib_div::makeInstance('t3lib_tsparser_ext');
+		$template = t3lib_div::makeInstance('t3lib_TStemplate');
 			// do not log time-performance information
 		$template->tt_track = 0;
 		$template->init();

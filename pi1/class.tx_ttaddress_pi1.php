@@ -217,12 +217,12 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 			$this->conf['singleSelection']
 		);
 
-		if(!empty($uidList) && !empty($this->conf['pidList'])) {
+		if(!empty($uidList)) {
 			$addresses = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 				'*',
 				'tt_address',
-				'uid IN('.$uidList.') AND pid IN('.$this->conf['pidList'].')'
-				.$this->cObj->enableFields('tt_address')
+				'uid IN('.$uidList.') ' . (!empty($this->conf['pidList']) ? ' AND pid IN ('.$this->conf['pidList'].')' : '')
+				. $this->cObj->enableFields('tt_address')
 			);
 
 			foreach($addresses as $k => $address) {

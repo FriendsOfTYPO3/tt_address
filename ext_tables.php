@@ -20,8 +20,8 @@ $TCA['tt_address'] = array (
 		'enablecolumns'     => array (
 			'disabled' => 'hidden'
 		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY).'tca.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon.gif',
+		'dynamicConfigFile' => ExtensionManagementUtility::extPath($_EXTKEY).'tca.php',
+		'iconfile'          => ExtensionManagementUtility::extRelPath($_EXTKEY).'ext_icon.gif',
 		'searchFields'      => 'name, first_name, middle_name, last_name, email',
 		'dividers2tabs'     => 1,
 	),
@@ -55,33 +55,33 @@ $TCA['tt_address']['feInterface']['fe_admin_fieldList'] = $fe_admin_fieldListNew
 	// end splitting name
 
 
-t3lib_extMgm::addPlugin(
+ExtensionManagementUtility::addPlugin(
 	array(
 		'LLL:EXT:tt_address/locallang_tca.xml:pi_tt_address',
 		$_EXTKEY.'_pi1'
 	)
 );
-t3lib_extMgm::allowTableOnStandardPages('tt_address');
-t3lib_extMgm::addToInsertRecords('tt_address');
+ExtensionManagementUtility::allowTableOnStandardPages('tt_address');
+ExtensionManagementUtility::addToInsertRecords('tt_address');
 
-t3lib_extMgm::addLLrefForTCAdescr('tt_address','EXT:tt_address/locallang_csh_ttaddress.xml');
+ExtensionManagementUtility::addLLrefForTCAdescr('tt_address','EXT:tt_address/locallang_csh_ttaddress.xml');
 
 
 // add flexform to pi1
-t3lib_div::loadTCA('tt_content');
+\TYPO3\CMS\Core\Utility\GeneralUtility::loadTCA('tt_content');
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY.'_pi1'] = 'pi_flexform';
 $TCA['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY.'_pi1'] = 'layout,select_key,pages,recursive';
-t3lib_extMgm::addPiFlexFormValue($_EXTKEY .'_pi1', 'FILE:EXT:tt_address/pi1/flexform.xml');
+ExtensionManagementUtility::addPiFlexFormValue($_EXTKEY .'_pi1', 'FILE:EXT:tt_address/pi1/flexform.xml');
 
-t3lib_extMgm::addStaticFile($_EXTKEY, 'static/pi1/', 'Addresses');
-t3lib_extMgm::addStaticFile($_EXTKEY, 'static/old/', 'Addresses (!!!old, only use if you need to!!!)');
+ExtensionManagementUtility::addStaticFile($_EXTKEY, 'static/pi1/', 'Addresses');
+ExtensionManagementUtility::addStaticFile($_EXTKEY, 'static/old/', 'Addresses (!!!old, only use if you need to!!!)');
 
 if (TYPO3_MODE=='BE') {
-	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['tx_ttaddress_pi1_wizicon'] = t3lib_extMgm::extPath($_EXTKEY).'pi1/class.tx_ttaddress_pi1_wizicon.php';
+	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['tx_ttaddress_pi1_wizicon'] = ExtensionManagementUtility::extPath($_EXTKEY).'pi1/class.tx_ttaddress_pi1_wizicon.php';
 
 			// classes for manipulating flexforms
-	include_once(t3lib_extMgm::extPath($_EXTKEY) . 'class.tx_ttaddress_addfilestosel.php');
-	include_once(t3lib_extMgm::extPath($_EXTKEY) . 'class.tx_ttaddress_addfieldstosel.php');
+	include_once(ExtensionManagementUtility::extPath($_EXTKEY) . 'class.tx_ttaddress_addfilestosel.php');
+	include_once(ExtensionManagementUtility::extPath($_EXTKEY) . 'class.tx_ttaddress_addfieldstosel.php');
 
 }
 

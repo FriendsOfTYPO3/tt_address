@@ -1,4 +1,6 @@
 <?php
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /***************************************************************
 *  Copyright notice
 *
@@ -39,7 +41,7 @@ class ext_update {
 	 */
 	function main() {
 		
-		$onclick = 'document.forms[\'pageform\'].action = \''.t3lib_div::linkThisScript(array()).'\';document.forms[\'pageform\'].submit();return false;';
+		$onclick = 'document.forms[\'pageform\'].action = \'' . GeneralUtility::linkThisScript(array()) . '\';document.forms[\'pageform\'].submit();return false;';
 		$content = '';
 		
 		
@@ -52,7 +54,7 @@ class ext_update {
 		);
 		
 		$hasAddressgroups = false;
-		if(t3lib_extMgm::isLoaded('addressgroups')) {
+		if(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('addressgroups')) {
 			$hasAddressgroups = true;
 			
 			$groupRes = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
@@ -68,7 +70,7 @@ class ext_update {
 			);
 		}
 		
-		if(!t3lib_div::_GP('do_update')){
+		if(!GeneralUtility::_GP('do_update')){
 				// init
 			$count = $GLOBALS['TYPO3_DB']->sql_num_rows($res);
 			

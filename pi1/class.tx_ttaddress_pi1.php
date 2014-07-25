@@ -1,4 +1,6 @@
 <?php
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /***************************************************************
 *  Copyright notice
 *
@@ -22,16 +24,13 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-require_once(PATH_tslib.'class.tslib_pibase.php');
-
-
 /**
  * main class for the tt_address plugin, outputs addresses either by direct
  * selection or by selection via groups or a combination of both
  *
  * @author Ingo Renner <typo3@ingo-renner.com>
  */
-class tx_ttaddress_pi1 extends tslib_pibase {
+class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 
 	public $prefixId      = 'tx_ttaddress_pi1';		// Same as class name
 	public $scriptRelPath = 'pi1/class.tx_ttaddress_pi1.php';	// Path to this script relative to the extension dir.
@@ -56,7 +55,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		$groupSelection  = $this->getRecordsFromGroups();
 
 			// merge both arrays so that we do not have any duplicates
-		$addresses = t3lib_div::array_merge($singleSelection, $groupSelection);
+		$addresses = GeneralUtility::array_merge($singleSelection, $groupSelection);
 
 		$templateCode = $this->getTemplate();
 
@@ -186,7 +185,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 				$this->conf['pidList'], $this->conf['pidList.']
 			));
 		$pages = $pages ?
-			implode(t3lib_div::intExplode(',', $pages), ',') :
+			implode(GeneralUtility::intExplode(',', $pages), ',') :
 			$GLOBALS['TSFE']->id;
 
 		$recursive = $this->ffData['recursive'] ?
@@ -245,8 +244,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	public function getRecordsFromGroups() {
 		$groupRecords = array();
 
-			// similar to t3lib_db::cleanIntList(), but we need the count for AND combination
-		$groups    = t3lib_div::intExplode(',',$this->conf['groupSelection']);
+		$groups    = GeneralUtility::intExplode(',',$this->conf['groupSelection']);
 		$count     = count($groups);
 		$groupList = implode(',', $groups);
 
@@ -341,7 +339,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 
 			//local configuration and local cObj
 		$lConf = $this->conf['templates.'][$this->conf['templateName'].'.'];
-		$lcObj = t3lib_div::makeInstance('tslib_cObj');
+		$lcObj = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
 		$lcObj->data = $address;
 
 		$markerArray['###UID###']          = $address['uid'];
@@ -410,7 +408,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 			// adds hook for processing of extra item markers
 		if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tt_address']['extraItemMarkerHook'])) {
 			foreach($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tt_address']['extraItemMarkerHook'] as $_classRef) {
-				$_procObj = & t3lib_div::getUserObj($_classRef);
+				$_procObj = & GeneralUtility::getUserObj($_classRef);
 				$markerArray = $_procObj->extraItemMarkerProcessor($markerArray, $address, $lConf, $this);
 			}
 		}
@@ -430,7 +428,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 		$subpartArray = array();
 
 		if(is_array($this->conf['templates.'][$this->conf['templateName'].'.']['subparts.'])) {
-			$lcObj = t3lib_div::makeInstance('tslib_cObj'); // local cObj
+			$lcObj = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer'); // local cObj
 			$lcObj->data = $address;
 
 			foreach($this->conf['templates.'][$this->conf['templateName'].'.']['subparts.'] as $spName => $spConf) {
@@ -564,7 +562,7 @@ class tx_ttaddress_pi1 extends tslib_pibase {
 	 * @return	boolean	true if at least one of the given fields is not empty
 	 */
 	protected function hasOneOf($fieldList, $address) {
-		$checkFields = t3lib_div::trimExplode(',', $fieldList, 1);
+		$checkFields = GeneralUtility::trimExplode(',', $fieldList, 1);
 		$flag = false;
 
 		foreach($checkFields as $fieldName) {

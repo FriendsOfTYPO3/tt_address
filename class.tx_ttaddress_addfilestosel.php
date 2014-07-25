@@ -1,4 +1,6 @@
 <?php
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /***************************************************************
 *  Copyright notice
 *  
@@ -22,11 +24,6 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-require_once(PATH_t3lib.'class.t3lib_page.php');
-require_once(PATH_t3lib.'class.t3lib_tstemplate.php');
-require_once(PATH_t3lib.'class.t3lib_tsparser_ext.php');
-
-
 /** 
  * Class/Function which manipulates the item-array for the pi1 template
  * selector in the flexform.
@@ -47,26 +44,26 @@ class tx_ttaddress_addfilestosel {
 			// get the current page ID
 		$thePageId = $params['row']['pid']; 
 
-		$template = t3lib_div::makeInstance('t3lib_tsparser_ext');
+		$template = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\TypoScript\\ExtendedTemplateService');
 			// do not log time-performance information
 		$template->tt_track = 0;
 		$template->init();
-		$sys_page = t3lib_div::makeInstance('t3lib_pageSelect');
+		$sys_page = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
 		$rootLine = $sys_page->getRootLine($thePageId);
 			// generate the constants/config + hierarchy info for the template.
 		$template->runThroughTemplates($rootLine);
 		$template->generateConfig();
 
 			// get value for the path containing the template files
-		$readPath = t3lib_div::getFileAbsFileName(
+		$readPath = GeneralUtility::getFileAbsFileName(
 			$template->setup['plugin.']['tx_ttaddress_pi1.']['templatePath']
 		);
 	     
 			// if that direcotry is valid and is a directory then select files in it
 		if (@is_dir($readPath)) {
 
-			$template_files = t3lib_div::getFilesInDir($readPath,'tmpl,html,htm',1,1);
-			$parseHTML = t3lib_div::makeInstance('t3lib_parseHTML');
+			$template_files = GeneralUtility::getFilesInDir($readPath,'tmpl,html,htm',1,1);
+			$parseHTML = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Html\\HtmlParser');
 	      		      
 			foreach ($template_files as $htmlFilePath) {
 					// reset vars
@@ -74,7 +71,7 @@ class tx_ttaddress_addfilestosel {
 				$selectorBoxItem_icon  = '';
  
 					// read template content
-				$content = t3lib_div::getUrl($htmlFilePath);
+				$content = GeneralUtility::getUrl($htmlFilePath);
 					// ... and extract content of the title-tags
 				$parts = $parseHTML->splitIntoBlock('title', $content);
 				$titleTagContent = $parseHTML->removeFirstAndLastTag($parts[1]);
@@ -83,7 +80,7 @@ class tx_ttaddress_addfilestosel {
 				$selectorBoxItem_title = trim($titleTagContent.' ('.basename($htmlFilePath).')');
  
 					// try to look up an image icon for the template
-				$fI = t3lib_div::split_fileref($htmlFilePath);
+				$fI = GeneralUtility::split_fileref($htmlFilePath);
 				$testImageFilename=$readPath.$fI['filebody'].'.gif';
 				if(@is_file($testImageFilename)) {
 					$selectorBoxItem_icon = '../'.substr($testImageFilename, strlen(PATH_site));

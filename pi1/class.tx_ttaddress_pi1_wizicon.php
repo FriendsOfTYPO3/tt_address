@@ -1,4 +1,6 @@
 <?php
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
 /***************************************************************
 *  Copyright notice
 *
@@ -44,7 +46,7 @@ class tx_ttaddress_pi1_wizicon {
 		$LL = $this->includeLocalLang();
 
 		$wizardItems['plugins_tx_ttaddress_pi1'] = array(
-			'icon'        => t3lib_extMgm::extRelPath('tt_address').'pi1/ce_wiz.gif',
+			'icon'        => ExtensionManagementUtility::extRelPath('tt_address').'pi1/ce_wiz.gif',
 			'title'       => $LANG->getLLL('pi1_title',$LL),
 			'description' => $LANG->getLLL('pi1_plus_wiz_description',$LL),
 			'params'      => '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=tt_address_pi1'
@@ -59,23 +61,10 @@ class tx_ttaddress_pi1_wizicon {
 	 * @return	array		The LOCAL_LANG array
 	 */
 	function includeLocalLang()	{
-		switch (TYPO3_version) {
-			case '4.5':
-				$llFile     = t3lib_extMgm::extPath('tt_address').'locallang.xml';
-				$LOCAL_LANG = t3lib_div::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
-				break;
-			case '4.6':
-			case '4.7':
-				$llFile     = t3lib_extMgm::extPath('tt_address').'locallang.xml';
-				$LOCAL_LANG = t3lib_l10n_parser_Llxml::getParsedData($llFile, $GLOBALS['LANG']->lang);
-				break;
-			case '6.0':
-			default:
-				$llFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('tt_address') . 'locallang.xml';
+		$llFile = ExtensionManagementUtility::extPath('tt_address') . 'locallang.xml';
 
-				$localLanguageParser = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Localization\\Parser\\LocallangXmlParser');
-				$LOCAL_LANG = $localLanguageParser->getParsedData($llFile, $GLOBALS['LANG']->lang);
-		}
+		$localLanguageParser = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Localization\\Parser\\LocallangXmlParser');
+		$LOCAL_LANG = $localLanguageParser->getParsedData($llFile, $GLOBALS['LANG']->lang);
 
 		return $LOCAL_LANG;
 	}

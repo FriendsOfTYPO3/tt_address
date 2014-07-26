@@ -68,7 +68,9 @@ ExtensionManagementUtility::addLLrefForTCAdescr('tt_address','EXT:tt_address/loc
 
 
 // add flexform to pi1
-\TYPO3\CMS\Core\Utility\GeneralUtility::loadTCA('tt_content');
+if (version_compare(TYPO3_branch, '6.1', '<')) {
+	\TYPO3\CMS\Core\Utility\GeneralUtility::loadTCA('tt_content');
+}
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY.'_pi1'] = 'pi_flexform';
 $TCA['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY.'_pi1'] = 'layout,select_key,pages,recursive';
 ExtensionManagementUtility::addPiFlexFormValue($_EXTKEY .'_pi1', 'FILE:EXT:tt_address/pi1/flexform.xml');

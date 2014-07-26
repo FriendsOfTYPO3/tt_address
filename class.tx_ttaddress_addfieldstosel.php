@@ -40,7 +40,9 @@ class tx_ttaddress_addfieldstosel {
     */
 	function main(&$params, &$pObj)	{
 
-		t3lib_div::loadTCA('tt_address');
+		if (version_compare(TYPO3_branch, '6.1', '<')) {
+			t3lib_div::loadTCA('tt_address');
+		}
 
 			// TODO consolidate with list in pi1
 		$coreSortFields = 'gender, first_name, middle_name, last_name, title, company, '

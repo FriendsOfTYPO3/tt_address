@@ -14,19 +14,19 @@ $EM_CONF[$_EXTKEY] = array (
 	'title' => 'Address List',
 	'description' => 'Displays a list of addresses from an address table on the page.',
 	'category' => 'plugin',
-	'version' => '2.3.4',
+	'version' => '2.3.5',
 	'state' => 'stable',
 	'uploadfolder' => 0,
 	'createDirs' => '',
 	'clearcacheonload' => 1,
 	'shy' => 0,
-	'author' => 'Ingo Renner',
-	'author_email' => 'typo3@ingo-renner.com',
+	'author' => 'Benjamin Mack, Stefan Neufeind and others',
+	'author_email' => 'benni@typo3.org',
 	'constraints' => 
 	array (
 		'depends' =>
 		array (
-			'typo3' => '4.3.0-6.2.99',
+			'typo3' => '4.5.0-6.2.99',
 		),
 		'conflicts' => 
 		array (

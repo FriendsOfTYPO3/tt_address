@@ -1,3 +1,8 @@
-
-  # cat=basic//20 type=text; label= Backwardscompatibility format: tt_address v2.0.0 uses separate fields for first, middle, and last name. Everytime a change is made to a name field tt_address writes the changes back to the internal old combined field. Here you can specify a format for this: use %1$s for the fist name, %2$s for the middle name, and %3$s for the last name. everything else is up to you (see php.net/sprintf)
+	# cat=basic; type=text; label=Backwards compatibility format: tt_address can use separate fields for first, middle, and last name. Everytime a change is made to a name field tt_address writes the changes back to the internal old combined field. Here you can specify a format for this: use %1$s for the fist name, %2$s for the middle name, and %3$s for the last name. everything else is up to you (see php.net/sprintf)
 backwardsCompatFormat = %1$s %3$s
+
+	# cat=basic; type=boolean; label=Store backwards compatibility name in name field
+storeBackwardsCompatName = 1
+
+	# cat=basic; type=boolean; label=Name field is read only
+readOnlyNameField = 1

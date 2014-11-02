@@ -23,11 +23,11 @@
 								<minitems>0</minitems>
 								<autoSizeMax>10</autoSizeMax>
 								<show_thumbs>0</show_thumbs>
-                                <wizards>
-                                    <suggest>
-                                        <type>suggest</type>
-                                    </suggest>
-                                </wizards>
+								<wizards>
+									<suggest>
+										<type>suggest</type>
+									</suggest>
+								</wizards>
 							</config>
 						</TCEforms>
 					</singleRecords>
@@ -107,28 +107,28 @@
 						</TCEforms>
 					</sortOrder>
 					<pages>
-					  	<TCEforms>
-						<exclude>1</exclude>
-						<label>LLL:EXT:lang/locallang_general.php:LGL.startingpoint</label>
-						<config>
-							<type>group</type>
-							<internal_type>db</internal_type>
-							<allowed>pages</allowed>
-							<size>3</size>
-							<maxitems>22</maxitems>
-							<minitems>0</minitems>
-							<show_thumbs>1</show_thumbs>
-                            <wizards>
-                                <suggest>
-                                    <type>suggest</type>
-                                </suggest>
-                            </wizards>
-						</config>
-					  	</TCEforms>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>LLL:EXT:lang/locallang_general.php:LGL.startingpoint</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>3</size>
+								<maxitems>22</maxitems>
+								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<suggest>
+										<type>suggest</type>
+									</suggest>
+								</wizards>
+							</config>
+						</TCEforms>
 					</pages>
 					<recursive>
-					  	<TCEforms>
-						<label>LLL:EXT:lang/locallang_general.php:LGL.recursive</label>
+						<TCEforms>
+							<label>LLL:EXT:lang/locallang_general.php:LGL.recursive</label>
 							<config>
 								<type>select</type>
 								<items type="array">
@@ -172,8 +172,8 @@
 				<TCEforms>
 					<sheetTitle>LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.sheet_display</sheetTitle>
 				</TCEforms>
-			    <type>array</type>
-			    <el>
+				<type>array</type>
+				<el>
 					<templateFile>
 						<TCEforms>
 							<label>LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.templateFile</label>
@@ -190,9 +190,9 @@
 							</config>
 						</TCEforms>
 					</templateFile>
-			    </el>
-	  		</ROOT>
-    	</sDISPLAY>
+				</el>
+			</ROOT>
+		</sDISPLAY>
 
-    </sheets>
+	</sheets>
 </T3DataStructure>

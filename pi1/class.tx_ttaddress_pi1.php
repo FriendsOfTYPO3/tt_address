@@ -1,28 +1,18 @@
 <?php
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+/*
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
 
-/***************************************************************
-*  Copyright notice
-*
-*  (c) 2006 - 2007 Ingo Renner <typo3@ingo-renner.com>
-*  All rights reserved
-*
-*  This script is part of the TYPO3 project. The TYPO3 project is
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
-*
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * main class for the tt_address plugin, outputs addresses either by direct
@@ -32,20 +22,42 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 
-	public $prefixId      = 'tx_ttaddress_pi1';		// Same as class name
-	public $scriptRelPath = 'pi1/class.tx_ttaddress_pi1.php';	// Path to this script relative to the extension dir.
-	public $extKey        = 'tt_address';	// The extension key.
+	/**
+	 * @var string
+	 */
+	public $prefixId      = 'tx_ttaddress_pi1';
+
+	/**
+	 * @var string
+	 */
+	public $scriptRelPath = 'pi1/class.tx_ttaddress_pi1.php';
+
+	/**
+	 * @var string
+	 */
+	public $extKey        = 'tt_address';
+
+	/**
+	 * @var bool
+	 */
 	public $pi_checkCHash = TRUE;
 
+	/**
+	 * @var array
+	 */
 	public $conf;
+
+	/**
+	 * @var array
+	 */
 	protected $ffData;
 
 	/**
 	 * main method which controls the data flow and outputs the addresses
 	 *
-	 * @param	string	$content: content string, empty
-	 * @param	array	$conf: configuration array with TS configuration
-	 * @return	string	the processed addresses
+	 * @param string $content Content string, empty
+	 * @param array $conf Configuration array with TS configuration
+	 * @return string The processed addresses
 	 */
 	public function main($content, $conf) {
 		$this->init($conf);
@@ -54,32 +66,32 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		$singleSelection = $this->getSingleRecords();
 		$groupSelection  = $this->getRecordsFromGroups();
 
-			// merge both arrays so that we do not have any duplicates
+		// merge both arrays so that we do not have any duplicates
 		$addresses = GeneralUtility::array_merge($singleSelection, $groupSelection);
 
 		$templateCode = $this->getTemplate();
 
-			// apply sorting
+		// apply sorting
 		if ($this->conf['sortByColumn'] === 'singleSelection' && count($groupSelection) === 0) {
 
-				// we want to sort by single selection and only have single record selection
+			// we want to sort by single selection and only have single record selection
 			$sortedAdressesUid = explode(',', $this->conf['singleSelection']);
 			$sortedAddresses = array();
 
-			foreach($sortedAdressesUid as $uid) {
+			foreach ($sortedAdressesUid as $uid) {
 				$sortedAddresses[] = $addresses[$uid];
 			}
 			$addresses = $sortedAddresses;
 
 		} else {
-				// if sortByColumn was set to singleSelection, but we don't have a single selection, switch to default column "name"
+			// if sortByColumn was set to singleSelection, but we don't have a single selection, switch to default column "name"
 			if ($this->conf['sortByColumn'] === 'singleSelection') {
 				$this->conf['sortByColumn'] = 'name';
 			}
 
-				// sorting the addresses by any other field
+			// sorting the addresses by any other field
 			$sortBy = array();
-			foreach($addresses as $k => $v) {
+			foreach ($addresses as $k => $v) {
 				$sortBy[$k] = $this->normalizeSortingString($v[$this->conf['sortByColumn']]);
 			}
 			array_multisort($sortBy, $this->conf['sortOrder'], $addresses);
@@ -92,8 +104,8 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		}
 
 			// output
-		foreach($addresses as $address) {
-			if(!empty($address)) {
+		foreach ($addresses as $address) {
+			if (!empty($address)) {
 				$markerArray  = $this->getItemMarkerArray($address);
 				$subpartArray = $this->getSubpartArray($templateCode, $markerArray, $address);
 
@@ -103,14 +115,14 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 					$subpartArray
 				);
 
-				$wrap = $this->conf['templates.'][$this->conf['templateName'].'.']['wrap'];
+				$wrap = $this->conf['templates.'][$this->conf['templateName'] . '.']['wrap'];
 				$content .= $this->cObj->wrap($addressContent, $wrap);
 
-				$content .= chr(10).chr(10);
+				$content .= chr(10) . chr(10);
 			}
 		}
 
-		$templateAllWrap = $this->conf['templates.'][$this->conf['templateName'].'.']['allWrap'];
+		$templateAllWrap = $this->conf['templates.'][$this->conf['templateName'] . '.']['allWrap'];
 		$content = $this->cObj->wrap($content, $templateAllWrap);
 
 		$overallWrap = $this->conf['wrap'];
@@ -123,8 +135,8 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 * initializes the configuration for the plugin and gets the settings from
 	 * the flexform
 	 *
-	 * @param	array	$conf: array with TS configuration
-	 * @return	void
+	 * @param array $conf Array with TS configuration
+	 * @return void
 	 */
 	protected function init($conf) {
 		$this->conf = $conf;
@@ -132,7 +144,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		$this->pi_loadLL();
 		$this->pi_initPIflexForm();
 
-			// flexform data
+		// flexform data
 		$flexKeyMapping = array(
 			'sDEF.singleRecords'    => 'singleRecords',
 			'sDEF.groupSelection'   => 'groupSelection',
@@ -147,38 +159,38 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		);
 		$this->ffData = $this->getFlexFormConfig($flexKeyMapping);
 
-			//set default combination to AND if no combination set
+		//set default combination to AND if no combination set
 		$combination = 'AND';
 		if(!empty($this->ffData['combination']) || !empty($this->conf['combination'])) {
-				// 0 and '0' are considered empty, therefore anything else means 1/true => OR
+			// 0 and '0' are considered empty, therefore anything else means 1/true => OR
 			$combination = 'OR';
 		}
 		$this->conf['combination'] = $combination;
 
-			// check sorting, priorize FlexForm configuration over TypoScript
+		// check sorting, priorize FlexForm configuration over TypoScript
         if ($this->ffData['sortBy'] && $this->ffData['sortBy'] != 'default') {
-            	// sortBy from FlexForm overrides TypoScript configuration
+            // sortBy from FlexForm overrides TypoScript configuration
             $this->conf['sortByColumn'] = $this->ffData['sortBy'];
         } elseif ($this->conf['sortByColumn']) {
             	// use sortByColumn from TypoScript if we don't have a FlexForm sorting
             $this->conf['sortByColumn'] = $this->conf['sortByColumn'];
         }
 
-			// check sorting column for validity, use default column "name" if column is invalid or not set
+		// check sorting column for validity, use default column "name" if column is invalid or not set
 		$this->conf['sortByColumn'] = $this->checkSorting($this->conf['sortByColumn']);
 
-			//set sorting, set to ASC if not valid
+		//set sorting, set to ASC if not valid
 		$sortOrder = $this->ffData['sortOrder'] ?
 			$this->ffData['sortOrder'] :
 			$this->conf['sortOrder'];
-		if(strtoupper($sortOrder) == 'DESC') {
+		if (strtoupper($sortOrder) === 'DESC') {
 			$sortOrder = SORT_DESC;
 		} else {
 			$sortOrder = SORT_ASC;
 		}
 		$this->conf['sortOrder'] = $sortOrder;
 
-			// overwrite TS pidList if set in flexform
+		// overwrite TS pidList if set in flexform
 		$pages = !empty($this->ffData['pages']) ?
 			$this->ffData['pages'] :
 			trim($this->cObj->stdWrap(
@@ -206,13 +218,12 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 			$this->cObj->stdWrap($this->conf['groupSelection'], $this->conf['groupSelection.']);
 
 		$this->conf['templateName'] = $this->getTemplateName();
-
 	}
 
 	/**
 	 * gets the records the user selected in the single address selection field
 	 *
-	 * @return	array	array of addresses with their uids as array keys
+	 * @return array Array of addresses with their uids as array keys
 	 */
 	public function getSingleRecords() {
 		$singleRecords = array();
@@ -220,15 +231,15 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 			$this->conf['singleSelection']
 		);
 
-		if(!empty($uidList)) {
+		if (!empty($uidList)) {
 			$addresses = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 				'*',
 				'tt_address',
-				'uid IN('.$uidList.') ' . (!empty($this->conf['pidList']) ? ' AND pid IN ('.$this->conf['pidList'].')' : '')
+				'uid IN(' . $uidList . ') ' . (!empty($this->conf['pidList']) ? ' AND pid IN (' . $this->conf['pidList'] . ')' : '')
 				. $this->cObj->enableFields('tt_address')
 			);
 
-			foreach($addresses as $k => $address) {
+			foreach ($addresses as $k => $address) {
 				$singleRecords[$address['uid']] = $this->getGroupsForAddress($address);
 			}
 		}
@@ -239,7 +250,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	/**
 	 * gets the addresses which meet the group selection
 	 *
-	 * @return	array	array of addresses with their uids as array keys
+	 * @return array Array of addresses with their uids as array keys
 	 */
 	public function getRecordsFromGroups() {
 		$groupRecords = array();
@@ -248,46 +259,45 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		$count     = count($groups);
 		$groupList = implode(',', $groups);
 
-		if(!empty($groupList) && !empty($this->conf['pidList'])) {
-			if($this->conf['combination'] == 'AND') {
-					// AND
+		if (!empty($groupList) && !empty($this->conf['pidList'])) {
+			if ($this->conf['combination'] == 'AND') {
+				// AND
 				$res = $GLOBALS['TYPO3_DB']->sql_query(
-					'SELECT tt_address.*, COUNT(tt_address.uid) AS c '.
-					'FROM tt_address '.
-					'JOIN tt_address_group_mm AS tta_txagg_mm ON tt_address.uid = tta_txagg_mm.uid_local '.
-					'JOIN tt_address_group AS txagg ON txagg.uid = tta_txagg_mm.uid_foreign '.
-					'WHERE uid_foreign IN ('.$groupList.') '.
-						$this->cObj->enableFields('tt_address').
-						' AND tt_address.pid IN('.$this->conf['pidList'].') '.
-					'GROUP BY tt_address.uid '.
-					'HAVING c = '.$count.' '
+					'SELECT tt_address.*, COUNT(tt_address.uid) AS c ' .
+					'FROM tt_address ' .
+					'JOIN tt_address_group_mm AS tta_txagg_mm ON tt_address.uid = tta_txagg_mm.uid_local ' .
+					'JOIN tt_address_group AS txagg ON txagg.uid = tta_txagg_mm.uid_foreign ' .
+					'WHERE uid_foreign IN (' . $groupList . ') ' .
+						$this->cObj->enableFields('tt_address') .
+						' AND tt_address.pid IN(' . $this->conf['pidList'] . ') ' .
+					'GROUP BY tt_address.uid ' .
+					'HAVING c = ' . $count . ' '
 				);
-			} elseif($this->conf['combination'] == 'OR') {
-					// OR
+			} elseif ($this->conf['combination'] == 'OR') {
+				// OR
 				$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 					'DISTINCT tt_address.*',
 					'tt_address, tt_address_group_mm, tt_address_group',
-					'tt_address_group_mm.uid_foreign IN('.$groupList.
-						') AND tt_address.uid = tt_address_group_mm.uid_local '.
-						$this->cObj->enableFields('tt_address').
-						' AND tt_address.pid IN('.$this->conf['pidList'].')'
+					'tt_address_group_mm.uid_foreign IN(' . $groupList .
+						') AND tt_address.uid = tt_address_group_mm.uid_local ' .
+						$this->cObj->enableFields('tt_address') .
+						' AND tt_address.pid IN('.$this->conf['pidList'] . ')'
 				);
 			}
 
-			while($address = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+			while ($address = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 				$groupRecords[$address['uid']] = $this->getGroupsForAddress($address);
 			}
 		}
 
 		return $groupRecords;
-
 	}
 
 	/**
 	 * gets the groups an address record is in
 	 *
-	 * @param	array	$address: an address record
-	 * @return	array	the address plus its groups
+	 * @param array $address An address record
+	 * @return array The address plus its groups
 	 */
 	public function getGroupsForAddress($address) {
 		$groupTitles = array();
@@ -298,16 +308,16 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 			'tt_address',
 			'tt_address_group_mm',
 			'tt_address_group',
-			'AND tt_address.uid = '.intval($address['uid']).' '.
+			'AND tt_address.uid = ' . intval($address['uid']) . ' ' .
 				$this->cObj->enableFields('tt_address'),
 			'',
 			'tt_address_group_mm.sorting'
 		);
 
-		while($group = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+		while ($group = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 
-				// localization handling
-			if($GLOBALS['TSFE']->sys_language_content) {
+			// localization handling
+			if ($GLOBALS['TSFE']->sys_language_content) {
 				$group = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
 					'tt_address_group',
 					$group,
@@ -330,14 +340,13 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	/**
 	 * puts the fields of an address in markers
 	 *
-	 * @param	array	$address: an address record
-	 * @return	array	a marker array with filled markers acording to the
-	 * address given
+	 * @param array $address An address record
+	 * @return array A marker array with filled markers acording to the address given
 	 */
 	protected function getItemMarkerArray($address) {
 		$markerArray = array();
 
-			//local configuration and local cObj
+		//local configuration and local cObj
 		$lConf = $this->conf['templates.'][$this->conf['templateName'].'.'];
 		$lcObj = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
 		$lcObj->data = $address;
@@ -374,14 +383,14 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		$markerArray['###MAINGROUP###']    = $lcObj->stdWrap($address['groups'][0]['title'], $lConf['mainGroup.']);
 		$markerArray['###GROUPLIST###']    = $lcObj->stdWrap($address['groupList'],          $lConf['groupList.']);
 
-			// the image
+		// the image
 		$markerArray['###IMAGE###'] = '';
-		if(!empty($address['image'])) {
+		if (!empty($address['image'])) {
 			$iConf = $lConf['image.'];
 			$images = explode(',', $address['image']);
 
-				// somehow (at least on my dev machine) the TT_ADDRESS_MAX_IMAGES constant doesn't work here
-			for($i = 0; $i < 6; $i++) {
+			// somehow (at least on my dev machine) the TT_ADDRESS_MAX_IMAGES constant doesn't work here
+			for ($i = 0; $i < 6; $i++) {
 				$iConf['file'] = 'uploads/pics/'.$images[$i];
 
 				$iConf['altText'] = !empty($iConf['altText']) ?
@@ -391,12 +400,11 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 					$iConf['titleText'] :
 					$address['name'];
 
-					// ensuring compatibility with the ###IMAGE### marker
+				// ensuring compatibility with the ###IMAGE### marker
 				$markerArray['###IMAGE'.($i == 0 ? '' : $i).'###'] = $lcObj->IMAGE($iConf);
 			}
-
 		} elseif (!empty($lConf['placeholderImage'])) {
-				// we have no image, but a default image
+			// we have no image, but a default image
 			$iConf = $lConf['image.'];
 			$iConf['file'] = $lcObj->stdWrap($lConf['placeholderImage'], $lConf['placeholderImage.']);
 			$iConf['altText'] = !empty($iConf['altText']) ? $iConf['altText'] : $address['name'];
@@ -405,9 +413,9 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 			$markerArray['###IMAGE###'] = $lcObj->IMAGE($iConf);
 		}
 
-			// adds hook for processing of extra item markers
+		// adds hook for processing of extra item markers
 		if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tt_address']['extraItemMarkerHook'])) {
-			foreach($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tt_address']['extraItemMarkerHook'] as $_classRef) {
+			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tt_address']['extraItemMarkerHook'] as $_classRef) {
 				$_procObj = & GeneralUtility::getUserObj($_classRef);
 				$markerArray = $_procObj->extraItemMarkerProcessor($markerArray, $address, $lConf, $this);
 			}
@@ -419,20 +427,20 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	/**
 	 * gets the user defined subparts and returns their content as an array
 	 *
-	 * @param	string	$templateCode: (HTML) template code
-	 * @param	array	$markerArray: markers with content
-	 * @param	array	$address: a tt_address record
-	 * @return	array	array of subparts
+	 * @param string $templateCode (HTML) template code
+	 * @param array $markerArray markers with content
+	 * @param array $address a tt_address record
+	 * @return array Array of subparts
 	 */
 	protected function getSubpartArray($templateCode, $markerArray, $address) {
 		$subpartArray = array();
 
-		if(is_array($this->conf['templates.'][$this->conf['templateName'].'.']['subparts.'])) {
+		if (is_array($this->conf['templates.'][$this->conf['templateName'] . '.']['subparts.'])) {
 			$lcObj = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer'); // local cObj
 			$lcObj->data = $address;
 
-			foreach($this->conf['templates.'][$this->conf['templateName'].'.']['subparts.'] as $spName => $spConf) {
-				$spName = '###SUBPART_'.strtoupper(substr($spName, 0, -1)).'###';
+			foreach ($this->conf['templates.'][$this->conf['templateName'] . '.']['subparts.'] as $spName => $spConf) {
+				$spName = '###SUBPART_' . strtoupper(substr($spName, 0, -1)) . '###';
 
 				$spTemplate = $lcObj->getSubpart($templateCode, $spName);
 				$content    = $lcObj->stdWrap(
@@ -443,7 +451,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 					$spConf
 				);
 
-				if($spConf['hasOneOf'] && !$this->hasOneOf($spConf['hasOneOf'], $address)) {
+				if ($spConf['hasOneOf'] && !$this->hasOneOf($spConf['hasOneOf'], $address)) {
 					$content = '';
 				}
 
@@ -457,7 +465,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	/**
 	 * gets the filename from the template file without the file extension
 	 *
-	 * @return	string	the file name portion without the file extension
+	 * @return string The file name portion without the file extension
 	 */
 	protected function getTemplateName() {
 		$templateName = '';
@@ -473,7 +481,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 			$templateName = 'default';
 		}
 
-			// cutting off the file extension
+		// cutting off the file extension
 		if ($templateName != 'default') {
 			$templateName = substr($templateFile, 0, strrpos($templateFile, '.'));
 		}
@@ -485,10 +493,9 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 * gets the html template code from the selected template, extracts the
 	 * address subpart and returns the html with unreplaced marker
 	 *
-	 * @return	string	html template code
+	 * @return string html template code
 	 */
 	protected function getTemplate() {
-
         if (isset($this->ffData['templateFile'])) {
             $templateFile = $this->ffData['templateFile'];
         } elseif (isset($this->conf['defaultTemplateFileName'])) {
@@ -515,11 +522,11 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 * the given criteria is returned as it was, the default 'name' is
 	 * returned if the given criteria is not valid
 	 *
-	 * @param	string	$sortBy: criteria you want to sort the addresses by
-	 * @return	string	the given sorting criteria if it was valid, 'name' otherwise
+	 * @param string $sortBy criteria you want to sort the addresses by
+	 * @return string the given sorting criteria if it was valid, 'name' otherwise
 	 */
 	protected function checkSorting($sortBy) {
-			// TODO add all fields from TCA (extract them from TCA) or add a method to add new sorting fields
+		// TODO add all fields from TCA (extract them from TCA) or add a method to add new sorting fields
 		$validSortings = array(
 			'uid', 'pid', 'tstamp',
 			'name', 'gender', 'first_name', 'middle_name', 'last_name', 'title', 'email',
@@ -527,7 +534,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 			'region', 'country', 'image', 'fax', 'description', 'singleSelection'
 		);
 
-		if(!in_array($sortBy, $validSortings)) {
+		if (!in_array($sortBy, $validSortings)) {
 			$sortBy = 'name';
 		}
 
@@ -537,12 +544,12 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	/**
 	 * gets the flexform values as an array like defined by $flexKeyMapping
 	 *
-	 * @param	array	$flexKeyMapping: mapping of sheet.flexformFieldName => variable name
-	 * @return	array	flexform configuration as an array
+	 * @param array $flexKeyMapping mapping of sheet.flexformFieldName => variable name
+	 * @return array flexform configuration as an array
 	 */
 	protected function getFlexFormConfig($flexKeyMapping) {
 		$conf = array();
-		foreach($flexKeyMapping as $sheetField => $confName) {
+		foreach ($flexKeyMapping as $sheetField => $confName) {
 			list($sheet, $field) = explode('.', $sheetField);
 			$conf[$confName] = $this->pi_getFFvalue(
 				$this->cObj->data['pi_flexform'],
@@ -557,17 +564,17 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 * checks for the 'hasOneOf' constraint, at least one of the fields in
 	 * $fieldList must not be empty to return true
 	 *
-	 * @param	string	$fieldList: comma separated list of field names to check
-	 * @param	array	$address: a tt_address record
-	 * @return	boolean	true if at least one of the given fields is not empty
+	 * @param string $fieldList comma separated list of field names to check
+	 * @param array $address a tt_address record
+	 * @return boolean true if at least one of the given fields is not empty
 	 */
 	protected function hasOneOf($fieldList, $address) {
-		$checkFields = GeneralUtility::trimExplode(',', $fieldList, 1);
-		$flag = false;
+		$checkFields = GeneralUtility::trimExplode(',', $fieldList, TRUE);
+		$flag = FALSE;
 
-		foreach($checkFields as $fieldName) {
-			if(!empty($address[$fieldName])) {
-				$flag = true;
+		foreach ($checkFields as $fieldName) {
+			if (!empty($address[$fieldName])) {
+				$flag = TRUE;
 				break;
 			}
 		}
@@ -583,31 +590,23 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 * @return cleaned value
 	 */
 	protected function normalizeSortingString($value) {
-			if (!is_string($value)) {
-					// return if value is not a string
-				return $value;
-			}
-
-			$value = $GLOBALS['TSFE']->csConvObj->conv_case($GLOBALS['TSFE']->renderCharset, $value, 'toLower'); // lowercase
-			$value = preg_replace("/\s+/", "", $value); // remove whitespace
-			$value = preg_replace("/-/", "", $value); // remove hyphens e.g. from double names
-			$value = preg_replace("/ü/", "u", $value); // remove umlauts
-			$value = preg_replace("/ä/", "a", $value);
-			$value = preg_replace("/ö/", "o", $value);
-			$value = preg_replace("/ë/", "e", $value);
-			$value = preg_replace("/é/", "e", $value);
-			$value = preg_replace("/è/", "e", $value);
-			$value = preg_replace("/ç/", "c", $value);
-
+		if (!is_string($value)) {
+			// return if value is not a string
 			return $value;
+		}
+
+		$value = $GLOBALS['TSFE']->csConvObj->conv_case($GLOBALS['TSFE']->renderCharset, $value, 'toLower'); // lowercase
+		$value = preg_replace("/\s+/", "", $value); // remove whitespace
+		$value = preg_replace("/-/", "", $value); // remove hyphens e.g. from double names
+		$value = preg_replace("/ü/", "u", $value); // remove umlauts
+		$value = preg_replace("/ä/", "a", $value);
+		$value = preg_replace("/ö/", "o", $value);
+		$value = preg_replace("/ë/", "e", $value);
+		$value = preg_replace("/é/", "e", $value);
+		$value = preg_replace("/è/", "e", $value);
+		$value = preg_replace("/ç/", "c", $value);
+
+		return $value;
 	}
 
 }
-
-
-
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/tt_address/pi1/class.tx_ttaddress_pi1.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/tt_address/pi1/class.tx_ttaddress_pi1.php']);
-}
-
-?>

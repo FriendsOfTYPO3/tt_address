@@ -1,5 +1,5 @@
 <?php
-if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
+defined('TYPO3_MODE') or die();
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addUserTSConfig('
 	options.saveDocNew.tt_address_group = 1
@@ -14,14 +14,10 @@ if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 	1
 );
 
-/**
- * backwardscompatibility function which hooks into TCEmain and watches for
- * tt_address records with changes to the first, middle, and last name fields to
- * come by. That function shall then write changes back to the old combined name
- * field in a configurable format - first name first or last name first and
- * which glue string (comma, space, whatever)
- */
-if (TYPO3_MODE)	{
-	require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('tt_address') . 'class.tx_ttaddress_compat.php');
+if (TYPO3_MODE === 'BE') {
+	$settings = \TYPO3\TtAddress\Utility\SettingsUtility::getSettings();
+	if ($settings->isStoreBackwardsCompatName()) {
+		$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] =
+			'TYPO3\\TtAddress\\Hooks\\DataHandler\\BackwardsCompatibilityNameFormat';
+	}
 }
-$TYPO3_CONF_VARS['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = 'tx_ttaddress_compat';

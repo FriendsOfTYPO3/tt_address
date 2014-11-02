@@ -1,7 +1,7 @@
 plugin.tx_ttaddress_pi1 = USER
 plugin.tx_ttaddress_pi1 {
 	userFunc = tx_ttaddress_pi1->main
-	
+
 	templatePath = EXT:tt_address/res/
 	defaultTemplateFileName = default_hcard.htm
 	pidList = 0
@@ -9,7 +9,7 @@ plugin.tx_ttaddress_pi1 {
 	sortByColumn = name
 	sortOrder = ASC
 	listMaxItems = 0
-	
+
 	templates.default {
 		# supports the hcard microformats standard
 
@@ -61,7 +61,7 @@ plugin.tx_ttaddress_pi1 {
 		city {
 			wrap = <span class="locality">|</span>
 			required = 1
-			outerWrap = |, 
+			outerWrap = |,
 			outerWrap.if.isTrue.field = region
 		}
 
@@ -97,10 +97,9 @@ plugin.tx_ttaddress_pi1 {
 			adr.hasOneOf = address, city, region, zip, country
 			url.typolink {
 				parameter.field = www
-				target = 
+				target =
 				ATagParams = class="url"
 			}
 		}
-
 	}
 }

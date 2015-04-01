@@ -82,7 +82,7 @@
 										<numIndex index="1">default</numIndex>
 									</numIndex>
 								</items>
-								<itemsProcFunc>tx_ttaddress_addfieldstosel->main</itemsProcFunc>
+								<itemsProcFunc>TYPO3\TtAddress\Hooks\Tca\AddFieldsToSelector->main</itemsProcFunc>
 							</config>
 						</TCEforms>
 					</sortBy>
@@ -185,7 +185,7 @@
 										<numIndex index="2">EXT:tt_address/res/default.gif</numIndex>
 									</numIndex>
 								</items>
-								<itemsProcFunc>tx_ttaddress_addfilestosel->main</itemsProcFunc>
+								<itemsProcFunc>TYPO3\TtAddress\Hooks\Tca\AddFilesToSelector->main</itemsProcFunc>
 							</config>
 						</TCEforms>
 					</templateFile>

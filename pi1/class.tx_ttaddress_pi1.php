@@ -12,7 +12,7 @@
  * The TYPO3 project - inspiring people to share!
  */
 
-    use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * main class for the tt_address plugin, outputs addresses either by direct
@@ -373,22 +373,45 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		// the image
 		$markerArray['###IMAGE###'] = '';
 		if (!empty($address['image'])) {
-			$iConf = $lConf['image.'];
-			$images = explode(',', $address['image']);
+			$filesConf = array(
+				'references.' => array(
+					'uid' =>  (int)$address['uid'],
+					'table' => 'tt_address',
+					'fieldName' => 'image'
+				),
+				'begin' => 0,
+				'maxItems' => 1,
 
-			// somehow (at least on my dev machine) the TT_ADDRESS_MAX_IMAGES constant doesn't work here
-			for ($i = 0; $i < 6; $i++) {
-				$iConf['file'] = 'uploads/pics/'.$images[$i];
-
-				$iConf['altText'] = !empty($iConf['altText']) ?
-					$iConf['altText'] :
-					$address['name'];
-				$iConf['titleText'] = !empty($iConf['titleText']) ?
-					$iConf['titleText'] :
-					$address['name'];
-
-				// ensuring compatibility with the ###IMAGE### marker
-				$markerArray['###IMAGE'.($i == 0 ? '' : $i).'###'] = $lcObj->render($lcObj->getContentObject('IMAGE'), $iConf);
+				'renderObj' => 'IMAGE',
+				'renderObj.' => array(
+					'file.' => array(
+						'import.' => array(
+							'data' => 'file:current:uid'
+						),
+						'treatIdAsReference' => 1,
+						'altText.' => array(
+							'data' => 'file:current:alternative'
+						),
+						'titleText.' => array(
+							'data' => 'file:current:title'
+						)
+					)
+				)
+			);
+			if (is_array($lConf['image.'])) {
+				if (!empty($lConf['image.']['stdWrap'])) {
+					$filesConf['renderObj.']['stdWrap'] = $lConf['image.']['stdWrap'];
+				}
+				if (is_array($lConf['image.']['stdWrap.'])) {
+					$filesConf['renderObj.']['stdWrap.'] = $lConf['image.']['stdWrap.'];
+				}
+				if (!empty($lConf['image.']['wrap'])) {
+					$filesConf['renderObj.']['wrap'] = $lConf['image.']['wrap'];
+				}
+			}
+			for ($filesIndex = 0; $filesIndex < 6; $filesIndex++) {
+				$filesConf['begin'] = $filesIndex;
+				$markerArray['###IMAGE'.($filesIndex == 0 ? '' : $filesIndex).'###'] = $lcObj->cObjGetSingle('IMAGE', $filesConf);
 			}
 		} elseif (!empty($lConf['placeholderImage'])) {
 			// we have no image, but a default image

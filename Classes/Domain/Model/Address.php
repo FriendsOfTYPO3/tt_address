@@ -14,6 +14,9 @@ namespace TYPO3\TtAddress\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
+
 /**
  * The domain model of a Address
  *
@@ -173,15 +176,22 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Image
-	 * @var string
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
 	 */
-	protected $image;
+	protected $image = null;
 
 	/**
 	 * Description
 	 * @var string
 	 */
 	protected $description;
+
+	/**
+	 * __construct
+	 */
+	public function __construct() {
+		$this->image = new ObjectStorage();
+	}
 
 	/**
 	 * sets the gender attribute
@@ -667,22 +677,42 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * sets the image attribute
+	 * Adds a FileReference
 	 *
-	 * @param string $image
+	 * @param FileReference $image
 	 * @return void
 	 */
-	public function setImage($image) {
-		$this->image = $image;
+	public function addImage(FileReference $image) {
+		$this->image->attach($image);
 	}
 
 	/**
-	 * returns the image attribute
+	 * Removes a FileReference
 	 *
-	 * @return string
+	 * @param FileReference $imageToRemove The FileReference to be removed
+	 * @return void
+	 */
+	public function removeImage(FileReference $imageToRemove) {
+		$this->image->detach($imageToRemove);
+	}
+
+	/**
+	 * Returns the images
+	 *
+	 * @return ObjectStorage<FileReference>
 	 */
 	public function getImage() {
 		return $this->image;
+	}
+
+	/**
+	 * Sets the images
+	 *
+	 * @param ObjectStorage<FileReference> $image
+	 * @return void
+	 */
+	public function setImage(ObjectStorage $image) {
+		$this->image = $image;
 	}
 
 	/**

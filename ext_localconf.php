@@ -24,3 +24,4 @@ if (TYPO3_MODE === 'BE') {
 
 // Update scripts
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['tt_address_group'] = 'TYPO3\\TtAddress\\Updates\\AddressGroupToSysCategory';
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['tt_address_group'] = 'TYPO3\\TtAddress\\Updates\\ImageToFileReference';

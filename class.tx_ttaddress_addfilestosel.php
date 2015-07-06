@@ -44,7 +44,7 @@ class tx_ttaddress_addfilestosel {
 		// get the current page ID
 		$thePageId = $params['row']['pid'];
 
-		$template = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\TypoScript\\ExtendedTemplateService');
+		$template = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\TypoScript\\TemplateService');
 		// do not log time-performance information
 		$template->tt_track = 0;
 		$template->init();

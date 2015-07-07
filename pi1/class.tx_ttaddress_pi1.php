@@ -62,7 +62,6 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	public function main($content, $conf) {
 		$this->init($conf);
 		$content = '';
-
 		$singleSelection = $this->getSingleRecords();
 		$groupSelection  = $this->getRecordsFromGroups();
 
@@ -98,7 +97,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 
 		}
 
-			// limit output to max listMaxItems addresses
+		// limit output to max listMaxItems addresses
 		if (((int)$this->conf['listMaxItems']) > 0) {
 			$addresses = array_slice($addresses, 0, (int)$this->conf['listMaxItems']);
 		}
@@ -171,9 +170,6 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
         if ($this->ffData['sortBy'] && $this->ffData['sortBy'] != 'default') {
             // sortBy from FlexForm overrides TypoScript configuration
             $this->conf['sortByColumn'] = $this->ffData['sortBy'];
-        } elseif ($this->conf['sortByColumn']) {
-            	// use sortByColumn from TypoScript if we don't have a FlexForm sorting
-            $this->conf['sortByColumn'] = $this->conf['sortByColumn'];
         }
 
 		// check sorting column for validity, use default column "name" if column is invalid or not set
@@ -243,7 +239,6 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 				$singleRecords[$address['uid']] = $this->getGroupsForAddress($address);
 			}
 		}
-
 		return $singleRecords;
 	}
 
@@ -263,25 +258,29 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 			if ($this->conf['combination'] == 'AND') {
 				// AND
 				$res = $GLOBALS['TYPO3_DB']->sql_query(
-					'SELECT tt_address.*, COUNT(tt_address.uid) AS c ' .
-					'FROM tt_address ' .
-					'JOIN tt_address_group_mm AS tta_txagg_mm ON tt_address.uid = tta_txagg_mm.uid_local ' .
-					'JOIN tt_address_group AS txagg ON txagg.uid = tta_txagg_mm.uid_foreign ' .
-					'WHERE uid_foreign IN (' . $groupList . ') ' .
-						$this->cObj->enableFields('tt_address') .
-						' AND tt_address.pid IN(' . $this->conf['pidList'] . ') ' .
-					'GROUP BY tt_address.uid ' .
-					'HAVING c = ' . $count . ' '
+					'SELECT tt_address.*, COUNT(tt_address.uid) AS c '.
+					'FROM tt_address '.
+					'JOIN sys_category_record_mm ON tt_address.uid = sys_category_record_mm.uid_foreign '.
+					'JOIN sys_category ON sys_category.uid = sys_category_record_mm.uid_local '.
+					'WHERE sys_category_record_mm.uid_local IN ( ' . $groupList . ') '.
+					$this->cObj->enableFields('tt_address').
+					$this->cObj->enableFields('sys_category').
+					' AND tt_address.pid IN (' . $this->conf['pidList'] . ')'.
+					' AND sys_category_record_mm.fieldname = \'categories\' AND sys_category_record_mm.tablenames = \'tt_address\''.
+					'GROUP BY tt_address.uid '.
+					'HAVING c = '.$count.' '
 				);
 			} elseif ($this->conf['combination'] == 'OR') {
 				// OR
 				$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 					'DISTINCT tt_address.*',
-					'tt_address, tt_address_group_mm, tt_address_group',
-					'tt_address_group_mm.uid_foreign IN(' . $groupList .
-						') AND tt_address.uid = tt_address_group_mm.uid_local ' .
-						$this->cObj->enableFields('tt_address') .
-						' AND tt_address.pid IN('.$this->conf['pidList'] . ')'
+					'tt_address, sys_category_record_mm, sys_category',
+					'sys_category_record_mm.uid_local IN('.$groupList.
+					') AND tt_address.uid = sys_category_record_mm.uid_foreign '.
+					$this->cObj->enableFields('tt_address').
+					$this->cObj->enableFields('sys_category').
+					' AND tt_address.pid IN (' . $this->conf['pidList'] . ')'.
+					' AND sys_category_record_mm.fieldname = \'categories\' AND sys_category_record_mm.tablenames = \'tt_address\''
 				);
 			}
 
@@ -302,37 +301,25 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	public function getGroupsForAddress($address) {
 		$groupTitles = array();
 
-		$res = $GLOBALS['TYPO3_DB']->exec_SELECT_mm_query(
-			'tt_address_group.uid, tt_address_group.pid,
-			 tt_address_group.title, tt_address_group.sys_language_uid',
-			'tt_address',
-			'tt_address_group_mm',
-			'tt_address_group',
-			'AND tt_address.uid = ' . intval($address['uid']) . ' ' .
-				$this->cObj->enableFields('tt_address'),
+		$result = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+			'c.*',
+			'sys_category c, sys_category_record_mm mm',
+			'mm.uid_local=c.uid AND mm.uid_foreign=' . (int)$address['uid'] . ' AND mm.tablenames="tt_address" AND mm.fieldname="categories"',
 			'',
-			'tt_address_group_mm.sorting'
+			'mm.sorting_foreign ASC'
 		);
-
-		while ($group = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
-
-			// localization handling
+		foreach ($result as $groupRecord) {
 			if ($GLOBALS['TSFE']->sys_language_content) {
-				$group = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
-					'tt_address_group',
-					$group,
-					$GLOBALS['TSFE']->sys_language_content
-				);
+				$groupRecord = $GLOBALS['TSFE']->sys_page->getRecordOverlay('sys_category', $groupRecord, $GLOBALS['TSFE']->sys_language_content);
 			}
-
-			$address['groups'][] = $group;
-			$groupTitles[]       = $group['title'];
-			unset($group);
+			if ($groupRecord) {
+				$address['groups'][] = $groupRecord;
+				$groupTitles[] = $groupRecord['title'];
+			}
 		}
 
 		$groupList = implode(', ', $groupTitles);
 		$address['groupList'] = $groupList;
-		unset($groupTitles);
 
 		return $address;
 	}
@@ -477,7 +464,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		}
 
 		if ($templateFile == $this->conf['defaultTemplateFileName'] ||
-		   $templateFile == 'default') {
+			$templateFile == 'default') {
 			$templateName = 'default';
 		}
 

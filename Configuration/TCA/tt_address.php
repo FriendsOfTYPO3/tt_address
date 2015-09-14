@@ -172,7 +172,13 @@ return array(
 						'type' => 'popup',
 						'title' => 'LLL:EXT:cms/locallang_ttc.xml:header_link_formlabel',
 						'icon' => 'link_popup.gif',
-						'script' => 'browse_links.php?mode=wizard&act=page|url',
+						'module' => array(
+							'name' => 'wizard_element_browser',
+							'urlParameters' => array(
+								'mode' => 'wizard',
+								'act' => 'url|page'
+							)
+						),
 						'params' => array(
 							'blindLinkOptions' => 'mail,file,spec,folder',
 						),

@@ -10,6 +10,8 @@ return array(
         'prependAtCopy' => 'LLL:EXT:lang/locallang_general.xml:LGL.prependAtCopy',
         'delete' => 'deleted',
         'title' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address',
+        'versioningWS' => true,
+        'origUid' => 't3_origuid',
         'thumbnail' => 'image',
         'enablecolumns' => array(
             'disabled' => 'hidden'

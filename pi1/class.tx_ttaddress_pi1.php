@@ -483,7 +483,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 * @return string html template code
 	 */
 	protected function getTemplate() {
-        if (isset($this->ffData['templateFile'])) {
+        if (isset($this->ffData['templateFile']) && !empty($this->ffData['templateFile'])) {
             $templateFile = $this->ffData['templateFile'];
         } elseif (isset($this->conf['defaultTemplateFileName'])) {
             $templateFile = $this->conf['defaultTemplateFileName'];

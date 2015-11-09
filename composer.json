@@ -1,0 +1,32 @@
+{
+  "name": "friendsoftypo3/tt-address",
+  "type": "typo3-cms-extension",
+  "description": "Displays a list of addresses from an address table on the page.",
+  "keywords": [
+    "TYPO3",
+    "extension",
+    "addresses"
+  ],
+  "homepage": "https://forge.typo3.org/projects/extension-tt_address",
+  "authors": [
+    {
+      "name": "tt_address Development Team",
+      "role": "Developer"
+    }
+  ],
+  "license": [
+    "GPL-2.0+"
+  ],
+  "require": {
+    "typo3/cms-core": ">=6.2.2,<8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "TYPO3\\TtAddress\\": "Classes"
+    }
+  },
+  "replace": {
+    "tt_address": "self.version",
+    "typo3-ter/tt-address": "self.version"
+  }
+}

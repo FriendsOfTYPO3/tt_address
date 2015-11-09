@@ -21,3 +21,6 @@ if (TYPO3_MODE === 'BE') {
 			'TYPO3\\TtAddress\\Hooks\\DataHandler\\BackwardsCompatibilityNameFormat';
 	}
 }
+
+// Update scripts
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['tt_address_group'] = 'TYPO3\\TtAddress\\Updates\\AddressGroupToSysCategory';

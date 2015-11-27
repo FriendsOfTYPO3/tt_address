@@ -12,7 +12,7 @@
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+    use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * main class for the tt_address plugin, outputs addresses either by direct
@@ -66,7 +66,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		$groupSelection  = $this->getRecordsFromGroups();
 
 		// merge both arrays so that we do not have any duplicates
-		$addresses = GeneralUtility::array_merge($singleSelection, $groupSelection);
+		$addresses = $groupSelection + $singleSelection;
 
 		$templateCode = $this->getTemplate();
 
@@ -388,7 +388,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 					$address['name'];
 
 				// ensuring compatibility with the ###IMAGE### marker
-				$markerArray['###IMAGE'.($i == 0 ? '' : $i).'###'] = $lcObj->IMAGE($iConf);
+				$markerArray['###IMAGE'.($i == 0 ? '' : $i).'###'] = $lcObj->render($lcObj->getContentObject('IMAGE'), $iConf);
 			}
 		} elseif (!empty($lConf['placeholderImage'])) {
 			// we have no image, but a default image
@@ -397,7 +397,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 			$iConf['altText'] = !empty($iConf['altText']) ? $iConf['altText'] : $address['name'];
 			$iConf['titleText'] = !empty($iConf['titleText']) ? $iConf['titleText'] : $address['name'];
 
-			$markerArray['###IMAGE###'] = $lcObj->IMAGE($iConf);
+			$markerArray['###IMAGE###'] = $lcObj->render($lcObj->getContentObject('IMAGE'), $iConf);
 		}
 
 		// adds hook for processing of extra item markers

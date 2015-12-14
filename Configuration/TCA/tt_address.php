@@ -329,7 +329,7 @@ return array(
 		)
 	),
 	'types' => array(
-		'1' => array('showitem' =>
+		'0' => array('showitem' =>
 			'hidden,
 			--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.name;name,
 			image, description,

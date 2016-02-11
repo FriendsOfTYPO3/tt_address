@@ -22,7 +22,7 @@ class Settings
     /**
      * @var string
      */
-    protected $backwardsCompatFormat = '';
+    protected $backwardsCompatFormat = '%1$s %3$s';
 
     /**
      * @var bool

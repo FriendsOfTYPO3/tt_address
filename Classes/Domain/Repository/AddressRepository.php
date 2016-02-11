@@ -19,6 +19,6 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 /**
  * The repository for the domain model Address
  */
-class AddressRepository extends Repository {
-
+class AddressRepository extends Repository
+{
 }

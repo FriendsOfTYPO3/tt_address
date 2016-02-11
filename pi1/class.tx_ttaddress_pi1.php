@@ -20,603 +20,613 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * @author Ingo Renner <typo3@ingo-renner.com>
  */
-class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
+class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
+{
+    /**
+     * @var string
+     */
+    public $prefixId      = 'tx_ttaddress_pi1';
 
-	/**
-	 * @var string
-	 */
-	public $prefixId      = 'tx_ttaddress_pi1';
+    /**
+     * @var string
+     */
+    public $scriptRelPath = 'pi1/class.tx_ttaddress_pi1.php';
 
-	/**
-	 * @var string
-	 */
-	public $scriptRelPath = 'pi1/class.tx_ttaddress_pi1.php';
+    /**
+     * @var string
+     */
+    public $extKey        = 'tt_address';
 
-	/**
-	 * @var string
-	 */
-	public $extKey        = 'tt_address';
+    /**
+     * @var bool
+     */
+    public $pi_checkCHash = true;
 
-	/**
-	 * @var bool
-	 */
-	public $pi_checkCHash = TRUE;
+    /**
+     * @var array
+     */
+    public $conf;
 
-	/**
-	 * @var array
-	 */
-	public $conf;
+    /**
+     * @var array
+     */
+    protected $ffData;
 
-	/**
-	 * @var array
-	 */
-	protected $ffData;
+    /**
+     * main method which controls the data flow and outputs the addresses
+     *
+     * @param string $content Content string, empty
+     * @param array $conf Configuration array with TS configuration
+     * @return string The processed addresses
+     */
+    public function main($content, $conf)
+    {
+        $this->init($conf);
+        $content = '';
+        $singleSelection = $this->getSingleRecords();
+        $groupSelection  = $this->getRecordsFromGroups();
 
-	/**
-	 * main method which controls the data flow and outputs the addresses
-	 *
-	 * @param string $content Content string, empty
-	 * @param array $conf Configuration array with TS configuration
-	 * @return string The processed addresses
-	 */
-	public function main($content, $conf) {
-		$this->init($conf);
-		$content = '';
-		$singleSelection = $this->getSingleRecords();
-		$groupSelection  = $this->getRecordsFromGroups();
+        // merge both arrays so that we do not have any duplicates
+        $addresses = $groupSelection + $singleSelection;
 
-		// merge both arrays so that we do not have any duplicates
-		$addresses = $groupSelection + $singleSelection;
+        $templateCode = $this->getTemplate();
 
-		$templateCode = $this->getTemplate();
+        // apply sorting
+        if ($this->conf['sortByColumn'] === 'singleSelection' && count($groupSelection) === 0) {
 
-		// apply sorting
-		if ($this->conf['sortByColumn'] === 'singleSelection' && count($groupSelection) === 0) {
+            // we want to sort by single selection and only have single record selection
+            $sortedAdressesUid = explode(',', $this->conf['singleSelection']);
+            $sortedAddresses = array();
 
-			// we want to sort by single selection and only have single record selection
-			$sortedAdressesUid = explode(',', $this->conf['singleSelection']);
-			$sortedAddresses = array();
+            foreach ($sortedAdressesUid as $uid) {
+                $sortedAddresses[] = $addresses[$uid];
+            }
+            $addresses = $sortedAddresses;
+        } else {
+            // if sortByColumn was set to singleSelection, but we don't have a single selection, switch to default column "name"
+            if ($this->conf['sortByColumn'] === 'singleSelection') {
+                $this->conf['sortByColumn'] = 'name';
+            }
 
-			foreach ($sortedAdressesUid as $uid) {
-				$sortedAddresses[] = $addresses[$uid];
-			}
-			$addresses = $sortedAddresses;
+            // sorting the addresses by any other field
+            $sortBy = array();
+            foreach ($addresses as $k => $v) {
+                $sortBy[$k] = $this->normalizeSortingString($v[$this->conf['sortByColumn']]);
+            }
+            array_multisort($sortBy, $this->conf['sortOrder'], $addresses);
+        }
 
-		} else {
-			// if sortByColumn was set to singleSelection, but we don't have a single selection, switch to default column "name"
-			if ($this->conf['sortByColumn'] === 'singleSelection') {
-				$this->conf['sortByColumn'] = 'name';
-			}
+        // limit output to max listMaxItems addresses
+        if (((int)$this->conf['listMaxItems']) > 0) {
+            $addresses = array_slice($addresses, 0, (int)$this->conf['listMaxItems']);
+        }
 
-			// sorting the addresses by any other field
-			$sortBy = array();
-			foreach ($addresses as $k => $v) {
-				$sortBy[$k] = $this->normalizeSortingString($v[$this->conf['sortByColumn']]);
-			}
-			array_multisort($sortBy, $this->conf['sortOrder'], $addresses);
+            // output
+        foreach ($addresses as $address) {
+            if (!empty($address)) {
+                $markerArray  = $this->getItemMarkerArray($address);
+                $subpartArray = $this->getSubpartArray($templateCode, $markerArray, $address);
 
-		}
+                $addressContent = $this->cObj->substituteMarkerArrayCached(
+                    $templateCode,
+                    $markerArray,
+                    $subpartArray
+                );
 
-		// limit output to max listMaxItems addresses
-		if (((int)$this->conf['listMaxItems']) > 0) {
-			$addresses = array_slice($addresses, 0, (int)$this->conf['listMaxItems']);
-		}
+                $wrap = $this->conf['templates.'][$this->conf['templateName'] . '.']['wrap'];
+                $content .= $this->cObj->wrap($addressContent, $wrap);
 
-			// output
-		foreach ($addresses as $address) {
-			if (!empty($address)) {
-				$markerArray  = $this->getItemMarkerArray($address);
-				$subpartArray = $this->getSubpartArray($templateCode, $markerArray, $address);
+                $content .= chr(10) . chr(10);
+            }
+        }
 
-				$addressContent = $this->cObj->substituteMarkerArrayCached(
-					$templateCode,
-					$markerArray,
-					$subpartArray
-				);
+        $templateAllWrap = $this->conf['templates.'][$this->conf['templateName'] . '.']['allWrap'];
+        $content = $this->cObj->wrap($content, $templateAllWrap);
 
-				$wrap = $this->conf['templates.'][$this->conf['templateName'] . '.']['wrap'];
-				$content .= $this->cObj->wrap($addressContent, $wrap);
+        $overallWrap = $this->conf['wrap'];
+        $content = $this->cObj->wrap($content, $overallWrap);
 
-				$content .= chr(10) . chr(10);
-			}
-		}
+        return $this->pi_wrapInBaseClass($content);
+    }
 
-		$templateAllWrap = $this->conf['templates.'][$this->conf['templateName'] . '.']['allWrap'];
-		$content = $this->cObj->wrap($content, $templateAllWrap);
+    /**
+     * initializes the configuration for the plugin and gets the settings from
+     * the flexform
+     *
+     * @param array $conf Array with TS configuration
+     * @return void
+     */
+    protected function init($conf)
+    {
+        $this->conf = $conf;
+        $this->pi_setPiVarDefaults();
+        $this->pi_loadLL();
+        $this->pi_initPIflexForm();
 
-		$overallWrap = $this->conf['wrap'];
-		$content = $this->cObj->wrap($content, $overallWrap);
+        // flexform data
+        $flexKeyMapping = array(
+            'sDEF.singleRecords'    => 'singleRecords',
+            'sDEF.groupSelection'   => 'groupSelection',
+            'sDEF.combination'      => 'combination',
+            'sDEF.sortBy'           => 'sortBy',
+            'sDEF.sortOrder'        => 'sortOrder',
+            'sDEF.pages'            => 'pages',
+            'sDEF.recursive'        => 'recursive',
+            'sDEF.pages'            => 'pages',
+            'sDEF.recursive'        => 'recursive',
+            'sDISPLAY.templateFile' => 'templateFile',
+        );
+        $this->ffData = $this->getFlexFormConfig($flexKeyMapping);
 
-		return $this->pi_wrapInBaseClass($content);
-	}
+        //set default combination to AND if no combination set
+        $combination = 'AND';
+        if (!empty($this->ffData['combination']) || !empty($this->conf['combination'])) {
+            // 0 and '0' are considered empty, therefore anything else means 1/true => OR
+            $combination = 'OR';
+        }
+        $this->conf['combination'] = $combination;
 
-	/**
-	 * initializes the configuration for the plugin and gets the settings from
-	 * the flexform
-	 *
-	 * @param array $conf Array with TS configuration
-	 * @return void
-	 */
-	protected function init($conf) {
-		$this->conf = $conf;
-		$this->pi_setPiVarDefaults();
-		$this->pi_loadLL();
-		$this->pi_initPIflexForm();
-
-		// flexform data
-		$flexKeyMapping = array(
-			'sDEF.singleRecords'    => 'singleRecords',
-			'sDEF.groupSelection'   => 'groupSelection',
-			'sDEF.combination'      => 'combination',
-			'sDEF.sortBy'           => 'sortBy',
-			'sDEF.sortOrder'        => 'sortOrder',
-			'sDEF.pages'            => 'pages',
-			'sDEF.recursive'        => 'recursive',
-			'sDEF.pages'            => 'pages',
-			'sDEF.recursive'        => 'recursive',
-			'sDISPLAY.templateFile' => 'templateFile',
-		);
-		$this->ffData = $this->getFlexFormConfig($flexKeyMapping);
-
-		//set default combination to AND if no combination set
-		$combination = 'AND';
-		if(!empty($this->ffData['combination']) || !empty($this->conf['combination'])) {
-			// 0 and '0' are considered empty, therefore anything else means 1/true => OR
-			$combination = 'OR';
-		}
-		$this->conf['combination'] = $combination;
-
-		// check sorting, priorize FlexForm configuration over TypoScript
+        // check sorting, priorize FlexForm configuration over TypoScript
         if ($this->ffData['sortBy'] && $this->ffData['sortBy'] != 'default') {
             // sortBy from FlexForm overrides TypoScript configuration
             $this->conf['sortByColumn'] = $this->ffData['sortBy'];
         }
 
-		// check sorting column for validity, use default column "name" if column is invalid or not set
-		$this->conf['sortByColumn'] = $this->checkSorting($this->conf['sortByColumn']);
+        // check sorting column for validity, use default column "name" if column is invalid or not set
+        $this->conf['sortByColumn'] = $this->checkSorting($this->conf['sortByColumn']);
 
-		//set sorting, set to ASC if not valid
-		$sortOrder = $this->ffData['sortOrder'] ?
-			$this->ffData['sortOrder'] :
-			$this->conf['sortOrder'];
-		if (strtoupper($sortOrder) === 'DESC') {
-			$sortOrder = SORT_DESC;
-		} else {
-			$sortOrder = SORT_ASC;
-		}
-		$this->conf['sortOrder'] = $sortOrder;
+        //set sorting, set to ASC if not valid
+        $sortOrder = $this->ffData['sortOrder'] ?
+            $this->ffData['sortOrder'] :
+            $this->conf['sortOrder'];
+        if (strtoupper($sortOrder) === 'DESC') {
+            $sortOrder = SORT_DESC;
+        } else {
+            $sortOrder = SORT_ASC;
+        }
+        $this->conf['sortOrder'] = $sortOrder;
 
-		// overwrite TS pidList if set in flexform
-		$pages = !empty($this->ffData['pages']) ?
-			$this->ffData['pages'] :
-			trim($this->cObj->stdWrap(
-				$this->conf['pidList'], $this->conf['pidList.']
-			));
-		$pages = $pages ?
-			implode(GeneralUtility::intExplode(',', $pages), ',') :
-			$GLOBALS['TSFE']->id;
+        // overwrite TS pidList if set in flexform
+        $pages = !empty($this->ffData['pages']) ?
+            $this->ffData['pages'] :
+            trim($this->cObj->stdWrap(
+                $this->conf['pidList'], $this->conf['pidList.']
+            ));
+        $pages = $pages ?
+            implode(GeneralUtility::intExplode(',', $pages), ',') :
+            $GLOBALS['TSFE']->id;
 
-		$recursive = $this->ffData['recursive'] ?
-			$this->ffData['recursive'] :
-			intval($this->conf['recursive']);
+        $recursive = $this->ffData['recursive'] ?
+            $this->ffData['recursive'] :
+            intval($this->conf['recursive']);
 
-		$this->conf['pidList'] = $this->pi_getPidList(
-			$pages,
-			$recursive
-		);
+        $this->conf['pidList'] = $this->pi_getPidList(
+            $pages,
+            $recursive
+        );
 
-		$this->conf['singleSelection'] = $this->ffData['singleRecords'] ?
-			$this->ffData['singleRecords'] :
-			$this->cObj->stdWrap($this->conf['singleSelection'], $this->conf['singleSelection.']);
+        $this->conf['singleSelection'] = $this->ffData['singleRecords'] ?
+            $this->ffData['singleRecords'] :
+            $this->cObj->stdWrap($this->conf['singleSelection'], $this->conf['singleSelection.']);
 
-		$this->conf['groupSelection'] = $this->ffData['groupSelection'] ?
-			$this->ffData['groupSelection'] :
-			$this->cObj->stdWrap($this->conf['groupSelection'], $this->conf['groupSelection.']);
+        $this->conf['groupSelection'] = $this->ffData['groupSelection'] ?
+            $this->ffData['groupSelection'] :
+            $this->cObj->stdWrap($this->conf['groupSelection'], $this->conf['groupSelection.']);
 
-		$this->conf['templateName'] = $this->getTemplateName();
-	}
+        $this->conf['templateName'] = $this->getTemplateName();
+    }
 
-	/**
-	 * gets the records the user selected in the single address selection field
-	 *
-	 * @return array Array of addresses with their uids as array keys
-	 */
-	public function getSingleRecords() {
-		$singleRecords = array();
-		$uidList = $GLOBALS['TYPO3_DB']->cleanIntList(
-			$this->conf['singleSelection']
-		);
+    /**
+     * gets the records the user selected in the single address selection field
+     *
+     * @return array Array of addresses with their uids as array keys
+     */
+    public function getSingleRecords()
+    {
+        $singleRecords = array();
+        $uidList = $GLOBALS['TYPO3_DB']->cleanIntList(
+            $this->conf['singleSelection']
+        );
 
-		if (!empty($uidList)) {
-			$addresses = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-				'*',
-				'tt_address',
-				'uid IN(' . $uidList . ') ' . (!empty($this->conf['pidList']) ? ' AND pid IN (' . $this->conf['pidList'] . ')' : '')
-				. $this->cObj->enableFields('tt_address')
-			);
+        if (!empty($uidList)) {
+            $addresses = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+                '*',
+                'tt_address',
+                'uid IN(' . $uidList . ') ' . (!empty($this->conf['pidList']) ? ' AND pid IN (' . $this->conf['pidList'] . ')' : '')
+                . $this->cObj->enableFields('tt_address')
+            );
 
-			foreach ($addresses as $k => $address) {
-				$singleRecords[$address['uid']] = $this->getGroupsForAddress($address);
-			}
-		}
-		return $singleRecords;
-	}
+            foreach ($addresses as $k => $address) {
+                $singleRecords[$address['uid']] = $this->getGroupsForAddress($address);
+            }
+        }
+        return $singleRecords;
+    }
 
-	/**
-	 * gets the addresses which meet the group selection
-	 *
-	 * @return array Array of addresses with their uids as array keys
-	 */
-	public function getRecordsFromGroups() {
-		$groupRecords = array();
+    /**
+     * gets the addresses which meet the group selection
+     *
+     * @return array Array of addresses with their uids as array keys
+     */
+    public function getRecordsFromGroups()
+    {
+        $groupRecords = array();
 
-		$groups    = GeneralUtility::intExplode(',',$this->conf['groupSelection']);
-		$count     = count($groups);
-		$groupList = implode(',', $groups);
+        $groups    = GeneralUtility::intExplode(',', $this->conf['groupSelection']);
+        $count     = count($groups);
+        $groupList = implode(',', $groups);
 
-		if (!empty($groupList) && !empty($this->conf['pidList'])) {
-			if ($this->conf['combination'] == 'AND') {
-				// AND
-				$res = $GLOBALS['TYPO3_DB']->sql_query(
-					'SELECT tt_address.*, COUNT(tt_address.uid) AS c '.
-					'FROM tt_address '.
-					'JOIN sys_category_record_mm ON tt_address.uid = sys_category_record_mm.uid_foreign '.
-					'JOIN sys_category ON sys_category.uid = sys_category_record_mm.uid_local '.
-					'WHERE sys_category_record_mm.uid_local IN ( ' . $groupList . ') '.
-					$this->cObj->enableFields('tt_address').
-					$this->cObj->enableFields('sys_category').
-					' AND tt_address.pid IN (' . $this->conf['pidList'] . ')'.
-					' AND sys_category_record_mm.fieldname = \'categories\' AND sys_category_record_mm.tablenames = \'tt_address\''.
-					'GROUP BY tt_address.uid '.
-					'HAVING c = '.$count.' '
-				);
-			} elseif ($this->conf['combination'] == 'OR') {
-				// OR
-				$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-					'DISTINCT tt_address.*',
-					'tt_address, sys_category_record_mm, sys_category',
-					'sys_category_record_mm.uid_local IN('.$groupList.
-					') AND tt_address.uid = sys_category_record_mm.uid_foreign '.
-					$this->cObj->enableFields('tt_address').
-					$this->cObj->enableFields('sys_category').
-					' AND tt_address.pid IN (' . $this->conf['pidList'] . ')'.
-					' AND sys_category_record_mm.fieldname = \'categories\' AND sys_category_record_mm.tablenames = \'tt_address\''
-				);
-			}
+        if (!empty($groupList) && !empty($this->conf['pidList'])) {
+            if ($this->conf['combination'] == 'AND') {
+                // AND
+                $res = $GLOBALS['TYPO3_DB']->sql_query(
+                    'SELECT tt_address.*, COUNT(tt_address.uid) AS c ' .
+                    'FROM tt_address ' .
+                    'JOIN sys_category_record_mm ON tt_address.uid = sys_category_record_mm.uid_foreign ' .
+                    'JOIN sys_category ON sys_category.uid = sys_category_record_mm.uid_local ' .
+                    'WHERE sys_category_record_mm.uid_local IN ( ' . $groupList . ') ' .
+                    $this->cObj->enableFields('tt_address') .
+                    $this->cObj->enableFields('sys_category') .
+                    ' AND tt_address.pid IN (' . $this->conf['pidList'] . ')' .
+                    ' AND sys_category_record_mm.fieldname = \'categories\' AND sys_category_record_mm.tablenames = \'tt_address\'' .
+                    'GROUP BY tt_address.uid ' .
+                    'HAVING c = ' . $count . ' '
+                );
+            } elseif ($this->conf['combination'] == 'OR') {
+                // OR
+                $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+                    'DISTINCT tt_address.*',
+                    'tt_address, sys_category_record_mm, sys_category',
+                    'sys_category_record_mm.uid_local IN(' . $groupList .
+                    ') AND tt_address.uid = sys_category_record_mm.uid_foreign ' .
+                    $this->cObj->enableFields('tt_address') .
+                    $this->cObj->enableFields('sys_category') .
+                    ' AND tt_address.pid IN (' . $this->conf['pidList'] . ')' .
+                    ' AND sys_category_record_mm.fieldname = \'categories\' AND sys_category_record_mm.tablenames = \'tt_address\''
+                );
+            }
 
-			while ($address = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
-				$groupRecords[$address['uid']] = $this->getGroupsForAddress($address);
-			}
-		}
+            while ($address = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+                $groupRecords[$address['uid']] = $this->getGroupsForAddress($address);
+            }
+        }
 
-		return $groupRecords;
-	}
+        return $groupRecords;
+    }
 
-	/**
-	 * gets the groups an address record is in
-	 *
-	 * @param array $address An address record
-	 * @return array The address plus its groups
-	 */
-	public function getGroupsForAddress($address) {
-		$groupTitles = array();
+    /**
+     * gets the groups an address record is in
+     *
+     * @param array $address An address record
+     * @return array The address plus its groups
+     */
+    public function getGroupsForAddress($address)
+    {
+        $groupTitles = array();
 
-		$result = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-			'c.*',
-			'sys_category c, sys_category_record_mm mm',
-			'mm.uid_local=c.uid AND mm.uid_foreign=' . (int)$address['uid'] . ' AND mm.tablenames="tt_address" AND mm.fieldname="categories"',
-			'',
-			'mm.sorting_foreign ASC'
-		);
-		foreach ($result as $groupRecord) {
-			if ($GLOBALS['TSFE']->sys_language_content) {
-				$groupRecord = $GLOBALS['TSFE']->sys_page->getRecordOverlay('sys_category', $groupRecord, $GLOBALS['TSFE']->sys_language_content);
-			}
-			if ($groupRecord) {
-				$address['groups'][] = $groupRecord;
-				$groupTitles[] = $groupRecord['title'];
-			}
-		}
+        $result = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+            'c.*',
+            'sys_category c, sys_category_record_mm mm',
+            'mm.uid_local=c.uid AND mm.uid_foreign=' . (int)$address['uid'] . ' AND mm.tablenames="tt_address" AND mm.fieldname="categories"',
+            '',
+            'mm.sorting_foreign ASC'
+        );
+        foreach ($result as $groupRecord) {
+            if ($GLOBALS['TSFE']->sys_language_content) {
+                $groupRecord = $GLOBALS['TSFE']->sys_page->getRecordOverlay('sys_category', $groupRecord, $GLOBALS['TSFE']->sys_language_content);
+            }
+            if ($groupRecord) {
+                $address['groups'][] = $groupRecord;
+                $groupTitles[] = $groupRecord['title'];
+            }
+        }
 
-		$groupList = implode(', ', $groupTitles);
-		$address['groupList'] = $groupList;
+        $groupList = implode(', ', $groupTitles);
+        $address['groupList'] = $groupList;
 
-		return $address;
-	}
+        return $address;
+    }
 
-	/**
-	 * puts the fields of an address in markers
-	 *
-	 * @param array $address An address record
-	 * @return array A marker array with filled markers acording to the address given
-	 */
-	protected function getItemMarkerArray($address) {
-		$markerArray = array();
+    /**
+     * puts the fields of an address in markers
+     *
+     * @param array $address An address record
+     * @return array A marker array with filled markers acording to the address given
+     */
+    protected function getItemMarkerArray($address)
+    {
+        $markerArray = array();
 
-		//local configuration and local cObj
-		$lConf = $this->conf['templates.'][$this->conf['templateName'].'.'];
-		$lcObj = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
-		$lcObj->data = $address;
+        //local configuration and local cObj
+        $lConf = $this->conf['templates.'][$this->conf['templateName'] . '.'];
+        $lcObj = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
+        $lcObj->data = $address;
 
-		$markerArray['###UID###']          = $address['uid'];
+        $markerArray['###UID###']          = $address['uid'];
 
-		$markerArray['###GENDER###']       = $lcObj->stdWrap($address['gender'],             $lConf['gender.']);
-		$markerArray['###NAME###']         = $lcObj->stdWrap($address['name'],               $lConf['name.']);
-		$markerArray['###FIRSTNAME###']    = $lcObj->stdWrap($address['first_name'],         $lConf['first_name.']);
-		$markerArray['###MIDDLENAME###']   = $lcObj->stdWrap($address['middle_name'],        $lConf['middle_name.']);
-		$markerArray['###LASTNAME###']     = $lcObj->stdWrap($address['last_name'],          $lConf['last_name.']);
-		$markerArray['###TITLE###']        = $lcObj->stdWrap($address['title'],              $lConf['title.']);
-		$markerArray['###EMAIL###']        = $lcObj->stdWrap($address['email'],              $lConf['email.']);
-		$markerArray['###PHONE###']        = $lcObj->stdWrap($address['phone'],              $lConf['phone.']);
-		$markerArray['###FAX###']          = $lcObj->stdWrap($address['fax'],                $lConf['fax.']);
-		$markerArray['###MOBILE###']       = $lcObj->stdWrap($address['mobile'],             $lConf['mobile.']);
-		$markerArray['###WWW###']          = $lcObj->stdWrap($address['www'],                $lConf['www.']);
-		$markerArray['###ADDRESS###']      = $lcObj->stdWrap($address['address'],            $lConf['address.']);
-		$markerArray['###BUILDING###']     = $lcObj->stdWrap($address['building'],           $lConf['building.']);
-		$markerArray['###ROOM###']         = $lcObj->stdWrap($address['room'],               $lConf['room.']);
-		$markerArray['###BIRTHDAY###']     = $lcObj->stdWrap($address['birthday'],           $lConf['birthday.']);
-		$markerArray['###ORGANIZATION###'] = $lcObj->stdWrap($address['company'],            $lConf['organization.']);
-		$markerArray['###COMPANY###']      = $markerArray['###ORGANIZATION###']; // alias
-		$markerArray['###POSITION###']     = $lcObj->stdWrap($address['position'],           $lConf['position.']);
-		$markerArray['###CITY###']         = $lcObj->stdWrap($address['city'],               $lConf['city.']);
-		$markerArray['###ZIP###']          = $lcObj->stdWrap($address['zip'],                $lConf['zip.']);
-		$markerArray['###REGION###']       = $lcObj->stdWrap($address['region'],             $lConf['region.']);
-		$markerArray['###COUNTRY###']      = $lcObj->stdWrap($address['country'],            $lConf['country.']);
-		$markerArray['###DESCRIPTION###']  = $lcObj->stdWrap($address['description'],        $lConf['description.']);
-		$markerArray['###SKYPE###']        = $lcObj->stdWrap($address['skype'],              $lConf['skype.']);
-		$markerArray['###TWITTER###']      = $lcObj->stdWrap($address['twitter'],            $lConf['twitter.']);
-		$markerArray['###FACEBOOK###']     = $lcObj->stdWrap($address['facebook'],           $lConf['facebook.']);
-		$markerArray['###LINKEDIN###']     = $lcObj->stdWrap($address['linkedin'],           $lConf['inkedin.']);
-		$markerArray['###MAINGROUP###']    = $lcObj->stdWrap($address['groups'][0]['title'], $lConf['mainGroup.']);
-		$markerArray['###GROUPLIST###']    = $lcObj->stdWrap($address['groupList'],          $lConf['groupList.']);
+        $markerArray['###GENDER###']       = $lcObj->stdWrap($address['gender'],             $lConf['gender.']);
+        $markerArray['###NAME###']         = $lcObj->stdWrap($address['name'],               $lConf['name.']);
+        $markerArray['###FIRSTNAME###']    = $lcObj->stdWrap($address['first_name'],         $lConf['first_name.']);
+        $markerArray['###MIDDLENAME###']   = $lcObj->stdWrap($address['middle_name'],        $lConf['middle_name.']);
+        $markerArray['###LASTNAME###']     = $lcObj->stdWrap($address['last_name'],          $lConf['last_name.']);
+        $markerArray['###TITLE###']        = $lcObj->stdWrap($address['title'],              $lConf['title.']);
+        $markerArray['###EMAIL###']        = $lcObj->stdWrap($address['email'],              $lConf['email.']);
+        $markerArray['###PHONE###']        = $lcObj->stdWrap($address['phone'],              $lConf['phone.']);
+        $markerArray['###FAX###']          = $lcObj->stdWrap($address['fax'],                $lConf['fax.']);
+        $markerArray['###MOBILE###']       = $lcObj->stdWrap($address['mobile'],             $lConf['mobile.']);
+        $markerArray['###WWW###']          = $lcObj->stdWrap($address['www'],                $lConf['www.']);
+        $markerArray['###ADDRESS###']      = $lcObj->stdWrap($address['address'],            $lConf['address.']);
+        $markerArray['###BUILDING###']     = $lcObj->stdWrap($address['building'],           $lConf['building.']);
+        $markerArray['###ROOM###']         = $lcObj->stdWrap($address['room'],               $lConf['room.']);
+        $markerArray['###BIRTHDAY###']     = $lcObj->stdWrap($address['birthday'],           $lConf['birthday.']);
+        $markerArray['###ORGANIZATION###'] = $lcObj->stdWrap($address['company'],            $lConf['organization.']);
+        $markerArray['###COMPANY###']      = $markerArray['###ORGANIZATION###']; // alias
+        $markerArray['###POSITION###']     = $lcObj->stdWrap($address['position'],           $lConf['position.']);
+        $markerArray['###CITY###']         = $lcObj->stdWrap($address['city'],               $lConf['city.']);
+        $markerArray['###ZIP###']          = $lcObj->stdWrap($address['zip'],                $lConf['zip.']);
+        $markerArray['###REGION###']       = $lcObj->stdWrap($address['region'],             $lConf['region.']);
+        $markerArray['###COUNTRY###']      = $lcObj->stdWrap($address['country'],            $lConf['country.']);
+        $markerArray['###DESCRIPTION###']  = $lcObj->stdWrap($address['description'],        $lConf['description.']);
+        $markerArray['###SKYPE###']        = $lcObj->stdWrap($address['skype'],              $lConf['skype.']);
+        $markerArray['###TWITTER###']      = $lcObj->stdWrap($address['twitter'],            $lConf['twitter.']);
+        $markerArray['###FACEBOOK###']     = $lcObj->stdWrap($address['facebook'],           $lConf['facebook.']);
+        $markerArray['###LINKEDIN###']     = $lcObj->stdWrap($address['linkedin'],           $lConf['inkedin.']);
+        $markerArray['###MAINGROUP###']    = $lcObj->stdWrap($address['groups'][0]['title'], $lConf['mainGroup.']);
+        $markerArray['###GROUPLIST###']    = $lcObj->stdWrap($address['groupList'],          $lConf['groupList.']);
 
-		// the image
-		$markerArray['###IMAGE###'] = '';
-		if (!empty($address['image'])) {
-			$filesConf = array(
-				'references.' => array(
-					'uid' =>  (int)$address['uid'],
-					'table' => 'tt_address',
-					'fieldName' => 'image'
-				),
-				'begin' => 0,
-				'maxItems' => 1,
+        // the image
+        $markerArray['###IMAGE###'] = '';
+        if (!empty($address['image'])) {
+            $filesConf = array(
+                'references.' => array(
+                    'uid' =>  (int)$address['uid'],
+                    'table' => 'tt_address',
+                    'fieldName' => 'image'
+                ),
+                'begin' => 0,
+                'maxItems' => 1,
 
-				'renderObj' => 'IMAGE',
-				'renderObj.' => array(
-					'file.' => array(
-						'import.' => array(
-							'data' => 'file:current:uid'
-						),
-						'treatIdAsReference' => 1,
-						'altText.' => array(
-							'data' => 'file:current:alternative'
-						),
-						'titleText.' => array(
-							'data' => 'file:current:title'
-						)
-					)
-				)
-			);
-			if (is_array($lConf['image.'])) {
-				if (!empty($lConf['image.']['stdWrap'])) {
-					$filesConf['renderObj.']['stdWrap'] = $lConf['image.']['stdWrap'];
-				}
-				if (is_array($lConf['image.']['stdWrap.'])) {
-					$filesConf['renderObj.']['stdWrap.'] = $lConf['image.']['stdWrap.'];
-				}
-				if (!empty($lConf['image.']['wrap'])) {
-					$filesConf['renderObj.']['wrap'] = $lConf['image.']['wrap'];
-				}
-			}
-			for ($filesIndex = 0; $filesIndex < 6; $filesIndex++) {
-				$filesConf['begin'] = $filesIndex;
-				$markerArray['###IMAGE'.($filesIndex == 0 ? '' : $filesIndex).'###'] = $lcObj->cObjGetSingle('IMAGE', $filesConf);
-			}
-		} elseif (!empty($lConf['placeholderImage'])) {
-			// we have no image, but a default image
-			$iConf = $lConf['image.'];
-			$iConf['file'] = $lcObj->stdWrap($lConf['placeholderImage'], $lConf['placeholderImage.']);
-			$iConf['altText'] = !empty($iConf['altText']) ? $iConf['altText'] : $address['name'];
-			$iConf['titleText'] = !empty($iConf['titleText']) ? $iConf['titleText'] : $address['name'];
+                'renderObj' => 'IMAGE',
+                'renderObj.' => array(
+                    'file.' => array(
+                        'import.' => array(
+                            'data' => 'file:current:uid'
+                        ),
+                        'treatIdAsReference' => 1,
+                        'altText.' => array(
+                            'data' => 'file:current:alternative'
+                        ),
+                        'titleText.' => array(
+                            'data' => 'file:current:title'
+                        )
+                    )
+                )
+            );
+            if (is_array($lConf['image.'])) {
+                if (!empty($lConf['image.']['stdWrap'])) {
+                    $filesConf['renderObj.']['stdWrap'] = $lConf['image.']['stdWrap'];
+                }
+                if (is_array($lConf['image.']['stdWrap.'])) {
+                    $filesConf['renderObj.']['stdWrap.'] = $lConf['image.']['stdWrap.'];
+                }
+                if (!empty($lConf['image.']['wrap'])) {
+                    $filesConf['renderObj.']['wrap'] = $lConf['image.']['wrap'];
+                }
+            }
+            for ($filesIndex = 0; $filesIndex < 6; $filesIndex++) {
+                $filesConf['begin'] = $filesIndex;
+                $markerArray['###IMAGE' . ($filesIndex == 0 ? '' : $filesIndex) . '###'] = $lcObj->cObjGetSingle('IMAGE', $filesConf);
+            }
+        } elseif (!empty($lConf['placeholderImage'])) {
+            // we have no image, but a default image
+            $iConf = $lConf['image.'];
+            $iConf['file'] = $lcObj->stdWrap($lConf['placeholderImage'], $lConf['placeholderImage.']);
+            $iConf['altText'] = !empty($iConf['altText']) ? $iConf['altText'] : $address['name'];
+            $iConf['titleText'] = !empty($iConf['titleText']) ? $iConf['titleText'] : $address['name'];
 
-			$markerArray['###IMAGE###'] = $lcObj->render($lcObj->getContentObject('IMAGE'), $iConf);
-		}
+            $markerArray['###IMAGE###'] = $lcObj->render($lcObj->getContentObject('IMAGE'), $iConf);
+        }
 
-		// adds hook for processing of extra item markers
-		if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tt_address']['extraItemMarkerHook'])) {
-			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tt_address']['extraItemMarkerHook'] as $_classRef) {
-				$_procObj = & GeneralUtility::getUserObj($_classRef);
-				$markerArray = $_procObj->extraItemMarkerProcessor($markerArray, $address, $lConf, $this);
-			}
-		}
+        // adds hook for processing of extra item markers
+        if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tt_address']['extraItemMarkerHook'])) {
+            foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tt_address']['extraItemMarkerHook'] as $_classRef) {
+                $_procObj = & GeneralUtility::getUserObj($_classRef);
+                $markerArray = $_procObj->extraItemMarkerProcessor($markerArray, $address, $lConf, $this);
+            }
+        }
 
-		return $markerArray;
-	}
+        return $markerArray;
+    }
 
-	/**
-	 * gets the user defined subparts and returns their content as an array
-	 *
-	 * @param string $templateCode (HTML) template code
-	 * @param array $markerArray markers with content
-	 * @param array $address a tt_address record
-	 * @return array Array of subparts
-	 */
-	protected function getSubpartArray($templateCode, $markerArray, $address) {
-		$subpartArray = array();
+    /**
+     * gets the user defined subparts and returns their content as an array
+     *
+     * @param string $templateCode (HTML) template code
+     * @param array $markerArray markers with content
+     * @param array $address a tt_address record
+     * @return array Array of subparts
+     */
+    protected function getSubpartArray($templateCode, $markerArray, $address)
+    {
+        $subpartArray = array();
 
-		if (is_array($this->conf['templates.'][$this->conf['templateName'] . '.']['subparts.'])) {
-			$lcObj = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer'); // local cObj
-			$lcObj->data = $address;
+        if (is_array($this->conf['templates.'][$this->conf['templateName'] . '.']['subparts.'])) {
+            $lcObj = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer'); // local cObj
+            $lcObj->data = $address;
 
-			foreach ($this->conf['templates.'][$this->conf['templateName'] . '.']['subparts.'] as $spName => $spConf) {
-				$spName = '###SUBPART_' . strtoupper(substr($spName, 0, -1)) . '###';
+            foreach ($this->conf['templates.'][$this->conf['templateName'] . '.']['subparts.'] as $spName => $spConf) {
+                $spName = '###SUBPART_' . strtoupper(substr($spName, 0, -1)) . '###';
 
-				$spTemplate = $lcObj->getSubpart($templateCode, $spName);
-				$content    = $lcObj->stdWrap(
-					$lcObj->substituteMarkerArrayCached(
-						$spTemplate,
-						$markerArray
-					),
-					$spConf
-				);
+                $spTemplate = $lcObj->getSubpart($templateCode, $spName);
+                $content    = $lcObj->stdWrap(
+                    $lcObj->substituteMarkerArrayCached(
+                        $spTemplate,
+                        $markerArray
+                    ),
+                    $spConf
+                );
 
-				if ($spConf['hasOneOf'] && !$this->hasOneOf($spConf['hasOneOf'], $address)) {
-					$content = '';
-				}
+                if ($spConf['hasOneOf'] && !$this->hasOneOf($spConf['hasOneOf'], $address)) {
+                    $content = '';
+                }
 
-				$subpartArray[$spName] = $content;
-			}
-		}
+                $subpartArray[$spName] = $content;
+            }
+        }
 
-		return $subpartArray;
-	}
+        return $subpartArray;
+    }
 
-	/**
-	 * gets the filename from the template file without the file extension
-	 *
-	 * @return string The file name portion without the file extension
-	 */
-	protected function getTemplateName() {
-		$templateName = '';
+    /**
+     * gets the filename from the template file without the file extension
+     *
+     * @return string The file name portion without the file extension
+     */
+    protected function getTemplateName()
+    {
+        $templateName = '';
 
-		if (isset($this->ffData['templateFile'])) {
-			$templateFile = $this->ffData['templateFile'];
-		} elseif (isset($this->conf['defaultTemplateFileName'])) {
-			$templateFile = $this->conf['defaultTemplateFileName'];
-		}
+        if (isset($this->ffData['templateFile'])) {
+            $templateFile = $this->ffData['templateFile'];
+        } elseif (isset($this->conf['defaultTemplateFileName'])) {
+            $templateFile = $this->conf['defaultTemplateFileName'];
+        }
 
-		if ($templateFile == $this->conf['defaultTemplateFileName'] ||
-			$templateFile == 'default') {
-			$templateName = 'default';
-		}
+        if ($templateFile == $this->conf['defaultTemplateFileName'] ||
+            $templateFile == 'default') {
+            $templateName = 'default';
+        }
 
-		// cutting off the file extension
-		if ($templateName != 'default') {
-			$templateName = substr($templateFile, 0, strrpos($templateFile, '.'));
-		}
+        // cutting off the file extension
+        if ($templateName != 'default') {
+            $templateName = substr($templateFile, 0, strrpos($templateFile, '.'));
+        }
 
-		return $templateName;
-	}
+        return $templateName;
+    }
 
-	/**
-	 * gets the html template code from the selected template, extracts the
-	 * address subpart and returns the html with unreplaced marker
-	 *
-	 * @return string html template code
-	 */
-	protected function getTemplate() {
+    /**
+     * gets the html template code from the selected template, extracts the
+     * address subpart and returns the html with unreplaced marker
+     *
+     * @return string html template code
+     */
+    protected function getTemplate()
+    {
         if (isset($this->ffData['templateFile']) && !empty($this->ffData['templateFile'])) {
             $templateFile = $this->ffData['templateFile'];
         } elseif (isset($this->conf['defaultTemplateFileName'])) {
             $templateFile = $this->conf['defaultTemplateFileName'];
         }
 
-		if ($templateFile == 'default') {
-			$templateFile = $this->conf['defaultTemplateFileName'];
-		}
+        if ($templateFile == 'default') {
+            $templateFile = $this->conf['defaultTemplateFileName'];
+        }
 
-		$templateCode = $this->cObj->fileResource(
-			$this->conf['templatePath'] . $templateFile
-		);
+        $templateCode = $this->cObj->fileResource(
+            $this->conf['templatePath'] . $templateFile
+        );
 
-		$subPart = $this->cObj->getSubpart(
-			$templateCode, '###TEMPLATE_ADDRESS###'
-		);
+        $subPart = $this->cObj->getSubpart(
+            $templateCode, '###TEMPLATE_ADDRESS###'
+        );
 
-		return $subPart;
-	}
+        return $subPart;
+    }
 
-	/**
-	 * checks whether the given sorting criteria is a valid one. If it is valid
-	 * the given criteria is returned as it was, the default 'name' is
-	 * returned if the given criteria is not valid
-	 *
-	 * @param string $sortBy criteria you want to sort the addresses by
-	 * @return string the given sorting criteria if it was valid, 'name' otherwise
-	 */
-	protected function checkSorting($sortBy) {
-		// TODO add all fields from TCA (extract them from TCA) or add a method to add new sorting fields
-		$validSortings = array(
-			'uid', 'pid', 'tstamp',
-			'name', 'gender', 'first_name', 'middle_name', 'last_name', 'title', 'email',
-			'phone', 'mobile', 'www', 'address', 'building', 'room', 'birthday', 'company', 'city', 'zip',
-			'region', 'country', 'image', 'fax', 'description', 'singleSelection'
-		);
+    /**
+     * checks whether the given sorting criteria is a valid one. If it is valid
+     * the given criteria is returned as it was, the default 'name' is
+     * returned if the given criteria is not valid
+     *
+     * @param string $sortBy criteria you want to sort the addresses by
+     * @return string the given sorting criteria if it was valid, 'name' otherwise
+     */
+    protected function checkSorting($sortBy)
+    {
+        // TODO add all fields from TCA (extract them from TCA) or add a method to add new sorting fields
+        $validSortings = array(
+            'uid', 'pid', 'tstamp',
+            'name', 'gender', 'first_name', 'middle_name', 'last_name', 'title', 'email',
+            'phone', 'mobile', 'www', 'address', 'building', 'room', 'birthday', 'company', 'city', 'zip',
+            'region', 'country', 'image', 'fax', 'description', 'singleSelection'
+        );
 
-		if (!in_array($sortBy, $validSortings)) {
-			$sortBy = 'name';
-		}
+        if (!in_array($sortBy, $validSortings)) {
+            $sortBy = 'name';
+        }
 
-		return $sortBy;
-	}
+        return $sortBy;
+    }
 
-	/**
-	 * gets the flexform values as an array like defined by $flexKeyMapping
-	 *
-	 * @param array $flexKeyMapping mapping of sheet.flexformFieldName => variable name
-	 * @return array flexform configuration as an array
-	 */
-	protected function getFlexFormConfig($flexKeyMapping) {
-		$conf = array();
-		foreach ($flexKeyMapping as $sheetField => $confName) {
-			list($sheet, $field) = explode('.', $sheetField);
-			$conf[$confName] = $this->pi_getFFvalue(
-				$this->cObj->data['pi_flexform'],
-				$field,
-				$sheet
-			);
-		}
-		return $conf;
-	}
+    /**
+     * gets the flexform values as an array like defined by $flexKeyMapping
+     *
+     * @param array $flexKeyMapping mapping of sheet.flexformFieldName => variable name
+     * @return array flexform configuration as an array
+     */
+    protected function getFlexFormConfig($flexKeyMapping)
+    {
+        $conf = array();
+        foreach ($flexKeyMapping as $sheetField => $confName) {
+            list($sheet, $field) = explode('.', $sheetField);
+            $conf[$confName] = $this->pi_getFFvalue(
+                $this->cObj->data['pi_flexform'],
+                $field,
+                $sheet
+            );
+        }
+        return $conf;
+    }
 
-	/**
-	 * checks for the 'hasOneOf' constraint, at least one of the fields in
-	 * $fieldList must not be empty to return true
-	 *
-	 * @param string $fieldList comma separated list of field names to check
-	 * @param array $address a tt_address record
-	 * @return boolean true if at least one of the given fields is not empty
-	 */
-	protected function hasOneOf($fieldList, $address) {
-		$checkFields = GeneralUtility::trimExplode(',', $fieldList, TRUE);
-		$flag = FALSE;
+    /**
+     * checks for the 'hasOneOf' constraint, at least one of the fields in
+     * $fieldList must not be empty to return true
+     *
+     * @param string $fieldList comma separated list of field names to check
+     * @param array $address a tt_address record
+     * @return bool true if at least one of the given fields is not empty
+     */
+    protected function hasOneOf($fieldList, $address)
+    {
+        $checkFields = GeneralUtility::trimExplode(',', $fieldList, true);
+        $flag = false;
 
-		foreach ($checkFields as $fieldName) {
-			if (!empty($address[$fieldName])) {
-				$flag = TRUE;
-				break;
-			}
-		}
+        foreach ($checkFields as $fieldName) {
+            if (!empty($address[$fieldName])) {
+                $flag = true;
+                break;
+            }
+        }
 
-		return $flag;
-	}
+        return $flag;
+    }
 
-	/**
-	 * Removes whitespaces, hyphens and replaces umlauts to allow a correct
-	 * sorting with multisort.
-	 *
-	 * @param mixed $value: value to clean
-	 * @return cleaned value
-	 */
-	protected function normalizeSortingString($value) {
-		if (!is_string($value)) {
-			// return if value is not a string
-			return $value;
-		}
+    /**
+     * Removes whitespaces, hyphens and replaces umlauts to allow a correct
+     * sorting with multisort.
+     *
+     * @param mixed $value: value to clean
+     * @return cleaned value
+     */
+    protected function normalizeSortingString($value)
+    {
+        if (!is_string($value)) {
+            // return if value is not a string
+            return $value;
+        }
 
-		$value = $GLOBALS['TSFE']->csConvObj->conv_case($GLOBALS['TSFE']->renderCharset, $value, 'toLower'); // lowercase
-		$value = preg_replace("/\s+/", "", $value); // remove whitespace
-		$value = preg_replace("/-/", "", $value); // remove hyphens e.g. from double names
-		$value = preg_replace("/ü/", "u", $value); // remove umlauts
-		$value = preg_replace("/ä/", "a", $value);
-		$value = preg_replace("/ö/", "o", $value);
-		$value = preg_replace("/ë/", "e", $value);
-		$value = preg_replace("/é/", "e", $value);
-		$value = preg_replace("/è/", "e", $value);
-		$value = preg_replace("/ç/", "c", $value);
+        $value = $GLOBALS['TSFE']->csConvObj->conv_case($GLOBALS['TSFE']->renderCharset, $value, 'toLower'); // lowercase
+        $value = preg_replace("/\s+/", '', $value); // remove whitespace
+        $value = preg_replace('/-/', '', $value); // remove hyphens e.g. from double names
+        $value = preg_replace('/ü/', 'u', $value); // remove umlauts
+        $value = preg_replace('/ä/', 'a', $value);
+        $value = preg_replace('/ö/', 'o', $value);
+        $value = preg_replace('/ë/', 'e', $value);
+        $value = preg_replace('/é/', 'e', $value);
+        $value = preg_replace('/è/', 'e', $value);
+        $value = preg_replace('/ç/', 'c', $value);
 
-		return $value;
-	}
-
+        return $value;
+    }
 }

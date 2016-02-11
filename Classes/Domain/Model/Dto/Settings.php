@@ -13,65 +13,71 @@ namespace TYPO3\TtAddress\Domain\Model\Dto;
  *
  * The TYPO3 project - inspiring people to share!
  */
- 
+
 /**
  * Class Settings
  */
-class Settings {
-	/**
-	 * @var string
-	 */
-	protected $backwardsCompatFormat = '';
+class Settings
+{
+    /**
+     * @var string
+     */
+    protected $backwardsCompatFormat = '';
 
-	/**
-	 * @var bool
-	 */
-	protected $storeBackwardsCompatName = TRUE;
+    /**
+     * @var bool
+     */
+    protected $storeBackwardsCompatName = true;
 
-	/**
-	 * @var bool
-	 */
-	protected $readOnlyNameField = TRUE;
+    /**
+     * @var bool
+     */
+    protected $readOnlyNameField = true;
 
-	/**
-	 * @param array $settings extension manager settings
-	 */
-	public function __construct(array $settings) {
-		foreach ($settings as $key => $value) {
-			if (property_exists($this, $key)) {
-				$this->$key = $value;
-			}
-		}
-		$this->enforceCorrectPropertyTypes();
-	}
+    /**
+     * @param array $settings extension manager settings
+     */
+    public function __construct(array $settings)
+    {
+        foreach ($settings as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->$key = $value;
+            }
+        }
+        $this->enforceCorrectPropertyTypes();
+    }
 
-	/**
-	 * @return void
-	 */
-	protected function enforceCorrectPropertyTypes() {
-		$this->backwardsCompatFormat = trim((string)$this->backwardsCompatFormat);
-		$this->storeBackwardsCompatName = (bool)$this->storeBackwardsCompatName;
-		$this->readOnlyNameField = (bool)$this->readOnlyNameField;
-	}
+    /**
+     * @return void
+     */
+    protected function enforceCorrectPropertyTypes()
+    {
+        $this->backwardsCompatFormat = trim((string)$this->backwardsCompatFormat);
+        $this->storeBackwardsCompatName = (bool)$this->storeBackwardsCompatName;
+        $this->readOnlyNameField = (bool)$this->readOnlyNameField;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getBackwardsCompatFormat() {
-		return $this->backwardsCompatFormat;
-	}
+    /**
+     * @return string
+     */
+    public function getBackwardsCompatFormat()
+    {
+        return $this->backwardsCompatFormat;
+    }
 
-	/**
-	 * @return boolean
-	 */
-	public function isStoreBackwardsCompatName() {
-		return $this->storeBackwardsCompatName;
-	}
+    /**
+     * @return bool
+     */
+    public function isStoreBackwardsCompatName()
+    {
+        return $this->storeBackwardsCompatName;
+    }
 
-	/**
-	 * @return boolean
-	 */
-	public function isReadOnlyNameField() {
-		return $this->readOnlyNameField;
-	}
+    /**
+     * @return bool
+     */
+    public function isReadOnlyNameField()
+    {
+        return $this->readOnlyNameField;
+    }
 }

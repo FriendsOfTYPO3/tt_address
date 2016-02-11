@@ -13,59 +13,60 @@ namespace TYPO3\TtAddress\Hooks\Tca;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class AddFieldsToSelector
  */
-class AddFieldsToSelector {
-	/**
-	 * Manipulating the input array, $params, adding new selectorbox items.
-	 *
-	 * @param	array	$params array of select field options (reference)
-	 * @param	object	$pObj parent object (reference)
-	 * @return	void
-	 */
-	function main(&$params, &$pObj)	{
-		// TODO consolidate with list in pi1
-		$coreSortFields = 'gender, first_name, middle_name, last_name, title, company, '
-			.'address, building, room, birthday, zip, city, region, country, email, www, phone, mobile, '
-			.'fax';
+class AddFieldsToSelector
+{
+    /**
+     * Manipulating the input array, $params, adding new selectorbox items.
+     *
+     * @param	array	$params array of select field options (reference)
+     * @param	object	$pObj parent object (reference)
+     * @return	void
+     */
+    public function main(&$params, &$pObj)
+    {
+        // TODO consolidate with list in pi1
+        $coreSortFields = 'gender, first_name, middle_name, last_name, title, company, '
+            . 'address, building, room, birthday, zip, city, region, country, email, www, phone, mobile, '
+            . 'fax';
 
-		$sortFields = GeneralUtility::trimExplode(',', $coreSortFields);
+        $sortFields = GeneralUtility::trimExplode(',', $coreSortFields);
 
-		$selectOptions = array();
-		foreach($sortFields as $field) {
-			$label = $GLOBALS['LANG']->sL($GLOBALS['TCA']['tt_address']['columns'][$field]['label']);
-			$label = substr($label, 0, -1);
+        $selectOptions = array();
+        foreach ($sortFields as $field) {
+            $label = $GLOBALS['LANG']->sL($GLOBALS['TCA']['tt_address']['columns'][$field]['label']);
+            $label = substr($label, 0, -1);
 
-			$selectOptions[] = array(
-				'field' => $field,
-				'label' => $label
-			);
-		}
+            $selectOptions[] = array(
+                'field' => $field,
+                'label' => $label
+            );
+        }
 
-		// add sorting by order of single selection
-		$selectOptions[] = array (
-			'field' => 'singleSelection',
-			'label' => $GLOBALS['LANG']->sL('LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.sortBy.singleSelection')
-		);
+        // add sorting by order of single selection
+        $selectOptions[] = array(
+            'field' => 'singleSelection',
+            'label' => $GLOBALS['LANG']->sL('LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.sortBy.singleSelection')
+        );
 
-		// sort by labels
-		$labels = array();
-		foreach($selectOptions as $key => $v) {
-			$labels[$key] = $v['label'];
-		}
-		$labels = array_map('strtolower', $labels);
-		array_multisort($labels, SORT_ASC, $selectOptions);
+        // sort by labels
+        $labels = array();
+        foreach ($selectOptions as $key => $v) {
+            $labels[$key] = $v['label'];
+        }
+        $labels = array_map('strtolower', $labels);
+        array_multisort($labels, SORT_ASC, $selectOptions);
 
-		// add fields to <select>
-		foreach($selectOptions as $option) {
-			$params['items'][] = array(
-				$option['label'],
-				$option['field']
-			);
-		}
-	}
+        // add fields to <select>
+        foreach ($selectOptions as $option) {
+            $params['items'][] = array(
+                $option['label'],
+                $option['field']
+            );
+        }
+    }
 }

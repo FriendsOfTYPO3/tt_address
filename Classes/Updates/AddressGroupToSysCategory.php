@@ -13,7 +13,6 @@ namespace TYPO3\TtAddress\Updates;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 use TYPO3\CMS\Core\Database\DatabaseConnection;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\AbstractUpdate;
@@ -23,7 +22,6 @@ use TYPO3\CMS\Install\Updates\AbstractUpdate;
  */
 class AddressGroupToSysCategory extends AbstractUpdate
 {
-
     const OLD_MM_TABLE = 'tt_address_group_mm';
     const OLD_GROUP_TABLE = 'tt_address_group';
 
@@ -51,7 +49,7 @@ class AddressGroupToSysCategory extends AbstractUpdate
             } else {
                 $description = sprintf('The database table "%s" contains <strong>%s</strong> entries which will be migrated!',
                     self::OLD_MM_TABLE, $countRows);
-                    $status = true;
+                $status = true;
             }
         }
 
@@ -79,7 +77,7 @@ class AddressGroupToSysCategory extends AbstractUpdate
         $oldGroupCount = $this->getDatabaseConnection()->exec_SELECTcountRows(
             'uid',
             self::OLD_GROUP_TABLE,
-            "deleted = 0"
+            'deleted = 0'
         );
 
         if ($oldGroupCount === 0) {
@@ -90,7 +88,7 @@ class AddressGroupToSysCategory extends AbstractUpdate
         // A temporary migration column is needed in old category table. Add this when not already present
         if (!array_key_exists('migrate_sys_category_uid', $oldGroupTableFields)) {
             $this->getDatabaseConnection()->admin_query(
-                "ALTER TABLE " . self::OLD_GROUP_TABLE . " ADD migrate_sys_category_uid int(11) DEFAULT '0' NOT NULL"
+                'ALTER TABLE ' . self::OLD_GROUP_TABLE . " ADD migrate_sys_category_uid int(11) DEFAULT '0' NOT NULL"
             );
         }
         // convert tt_address_group records
@@ -282,7 +280,6 @@ class AddressGroupToSysCategory extends AbstractUpdate
         $oldMmRecords = $this->getDatabaseConnection()->exec_SELECTgetRows('uid_local, uid_foreign, tablenames, sorting',
             self::OLD_MM_TABLE, '');
         foreach ($oldMmRecords as $oldMmRecord) {
-
             $oldCategoryUid = $oldMmRecord['uid_foreign'];
 
             if (!empty($oldNewCategoryUidMapping[$oldCategoryUid])) {
@@ -323,7 +320,7 @@ class AddressGroupToSysCategory extends AbstractUpdate
      * @param string $pluginName
      * @param array $oldNewCategoryUidMapping
      * @param string $flexformField name of the flexform's field to look for
-     * @return boolean
+     * @return bool
      */
     protected function updateFlexformCategories($pluginName, $oldNewCategoryUidMapping, $flexformField)
     {
@@ -337,7 +334,6 @@ class AddressGroupToSysCategory extends AbstractUpdate
         $flexformTools = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Configuration\\FlexForm\\FlexFormTools');
 
         while ($row = $this->getDatabaseConnection()->sql_fetch_assoc($res)) {
-
             $status = null;
             $xmlArray = GeneralUtility::xml2array($row['pi_flexform']);
 
@@ -388,5 +384,4 @@ class AddressGroupToSysCategory extends AbstractUpdate
     {
         return $GLOBALS['TYPO3_DB'];
     }
-
 }

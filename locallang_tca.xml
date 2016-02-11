@@ -54,6 +54,8 @@
             <label index="tt_address.twitter">twitter:</label>
             <label index="tt_address.facebook">Facebook:</label>
             <label index="tt_address.linkedin">LinkedIn:</label>
+            <label index="tt_address.latitude">Latitude:</label>
+            <label index="tt_address.longitude">Longitude:</label>
             <label index="tt_address_tab.contact">Contact</label>
             <label index="tt_address_palette.name">Name</label>
             <label index="tt_address_palette.organization">Organization</label>

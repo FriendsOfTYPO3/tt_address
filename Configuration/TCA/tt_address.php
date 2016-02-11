@@ -18,7 +18,6 @@ return array(
         ),
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('tt_address') . 'ext_icon.gif',
         'searchFields' => 'name, first_name, middle_name, last_name, email',
-        'dividers2tabs' => 1,
     ),
     'feInterface' => array(
         'fe_admin_fieldList' => 'pid,hidden,gender,first_name,middle_name,last_name,title,address,building,room,birthday,phone,fax,mobile,www,email,city,zip,company,region,country,image,description'
@@ -360,7 +359,21 @@ return array(
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_tca.xlf:sys_category.categories',
             'config' => \TYPO3\CMS\Core\Category\CategoryRegistry::getTcaFieldConfiguration('tt_address')
-        )
+        ),
+        'latitude' => array(
+            'exclude' => 1,
+            'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.latitude',
+            'config' => array(
+                'type' => 'input',
+            )
+        ),
+        'longitude' => array(
+            'exclude' => 1,
+            'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.longitude',
+            'config' => array(
+                'type' => 'input',
+            )
+        ),
     ),
     'types' => array(
         '0' => array('showitem' =>
@@ -368,7 +381,7 @@ return array(
 			--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.name;name,
 			image, description,
 			--div--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_tab.contact,
-				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.address;address_usa,
+				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.address;address,
 				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.building;building,
 				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.organization;organization,
 				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.contact;contact,
@@ -384,31 +397,21 @@ return array(
 							last_name',
             'canNotCollapse' => 1
         ),
-
         'organization' => array(
             'showitem' => 'position, company',
             'canNotCollapse' => 1
         ),
-
-        'address_usa' => array(
+        'address' => array(
             'showitem' => 'address, --linebreak--,
 							city, zip, region, --linebreak--,
-							country',
+							country, --linebreak--,
+							latitude, longitude',
             'canNotCollapse' => 1
         ),
-
-        'address_germany' => array(
-            'showitem' => 'address, --linebreak--,
-							zip, city, --linebreak--,
-							country, region',
-            'canNotCollapse' => 1
-        ),
-
         'building' => array(
             'showitem' => 'building, room',
             'canNotCollapse' => 1
         ),
-
         'contact' => array(
             'showitem' => 'email, --linebreak--,
 							phone, fax, --linebreak--,
@@ -416,7 +419,6 @@ return array(
 							www',
             'canNotCollapse' => 1
         ),
-
         'social' => array(
             'showitem' => 'skype, --linebreak--,
 							twitter, --linebreak--,

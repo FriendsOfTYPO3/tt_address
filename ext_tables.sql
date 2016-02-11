@@ -43,8 +43,10 @@ CREATE TABLE tt_address (
 	t3ver_stage tinyint(4) DEFAULT '0' NOT NULL,
 	t3ver_count int(11) DEFAULT '0' NOT NULL,
 	t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
-  t3ver_move_id int(11) DEFAULT '0' NOT NULL,
+	t3ver_move_id int(11) DEFAULT '0' NOT NULL,
 	t3_origuid int(11) DEFAULT '0' NOT NULL,
+	latitude float(15,11) default NULL,
+	longitude float(15,11) default NULL,
 	PRIMARY KEY (uid),
 	KEY parent (pid),
 	KEY pid (pid,email)

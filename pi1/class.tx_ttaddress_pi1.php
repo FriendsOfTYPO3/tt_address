@@ -392,30 +392,22 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
                         'import.' => array(
                             'data' => 'file:current:uid'
                         ),
-                        'treatIdAsReference' => 1,
-                        'altText.' => array(
-                            'data' => 'file:current:alternative'
-                        ),
-                        'titleText.' => array(
-                            'data' => 'file:current:title'
-                        )
+                        'treatIdAsReference' => 1
+                    ),
+                    'altText.' => array(
+                        'data' => 'file:current:alternative'
+                    ),
+                    'titleText.' => array(
+                        'data' => 'file:current:title'
                     )
                 )
             );
             if (is_array($lConf['image.'])) {
-                if (!empty($lConf['image.']['stdWrap'])) {
-                    $filesConf['renderObj.']['stdWrap'] = $lConf['image.']['stdWrap'];
-                }
-                if (is_array($lConf['image.']['stdWrap.'])) {
-                    $filesConf['renderObj.']['stdWrap.'] = $lConf['image.']['stdWrap.'];
-                }
-                if (!empty($lConf['image.']['wrap'])) {
-                    $filesConf['renderObj.']['wrap'] = $lConf['image.']['wrap'];
-                }
+                $filesConf['renderObj.'] = array_merge_recursive($filesConf['renderObj.'], $lConf['image.']);
             }
             for ($filesIndex = 0; $filesIndex < 6; $filesIndex++) {
                 $filesConf['begin'] = $filesIndex;
-                $markerArray['###IMAGE' . ($filesIndex == 0 ? '' : $filesIndex) . '###'] = $lcObj->cObjGetSingle('IMAGE', $filesConf);
+                $markerArray['###IMAGE' . ($filesIndex == 0 ? '' : $filesIndex) . '###'] = $lcObj->cObjGetSingle('FILES', $filesConf);
             }
         } elseif (!empty($lConf['placeholderImage'])) {
             // we have no image, but a default image

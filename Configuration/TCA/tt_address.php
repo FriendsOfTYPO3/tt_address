@@ -404,7 +404,7 @@ return array(
         'address' => array(
             'showitem' => 'address, --linebreak--,
 							city, zip, region, --linebreak--,
-							country'
+							country',
             'canNotCollapse' => 1
         ),
         'building' => array(

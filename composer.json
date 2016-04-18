@@ -7,7 +7,7 @@
     "extension",
     "addresses"
   ],
-  "homepage": "https://forge.typo3.org/projects/extension-tt_address",
+  "homepage": "https://github.com/FriendsOfTYPO3/tt_address",
   "authors": [
     {
       "name": "tt_address Development Team",
@@ -16,7 +16,7 @@
   ],
   "license": "GPL-2.0+",
   "require": {
-    "typo3/cms-core": ">=6.2.2,<8.0"
+    "typo3/cms-core": ">=6.2.2"
   },
   "autoload": {
     "psr-4": {

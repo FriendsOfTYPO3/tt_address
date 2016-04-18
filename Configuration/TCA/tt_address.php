@@ -416,7 +416,8 @@ return array(
             'showitem' => 'email, --linebreak--,
 							phone, fax, --linebreak--,
 							mobile, --linebreak--,
-							www',
+							www, --linebreak--,
+							birthday',
             'canNotCollapse' => 1
         ),
         'social' => array(

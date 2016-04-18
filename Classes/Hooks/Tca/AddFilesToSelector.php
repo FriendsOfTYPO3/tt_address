@@ -35,9 +35,10 @@ class AddFilesToSelector
 
         // get the current page ID
 	if (version_compare(TYPO3_version, '7.6', '<')) {
-		$thePageId = $params['flexParentDatabaseRow']['pid'];
-	} else {
+		// legacy code for 6.2
 		$thePageId = $params['row']['pid'];
+	} else {
+		$thePageId = $params['flexParentDatabaseRow']['pid'];
 	}
 
         /** @var TemplateService $template */

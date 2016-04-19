@@ -55,6 +55,7 @@
             <label index="tt_address.facebook">Facebook:</label>
             <label index="tt_address.linkedin">LinkedIn:</label>
             <label index="tt_address.latitude">Latitude:</label>
+            <label index="tt_address.latitudeSelectLocation">Select Location:</label>
             <label index="tt_address.longitude">Longitude:</label>
             <label index="tt_address_tab.contact">Contact</label>
             <label index="tt_address_palette.name">Name</label>
@@ -85,6 +86,7 @@
             <label index="tt_address.organization">Organisation:</label>
             <label index="tt_address.position">Position:</label>
             <label index="tt_address.region">Region/Bundesland:</label>
+            <label index="tt_address.latitudeSelectLocation">Ort auswählen:</label>
             <label index="tt_address_tab.contact">Kontakt</label>
             <label index="tt_address_palette.name">Name</label>
             <label index="tt_address_palette.organization">Organisation</label>

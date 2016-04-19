@@ -20,6 +20,13 @@ if (TYPO3_MODE === 'BE') {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] =
             'TYPO3\\TtAddress\\Hooks\\DataHandler\\BackwardsCompatibilityNameFormat';
     }
+    if ($settings->isGoogleMapsEnabled()) {
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1461055917] = array(
+            'nodeName' => 'googlemap',
+            'priority' => 40,
+            'class' => \TYPO3\TtAddress\Hooks\FormEngine\GeoLocation::class,
+        );
+    }
 }
 
 // Update scripts

@@ -1,7 +1,7 @@
 <?php
 $settings = \TYPO3\TtAddress\Utility\SettingsUtility::getSettings();
 
-return array(
+$ttAddressTCA = array(
     'ctrl' => array(
         'label' => 'name',
         'label_alt' => 'email',
@@ -428,3 +428,12 @@ return array(
         ),
     )
 );
+
+if ($settings->isGoogleMapsEnabled()) {
+    $ttAddressTCA['columns']['latitude']['label'] = 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.latitudeSelectLocation';
+    $ttAddressTCA['columns']['latitude']['config']['renderType'] = 'googlemap';
+    $ttAddressTCA['palettes']['address']['showitem'] .= ',--linebreak--,latitude';
+    $ttAddressTCA['columns']['longitude']['config']['renderType'] = 'hidden';
+}
+
+return $ttAddressTCA;

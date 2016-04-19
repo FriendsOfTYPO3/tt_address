@@ -6,3 +6,6 @@ storeBackwardsCompatName = 1
 
 	# cat=basic; type=boolean; label=Name field is read only
 readOnlyNameField = 1
+
+	# cat=basic; type=boolean; label=Enable Google Maps selector in BE (CMS 7+ only): This will enable the usage of Google Maps to select the lat/lng value of an address
+enableGoogleMapsInBE = 1

@@ -14,6 +14,8 @@ namespace TYPO3\TtAddress\Domain\Model\Dto;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * Class Settings
  */
@@ -33,6 +35,11 @@ class Settings
      * @var bool
      */
     protected $readOnlyNameField = true;
+
+    /**
+     * @var bool
+     */
+    protected $enableGoogleMaps = true;
 
     /**
      * @param array $settings extension manager settings
@@ -55,6 +62,7 @@ class Settings
         $this->backwardsCompatFormat = trim((string)$this->backwardsCompatFormat);
         $this->storeBackwardsCompatName = (bool)$this->storeBackwardsCompatName;
         $this->readOnlyNameField = (bool)$this->readOnlyNameField;
+        $this->enableGoogleMaps = (bool)$this->enableGoogleMaps;
     }
 
     /**
@@ -79,5 +87,13 @@ class Settings
     public function isReadOnlyNameField()
     {
         return $this->readOnlyNameField;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isGoogleMapsEnabled()
+    {
+        return GeneralUtility::compat_version('7.6') && $this->enableGoogleMaps;
     }
 }

@@ -71,6 +71,18 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var string
      */
     protected $address;
+    
+    /**
+     * Latitude
+     * @var string
+     */
+    protected $latitude;
+
+    /**
+     * Longitude
+     * @var string
+     */
+    protected $longitude;
 
     /**
      * Building
@@ -360,6 +372,48 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getAddress()
     {
         return $this->address;
+    }
+    
+    /**
+     * sets the latitude attribute
+     *
+     * @param string $latitude
+     * @return void
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+    }
+
+    /**
+     * returns the latitude attribute
+     *
+     * @return string
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * sets the longitude attribute
+     *
+     * @param string $longitude
+     * @return void
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+    }
+
+    /**
+     * returns the longitude attribute
+     *
+     * @return string
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
     }
 
     /**

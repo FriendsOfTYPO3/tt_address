@@ -18,6 +18,7 @@ return array(
         ),
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('tt_address') . 'ext_icon.gif',
         'searchFields' => 'name, first_name, middle_name, last_name, email',
+        'dividers2tabs' => 1,
     ),
     'feInterface' => array(
         'fe_admin_fieldList' => 'pid,hidden,gender,first_name,middle_name,last_name,title,address,building,room,birthday,phone,fax,mobile,www,email,city,zip,company,region,country,image,description'
@@ -404,7 +405,9 @@ return array(
         'address' => array(
             'showitem' => 'address, --linebreak--,
 							city, zip, region, --linebreak--,
-							country',
+							country,  --linebreak--,
+							latitude, --linebreak--,
+							longitude',
             'canNotCollapse' => 1
         ),
         'building' => array(

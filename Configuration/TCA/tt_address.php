@@ -7,6 +7,8 @@ return array(
         'label_alt' => 'email',
         'default_sortby' => 'ORDER BY last_name, first_name, middle_name',
         'tstamp' => 'tstamp',
+        'crdate' => 'crdate',
+        'cruser_id' => 'cruser_id',
         'prependAtCopy' => 'LLL:EXT:lang/locallang_general.xml:LGL.prependAtCopy',
         'delete' => 'deleted',
         'title' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address',
@@ -18,14 +20,36 @@ return array(
         ),
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('tt_address') . 'ext_icon.gif',
         'searchFields' => 'name, first_name, middle_name, last_name, email',
-    ),
-    'feInterface' => array(
-        'fe_admin_fieldList' => 'pid,hidden,gender,first_name,middle_name,last_name,title,address,building,room,birthday,phone,fax,mobile,www,email,city,zip,company,region,country,image,description'
+        'dividers2tabs' => 1,
     ),
     'interface' => array(
         'showRecordFieldList' => 'first_name,middle_name,last_name,address,building,room,city,zip,region,country,phone,fax,email,www,title,company,image'
     ),
     'columns' => array(
+        'pid' => array(
+            'label' => 'pid',
+            'config' => array(
+                'type' => 'passthrough'
+            )
+        ),
+		    'crdate' => array(
+            'label' => 'crdate',
+            'config' => array(
+                'type' => 'passthrough',
+            )
+        ),
+        'cruser_id' => array(
+            'label' => 'cruser_id',
+            'config' => array(
+                'type' => 'passthrough'
+            )
+        ),
+        'tstamp' => array(
+            'label' => 'tstamp',
+            'config' => array(
+                'type' => 'passthrough',
+            )
+        ),
         'hidden' => array(
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
@@ -404,7 +428,9 @@ return array(
         'address' => array(
             'showitem' => 'address, --linebreak--,
 							city, zip, region, --linebreak--,
-							country',
+							country,  --linebreak--,
+							latitude, --linebreak--,
+							longitude',
             'canNotCollapse' => 1
         ),
         'building' => array(

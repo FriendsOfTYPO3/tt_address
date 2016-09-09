@@ -22,9 +22,6 @@ return array(
         'searchFields' => 'name, first_name, middle_name, last_name, email',
         'dividers2tabs' => 1,
     ),
-    'feInterface' => array(
-        'fe_admin_fieldList' => 'pid,hidden,gender,first_name,middle_name,last_name,title,address,building,room,birthday,phone,fax,mobile,www,email,city,zip,company,region,country,image,description'
-    ),
     'interface' => array(
         'showRecordFieldList' => 'first_name,middle_name,last_name,address,building,room,city,zip,region,country,phone,fax,email,www,title,company,image'
     ),

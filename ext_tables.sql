@@ -5,7 +5,11 @@ CREATE TABLE tt_address (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 	tstamp int(11) DEFAULT '0' NOT NULL,
+	crdate int(11) DEFAULT '0' NOT NULL,
+	cruser_id int(11) DEFAULT '0' NOT NULL,
+	deleted tinyint(3) DEFAULT '0',
 	hidden tinyint(4) DEFAULT '0' NOT NULL,
+	
 	gender varchar(1) DEFAULT '' NOT NULL,
 	name tinytext,
 	first_name tinytext,
@@ -26,15 +30,18 @@ CREATE TABLE tt_address (
 	zip varchar(20) DEFAULT '' NOT NULL,
 	region varchar(255) DEFAULT '' NOT NULL,
 	country varchar(128) DEFAULT '' NOT NULL,
-	image tinyblob,
 	fax varchar(30) DEFAULT '' NOT NULL,
-	deleted tinyint(3) DEFAULT '0',
 	description text,
 	skype varchar(50) DEFAULT '' NOT NULL,
 	twitter varchar(50) DEFAULT '' NOT NULL,
 	facebook varchar(50) DEFAULT '' NOT NULL,
 	linkedin varchar(50) DEFAULT '' NOT NULL,
+	latitude decimal(14,12) default NULL,
+	longitude decimal(15,12) default NULL,
+	
+	image tinyblob,
 	categories int(11) DEFAULT '0' NOT NULL,
+	
 	t3ver_oid int(11) DEFAULT '0' NOT NULL,
 	t3ver_id int(11) DEFAULT '0' NOT NULL,
 	t3ver_wsid int(11) DEFAULT '0' NOT NULL,
@@ -45,8 +52,7 @@ CREATE TABLE tt_address (
 	t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
 	t3ver_move_id int(11) DEFAULT '0' NOT NULL,
 	t3_origuid int(11) DEFAULT '0' NOT NULL,
-	latitude decimal(14,12) default NULL,
-	longitude decimal(15,12) default NULL,
+	
 	PRIMARY KEY (uid),
 	KEY parent (pid),
 	KEY pid (pid,email)

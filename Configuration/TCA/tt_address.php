@@ -7,6 +7,8 @@ return array(
         'label_alt' => 'email',
         'default_sortby' => 'ORDER BY last_name, first_name, middle_name',
         'tstamp' => 'tstamp',
+        'crdate' => 'crdate',
+        'cruser_id' => 'cruser_id',
         'prependAtCopy' => 'LLL:EXT:lang/locallang_general.xml:LGL.prependAtCopy',
         'delete' => 'deleted',
         'title' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address',
@@ -27,6 +29,30 @@ return array(
         'showRecordFieldList' => 'first_name,middle_name,last_name,address,building,room,city,zip,region,country,phone,fax,email,www,title,company,image'
     ),
     'columns' => array(
+        'pid' => array(
+            'label' => 'pid',
+            'config' => array(
+                'type' => 'passthrough'
+            )
+        ),
+		    'crdate' => array(
+            'label' => 'crdate',
+            'config' => array(
+                'type' => 'passthrough',
+            )
+        ),
+        'cruser_id' => array(
+            'label' => 'cruser_id',
+            'config' => array(
+                'type' => 'passthrough'
+            )
+        ),
+        'tstamp' => array(
+            'label' => 'tstamp',
+            'config' => array(
+                'type' => 'passthrough',
+            )
+        ),
         'hidden' => array(
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',

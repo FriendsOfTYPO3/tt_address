@@ -25,3 +25,15 @@ if (TYPO3_MODE === 'BE') {
 // Update scripts
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['tt_address_group'] = 'TYPO3\\TtAddress\\Updates\\AddressGroupToSysCategory';
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['tt_address_image'] = 'TYPO3\\TtAddress\\Updates\\ImageToFileReference';
+
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin ( "TYPO3." . $_EXTKEY, 'SingleView', array (
+    'Main' => 'show'
+), array (
+    'Main' => 'show'
+), \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN );
+
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin ( "TYPO3." . $_EXTKEY, 'ListView', array (
+    'Main' => 'list'
+), array (
+    'Main' => 'list'
+), \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN );

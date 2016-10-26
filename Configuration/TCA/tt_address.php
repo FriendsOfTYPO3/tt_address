@@ -32,7 +32,7 @@ return array(
                 'type' => 'passthrough'
             )
         ),
-		    'crdate' => array(
+        'crdate' => array(
             'label' => 'crdate',
             'config' => array(
                 'type' => 'passthrough',
@@ -389,6 +389,7 @@ return array(
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.latitude',
             'config' => array(
                 'type' => 'input',
+                'default' => '0.000000000000'
             )
         ),
         'longitude' => array(
@@ -396,6 +397,7 @@ return array(
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.longitude',
             'config' => array(
                 'type' => 'input',
+                'default' => '0.000000000000'
             )
         ),
     ),

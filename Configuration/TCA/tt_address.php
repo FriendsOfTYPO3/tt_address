@@ -228,7 +228,7 @@ return array(
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
-                'max' => '50',
+                'max' => '255',
                 'placeholder' => 'johndoe'
             )
         ),
@@ -239,7 +239,7 @@ return array(
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
-                'max' => '50',
+                'max' => '255',
                 'placeholder' => '@johndoe'
             )
         ),
@@ -250,7 +250,7 @@ return array(
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
-                'max' => '50',
+                'max' => '255',
                 'placeholder' => '/johndoe'
             )
         ),
@@ -261,7 +261,7 @@ return array(
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
-                'max' => '50',
+                'max' => '255',
                 'placeholder' => 'johndoe'
             )
         ),

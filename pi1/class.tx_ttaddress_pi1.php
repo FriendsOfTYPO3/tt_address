@@ -416,7 +416,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
             $iConf['altText'] = !empty($iConf['altText']) ? $iConf['altText'] : $address['name'];
             $iConf['titleText'] = !empty($iConf['titleText']) ? $iConf['titleText'] : $address['name'];
 
-            $markerArray['###IMAGE###'] = $lcObj->render($lcObj->getContentObject('IMAGE'), $iConf);
+            $markerArray['###IMAGE###'] = $lcObj->cObjGetSingle('IMAGE', $iConf);
         }
 
         // adds hook for processing of extra item markers

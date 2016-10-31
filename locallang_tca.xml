@@ -51,7 +51,7 @@
             <label index="tt_address.position">Position:</label>
             <label index="tt_address.region">Region/State:</label>
             <label index="tt_address.skype">Skype:</label>
-            <label index="tt_address.twitter">twitter:</label>
+            <label index="tt_address.twitter">Twitter:</label>
             <label index="tt_address.facebook">Facebook:</label>
             <label index="tt_address.linkedin">LinkedIn:</label>
             <label index="tt_address.latitude">Latitude:</label>

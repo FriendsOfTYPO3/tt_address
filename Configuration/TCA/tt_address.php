@@ -191,6 +191,7 @@ return array(
                 'eval' => 'trim',
                 'size' => '20',
                 'max' => '255',
+		'softref' => 'typolink,url',
                 'wizards' => array(
                     '_PADDING' => 2,
                     'link' => array(
@@ -218,7 +219,8 @@ return array(
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
-                'max' => '255'
+                'max' => '255',
+		'softref' => 'email'
             )
         ),
         'skype' => array(
@@ -376,7 +378,8 @@ return array(
             'config' => array(
                 'type' => 'text',
                 'rows' => 5,
-                'cols' => 48
+                'cols' => 48,
+		'softref' => 'typolink_tag,url',
             )
         ),
         'categories' => array(

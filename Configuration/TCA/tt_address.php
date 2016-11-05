@@ -392,7 +392,7 @@ return array(
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.latitude',
             'config' => array(
                 'type' => 'input',
-		'eval' => 'trim,nospace,null',
+		'eval' => 'nospace,null',
 		'default' => NULL
             )
         ),
@@ -401,7 +401,7 @@ return array(
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.longitude',
             'config' => array(
                 'type' => 'input',
-		'eval' => 'trim,nospace,null',
+		'eval' => 'nospace,null',
 		'default' => NULL
             )
         ),

@@ -38,7 +38,7 @@ Markers you can use:
 -->
 
 <!-- ###TEMPLATE_ADDRESS### beginn -->
-<div class="vcard">
+<div class="vcard" itemscope itemtype="http://schema.org/Person">
 ###IMAGE###
 <!-- ###SUBPART_URL### begin -->
 ###FIRSTNAME### ###MIDDLENAME### ###LASTNAME###
@@ -46,7 +46,7 @@ Markers you can use:
 ###ORGANIZATION###
 ###EMAIL###
 <!-- ###SUBPART_ADR### begin -->
-<div class="adr">
+<div class="adr" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
 ###ADDRESS###
 ###CITY### ###REGION### ###ZIP### ###COUNTRY###
 </div>

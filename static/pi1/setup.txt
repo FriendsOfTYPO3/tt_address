@@ -31,8 +31,7 @@ plugin.tx_ttaddress_pi1 {
 			outerWrap.if.isTrue.field = middle_name
 		}
 
-		middle_name.wrap = <span class="additional-name" item="
-additionalName">|</span>
+		middle_name.wrap = <span class="additional-name" item="additionalName">|</span>
 		middle_name.required = 1
 
 		last_name {

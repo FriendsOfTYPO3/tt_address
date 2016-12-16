@@ -1,6 +1,8 @@
 <?php
 $settings = \TYPO3\TtAddress\Utility\SettingsUtility::getSettings();
 
+$version7 = \TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.0');
+
 return array(
     'ctrl' => array(
         'label' => 'name',
@@ -18,7 +20,7 @@ return array(
         'enablecolumns' => array(
             'disabled' => 'hidden'
         ),
-        'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('tt_address') . 'ext_icon.gif',
+        'iconfile' => $version7 ? 'EXT:tt_address/ext_icon.gif' : \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('tt_address') . 'ext_icon.gif',
         'searchFields' => 'name, first_name, middle_name, last_name, email',
         'dividers2tabs' => 1,
     ),
@@ -197,9 +199,9 @@ return array(
                     'link' => array(
                         'type' => 'popup',
                         'title' => 'LLL:EXT:cms/locallang_ttc.xml:header_link_formlabel',
-                        'icon' => 'link_popup.gif',
+                        'icon' => $version7 ? 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif' : 'link_popup.gif',
                         'module' => array(
-                            'name' => 'wizard_element_browser',
+                            'name' => $version7 ? 'wizard_link' : 'wizard_element_browser',
                             'urlParameters' => array(
                                 'mode' => 'wizard',
                                 'act' => 'url|page'

@@ -458,7 +458,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
                     $spConf
                 );
 
-                if ($spConf['hasOneOf'] && !$this->hasOneOf($spConf['hasOneOf'], $address)) {
+                if (isset($spConf['hasOneOf']) && !$this->hasOneOf($spConf['hasOneOf'], $address)) {
                     $content = '';
                 }
 

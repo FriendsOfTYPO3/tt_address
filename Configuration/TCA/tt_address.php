@@ -9,6 +9,9 @@ return [
     'ctrl' => [
         'label' => 'name',
         'label_alt' => 'email',
+        'languageField' => 'sys_language_uid',
+        'transOrigPointerField' => 'l10n_parent',
+        'transOrigDiffSourceField' => 'l10n_diffsource',
         'default_sortby' => 'ORDER BY last_name, first_name, middle_name',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -59,6 +62,37 @@ return [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check'
+            ]
+        ],
+        'sys_language_uid' => [
+            'exclude' => 1,
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.language',
+            'config' => [
+                'type' => 'select',
+                'foreign_table' => 'sys_language',
+                'foreign_table_where' => 'ORDER BY sys_language.title',
+                'items' => [
+                    [$generalLanguageFilePrefix . 'locallang_general.xlf:LGL.allLanguages', -1],
+                    [$generalLanguageFilePrefix . 'locallang_general.xlf:LGL.default_value', 0],
+                ]
+            ]
+        ],
+        'l18n_parent' => [
+            'displayCond' => 'FIELD:sys_language_uid:>:0',
+            'exclude' => 1,
+            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
+            'config' => [
+                'type' => 'select',
+                'items' => [
+                    ['', 0],
+                ],
+                'foreign_table' => 'tt_address',
+                'foreign_table_where' => 'AND tt_address.pid=###CURRENT_PID### AND tt_address.sys_language_uid IN (-1,0)',
+            ]
+        ],
+        'l18n_diffsource' => [
+            'config' => [
+                'type' => 'passthrough'
             ]
         ],
         'gender' => [

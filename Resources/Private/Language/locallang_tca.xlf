@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-04-04T14:34:42Z" product-name="tt_address">
+		<header/>
+		<body>
+			<trans-unit id="tt_address" xml:space="preserve">
+				<source>Address</source>
+			</trans-unit>
+			<trans-unit id="tt_address.mobile" xml:space="preserve">
+				<source>Mobile:</source>
+			</trans-unit>
+			<trans-unit id="tt_address.gender" xml:space="preserve">
+				<source>Gender:</source>
+			</trans-unit>
+			<trans-unit id="tt_address.gender.m" xml:space="preserve">
+				<source>Male (Mr)</source>
+			</trans-unit>
+			<trans-unit id="tt_address.gender.f" xml:space="preserve">
+				<source>Female (Mrs)</source>
+			</trans-unit>
+			<trans-unit id="tt_address.first_name" xml:space="preserve">
+				<source>First Name:</source>
+			</trans-unit>
+			<trans-unit id="tt_address.middle_name" xml:space="preserve">
+				<source>Middle Name:</source>
+			</trans-unit>
+			<trans-unit id="tt_address.last_name" xml:space="preserve">
+				<source>Last Name:</source>
+			</trans-unit>
+			<trans-unit id="tt_address.birthday" xml:space="preserve">
+				<source>Birthday:</source>
+			</trans-unit>
+			<trans-unit id="tt_address.building" xml:space="preserve">
+				<source>Building:</source>
+			</trans-unit>
+			<trans-unit id="tt_address.room" xml:space="preserve">
+				<source>Room:</source>
+			</trans-unit>
+			<trans-unit id="tt_address.organization" xml:space="preserve">
+				<source>Organization:</source>
+			</trans-unit>
+			<trans-unit id="tt_address.position" xml:space="preserve">
+				<source>Position:</source>
+			</trans-unit>
+			<trans-unit id="tt_address.region" xml:space="preserve">
+				<source>Region/State:</source>
+			</trans-unit>
+			<trans-unit id="tt_address.skype" xml:space="preserve">
+				<source>Skype:</source>
+			</trans-unit>
+			<trans-unit id="tt_address.twitter" xml:space="preserve">
+				<source>Twitter:</source>
+			</trans-unit>
+			<trans-unit id="tt_address.facebook" xml:space="preserve">
+				<source>Facebook:</source>
+			</trans-unit>
+			<trans-unit id="tt_address.linkedin" xml:space="preserve">
+				<source>LinkedIn:</source>
+			</trans-unit>
+			<trans-unit id="tt_address.latitude" xml:space="preserve">
+				<source>Latitude:</source>
+			</trans-unit>
+			<trans-unit id="tt_address.longitude" xml:space="preserve">
+				<source>Longitude:</source>
+			</trans-unit>
+			<trans-unit id="tt_address_tab.contact" xml:space="preserve">
+				<source>Contact</source>
+			</trans-unit>
+			<trans-unit id="tt_address_palette.name" xml:space="preserve">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tt_address_palette.organization" xml:space="preserve">
+				<source>Organization</source>
+			</trans-unit>
+			<trans-unit id="tt_address_palette.address" xml:space="preserve">
+				<source>Address</source>
+			</trans-unit>
+			<trans-unit id="tt_address_palette.building" xml:space="preserve">
+				<source>Building</source>
+			</trans-unit>
+			<trans-unit id="tt_address_palette.contact" xml:space="preserve">
+				<source>Contact</source>
+			</trans-unit>
+			<trans-unit id="tt_address_palette.social" xml:space="preserve">
+				<source>Social Networks</source>
+			</trans-unit>
+			<trans-unit id="pi_tt_address" xml:space="preserve">
+				<source>Addresses</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="pl" datatype="plaintext" original="messages" date="2017-04-04T14:34:43Z" product-name="tt_address">
+		<header/>
+		<body>
+			<trans-unit id="tt_address" xml:space="preserve" approved="yes">
+				<source>Address</source>
+				<target>Adres</target>
+			</trans-unit>
+			<trans-unit id="tt_address.mobile" xml:space="preserve" approved="yes">
+				<source>Mobile:</source>
+				<target>Kom:</target>
+			</trans-unit>
+			<trans-unit id="tt_address.gender" xml:space="preserve" approved="yes">
+				<source>Gender:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address.gender.m" xml:space="preserve" approved="yes">
+				<source>Male (Mr)</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address.gender.f" xml:space="preserve" approved="yes">
+				<source>Female (Mrs)</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address.first_name" xml:space="preserve" approved="yes">
+				<source>First Name:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address.middle_name" xml:space="preserve" approved="yes">
+				<source>Middle Name:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address.last_name" xml:space="preserve" approved="yes">
+				<source>Last Name:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address.birthday" xml:space="preserve" approved="yes">
+				<source>Birthday:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address.building" xml:space="preserve" approved="yes">
+				<source>Building:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address.room" xml:space="preserve" approved="yes">
+				<source>Room:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address.organization" xml:space="preserve" approved="yes">
+				<source>Organization:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address.position" xml:space="preserve" approved="yes">
+				<source>Position:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address.region" xml:space="preserve" approved="yes">
+				<source>Region/State:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address.skype" xml:space="preserve" approved="yes">
+				<source>Skype:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address.twitter" xml:space="preserve" approved="yes">
+				<source>Twitter:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address.facebook" xml:space="preserve" approved="yes">
+				<source>Facebook:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address.linkedin" xml:space="preserve" approved="yes">
+				<source>LinkedIn:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address.latitude" xml:space="preserve" approved="yes">
+				<source>Latitude:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address.longitude" xml:space="preserve" approved="yes">
+				<source>Longitude:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address_tab.contact" xml:space="preserve" approved="yes">
+				<source>Contact</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address_palette.name" xml:space="preserve" approved="yes">
+				<source>Name</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address_palette.organization" xml:space="preserve" approved="yes">
+				<source>Organization</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address_palette.address" xml:space="preserve" approved="yes">
+				<source>Address</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address_palette.building" xml:space="preserve" approved="yes">
+				<source>Building</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address_palette.contact" xml:space="preserve" approved="yes">
+				<source>Contact</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tt_address_palette.social" xml:space="preserve" approved="yes">
+				<source>Social Networks</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="pi_tt_address" xml:space="preserve" approved="yes">
+				<source>Addresses</source>
+				<target>Adresy</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -11,8 +11,8 @@ CREATE TABLE tt_address (
 	hidden tinyint(4) DEFAULT '0' NOT NULL,
 	
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
-  l18n_parent int(11) DEFAULT '0' NOT NULL,
-  l18n_diffsource mediumblob,
+  l10n_parent int(11) DEFAULT '0' NOT NULL,
+  l10n_diffsource mediumblob,
 	
 	gender varchar(1) DEFAULT '' NOT NULL,
 	name tinytext,

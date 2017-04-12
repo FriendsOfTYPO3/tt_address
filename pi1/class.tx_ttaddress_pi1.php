@@ -370,7 +370,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         $markerArray['###SKYPE###']        = $lcObj->stdWrap($address['skype'],              $lConf['skype.']);
         $markerArray['###TWITTER###']      = $lcObj->stdWrap($address['twitter'],            $lConf['twitter.']);
         $markerArray['###FACEBOOK###']     = $lcObj->stdWrap($address['facebook'],           $lConf['facebook.']);
-        $markerArray['###LINKEDIN###']     = $lcObj->stdWrap($address['linkedin'],           $lConf['inkedin.']);
+        $markerArray['###LINKEDIN###']     = $lcObj->stdWrap($address['linkedin'],           $lConf['linkedin.']);
         $markerArray['###MAINGROUP###']    = $lcObj->stdWrap($address['groups'][0]['title'], $lConf['mainGroup.']);
         $markerArray['###GROUPLIST###']    = $lcObj->stdWrap($address['groupList'],          $lConf['groupList.']);
 

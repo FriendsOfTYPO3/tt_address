@@ -1,4 +1,4 @@
-### TT_ADDRESS: Address storage and display
+# TT_ADDRESS: Address storage and display
 
 The basic aim of tt_address is to store your address data. The extension itself
 is shipped with a basic set of fluid/extbase templates since version 4.0.0.
@@ -24,11 +24,11 @@ You are encouraged to move along to the new extbase/fluid based plugin, in case 
 
 ## Planned features for the future
 
-# Backend
+### Backend
  - Geocoding
  - Wizard for position-selection (if geocoding fails) based on OSM
 
-# Frontend
+### Frontend
  - Map visualisation of address records based on OSM
  - Category filter
  - Filtering by first character of last name

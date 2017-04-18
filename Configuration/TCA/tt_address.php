@@ -12,6 +12,7 @@ return [
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
+        'sortby' => 'sorting',
         'default_sortby' => 'ORDER BY last_name, first_name, middle_name',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -69,6 +70,7 @@ return [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.language',
             'config' => [
                 'type' => 'select',
+                'renderType' => 'selectSingle',
                 'foreign_table' => 'sys_language',
                 'foreign_table_where' => 'ORDER BY sys_language.title',
                 'items' => [
@@ -83,9 +85,16 @@ return [
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
+<<<<<<< HEAD
                 'items' => [
                     ['', 0],
                 ],
+=======
+                'renderType' => 'selectSingle',
+                'items' => array(
+                    array('', 0),
+                ),
+>>>>>>> [TASK] Add Fluid and Extbase Controller and output
                 'foreign_table' => 'tt_address',
                 'foreign_table_where' => 'AND tt_address.pid=###CURRENT_PID### AND tt_address.sys_language_uid IN (-1,0)',
             ]
@@ -197,7 +206,7 @@ return [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.phone',
             'config' => [
                 'type' => 'input',
-                'eval' => 'trim',
+                'eval' => 'TYPO3\\TtAddress\\Evaluation\\TelephoneEvaluation',
                 'size' => '20',
                 'max' => '30'
             ]
@@ -208,7 +217,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => '20',
-                'eval' => 'trim',
+                'eval' => 'TYPO3\\TtAddress\\Evaluation\\TelephoneEvaluation',
                 'max' => '30'
             ]
         ],
@@ -217,7 +226,7 @@ return [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.mobile',
             'config' => [
                 'type' => 'input',
-                'eval' => 'trim',
+                'eval' => 'TYPO3\\TtAddress\\Evaluation\\TelephoneEvaluation',
                 'size' => '20',
                 'max' => '30'
             ]
@@ -257,7 +266,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => '20',
-                'eval' => 'trim',
+                'eval' => 'email',
                 'max' => '255',
                 'softref' => 'email'
             ]
@@ -431,15 +440,26 @@ return [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.latitude',
             'config' => [
                 'type' => 'input',
+<<<<<<< HEAD
                 'eval' => 'nospace,null',
                 'default' => null
             ]
         ],
         'longitude' => [
+=======
+                'eval' => 'null,TYPO3\\TtAddress\\Evaluation\\LatitudeEvaluation',
+                'default' => NULL
+            )
+        ),
+        'longitude' => array(
+            'l10n_mode' => 'exclude',
+            'l10n_display' => 'defaultAsReadonly',
+>>>>>>> [TASK] Add Fluid and Extbase Controller and output
             'exclude' => 1,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.longitude',
             'config' => [
                 'type' => 'input',
+<<<<<<< HEAD
                 'eval' => 'nospace,null',
                 'default' => null
             ]
@@ -461,6 +481,28 @@ return [
     ],
     'palettes' => [
         'name' => [
+=======
+                'eval' => 'null,TYPO3\\TtAddress\\Evaluation\\LongitudeEvaluation',
+                'default' => NULL
+            )
+        ),
+    ),
+    'types' => array(
+        '0' => array('showitem' =>
+            'sys_language_uid, l10n_parent, l10n_diffsource, hidden,
+              --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xlf:tt_address_palette.name;name,image, description,
+             --div--;LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xlf:tt_address_tab.contact,
+             --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xlf:tt_address_palette.address;address,
+             --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xlf:tt_address_palette.building;building,
+             --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xlf:tt_address_palette.organization;organization,
+             --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xlf:tt_address_palette.contact;contact,
+             --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xlf:tt_address_palette.social;social,
+             --div--;LLL:EXT:lang/locallang_tca.xlf:sys_category.tabs.category, categories
+       ')
+    ),
+    'palettes' => array(
+        'name' => array(
+>>>>>>> [TASK] Add Fluid and Extbase Controller and output
             'showitem' => 'name, --linebreak--,
 							gender, title, --linebreak--,
 							first_name, middle_name, --linebreak--,

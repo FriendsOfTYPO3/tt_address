@@ -1,0 +1,22 @@
+<div class="vcard" itemscope itemtype="http://schema.org/Person">
+  <div class="addressImage">
+    <f:link.action action="show" arguments="{address : address}" title="{address.firstTitle} {address.firstName} {address.middleName} {address.lastName}" pageUid="{settings.singlePid}">
+      <f:if condition="{address.image}">
+        <f:then>      
+          <f:image image="{address.image.0}" width="140c" height="140c" alt="{address.title} {address.firstName} {address.middleName} {address.lastName}" />
+        </f:then>
+        <f:else>
+          <div class="addressImagePlaceholder"></div>
+        </f:else>
+      </f:if>
+    </f:link.action>
+  </div>
+  
+  <h3>{address.title} {address.firstName} {address.middleName} {address.lastName}</h3>
+  <f:if condition="{address.position}">
+    <f:then>
+      <p class="position"><em>{address.position}</em></p>
+    </f:then>
+  </f:if>
+  <f:link.action action="show" arguments="{address : address}" title="{address.firstTitle} {address.firstName} {address.middleName} {address.lastName}" pageUid="{settings.singlePid}" class="btn">Mehr &hellip;</f:link.action>
+</div>

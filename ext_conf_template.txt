@@ -6,3 +6,6 @@ storeBackwardsCompatName = 1
 
 	# cat=basic; type=boolean; label=Name field is read only
 readOnlyNameField = 1
+
+  # cat=basic; type=boolean; label=Activate deprecated piBase plugin
+activatePiBase = 0

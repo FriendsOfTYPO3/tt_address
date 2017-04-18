@@ -1,16 +1,56 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2017-04-04T12:30:37Z" product-name="tt_address">
-		<header/>
-		<body>
-			<trans-unit id="pi1_title" xml:space="preserve" approved="yes">
-				<source>Addresses</source>
-				<target>Adressen</target>
-			</trans-unit>
-			<trans-unit id="pi1_plus_wiz_description" xml:space="preserve" approved="yes">
-				<source>Displays one or more addresses.</source>
-				<target>Zeigt eine oder mehrere Adressen an.</target>
-			</trans-unit>
-		</body>
-	</file>
+  <file source-language="en" datatype="plaintext" original="messages" date="2017-04-13T10:24:37Z" product-name="tt_address">
+    <header/>
+    <body>
+      <trans-unit id="label.address" xml:space="preserve">
+        <target>Adresse</target>
+      </trans-unit>
+      <trans-unit id="label.building" xml:space="preserve">
+        <target>Gebäude</target>
+      </trans-unit>
+      <trans-unit id="label.room" xml:space="preserve">
+        <target>Raum</target>
+      </trans-unit>
+      <trans-unit id="label.position" xml:space="preserve">
+        <target>Position</target>
+      </trans-unit>
+      <trans-unit id="label.zip" xml:space="preserve">
+        <target>Postleitzahl</target>
+      </trans-unit>
+      <trans-unit id="label.city" xml:space="preserve">
+        <target>Ort</target>
+      </trans-unit>
+      <trans-unit id="label.telephone" xml:space="preserve">
+        <target>Telefon</target>
+      </trans-unit>
+      <trans-unit id="label.fax" xml:space="preserve">
+        <target>Fax</target>
+      </trans-unit>
+      <trans-unit id="label.mobile" xml:space="preserve">
+        <target>Mobiltelefon</target>
+      </trans-unit>
+      <trans-unit id="label.email" xml:space="preserve">
+        <target>E-Mail</target>
+      </trans-unit>
+      <trans-unit id="label.www" xml:space="preserve">
+        <target>Zur Webseite</target>
+      </trans-unit>
+      <trans-unit id="label.socialmedia" xml:space="preserve">
+        <target>Kontaktdaten in den Sozialen Medien</target>
+      </trans-unit>
+      <trans-unit id="paginate_overall" xml:space="preserve">
+        <target>Seite %s von %s</target>
+      </trans-unit>
+      <trans-unit id="paginate_next">
+        <target>Nächste</target>
+      </trans-unit>
+      <trans-unit id="paginate_previous">
+        <target>Vorherige</target>
+      </trans-unit>
+      <trans-unit id="backToList">
+        <target>Zurück zur Liste</target>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>

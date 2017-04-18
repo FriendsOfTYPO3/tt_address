@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="th" datatype="plaintext" original="messages" date="2017-04-04T12:30:38Z" product-name="tt_address">
+		<header/>
+		<body>
+			<trans-unit id="pi1_title" xml:space="preserve" approved="yes">
+				<source>Addresses</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="pi1_plus_wiz_description" xml:space="preserve" approved="yes">
+				<source>Displays one or more addresses.</source>
+				<target></target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

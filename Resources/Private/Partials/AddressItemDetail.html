@@ -1,0 +1,169 @@
+<div class="vcard tt_address_detail" itemscope itemtype="http://schema.org/Person">
+
+  <!-- Contact name, title and position -->
+  <h1>{address.title} {address.firstName} {address.middleName} {address.lastName}</h1>
+  <f:if condition="{address.position}">
+    <f:then>
+      <p class="position"><em>{address.position}</em></p>
+    </f:then>
+  </f:if>
+
+  <!-- First image of address, floating left -->
+  <f:if condition="{address.image}">
+    <f:then>
+      <div class="addressImage">
+        <a
+          href="{f:uri.image(src:'{address.image.0.uid}', maxWidth:1000, maxHeight:850, treatIdAsReference:1)}"
+          rel="images_tt_address_{address.uid}"
+          class="{settings.detail.imageClass}{address.uid}"
+          title="{address.title} {address.firstName} {address.middleName} {address.lastName}"
+          target="_blank">
+            <f:image image="{address.image.0}" width="160c" height="160c" additionalAttributes="{itemprop:'address.image.0'}" />
+        </a>
+      </div>
+    </f:then>
+  </f:if>
+  
+  <!-- Description of address -->
+  <f:if condition="{address.description}">
+    <f:then>
+      <p class="bodytext">
+        <f:format.nl2br>{address.description}</f:format.nl2br>
+      </p>
+    </f:then>
+  </f:if>
+  
+  <!-- Basic address -->
+  <p class="bodytext" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+    <f:if condition="{address.zip}">
+      <f:then>
+        <label><f:translate key="label.address" />: </label>{address.address}, {address.zip} {address.city}
+      </f:then>
+    </f:if>
+  </p>
+  
+  <!-- Image rows (except first), every third image a linebreak is inserted -->
+  <f:if condition="{address.image}">
+    <div class="address-image-rows">
+      <f:for each="{address.image}" as="img" iteration="iterator">
+        <f:if condition="{iterator.cycle}>1">
+          <a href="{f:uri.image(src:img.originalResource.publicUrl, maxWidth:1000, maxHeight:850)}"
+             class="{settings.detail.imageClass}{address.uid}"
+             rel="images_tt_address_{address.uid}"
+             target="_blank">
+               <f:image image="{img}" width="200c" height="140c" class="riccTitleCheat" additionalAttributes="{itemprop:'img'}" />
+          </a>
+          <f:if condition="{iterator.index} % 3">
+            <f:then></f:then>
+            <f:else>
+              <br />
+            </f:else>
+          </f:if>
+        </f:if>
+      </f:for>
+    </div>
+  </f:if>
+  
+  <!-- The rest of the fields of tt_address -->
+  <p class="bodytext">
+    <f:if condition="{address.building}">
+      <f:then>
+        <label><f:translate key="label.building" />: </label> {address.building}
+      </f:then>
+    </f:if>
+    
+    <f:if condition="{address.room}">
+      <f:then>
+        <label><f:translate key="label.room" />: </label> {address.room}
+      </f:then>
+    </f:if>
+    <br />
+    <f:if condition="{address.phone}">
+      <f:then>
+        <label><f:translate key="label.telephone" />: </label><a href="tel:{address.phone}">{address.phone}</a>
+        <br />
+      </f:then>
+    </f:if>
+    
+    <f:if condition="{address.mobile}">
+      <f:then>
+        <label><f:translate key="label.mobile" />: </label><a href="tel:{address.mobile}">{address.mobile}</a>
+        <br />
+      </f:then>
+    </f:if>
+    
+    <f:if condition="{address.fax}">
+      <f:then>
+        <label><f:translate key="label.fax" />: </label>{address.fax}
+        <br />
+      </f:then>
+    </f:if>
+    
+    <f:if condition="{address.email}">
+      <f:then>
+        <label><f:translate key="label.email" />: <f:link.email email="{address.email}" />
+        <br />
+      </f:then>
+    </f:if>
+    
+    <f:if condition="{address.www}">
+      <f:then>
+        <br />
+        <f:link.typolink parameter="{address.www}"><f:translate key="label.www" /> &raquo;</f:link.typolink>
+        <br />
+      </f:then>
+    </f:if>
+    
+    <!-- Social Media Contact Handles -->
+    <!-- Complex nesting with Fluid, for compatibility with TYPO3 v7 -->    
+    <f:if condition="{address.skype}">
+      <f:then>
+        <h3><f:translate key="label.socialmedia" /></h3>
+      </f:then>
+      <f:else>
+        <f:if condition="{address.twitter}">
+          <f:then>
+            <h3><f:translate key="label.socialmedia" /></h3>
+          </f:then>
+          <f:else>
+            <f:if condition="{address.facebook}">
+              <f:then>
+                <h3><f:translate key="label.socialmedia" /></h3>
+              </f:then>
+              <f:else>
+                <f:if condition="{address.linkedin}">
+                  <f:then>
+                    <h3><f:translate key="label.socialmedia" /></h3>
+                  </f:then>
+                </f:if>
+              </f:else>
+            </f:if>
+          </f:else>
+        </f:if>
+      </f:else>
+    </f:if>
+    
+    <f:if condition="{address.skype}">
+      <f:then>
+        <label><f:translate key="label.skype" />: <a href="skype:{address.skype}?call">{address.skype}</a>, 
+      </f:then>
+    </f:if>
+    <f:if condition="{address.twitter}">
+      <f:then>
+        <label><f:translate key="label.twitter" />: <a href="https://twitter.com/{address.twitter}" target="_blank">{address.twitter}</a>, 
+      </f:then>
+    </f:if>
+    <f:if condition="{address.facebook}">
+      <f:then>
+        <label><f:translate key="label.facebook" />: <a href="https://www.facebook.com/{address.facebook}" target="_blank">{address.facebook}</a>, 
+      </f:then>
+    </f:if>
+    <f:if condition="{address.linkedin}">
+      <f:then>
+        <label><f:translate key="label.linkedin" />: <a href="https://www.linkedin.com/in/{address.linkedin}" target="_blank">{address.linkedin}</a> 
+      </f:then>
+    </f:if>
+    
+  </p>
+  
+</div>

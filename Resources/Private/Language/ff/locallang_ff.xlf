@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-04-05T08:11:35Z" product-name="tt_address">
+		<header/>
+		<body>
+			<trans-unit id="pi1_flexform.sheet_selection" xml:space="preserve">
+				<source>Selection</source>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.single_records" xml:space="preserve">
+				<source>Single addresses</source>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.group_selection" xml:space="preserve">
+				<source>Groups</source>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.combination" xml:space="preserve">
+				<source>Combination</source>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.combination.and" xml:space="preserve">
+				<source>AND</source>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.combination.or" xml:space="preserve">
+				<source>OR</source>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.sortBy" xml:space="preserve">
+				<source>Sort By</source>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.sortBy.singleSelection" xml:space="preserve">
+				<source>Order of single addresses</source>
+			</trans-unit>
+      <trans-unit id="pi1_flexform.sortBy.sorting" xml:space="preserve" approved="yes">
+        <source>Order of addresses</source>
+      </trans-unit>
+			<trans-unit id="pi1_flexform.sortOrder" xml:space="preserve">
+				<source>Sort Order</source>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.sortOrder.ascending" xml:space="preserve">
+				<source>Ascending</source>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.sortOrder.descending" xml:space="preserve">
+				<source>Descending</source>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.sheet_display" xml:space="preserve">
+				<source>Display</source>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.templateFile" xml:space="preserve">
+				<source>Template</source>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.templateFile.I.0" xml:space="preserve">
+				<source>Default</source>
+			</trans-unit>
+      <trans-unit id="pi1_flexform.displayMode" xml:space="preserve">
+        <source>Select display mode</source>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.displayMode.listView" xml:space="preserve">
+        <source>List view</source>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.displayMode.singleView" xml:space="preserve">
+        <source>Single view</source>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.displayMode.mapView" xml:space="preserve">
+        <source>Map view (not functional ATM!)</source>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.hidePagination" xml:space="preserve">
+        <source>Do not display pagebrowser (listview)</source>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.itemsPerPage" xml:space="preserve">
+        <source>Number of items to be displayed (listview)</source>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.singlePid" xml:space="preserve">
+        <source>Page for singelview (listview, this page if empty)</source>
+      </trans-unit>
+		</body>
+	</file>
+</xliff>

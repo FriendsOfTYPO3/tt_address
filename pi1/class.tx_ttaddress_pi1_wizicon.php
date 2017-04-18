@@ -31,8 +31,8 @@ class tx_ttaddress_pi1_wizicon
     {
         $wizardItems['plugins_tx_ttaddress_pi1'] = array(
             'icon'        => ExtensionManagementUtility::extRelPath('tt_address') . 'Resources/Public/Icons/ce_wiz.gif',
-            'title'       => $GLOBALS['LANG']->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang.xlf:pi1_title'),
-            'description' => $GLOBALS['LANG']->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang.xlf:pi1_plus_wiz_description'),
+            'title'       => $GLOBALS['LANG']->sL('LLL:EXT:tt_address/Resources/Private/Language/db/locallang.xlf:pi1_title'),
+            'description' => $GLOBALS['LANG']->sL('LLL:EXT:tt_address/Resources/Private/Language/db/locallang.xlf:pi1_plus_wiz_description'),
             'params'      => '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=tt_address_pi1'
         );
 

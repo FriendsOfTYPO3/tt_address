@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="th" datatype="plaintext" original="messages" date="2017-04-05T08:11:36Z" product-name="tt_address">
+		<header/>
+		<body>
+			<trans-unit id="pi1_flexform.sheet_selection" xml:space="preserve" approved="yes">
+				<source>Selection</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.single_records" xml:space="preserve" approved="yes">
+				<source>Single addresses</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.group_selection" xml:space="preserve" approved="yes">
+				<source>Groups</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.combination" xml:space="preserve" approved="yes">
+				<source>Combination</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.combination.and" xml:space="preserve" approved="yes">
+				<source>AND</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.combination.or" xml:space="preserve" approved="yes">
+				<source>OR</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.sortBy" xml:space="preserve" approved="yes">
+				<source>Sort By</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.sortBy.singleSelection" xml:space="preserve" approved="yes">
+				<source>Order of single addresses</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.sortOrder" xml:space="preserve" approved="yes">
+				<source>Sort Order</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.sortOrder.ascending" xml:space="preserve" approved="yes">
+				<source>Ascending</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.sortOrder.descending" xml:space="preserve" approved="yes">
+				<source>Descending</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.sheet_display" xml:space="preserve" approved="yes">
+				<source>Display</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.templateFile" xml:space="preserve" approved="yes">
+				<source>Template</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.templateFile.I.0" xml:space="preserve" approved="yes">
+				<source>Default</source>
+				<target></target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

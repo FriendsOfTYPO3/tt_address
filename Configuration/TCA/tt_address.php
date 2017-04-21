@@ -1,7 +1,7 @@
 <?php
 $settings = \TYPO3\TtAddress\Utility\SettingsUtility::getSettings();
 
-$version7 = \TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.0');
+$version7 = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('7.0');
 
 return array(
     'ctrl' => array(

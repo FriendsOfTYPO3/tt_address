@@ -16,12 +16,27 @@
               <f:if condition="{iterator.cycle}<={settings.paginate.itemsPerPage}">
                 <f:render partial="AddressItemList" arguments="{address:address}" />
               </f:if>
+              <f:if condition="{iterator.isLast}">
+                <f:then></f:then>
+                <f:else>
+                  <!-- clearfix -->
+                  <div class="div15">&nbsp;</div>
+                </f:else>
+              </f:if>
             </f:for>
           </f:then>
           <f:else>
             <ttaddress:widget.paginate objects="{addresses}" as="paginatedAdresses" configuration="{settings.paginate}" initial="{offset:settings.offset,limit:settings.limit}">
               <f:for each="{paginatedAdresses}" as="address" iteration="iterator">
                 <f:render partial="AddressItemList" arguments="{address: address, settings:settings, iterator:iterator}" />
+                <f:if condition="{iterator.isLast}">
+                  <f:then></f:then>
+                  <f:else>
+                    <!-- clearfix -->
+                    <div class="tt_address_line">&nbsp;</div>
+                    <div class="div15">&nbsp;</div>
+                  </f:else>
+                </f:if>
               </f:for>
             </ttaddress:widget.paginate>
           </f:else>

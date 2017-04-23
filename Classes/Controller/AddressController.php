@@ -153,22 +153,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     foreach($propertiesNotAllowedViaFlexForms as $property) {
       $originalSettings[$property] = $tsSettings['settings'][$property];
     }
-
-    // Use stdWrap for given defined settings
-    if (isset($originalSettings['useStdWrap']) && !empty($originalSettings['useStdWrap'])) {
-      /** @var  \TYPO3\CMS\Extbase\Service\TypoScriptService $typoScriptService */
-      $typoScriptService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\TypoScriptService');
-      $typoScriptArray = $typoScriptService->convertPlainArrayToTypoScriptArray($originalSettings);
-      $stdWrapProperties = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $originalSettings['useStdWrap'], TRUE);
-      foreach ($stdWrapProperties as $key) {
-        if (is_array($typoScriptArray[$key . '.'])) {
-          $originalSettings[$key] = $this->configurationManager->getContentObject()->stdWrap(
-              $originalSettings[$key],
-              $typoScriptArray[$key . '.']
-          );
-        }
-      }
-    }
+    
     // start override
     if (isset($tsSettings['settings']['overrideFlexformSettingsIfEmpty'])) {
       /** @var \TYPO3\TtAddress\Utility\TypoScript $typoScriptUtility */

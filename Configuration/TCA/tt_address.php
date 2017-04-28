@@ -2,6 +2,9 @@
 $settings = \TYPO3\TtAddress\Utility\SettingsUtility::getSettings();
 
 $version7 = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('7.0');
+$version8 = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('8.0');
+
+$generalLanguageFilePrefix = $version8 ? 'LLL:EXT:lang/Resources/Private/Language/' : 'LLL:EXT:lang/';
 
 return array(
     'ctrl' => array(
@@ -11,7 +14,7 @@ return array(
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
-        'prependAtCopy' => 'LLL:EXT:lang/locallang_general.xml:LGL.prependAtCopy',
+        'prependAtCopy' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.prependAtCopy',
         'delete' => 'deleted',
         'title' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address',
         'versioningWS' => true,
@@ -54,7 +57,7 @@ return array(
         ),
         'hidden' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.hidden',
             'config' => array(
                 'type' => 'check'
             )
@@ -72,7 +75,7 @@ return array(
         ),
         'title' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.title_person',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.title_person',
             'config' => array(
                 'type' => 'input',
                 'size' => '8',
@@ -81,7 +84,7 @@ return array(
             )
         ),
         'name' => array(
-            'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.name',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.name',
             'config' => array(
                 'type' => 'input',
                 'readOnly' => $settings->isReadOnlyNameField(),
@@ -131,7 +134,7 @@ return array(
             )
         ),
         'address' => array(
-            'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.address',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.address',
             'config' => array(
                 'type' => 'text',
                 'cols' => '20',
@@ -157,7 +160,7 @@ return array(
             )
         ),
         'phone' => array(
-            'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.phone',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.phone',
             'config' => array(
                 'type' => 'input',
                 'eval' => 'trim',
@@ -167,7 +170,7 @@ return array(
         ),
         'fax' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.fax',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.fax',
             'config' => array(
                 'type' => 'input',
                 'size' => '20',
@@ -187,7 +190,7 @@ return array(
         ),
         'www' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.www',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.www',
             'config' => array(
                 'type' => 'input',
                 'eval' => 'trim',
@@ -216,7 +219,7 @@ return array(
             )
         ),
         'email' => array(
-            'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.email',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.email',
             'config' => array(
                 'type' => 'input',
                 'size' => '20',
@@ -290,7 +293,7 @@ return array(
             )
         ),
         'city' => array(
-            'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.city',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.city',
             'config' => array(
                 'type' => 'input',
                 'size' => '20',
@@ -299,7 +302,7 @@ return array(
             )
         ),
         'zip' => array(
-            'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.zip',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.zip',
             'config' => array(
                 'type' => 'input',
                 'eval' => 'trim',
@@ -319,7 +322,7 @@ return array(
         ),
         'country' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.country',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.country',
             'config' => array(
                 'type' => 'input',
                 'size' => '20',
@@ -329,7 +332,7 @@ return array(
         ),
         'image' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.image',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.image',
             'config' =>\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'image',
                 array(
@@ -376,7 +379,7 @@ return array(
         ),
         'description' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.description',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.description',
             'config' => array(
                 'type' => 'text',
                 'rows' => 5,

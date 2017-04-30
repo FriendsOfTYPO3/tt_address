@@ -101,7 +101,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
             $addresses = array_slice($addresses, 0, (int)$this->conf['listMaxItems']);
         }
 
-            // output
+        // output
         foreach ($addresses as $address) {
             if (!empty($address)) {
                 $markerArray  = $this->getItemMarkerArray($address);
@@ -228,17 +228,27 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
             $this->conf['singleSelection']
         );
 
-        if (!empty($uidList)) {
-            $addresses = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-                '*',
-                'tt_address',
-                'uid IN(' . $uidList . ') ' . (!empty($this->conf['pidList']) ? ' AND pid IN (' . $this->conf['pidList'] . ')' : '')
-                . $this->cObj->enableFields('tt_address')
-            );
-
-            foreach ($addresses as $k => $address) {
-                $singleRecords[$address['uid']] = $this->getGroupsForAddress($address);
+        if (!empty($uidList) && !empty($this->conf['pidList'])) {
+            $select = '*';
+            $table = 'tt_address';
+            // we try to get the default language entry (normal behaviour) or, if not possible, currently the needed language (fallback if no default language entry is available)
+            $where = '(sys_language_uid IN (-1,0) OR (sys_language_uid = ' . $GLOBALS['TSFE']->sys_language_uid . ' AND l18n_parent = 0))';
+            $where .= ' AND uid IN(' . $uidList . ') AND pid IN(' . $this->conf['pidList'] . ')';
+            // always (!) use TYPO3 default function for adding hidden = 0, deleted = 0, group and date statements
+            if ($GLOBALS['TSFE']->sys_language_content == 0) {
+                $where .= $GLOBALS['TSFE']->sys_page->enableFields($table);
             }
+
+            $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($select, $table, $where);
+
+            while ($row = $GLOBALS ['TYPO3_DB']->sql_fetch_assoc($res)) {
+                if ($GLOBALS['TSFE']->sys_language_content) {
+                    //$row=$GLOBALS['TSFE']->sys_page->getRecordOverlay('tt_address',$row,$GLOBALS['TSFE']->sys_language_content,$GLOBALS['TSFE']->sys_language_contentOL);
+                    $row = $GLOBALS['TSFE']->sys_page->getRecordOverlay('tt_address', $row, $GLOBALS['TSFE']->sys_language_content, $GLOBALS['TSFE']->sys_language_mode == 'strict' ? 'hideNonTranslated' : '');}
+                $singleRecords[$row['uid']] = $this->getGroupsForAddress($row);
+            }
+
+            $GLOBALS['TYPO3_DB']->sql_free_result($res);
         }
         return $singleRecords;
     }
@@ -265,9 +275,10 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
                     'JOIN sys_category_record_mm ON tt_address.uid = sys_category_record_mm.uid_foreign ' .
                     'JOIN sys_category ON sys_category.uid = sys_category_record_mm.uid_local ' .
                     'WHERE sys_category_record_mm.uid_local IN ( ' . $groupList . ') ' .
-                    $this->cObj->enableFields('tt_address') .
+                    $GLOBALS['TSFE']->sys_page->enableFields('tt_address') .
                     $this->cObj->enableFields('sys_category') .
                     ' AND tt_address.pid IN (' . $this->conf['pidList'] . ')' .
+                    ' AND (tt_address.sys_language_uid IN (-1,0) OR (tt_address.sys_language_uid = ' . $GLOBALS['TSFE']->sys_language_uid . ' AND tt_address.l18n_parent = 0)) ' .
                     ' AND sys_category_record_mm.fieldname = \'categories\' AND sys_category_record_mm.tablenames = \'tt_address\'' .
                     'GROUP BY tt_address.uid ' .
                     'HAVING c = ' . $count . ' '
@@ -279,18 +290,24 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
                     'tt_address, sys_category_record_mm, sys_category',
                     'sys_category_record_mm.uid_local IN(' . $groupList .
                     ') AND tt_address.uid = sys_category_record_mm.uid_foreign ' .
-                    $this->cObj->enableFields('tt_address') .
+                    $GLOBALS['TSFE']->sys_page->enableFields('tt_address') .
                     $this->cObj->enableFields('sys_category') .
                     ' AND tt_address.pid IN (' . $this->conf['pidList'] . ')' .
+                    ' AND (tt_address.sys_language_uid IN (-1,0) OR (tt_address.sys_language_uid = ' . $GLOBALS['TSFE']->sys_language_uid . ' AND tt_address.l18n_parent = 0)) ' .
                     ' AND sys_category_record_mm.fieldname = \'categories\' AND sys_category_record_mm.tablenames = \'tt_address\''
                 );
             }
 
             while ($address = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+                if ($GLOBALS['TSFE']->sys_language_content) {
+                    $address = $GLOBALS['TSFE']->sys_page->getRecordOverlay('tt_address', $address, $GLOBALS['TSFE']->sys_language_content, $GLOBALS['TSFE']->sys_language_mode == 'strict' ? 'hideNonTranslated' : '');
+                }
                 $groupRecords[$address['uid']] = $this->getGroupsForAddress($address);
             }
-        }
 
+            $GLOBALS['TYPO3_DB']->sql_free_result($res);
+
+        }
         return $groupRecords;
     }
 

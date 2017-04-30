@@ -9,7 +9,10 @@ $generalLanguageFilePrefix = $version8 ? 'LLL:EXT:lang/Resources/Private/Languag
 return array(
     'ctrl' => array(
         'label' => 'name',
-        'label_alt' => 'email',
+        'label_alt' => 'sys_language_uid',
+        'languageField' => 'sys_language_uid',
+        'transOrigPointerField' => 'l10n_parent',
+        'transOrigDiffSourceField' => 'l10n_diffsource',
         'default_sortby' => 'ORDER BY last_name, first_name, middle_name',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -60,6 +63,37 @@ return array(
             'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.hidden',
             'config' => array(
                 'type' => 'check'
+            )
+        ),
+        'sys_language_uid' => array(
+            'exclude' => 1,
+            'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.language',
+            'config' => array(
+                'type' => 'select',
+                'foreign_table' => 'sys_language',
+                'foreign_table_where' => 'ORDER BY sys_language.title',
+                'items' => array(
+                    array('LLL:EXT:lang/locallang_general.php:LGL.allLanguages', -1),
+                    array('LLL:EXT:lang/locallang_general.php:LGL.default_value', 0)
+                )
+            )
+        ),
+        'l18n_parent' => array(
+            'displayCond' => 'FIELD:sys_language_uid:>:0',
+            'exclude' => 1,
+            'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent',
+            'config' => array(
+                'type' => 'select',
+                'items' => array(
+                    array('', 0),
+                ),
+                'foreign_table' => 'tt_address',
+                'foreign_table_where' => 'AND tt_address.pid=###CURRENT_PID### AND tt_address.sys_language_uid IN (-1,0)',
+            )
+        ),
+        'l18n_diffsource' => array(
+            'config' => array(
+                'type' => 'passthrough'
             )
         ),
         'gender' => array(
@@ -196,7 +230,7 @@ return array(
                 'eval' => 'trim',
                 'size' => '20',
                 'max' => '255',
-		'softref' => 'typolink,url',
+                'softref' => 'typolink,url',
                 'wizards' => array(
                     '_PADDING' => 2,
                     'link' => array(
@@ -225,7 +259,7 @@ return array(
                 'size' => '20',
                 'eval' => 'trim',
                 'max' => '255',
-		'softref' => 'email'
+                'softref' => 'email'
             )
         ),
         'skype' => array(
@@ -384,7 +418,7 @@ return array(
                 'type' => 'text',
                 'rows' => 5,
                 'cols' => 48,
-		'softref' => 'typolink_tag,url',
+                'softref' => 'typolink_tag,url',
             )
         ),
         'categories' => array(
@@ -397,8 +431,8 @@ return array(
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.latitude',
             'config' => array(
                 'type' => 'input',
-		'eval' => 'nospace,null',
-		'default' => NULL
+                'eval' => 'nospace,null',
+                'default' => NULL
             )
         ),
         'longitude' => array(
@@ -406,8 +440,8 @@ return array(
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.longitude',
             'config' => array(
                 'type' => 'input',
-		'eval' => 'nospace,null',
-		'default' => NULL
+                'eval' => 'nospace,null',
+                'default' => NULL
             )
         ),
     ),

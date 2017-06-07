@@ -14,6 +14,7 @@ namespace TYPO3\TtAddress\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Extbase\Domain\Model\Category;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -71,7 +72,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var string
      */
     protected $address;
-    
+
     /**
      * Latitude
      * @var string
@@ -197,6 +198,13 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var string
      */
     protected $description;
+
+    /**
+     * Categories
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
+     */
+    protected $categories;
 
     /**
      * __construct
@@ -373,7 +381,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->address;
     }
-    
+
     /**
      * sets the latitude attribute
      *
@@ -843,5 +851,25 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * returns the categories
+     *
+     * @return ObjectStorage<Category> $categories
+     */
+    public function getCategories() {
+        return $this->categories;
+    }
+
+    /**
+     * sets the categories
+     *
+     * @param ObjectStorage<Category> $categories
+     * @return void
+     */
+    public function setCategories(ObjectStorage $categories)
+    {
+        $this->categories = $categories;
     }
 }

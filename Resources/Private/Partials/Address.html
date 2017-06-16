@@ -1,0 +1,59 @@
+<div class="person-box">
+    <f:if condition="{address.image}">
+        <f:then>
+            <div class="addressImage">
+                <f:image image="{address.image.0}" width="133px" height="133px"/>
+            </div>
+        </f:then>
+        <f:else>
+            <div class="addressImage">
+                <span class="fa fa-user"></span>
+            </div>
+        </f:else>
+    </f:if>
+
+    <h4>{address.title} {address.firstName} {address.middleName} {address.lastName}</h4>
+
+    <f:if condition="{address.position}">
+        <f:then>
+            <p class="position">{address.position}</p>
+        </f:then>
+    </f:if>
+
+    <p class="bodytext">
+        <f:if condition="{address.building}">
+            <f:then>
+                Gebäude: {address.building}
+            </f:then>
+        </f:if>
+
+        <f:if condition="{address.room}">
+            <f:then>
+                Raum: {address.room}
+            </f:then>
+        </f:if>
+        <br />
+
+        <f:if condition="{address.phone}">
+            <f:then>
+                {address.phone}
+            </f:then>
+        </f:if>
+        <br />
+
+        <f:if condition="{address.email}">
+            <f:then>
+                <a href="mailto:{address.email}">{address.email}</a>
+            </f:then>
+        </f:if>
+    </p>
+
+
+    <f:if condition="{address.description}">
+        <f:then>
+            <p class="description">
+                {address.description}
+            </p>
+        </f:then>
+    </f:if>
+</div>

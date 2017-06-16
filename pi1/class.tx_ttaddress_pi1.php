@@ -383,8 +383,8 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
                     'table' => 'tt_address',
                     'fieldName' => 'image'
                 ),
-                'begin' => 0,
-                'maxItems' => 1,
+                'begin' => '0',
+                'maxItems' => '1',
 
                 'renderObj' => 'IMAGE',
                 'renderObj.' => array(
@@ -392,7 +392,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
                         'import.' => array(
                             'data' => 'file:current:uid'
                         ),
-                        'treatIdAsReference' => 1
+                        'treatIdAsReference' => '1'
                     ),
                     'altText.' => array(
                         'data' => 'file:current:alternative'

@@ -16,7 +16,8 @@
   ],
   "license": "GPL-2.0+",
   "require": {
-    "typo3/cms-core": ">=6.2.2"
+    "typo3/cms-core": ">=6.2.2",
+    "php": ">=5.3"
   },
   "autoload": {
     "classmap": ["pi1/"],

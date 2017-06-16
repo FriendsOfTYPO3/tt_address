@@ -134,7 +134,7 @@ class AddressGroupToSysCategory extends AbstractUpdate
         // Create a new sys_category record for each found record in default language
         $newCategoryRecords = 0;
 
-        $oldNewDefaultLanguageCategoryUidMapping = [];
+        $oldNewDefaultLanguageCategoryUidMapping = array();
         foreach ($rows as $row) {
             $oldUid = $row['uid'];
             unset($row['uid']);
@@ -238,7 +238,7 @@ class AddressGroupToSysCategory extends AbstractUpdate
             'migrate_sys_category_uid > 0'
         );
 
-        $oldNewCategoryUidMapping = [];
+        $oldNewCategoryUidMapping = array();
         foreach ($rows as $row) {
             $oldNewCategoryUidMapping[$row['uid']] = $row['migrate_sys_category_uid'];
         }
@@ -262,7 +262,7 @@ class AddressGroupToSysCategory extends AbstractUpdate
                 $sysCategoryUid = $oldNewCategoryUidMapping[$row['uid']];
                 $newParentUid = $oldNewCategoryUidMapping[$row['parent_group']];
                 $this->getDatabaseConnection()->exec_UPDATEquery('sys_category', 'uid=' . $sysCategoryUid,
-                    ['parent' => $newParentUid]);
+                    array('parent' => $newParentUid));
                 $updatedRecords++;
             }
         }
@@ -284,13 +284,13 @@ class AddressGroupToSysCategory extends AbstractUpdate
             $oldCategoryUid = $oldMmRecord['uid_foreign'];
 
             if (!empty($oldNewCategoryUidMapping[$oldCategoryUid])) {
-                $newMmRecord = [
+                $newMmRecord = array(
                     'uid_local' => (int)$oldNewCategoryUidMapping[$oldCategoryUid],
                     'uid_foreign' => $oldMmRecord['uid_local'],
                     'tablenames' => $oldMmRecord['tablenames'] ?: 'tt_address',
                     'sorting_foreign' => $oldMmRecord['sorting'],
                     'fieldname' => 'categories',
-                ];
+                );
 
                 // check if relation already exists
                 $foundRelations = $this->getDatabaseConnection()->exec_SELECTcountRows(
@@ -352,7 +352,7 @@ class AddressGroupToSysCategory extends AbstractUpdate
                         $xmlArray['data']['sDEF']['lDEF'][$flexformField]['vDEF'], true);
 
                     if (!empty($oldCategories)) {
-                        $newCategories = [];
+                        $newCategories = array();
 
                         foreach ($oldCategories as $uid) {
                             if (isset($oldNewCategoryUidMapping[$uid])) {
@@ -367,9 +367,9 @@ class AddressGroupToSysCategory extends AbstractUpdate
                             $count++;
                             $xmlArray[$flexformField . '_updated'] = 1;
                             $xmlArray['data']['sDEF']['lDEF'][$flexformField]['vDEF'] = implode(',', $newCategories);
-                            $this->getDatabaseConnection()->exec_UPDATEquery('tt_content', 'uid=' . (int)$row['uid'], [
+                            $this->getDatabaseConnection()->exec_UPDATEquery('tt_content', 'uid=' . (int)$row['uid'], array(
                                 'pi_flexform' => $flexformTools->flexArray2Xml($xmlArray)
-                            ]);
+                            ));
                         }
                     }
                 }

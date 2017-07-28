@@ -307,7 +307,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         $result = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
             'c.*',
             'sys_category c, sys_category_record_mm mm',
-            'mm.uid_local=c.uid AND mm.uid_foreign=' . (int)$address['uid'] . ' AND mm.tablenames="tt_address" AND mm.fieldname="categories"',
+            'mm.uid_local=c.uid AND mm.uid_foreign=' . (int)$address['uid'] . ' AND mm.tablenames=\'tt_address\' AND mm.fieldname=\'categories\'',
             '',
             'mm.sorting_foreign ASC'
         );

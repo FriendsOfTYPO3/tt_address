@@ -4,7 +4,7 @@
         <description>tt_address database labels</description>
         <type>database</type>
         <csh_table></csh_table>
-        <fileId>EXT:tt_address/locallang_tca.xml</fileId>
+        <fileId>EXT:tt_address/Resources/Private/Language/locallang_tca.xml</fileId>
         <labelContext type="array">
         	<label index="tt_address"></label>
             <label index="tt_address.mobile"></label>

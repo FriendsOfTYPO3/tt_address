@@ -32,7 +32,7 @@ class tx_ttaddress_pi1_wizicon
         $LL = $this->includeLocalLang();
 
         $wizardItems['plugins_tx_ttaddress_pi1'] = [
-            'icon'        => ExtensionManagementUtility::extRelPath('tt_address') . 'pi1/ce_wiz.gif',
+            'icon'        => ExtensionManagementUtility::extPath('tt_address') . 'Resources/Public/Icons/ContentElementWizard.gif',
             'title'       => $GLOBALS['LANG']->getLLL('pi1_title', $LL),
             'description' => $GLOBALS['LANG']->getLLL('pi1_plus_wiz_description', $LL),
             'params'      => '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=tt_address_pi1'
@@ -50,7 +50,7 @@ class tx_ttaddress_pi1_wizicon
     {
         $llFile = ExtensionManagementUtility::extPath('tt_address') . 'locallang.xml';
 
-        $localLanguageParser = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Localization\\Parser\\LocallangXmlParser');
+        $localLanguageParser = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Localization\Parser\LocallangXmlParser::class);
         return $localLanguageParser->getParsedData($llFile, $GLOBALS['LANG']->lang);
     }
 }

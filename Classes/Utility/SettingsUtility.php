@@ -47,9 +47,9 @@ class SettingsUtility
         $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address']);
 
         if (!is_array($settings)) {
-            $settings = array();
+            $settings = [];
         }
 
-        return GeneralUtility::makeInstance('TYPO3\\TtAddress\\Domain\\Model\\Dto\\Settings', $settings);
+        return GeneralUtility::makeInstance(Settings::class, $settings);
     }
 }

@@ -26,7 +26,6 @@ class AddFieldsToSelector
      *
      * @param	array	$params array of select field options (reference)
      * @param	object	$pObj parent object (reference)
-     * @return	void
      */
     public function main(&$params, &$pObj)
     {
@@ -37,25 +36,25 @@ class AddFieldsToSelector
 
         $sortFields = GeneralUtility::trimExplode(',', $coreSortFields);
 
-        $selectOptions = array();
+        $selectOptions = [];
         foreach ($sortFields as $field) {
             $label = $GLOBALS['LANG']->sL($GLOBALS['TCA']['tt_address']['columns'][$field]['label']);
             $label = substr($label, 0, -1);
 
-            $selectOptions[] = array(
+            $selectOptions[] = [
                 'field' => $field,
                 'label' => $label
-            );
+            ];
         }
 
         // add sorting by order of single selection
-        $selectOptions[] = array(
+        $selectOptions[] = [
             'field' => 'singleSelection',
             'label' => $GLOBALS['LANG']->sL('LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.sortBy.singleSelection')
-        );
+        ];
 
         // sort by labels
-        $labels = array();
+        $labels = [];
         foreach ($selectOptions as $key => $v) {
             $labels[$key] = $v['label'];
         }
@@ -64,10 +63,10 @@ class AddFieldsToSelector
 
         // add fields to <select>
         foreach ($selectOptions as $option) {
-            $params['items'][] = array(
+            $params['items'][] = [
                 $option['label'],
                 $option['field']
-            );
+            ];
         }
     }
 }

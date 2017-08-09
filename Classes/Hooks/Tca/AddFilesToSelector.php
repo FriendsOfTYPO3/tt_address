@@ -29,18 +29,17 @@ class AddFilesToSelector
      *
      * @param	array	$params array of select field options (reference)
      * @param	object	$pObj parent object (reference)
-     * @return	void
      */
     public function main(&$params, &$pObj)
     {
 
         // get the current page ID
-	if (version_compare(TYPO3_version, '7.6', '<')) {
-		// legacy code for 6.2
-		$thePageId = $params['row']['pid'];
-	} else {
-		$thePageId = $params['flexParentDatabaseRow']['pid'];
-	}
+    if (version_compare(TYPO3_version, '7.6', '<')) {
+        // legacy code for 6.2
+        $thePageId = $params['row']['pid'];
+    } else {
+        $thePageId = $params['flexParentDatabaseRow']['pid'];
+    }
 
         /** @var TemplateService $template */
         $template = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\TypoScript\\TemplateService');
@@ -87,11 +86,11 @@ class AddFilesToSelector
                 }
 
                 // finally add the new item
-                $params['items'][] = array(
+                $params['items'][] = [
                     $selectorBoxItem_title,
                     basename($htmlFilePath),
                     $selectorBoxItem_icon
-                );
+                ];
             }
         }
     }

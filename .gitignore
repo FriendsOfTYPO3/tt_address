@@ -1,3 +1,6 @@
 /.buildpath
 /.project
 /.settings/
+vendor
+.php_cs.cache
+composer.lock

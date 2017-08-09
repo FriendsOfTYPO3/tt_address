@@ -2,10 +2,10 @@
 defined('TYPO3_MODE') or die();
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
-    array(
+    [
         'LLL:EXT:tt_address/locallang_tca.xml:pi_tt_address',
         'tt_address_pi1'
-    ),
+    ],
     'list_type',
     'tt_address'
 );

@@ -16,8 +16,8 @@
   ],
   "license": "GPL-2.0+",
   "require": {
-    "typo3/cms-core": ">=6.2.2",
-    "php": ">=5.3"
+    "typo3/cms": ">=7.6",
+    "php": ">=5.5"
   },
   "autoload": {
     "classmap": ["pi1/"],
@@ -28,5 +28,8 @@
   "replace": {
     "tt_address": "self.version",
     "typo3-ter/tt-address": "self.version"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.4"
   }
 }

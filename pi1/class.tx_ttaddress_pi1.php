@@ -76,7 +76,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
 
             // we want to sort by single selection and only have single record selection
             $sortedAdressesUid = explode(',', $this->conf['singleSelection']);
-            $sortedAddresses = array();
+            $sortedAddresses = [];
 
             foreach ($sortedAdressesUid as $uid) {
                 $sortedAddresses[] = $addresses[$uid];
@@ -89,7 +89,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
             }
 
             // sorting the addresses by any other field
-            $sortBy = array();
+            $sortBy = [];
             foreach ($addresses as $k => $v) {
                 $sortBy[$k] = $this->normalizeSortingString($v[$this->conf['sortByColumn']]);
             }
@@ -134,7 +134,6 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      * the flexform
      *
      * @param array $conf Array with TS configuration
-     * @return void
      */
     protected function init($conf)
     {
@@ -144,7 +143,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         $this->pi_initPIflexForm();
 
         // flexform data
-        $flexKeyMapping = array(
+        $flexKeyMapping = [
             'sDEF.singleRecords'    => 'singleRecords',
             'sDEF.groupSelection'   => 'groupSelection',
             'sDEF.combination'      => 'combination',
@@ -155,7 +154,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
             'sDEF.pages'            => 'pages',
             'sDEF.recursive'        => 'recursive',
             'sDISPLAY.templateFile' => 'templateFile',
-        );
+        ];
         $this->ffData = $this->getFlexFormConfig($flexKeyMapping);
 
         //set default combination to AND if no combination set
@@ -223,7 +222,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      */
     public function getSingleRecords()
     {
-        $singleRecords = array();
+        $singleRecords = [];
         $uidList = $GLOBALS['TYPO3_DB']->cleanIntList(
             $this->conf['singleSelection']
         );
@@ -250,7 +249,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      */
     public function getRecordsFromGroups()
     {
-        $groupRecords = array();
+        $groupRecords = [];
 
         $groups    = GeneralUtility::intExplode(',', $this->conf['groupSelection']);
         $count     = count($groups);
@@ -302,7 +301,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      */
     public function getGroupsForAddress($address)
     {
-        $groupTitles = array();
+        $groupTitles = [];
 
         $result = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
             'c.*',
@@ -335,7 +334,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      */
     protected function getItemMarkerArray($address)
     {
-        $markerArray = array();
+        $markerArray = [];
 
         //local configuration and local cObj
         $lConf = $this->conf['templates.'][$this->conf['templateName'] . '.'];
@@ -344,64 +343,64 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
 
         $markerArray['###UID###']          = $address['uid'];
 
-        $markerArray['###GENDER###']       = $lcObj->stdWrap($address['gender'],             $lConf['gender.']);
-        $markerArray['###NAME###']         = $lcObj->stdWrap($address['name'],               $lConf['name.']);
-        $markerArray['###FIRSTNAME###']    = $lcObj->stdWrap($address['first_name'],         $lConf['first_name.']);
-        $markerArray['###MIDDLENAME###']   = $lcObj->stdWrap($address['middle_name'],        $lConf['middle_name.']);
-        $markerArray['###LASTNAME###']     = $lcObj->stdWrap($address['last_name'],          $lConf['last_name.']);
-        $markerArray['###TITLE###']        = $lcObj->stdWrap($address['title'],              $lConf['title.']);
-        $markerArray['###EMAIL###']        = $lcObj->stdWrap($address['email'],              $lConf['email.']);
-        $markerArray['###PHONE###']        = $lcObj->stdWrap($address['phone'],              $lConf['phone.']);
-        $markerArray['###FAX###']          = $lcObj->stdWrap($address['fax'],                $lConf['fax.']);
-        $markerArray['###MOBILE###']       = $lcObj->stdWrap($address['mobile'],             $lConf['mobile.']);
-        $markerArray['###WWW###']          = $lcObj->stdWrap($address['www'],                $lConf['www.']);
-        $markerArray['###ADDRESS###']      = $lcObj->stdWrap($address['address'],            $lConf['address.']);
-        $markerArray['###BUILDING###']     = $lcObj->stdWrap($address['building'],           $lConf['building.']);
-        $markerArray['###ROOM###']         = $lcObj->stdWrap($address['room'],               $lConf['room.']);
-        $markerArray['###BIRTHDAY###']     = $lcObj->stdWrap($address['birthday'],           $lConf['birthday.']);
-        $markerArray['###ORGANIZATION###'] = $lcObj->stdWrap($address['company'],            $lConf['organization.']);
+        $markerArray['###GENDER###']       = $lcObj->stdWrap($address['gender'], $lConf['gender.']);
+        $markerArray['###NAME###']         = $lcObj->stdWrap($address['name'], $lConf['name.']);
+        $markerArray['###FIRSTNAME###']    = $lcObj->stdWrap($address['first_name'], $lConf['first_name.']);
+        $markerArray['###MIDDLENAME###']   = $lcObj->stdWrap($address['middle_name'], $lConf['middle_name.']);
+        $markerArray['###LASTNAME###']     = $lcObj->stdWrap($address['last_name'], $lConf['last_name.']);
+        $markerArray['###TITLE###']        = $lcObj->stdWrap($address['title'], $lConf['title.']);
+        $markerArray['###EMAIL###']        = $lcObj->stdWrap($address['email'], $lConf['email.']);
+        $markerArray['###PHONE###']        = $lcObj->stdWrap($address['phone'], $lConf['phone.']);
+        $markerArray['###FAX###']          = $lcObj->stdWrap($address['fax'], $lConf['fax.']);
+        $markerArray['###MOBILE###']       = $lcObj->stdWrap($address['mobile'], $lConf['mobile.']);
+        $markerArray['###WWW###']          = $lcObj->stdWrap($address['www'], $lConf['www.']);
+        $markerArray['###ADDRESS###']      = $lcObj->stdWrap($address['address'], $lConf['address.']);
+        $markerArray['###BUILDING###']     = $lcObj->stdWrap($address['building'], $lConf['building.']);
+        $markerArray['###ROOM###']         = $lcObj->stdWrap($address['room'], $lConf['room.']);
+        $markerArray['###BIRTHDAY###']     = $lcObj->stdWrap($address['birthday'], $lConf['birthday.']);
+        $markerArray['###ORGANIZATION###'] = $lcObj->stdWrap($address['company'], $lConf['organization.']);
         $markerArray['###COMPANY###']      = $markerArray['###ORGANIZATION###']; // alias
-        $markerArray['###POSITION###']     = $lcObj->stdWrap($address['position'],           $lConf['position.']);
-        $markerArray['###CITY###']         = $lcObj->stdWrap($address['city'],               $lConf['city.']);
-        $markerArray['###ZIP###']          = $lcObj->stdWrap($address['zip'],                $lConf['zip.']);
-        $markerArray['###REGION###']       = $lcObj->stdWrap($address['region'],             $lConf['region.']);
-        $markerArray['###COUNTRY###']      = $lcObj->stdWrap($address['country'],            $lConf['country.']);
-        $markerArray['###DESCRIPTION###']  = $lcObj->stdWrap($address['description'],        $lConf['description.']);
-        $markerArray['###SKYPE###']        = $lcObj->stdWrap($address['skype'],              $lConf['skype.']);
-        $markerArray['###TWITTER###']      = $lcObj->stdWrap($address['twitter'],            $lConf['twitter.']);
-        $markerArray['###FACEBOOK###']     = $lcObj->stdWrap($address['facebook'],           $lConf['facebook.']);
-        $markerArray['###LINKEDIN###']     = $lcObj->stdWrap($address['linkedin'],           $lConf['linkedin.']);
+        $markerArray['###POSITION###']     = $lcObj->stdWrap($address['position'], $lConf['position.']);
+        $markerArray['###CITY###']         = $lcObj->stdWrap($address['city'], $lConf['city.']);
+        $markerArray['###ZIP###']          = $lcObj->stdWrap($address['zip'], $lConf['zip.']);
+        $markerArray['###REGION###']       = $lcObj->stdWrap($address['region'], $lConf['region.']);
+        $markerArray['###COUNTRY###']      = $lcObj->stdWrap($address['country'], $lConf['country.']);
+        $markerArray['###DESCRIPTION###']  = $lcObj->stdWrap($address['description'], $lConf['description.']);
+        $markerArray['###SKYPE###']        = $lcObj->stdWrap($address['skype'], $lConf['skype.']);
+        $markerArray['###TWITTER###']      = $lcObj->stdWrap($address['twitter'], $lConf['twitter.']);
+        $markerArray['###FACEBOOK###']     = $lcObj->stdWrap($address['facebook'], $lConf['facebook.']);
+        $markerArray['###LINKEDIN###']     = $lcObj->stdWrap($address['linkedin'], $lConf['linkedin.']);
         $markerArray['###MAINGROUP###']    = $lcObj->stdWrap($address['groups'][0]['title'], $lConf['mainGroup.']);
-        $markerArray['###GROUPLIST###']    = $lcObj->stdWrap($address['groupList'],          $lConf['groupList.']);
+        $markerArray['###GROUPLIST###']    = $lcObj->stdWrap($address['groupList'], $lConf['groupList.']);
 
         // the image
         $markerArray['###IMAGE###'] = '';
         if (!empty($address['image'])) {
-            $filesConf = array(
-                'references.' => array(
+            $filesConf = [
+                'references.' => [
                     'uid' =>  (int)$address['uid'],
                     'table' => 'tt_address',
                     'fieldName' => 'image'
-                ),
+                ],
                 'begin' => '0',
                 'maxItems' => '1',
 
                 'renderObj' => 'IMAGE',
-                'renderObj.' => array(
-                    'file.' => array(
-                        'import.' => array(
+                'renderObj.' => [
+                    'file.' => [
+                        'import.' => [
                             'data' => 'file:current:uid'
-                        ),
+                        ],
                         'treatIdAsReference' => '1'
-                    ),
-                    'altText.' => array(
+                    ],
+                    'altText.' => [
                         'data' => 'file:current:alternative'
-                    ),
-                    'titleText.' => array(
+                    ],
+                    'titleText.' => [
                         'data' => 'file:current:title'
-                    )
-                )
-            );
+                    ]
+                ]
+            ];
             if (is_array($lConf['image.'])) {
                 $filesConf['renderObj.'] = array_merge_recursive($filesConf['renderObj.'], $lConf['image.']);
             }
@@ -440,7 +439,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      */
     protected function getSubpartArray($templateCode, $markerArray, $address)
     {
-        $subpartArray = array();
+        $subpartArray = [];
 
         if (is_array($this->conf['templates.'][$this->conf['templateName'] . '.']['subparts.'])) {
             $lcObj = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer'); // local cObj
@@ -537,12 +536,12 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
     protected function checkSorting($sortBy)
     {
         // TODO add all fields from TCA (extract them from TCA) or add a method to add new sorting fields
-        $validSortings = array(
+        $validSortings = [
             'uid', 'pid', 'tstamp',
             'name', 'gender', 'first_name', 'middle_name', 'last_name', 'title', 'email',
             'phone', 'mobile', 'www', 'address', 'building', 'room', 'birthday', 'company', 'city', 'zip',
             'region', 'country', 'image', 'fax', 'description', 'singleSelection'
-        );
+        ];
 
         if (!in_array($sortBy, $validSortings)) {
             $sortBy = 'name';
@@ -559,7 +558,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      */
     protected function getFlexFormConfig($flexKeyMapping)
     {
-        $conf = array();
+        $conf = [];
         foreach ($flexKeyMapping as $sheetField => $confName) {
             list($sheet, $field) = explode('.', $sheetField);
             $conf[$confName] = $this->pi_getFFvalue(

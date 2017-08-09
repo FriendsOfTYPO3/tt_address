@@ -218,7 +218,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the gender attribute
      *
      * @param string $gender
-     * @return void
      */
     public function setGender($gender)
     {
@@ -239,7 +238,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the name attribute
      *
      * @param string $name
-     * @return void
      */
     public function setName($name)
     {
@@ -260,7 +258,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the firstName attribute
      *
      * @param string $firstName
-     * @return void
      */
     public function setFirstName($firstName)
     {
@@ -281,7 +278,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the middleName attribute
      *
      * @param string $middleName
-     * @return void
      */
     public function setMiddleName($middleName)
     {
@@ -302,7 +298,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the lastName attribute
      *
      * @param string $lastName
-     * @return void
      */
     public function setLastName($lastName)
     {
@@ -323,7 +318,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the birthday attribute
      *
      * @param \DateTime $birthday
-     * @return void
      */
     public function setBirthday($birthday)
     {
@@ -344,7 +338,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the title attribute
      *
      * @param string $title
-     * @return void
      */
     public function setTitle($title)
     {
@@ -365,7 +358,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the address attribute
      *
      * @param string $address
-     * @return void
      */
     public function setAddress($address)
     {
@@ -386,7 +378,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the latitude attribute
      *
      * @param string $latitude
-     * @return void
      */
     public function setLatitude($latitude)
     {
@@ -407,7 +398,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the longitude attribute
      *
      * @param string $longitude
-     * @return void
      */
     public function setLongitude($longitude)
     {
@@ -428,7 +418,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the building attribute
      *
      * @param string $building
-     * @return void
      */
     public function setBuilding($building)
     {
@@ -449,7 +438,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the room attribute
      *
      * @param string $room
-     * @return void
      */
     public function setRoom($room)
     {
@@ -470,7 +458,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the phone attribute
      *
      * @param string $phone
-     * @return void
      */
     public function setPhone($phone)
     {
@@ -491,7 +478,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the fax attribute
      *
      * @param string $fax
-     * @return void
      */
     public function setFax($fax)
     {
@@ -512,7 +498,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the mobile attribute
      *
      * @param string $mobile
-     * @return void
      */
     public function setMobile($mobile)
     {
@@ -533,7 +518,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the www attribute
      *
      * @param string $www
-     * @return void
      */
     public function setWww($www)
     {
@@ -554,7 +538,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the Skype attribute
      *
      * @param string $skype
-     * @return void
      */
     public function setSkype($skype)
     {
@@ -575,7 +558,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the twitter attribute
      *
      * @param string $twitter
-     * @return void
      */
     public function setTwitter($twitter)
     {
@@ -600,7 +582,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the Facebook attribute
      *
      * @param string $facebook
-     * @return void
      */
     public function setFacebook($facebook)
     {
@@ -625,7 +606,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the LinkedIn attribute
      *
      * @param string $linkedIn
-     * @return void
      */
     public function setLinkedIn($linkedIn)
     {
@@ -646,7 +626,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the email attribute
      *
      * @param string $email
-     * @return void
      */
     public function setEmail($email)
     {
@@ -667,7 +646,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the company attribute
      *
      * @param string $company
-     * @return void
      */
     public function setCompany($company)
     {
@@ -688,7 +666,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the position attribute
      *
      * @param string $position
-     * @return void
      */
     public function setPosition($position)
     {
@@ -709,7 +686,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the city attribute
      *
      * @param string $city
-     * @return void
      */
     public function setCity($city)
     {
@@ -730,7 +706,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the zip attribute
      *
      * @param string $zip
-     * @return void
      */
     public function setZip($zip)
     {
@@ -751,7 +726,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the region attribute
      *
      * @param string $region
-     * @return void
      */
     public function setRegion($region)
     {
@@ -772,7 +746,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the country attribute
      *
      * @param string $country
-     * @return void
      */
     public function setCountry($country)
     {
@@ -793,7 +766,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Adds a FileReference
      *
      * @param FileReference $image
-     * @return void
      */
     public function addImage(FileReference $image)
     {
@@ -804,7 +776,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Removes a FileReference
      *
      * @param FileReference $imageToRemove The FileReference to be removed
-     * @return void
      */
     public function removeImage(FileReference $imageToRemove)
     {
@@ -825,7 +796,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the images
      *
      * @param ObjectStorage<FileReference> $image
-     * @return void
      */
     public function setImage(ObjectStorage $image)
     {
@@ -836,7 +806,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the description attribute
      *
      * @param string $description
-     * @return void
      */
     public function setDescription($description)
     {
@@ -858,7 +827,8 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return ObjectStorage<Category> $categories
      */
-    public function getCategories() {
+    public function getCategories()
+    {
         return $this->categories;
     }
 
@@ -866,7 +836,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * sets the categories
      *
      * @param ObjectStorage<Category> $categories
-     * @return void
      */
     public function setCategories(ObjectStorage $categories)
     {

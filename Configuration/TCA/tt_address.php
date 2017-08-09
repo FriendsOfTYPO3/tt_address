@@ -1,13 +1,12 @@
 <?php
 $settings = \TYPO3\TtAddress\Utility\SettingsUtility::getSettings();
 
-$version7 = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('7.0');
 $version8 = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('8.0');
 
 $generalLanguageFilePrefix = $version8 ? 'LLL:EXT:lang/Resources/Private/Language/' : 'LLL:EXT:lang/';
 
-return array(
-    'ctrl' => array(
+return [
+    'ctrl' => [
         'label' => 'name',
         'label_alt' => 'email',
         'default_sortby' => 'ORDER BY last_name, first_name, middle_name',
@@ -20,399 +19,399 @@ return array(
         'versioningWS' => true,
         'origUid' => 't3_origuid',
         'thumbnail' => 'image',
-        'enablecolumns' => array(
+        'enablecolumns' => [
             'disabled' => 'hidden'
-        ),
-        'iconfile' => $version7 ? 'EXT:tt_address/ext_icon.gif' : \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('tt_address') . 'ext_icon.gif',
+        ],
+        'iconfile' => 'EXT:tt_address/ext_icon.gif',
         'searchFields' => 'name, first_name, middle_name, last_name, email',
         'dividers2tabs' => 1,
-    ),
-    'interface' => array(
+    ],
+    'interface' => [
         'showRecordFieldList' => 'first_name,middle_name,last_name,address,building,room,city,zip,region,country,phone,fax,email,www,title,company,image'
-    ),
-    'columns' => array(
-        'pid' => array(
+    ],
+    'columns' => [
+        'pid' => [
             'label' => 'pid',
-            'config' => array(
+            'config' => [
                 'type' => 'passthrough'
-            )
-        ),
-        'crdate' => array(
+            ]
+        ],
+        'crdate' => [
             'label' => 'crdate',
-            'config' => array(
+            'config' => [
                 'type' => 'passthrough',
-            )
-        ),
-        'cruser_id' => array(
+            ]
+        ],
+        'cruser_id' => [
             'label' => 'cruser_id',
-            'config' => array(
+            'config' => [
                 'type' => 'passthrough'
-            )
-        ),
-        'tstamp' => array(
+            ]
+        ],
+        'tstamp' => [
             'label' => 'tstamp',
-            'config' => array(
+            'config' => [
                 'type' => 'passthrough',
-            )
-        ),
-        'hidden' => array(
+            ]
+        ],
+        'hidden' => [
             'exclude' => 1,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.hidden',
-            'config' => array(
+            'config' => [
                 'type' => 'check'
-            )
-        ),
-        'gender' => array(
+            ]
+        ],
+        'gender' => [
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.gender',
-            'config' => array(
+            'config' => [
                 'type' => 'radio',
                 'default' => 'm',
-                'items' => array(
-                    array('LLL:EXT:tt_address/locallang_tca.xml:tt_address.gender.m', 'm'),
-                    array('LLL:EXT:tt_address/locallang_tca.xml:tt_address.gender.f', 'f')
-                )
-            )
-        ),
-        'title' => array(
+                'items' => [
+                    ['LLL:EXT:tt_address/locallang_tca.xml:tt_address.gender.m', 'm'],
+                    ['LLL:EXT:tt_address/locallang_tca.xml:tt_address.gender.f', 'f']
+                ]
+            ]
+        ],
+        'title' => [
             'exclude' => 1,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.title_person',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => '8',
                 'eval' => 'trim',
                 'max' => '255'
-            )
-        ),
-        'name' => array(
+            ]
+        ],
+        'name' => [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.name',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'readOnly' => $settings->isReadOnlyNameField(),
                 'size' => '40',
                 'eval' => 'trim',
                 'max' => '255'
-            )
-        ),
-        'first_name' => array(
+            ]
+        ],
+        'first_name' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.first_name',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
                 'max' => '255'
-            )
-        ),
-        'middle_name' => array(
+            ]
+        ],
+        'middle_name' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.middle_name',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
                 'max' => '255'
-            )
-        ),
-        'last_name' => array(
+            ]
+        ],
+        'last_name' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.last_name',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
                 'max' => '255'
-            )
-        ),
-        'birthday' => array(
+            ]
+        ],
+        'birthday' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.birthday',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'eval' => 'date',
                 'size' => '8',
                 'max' => '20'
-            )
-        ),
-        'address' => array(
+            ]
+        ],
+        'address' => [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.address',
-            'config' => array(
+            'config' => [
                 'type' => 'text',
                 'cols' => '20',
                 'rows' => '3'
-            )
-        ),
-        'building' => array(
+            ]
+        ],
+        'building' => [
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.building',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
                 'size' => '20',
                 'max' => '20'
-            )
-        ),
-        'room' => array(
+            ]
+        ],
+        'room' => [
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.room',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
                 'size' => '5',
                 'max' => '15'
-            )
-        ),
-        'phone' => array(
+            ]
+        ],
+        'phone' => [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.phone',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
                 'size' => '20',
                 'max' => '30'
-            )
-        ),
-        'fax' => array(
+            ]
+        ],
+        'fax' => [
             'exclude' => 1,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.fax',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
                 'max' => '30'
-            )
-        ),
-        'mobile' => array(
+            ]
+        ],
+        'mobile' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.mobile',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
                 'size' => '20',
                 'max' => '30'
-            )
-        ),
-        'www' => array(
+            ]
+        ],
+        'www' => [
             'exclude' => 1,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.www',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
                 'size' => '20',
                 'max' => '255',
-		'softref' => 'typolink,url',
-                'wizards' => array(
+        'softref' => 'typolink,url',
+                'wizards' => [
                     '_PADDING' => 2,
-                    'link' => array(
+                    'link' => [
                         'type' => 'popup',
                         'title' => 'LLL:EXT:cms/locallang_ttc.xml:header_link_formlabel',
-                        'icon' => $version7 ? 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif' : 'link_popup.gif',
-                        'module' => array(
-                            'name' => $version7 ? 'wizard_link' : 'wizard_element_browser',
-                            'urlParameters' => array(
+                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
+                        'module' => [
+                            'name' => 'wizard_link',
+                            'urlParameters' => [
                                 'mode' => 'wizard',
                                 'act' => 'url|page'
-                            )
-                        ),
-                        'params' => array(
+                            ]
+                        ],
+                        'params' => [
                             'blindLinkOptions' => 'mail,file,spec,folder',
-                        ),
+                        ],
                         'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1',
-                    ),
-                )
-            )
-        ),
-        'email' => array(
+                    ],
+                ]
+            ]
+        ],
+        'email' => [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.email',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
                 'max' => '255',
-		'softref' => 'email'
-            )
-        ),
-        'skype' => array(
+        'softref' => 'email'
+            ]
+        ],
+        'skype' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.skype',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
                 'max' => '255',
                 'placeholder' => 'johndoe'
-            )
-        ),
-        'twitter' => array(
+            ]
+        ],
+        'twitter' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.twitter',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
                 'max' => '255',
                 'placeholder' => '@johndoe'
-            )
-        ),
-        'facebook' => array(
+            ]
+        ],
+        'facebook' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.facebook',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
                 'max' => '255',
                 'placeholder' => '/johndoe'
-            )
-        ),
-        'linkedin' => array(
+            ]
+        ],
+        'linkedin' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.linkedin',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
                 'max' => '255',
                 'placeholder' => 'johndoe'
-            )
-        ),
-        'company' => array(
+            ]
+        ],
+        'company' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.organization',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
                 'size' => '20',
                 'max' => '255'
-            )
-        ),
-        'position' => array(
+            ]
+        ],
+        'position' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.position',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
                 'max' => '255'
-            )
-        ),
-        'city' => array(
+            ]
+        ],
+        'city' => [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.city',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
                 'max' => '255'
-            )
-        ),
-        'zip' => array(
+            ]
+        ],
+        'zip' => [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.zip',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
                 'size' => '10',
                 'max' => '20'
-            )
-        ),
-        'region' => array(
+            ]
+        ],
+        'region' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.region',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => '10',
                 'eval' => 'trim',
                 'max' => '255'
-            )
-        ),
-        'country' => array(
+            ]
+        ],
+        'country' => [
             'exclude' => 1,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.country',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
                 'max' => '128'
-            )
-        ),
-        'image' => array(
+            ]
+        ],
+        'image' => [
             'exclude' => 1,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.image',
             'config' =>\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'image',
-                array(
+                [
                     'maxitems' => 6,
                     'minitems' => 0,
-                    'appearance' => array(
+                    'appearance' => [
                         'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:images.addFileReference'
-                    ),
-                    'foreign_types' => array(
-                        '0' => array(
+                    ],
+                    'foreign_types' => [
+                        '0' => [
                             'showitem' => '
 								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
 								--palette--;;filePalette'
-                        ),
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => array(
+                        ],
+                        \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
                             'showitem' => '
 								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
 								--palette--;;filePalette'
-                        ),
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => array(
+                        ],
+                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
                             'showitem' => '
 								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
 								--palette--;;filePalette'
-                        ),
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => array(
+                        ],
+                        \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
                             'showitem' => '
 								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
 								--palette--;;filePalette'
-                        ),
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => array(
+                        ],
+                        \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
                             'showitem' => '
 								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
 								--palette--;;filePalette'
-                        ),
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => array(
+                        ],
+                        \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
                             'showitem' => '
 								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
 								--palette--;;filePalette'
-                        )
-                    )
-                ),
+                        ]
+                    ]
+                ],
                 $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
             )
-        ),
-        'description' => array(
+        ],
+        'description' => [
             'exclude' => 1,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.description',
-            'config' => array(
+            'config' => [
                 'type' => 'text',
                 'rows' => 5,
                 'cols' => 48,
-		'softref' => 'typolink_tag,url',
-            )
-        ),
-        'categories' => array(
+        'softref' => 'typolink_tag,url',
+            ]
+        ],
+        'categories' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_tca.xlf:sys_category.categories',
             'config' => \TYPO3\CMS\Core\Category\CategoryRegistry::getTcaFieldConfiguration('tt_address')
-        ),
-        'latitude' => array(
+        ],
+        'latitude' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.latitude',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
-		'eval' => 'nospace,null',
-		'default' => NULL
-            )
-        ),
-        'longitude' => array(
+        'eval' => 'nospace,null',
+        'default' => null
+            ]
+        ],
+        'longitude' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:tt_address/locallang_tca.xml:tt_address.longitude',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
-		'eval' => 'nospace,null',
-		'default' => NULL
-            )
-        ),
-    ),
-    'types' => array(
-        '0' => array('showitem' =>
+        'eval' => 'nospace,null',
+        'default' => null
+            ]
+        ],
+    ],
+    'types' => [
+        '0' => ['showitem' =>
             'hidden,
 			--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.name;name,
 			image, description,
@@ -423,46 +422,46 @@ return array(
 				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.contact;contact,
 				--palette--;LLL:EXT:tt_address/locallang_tca.xml:tt_address_palette.social;social,
 			--div--;LLL:EXT:lang/locallang_tca.xlf:sys_category.tabs.category, categories
-			')
-    ),
-    'palettes' => array(
-        'name' => array(
+			']
+    ],
+    'palettes' => [
+        'name' => [
             'showitem' => 'name, --linebreak--,
 							gender, title, --linebreak--,
 							first_name, middle_name, --linebreak--,
 							last_name',
             'canNotCollapse' => 1
-        ),
-        'organization' => array(
+        ],
+        'organization' => [
             'showitem' => 'position, company',
             'canNotCollapse' => 1
-        ),
-        'address' => array(
+        ],
+        'address' => [
             'showitem' => 'address, --linebreak--,
 							city, zip, region, --linebreak--,
 							country,  --linebreak--,
 							latitude, --linebreak--,
 							longitude',
             'canNotCollapse' => 1
-        ),
-        'building' => array(
+        ],
+        'building' => [
             'showitem' => 'building, room',
             'canNotCollapse' => 1
-        ),
-        'contact' => array(
+        ],
+        'contact' => [
             'showitem' => 'email, --linebreak--,
 							phone, fax, --linebreak--,
 							mobile, --linebreak--,
 							www, --linebreak--,
 							birthday',
             'canNotCollapse' => 1
-        ),
-        'social' => array(
+        ],
+        'social' => [
             'showitem' => 'skype, --linebreak--,
 							twitter, --linebreak--,
 							facebook, --linebreak--,
 							linkedin',
             'canNotCollapse' => 1
-        ),
-    )
-);
+        ],
+    ]
+];

@@ -48,7 +48,6 @@ class Settings
     }
 
     /**
-     * @return void
      */
     protected function enforceCorrectPropertyTypes()
     {

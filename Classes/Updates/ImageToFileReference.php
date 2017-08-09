@@ -138,8 +138,6 @@ class ImageToFileReference extends AbstractUpdate
 
     /**
      * Ensures a new folder "fileadmin/content_upload/" is available.
-     *
-     * @return void
      */
     protected function checkPrerequisites()
     {
@@ -152,8 +150,6 @@ class ImageToFileReference extends AbstractUpdate
      * Processes the actual transformation to sys_file_references
      *
      * @param array $address
-     *
-     * @return void
      */
     protected function migrateImages(array $address)
     {
@@ -169,7 +165,7 @@ class ImageToFileReference extends AbstractUpdate
                     $fileObject = $this->storage->getFile(self::FOLDER_ContentUploads . '/' . $image);
                     if ($fileObject instanceof File) {
                         $this->fileRepository->add($fileObject);
-                        $dataArray = array(
+                        $dataArray = [
                             'uid_local' => $fileObject->getUid(),
                             'tablenames' => 'tt_address',
                             'fieldname' => 'image',
@@ -180,7 +176,7 @@ class ImageToFileReference extends AbstractUpdate
                             'sorting_foreign' => $imageCount,
                             'hidden' => $address['hidden'],
                             'sys_language_uid' => 0
-                        );
+                        ];
 
                         if ($this->getDatabaseConnection()->exec_INSERTquery('sys_file_reference', $dataArray)) {
                             $imageCount++;
@@ -192,7 +188,7 @@ class ImageToFileReference extends AbstractUpdate
             $this->getDatabaseConnection()->exec_UPDATEquery(
                 'tt_address',
                 'uid = ' . (int)$address['uid'],
-                array('image' => $imageCount)
+                ['image' => $imageCount]
             );
         }
     }

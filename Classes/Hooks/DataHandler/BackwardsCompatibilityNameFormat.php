@@ -31,7 +31,6 @@ class BackwardsCompatibilityNameFormat
      * @param int $id record uid
      * @param array $fieldArray record
      * @param object $pObj parent object
-     * @return void
      */
     public function processDatamap_postProcessFieldArray($status, $table, $id, &$fieldArray, $pObj)
     {

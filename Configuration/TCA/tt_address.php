@@ -429,39 +429,33 @@ return [
             'showitem' => 'name, --linebreak--,
 							gender, title, --linebreak--,
 							first_name, middle_name, --linebreak--,
-							last_name',
-            'canNotCollapse' => 1
+							last_name'
         ],
         'organization' => [
-            'showitem' => 'position, company',
-            'canNotCollapse' => 1
+            'showitem' => 'position, company'
         ],
         'address' => [
             'showitem' => 'address, --linebreak--,
 							city, zip, region, --linebreak--,
 							country,  --linebreak--,
 							latitude, --linebreak--,
-							longitude',
-            'canNotCollapse' => 1
+							longitude'
         ],
         'building' => [
-            'showitem' => 'building, room',
-            'canNotCollapse' => 1
+            'showitem' => 'building, room'
         ],
         'contact' => [
             'showitem' => 'email, --linebreak--,
 							phone, fax, --linebreak--,
 							mobile, --linebreak--,
 							www, --linebreak--,
-							birthday',
-            'canNotCollapse' => 1
+							birthday'
         ],
         'social' => [
             'showitem' => 'skype, --linebreak--,
 							twitter, --linebreak--,
 							facebook, --linebreak--,
-							linkedin',
-            'canNotCollapse' => 1
+							linkedin'
         ],
     ]
 ];

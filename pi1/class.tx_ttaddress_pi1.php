@@ -30,11 +30,6 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
     /**
      * @var string
      */
-    public $scriptRelPath = 'pi1/class.tx_ttaddress_pi1.php';
-
-    /**
-     * @var string
-     */
     public $extKey        = 'tt_address';
 
     /**
@@ -139,7 +134,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
     {
         $this->conf = $conf;
         $this->pi_setPiVarDefaults();
-        $this->pi_loadLL();
+        $this->pi_loadLL('EXT:tt_address/Resources/Private/Language/locallang_pi1.xml');
         $this->pi_initPIflexForm();
 
         // flexform data
@@ -149,8 +144,6 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
             'sDEF.combination'      => 'combination',
             'sDEF.sortBy'           => 'sortBy',
             'sDEF.sortOrder'        => 'sortOrder',
-            'sDEF.pages'            => 'pages',
-            'sDEF.recursive'        => 'recursive',
             'sDEF.pages'            => 'pages',
             'sDEF.recursive'        => 'recursive',
             'sDISPLAY.templateFile' => 'templateFile',

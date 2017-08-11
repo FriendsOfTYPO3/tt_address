@@ -6,14 +6,14 @@
 		<sDEF>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.sheet_selection</sheetTitle>
+					<sheetTitle>LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xml:pi1_flexform.sheet_selection</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<singleRecords>
 						<TCEforms>
 							<exclude>1</exclude>
-							<label>LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.single_records</label>
+							<label>LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xml:pi1_flexform.single_records</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -33,7 +33,7 @@
 					</singleRecords>
 					<groupSelection>
 						<TCEforms>
-							<label>LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.group_selection</label>
+							<label>LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xml:pi1_flexform.group_selection</label>
 							<config>
 								<type>select</type>
 								<renderMode>tree</renderMode>
@@ -57,16 +57,16 @@
 					</groupSelection>
 					<combination>
 						<TCEforms>
-							<label>LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.combination</label>
+							<label>LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xml:pi1_flexform.combination</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.combination.and</numIndex>
+										<numIndex index="0">LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xml:pi1_flexform.combination.and</numIndex>
 										<numIndex index="1">0</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.combination.or</numIndex>
+										<numIndex index="0">LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xml:pi1_flexform.combination.or</numIndex>
 										<numIndex index="1">1</numIndex>
 									</numIndex>
 								</items>
@@ -76,7 +76,7 @@
 					</combination>
 					<sortBy>
 						<TCEforms>
-							<label>LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.sortBy</label>
+							<label>LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xml:pi1_flexform.sortBy</label>
 							<config>
 								<type>select</type>
 								<items type="array">
@@ -91,16 +91,16 @@
 					</sortBy>
 					<sortOrder>
 						<TCEforms>
-							<label>LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.sortOrder</label>
+							<label>LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xml:pi1_flexform.sortOrder</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.sortOrder.ascending</numIndex>
+										<numIndex index="0">LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xml:pi1_flexform.sortOrder.ascending</numIndex>
 										<numIndex index="1">ASC</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.sortOrder.descending</numIndex>
+										<numIndex index="0">LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xml:pi1_flexform.sortOrder.descending</numIndex>
 										<numIndex index="1">DESC</numIndex>
 									</numIndex>
 								</items>
@@ -172,18 +172,18 @@
 		<sDISPLAY>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.sheet_display</sheetTitle>
+					<sheetTitle>LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xml:pi1_flexform.sheet_display</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<templateFile>
 						<TCEforms>
-							<label>LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.templateFile</label>
+							<label>LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xml:pi1_flexform.templateFile</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:tt_address/pi1/locallang_ff.xml:pi1_flexform.templateFile.I.0</numIndex>
+										<numIndex index="0">LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xml:pi1_flexform.templateFile.I.0</numIndex>
 										<numIndex index="1">default</numIndex>
 										<numIndex index="2">EXT:tt_address/res/default_hcard.gif</numIndex>
 									</numIndex>

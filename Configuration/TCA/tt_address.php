@@ -15,7 +15,7 @@ return [
         'cruser_id' => 'cruser_id',
         'prependAtCopy' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.prependAtCopy',
         'delete' => 'deleted',
-        'title' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address',
+        'title' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address',
         'versioningWS' => true,
         'origUid' => 't3_origuid',
         'thumbnail' => 'image',
@@ -62,13 +62,13 @@ return [
             ]
         ],
         'gender' => [
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address.gender',
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender',
             'config' => [
                 'type' => 'radio',
                 'default' => 'm',
                 'items' => [
-                    ['LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address.gender.m', 'm'],
-                    ['LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address.gender.f', 'f']
+                    ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.m', 'm'],
+                    ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.f', 'f']
                 ]
             ]
         ],
@@ -94,7 +94,7 @@ return [
         ],
         'first_name' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address.first_name',
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.first_name',
             'config' => [
                 'type' => 'input',
                 'size' => '20',
@@ -104,7 +104,7 @@ return [
         ],
         'middle_name' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address.middle_name',
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.middle_name',
             'config' => [
                 'type' => 'input',
                 'size' => '20',
@@ -114,7 +114,7 @@ return [
         ],
         'last_name' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address.last_name',
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.last_name',
             'config' => [
                 'type' => 'input',
                 'size' => '20',
@@ -124,7 +124,7 @@ return [
         ],
         'birthday' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address.birthday',
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.birthday',
             'config' => [
                 'type' => 'input',
                 'eval' => 'date',
@@ -141,7 +141,7 @@ return [
             ]
         ],
         'building' => [
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address.building',
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.building',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -150,7 +150,7 @@ return [
             ]
         ],
         'room' => [
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address.room',
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.room',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -179,7 +179,7 @@ return [
         ],
         'mobile' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address.mobile',
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.mobile',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -229,7 +229,7 @@ return [
         ],
         'skype' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address.skype',
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.skype',
             'config' => [
                 'type' => 'input',
                 'size' => '20',
@@ -240,7 +240,7 @@ return [
         ],
         'twitter' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address.twitter',
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.twitter',
             'config' => [
                 'type' => 'input',
                 'size' => '20',
@@ -251,7 +251,7 @@ return [
         ],
         'facebook' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address.facebook',
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.facebook',
             'config' => [
                 'type' => 'input',
                 'size' => '20',
@@ -262,7 +262,7 @@ return [
         ],
         'linkedin' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address.linkedin',
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.linkedin',
             'config' => [
                 'type' => 'input',
                 'size' => '20',
@@ -273,7 +273,7 @@ return [
         ],
         'company' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address.organization',
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.organization',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -283,7 +283,7 @@ return [
         ],
         'position' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address.position',
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.position',
             'config' => [
                 'type' => 'input',
                 'size' => '20',
@@ -311,7 +311,7 @@ return [
         ],
         'region' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address.region',
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.region',
             'config' => [
                 'type' => 'input',
                 'size' => '10',
@@ -393,7 +393,7 @@ return [
         ],
         'latitude' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address.latitude',
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.latitude',
             'config' => [
                 'type' => 'input',
         'eval' => 'nospace,null',
@@ -402,7 +402,7 @@ return [
         ],
         'longitude' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address.longitude',
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.longitude',
             'config' => [
                 'type' => 'input',
         'eval' => 'nospace,null',
@@ -413,14 +413,14 @@ return [
     'types' => [
         '0' => ['showitem' =>
             'hidden,
-			--palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address_palette.name;name,
+			--palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.name;name,
 			image, description,
-			--div--;LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address_tab.contact,
-				--palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address_palette.address;address,
-				--palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address_palette.building;building,
-				--palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address_palette.organization;organization,
-				--palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address_palette.contact;contact,
-				--palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:tt_address_palette.social;social,
+			--div--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_tab.contact,
+				--palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.address;address,
+				--palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.building;building,
+				--palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.organization;organization,
+				--palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.contact;contact,
+				--palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.social;social,
 			--div--;LLL:EXT:lang/locallang_tca.xlf:sys_category.tabs.category, categories
 			']
     ],

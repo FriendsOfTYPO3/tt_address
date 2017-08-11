@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0" xmlns:t3="http://typo3.org/schemas/xliff">
+    <file t3:id="1502484203" target-language="de" datatype="plaintext" original="messages" date="2017-08-11T20:43:52Z" product-name="tt_address">
+        <header/>
+        <body>
+            <trans-unit id="tt_address">
+                <source>Adresse</source>
+            </trans-unit>
+            <trans-unit id="tt_address.gender">
+                <source>Geschlecht (Anrede)</source>
+            </trans-unit>
+            <trans-unit id="tt_address.gender.m">
+                <source>Männlich (Herr)</source>
+            </trans-unit>
+            <trans-unit id="tt_address.gender.f">
+                <source>Weiblich (Frau)</source>
+            </trans-unit>
+            <trans-unit id="tt_address.first_name">
+                <source>Vorname</source>
+            </trans-unit>
+            <trans-unit id="tt_address.middle_name">
+                <source>Mittelname</source>
+            </trans-unit>
+            <trans-unit id="tt_address.last_name">
+                <source>Nachname</source>
+            </trans-unit>
+            <trans-unit id="tt_address.birthday">
+                <source>Geburtstag</source>
+            </trans-unit>
+            <trans-unit id="tt_address.building">
+                <source>Gebäude</source>
+            </trans-unit>
+            <trans-unit id="tt_address.room">
+                <source>Raum</source>
+            </trans-unit>
+            <trans-unit id="tt_address.organization">
+                <source>Organisation</source>
+            </trans-unit>
+            <trans-unit id="tt_address.position">
+                <source>Position</source>
+            </trans-unit>
+            <trans-unit id="tt_address.region">
+                <source>Region / Bundesland</source>
+            </trans-unit>
+            <trans-unit id="tt_address.mobile">
+                <source>Mobil</source>
+            </trans-unit>
+            <trans-unit id="tt_address.skype">
+                <source>Skype</source>
+            </trans-unit>
+            <trans-unit id="tt_address.twitter">
+                <source>Twitter</source>
+            </trans-unit>
+            <trans-unit id="tt_address.facebook">
+                <source>Facebook</source>
+            </trans-unit>
+            <trans-unit id="tt_address.linkedin">
+                <source>LinkedIn</source>
+            </trans-unit>
+            <trans-unit id="tt_address.latitude">
+                <source>Latitude</source>
+            </trans-unit>
+            <trans-unit id="tt_address.longitude">
+                <source>Longitude</source>
+            </trans-unit>
+            <trans-unit id="tt_address_tab.contact">
+                <source>Kontakt</source>
+            </trans-unit>
+            <trans-unit id="tt_address_palette.name">
+                <source>Name</source>
+            </trans-unit>
+            <trans-unit id="tt_address_palette.organization">
+                <source>Organisation</source>
+            </trans-unit>
+            <trans-unit id="tt_address_palette.address">
+                <source>Anschrift</source>
+            </trans-unit>
+            <trans-unit id="tt_address_palette.building">
+                <source>Gebäude</source>
+            </trans-unit>
+            <trans-unit id="tt_address_palette.contact">
+                <source>Kontakt</source>
+            </trans-unit>
+            <trans-unit id="tt_address_palette.social">
+                <source>Soziale Netzwerke</source>
+            </trans-unit>
+            <trans-unit id="pi_tt_address">
+                <source>Adressen</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

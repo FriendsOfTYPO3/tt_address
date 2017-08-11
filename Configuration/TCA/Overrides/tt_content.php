@@ -3,7 +3,7 @@ defined('TYPO3_MODE') or die();
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
     [
-        'LLL:EXT:tt_address/Resources/Private/Language/locallang_tca.xml:pi_tt_address',
+        'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:pi_tt_address',
         'tt_address_pi1'
     ],
     'list_type',

@@ -33,8 +33,8 @@ class NewContentElementWizardHook
         $wizardItems['plugins_tx_ttaddress_pi1'] = [
             // @todo: change to icon identifier
             'icon'        => ExtensionManagementUtility::extPath('tt_address') . 'Resources/Public/Icons/ContentElementWizard.gif',
-            'title'       => $languageService->sL('EXT:tt_address/Resources/Private/Language/locallang_pi1.xml:pi1_title'),
-            'description' => $languageService->sL('EXT:tt_address/Resources/Private/Language/locallang_pi1.xml:pi1_plus_wiz_description'),
+            'title'       => $languageService->sL('EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_title'),
+            'description' => $languageService->sL('EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_plus_wiz_description'),
             'params'      => '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=tt_address_pi1'
         ];
         return $wizardItems;

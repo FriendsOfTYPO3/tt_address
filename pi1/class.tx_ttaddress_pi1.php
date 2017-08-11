@@ -134,7 +134,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
     {
         $this->conf = $conf;
         $this->pi_setPiVarDefaults();
-        $this->pi_loadLL('EXT:tt_address/Resources/Private/Language/locallang_pi1.xml');
+        $this->pi_loadLL('EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf');
         $this->pi_initPIflexForm();
 
         // flexform data

@@ -50,7 +50,7 @@ class AddFieldsToSelector
         // add sorting by order of single selection
         $selectOptions[] = [
             'field' => 'singleSelection',
-            'label' => $GLOBALS['LANG']->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xml:pi1_flexform.sortBy.singleSelection')
+            'label' => $GLOBALS['LANG']->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_flexform.sortBy.singleSelection')
         ];
 
         // sort by labels

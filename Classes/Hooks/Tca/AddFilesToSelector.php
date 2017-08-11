@@ -32,22 +32,15 @@ class AddFilesToSelector
      */
     public function main(&$params, &$pObj)
     {
-
-        // get the current page ID
-    if (version_compare(TYPO3_version, '7.6', '<')) {
-        // legacy code for 6.2
-        $thePageId = $params['row']['pid'];
-    } else {
         $thePageId = $params['flexParentDatabaseRow']['pid'];
-    }
 
         /** @var TemplateService $template */
-        $template = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\TypoScript\\TemplateService');
+        $template = GeneralUtility::makeInstance(TemplateService::class);
         // do not log time-performance information
         $template->tt_track = 0;
         $template->init();
         /** @var PageRepository $sys_page */
-        $sys_page = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
+        $sys_page = GeneralUtility::makeInstance(PageRepository::class);
         $rootLine = $sys_page->getRootLine($thePageId);
         // generate the constants/config + hierarchy info for the template.
         $template->runThroughTemplates($rootLine);
@@ -60,16 +53,12 @@ class AddFilesToSelector
 
         // if that direcotry is valid and is a directory then select files in it
         if (@is_dir($readPath)) {
-            $template_files = GeneralUtility::getFilesInDir($readPath, 'tmpl,html,htm', 1, 1);
+            $template_files = GeneralUtility::getFilesInDir($readPath, 'tmpl,html,htm', true);
             /** @var HtmlParser $parseHTML */
-            $parseHTML = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Html\\HtmlParser');
+            $parseHTML = GeneralUtility::makeInstance(HtmlParser::class);
 
             foreach ($template_files as $htmlFilePath) {
-                // reset vars
-                $selectorBoxItem_title = '';
-                $selectorBoxItem_icon  = '';
-
-                // read template content
+                // Read template content
                 $content = GeneralUtility::getUrl($htmlFilePath);
                 // ... and extract content of the title-tags
                 $parts = $parseHTML->splitIntoBlock('title', $content);
@@ -80,9 +69,11 @@ class AddFilesToSelector
 
                 // try to look up an image icon for the template
                 $fI = GeneralUtility::split_fileref($htmlFilePath);
-                $testImageFilename=$readPath . $fI['filebody'] . '.gif';
+                $testImageFilename = $readPath . $fI['filebody'] . '.gif';
                 if (@is_file($testImageFilename)) {
                     $selectorBoxItem_icon = '../' . substr($testImageFilename, strlen(PATH_site));
+                } else {
+                    $selectorBoxItem_icon = '';
                 }
 
                 // finally add the new item

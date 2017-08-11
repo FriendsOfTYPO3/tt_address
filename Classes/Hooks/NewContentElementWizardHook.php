@@ -1,4 +1,6 @@
 <?php
+namespace TYPO3\TtAddress\Hooks;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -15,42 +17,34 @@
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 /**
- * adds the wizard icon.
- *
- * @author Ingo Renner <typo3@ingo-renner.com>
+ * Adds the "pi1" item to the new content element wizard
  */
-class tx_ttaddress_pi1_wizicon
+class NewContentElementWizardHook
 {
     /**
      * Adds the tt_address pi1 wizard icon
      *
-     * @param array Input array with wizard items for plugins
+     * @param array $wizardItems Input array with wizard items for plugins
      * @return array Modified input array, having the item for tt_address pi1 added.
      */
     public function proc($wizardItems)
     {
-        $LL = $this->includeLocalLang();
-
+        $languageService = $this->getLanguageService();
         $wizardItems['plugins_tx_ttaddress_pi1'] = [
+            // @todo: change to icon identifier
             'icon'        => ExtensionManagementUtility::extPath('tt_address') . 'Resources/Public/Icons/ContentElementWizard.gif',
-            'title'       => $GLOBALS['LANG']->getLLL('pi1_title', $LL),
-            'description' => $GLOBALS['LANG']->getLLL('pi1_plus_wiz_description', $LL),
+            'title'       => $languageService->sL('EXT:tt_address/locallang.xml:pi1_title'),
+            'description' => $languageService->sL('EXT:tt_address/locallang.xml:pi1_plus_wiz_description'),
             'params'      => '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=tt_address_pi1'
         ];
-
         return $wizardItems;
     }
 
     /**
-     * Includes the locallang file for the 'tt_address' extension
-     *
-     * @return array The LOCAL_LANG array
+     * @return \TYPO3\CMS\Lang\LanguageService
      */
-    protected function includeLocalLang()
+    protected function getLanguageService()
     {
-        $llFile = ExtensionManagementUtility::extPath('tt_address') . 'locallang.xml';
-
-        $localLanguageParser = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Localization\Parser\LocallangXmlParser::class);
-        return $localLanguageParser->getParsedData($llFile, $GLOBALS['LANG']->lang);
+        return $GLOBALS['LANG'];
     }
 }

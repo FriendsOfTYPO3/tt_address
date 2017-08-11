@@ -34,12 +34,21 @@ class AddFilesToSelector
     {
 
         // get the current page ID
-    if (version_compare(TYPO3_version, '7.6', '<')) {
-        // legacy code for 6.2
-        $thePageId = $params['row']['pid'];
-    } else {
-        $thePageId = $params['flexParentDatabaseRow']['pid'];
-    }
+        if (version_compare(TYPO3_version, '7.6', '<')) {
+            // legacy code for 6.2
+            $thePageId = $params['row']['pid'];
+        } else {
+            $thePageId = $params['flexParentDatabaseRow']['pid'];
+        }
+
+        // workaround for problem with compatibility6
+        if (!$thePageId) {
+            $uid = $params['row']['uid'];
+            $row = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('pid', 'tt_content', "uid=$uid");
+            if (isset($row['pid'])) {
+                $thePageId = $row['pid'];
+            } 
+        }
 
         /** @var TemplateService $template */
         $template = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\TypoScript\\TemplateService');

@@ -2,8 +2,8 @@ plugin.tx_ttaddress_pi1 = USER
 plugin.tx_ttaddress_pi1 {
 	userFunc = TYPO3\TtAddress\Controller\LegacyPluginController->main
 
-	templatePath = EXT:tt_address/res/
-	defaultTemplateFileName = default_hcard.htm
+	templatePath = EXT:tt_address/Resources/Public/LegacyPluginTemplate/
+	defaultTemplateFileName = default.html
 	pidList = 0
 	recursive = 0
 	sortByColumn = name

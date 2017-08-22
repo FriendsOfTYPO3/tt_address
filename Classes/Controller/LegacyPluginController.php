@@ -310,7 +310,6 @@ class LegacyPluginController extends AbstractPlugin
         }
 
         return $addresses;
-
     }
 
     /**

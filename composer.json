@@ -19,8 +19,14 @@
     "typo3/cms": ">=7.6",
     "php": ">=5.5"
   },
+  "extra": {
+    "typo3/class-alias-loader": {
+      "class-alias-maps": [
+        "Migrations/Code/ClassAliasMap.php"
+      ]
+    }
+  },
   "autoload": {
-    "classmap": ["pi1/"],
     "psr-4": {
       "TYPO3\\TtAddress\\": "Classes"
     }

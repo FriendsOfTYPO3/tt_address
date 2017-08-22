@@ -1,6 +1,6 @@
 plugin.tx_ttaddress_pi1 = USER
 plugin.tx_ttaddress_pi1 {
-	userFunc = tx_ttaddress_pi1->main
+	userFunc = TYPO3\TtAddress\Controller\LegacyPluginController->main
 
 	templatePath = EXT:tt_address/res/
 	defaultTemplateFileName = default_hcard.htm

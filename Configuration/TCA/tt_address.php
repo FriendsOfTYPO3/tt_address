@@ -13,7 +13,7 @@ return [
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
-        'prependAtCopy' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.prependAtCopy',
+        'prependAtCopy' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.prependAtCopy',
         'delete' => 'deleted',
         'title' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address',
         'versioningWS' => true,
@@ -56,7 +56,7 @@ return [
         ],
         'hidden' => [
             'exclude' => 1,
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.hidden',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check'
             ]
@@ -74,7 +74,7 @@ return [
         ],
         'title' => [
             'exclude' => 1,
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.title_person',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.title_person',
             'config' => [
                 'type' => 'input',
                 'size' => '8',
@@ -83,7 +83,7 @@ return [
             ]
         ],
         'name' => [
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.name',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.name',
             'config' => [
                 'type' => 'input',
                 'readOnly' => $settings->isReadOnlyNameField(),
@@ -127,13 +127,14 @@ return [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.birthday',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputDateTime',
                 'eval' => 'date',
                 'size' => '8',
-                'max' => '20'
+                'default' => 0
             ]
         ],
         'address' => [
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.address',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.address',
             'config' => [
                 'type' => 'text',
                 'cols' => '20',
@@ -159,7 +160,7 @@ return [
             ]
         ],
         'phone' => [
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.phone',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.phone',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -169,7 +170,7 @@ return [
         ],
         'fax' => [
             'exclude' => 1,
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.fax',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.fax',
             'config' => [
                 'type' => 'input',
                 'size' => '20',
@@ -189,19 +190,19 @@ return [
         ],
         'www' => [
             'exclude' => 1,
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.www',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.www',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputLink',
                 'eval' => 'trim',
                 'size' => '20',
                 'max' => '255',
-        'softref' => 'typolink,url',
+                'softref' => 'typolink,url',
                 'wizards' => [
-                    '_PADDING' => 2,
                     'link' => [
                         'type' => 'popup',
-                        'title' => 'LLL:EXT:cms/locallang_ttc.xml:header_link_formlabel',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
+                        'title' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_link_formlabel',
+                        'icon' => 'actions-wizard-link',
                         'module' => [
                             'name' => 'wizard_link',
                             'urlParameters' => [
@@ -212,19 +213,19 @@ return [
                         'params' => [
                             'blindLinkOptions' => 'mail,file,spec,folder',
                         ],
-                        'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1',
+                        'JSopenParams' => 'height=600,width=800,status=0,menubar=0,scrollbars=1',
                     ],
                 ]
             ]
         ],
         'email' => [
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.email',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.email',
             'config' => [
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
                 'max' => '255',
-        'softref' => 'email'
+                'softref' => 'email'
             ]
         ],
         'skype' => [
@@ -292,7 +293,7 @@ return [
             ]
         ],
         'city' => [
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.city',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.city',
             'config' => [
                 'type' => 'input',
                 'size' => '20',
@@ -301,7 +302,7 @@ return [
             ]
         ],
         'zip' => [
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.zip',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.zip',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -321,7 +322,7 @@ return [
         ],
         'country' => [
             'exclude' => 1,
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.country',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.country',
             'config' => [
                 'type' => 'input',
                 'size' => '20',
@@ -331,14 +332,14 @@ return [
         ],
         'image' => [
             'exclude' => 1,
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.image',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.image',
             'config' =>\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'image',
                 [
                     'maxitems' => 6,
                     'minitems' => 0,
                     'appearance' => [
-                        'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:images.addFileReference'
+                        'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'
                     ],
                     'foreign_types' => [
                         '0' => [
@@ -378,12 +379,12 @@ return [
         ],
         'description' => [
             'exclude' => 1,
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xml:LGL.description',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.description',
             'config' => [
                 'type' => 'text',
                 'rows' => 5,
                 'cols' => 48,
-        'softref' => 'typolink_tag,url',
+                'softref' => 'typolink_tag,url',
             ]
         ],
         'categories' => [
@@ -396,8 +397,8 @@ return [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.latitude',
             'config' => [
                 'type' => 'input',
-        'eval' => 'nospace,null',
-        'default' => null
+                'eval' => 'nospace,null',
+                'default' => null
             ]
         ],
         'longitude' => [
@@ -405,8 +406,8 @@ return [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.longitude',
             'config' => [
                 'type' => 'input',
-        'eval' => 'nospace,null',
-        'default' => null
+                'eval' => 'nospace,null',
+                'default' => null
             ]
         ],
     ],

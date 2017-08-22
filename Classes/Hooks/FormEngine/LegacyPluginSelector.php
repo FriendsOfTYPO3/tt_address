@@ -95,7 +95,7 @@ class LegacyPluginSelector
 
             foreach ($template_files as $htmlFilePath) {
                 // Read template content
-                $content = GeneralUtility::getUrl($htmlFilePath);
+                $content = file_get_contents($htmlFilePath);
                 // ... and extract content of the title-tags
                 $parts = $parseHTML->splitIntoBlock('title', $content);
                 $titleTagContent = $parseHTML->removeFirstAndLastTag($parts[1]);
@@ -105,11 +105,15 @@ class LegacyPluginSelector
 
                 // try to look up an image icon for the template
                 $fI = GeneralUtility::split_fileref($htmlFilePath);
-                $testImageFilename = $readPath . $fI['filebody'] . '.gif';
-                if (@is_file($testImageFilename)) {
-                    $selectorBoxItem_icon = '../' . substr($testImageFilename, strlen(PATH_site));
-                } else {
-                    $selectorBoxItem_icon = '';
+
+                $fileExtensionsToCheck = ['.gif', '.png', '.jpeg', '.jpg'];
+                $selectorBoxItem_icon = '';
+                foreach ($fileExtensionsToCheck as $fileExtension) {
+                    $testImageFilename = $readPath . $fI['filebody'] . $fileExtension;
+                    if (@is_file($testImageFilename)) {
+                        $selectorBoxItem_icon = '../' . substr($testImageFilename, strlen(PATH_site));
+                        break;
+                    }
                 }
 
                 // finally add the new item

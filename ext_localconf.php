@@ -5,7 +5,7 @@ defined('TYPO3_MODE') or die();
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPItoST43(
     'tt_address',
-    'pi1/class.tx_ttaddress_pi1.php',
+    'Classes/Controller/LegacyPluginController.php',
     '_pi1',
     'list_type',
     true

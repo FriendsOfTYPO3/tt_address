@@ -42,6 +42,16 @@ class AddFilesToSelector
 		$thePageId = $params['flexParentDatabaseRow']['pid'];
 	}
 
+        // workaround for problem with compatibility6
+        if (!$thePageId) {
+            $uid = $params['row']['uid'];
+            $row = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('pid', 'tt_content', "uid=$uid");
+            if (isset($row['pid'])) {
+                $thePageId = $row['pid'];
+            }
+        }
+
+
         /** @var TemplateService $template */
         $template = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\TypoScript\\TemplateService');
         // do not log time-performance information

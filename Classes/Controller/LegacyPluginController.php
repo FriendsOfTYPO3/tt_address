@@ -502,7 +502,7 @@ class LegacyPluginController extends AbstractPlugin
             $templateFile = $this->conf['defaultTemplateFileName'];
         }
 
-        $templateCode = $this->cObj->fileResource($this->conf['templatePath'] . $templateFile);
+        $templateCode = file_get_contents(GeneralUtility::getFileAbsFileName($this->conf['templatePath'] . $templateFile));
         return $this->cObj->getSubpart($templateCode, '###TEMPLATE_ADDRESS###');
     }
 

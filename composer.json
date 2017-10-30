@@ -16,7 +16,7 @@
   ],
   "license": "GPL-2.0+",
   "require": {
-    "typo3/cms": ">=7.6",
+    "typo3/cms-core": ">=7.6",
     "php": ">=5.5"
   },
   "extra": {

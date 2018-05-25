@@ -102,7 +102,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
       $querySettings = $this->addressRepository->createQuery()->getQuerySettings();
       $querySettings->setRespectStoragePage(TRUE);
       $querySettings->setStoragePageIds($storagePageIds);
-      $querySettings->setOrderings($orderings);
+      $this->addressRepository->setDefaultOrderings($orderings);
       $this->addressRepository->setDefaultQuerySettings($querySettings);
       $addresses = $this->addressRepository->findAll();
       
@@ -111,7 +111,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
       // Plugin settings are empty, just retrieve all records without respecting storagePage
       $querySettings = $this->addressRepository->createQuery()->getQuerySettings();
       $querySettings->setRespectStoragePage(FALSE);
-      $querySettings->setOrderings($orderings);
+      $this->addressRepository->setDefaultOrderings($orderings);
       $this->addressRepository->setDefaultQuerySettings($querySettings);
       // no settings, fallback to findAll
       $addresses = $this->addressRepository->findAll();

@@ -390,7 +390,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
                 'renderObj.' => array(
                     'file.' => array(
                         'import.' => array(
-                            'data' => 'file:current:uid'
+                            'data' => 'file:current:uid_local // file:current:uid'
                         ),
                         'treatIdAsReference' => 1
                     ),

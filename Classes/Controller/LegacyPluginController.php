@@ -375,7 +375,7 @@ class LegacyPluginController extends AbstractPlugin
                 'renderObj.' => [
                     'file.' => [
                         'import.' => [
-                            'data' => 'file:current:uid'
+                            'data' => 'file:current:uid_local // file:current:uid'
                         ],
                         'treatIdAsReference' => '1'
                     ],

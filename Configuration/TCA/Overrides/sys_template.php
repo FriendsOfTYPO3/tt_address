@@ -2,7 +2,6 @@
 defined('TYPO3_MODE') or die();
 
 
-$_EXTKEY = 'tt_address';
 $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address']);
 
 // Add static templates

@@ -1,21 +1,19 @@
 <?php
 defined('TYPO3_MODE') or die();
 
-$_EXTCONF = unserialize($_EXTCONF);
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addUserTSConfig('
-	options.saveDocNew.tt_address = 1
-');
+$localExtConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address']);
 
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addUserTSConfig('options.saveDocNew.tt_address = 1');
 
-if($_EXTCONF['activatePiBase'] == 1) {
-  \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPItoST43(
-    'tt_address',
-    'Classes/Controller/LegacyPluginController.php',
-    '_pi1',
-    'list_type',
-    true
-  );
+if($localExtConf['activatePiBase'] === 1) {
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPItoST43(
+        'tt_address',
+        'Classes/Controller/LegacyPluginController.php',
+        '_pi1',
+        'list_type',
+        true
+    );
 }
 
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = \TYPO3\TtAddress\Hooks\DataHandler\BackwardsCompatibilityNameFormat::class;

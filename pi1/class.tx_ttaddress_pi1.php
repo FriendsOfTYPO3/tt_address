@@ -374,6 +374,11 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         $markerArray['###MAINGROUP###']    = $lcObj->stdWrap($address['groups'][0]['title'], $lConf['mainGroup.']);
         $markerArray['###GROUPLIST###']    = $lcObj->stdWrap($address['groupList'],          $lConf['groupList.']);
 
+        if ((bool)version_compare(TYPO3_branch, '8.7', '<')) {
+            $cObjectDataParameter = 'file:current:uid';
+        } else {
+            $cObjectDataParameter = 'file:current:uid_local // file:current:uid';
+        }
         // the image
         $markerArray['###IMAGE###'] = '';
         if (!empty($address['image'])) {
@@ -390,7 +395,7 @@ class tx_ttaddress_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
                 'renderObj.' => array(
                     'file.' => array(
                         'import.' => array(
-                            'data' => 'file:current:uid_local // file:current:uid'
+                            'data' => $cObjectDataParameter
                         ),
                         'treatIdAsReference' => 1
                     ),

@@ -421,7 +421,6 @@ return [
                 'rows' => 5,
                 'cols' => 48,
                 'softref' => 'typolink_tag,url',
-<<<<<<< HEAD
             ]
         ],
         'categories' => [
@@ -471,9 +470,6 @@ return [
         ],
         'organization' => [
             'showitem' => 'position, company'
-=======
-            ],
->>>>>>> [TASK] Rebase fork with current master
         ],
         'address' => [
             'showitem' => 'address, --linebreak--,
@@ -498,5 +494,5 @@ return [
                             facebook, --linebreak--,
                             linkedin'
         ],
-    ]
+    ],
 ];

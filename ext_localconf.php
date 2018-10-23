@@ -1,11 +1,11 @@
 <?php
 defined('TYPO3_MODE') or die();
 
-
 $localExtConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address']);
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addUserTSConfig('options.saveDocNew.tt_address = 1');
 
+// Add old legacy plugin
 if($localExtConf['activatePiBase'] === 1) {
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPItoST43(
         'tt_address',
@@ -14,6 +14,20 @@ if($localExtConf['activatePiBase'] === 1) {
         'list_type',
         true
     );
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('
+        mod.wizards.newContentElement.wizardItems.plugins {
+            elements.tx_ttaddress_pi1 {
+                iconIdentifier = tt-address-plugin
+                title = LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_title
+                description = LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_plus_wiz_description
+                tt_content_defValues {
+                    CType = list
+                    list_type = tt_address_pi1
+                }
+            }
+            show :=addToList(tx_ttaddress_pi1)
+        }
+    ');
 }
 
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = \TYPO3\TtAddress\Hooks\DataHandler\BackwardsCompatibilityNameFormat::class;
@@ -33,6 +47,7 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('realurl')) {
     'TYPO3\\TtAddress\\Hooks\\RealUrlAutoConfiguration->addTtAddressConfig';
 }
 
+// Adds the new fluid/extbase-plugin to New Content Element wizard
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . 'tt_address' . '/Configuration/TSconfig/NewContentElementWizard.ts">');
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
@@ -52,7 +67,6 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals']['TYPO3\\TtAddress\
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals']['TYPO3\\TtAddress\\Evaluation\\LatitudeEvaluation'] = '';
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals']['TYPO3\\TtAddress\\Evaluation\\LongitudeEvaluation'] = '';
 
-
 // Update scripts
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['tt_address_group'] = \TYPO3\TtAddress\Updates\AddressGroupToSysCategory::class;
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['tt_address_image'] = \TYPO3\TtAddress\Updates\ImageToFileReference::class;
@@ -65,19 +79,4 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['tt_address_l
     ['source' => 'EXT:tt_address/Resources/Public/Icons/ContentElementWizard.gif']
 );
 
-if ($localExtConf['activatePiBase'] === 1) {
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('
-        mod.wizards.newContentElement.wizardItems.plugins {
-            elements.tx_ttaddress_pi1 {
-                iconIdentifier = tt-address-plugin
-                title = LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_title
-                description = LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_plus_wiz_description
-                tt_content_defValues {
-                    CType = list
-                    list_type = tt_address_pi1
-                }
-            }
-            show :=addToList(tx_ttaddress_pi1)
-        }
-    ');
-}
+

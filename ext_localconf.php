@@ -22,7 +22,7 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('realurl')) {
 
 $localExtConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address']);
 // Add old legacy plugin
-if($localExtConf['activatePiBase'] === 1) {
+//if($localExtConf['activatePiBase'] === 1) {
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPItoST43(
         'tt_address',
         'Classes/Controller/LegacyPluginController.php',
@@ -32,7 +32,7 @@ if($localExtConf['activatePiBase'] === 1) {
     );
     // Adds the old legacy plugin to New Content Element wizard
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . 'tt_address' . '/Configuration/TSconfig/AddLegacyPluginToNewCEWizard.ts">');
-}
+//}
 
 
 // Adds the new fluid/extbase-plugin to New Content Element wizard

@@ -14,7 +14,8 @@ namespace TYPO3\TtAddress\ViewHelpers\Widget;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
+ 
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 /**
  * This ViewHelper renders a Pagination of objects.
@@ -34,40 +35,47 @@ namespace TYPO3\TtAddress\ViewHelpers\Widget;
 class PaginateViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetViewHelper
 {
 
-  /**
-   * @var \TYPO3\TtAddress\ViewHelpers\Widget\Controller\PaginateController
-   */
-  protected $controller;
+    /**
+     * @var \TYPO3\TtAddress\ViewHelpers\Widget\Controller\PaginateController
+     */
+    protected $controller;
   
   
-  /**
-   * Inject controller
-   *
-   * @param \TYPO3\TtAddress\ViewHelpers\Widget\Controller\PaginateController $controller
-   * @return void
-   */
-  public function injectController(\TYPO3\TtAddress\ViewHelpers\Widget\Controller\PaginateController $controller)
-  {
-    $this->controller = $controller;
-  }
+    /**
+     * Inject controller
+     *
+     * @param \TYPO3\TtAddress\ViewHelpers\Widget\Controller\PaginateController $controller
+     * @return void
+     */
+    public function injectController(\TYPO3\TtAddress\ViewHelpers\Widget\Controller\PaginateController $controller)
+    {
+      $this->controller = $controller;
+    }
   
+    /**
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('objects', QueryResultInterface::class, 'Objects to auto-complete', true);
+        $this->registerArgument('as', 'string', 'Property to fill', true);
+        $this->registerArgument('configuration', 'array', 'Configuration', false, ['itemsPerPage' => 10, 'insertAbove' => false, 'insertBelow' => true]);
+        $this->registerArgument('initial', 'array', 'Initial configuration', false, []);
+    }
   
-  /**
-   * Render everything
-   *
-   * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $objects
-   * @param string $as
-   * @param mixed $configuration
-   * @param array $initial
-   * @internal param array $initial
-   * @return string
-   */
-  public function render(
-    \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $objects,
-    $as,
-    $configuration = array('itemsPerPage' => 10, 'insertAbove' => FALSE, 'insertBelow' => TRUE), $initial = array()
-  )
-  {
-    return $this->initiateSubRequest();
-  }
+    /**
+     * Render everything
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $objects
+     * @param string $as
+     * @param mixed $configuration
+     * @param array $initial
+     * @internal param array $initial
+     * @return string
+     */
+    public function render()
+    {
+        return $this->initiateSubRequest();
+    }
 }

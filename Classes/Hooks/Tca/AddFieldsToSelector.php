@@ -39,7 +39,7 @@ class AddFieldsToSelector
         $selectOptions = [];
         foreach ($sortFields as $field) {
             $label = $GLOBALS['LANG']->sL($GLOBALS['TCA']['tt_address']['columns'][$field]['label']);
-            $label = substr($label, 0, -1);
+            $label = rtrim($label, ':');
 
             $selectOptions[] = [
                 'field' => $field,

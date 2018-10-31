@@ -68,19 +68,31 @@ class AddressRepository extends Repository
   {
     $uidArray = explode(",", $settings['singleRecords']);
     $query = $this->createQuery();
-    $query->matching(
-      $query->in('uid', $uidArray),
-      $query->logicalAnd(
-        $query->equals('hidden', 0),
-        $query->equals('deleted', 0)
-      )
-    );
-    // set sorting only, if not singleSelection chosen
-    // if singleSelection chosen, the sorting automates to sort-order of the uid-array
-    if ($settings['sortBy'] != 'singleSelection') {
-      $query->setOrderings($orderings);
+    
+    if ($settings['sortBy'] == 'singleSelection') {
+        // if singleSelection chosen, we need some different solutions for sorting,
+        // as this is done manually in the flexform field ...
+        $result = 0;
+        if ($settings['sortOrder'] == 'DESC') {
+            // make array reverse
+            $uidArray = array_reverse($uidArray);
+        }
+        $uidList = implode (',', $uidArray);
+        $customSql = 'SELECT * FROM tt_address WHERE uid IN (' . $uidList . ') AND hidden=0 AND deleted=0 ORDER BY FIELD(uid, ' . $uidList . ')';
+        $query->statement($customSql);
+    } else {
+        // "normal" operation
+        $query = $this->createQuery();
+        $query->matching(
+            $query->in('uid', $uidArray),
+            $query->logicalAnd(
+                $query->equals('hidden', 0),
+                $query->equals('deleted', 0)
+            )
+        );
+        $query->setOrderings($orderings);
     }
-    return $query->execute();
+    return $query->execute();;
   }
  
 

@@ -2,8 +2,9 @@
   <div class="addressImage">
     <f:link.action action="show" arguments="{address : address}" title="{address.firstTitle} {address.firstName} {address.middleName} {address.lastName}" pageUid="{settings.singlePid}">
       <f:if condition="{address.image}">
-        <f:then>      
-          <f:image image="{address.image.0}" width="140c" height="140c" alt="{address.title} {address.firstName} {address.middleName} {address.lastName}" />
+        <f:then>
+         
+          <f:image image="{address.image.0.originalResource}" width="140c" height="140c" alt="{address.title} {address.firstName} {address.middleName} {address.lastName}" />
         </f:then>
         <f:else>
           <div class="addressImagePlaceholder"></div>

@@ -72,7 +72,6 @@ class AddressRepository extends Repository
     if ($settings['sortBy'] == 'singleSelection') {
         // if singleSelection chosen, we need some different solutions for sorting,
         // as this is done manually in the flexform field ...
-        $result = 0;
         if ($settings['sortOrder'] == 'DESC') {
             // make array reverse
             $uidArray = array_reverse($uidArray);
@@ -92,7 +91,7 @@ class AddressRepository extends Repository
         );
         $query->setOrderings($orderings);
     }
-    return $query->execute();;
+    return $query->execute();
   }
  
 

@@ -18,6 +18,7 @@ use TYPO3\CMS\Core\Database\DatabaseConnection;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\AbstractUpdate;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 
 class ImageToFileReference extends AbstractUpdate
 {
@@ -122,11 +123,26 @@ class ImageToFileReference extends AbstractUpdate
         $this->init();
         $this->checkPrerequisites();
 
-        $addresses = $this->getDatabaseConnection()->exec_SELECTgetRows(
-            '*',
-            'tt_address',
-            $this->getWhereClauseForImagesToUpdate()
-        );
+        if (class_exists(ConnectionPool::class)) {
+            /** @var QueryBuilder $queryBuilder */
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_address');
+            $addresses = $queryBuilder
+                ->select('*')
+                ->from('tt_address')
+                ->where(
+                    $this->getWhereClauseForImagesToUpdate()
+                )
+                ->execute()
+                ->fetch();
+        }
+        else {
+            $addresses = $this->getDatabaseConnection()->exec_SELECTgetRows(
+                '*',
+                'tt_address',
+                $this->getWhereClauseForImagesToUpdate()
+            );
+        }
+        
         if ($addresses) {
             foreach ($addresses as $address) {
                 $this->migrateImages($address);

@@ -15,6 +15,8 @@ namespace TYPO3\TtAddress\Hooks\DataHandler;
  */
 
 use TYPO3\TtAddress\Utility\SettingsUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class BackwardsCompatibilityNameFormat
@@ -69,12 +71,27 @@ class BackwardsCompatibilityNameFormat
      */
     protected function getFullRecord($uid)
     {
+        if (class_exists(ConnectionPool::class)) {
+            /** @var QueryBuilder $queryBuilder */
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_address');
+            $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT, ':uid');
+
+            return $queryBuilder
+                ->select('*')
+                ->from('tt_address')
+                ->where(
+                    $queryBuilder->expr()->eq('uid', ':uid')
+                )
+                ->execute()
+                ->fetch();
+        }
+
         $row = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
             '*',
             'tt_address',
             'uid = ' . $uid
         );
-
+        
         return $row[0];
     }
 }

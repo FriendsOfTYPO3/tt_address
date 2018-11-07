@@ -2,8 +2,9 @@
 $settings = \TYPO3\TtAddress\Utility\SettingsUtility::getSettings();
 
 $version8 = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('8.0');
+$version9 = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('9.3');
 
-$generalLanguageFilePrefix = $version8 ? 'LLL:EXT:lang/Resources/Private/Language/' : 'LLL:EXT:lang/';
+$generalLanguageFilePrefix = $version9 ? 'LLL:EXT:core/Resources/Private/Language/' : ($version8 ? 'LLL:EXT:lang/Resources/Private/Language/' : 'LLL:EXT:lang/');
 
 return [
     'ctrl' => [

@@ -2,9 +2,18 @@
 
 plugin.tx_ttaddress {
   view {
-    templateRootPath = {$plugin.tx_ttaddress.view.templateRootPath}
-    partialRootPath = {$plugin.tx_ttaddress.view.partialRootPath}
-    layoutRootPath = {$plugin.tx_ttaddress.view.layoutRootPath}
+    templateRootPaths {
+      0 = EXT:tt_address/Resources/Private/Templates/
+      1 = {$plugin.tx_ttaddress.view.templateRootPath}
+    }
+    partialRootPaths {
+      0 = EXT:tt_address/Resources/Private/Partials/
+      1 = {$plugin.tx_ttaddress.view.partialRootPath}
+    }
+    layoutRootPaths {
+      0 = EXT:tt_address/Resources/Private/Layouts/
+      1 = {$plugin.tx_ttaddress.view.layoutRootPath}
+    }
   }
   settings {
     ## Override settings if empty in flexform

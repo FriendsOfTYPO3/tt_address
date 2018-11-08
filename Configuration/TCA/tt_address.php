@@ -87,6 +87,7 @@ return [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
+                'renderType' => 'selectSingle',
                 'items' => [
                     ['', 0],
                 ],
@@ -232,29 +233,18 @@ return [
             'config' => [
                 'type' => 'input',
                 'renderType' => 'inputLink',
+                'fieldControl' => [
+                    'linkPopup' => [
+                        'options' => [
+                            'blindLinkOptions' => 'mail,file,spec,folder',
+                        ],
+                    ],
+                ],
                 'eval' => 'trim',
                 'size' => '20',
                 'max' => '255',
                 'softref' => 'typolink,url',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_link_formlabel',
-                        'icon' => 'actions-wizard-link',
-                        'module' => [
-                            'name' => 'wizard_link',
-                            'urlParameters' => [
-                                'mode' => 'wizard',
-                                'act' => 'url|page'
-                            ]
-                        ],
-                        'params' => [
-                            'blindLinkOptions' => 'mail,file,spec,folder',
-                        ],
-                        'JSopenParams' => 'height=600,width=800,status=0,menubar=0,scrollbars=1',
-                    ],
-                ]
-            ]
+            ],
         ],
         'email' => [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.email',

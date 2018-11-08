@@ -12,14 +12,18 @@
   <f:if condition="{address.image}">
     <f:then>
       <div class="addressImage">
-        <a
-          href="{f:uri.image(src:'{address.image.0.uid}', maxWidth:1000, maxHeight:850, treatIdAsReference:1)}"
-          rel="images_tt_address_{address.uid}"
-          class="{settings.detail.imageClass}{address.uid}"
-          title="{address.title} {address.firstName} {address.middleName} {address.lastName}"
-          target="_blank">
-            <f:image image="{address.image.0}" width="160c" height="160c" additionalAttributes="{itemprop:'address.image.0'}" />
-        </a>
+        <f:for each="{address.image}" as="img" iteration="iterator">
+          <f:if condition="{iterator.cycle}<2">
+            <a
+              href="{f:uri.image(src:'{img.uid}', maxWidth:1000, maxHeight:850, treatIdAsReference:1)}"
+              rel="images_tt_address_{address.uid}"
+              class="{settings.detail.imageClass}{address.uid}"
+              title="{address.title} {address.firstName} {address.middleName} {address.lastName}"
+              target="_blank">
+              <f:image image="{img}" width="160c" height="160c" additionalAttributes="{itemprop:'img'}" />
+            </a>
+          </f:if>
+        </f:for>
       </div>
     </f:then>
   </f:if>

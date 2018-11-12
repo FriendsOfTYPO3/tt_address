@@ -1,5 +1,6 @@
-<div class="vcard tt_address_detail" itemscope itemtype="http://schema.org/Person">
+{namespace ttaddr=TYPO3\TtAddress\ViewHelpers}
 
+<div class="vcard tt_address_detail" itemscope itemtype="http://schema.org/Person">
   <!-- Contact name, title and position -->
   <h1>{address.title} {address.firstName} {address.middleName} {address.lastName}</h1>
   <f:if condition="{address.position}">
@@ -84,14 +85,14 @@
     <br />
     <f:if condition="{address.phone}">
       <f:then>
-        <label><f:translate key="label.telephone" />: </label><a href="tel:{address.phone}">{address.phone}</a>
+        <label><f:translate key="label.telephone" />: </label><a href="tel:{address.phone->ttaddr:spaceless()}">{address.phone}</a>
         <br />
       </f:then>
     </f:if>
     
     <f:if condition="{address.mobile}">
       <f:then>
-        <label><f:translate key="label.mobile" />: </label><a href="tel:{address.mobile}">{address.mobile}</a>
+        <label><f:translate key="label.mobile" />: </label><a href="tel:{address.mobile->ttaddr:spaceless()}">{address.mobile}</a>
         <br />
       </f:then>
     </f:if>

@@ -30,7 +30,7 @@ class TelephoneEvaluation
    public function returnFieldJS()
    {
       return '
-         return value.replace(/[^\d\+]/g, "");
+         return value.replace(/[^\d\+\s]/g, "");
       ';
    }
 
@@ -44,7 +44,7 @@ class TelephoneEvaluation
     */
    public function evaluateFieldValue($value, $is_in, &$set)
    {
-      $value = preg_replace("/[^\d\+]/", "", $value);
+      $value = preg_replace("/[^\d\+\s]/", "", $value);
       return $value;
    }
 
@@ -56,7 +56,7 @@ class TelephoneEvaluation
     */
    public function deevaluateFieldValue(array $parameters)
    {
-     $parameters['value'] = preg_replace("/[^\d\+]/", "", $parameters['value']);
+     $parameters['value'] = preg_replace("/[^\d\+\s]/", "", $parameters['value']);
      return $parameters['value'];
    }
 

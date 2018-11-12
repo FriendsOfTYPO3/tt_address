@@ -60,7 +60,7 @@ class TypoScriptTemplateLocation extends AbstractUpdate
      * Performs the database update
      *
      * @param array &$databaseQueries Queries done in this update
-     * @param array &$customMessage Custom message
+     * @param string &$customMessage Custom message
      * @return bool
      */
     public function performUpdate(array &$databaseQueries, &$customMessage)
@@ -89,7 +89,7 @@ class TypoScriptTemplateLocation extends AbstractUpdate
 
             $this->getDatabaseConnection()->sql_query($updateQuery);
 
-            $customMessage[] = 'Updated sys_template ' . $record['uid'] . '';
+            $customMessage = 'Updated sys_template ' . $record['uid'] . '';
             $databaseQueries[] = $updateQuery;
         }
         $this->markWizardAsDone();

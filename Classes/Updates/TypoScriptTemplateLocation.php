@@ -60,7 +60,7 @@ class TypoScriptTemplateLocation extends AbstractUpdate
      * Performs the database update
      *
      * @param array &$databaseQueries Queries done in this update
-     * @param string &$customMessage Custom message
+     * @param array &$customMessage Custom message
      * @return bool
      */
     public function performUpdate(array &$databaseQueries, &$customMessage)

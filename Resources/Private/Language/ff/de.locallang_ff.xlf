@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2017-04-05T08:11:35Z" product-name="tt_address">
+		<header/>
+		<body>
+			<trans-unit id="pi1_flexform.sheet_selection" xml:space="preserve" approved="yes">
+				<source>Selection</source>
+				<target>Auswahl</target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.single_records" xml:space="preserve" approved="yes">
+				<source>Single addresses</source>
+				<target>Einzelne Adressen</target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.group_selection" xml:space="preserve" approved="yes">
+				<source>Groups</source>
+				<target>Gruppen</target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.combination" xml:space="preserve" approved="yes">
+				<source>Combination</source>
+				<target>Kombination</target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.combination.and" xml:space="preserve" approved="yes">
+				<source>AND</source>
+				<target>UND</target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.combination.or" xml:space="preserve" approved="yes">
+				<source>OR</source>
+				<target>ODER</target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.sortBy" xml:space="preserve" approved="yes">
+				<source>Sort By</source>
+				<target>Sortieren nach</target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.sortBy.singleSelection" xml:space="preserve" approved="yes">
+				<source>Order of single addresses</source>
+				<target>Reihenfolge einzelner Adressen</target>
+			</trans-unit>
+      <trans-unit id="pi1_flexform.sortBy.sorting" xml:space="preserve" approved="yes">
+        <source>Order of addresses</source>
+        <target>Reihenfolge der Adressen</target>
+      </trans-unit>
+			<trans-unit id="pi1_flexform.sortOrder" xml:space="preserve" approved="yes">
+				<source>Sort Order</source>
+				<target>Reihenfolge</target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.sortOrder.ascending" xml:space="preserve" approved="yes">
+				<source>Ascending</source>
+				<target>Ansteigend</target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.sortOrder.descending" xml:space="preserve" approved="yes">
+				<source>Descending</source>
+				<target>Absteigend</target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.sheet_display" xml:space="preserve" approved="yes">
+				<source>Display</source>
+				<target>Darstellung</target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.templateFile" xml:space="preserve" approved="yes">
+				<source>Template</source>
+				<target>Vorlage</target>
+			</trans-unit>
+			<trans-unit id="pi1_flexform.templateFile.I.0" xml:space="preserve" approved="yes">
+				<source>Default</source>
+				<target>Standard</target>
+			</trans-unit>
+      <trans-unit id="pi1_flexform.displayMode" xml:space="preserve">
+        <source>Select display mode</source>
+        <target>Ausgabemodus wählen</target>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.displayMode.listView" xml:space="preserve">
+        <source>List view</source>
+        <target>Listenansicht</target>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.displayMode.singleView" xml:space="preserve">
+        <source>Single view</source>
+        <target>Detailansicht</target>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.displayMode.mapView" xml:space="preserve">
+        <source>Map view (not functional ATM)</source>
+        <target>Ausgabe auf Karte (not functional ATM!)</target>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.hidePagination" xml:space="preserve">
+        <source>Do not display pagebrowser (listview)</source>
+        <target>Blättern deaktivieren (Listenansicht)</target>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.itemsPerPage" xml:space="preserve">
+        <source>Number of items to be displayed (listview)</source>
+        <target>Anzahl der Einträge auf einer Seite (Listenansicht)</target>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.singlePid" xml:space="preserve">
+        <source>Page for singelview (listview, this page if empty)</source>
+        <target>Seite für Detailansicht (Listenansicht, aktuelle Seite wenn leer)</target>
+      </trans-unit>
+		</body>
+	</file>
+</xliff>

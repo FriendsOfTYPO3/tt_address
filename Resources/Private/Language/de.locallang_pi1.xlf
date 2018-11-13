@@ -46,10 +46,10 @@
                 <target>Standard</target>
             </trans-unit>
             <trans-unit id="pi1_title">
-                <target>Adressen</target>
+                <target>Adressen (deprecated piBase Plugin!)</target>
             </trans-unit>
             <trans-unit id="pi1_plus_wiz_description">
-                <target>Zeigt ein oder mehrere Adressen an.</target>
+                <target>Zeigt ein oder mehrere Adressen an via deprecated piBase Plugin!</target>
             </trans-unit>
         </body>
     </file>

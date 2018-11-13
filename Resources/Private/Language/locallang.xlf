@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2017-04-13T10:24:37Z" product-name="tt_address">
+    <header/>
+    <body>
+      <trans-unit id="label.address" xml:space="preserve">
+        <source>Address</source>
+      </trans-unit>
+      <trans-unit id="label.building" xml:space="preserve">
+        <source>Building</source>
+      </trans-unit>
+      <trans-unit id="label.room" xml:space="preserve">
+        <source>Room</source>
+      </trans-unit>
+      <trans-unit id="label.position" xml:space="preserve">
+        <source>Position</source>
+      </trans-unit>
+      <trans-unit id="label.zip" xml:space="preserve">
+        <source>Postal code</source>
+      </trans-unit>
+      <trans-unit id="label.city" xml:space="preserve">
+        <source>City</source>
+      </trans-unit>
+      <trans-unit id="label.telephone" xml:space="preserve">
+        <source>Telephone</source>
+      </trans-unit>
+      <trans-unit id="label.fax" xml:space="preserve">
+        <source>Fax</source>
+      </trans-unit>
+      <trans-unit id="label.mobile" xml:space="preserve">
+        <source>Mobile phone</source>
+      </trans-unit>
+      <trans-unit id="label.email" xml:space="preserve">
+        <source>E-mail</source>
+      </trans-unit>
+      <trans-unit id="label.www" xml:space="preserve">
+        <source>Go to website</source>
+      </trans-unit>
+      <trans-unit id="label.socialmedia" xml:space="preserve">
+        <source>Social media contacts</source>
+      </trans-unit>
+      <trans-unit id="label.twitter" xml:space="preserve">
+        <source>Twitter</source>
+      </trans-unit>
+      <trans-unit id="label.facebook" xml:space="preserve">
+        <source>Facebook</source>
+      </trans-unit>
+      <trans-unit id="label.linkedin" xml:space="preserve">
+        <source>LinkedIn</source>
+      </trans-unit>
+      <trans-unit id="label.sykpe" xml:space="preserve">
+        <source>Skype</source>
+      </trans-unit>
+      
+      <trans-unit id="paginate_overall" xml:space="preserve">
+        <source>Page %s of %s</source>
+      </trans-unit>
+      <trans-unit id="paginate_next">
+        <source>Next</source>
+      </trans-unit>
+      <trans-unit id="paginate_previous">
+        <source>Previous</source>
+      </trans-unit>
+      <trans-unit id="backToList">
+        <target>Back to list</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

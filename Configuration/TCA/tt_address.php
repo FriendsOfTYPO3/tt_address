@@ -2,13 +2,19 @@
 $settings = \TYPO3\TtAddress\Utility\SettingsUtility::getSettings();
 
 $version8 = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('8.0');
+$version9 = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('9.3');
 
-$generalLanguageFilePrefix = $version8 ? 'LLL:EXT:lang/Resources/Private/Language/' : 'LLL:EXT:lang/';
+$generalLanguageFilePrefix = $version9 ? 'LLL:EXT:core/Resources/Private/Language/' : ($version8 ? 'LLL:EXT:lang/Resources/Private/Language/' : 'LLL:EXT:lang/');
+
 
 return [
     'ctrl' => [
         'label' => 'name',
         'label_alt' => 'email',
+        'languageField' => 'sys_language_uid',
+        'transOrigPointerField' => 'l10n_parent',
+        'transOrigDiffSourceField' => 'l10n_diffsource',
+        'sortby' => 'sorting',
         'default_sortby' => 'ORDER BY last_name, first_name, middle_name',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -59,6 +65,39 @@ return [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check'
+            ]
+        ],
+        'sys_language_uid' => [
+            'exclude' => 1,
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.language',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'foreign_table' => 'sys_language',
+                'foreign_table_where' => 'ORDER BY sys_language.title',
+                'items' => [
+                    [$generalLanguageFilePrefix . 'locallang_general.xlf:LGL.allLanguages', -1],
+                    [$generalLanguageFilePrefix . 'locallang_general.xlf:LGL.default_value', 0],
+                ]
+            ]
+        ],
+        'l10n_parent' => [
+            'displayCond' => 'FIELD:sys_language_uid:>:0',
+            'exclude' => 1,
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.l18n_parent',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['', 0],
+                ],
+                'foreign_table' => 'tt_address',
+                'foreign_table_where' => 'AND tt_address.pid=###CURRENT_PID### AND tt_address.sys_language_uid IN (-1,0)',
+            ]
+        ],
+        'l10n_diffsource' => [
+            'config' => [
+                'type' => 'passthrough'
             ]
         ],
         'gender' => [
@@ -163,7 +202,7 @@ return [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.phone',
             'config' => [
                 'type' => 'input',
-                'eval' => 'trim',
+                'eval' => 'TYPO3\\TtAddress\\Evaluation\\TelephoneEvaluation',
                 'size' => '20',
                 'max' => '30'
             ]
@@ -174,7 +213,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => '20',
-                'eval' => 'trim',
+                'eval' => 'TYPO3\\TtAddress\\Evaluation\\TelephoneEvaluation',
                 'max' => '30'
             ]
         ],
@@ -183,7 +222,7 @@ return [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.mobile',
             'config' => [
                 'type' => 'input',
-                'eval' => 'trim',
+                'eval' => 'TYPO3\\TtAddress\\Evaluation\\TelephoneEvaluation',
                 'size' => '20',
                 'max' => '30'
             ]
@@ -194,36 +233,25 @@ return [
             'config' => [
                 'type' => 'input',
                 'renderType' => 'inputLink',
+                'fieldControl' => [
+                    'linkPopup' => [
+                        'options' => [
+                            'blindLinkOptions' => 'mail,file,spec,folder',
+                        ],
+                    ],
+                ],
                 'eval' => 'trim',
                 'size' => '20',
                 'max' => '255',
                 'softref' => 'typolink,url',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_link_formlabel',
-                        'icon' => 'actions-wizard-link',
-                        'module' => [
-                            'name' => 'wizard_link',
-                            'urlParameters' => [
-                                'mode' => 'wizard',
-                                'act' => 'url|page'
-                            ]
-                        ],
-                        'params' => [
-                            'blindLinkOptions' => 'mail,file,spec,folder',
-                        ],
-                        'JSopenParams' => 'height=600,width=800,status=0,menubar=0,scrollbars=1',
-                    ],
-                ]
-            ]
+            ],
         ],
         'email' => [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.email',
             'config' => [
                 'type' => 'input',
                 'size' => '20',
-                'eval' => 'trim',
+                'eval' => 'email',
                 'max' => '255',
                 'softref' => 'email'
             ]
@@ -341,38 +369,40 @@ return [
                     'appearance' => [
                         'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'
                     ],
-                    'foreign_types' => [
-                        '0' => [
-                            'showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
+                    'overrideChildTca' => [
+                        'types' => [
+                            '0' => [
+                                'showitem' => '
+                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;;filePalette'
+                            ],
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
+                                'showitem' => '
+                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;;filePalette'
+                            ],
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                                'showitem' => '
+                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;;filePalette'
+                            ],
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
+                                'showitem' => '
+                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;;filePalette'
+                            ],
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
+                                'showitem' => '
+                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;;filePalette'
+                            ],
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
+                                'showitem' => '
+                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;;filePalette'
+                            ],
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
-                            'showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-                        ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                            'showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-                        ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
-                            'showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-                        ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
-                            'showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-                        ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
-                            'showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-                        ]
-                    ]
+                    ],
                 ],
                 $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
             )
@@ -389,7 +419,7 @@ return [
         ],
         'categories' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_tca.xlf:sys_category.categories',
+            'label' => $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_category.categories',
             'config' => \TYPO3\CMS\Core\Category\CategoryRegistry::getTcaFieldConfiguration('tt_address')
         ],
         'latitude' => [
@@ -397,8 +427,8 @@ return [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.latitude',
             'config' => [
                 'type' => 'input',
-                'eval' => 'nospace,null',
-                'default' => null
+                'eval' => 'null,TYPO3\\TtAddress\\Evaluation\\LatitudeEvaluation',
+                'default' => NULL
             ]
         ],
         'longitude' => [
@@ -406,57 +436,57 @@ return [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.longitude',
             'config' => [
                 'type' => 'input',
-                'eval' => 'nospace,null',
-                'default' => null
+                'eval' => 'null,TYPO3\\TtAddress\\Evaluation\\LongitudeEvaluation',
+                'default' => NULL
             ]
         ],
     ],
     'types' => [
         '0' => ['showitem' =>
             'hidden,
-			--palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.name;name,
-			image, description,
-			--div--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_tab.contact,
-				--palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.address;address,
-				--palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.building;building,
-				--palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.organization;organization,
-				--palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.contact;contact,
-				--palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.social;social,
-			--div--;LLL:EXT:lang/locallang_tca.xlf:sys_category.tabs.category, categories
-			']
+            --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.name;name,
+            image, description,
+            --div--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_tab.contact,
+                --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.address;address,
+                --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.building;building,
+                --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.organization;organization,
+                --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.contact;contact,
+                --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.social;social,
+            --div--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_category.tabs.category, categories
+            ']
     ],
     'palettes' => [
         'name' => [
             'showitem' => 'name, --linebreak--,
-							gender, title, --linebreak--,
-							first_name, middle_name, --linebreak--,
-							last_name'
+                            gender, title, --linebreak--,
+                            first_name, middle_name, --linebreak--,
+                            last_name'
         ],
         'organization' => [
             'showitem' => 'position, company'
         ],
         'address' => [
             'showitem' => 'address, --linebreak--,
-							city, zip, region, --linebreak--,
-							country,  --linebreak--,
-							latitude, --linebreak--,
-							longitude'
+                            city, zip, region, --linebreak--,
+                            country,  --linebreak--,
+                            latitude, --linebreak--,
+                            longitude'
         ],
         'building' => [
             'showitem' => 'building, room'
         ],
         'contact' => [
             'showitem' => 'email, --linebreak--,
-							phone, fax, --linebreak--,
-							mobile, --linebreak--,
-							www, --linebreak--,
-							birthday'
+                            phone, fax, --linebreak--,
+                            mobile, --linebreak--,
+                            www, --linebreak--,
+                            birthday'
         ],
         'social' => [
             'showitem' => 'skype, --linebreak--,
-							twitter, --linebreak--,
-							facebook, --linebreak--,
-							linkedin'
+                            twitter, --linebreak--,
+                            facebook, --linebreak--,
+                            linkedin'
         ],
-    ]
+    ],
 ];

@@ -1,0 +1,67 @@
+{namespace ttaddress=TYPO3\TtAddress\ViewHelpers}
+<f:layout name="Default" />
+
+<h1>Listing for TtAddress Records</h1>
+<f:flashMessages />
+
+
+<f:section name="main">
+  <!--TYPO3SEARCH_end-->
+  <div class="tt_address_list">
+    <f:if condition="{settings.displayMode}==0">
+      <f:then>
+        <f:if condition="{settings.hidePagination}">
+          <f:then>
+            <f:for each="{addresses}" as="address" iteration="iterator">
+              <f:if condition="{iterator.cycle}<={settings.paginate.itemsPerPage}">
+                <f:render partial="AddressItemList" arguments="{address:address}" />
+                <f:if condition="{iterator.isLast}">
+                  <f:then></f:then>
+                  <f:else>
+                    <!-- clearfix -->
+                    <div class="tt_address_line">&nbsp;</div>
+                    <div class="div15">&nbsp;</div>
+                  </f:else>
+                </f:if>
+              </f:if>
+              <f:if condition="{iterator.isLast}">
+                <f:then></f:then>
+                <f:else>
+                  <!-- clearfix -->
+                  <div class="div15">&nbsp;</div>
+                </f:else>
+              </f:if>
+            </f:for>
+          </f:then>
+          <f:else>
+            <ttaddress:widget.paginate objects="{addresses}" as="paginatedAdresses" configuration="{settings.paginate}" initial="{offset:settings.offset,limit:settings.limit}">
+              <f:for each="{paginatedAdresses}" as="address" iteration="iterator">
+                <f:render partial="AddressItemList" arguments="{address: address, settings:settings, iterator:iterator}" />
+                <f:if condition="{iterator.isLast}">
+                  <f:then></f:then>
+                  <f:else>
+                    <!-- clearfix -->
+                    <div class="tt_address_line">&nbsp;</div>
+                    <div class="div15">&nbsp;</div>
+                  </f:else>
+                </f:if>
+              </f:for>
+            </ttaddress:widget.paginate>
+          </f:else>
+        </f:if>
+      </f:then>
+    </f:if>
+    <f:if condition="{settings.displayMode}==1">
+      <f:then>
+        <f:for each="{addresses}" as="address">
+          <f:render partial="AddressItemDetail" arguments="{address:address}" />
+        </f:for>
+      </f:then>
+    </f:if>
+    <f:if condition="{settings.displayMode}==2">
+      <f:then>
+        <f:render partial="AddressMap" arguments="{addresses:addresses}" />
+      </f:then>
+    </f:if>
+  </div>
+</f:section>

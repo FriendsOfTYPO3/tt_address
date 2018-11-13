@@ -89,7 +89,7 @@ class TypoScriptTemplateLocation extends AbstractUpdate
 
             $this->getDatabaseConnection()->sql_query($updateQuery);
 
-            $customMessage[] = 'Updated sys_template ' . $record['uid'] . '';
+            $customMessage = 'Updated sys_template ' . $record['uid'] . '';
             $databaseQueries[] = $updateQuery;
         }
         $this->markWizardAsDone();

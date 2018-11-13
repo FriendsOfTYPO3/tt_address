@@ -1,0 +1,106 @@
+{namespace ttaddress=TYPO3\TtAddress\ViewHelpers}
+
+<f:if condition="{configuration.insertAbove}">
+  <f:render section="paginator" arguments="{pagination: pagination,configuration:configuration}" />
+  <f:if condition="{pagination.numberOfPages} > 1">
+    <div class="tt_address_line">&nbsp;</div>
+    <div class="div15">&nbsp;</div>
+  </f:if>
+</f:if>
+
+<f:renderChildren arguments="{contentArguments}" />
+
+<f:if condition="{configuration.insertBelow}">
+  <f:if condition="{pagination.numberOfPages} > 1">
+    <div class="tt_address_line">&nbsp;</div>
+    <div class="div15">&nbsp;</div>
+  </f:if>
+  <f:render section="paginator" arguments="{pagination: pagination,configuration:configuration}" />
+</f:if>
+
+
+<f:section name="paginator">
+  <f:if condition="{pagination.numberOfPages} > 1">
+    <f:if condition="{settings.list.paginate}">
+      <f:if condition="{pagination.previousPage}">
+        <f:if condition="{pagination.previousPage} > 1">
+          <f:then>
+            <ttaddress:headerData><link rel="prev" href="{f:widget.uri(arguments: {currentPage: pagination.previousPage}) -> f:format.htmlentities()}" /></ttaddress:headerData>
+          </f:then>
+          <f:else>
+            <ttaddress:headerData><link rel="prev" href="{f:widget.uri() -> f:format.htmlentities()}" /></ttaddress:headerData>
+          </f:else>
+        </f:if>
+      </f:if>
+      <f:if condition="{pagination.nextPage}">
+        <ttaddress:headerData><link rel="next" href="{f:widget.uri(arguments: {currentPage: pagination.nextPage}) -> f:format.htmlentities()}" /></ttaddress:headerData>
+      </f:if>
+    </f:if>
+
+    <div class="page-navigation">
+      <span class="paginglabel bodytext">
+        <f:translate key="paginate_overall" arguments="{0:pagination.current,1:pagination.numberOfPages}" />
+      </span>
+      <ul role="navigation" aria-labelledby="paginglabel" class="f3-widget-paginator">
+        <f:if condition="{pagination.previousPage}">
+          <li class="previous">
+            <f:if condition="{pagination.previousPage} > 1">
+              <f:then>
+                <f:widget.link arguments="{currentPage: pagination.previousPage}">
+                  &laquo; <f:translate key="paginate_previous" />
+                </f:widget.link>
+              </f:then>
+              <f:else>
+                <f:widget.link>
+                  &laquo; <f:translate key="paginate_previous" />
+                </f:widget.link>
+              </f:else>
+            </f:if>
+          </li>
+        </f:if>
+        <f:if condition="{pagination.displayRangeStart} > 1">
+          <li class="first">
+            <f:widget.link>1</f:widget.link>
+          </li>
+        </f:if>
+        <f:if condition="{pagination.hasLessPages}">
+          <li>&hellip;</li>
+        </f:if>
+        <f:for each="{pagination.pages}" as="page">
+          <f:if condition="{page.isCurrent}">
+            <f:then>
+              <li class="current">{page.number}</li>
+            </f:then>
+            <f:else>
+              <li>
+                <f:if condition="{page.number} > 1">
+                  <f:then>
+                    <f:widget.link arguments="{currentPage: page.number}">{page.number}</f:widget.link>
+                  </f:then>
+                  <f:else>
+                    <f:widget.link>{page.number}</f:widget.link>
+                  </f:else>
+                </f:if>
+              </li>
+            </f:else>
+          </f:if>
+        </f:for>
+        <f:if condition="{pagination.hasMorePages}">
+          <li>&hellip;</li>
+        </f:if>
+        <f:if condition="{pagination.displayRangeEnd} < {pagination.numberOfPages}">
+          <li class="last">
+            <f:widget.link arguments="{currentPage: pagination.numberOfPages}">{pagination.numberOfPages}</f:widget.link>
+          </li>
+        </f:if>
+        <f:if condition="{pagination.nextPage}">
+          <li class="last next">
+            <f:widget.link arguments="{currentPage: pagination.nextPage}">
+              <f:translate key="paginate_next" /> &raquo;
+            </f:widget.link>
+          </li>
+        </f:if>
+      </ul>
+    </div>
+  </f:if>
+</f:section>

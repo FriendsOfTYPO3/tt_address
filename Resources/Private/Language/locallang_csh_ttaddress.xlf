@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-04-04T14:26:08Z" product-name="tt_address">
+		<header/>
+		<body>
+			<trans-unit id=".description" xml:space="preserve">
+				<source>Built-in address database.</source>
+			</trans-unit>
+			<trans-unit id=".details" xml:space="preserve">
+				<source>You may use it to build address lists in TYPO3. There are in fact default TypoScript code which allows you to implement a online administration of the address information by each person in the list himself. This table is also used by the Direct Mail system as the default subscription table for newsletters.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

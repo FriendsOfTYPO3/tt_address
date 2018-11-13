@@ -1,0 +1,11 @@
+<f:layout name="Default" />
+
+<h1>Detail view for TtAddress Records</h1>
+<f:flashMessages />
+
+<f:section name="main">
+  <div class="divide-bottom">
+    <f:render partial="AddressItemDetail" arguments="{address:address}" />
+  </div>
+  <a href="javascript:history.back()">&laquo; <f:translate key="backToList" /></a>
+</f:section>

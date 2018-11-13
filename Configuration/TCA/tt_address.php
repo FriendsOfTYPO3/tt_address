@@ -18,6 +18,9 @@ return [
         'title' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address',
         'versioningWS' => true,
         'origUid' => 't3_origuid',
+        'transOrigPointerField' => 'l18n_parent',
+        'transOrigDiffSourceField' => 'l18n_diffsource',
+        'languageField' => 'sys_language_uid',
         'thumbnail' => 'image',
         'enablecolumns' => [
             'disabled' => 'hidden'
@@ -30,30 +33,37 @@ return [
         'showRecordFieldList' => 'first_name,middle_name,last_name,address,building,room,city,zip,region,country,phone,fax,email,www,title,company,image'
     ],
     'columns' => [
-        'pid' => [
-            'label' => 'pid',
-            'config' => [
-                'type' => 'passthrough'
-            ]
-        ],
-        'crdate' => [
-            'label' => 'crdate',
-            'config' => [
-                'type' => 'passthrough',
-            ]
-        ],
-        'cruser_id' => [
-            'label' => 'cruser_id',
-            'config' => [
-                'type' => 'passthrough'
-            ]
-        ],
-        'tstamp' => [
-            'label' => 'tstamp',
-            'config' => [
-                'type' => 'passthrough',
-            ]
-        ],
+        'sys_language_uid' => array(
+            'exclude' => 1,
+            'label' => 'LLL:EXT:lang/locallang_general.php:LGL.language',
+            'config' => array(
+                'type' => 'select',
+                'foreign_table' => 'sys_language',
+                'foreign_table_where' => 'ORDER BY sys_language.title',
+                'items' => array(
+                    array('LLL:EXT:lang/locallang_general.php:LGL.allLanguages',-1),
+                    array('LLL:EXT:lang/locallang_general.php:LGL.default_value',0)
+                )
+            )
+        ),
+        'l18n_parent' => array(
+            'displayCond' => 'FIELD:sys_language_uid:>:0',
+            'exclude' => 1,
+            'label' => 'LLL:EXT:lang/locallang_general.php:LGL.l18n_parent',
+            'config' => array(
+                'type' => 'select',
+                'items' => array(
+                    array('', 0),
+                ),
+                'foreign_table' => 'tt_address',
+                'foreign_table_where' => 'AND tt_address.uid=###REC_FIELD_l18n_parent### AND tt_address.sys_language_uid IN (-1,0)',
+            )
+        ),
+        'l18n_diffsource' => array(
+            'config' => array(
+                'type'=>'passthrough'
+            )
+        ),
         'hidden' => [
             'exclude' => 1,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.hidden',
@@ -70,7 +80,8 @@ return [
                     ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.m', 'm'],
                     ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.f', 'f']
                 ]
-            ]
+            ],
+            'l10n_mode' => 'exclude',
         ],
         'title' => [
             'exclude' => 1,
@@ -79,7 +90,8 @@ return [
                 'type' => 'input',
                 'size' => '8',
                 'eval' => 'trim',
-                'max' => '255'
+                'max' => '255',
+                'l10n_mode' => 'mergeIfNotBlank',
             ]
         ],
         'name' => [
@@ -90,7 +102,8 @@ return [
                 'size' => '40',
                 'eval' => 'trim',
                 'max' => '255'
-            ]
+            ],
+            'l10n_display' => 'defaultAsReadonly',
         ],
         'first_name' => [
             'exclude' => 0,
@@ -100,7 +113,8 @@ return [
                 'size' => '20',
                 'eval' => 'trim',
                 'max' => '255'
-            ]
+            ],
+            'l10n_display' => 'defaultAsReadonly',
         ],
         'middle_name' => [
             'exclude' => 0,
@@ -110,7 +124,8 @@ return [
                 'size' => '20',
                 'eval' => 'trim',
                 'max' => '255'
-            ]
+            ],
+            'l10n_display' => 'defaultAsReadonly',
         ],
         'last_name' => [
             'exclude' => 0,
@@ -120,7 +135,8 @@ return [
                 'size' => '20',
                 'eval' => 'trim',
                 'max' => '255'
-            ]
+            ],
+            'l10n_display' => 'defaultAsReadonly',
         ],
         'birthday' => [
             'exclude' => 1,
@@ -186,7 +202,8 @@ return [
                 'eval' => 'trim',
                 'size' => '20',
                 'max' => '30'
-            ]
+            ],
+            'l10n_mode' => 'exclude',
         ],
         'www' => [
             'exclude' => 1,
@@ -226,7 +243,8 @@ return [
                 'eval' => 'trim',
                 'max' => '255',
                 'softref' => 'email'
-            ]
+            ],
+            'l10n_mode' => 'exclude',
         ],
         'skype' => [
             'exclude' => 1,
@@ -279,8 +297,9 @@ return [
                 'type' => 'input',
                 'eval' => 'trim',
                 'size' => '20',
-                'max' => '255'
-            ]
+                'max' => '255',
+            ],
+            'l10n_mode' => 'exclude',
         ],
         'position' => [
             'exclude' => 1,
@@ -289,8 +308,9 @@ return [
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
-                'max' => '255'
-            ]
+                'max' => '255',
+            ],
+            'l10n_mode' => 'exclude',
         ],
         'city' => [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.city',
@@ -298,8 +318,9 @@ return [
                 'type' => 'input',
                 'size' => '20',
                 'eval' => 'trim',
-                'max' => '255'
-            ]
+                'max' => '255',
+            ],
+            'l10n_mode' => 'mergeIfNotBlank',
         ],
         'zip' => [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.zip',
@@ -307,8 +328,9 @@ return [
                 'type' => 'input',
                 'eval' => 'trim',
                 'size' => '10',
-                'max' => '20'
-            ]
+                'max' => '20',
+            ],
+            'l10n_mode' => 'exclude',
         ],
         'region' => [
             'exclude' => 1,
@@ -317,8 +339,9 @@ return [
                 'type' => 'input',
                 'size' => '10',
                 'eval' => 'trim',
-                'max' => '255'
-            ]
+                'max' => '255',
+            ],
+            'l10n_mode' => 'mergeIfNotBlank',
         ],
         'country' => [
             'exclude' => 1,
@@ -328,11 +351,13 @@ return [
                 'size' => '20',
                 'eval' => 'trim',
                 'max' => '128'
-            ]
+            ],
+            'l10n_mode' => 'mergeIfNotBlank',
         ],
         'image' => [
             'exclude' => 1,
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.image',
+            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.image',,
+            'l10n_mode' => 'mergeIfNotBlank',
             'config' =>\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'image',
                 [
@@ -385,12 +410,14 @@ return [
                 'rows' => 5,
                 'cols' => 48,
                 'softref' => 'typolink_tag,url',
-            ]
+            ],
+            'l10n_mode' => 'mergeIfNotBlank',
         ],
         'categories' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_tca.xlf:sys_category.categories',
-            'config' => \TYPO3\CMS\Core\Category\CategoryRegistry::getTcaFieldConfiguration('tt_address')
+            'config' => \TYPO3\CMS\Core\Category\CategoryRegistry::getTcaFieldConfiguration('tt_address'),
+            'l10n_mode' => 'exclude',
         ],
         'latitude' => [
             'exclude' => 1,

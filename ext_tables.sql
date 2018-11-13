@@ -9,6 +9,9 @@ CREATE TABLE tt_address (
 	cruser_id int(11) DEFAULT '0' NOT NULL,
 	deleted tinyint(3) DEFAULT '0',
 	hidden tinyint(4) DEFAULT '0' NOT NULL,
+  sys_language_uid int(11) DEFAULT '0' NOT NULL,
+  l18n_parent int(11) DEFAULT '0' NOT NULL,
+  l18n_diffsource mediumblob NOT NULL,
 	
 	gender varchar(1) DEFAULT '' NOT NULL,
 	name tinytext,

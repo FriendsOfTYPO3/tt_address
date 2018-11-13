@@ -1,4 +1,5 @@
 <?php
+
 namespace TYPO3\TtAddress\Updates;
 
 /*
@@ -46,9 +47,12 @@ class TypoScriptTemplateLocation extends AbstractUpdate
             'uid',
             'sys_template',
             'deleted=0 AND'
-            . ' (constants LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation, 'sys_template') . '%"'
-            . ' OR config LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation, 'sys_template') . '%"'
-            . ' OR include_static_file LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation, 'sys_template') . '%")'
+            . ' (constants LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
+                'sys_template') . '%"'
+            . ' OR config LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
+                'sys_template') . '%"'
+            . ' OR include_static_file LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
+                'sys_template') . '%")'
         );
         if ($affectedRows) {
             $description = 'tt_address\' Static templates have been relocated to EXT:tt_address/Configuration/TypoScript/LegacyPlugin';
@@ -69,14 +73,18 @@ class TypoScriptTemplateLocation extends AbstractUpdate
             'uid, include_static_file, constants, config',
             'sys_template',
             'deleted=0 AND'
-            . ' (constants LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation, 'sys_template') . '%"'
-            . ' OR config LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation, 'sys_template') . '%"'
-            . ' OR include_static_file LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation, 'sys_template') . '%")'
+            . ' (constants LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
+                'sys_template') . '%"'
+            . ' OR config LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
+                'sys_template') . '%"'
+            . ' OR include_static_file LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
+                'sys_template') . '%")'
         );
 
         foreach ($records as $record) {
             $newData = [
-                'include_static_file' => str_replace($this->oldLocation, $this->newLocation, $record['include_static_file']),
+                'include_static_file' => str_replace($this->oldLocation, $this->newLocation,
+                    $record['include_static_file']),
                 'constants' => str_replace($this->oldLocation, $this->newLocation, $record['constants']),
                 'config' => str_replace($this->oldLocation, $this->newLocation, $record['config'])
             ];

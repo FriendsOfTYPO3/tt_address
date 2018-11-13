@@ -1,4 +1,5 @@
 <?php
+
 namespace TYPO3\TtAddress\Updates;
 
 /*
@@ -48,8 +49,11 @@ class AddressGroupToSysCategory extends AbstractUpdate
             if ($countRows === 0) {
                 $description = sprintf('The database table "%s" is empty, nothing to do', self::OLD_MM_TABLE);
             } else {
-                $description = sprintf('The database table "%s" contains <strong>%s</strong> entries which will be migrated!',
-                    self::OLD_MM_TABLE, $countRows);
+                $description = sprintf(
+                    'The database table "%s" contains <strong>%s</strong> entries which will be migrated!',
+                    self::OLD_MM_TABLE,
+                    $countRows
+                );
                 $status = true;
             }
         }
@@ -255,14 +259,20 @@ class AddressGroupToSysCategory extends AbstractUpdate
     protected function updateParentFieldOfMigratedCategories(array $oldNewCategoryUidMapping)
     {
         $updatedRecords = 0;
-        $toUpdate = $this->getDatabaseConnection()->exec_SELECTgetRows('uid, parent_group',
-            self::OLD_GROUP_TABLE, 'parent_group > 0');
+        $toUpdate = $this->getDatabaseConnection()->exec_SELECTgetRows(
+            'uid, parent_group',
+            self::OLD_GROUP_TABLE,
+            'parent_group > 0'
+        );
         foreach ($toUpdate as $row) {
             if (!empty($oldNewCategoryUidMapping[$row['parent_group']])) {
                 $sysCategoryUid = $oldNewCategoryUidMapping[$row['uid']];
                 $newParentUid = $oldNewCategoryUidMapping[$row['parent_group']];
-                $this->getDatabaseConnection()->exec_UPDATEquery('sys_category', 'uid=' . $sysCategoryUid,
-                    ['parent' => $newParentUid]);
+                $this->getDatabaseConnection()->exec_UPDATEquery(
+                    'sys_category',
+                    'uid=' . $sysCategoryUid,
+                    ['parent' => $newParentUid]
+                );
                 $updatedRecords++;
             }
         }
@@ -278,8 +288,11 @@ class AddressGroupToSysCategory extends AbstractUpdate
     protected function migrateCategoryMmRecords(array $oldNewCategoryUidMapping)
     {
         $newMmCount = 0;
-        $oldMmRecords = $this->getDatabaseConnection()->exec_SELECTgetRows('uid_local, uid_foreign, tablenames, sorting',
-            self::OLD_MM_TABLE, '');
+        $oldMmRecords = $this->getDatabaseConnection()->exec_SELECTgetRows(
+            'uid_local, uid_foreign, tablenames, sorting',
+            self::OLD_MM_TABLE,
+            ''
+        );
         foreach ($oldMmRecords as $oldMmRecord) {
             $oldCategoryUid = $oldMmRecord['uid_foreign'];
 
@@ -327,9 +340,12 @@ class AddressGroupToSysCategory extends AbstractUpdate
     {
         $count = 0;
         $title = 'Update flexforms categories (' . $pluginName . ':' . $flexformField . ')';
-        $res = $this->getDatabaseConnection()->exec_SELECTquery('uid, pi_flexform',
+        $res = $this->getDatabaseConnection()->exec_SELECTquery(
+            'uid, pi_flexform',
             'tt_content',
-            'CType="list" AND list_type=' . $this->getDatabaseConnection()->fullQuoteStr($pluginName, 'tt_content') . ' AND deleted=0');
+            'CType="list" AND list_type=' . $this->getDatabaseConnection()->fullQuoteStr($pluginName,
+                'tt_content') . ' AND deleted=0'
+        );
 
         /** @var \TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools $flexformTools */
         $flexformTools = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Configuration\\FlexForm\\FlexFormTools');
@@ -348,8 +364,11 @@ class AddressGroupToSysCategory extends AbstractUpdate
                 // Some flexforms may have displayCond
                 if (isset($xmlArray['data']['sDEF']['lDEF'][$flexformField]['vDEF'])) {
                     $updated = false;
-                    $oldCategories = GeneralUtility::trimExplode(',',
-                        $xmlArray['data']['sDEF']['lDEF'][$flexformField]['vDEF'], true);
+                    $oldCategories = GeneralUtility::trimExplode(
+                        ',',
+                        $xmlArray['data']['sDEF']['lDEF'][$flexformField]['vDEF'],
+                        true
+                    );
 
                     if (!empty($oldCategories)) {
                         $newCategories = [];

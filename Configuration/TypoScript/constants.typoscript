@@ -8,5 +8,3 @@ plugin.tx_ttaddress {
     layoutRootPath = EXT:tt_address/Resources/Private/Layouts/
   }
 }
-
-### EOF

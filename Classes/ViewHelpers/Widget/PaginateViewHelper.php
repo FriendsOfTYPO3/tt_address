@@ -14,7 +14,7 @@ namespace TYPO3\TtAddress\ViewHelpers\Widget;
  *
  * The TYPO3 project - inspiring people to share!
  */
- 
+
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 /**
@@ -28,9 +28,6 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
  *   // a <f:for> loop.
  * </f:widget.paginate>
  * </code>
- *
- * @package TYPO3
- * @subpackage tt_address
  */
 class PaginateViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetViewHelper
 {
@@ -39,19 +36,17 @@ class PaginateViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetView
      * @var \TYPO3\TtAddress\ViewHelpers\Widget\Controller\PaginateController
      */
     protected $controller;
-  
-  
+
     /**
      * Inject controller
      *
      * @param \TYPO3\TtAddress\ViewHelpers\Widget\Controller\PaginateController $controller
-     * @return void
      */
     public function injectController(\TYPO3\TtAddress\ViewHelpers\Widget\Controller\PaginateController $controller)
     {
-      $this->controller = $controller;
+        $this->controller = $controller;
     }
-  
+
     /**
      * Initialize arguments
      */
@@ -63,15 +58,10 @@ class PaginateViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetView
         $this->registerArgument('configuration', 'array', 'Configuration', false, ['itemsPerPage' => 10, 'insertAbove' => false, 'insertBelow' => true]);
         $this->registerArgument('initial', 'array', 'Initial configuration', false, []);
     }
-  
+
     /**
      * Render everything
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $objects
-     * @param string $as
-     * @param mixed $configuration
-     * @param array $initial
-     * @internal param array $initial
      * @return string
      */
     public function render()

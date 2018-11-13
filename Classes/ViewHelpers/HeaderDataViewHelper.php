@@ -15,6 +15,7 @@ namespace TYPO3\TtAddress\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -32,19 +33,16 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * <output>
  * Added to the header: <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="uri to this page and type 9818" />
  * </output>
- *
  */
 class HeaderDataViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
   /**
    * Renders HeaderData
-   *
-   * @return void
   */
-  public function render()
-  {
-    $pageRenderer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
-    $pageRenderer->addHeaderData($this->renderChildren());
-  }
+    public function render()
+    {
+        $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+        $pageRenderer->addHeaderData($this->renderChildren());
+    }
 }

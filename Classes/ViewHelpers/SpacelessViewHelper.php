@@ -17,19 +17,19 @@ namespace TYPO3\TtAddress\ViewHelpers;
 
 class SpacelessViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
- 
+
     /**
      * Removes all whitespaces from given string.
      * @param mixed $value The value
      * @return string
      */
-    public function render($value = NULL)
+    public function render($value = null)
     {
-        if ($value === NULL) {
+        if ($value === null) {
             $value =  $this->renderChildren();
         }
         // remove all whitespaces
-        $value = str_replace (' ' , '' , $value);
+        $value = str_replace(' ', '', $value);
         return $value;
     }
 }

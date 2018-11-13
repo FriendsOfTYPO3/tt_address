@@ -1,4 +1,5 @@
 <?php
+
 namespace TYPO3\TtAddress\Hooks\FormEngine;
 
 /*
@@ -29,8 +30,8 @@ class LegacyPluginSelector
     /**
      * Manipulating the input array, $params, adding new selectorbox items.
      *
-     * @param	array	$params array of select field options (reference)
-     * @param	object	$pObj parent object (reference)
+     * @param    array $params array of select field options (reference)
+     * @param    object $pObj parent object (reference)
      */
     public function addFieldsToSelector(&$params, &$pObj)
     {
@@ -74,13 +75,14 @@ class LegacyPluginSelector
             ];
         }
     }
+
     /**
      * Manipulating the input array, $params, adding new selectorbox items.
      *
      * Checks for the TypoScript path of the templates and looks up if there is a ".gif" file at the same location
      *
-     * @param	array	$params array of select field options (reference)
-     * @param	object	$pObj parent object (reference)
+     * @param    array $params array of select field options (reference)
+     * @param    object $pObj parent object (reference)
      */
     public function addFilesToSelector(&$params, &$pObj)
     {

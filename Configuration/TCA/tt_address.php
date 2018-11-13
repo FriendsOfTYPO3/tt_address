@@ -6,7 +6,6 @@ $version9 = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberTo
 
 $generalLanguageFilePrefix = $version9 ? 'LLL:EXT:core/Resources/Private/Language/' : ($version8 ? 'LLL:EXT:lang/Resources/Private/Language/' : 'LLL:EXT:lang/');
 
-
 return [
     'ctrl' => [
         'label' => 'name',
@@ -361,7 +360,7 @@ return [
         'image' => [
             'exclude' => 1,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.image',
-            'config' =>\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'image',
                 [
                     'maxitems' => 6,
@@ -428,7 +427,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'eval' => 'null,TYPO3\\TtAddress\\Evaluation\\LatitudeEvaluation',
-                'default' => NULL
+                'default' => null
             ]
         ],
         'longitude' => [
@@ -437,13 +436,14 @@ return [
             'config' => [
                 'type' => 'input',
                 'eval' => 'null,TYPO3\\TtAddress\\Evaluation\\LongitudeEvaluation',
-                'default' => NULL
+                'default' => null
             ]
         ],
     ],
     'types' => [
-        '0' => ['showitem' =>
-            'hidden,
+        '0' => [
+            'showitem' =>
+                'hidden,
             --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.name;name,
             image, description,
             --div--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_tab.contact,
@@ -453,7 +453,8 @@ return [
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.contact;contact,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.social;social,
             --div--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_category.tabs.category, categories
-            ']
+            '
+        ]
     ],
     'palettes' => [
         'name' => [

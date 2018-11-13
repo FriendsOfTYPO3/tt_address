@@ -1,4 +1,5 @@
 <?php
+
 namespace TYPO3\TtAddress\Controller;
 
 /*
@@ -16,6 +17,7 @@ namespace TYPO3\TtAddress\Controller;
 
 use TYPO3\CMS\Core\Charset\CharsetConverter;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\CMS\Frontend\Plugin\AbstractPlugin;
 
 /**
@@ -29,12 +31,12 @@ class LegacyPluginController extends AbstractPlugin
     /**
      * @var string
      */
-    public $prefixId      = 'tx_ttaddress_pi1';
+    public $prefixId = 'tx_ttaddress_pi1';
 
     /**
      * @var string
      */
-    public $extKey        = 'tt_address';
+    public $extKey = 'tt_address';
 
     /**
      * @var bool
@@ -63,7 +65,7 @@ class LegacyPluginController extends AbstractPlugin
         $this->init($conf);
         $content = '';
         $singleSelection = $this->getSingleRecords();
-        $groupSelection  = $this->getRecordsFromGroups();
+        $groupSelection = $this->getRecordsFromGroups();
 
         $templateCode = $this->getTemplate();
 
@@ -78,7 +80,7 @@ class LegacyPluginController extends AbstractPlugin
         // output
         foreach ($addresses as $address) {
             if (!empty($address)) {
-                $markerArray  = $this->getItemMarkerArray($address);
+                $markerArray = $this->getItemMarkerArray($address);
                 $subpartArray = $this->getSubpartArray($templateCode, $markerArray, $address);
 
                 $addressContent = $this->cObj->substituteMarkerArrayCached(
@@ -116,13 +118,13 @@ class LegacyPluginController extends AbstractPlugin
 
         // flexform data
         $flexKeyMapping = [
-            'sDEF.singleRecords'    => 'singleRecords',
-            'sDEF.groupSelection'   => 'groupSelection',
-            'sDEF.combination'      => 'combination',
-            'sDEF.sortBy'           => 'sortBy',
-            'sDEF.sortOrder'        => 'sortOrder',
-            'sDEF.pages'            => 'pages',
-            'sDEF.recursive'        => 'recursive',
+            'sDEF.singleRecords' => 'singleRecords',
+            'sDEF.groupSelection' => 'groupSelection',
+            'sDEF.combination' => 'combination',
+            'sDEF.sortBy' => 'sortBy',
+            'sDEF.sortOrder' => 'sortOrder',
+            'sDEF.pages' => 'pages',
+            'sDEF.recursive' => 'recursive',
             'sDISPLAY.templateFile' => 'templateFile',
         ];
         $this->ffData = $this->getFlexFormConfig($flexKeyMapping);
@@ -202,7 +204,7 @@ class LegacyPluginController extends AbstractPlugin
     {
         $groupRecords = [];
 
-        $groups    = GeneralUtility::intExplode(',', $this->conf['groupSelection']);
+        $groups = GeneralUtility::intExplode(',', $this->conf['groupSelection']);
         $groupList = implode(',', $groups);
 
         if (!empty($groupList) && !empty($this->conf['pidList'])) {
@@ -262,7 +264,8 @@ class LegacyPluginController extends AbstractPlugin
         );
         foreach ($result as $groupRecord) {
             if ($this->getTypoScriptFrontendController()->sys_language_content) {
-                $groupRecord = $this->getTypoScriptFrontendController()->sys_page->getRecordOverlay('sys_category', $groupRecord, $this->getTypoScriptFrontendController()->sys_language_content);
+                $groupRecord = $this->getTypoScriptFrontendController()->sys_page->getRecordOverlay('sys_category',
+                    $groupRecord, $this->getTypoScriptFrontendController()->sys_language_content);
             }
             if ($groupRecord) {
                 $address['groups'][] = $groupRecord;
@@ -327,44 +330,44 @@ class LegacyPluginController extends AbstractPlugin
         $lcObj = GeneralUtility::makeInstance(\TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer::class);
         $lcObj->data = $address;
 
-        $markerArray['###UID###']          = $address['uid'];
+        $markerArray['###UID###'] = $address['uid'];
 
-        $markerArray['###GENDER###']       = $lcObj->stdWrap($address['gender'], $lConf['gender.']);
-        $markerArray['###NAME###']         = $lcObj->stdWrap($address['name'], $lConf['name.']);
-        $markerArray['###FIRSTNAME###']    = $lcObj->stdWrap($address['first_name'], $lConf['first_name.']);
-        $markerArray['###MIDDLENAME###']   = $lcObj->stdWrap($address['middle_name'], $lConf['middle_name.']);
-        $markerArray['###LASTNAME###']     = $lcObj->stdWrap($address['last_name'], $lConf['last_name.']);
-        $markerArray['###TITLE###']        = $lcObj->stdWrap($address['title'], $lConf['title.']);
-        $markerArray['###EMAIL###']        = $lcObj->stdWrap($address['email'], $lConf['email.']);
-        $markerArray['###PHONE###']        = $lcObj->stdWrap($address['phone'], $lConf['phone.']);
-        $markerArray['###FAX###']          = $lcObj->stdWrap($address['fax'], $lConf['fax.']);
-        $markerArray['###MOBILE###']       = $lcObj->stdWrap($address['mobile'], $lConf['mobile.']);
-        $markerArray['###WWW###']          = $lcObj->stdWrap($address['www'], $lConf['www.']);
-        $markerArray['###ADDRESS###']      = $lcObj->stdWrap($address['address'], $lConf['address.']);
-        $markerArray['###BUILDING###']     = $lcObj->stdWrap($address['building'], $lConf['building.']);
-        $markerArray['###ROOM###']         = $lcObj->stdWrap($address['room'], $lConf['room.']);
-        $markerArray['###BIRTHDAY###']     = $lcObj->stdWrap($address['birthday'], $lConf['birthday.']);
+        $markerArray['###GENDER###'] = $lcObj->stdWrap($address['gender'], $lConf['gender.']);
+        $markerArray['###NAME###'] = $lcObj->stdWrap($address['name'], $lConf['name.']);
+        $markerArray['###FIRSTNAME###'] = $lcObj->stdWrap($address['first_name'], $lConf['first_name.']);
+        $markerArray['###MIDDLENAME###'] = $lcObj->stdWrap($address['middle_name'], $lConf['middle_name.']);
+        $markerArray['###LASTNAME###'] = $lcObj->stdWrap($address['last_name'], $lConf['last_name.']);
+        $markerArray['###TITLE###'] = $lcObj->stdWrap($address['title'], $lConf['title.']);
+        $markerArray['###EMAIL###'] = $lcObj->stdWrap($address['email'], $lConf['email.']);
+        $markerArray['###PHONE###'] = $lcObj->stdWrap($address['phone'], $lConf['phone.']);
+        $markerArray['###FAX###'] = $lcObj->stdWrap($address['fax'], $lConf['fax.']);
+        $markerArray['###MOBILE###'] = $lcObj->stdWrap($address['mobile'], $lConf['mobile.']);
+        $markerArray['###WWW###'] = $lcObj->stdWrap($address['www'], $lConf['www.']);
+        $markerArray['###ADDRESS###'] = $lcObj->stdWrap($address['address'], $lConf['address.']);
+        $markerArray['###BUILDING###'] = $lcObj->stdWrap($address['building'], $lConf['building.']);
+        $markerArray['###ROOM###'] = $lcObj->stdWrap($address['room'], $lConf['room.']);
+        $markerArray['###BIRTHDAY###'] = $lcObj->stdWrap($address['birthday'], $lConf['birthday.']);
         $markerArray['###ORGANIZATION###'] = $lcObj->stdWrap($address['company'], $lConf['organization.']);
-        $markerArray['###COMPANY###']      = $markerArray['###ORGANIZATION###']; // alias
-        $markerArray['###POSITION###']     = $lcObj->stdWrap($address['position'], $lConf['position.']);
-        $markerArray['###CITY###']         = $lcObj->stdWrap($address['city'], $lConf['city.']);
-        $markerArray['###ZIP###']          = $lcObj->stdWrap($address['zip'], $lConf['zip.']);
-        $markerArray['###REGION###']       = $lcObj->stdWrap($address['region'], $lConf['region.']);
-        $markerArray['###COUNTRY###']      = $lcObj->stdWrap($address['country'], $lConf['country.']);
-        $markerArray['###DESCRIPTION###']  = $lcObj->stdWrap($address['description'], $lConf['description.']);
-        $markerArray['###SKYPE###']        = $lcObj->stdWrap($address['skype'], $lConf['skype.']);
-        $markerArray['###TWITTER###']      = $lcObj->stdWrap($address['twitter'], $lConf['twitter.']);
-        $markerArray['###FACEBOOK###']     = $lcObj->stdWrap($address['facebook'], $lConf['facebook.']);
-        $markerArray['###LINKEDIN###']     = $lcObj->stdWrap($address['linkedin'], $lConf['linkedin.']);
-        $markerArray['###MAINGROUP###']    = $lcObj->stdWrap($address['groups'][0]['title'], $lConf['mainGroup.']);
-        $markerArray['###GROUPLIST###']    = $lcObj->stdWrap($address['groupList'], $lConf['groupList.']);
+        $markerArray['###COMPANY###'] = $markerArray['###ORGANIZATION###']; // alias
+        $markerArray['###POSITION###'] = $lcObj->stdWrap($address['position'], $lConf['position.']);
+        $markerArray['###CITY###'] = $lcObj->stdWrap($address['city'], $lConf['city.']);
+        $markerArray['###ZIP###'] = $lcObj->stdWrap($address['zip'], $lConf['zip.']);
+        $markerArray['###REGION###'] = $lcObj->stdWrap($address['region'], $lConf['region.']);
+        $markerArray['###COUNTRY###'] = $lcObj->stdWrap($address['country'], $lConf['country.']);
+        $markerArray['###DESCRIPTION###'] = $lcObj->stdWrap($address['description'], $lConf['description.']);
+        $markerArray['###SKYPE###'] = $lcObj->stdWrap($address['skype'], $lConf['skype.']);
+        $markerArray['###TWITTER###'] = $lcObj->stdWrap($address['twitter'], $lConf['twitter.']);
+        $markerArray['###FACEBOOK###'] = $lcObj->stdWrap($address['facebook'], $lConf['facebook.']);
+        $markerArray['###LINKEDIN###'] = $lcObj->stdWrap($address['linkedin'], $lConf['linkedin.']);
+        $markerArray['###MAINGROUP###'] = $lcObj->stdWrap($address['groups'][0]['title'], $lConf['mainGroup.']);
+        $markerArray['###GROUPLIST###'] = $lcObj->stdWrap($address['groupList'], $lConf['groupList.']);
 
         // the image
         $markerArray['###IMAGE###'] = '';
         if (!empty($address['image'])) {
             $filesConf = [
                 'references.' => [
-                    'uid' =>  (int)$address['uid'],
+                    'uid' => (int)$address['uid'],
                     'table' => 'tt_address',
                     'fieldName' => 'image'
                 ],
@@ -392,7 +395,8 @@ class LegacyPluginController extends AbstractPlugin
             }
             for ($filesIndex = 0; $filesIndex < 6; $filesIndex++) {
                 $filesConf['begin'] = $filesIndex;
-                $markerArray['###IMAGE' . ($filesIndex == 0 ? '' : $filesIndex) . '###'] = $lcObj->cObjGetSingle('FILES', $filesConf);
+                $markerArray['###IMAGE' . ($filesIndex == 0 ? '' : $filesIndex) . '###'] = $lcObj->cObjGetSingle('FILES',
+                    $filesConf);
             }
         } elseif (!empty($lConf['placeholderImage'])) {
             // we have no image, but a default image
@@ -435,7 +439,7 @@ class LegacyPluginController extends AbstractPlugin
                 $spName = '###SUBPART_' . strtoupper(substr($spName, 0, -1)) . '###';
 
                 $spTemplate = $lcObj->getSubpart($templateCode, $spName);
-                $content    = $lcObj->stdWrap(
+                $content = $lcObj->stdWrap(
                     $lcObj->substituteMarkerArrayCached(
                         $spTemplate,
                         $markerArray
@@ -518,10 +522,32 @@ class LegacyPluginController extends AbstractPlugin
     {
         // TODO add all fields from TCA (extract them from TCA) or add a method to add new sorting fields
         $validSortings = [
-            'uid', 'pid', 'tstamp',
-            'name', 'gender', 'first_name', 'middle_name', 'last_name', 'title', 'email',
-            'phone', 'mobile', 'www', 'address', 'building', 'room', 'birthday', 'company', 'city', 'zip',
-            'region', 'country', 'image', 'fax', 'description', 'singleSelection'
+            'uid',
+            'pid',
+            'tstamp',
+            'name',
+            'gender',
+            'first_name',
+            'middle_name',
+            'last_name',
+            'title',
+            'email',
+            'phone',
+            'mobile',
+            'www',
+            'address',
+            'building',
+            'room',
+            'birthday',
+            'company',
+            'city',
+            'zip',
+            'region',
+            'country',
+            'image',
+            'fax',
+            'description',
+            'singleSelection'
         ];
 
         if (!in_array($sortBy, $validSortings, true)) {
@@ -574,7 +600,7 @@ class LegacyPluginController extends AbstractPlugin
      * Removes whitespaces, hyphens and replaces umlauts to allow a correct
      * sorting with multisort.
      *
-     * @param mixed $value: value to clean
+     * @param mixed $value : value to clean
      * @return string cleaned value
      */
     protected function normalizeSortingString($value)
@@ -608,7 +634,7 @@ class LegacyPluginController extends AbstractPlugin
     }
 
     /**
-     * @return \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
+     * @return TypoScriptFrontendController
      */
     protected function getTypoScriptFrontendController()
     {

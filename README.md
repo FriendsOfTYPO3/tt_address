@@ -1,7 +1,7 @@
-# TT_ADDRESS: Address storage and display
+# TYPO3 Extension "tt_address": Address storage and display
 
 The basic aim of tt_address is to store your address data. The extension itself
-is shipped with a basic set of fluid/extbase templates since version 4.0.0.
+is shipped with a basic fluid/extbase plugin since version 4.0.0.
 
 The aim of tt_address is not to solve sophisticated address-data problems for you, but
 tt_address could be your basic domain-model which you can reuse and extend.
@@ -10,27 +10,28 @@ own extension, which just references address records 1:n or n:m, whatever you ne
 Therefore you can focus on your special address-related problem to solve and have not to think about
 the general domain-model for storing an address-record with all its related fields.
 
-The fluid/extbase part comes with a list-view and a detailed view.
-Listview is able to select by single-records, categories or 'from pages' by waterfall principle.
-You can set the order-field (also manual-ordering), deactivate paging and there is
-also a listLimit you can set.
-Furthermore the category-selection can be set to logical AND or logical OR.
+The fluid/extbase part comes with a list view and a detail view.
+List view is able to select by single records, categories or 'from pages' by waterfall principle.
+
+You can set the sorting order (manual ordering is also possible), deactivate pagination and there is
+also a limit option you can set.
+
+Furthermore the category-based selection can be set to logical AND or logical OR.
+
+### Further Notes
 
 At the moment we also ship some ancient code, you might know: tt_address is nearly as old as TYPO3 itself.
-For version 4.0.0 we decided to ship the old pibase plugin, but keep in mind you need to actively activate it in the extensions settings in EM,
-as we decided to deactivate it by default!
+
+For version 4.0.0 we decided to ship the old pibase plugin, but keep in mind you need to actively activate it in
+the extensions settings, as we decided to deactivate it by default.
+
 You are encouraged to move along to the new extbase/fluid based plugin, in case you used the pibase part before.
 
 
-## Planned features for the future
+## License
 
-### Backend
- - Geocoding
- - Wizard for position-selection (if geocoding fails) based on OSM
+GPL v2+
 
-### Frontend
- - Map visualisation of address records based on OSM
- - Category filter
- - Filtering by first character of last name
- - Sorting on frontend
+## Maintenance
 
+The extension is currently maintained by @BastianBalthasarBux and @bmack.

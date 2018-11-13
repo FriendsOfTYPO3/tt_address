@@ -14,11 +14,12 @@ namespace TYPO3\TtAddress\Updates;
  *
  * The TYPO3 project - inspiring people to share!
  */
+
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\DatabaseConnection;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\AbstractUpdate;
-use TYPO3\CMS\Core\Database\ConnectionPool;
 
 class ImageToFileReference extends AbstractUpdate
 {
@@ -64,7 +65,8 @@ class ImageToFileReference extends AbstractUpdate
             $storageRecord = $storage->getStorageRecord();
             $configuration = $storage->getConfiguration();
             $isLocalDriver = $storageRecord['driver'] === 'Local';
-            $isOnFileadmin = !empty($configuration['basePath']) && GeneralUtility::isFirstPartOfStr($configuration['basePath'], $fileadminDirectory);
+            $isOnFileadmin = !empty($configuration['basePath']) && GeneralUtility::isFirstPartOfStr($configuration['basePath'],
+                    $fileadminDirectory);
             if ($isLocalDriver && $isOnFileadmin) {
                 $this->storage = $storage;
                 break;
@@ -166,7 +168,8 @@ class ImageToFileReference extends AbstractUpdate
                 if (!empty($image) && file_exists(PATH_site . 'uploads/pics/' . $image)) {
                     GeneralUtility::upload_copy_move(
                         PATH_site . 'uploads/pics/' . $image,
-                        $this->targetDirectory . $image);
+                        $this->targetDirectory . $image
+                    );
 
                     $fileObject = $this->storage->getFile(self::FOLDER_ContentUploads . '/' . $image);
                     if ($fileObject instanceof File) {

@@ -1,4 +1,5 @@
 <?php
+
 namespace TYPO3\TtAddress\Hooks\DataHandler;
 
 /*
@@ -14,9 +15,9 @@ namespace TYPO3\TtAddress\Hooks\DataHandler;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\TtAddress\Utility\SettingsUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\TtAddress\Utility\SettingsUtility;
 
 /**
  * Class BackwardsCompatibilityNameFormat
@@ -72,15 +73,13 @@ class BackwardsCompatibilityNameFormat
     protected function getFullRecord($uid)
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_address');
-        $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT, ':uid');
-        $row = $queryBuilder
+        return $queryBuilder
             ->select('*')
             ->from('tt_address')
             ->where(
-                $queryBuilder->expr()->eq('uid', ':uid')
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
             )
             ->execute()
             ->fetch();
-        return $row;
     }
 }

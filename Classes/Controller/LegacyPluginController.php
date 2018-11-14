@@ -15,8 +15,11 @@ namespace TYPO3\TtAddress\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Core\Charset\CharsetConverter;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\Restriction\FrontendRestrictionContainer;
+use TYPO3\CMS\Core\Service\MarkerBasedTemplateService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\CMS\Frontend\Plugin\AbstractPlugin;
 
@@ -54,6 +57,11 @@ class LegacyPluginController extends AbstractPlugin
     protected $ffData;
 
     /**
+     * @var MarkerBasedTemplateService
+     */
+    protected $templateService;
+
+    /**
      * main method which controls the data flow and outputs the addresses
      *
      * @param string $content Content string, empty
@@ -62,6 +70,7 @@ class LegacyPluginController extends AbstractPlugin
      */
     public function main($content, $conf)
     {
+        $this->templateService = GeneralUtility::makeInstance(MarkerBasedTemplateService::class);
         $this->init($conf);
         $content = '';
         $singleSelection = $this->getSingleRecords();
@@ -83,7 +92,7 @@ class LegacyPluginController extends AbstractPlugin
                 $markerArray = $this->getItemMarkerArray($address);
                 $subpartArray = $this->getSubpartArray($templateCode, $markerArray, $address);
 
-                $addressContent = $this->cObj->substituteMarkerArrayCached(
+                $addressContent = $this->templateService->substituteMarkerArrayCached(
                     $templateCode,
                     $markerArray,
                     $subpartArray
@@ -178,17 +187,25 @@ class LegacyPluginController extends AbstractPlugin
     public function getSingleRecords()
     {
         $singleRecords = [];
-        $uidList = $this->getDatabaseConnection()->cleanIntList($this->conf['singleSelection']);
+        $singleRecordUids = GeneralUtility::intExplode(',', $this->conf['singleSelection'], true);
+        $pids = GeneralUtility::intExplode(',', $this->conf['pidList'], true);
 
-        if (!empty($uidList)) {
-            $addresses = $this->getDatabaseConnection()->exec_SELECTgetRows(
-                '*',
-                'tt_address',
-                'uid IN(' . $uidList . ') ' . (!empty($this->conf['pidList']) ? ' AND pid IN (' . $this->conf['pidList'] . ')' : '')
-                . $this->cObj->enableFields('tt_address')
-            );
+        if (!empty($singleRecordUids)) {
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_address');
+            $queryBuilder->setRestrictions(GeneralUtility::makeInstance(FrontendRestrictionContainer::class));
+            $queryBuilder
+                ->select('*')
+                ->from('tt_address')
+                ->where(
+                    $queryBuilder->expr()->in('uid', $singleRecordUids)
+                );
 
-            foreach ($addresses as $k => $address) {
+            if (!empty($pids)) {
+                $queryBuilder->andWhere($queryBuilder->expr()->in('pid', $pids));
+            }
+
+            $result = $queryBuilder->execute();
+            while ($address = $result->fetch()) {
                 $singleRecords[$address['uid']] = $this->getGroupsForAddress($address);
             }
         }
@@ -204,40 +221,69 @@ class LegacyPluginController extends AbstractPlugin
     {
         $groupRecords = [];
 
-        $groups = GeneralUtility::intExplode(',', $this->conf['groupSelection']);
-        $groupList = implode(',', $groups);
+        $pageIds = GeneralUtility::intExplode(',', $this->conf['pidList'], true);
+        $groups = GeneralUtility::intExplode(',', $this->conf['groupSelection'], true);
+        if (!empty($groups) && !empty($this->conf['pidList'])) {
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_address');
+            $queryBuilder->setRestrictions(GeneralUtility::makeInstance(FrontendRestrictionContainer::class));
 
-        if (!empty($groupList) && !empty($this->conf['pidList'])) {
             if ($this->conf['combination'] == 'AND') {
-                // AND
-                $res = $this->getDatabaseConnection()->sql_query(
-                    'SELECT tt_address.*, COUNT(tt_address.uid) AS c ' .
-                    'FROM tt_address ' .
-                    'JOIN sys_category_record_mm ON tt_address.uid = sys_category_record_mm.uid_foreign ' .
-                    'JOIN sys_category ON sys_category.uid = sys_category_record_mm.uid_local ' .
-                    'WHERE sys_category_record_mm.uid_local IN ( ' . $groupList . ') ' .
-                    $this->cObj->enableFields('tt_address') .
-                    $this->cObj->enableFields('sys_category') .
-                    ' AND tt_address.pid IN (' . $this->conf['pidList'] . ')' .
-                    ' AND sys_category_record_mm.fieldname = \'categories\' AND sys_category_record_mm.tablenames = \'tt_address\'' .
-                    'GROUP BY tt_address.uid ' .
-                    'HAVING c = ' . count($groups) . ' '
-                );
+                $queryBuilder
+                    ->select('tt_address.*', 'COUNT(tt_address.uid) AS c')
+                    ->from('tt_address')
+                    ->join(
+                        'tt_address',
+                        'sys_category_record_mm',
+                        'sys_category_record_mm',
+                        $queryBuilder->expr()->eq(
+                            'tt_address.uid',
+                            $queryBuilder->quoteIdentifier('sys_category_record_mm.uid_foreign')
+                        )
+                    )
+                    ->join(
+                        'sys_category_record_mm',
+                        'sys_category',
+                        'sys_category',
+                        $queryBuilder->expr()->eq(
+                            'sys_category.uid',
+                            $queryBuilder->quoteIdentifier('sys_category_record_mm.uid_local')
+                        )
+                    )
+                    ->where(
+                        $queryBuilder->expr()->in('sys_category_record_mm.uid_local', $groups),
+                        $queryBuilder->expr()->in('tt_address.pid', $pageIds),
+                        $queryBuilder->expr()->eq('sys_category_record_mm.fieldname', 'categories'),
+                        $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', 'tt_address')
+                    )
+                    ->groupBy('tt_address.uid')
+                    ->having(
+                        $queryBuilder->expr()->eq('c', count($groups))
+                    );
             } elseif ($this->conf['combination'] == 'OR') {
-                // OR
-                $res = $this->getDatabaseConnection()->exec_SELECTquery(
-                    'DISTINCT tt_address.*',
-                    'tt_address, sys_category_record_mm, sys_category',
-                    'sys_category_record_mm.uid_local IN(' . $groupList .
-                    ') AND tt_address.uid = sys_category_record_mm.uid_foreign ' .
-                    $this->cObj->enableFields('tt_address') .
-                    $this->cObj->enableFields('sys_category') .
-                    ' AND tt_address.pid IN (' . $this->conf['pidList'] . ')' .
-                    ' AND sys_category_record_mm.fieldname = \'categories\' AND sys_category_record_mm.tablenames = \'tt_address\''
-                );
+                $queryBuilder
+                    ->select('tt_address.*')
+                    ->from('tt_address')
+                    ->join(
+                        'tt_address',
+                        'sys_category_record_mm',
+                        'sys_category_record_mm'
+                    )
+                    ->join(
+                        'sys_category_record_mm',
+                        'sys_category',
+                        'sys_category'
+                    )
+                    ->where(
+                        $queryBuilder->expr()->in('sys_category_record_mm.uid_local', $groups),
+                        $queryBuilder->expr()->in('tt_address.pid', $pageIds),
+                        $queryBuilder->expr()->eq('sys_category_record_mm.fieldname', 'categories'),
+                        $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', 'tt_address')
+                    )
+                    ->groupBy('tt_address.uid');
             }
 
-            while ($address = $this->getDatabaseConnection()->sql_fetch_assoc($res)) {
+            $result = $queryBuilder->execute();
+            while ($address = $result->fetch()) {
                 $groupRecords[$address['uid']] = $this->getGroupsForAddress($address);
             }
         }
@@ -255,14 +301,28 @@ class LegacyPluginController extends AbstractPlugin
     {
         $groupTitles = [];
 
-        $result = $this->getDatabaseConnection()->exec_SELECTgetRows(
-            'c.*',
-            'sys_category c, sys_category_record_mm mm',
-            'mm.uid_local=c.uid AND mm.uid_foreign=' . (int)$address['uid'] . ' AND mm.tablenames=\'tt_address\' AND mm.fieldname=\'categories\'',
-            '',
-            'mm.sorting_foreign ASC'
-        );
-        foreach ($result as $groupRecord) {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_category');
+        $queryBuilder->setRestrictions(GeneralUtility::makeInstance(FrontendRestrictionContainer::class));
+        $result = $queryBuilder
+            ->select('c.*')
+            ->from('sys_category', 'c')
+            ->join(
+                'sys_category',
+                'sys_category_record_mm',
+                'mm',
+                $queryBuilder->expr()->eq(
+                    'c.uid',
+                    $queryBuilder->quoteIdentifier('mm.uid_local')
+                )
+            )
+            ->where(
+                $queryBuilder->expr()->eq('mm.uid_foreign', $queryBuilder->createNamedParameter((int)$address['uid'], \PDO::PARAM_INT)),
+                $queryBuilder->expr()->eq('mm.tablenames', 'tt_address'),
+                $queryBuilder->expr()->eq('mm.fieldname', 'categories')
+            )
+            ->orderBy('mm.sorting_foreign')
+            ->execute();
+        while ($groupRecord = $result->fetch()) {
             if ($this->getTypoScriptFrontendController()->sys_language_content) {
                 $groupRecord = $this->getTypoScriptFrontendController()->sys_page->getRecordOverlay('sys_category',
                     $groupRecord, $this->getTypoScriptFrontendController()->sys_language_content);
@@ -275,7 +335,6 @@ class LegacyPluginController extends AbstractPlugin
 
         $groupList = implode(', ', $groupTitles);
         $address['groupList'] = $groupList;
-
         return $address;
     }
 
@@ -327,7 +386,7 @@ class LegacyPluginController extends AbstractPlugin
 
         //local configuration and local cObj
         $lConf = $this->conf['templates.'][$this->conf['templateName'] . '.'];
-        $lcObj = GeneralUtility::makeInstance(\TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer::class);
+        $lcObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
         $lcObj->data = $address;
 
         $markerArray['###UID###'] = $address['uid'];
@@ -411,7 +470,7 @@ class LegacyPluginController extends AbstractPlugin
         // adds hook for processing of extra item markers
         if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tt_address']['extraItemMarkerHook'])) {
             foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tt_address']['extraItemMarkerHook'] as $_classRef) {
-                $_procObj = GeneralUtility::getUserObj($_classRef);
+                $_procObj = GeneralUtility::makeInstance($_classRef);
                 $markerArray = $_procObj->extraItemMarkerProcessor($markerArray, $address, $lConf, $this);
             }
         }
@@ -432,7 +491,7 @@ class LegacyPluginController extends AbstractPlugin
         $subpartArray = [];
 
         if (is_array($this->conf['templates.'][$this->conf['templateName'] . '.']['subparts.'])) {
-            $lcObj = GeneralUtility::makeInstance(\TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer::class); // local cObj
+            $lcObj = GeneralUtility::makeInstance(ContentObjectRenderer::class); // local cObj
             $lcObj->data = $address;
 
             foreach ($this->conf['templates.'][$this->conf['templateName'] . '.']['subparts.'] as $spName => $spConf) {
@@ -507,7 +566,7 @@ class LegacyPluginController extends AbstractPlugin
         }
 
         $templateCode = file_get_contents(GeneralUtility::getFileAbsFileName($this->conf['templatePath'] . $templateFile));
-        return $this->cObj->getSubpart($templateCode, '###TEMPLATE_ADDRESS###');
+        return $this->templateService->getSubpart($templateCode, '###TEMPLATE_ADDRESS###');
     }
 
     /**
@@ -610,9 +669,7 @@ class LegacyPluginController extends AbstractPlugin
             return $value;
         }
 
-        /** @var CharsetConverter $charsetConverter */
-        $charsetConverter = GeneralUtility::makeInstance(CharsetConverter::class);
-        $value = $charsetConverter->conv_case('utf-8', $value, 'toLower');
+        $value = mb_strtolower($value, 'utf-8');
         $value = preg_replace("/\s+/", '', $value); // remove whitespace
         $value = preg_replace('/-/', '', $value); // remove hyphens e.g. from double names
         $value = preg_replace('/ü/', 'u', $value); // remove umlauts
@@ -623,14 +680,6 @@ class LegacyPluginController extends AbstractPlugin
         $value = preg_replace('/è/', 'e', $value);
         $value = preg_replace('/ç/', 'c', $value);
         return $value;
-    }
-
-    /**
-     * @return \TYPO3\CMS\Core\Database\DatabaseConnection
-     */
-    protected function getDatabaseConnection()
-    {
-        return $GLOBALS['TYPO3_DB'];
     }
 
     /**

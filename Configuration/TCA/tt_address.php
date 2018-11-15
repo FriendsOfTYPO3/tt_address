@@ -1,5 +1,5 @@
 <?php
-$settings = \TYPO3\TtAddress\Utility\SettingsUtility::getSettings();
+$settings = \FriendsOfTYPO3\TtAddress\Utility\SettingsUtility::getSettings();
 
 $version8 = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('8.0');
 $version9 = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('9.3');

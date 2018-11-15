@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\TtAddress\Domain\Model\Dto;
+namespace FriendsOfTYPO3\TtAddress\Domain\Model\Dto;
 
 /*
  * This file is part of the TYPO3 CMS project.

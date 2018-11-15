@@ -1,6 +1,6 @@
 <?php
 
-namespace TYPO3\TtAddress\Evaluation;
+namespace FriendsOfTYPO3\TtAddress\Evaluation;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -15,7 +15,7 @@ namespace TYPO3\TtAddress\Evaluation;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\TtAddress\Utility\EvalcoordinatesUtility;
+use FriendsOfTYPO3\TtAddress\Utility\EvalcoordinatesUtility;
 
 /**
  * Class for validation/evaluation of longitude to be used in 'eval' of TCA

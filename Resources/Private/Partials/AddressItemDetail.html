@@ -1,4 +1,4 @@
-{namespace ttaddr=TYPO3\TtAddress\ViewHelpers}
+{namespace ttaddr=FriendsOfTYPO3\TtAddress\ViewHelpers}
 
 <div class="vcard tt_address_detail" itemscope itemtype="http://schema.org/Person">
   <!-- Contact name, title and position -->
@@ -28,7 +28,7 @@
       </div>
     </f:then>
   </f:if>
-  
+
   <!-- Description of address -->
   <f:if condition="{address.description}">
     <f:then>
@@ -37,7 +37,7 @@
       </p>
     </f:then>
   </f:if>
-  
+
   <!-- Basic address -->
   <p class="bodytext" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
     <f:if condition="{address.zip}">
@@ -46,7 +46,7 @@
       </f:then>
     </f:if>
   </p>
-  
+
   <!-- Image rows (except first), every third image a linebreak is inserted -->
   <f:if condition="{address.image}">
     <div class="address-image-rows">
@@ -68,7 +68,7 @@
       </f:for>
     </div>
   </f:if>
-  
+
   <!-- The rest of the fields of tt_address -->
   <p class="bodytext">
     <f:if condition="{address.building}">
@@ -76,7 +76,7 @@
         <label><f:translate key="label.building" />: </label> {address.building}
       </f:then>
     </f:if>
-    
+
     <f:if condition="{address.room}">
       <f:then>
         <label><f:translate key="label.room" />: </label> {address.room}
@@ -89,28 +89,28 @@
         <br />
       </f:then>
     </f:if>
-    
+
     <f:if condition="{address.mobile}">
       <f:then>
         <label><f:translate key="label.mobile" />: </label><a href="tel:{address.mobile->ttaddr:spaceless()}">{address.mobile}</a>
         <br />
       </f:then>
     </f:if>
-    
+
     <f:if condition="{address.fax}">
       <f:then>
         <label><f:translate key="label.fax" />: </label>{address.fax}
         <br />
       </f:then>
     </f:if>
-    
+
     <f:if condition="{address.email}">
       <f:then>
         <label><f:translate key="label.email" />: <f:link.email email="{address.email}" />
         <br />
       </f:then>
     </f:if>
-    
+
     <f:if condition="{address.www}">
       <f:then>
         <br />
@@ -118,9 +118,9 @@
         <br />
       </f:then>
     </f:if>
-    
+
     <!-- Social Media Contact Handles -->
-    <!-- Complex nesting with Fluid, for compatibility with TYPO3 v7 -->    
+    <!-- Complex nesting with Fluid, for compatibility with TYPO3 v7 -->
     <f:if condition="{address.skype}">
       <f:then>
         <h3><f:translate key="label.socialmedia" /></h3>
@@ -147,28 +147,28 @@
         </f:if>
       </f:else>
     </f:if>
-    
+
     <f:if condition="{address.skype}">
       <f:then>
-        <label><f:translate key="label.skype" />: <a href="skype:{address.skype}?call">{address.skype}</a>, 
+        <label><f:translate key="label.skype" />: <a href="skype:{address.skype}?call">{address.skype}</a>,
       </f:then>
     </f:if>
     <f:if condition="{address.twitter}">
       <f:then>
-        <label><f:translate key="label.twitter" />: <a href="https://twitter.com/{address.twitter}" target="_blank">{address.twitter}</a>, 
+        <label><f:translate key="label.twitter" />: <a href="https://twitter.com/{address.twitter}" target="_blank">{address.twitter}</a>,
       </f:then>
     </f:if>
     <f:if condition="{address.facebook}">
       <f:then>
-        <label><f:translate key="label.facebook" />: <a href="https://www.facebook.com/{address.facebook}" target="_blank">{address.facebook}</a>, 
+        <label><f:translate key="label.facebook" />: <a href="https://www.facebook.com/{address.facebook}" target="_blank">{address.facebook}</a>,
       </f:then>
     </f:if>
     <f:if condition="{address.linkedin}">
       <f:then>
-        <label><f:translate key="label.linkedin" />: <a href="https://www.linkedin.com/in/{address.linkedin}" target="_blank">{address.linkedin}</a> 
+        <label><f:translate key="label.linkedin" />: <a href="https://www.linkedin.com/in/{address.linkedin}" target="_blank">{address.linkedin}</a>
       </f:then>
     </f:if>
-    
+
   </p>
-  
+
 </div>

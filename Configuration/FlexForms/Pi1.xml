@@ -86,7 +86,7 @@
 										<numIndex index="1">default</numIndex>
 									</numIndex>
 								</items>
-								<itemsProcFunc>TYPO3\TtAddress\Hooks\FormEngine\LegacyPluginSelector->addFieldsToSelector</itemsProcFunc>
+								<itemsProcFunc>FriendsOfTYPO3\TtAddress\Hooks\FormEngine\LegacyPluginSelector->addFieldsToSelector</itemsProcFunc>
 							</config>
 						</TCEforms>
 					</sortBy>
@@ -190,7 +190,7 @@
 										<numIndex index="2">EXT:tt_address/Resources/Public/Icons/default_hcard.gif</numIndex>
 									</numIndex>
 								</items>
-								<itemsProcFunc>TYPO3\TtAddress\Hooks\FormEngine\LegacyPluginSelector->addFilesToSelector</itemsProcFunc>
+								<itemsProcFunc>FriendsOfTYPO3\TtAddress\Hooks\FormEngine\LegacyPluginSelector->addFilesToSelector</itemsProcFunc>
 							</config>
 						</TCEforms>
 					</templateFile>

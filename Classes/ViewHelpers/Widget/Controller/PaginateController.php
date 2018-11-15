@@ -1,6 +1,6 @@
 <?php
 
-namespace TYPO3\TtAddress\ViewHelpers\Widget\Controller;
+namespace FriendsOfTYPO3\TtAddress\ViewHelpers\Widget\Controller;
 
 /*
  * This file is part of the TYPO3 CMS project.

@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\TtAddress\Domain\Repository;
+namespace FriendsOfTYPO3\TtAddress\Domain\Repository;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -18,7 +18,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
-use TYPO3\TtAddress\Service\CategoryService;
+use FriendsOfTYPO3\TtAddress\Service\CategoryService;
 
 /**
  * The repository for the domain model Address
@@ -40,7 +40,7 @@ class AddressRepository extends Repository
      *
      * @param array settings
      * @param array orderings for query
-     * @return Array<TYPO3\TtAddress\Domain\Model>  The result list.
+     * @return Array<FriendsOfTYPO3\TtAddress\Domain\Model>  The result list.
      */
     public function findTtAddressesByCategories($settings, $orderings)
     {
@@ -59,7 +59,7 @@ class AddressRepository extends Repository
      *
      * @param string String containing the single uids
      * @param array orderings for query
-     * @return Array<TYPO3\TtAddress\Domain\Model>  The result list.
+     * @return Array<FriendsOfTYPO3\TtAddress\Domain\Model>  The result list.
      */
     public function findByUidListOrderByList($settings, $orderings)
     {
@@ -97,7 +97,7 @@ class AddressRepository extends Repository
      * @param array orderings for query
      * @param string $categories   Comma-seperated list of Category IDs
      * @param int $logicalOperaion: 1=OR; 0=AND
-     * @return Array<TYPO3\TtAddress\Domain\Model>  The result list.
+     * @return Array<FriendsOfTYPO3\TtAddress\Domain\Model>  The result list.
      */
     protected function buildQueryCategories($orderings, $categories, $logicalOperation = 0)
     {

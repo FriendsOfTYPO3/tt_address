@@ -1,6 +1,6 @@
 <?php
 
-namespace TYPO3\TtAddress\Controller;
+namespace FriendsOfTYPO3\TtAddress\Controller;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -17,7 +17,7 @@ namespace TYPO3\TtAddress\Controller;
 
 use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\TtAddress\Utility\TypoScript;
+use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
 
 /**
  * AddressController
@@ -26,15 +26,15 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 {
 
     /**
-     * @var \TYPO3\TtAddress\Domain\Repository\AddressRepository
+     * @var \FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository
      * @inject
      */
     protected $addressRepository;
 
     /**
-     * @param \TYPO3\TtAddress\Domain\Model\Address $address
+     * @param \FriendsOfTYPO3\TtAddress\Domain\Model\Address $address
      */
-    public function showAction(\TYPO3\TtAddress\Domain\Model\Address $address = null)
+    public function showAction(\FriendsOfTYPO3\TtAddress\Domain\Model\Address $address = null)
     {
         if (!$address) {
             $address = $this->addressRepository->findByUid((int)GeneralUtility::_GET('address'));

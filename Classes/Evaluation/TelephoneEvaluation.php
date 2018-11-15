@@ -1,6 +1,6 @@
 <?php
 
-namespace TYPO3\TtAddress\Evaluation;
+namespace FriendsOfTYPO3\TtAddress\Evaluation;
 
 /*
  * This file is part of the TYPO3 CMS project.

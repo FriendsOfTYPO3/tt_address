@@ -85,7 +85,7 @@
                     <numIndex index="1">default</numIndex>
                   </numIndex>
                 </items>
-                <itemsProcFunc>TYPO3\TtAddress\Hooks\Tca\AddFieldsToSelector->main</itemsProcFunc>
+                <itemsProcFunc>FriendsOfTYPO3\TtAddress\Hooks\Tca\AddFieldsToSelector->main</itemsProcFunc>
               </config>
             </TCEforms>
           </settings.sortBy>
@@ -201,16 +201,16 @@
               </config>
             </TCEforms>
           </settings.displayMode>
-          
+
           <settings.hidePagination>
             <TCEforms>
               <label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.hidePagination</label>
               <config>
                 <type>check</type>
               </config>
-            </TCEforms>  
+            </TCEforms>
           </settings.hidePagination>
-          
+
           <settings.paginate.itemsPerPage>
             <TCEforms>
               <label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.itemsPerPage</label>
@@ -220,7 +220,7 @@
                 <max>5</max>
                 <eval>trim, intval</eval>
               </config>
-            </TCEforms>  
+            </TCEforms>
           </settings.paginate.itemsPerPage>
 
           <settings.singlePid>
@@ -242,7 +242,7 @@
               </config>
             </TCEforms>
           </settings.singlePid>
-                  
+
           <!-- ToDo:
             - Display alphabetical filter on/off
           -->

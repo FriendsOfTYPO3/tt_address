@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\TtAddress\Hooks\Tca;
+namespace FriendsOfTYPO3\TtAddress\Hooks\Tca;
 
 /*
  * This file is part of the TYPO3 CMS project.

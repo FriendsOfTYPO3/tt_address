@@ -1,6 +1,6 @@
 <?php
 
-namespace TYPO3\TtAddress\Utility;
+namespace FriendsOfTYPO3\TtAddress\Utility;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -16,7 +16,7 @@ namespace TYPO3\TtAddress\Utility;
  */
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\TtAddress\Domain\Model\Dto\Settings;
+use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 
 /**
  * Class SettingsUtility

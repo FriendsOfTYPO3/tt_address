@@ -1,6 +1,6 @@
 <?php
 
-namespace TYPO3\TtAddress\Hooks\DataHandler;
+namespace FriendsOfTYPO3\TtAddress\Hooks\DataHandler;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -17,7 +17,7 @@ namespace TYPO3\TtAddress\Hooks\DataHandler;
 
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\TtAddress\Utility\SettingsUtility;
+use FriendsOfTYPO3\TtAddress\Utility\SettingsUtility;
 
 /**
  * Class BackwardsCompatibilityNameFormat

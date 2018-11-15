@@ -16,7 +16,7 @@
   ],
   "license": "GPL-2.0-or-later",
   "require": {
-    "typo3/cms-core": ">=7.6",
+    "typo3/cms-core": "^8.7 || ^9.5",
     "php": ">=7.0"
   },
   "extra": {
@@ -28,7 +28,7 @@
   },
   "autoload": {
     "psr-4": {
-      "TYPO3\\TtAddress\\": "Classes"
+      "FriendsOfTYPO3\\TtAddress\\": "Classes"
     }
   },
   "replace": {

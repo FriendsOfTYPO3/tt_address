@@ -1,6 +1,6 @@
 <?php
 
-namespace TYPO3\TtAddress\Controller;
+namespace FriendsOfTYPO3\TtAddress\Controller;
 
 /*
  * This file is part of the TYPO3 CMS project.

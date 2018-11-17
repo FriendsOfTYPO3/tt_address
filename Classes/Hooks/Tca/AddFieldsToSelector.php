@@ -1,4 +1,5 @@
 <?php
+
 namespace FriendsOfTYPO3\TtAddress\Hooks\Tca;
 
 /*
@@ -14,30 +15,24 @@ namespace FriendsOfTYPO3\TtAddress\Hooks\Tca;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-
 /**
  * Class AddFieldsToSelector
  */
 class AddFieldsToSelector
 {
+
+    // TODO consolidate with list in pi1
+    const sortFields = ['gender', 'first_name', 'middle_name', 'last_name', 'title', 'company', 'address', 'building', 'room', 'birthday', 'zip', 'city', 'region', 'country', 'email', 'www', 'phone', 'mobile', 'fax'];
+
     /**
      * Manipulating the input array, $params, adding new selectorbox items.
      *
-     * @param	array	$params array of select field options (reference)
-     * @param	object	$pObj parent object (reference)
+     * @param array $params array of select field options (reference)
      */
-    public function main(&$params, &$pObj)
+    public function main(array &$params)
     {
-        // TODO consolidate with list in pi1
-        $coreSortFields = 'gender, first_name, middle_name, last_name, title, company, '
-            . 'address, building, room, birthday, zip, city, region, country, email, www, phone, mobile, '
-            . 'fax';
-
-        $sortFields = GeneralUtility::trimExplode(',', $coreSortFields);
-
         $selectOptions = [];
-        foreach ($sortFields as $field) {
+        foreach (self::sortFields as $field) {
             $label = $GLOBALS['LANG']->sL($GLOBALS['TCA']['tt_address']['columns'][$field]['label']);
             $label = rtrim($label, ':');
 

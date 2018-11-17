@@ -95,8 +95,7 @@ class TypoScript
     {
         $this->setValueByReference($array, $path, $value);
 
-        $final = array_merge_recursive([], $array);
-        return $final;
+        return array_merge_recursive([], $array);
     }
 
     /**

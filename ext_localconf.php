@@ -23,9 +23,9 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('realurl')) {
 /* ===========================================================================
  BEGIN: Add old legacy plugin
 =========================================================================== */
-$localExtConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address']);
+$settings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings::class);
 
-if ((bool)$localExtConf['activatePiBase']) {
+if ($settings->isActivatePiBase()) {
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPItoST43(
         'tt_address',
         'Classes/Controller/LegacyPluginController.php',
@@ -34,7 +34,7 @@ if ((bool)$localExtConf['activatePiBase']) {
         true
     );
     // Adds the old legacy plugin to New Content Element wizard
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . 'tt_address' . '/Configuration/TSconfig/AddLegacyPluginToNewCEWizard.ts">');
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . 'tt_address' . '/Configuration/TSconfig/AddLegacyPluginToNewCEWizard.typoscript">');
 }
 
 /* ===========================================================================
@@ -42,7 +42,7 @@ if ((bool)$localExtConf['activatePiBase']) {
 =========================================================================== */
 
 // Adds the new fluid/extbase-plugin to New Content Element wizard
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . 'tt_address' . '/Configuration/TSconfig/NewContentElementWizard.ts">');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . 'tt_address' . '/Configuration/TSconfig/NewContentElementWizard.typoscript">');
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
     'TYPO3.tt_address',

@@ -15,9 +15,9 @@ namespace FriendsOfTYPO3\TtAddress\Hooks\DataHandler;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Core\Database\ConnectionPool;
+use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use FriendsOfTYPO3\TtAddress\Utility\SettingsUtility;
 
 /**
  * Class BackwardsCompatibilityNameFormat
@@ -33,15 +33,14 @@ class BackwardsCompatibilityNameFormat
      * @param string $table db table
      * @param int $id record uid
      * @param array $fieldArray record
-     * @param object $pObj parent object
      */
-    public function processDatamap_postProcessFieldArray($status, $table, $id, &$fieldArray, $pObj)
+    public function processDatamap_postProcessFieldArray($status, $table, $id, &$fieldArray)
     {
-        if ($table == 'tt_address' && ($status == 'new' || $status == 'update')) {
-            $settings = SettingsUtility::getSettings();
+        if ($table === 'tt_address' && ($status === 'new' || $status === 'update')) {
+            $settings = GeneralUtility::makeInstance(Settings::class);
             if ($settings->isStoreBackwardsCompatName()) {
-                if ($status == 'update') {
-                    $address = $this->getFullRecord($id);
+                if ($status === 'update') {
+                    $address = BackendUtility::getRecord('tt_address', $id);
                 } else {
                     $address = $fieldArray;
                 }
@@ -62,24 +61,5 @@ class BackwardsCompatibilityNameFormat
                 }
             }
         }
-    }
-
-    /**
-     * gets a full tt_address record
-     *
-     * @param int $uid unique id of the tt_address record to get
-     * @return array full tt_address record with associative keys
-     */
-    protected function getFullRecord($uid)
-    {
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_address');
-        return $queryBuilder
-            ->select('*')
-            ->from('tt_address')
-            ->where(
-                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
-            )
-            ->execute()
-            ->fetch();
     }
 }

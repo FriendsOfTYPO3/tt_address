@@ -24,11 +24,11 @@ use FriendsOfTYPO3\TtAddress\Utility\EvalcoordinatesUtility;
 class LatitudeEvaluation
 {
 
-  /**
-   * JavaScript code for client side validation/evaluation
-   *
-   * @return string JavaScript code for client side validation/evaluation
-   */
+    /**
+     * JavaScript code for client side validation/evaluation
+     *
+     * @return string JavaScript code for client side validation/evaluation
+     */
     public function returnFieldJS()
     {
         // Nice to have: add javascript-code for evalution on blur
@@ -50,7 +50,7 @@ class LatitudeEvaluation
     {
         // test if we have any latitude
         if ($value && $value != '') {
-            $value = EvalcoordinatesUtility::formatCoordinate($value);
+            $value = EvalcoordinatesUtility::formatLatitude($value);
         }
         return $value;
     }
@@ -64,8 +64,8 @@ class LatitudeEvaluation
     public function deevaluateFieldValue(array $parameters)
     {
         // test if we have any latitude
-        if ($parameters['value'] && $parameters['value'] != '') {
-            $parameters['value'] = EvalcoordinatesUtility::formatCoordinate($parameters['value']);
+        if ($parameters['value'] && $parameters['value'] !== '') {
+            $parameters['value'] = EvalcoordinatesUtility::formatLatitude($parameters['value']);
         }
         return $parameters['value'];
     }

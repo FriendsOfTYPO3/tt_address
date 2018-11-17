@@ -259,7 +259,7 @@ class LegacyPluginController extends AbstractPlugin
                     ->having(
                         $queryBuilder->expr()->eq('c', count($groups))
                     );
-            } elseif ($this->conf['combination'] == 'OR') {
+            } elseif ($this->conf['combination'] === 'OR') {
                 $queryBuilder
                     ->select('tt_address.*')
                     ->from('tt_address')

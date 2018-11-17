@@ -15,9 +15,9 @@ namespace FriendsOfTYPO3\TtAddress\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
+use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
 use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
 
 /**
  * AddressController
@@ -27,7 +27,6 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
     /**
      * @var \FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository
-     * @inject
      */
     protected $addressRepository;
 
@@ -38,7 +37,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     {
         if (!$address) {
             $address = $this->addressRepository->findByUid((int)GeneralUtility::_GET('address'));
-            if ($address == null) {
+            if ($address === null) {
                 $this->redirectToUri($this->uriBuilder->reset()->setTargetPageUid($GLOBALS['TSFE']->id)->build());
             }
         }
@@ -53,24 +52,24 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     {
         // set singlePid if empty
         if ($this->settings['singlePid'] == '') {
-            $this->settings['singlePid'] = intval($GLOBALS['TSFE']->id);
+            $this->settings['singlePid'] = \intval($GLOBALS['TSFE']->id);
         }
 
         // set default sortBy to last_name, or singleSelection if singleRecords are there
-        if ($this->settings['sortBy'] == 'default' && $this->settings['singleRecords'] == '') {
+        if ($this->settings['sortBy'] === 'default' && $this->settings['singleRecords'] == '') {
             $this->settings['sortBy'] = 'last_name';
-        } elseif ($this->settings['sortBy'] == 'default' && $this->settings['singleRecords'] != '') {
+        } elseif ($this->settings['sortBy'] === 'default' && $this->settings['singleRecords'] != '') {
             $this->settings['sortBy'] = 'singleSelection';
         }
 
         // set a working alternative in case there is no singleRecord and sorting is set to singleSelection
         if ($this->settings['singleRecords'] == '' &&
-            $this->settings['sortBy'] == 'singleSelection') {
+            $this->settings['sortBy'] === 'singleSelection') {
             $this->settings['sortBy'] = 'sorting';
         }
 
         // set the final orderings
-        if ($this->settings['sortOrder'] == 'ASC') {
+        if ($this->settings['sortOrder'] === 'ASC') {
             $orderings = [
                 $this->settings['sortBy'] => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
             ];
@@ -102,7 +101,6 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->addressRepository->setDefaultQuerySettings($querySettings);
             $addresses = $this->addressRepository->findAll();
         } else {
-
             // Plugin settings are empty, just retrieve all records without respecting storagePage
             $querySettings = $this->addressRepository->createQuery()->getQuerySettings();
             $querySettings->setRespectStoragePage(false);
@@ -123,7 +121,8 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function injectConfigurationManager(
         \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
-    ) {
+    )
+    {
         $this->configurationManager = $configurationManager;
 
         // get the whole typoscript (_FRAMEWORK does not work anymore, don't know why)
@@ -134,7 +133,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         );
 
         // correct the array to be in same shape like the _SETTINGS array
-        $tsSettings = self::removeDots($tsSettings['plugin.']['tx_ttaddress.']);
+        $tsSettings = $this->removeDots($tsSettings['plugin.']['tx_ttaddress.']);
 
         // get original settings
         // original means: what extbase does by munching flexform and TypoScript together, but leaving empty flexform-settings empty ...
@@ -157,25 +156,34 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     }
 
     /**
+     * @param \FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository $addressRepository
+     */
+    public function injectAddressRepository(\FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository $addressRepository)
+    {
+        $this->addressRepository = $addressRepository;
+    }
+
+    /**
      * Removes dots at the end of a configuration array
      * @param array $settings the array to transformed
      * @return array $settings the transformed array
      */
-    private static function removeDots($settings)
+    protected function removeDots($settings): array
     {
         $conf = [];
         foreach ($settings as $key => $value) {
-            $conf[self::removeDotAtTheEnd($key)] = is_array($value) ? self::removeDots($value) : $value;
+            $conf[$this->removeDotAtTheEnd($key)] = is_array($value) ? $this->removeDots($value) : $value;
         }
         return $conf;
     }
 
     /**
      * Removes a dot in the end of a String
+     *
      * @param string $string
-     * @return  string    $string
+     * @return string
      */
-    private static function removeDotAtTheEnd($string)
+    protected function removeDotAtTheEnd($string): string
     {
         return preg_replace('/\.$/', '', $string);
     }
@@ -185,7 +193,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @return array an array with all pageIds
      */
-    private function getTreePids()
+    protected function getTreePids()
     {
         $queryGenerator = GeneralUtility::makeInstance(QueryGenerator::class);
         // make array of root-page ids

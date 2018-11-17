@@ -22,11 +22,11 @@ namespace FriendsOfTYPO3\TtAddress\Evaluation;
 class TelephoneEvaluation
 {
 
-   /**
-    * JavaScript code for client side validation/evaluation
-    *
-    * @return string JavaScript code for client side validation/evaluation
-    */
+    /**
+     * JavaScript code for client side validation/evaluation
+     *
+     * @return string JavaScript code for client side validation/evaluation
+     */
     public function returnFieldJS()
     {
         return '

@@ -1,4 +1,5 @@
 <?php
+
 namespace FriendsOfTYPO3\TtAddress\Domain\Repository;
 
 /*
@@ -14,11 +15,11 @@ namespace FriendsOfTYPO3\TtAddress\Domain\Repository;
  * The TYPO3 project - inspiring people to share!
  */
 
+use FriendsOfTYPO3\TtAddress\Service\CategoryService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
-use FriendsOfTYPO3\TtAddress\Service\CategoryService;
 
 /**
  * The repository for the domain model Address
@@ -26,9 +27,9 @@ use FriendsOfTYPO3\TtAddress\Service\CategoryService;
 class AddressRepository extends Repository
 {
 
-  /**
-   * override the storagePid settings (do not use storagePid) of extbase
-   */
+    /**
+     * override the storagePid settings (do not use storagePid) of extbase
+     */
     public function initializeObject()
     {
         $this->defaultQuerySettings = $this->objectManager->get(Typo3QuerySettings::class);
@@ -40,7 +41,7 @@ class AddressRepository extends Repository
      *
      * @param array settings
      * @param array orderings for query
-     * @return Array<FriendsOfTYPO3\TtAddress\Domain\Model>  The result list.
+     * @return Array<\FriendsOfTYPO3\TtAddress\Domain\Model\Address^>  The result list.
      */
     public function findTtAddressesByCategories($settings, $orderings)
     {
@@ -59,7 +60,7 @@ class AddressRepository extends Repository
      *
      * @param string String containing the single uids
      * @param array orderings for query
-     * @return Array<FriendsOfTYPO3\TtAddress\Domain\Model>  The result list.
+     * @return Array<\FriendsOfTYPO3\TtAddress\Domain\Model\Ttaddress>  The result list.
      */
     public function findByUidListOrderByList($settings, $orderings)
     {
@@ -80,12 +81,12 @@ class AddressRepository extends Repository
             // "normal" operation
             $query = $this->createQuery();
             $query->matching(
-            $query->in('uid', $uidArray),
-            $query->logicalAnd(
-                $query->equals('hidden', 0),
-                $query->equals('deleted', 0)
-            )
-        );
+                $query->in('uid', $uidArray),
+                $query->logicalAnd(
+                    $query->equals('hidden', 0),
+                    $query->equals('deleted', 0)
+                )
+            );
             $query->setOrderings($orderings);
         }
         return $query->execute();
@@ -95,9 +96,9 @@ class AddressRepository extends Repository
      * Retrieves all tt_address records by categories
      *
      * @param array orderings for query
-     * @param string $categories   Comma-seperated list of Category IDs
-     * @param int $logicalOperaion: 1=OR; 0=AND
-     * @return Array<FriendsOfTYPO3\TtAddress\Domain\Model>  The result list.
+     * @param string $categories Comma-seperated list of Category IDs
+     * @param int $logicalOperaion : 1=OR; 0=AND
+     * @return Array<\FriendsOfTYPO3\TtAddress\Domain\Model\Address>  The result list.
      */
     protected function buildQueryCategories($orderings, $categories, $logicalOperation = 0)
     {
@@ -108,16 +109,16 @@ class AddressRepository extends Repository
         // build the query
         if ($logicalOperation == 1) {
             $query->matching(
-        $query->logicalOr(
-          $categoryConstraints
-        )
-      );
+                $query->logicalOr(
+                    $categoryConstraints
+                )
+            );
         } else {
             $query->matching(
-        $query->logicalAnd(
-          $categoryConstraints
-        )
-      );
+                $query->logicalAnd(
+                    $categoryConstraints
+                )
+            );
         }
         return $query->execute();
     }
@@ -148,12 +149,11 @@ class AddressRepository extends Repository
 
     /**
      * Retrieves Categories recursively from CategoryService
-     * @param string $categories   Comma-seperated list of Category IDs
+     * @param string $categories Comma-seperated list of Category IDs
      * @return string $subCategories
      */
     protected function getQueryCategoriesRecursive($categories)
     {
-        $subCategories = CategoryService::getChildrenCategories($categories);
-        return $subCategories;
+        return CategoryService::getChildrenCategories($categories);
     }
 }

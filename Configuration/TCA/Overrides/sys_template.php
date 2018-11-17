@@ -1,19 +1,10 @@
 <?php
 defined('TYPO3_MODE') or die();
 
-// Add static templates
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('tt_address', 'Configuration/TypoScript/', 'Addresses (Extbase/Fluid)');
 
-/* ===========================================================================
- BEGIN: Add old legacy plugin
-=========================================================================== */
-$localExtConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address']);
+$settings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings::class);
 
-// Old templates; to be removed soonish
-if ((bool)$localExtConf['activatePiBase']) {
+if ($settings->isActivatePiBase()) {
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('tt_address', 'Configuration/TypoScript/LegacyPlugin/', 'Addresses (Legacy Plugin)');
 }
-
-/* ===========================================================================
- END: Add old legacy plugin
-=========================================================================== */

@@ -15,36 +15,30 @@ namespace FriendsOfTYPO3\TtAddress\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Core\Page\PageRenderer;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
-/**
- * ViewHelper to render data in <head> section of website
- *
- * # Example: Basic example
- * <code>
- * <n:headerData>
- *    <link rel="alternate"
- *      type="application/rss+xml"
- *      title="RSS 2.0"
- *      href="<f:uri.page additionalParams="{type:9818}"/>" />
- * </n:headerData>
- * </code>
- * <output>
- * Added to the header: <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="uri to this page and type 9818" />
- * </output>
- */
-class HeaderDataViewHelper extends AbstractViewHelper
+
+class RemoveSpacesViewHelper extends AbstractViewHelper
 {
+
     use CompileWithRenderStatic;
+
+
+    /**
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        $this->registerArgument('value', 'string', 'value');
+    }
 
     /**
      * @param array $arguments
      * @param \Closure $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
+     * @return string
      */
     public static function renderStatic(
         array $arguments,
@@ -52,7 +46,7 @@ class HeaderDataViewHelper extends AbstractViewHelper
         RenderingContextInterface $renderingContext
     )
     {
-        $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-        $pageRenderer->addHeaderData($renderChildrenClosure());
+        $value = $arguments['value'] ?: $renderChildrenClosure();
+        return str_replace(' ', '', $value);
     }
 }

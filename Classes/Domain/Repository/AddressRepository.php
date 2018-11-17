@@ -41,7 +41,7 @@ class AddressRepository extends Repository
      *
      * @param array settings
      * @param array orderings for query
-     * @return Array<\FriendsOfTYPO3\TtAddress\Domain\Model\Address^>  The result list.
+     * @return \FriendsOfTYPO3\TtAddress\Domain\Model\Address[]  The result list.
      */
     public function findTtAddressesByCategories($settings, $orderings)
     {
@@ -60,36 +60,36 @@ class AddressRepository extends Repository
      *
      * @param string String containing the single uids
      * @param array orderings for query
-     * @return Array<\FriendsOfTYPO3\TtAddress\Domain\Model\Ttaddress>  The result list.
+     * @return \FriendsOfTYPO3\TtAddress\Domain\Model\Address[]  The result list.
      */
     public function findByUidListOrderByList($settings, $orderings)
     {
         $uidArray = explode(',', $settings['singleRecords']);
         $query = $this->createQuery();
+        $query->matching(
+            $query->in('uid', $uidArray)
+        );
+        $query->setOrderings($orderings);
+        $objects = $query->execute();
 
-        if ($settings['sortBy'] == 'singleSelection') {
-            // if singleSelection chosen, we need some different solutions for sorting,
-            // as this is done manually in the flexform field ...
-            if ($settings['sortOrder'] == 'DESC') {
-                // make array reverse
+        if ($settings['sortBy'] === 'singleSelection') {
+            $finalList = $tempList = [];
+            // make array reverse
+            if ($settings['sortOrder'] === 'DESC') {
                 $uidArray = array_reverse($uidArray);
             }
-            $uidList = implode(',', $uidArray);
-            $customSql = 'SELECT * FROM tt_address WHERE uid IN (' . $uidList . ') AND hidden=0 AND deleted=0 ORDER BY FIELD(uid, ' . $uidList . ')';
-            $query->statement($customSql);
+            foreach ($objects as $object) {
+                $tempList[$object->getUid()] = $object;
+            }
+            foreach ($uidArray as $uid) {
+                if (isset($tempList[$uid])) {
+                    $finalList[] = $tempList[$uid];
+                }
+            }
+            return $finalList;
         } else {
-            // "normal" operation
-            $query = $this->createQuery();
-            $query->matching(
-                $query->in('uid', $uidArray),
-                $query->logicalAnd(
-                    $query->equals('hidden', 0),
-                    $query->equals('deleted', 0)
-                )
-            );
-            $query->setOrderings($orderings);
+            return $objects;
         }
-        return $query->execute();
     }
 
     /**
@@ -105,7 +105,7 @@ class AddressRepository extends Repository
         $query = $this->createQuery();
         $query->setOrderings($orderings);
         // get category constraint
-        $categoryConstraints = self::createCategoryConstraint($query, $categories);
+        $categoryConstraints = $this->createCategoryConstraint($query, $categories);
         // build the query
         if ($logicalOperation == 1) {
             $query->matching(
@@ -130,30 +130,20 @@ class AddressRepository extends Repository
      * @param QueryInterface $query
      * @param  string $categories
      * @return array|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|null
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      */
     protected function createCategoryConstraint(QueryInterface $query, $categories)
     {
         $constraints = [];
 
-        // get categories recursive
-        $categoriesRecursive = self::getQueryCategoriesRecursive($categories);
+        $categoriesRecursive = CategoryService::getChildrenCategories($categories);
 
-        if (!is_array($categoriesRecursive)) {
+        if (!\is_array($categoriesRecursive)) {
             $categoriesRecursive = GeneralUtility::intExplode(',', $categoriesRecursive, true);
         }
         foreach ($categoriesRecursive as $category) {
             $constraints[] = $query->contains('categories', $category);
         }
         return $constraints;
-    }
-
-    /**
-     * Retrieves Categories recursively from CategoryService
-     * @param string $categories Comma-seperated list of Category IDs
-     * @return string $subCategories
-     */
-    protected function getQueryCategoriesRecursive($categories)
-    {
-        return CategoryService::getChildrenCategories($categories);
     }
 }

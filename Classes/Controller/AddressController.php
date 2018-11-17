@@ -18,6 +18,7 @@ namespace FriendsOfTYPO3\TtAddress\Controller;
 use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
 use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
  * AddressController
@@ -69,15 +70,11 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         }
 
         // set the final orderings
-        if ($this->settings['sortOrder'] === 'ASC') {
-            $orderings = [
-                $this->settings['sortBy'] => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
-            ];
-        } else {
-            $orderings = [
-                $this->settings['sortBy'] => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING
-            ];
-        }
+        $orderings = $this->settings['sortOrder'] === 'ASC' ? [
+            $this->settings['sortBy'] => QueryInterface::ORDER_ASCENDING
+        ] : [
+            $this->settings['sortBy'] => QueryInterface::ORDER_DESCENDING
+        ];
 
         // get all the records
         if ($this->settings['singleRecords'] != '') {

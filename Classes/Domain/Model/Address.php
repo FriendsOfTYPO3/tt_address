@@ -20,195 +20,224 @@ use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
- * The domain model of a Address
+ * The domain model of a Address.
  *
  * @entity
  */
 class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     /**
-     * Gender
+     * Gender.
+     *
      * @var string
      */
     protected $gender;
 
     /**
-     * Name
+     * Name.
+     *
      * @var string
      */
     protected $name;
 
     /**
-     * First Name
+     * First Name.
+     *
      * @var string
      */
     protected $firstName;
 
     /**
-     * Middle Name
+     * Middle Name.
+     *
      * @var string
      */
     protected $middleName;
 
     /**
-     * Last Name
+     * Last Name.
+     *
      * @var string
      */
     protected $lastName;
 
     /**
-     * Birthday
+     * Birthday.
+     *
      * @var \DateTime
      */
     protected $birthday;
 
     /**
-     * Title
+     * Title.
+     *
      * @var string
      */
     protected $title;
 
     /**
-     * Address
+     * Address.
+     *
      * @var string
      */
     protected $address;
 
     /**
-     * Latitude
+     * Latitude.
+     *
      * @var string
      */
     protected $latitude;
 
     /**
-     * Longitude
+     * Longitude.
+     *
      * @var string
      */
     protected $longitude;
 
     /**
-     * Building
+     * Building.
+     *
      * @var string
      */
     protected $building;
 
     /**
-     * Room
+     * Room.
+     *
      * @var string
      */
     protected $room;
 
     /**
-     * Phone
+     * Phone.
+     *
      * @var string
      */
     protected $phone;
 
     /**
-     * Fax
+     * Fax.
+     *
      * @var string
      */
     protected $fax;
 
     /**
-     * Mobile
+     * Mobile.
+     *
      * @var string
      */
     protected $mobile;
 
     /**
-     * www
+     * www.
+     *
      * @var string
      */
     protected $www;
 
     /**
-     * Skype
+     * Skype.
+     *
      * @var string
      */
     protected $skype;
 
     /**
-     * twitter
+     * twitter.
+     *
      * @var string
      */
     protected $twitter;
 
     /**
-     * Facebook
+     * Facebook.
+     *
      * @var string
      */
     protected $facebook;
 
     /**
-     * LinkedIn
+     * LinkedIn.
+     *
      * @var string
      */
     protected $linkedIn;
 
     /**
-     * Email
+     * Email.
+     *
      * @var string
      */
     protected $email;
 
     /**
-     * Organization
+     * Organization.
+     *
      * @var string
      */
     protected $company;
 
     /**
-     * Position
+     * Position.
+     *
      * @var string
      */
     protected $position;
 
     /**
-     * City
+     * City.
+     *
      * @var string
      */
     protected $city;
 
     /**
-     * Zipcode
+     * Zipcode.
+     *
      * @var string
      */
     protected $zip;
 
     /**
-     * Region/State
+     * Region/State.
+     *
      * @var string
      */
     protected $region;
 
     /**
-     * Country
+     * Country.
+     *
      * @var string
      */
     protected $country;
 
     /**
-     * Image
+     * Image.
+     *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
      */
     protected $image = null;
 
     /**
-     * Description
+     * Description.
+     *
      * @var string
      */
     protected $description;
 
     /**
-     * Categories
+     * Categories.
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
      */
     protected $categories;
 
     /**
-     * __construct
+     * __construct.
      */
     public function __construct()
     {
@@ -216,7 +245,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the gender attribute
+     * sets the gender attribute.
      *
      * @param string $gender
      */
@@ -226,7 +255,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the gender attribute
+     * returns the gender attribute.
      *
      * @return string
      */
@@ -236,7 +265,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the name attribute
+     * sets the name attribute.
      *
      * @param string $name
      */
@@ -246,7 +275,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the name attribute
+     * returns the name attribute.
      *
      * @return string
      */
@@ -256,7 +285,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the firstName attribute
+     * sets the firstName attribute.
      *
      * @param string $firstName
      */
@@ -266,7 +295,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the firstName attribute
+     * returns the firstName attribute.
      *
      * @return string
      */
@@ -276,7 +305,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the middleName attribute
+     * sets the middleName attribute.
      *
      * @param string $middleName
      */
@@ -286,7 +315,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the middleName attribute
+     * returns the middleName attribute.
      *
      * @return string
      */
@@ -296,7 +325,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the lastName attribute
+     * sets the lastName attribute.
      *
      * @param string $lastName
      */
@@ -306,7 +335,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the lastName attribute
+     * returns the lastName attribute.
      *
      * @return string
      */
@@ -316,7 +345,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the birthday attribute
+     * sets the birthday attribute.
      *
      * @param \DateTime $birthday
      */
@@ -326,7 +355,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the birthday attribute
+     * returns the birthday attribute.
      *
      * @return \DateTime
      */
@@ -336,7 +365,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the title attribute
+     * sets the title attribute.
      *
      * @param string $title
      */
@@ -346,7 +375,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the title attribute
+     * returns the title attribute.
      *
      * @return string
      */
@@ -356,7 +385,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the address attribute
+     * sets the address attribute.
      *
      * @param string $address
      */
@@ -366,7 +395,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the address attribute
+     * returns the address attribute.
      *
      * @return string
      */
@@ -376,7 +405,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the latitude attribute
+     * sets the latitude attribute.
      *
      * @param string $latitude
      */
@@ -386,7 +415,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the latitude attribute
+     * returns the latitude attribute.
      *
      * @return string
      */
@@ -396,7 +425,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the longitude attribute
+     * sets the longitude attribute.
      *
      * @param string $longitude
      */
@@ -406,7 +435,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the longitude attribute
+     * returns the longitude attribute.
      *
      * @return string
      */
@@ -416,7 +445,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the building attribute
+     * sets the building attribute.
      *
      * @param string $building
      */
@@ -426,7 +455,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the building attribute
+     * returns the building attribute.
      *
      * @return string
      */
@@ -436,7 +465,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the room attribute
+     * sets the room attribute.
      *
      * @param string $room
      */
@@ -446,7 +475,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the room attribute
+     * returns the room attribute.
      *
      * @return string
      */
@@ -456,7 +485,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the phone attribute
+     * sets the phone attribute.
      *
      * @param string $phone
      */
@@ -466,7 +495,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the phone attribute
+     * returns the phone attribute.
      *
      * @return string
      */
@@ -476,7 +505,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the fax attribute
+     * sets the fax attribute.
      *
      * @param string $fax
      */
@@ -486,7 +515,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the fax attribute
+     * returns the fax attribute.
      *
      * @return string
      */
@@ -496,7 +525,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the mobile attribute
+     * sets the mobile attribute.
      *
      * @param string $mobile
      */
@@ -506,7 +535,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the mobile attribute
+     * returns the mobile attribute.
      *
      * @return string
      */
@@ -516,7 +545,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the www attribute
+     * sets the www attribute.
      *
      * @param string $www
      */
@@ -526,7 +555,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the www attribute
+     * returns the www attribute.
      *
      * @return string
      */
@@ -536,7 +565,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the Skype attribute
+     * sets the Skype attribute.
      *
      * @param string $skype
      */
@@ -546,7 +575,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the Skype attribute
+     * returns the Skype attribute.
      *
      * @return string
      */
@@ -556,7 +585,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the twitter attribute
+     * sets the twitter attribute.
      *
      * @param string $twitter
      */
@@ -570,7 +599,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the twitter attribute
+     * returns the twitter attribute.
      *
      * @return string
      */
@@ -580,7 +609,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the Facebook attribute
+     * sets the Facebook attribute.
      *
      * @param string $facebook
      */
@@ -594,7 +623,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the Facebook attribute
+     * returns the Facebook attribute.
      *
      * @return string
      */
@@ -604,7 +633,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the LinkedIn attribute
+     * sets the LinkedIn attribute.
      *
      * @param string $linkedIn
      */
@@ -614,7 +643,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the LinkedIn attribute
+     * returns the LinkedIn attribute.
      *
      * @return string
      */
@@ -624,7 +653,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the email attribute
+     * sets the email attribute.
      *
      * @param string $email
      */
@@ -634,7 +663,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the email attribute
+     * returns the email attribute.
      *
      * @return string
      */
@@ -644,7 +673,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the company attribute
+     * sets the company attribute.
      *
      * @param string $company
      */
@@ -654,7 +683,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the company attribute
+     * returns the company attribute.
      *
      * @return string
      */
@@ -664,7 +693,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the position attribute
+     * sets the position attribute.
      *
      * @param string $position
      */
@@ -674,7 +703,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the position attribute
+     * returns the position attribute.
      *
      * @return string
      */
@@ -684,7 +713,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the city attribute
+     * sets the city attribute.
      *
      * @param string $city
      */
@@ -694,7 +723,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the city attribute
+     * returns the city attribute.
      *
      * @return string
      */
@@ -704,7 +733,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the zip attribute
+     * sets the zip attribute.
      *
      * @param string $zip
      */
@@ -714,7 +743,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the zip attribute
+     * returns the zip attribute.
      *
      * @return string
      */
@@ -724,7 +753,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the region attribute
+     * sets the region attribute.
      *
      * @param string $region
      */
@@ -734,7 +763,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the region attribute
+     * returns the region attribute.
      *
      * @return string
      */
@@ -744,7 +773,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the country attribute
+     * sets the country attribute.
      *
      * @param string $country
      */
@@ -754,7 +783,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the country attribute
+     * returns the country attribute.
      *
      * @return string
      */
@@ -764,7 +793,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Adds a FileReference
+     * Adds a FileReference.
      *
      * @param FileReference $image
      */
@@ -774,7 +803,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Removes a FileReference
+     * Removes a FileReference.
      *
      * @param FileReference $imageToRemove The FileReference to be removed
      */
@@ -784,7 +813,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Returns the images
+     * Returns the images.
      *
      * @return ObjectStorage<FileReference>
      */
@@ -794,7 +823,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the images
+     * Sets the images.
      *
      * @param ObjectStorage<FileReference> $image
      */
@@ -804,7 +833,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the description attribute
+     * sets the description attribute.
      *
      * @param string $description
      */
@@ -814,7 +843,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the description attribute
+     * returns the description attribute.
      *
      * @return string
      */
@@ -824,7 +853,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * returns the categories
+     * returns the categories.
      *
      * @return ObjectStorage<Category> $categories
      */
@@ -834,7 +863,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * sets the categories
+     * sets the categories.
      *
      * @param ObjectStorage<Category> $categories
      */

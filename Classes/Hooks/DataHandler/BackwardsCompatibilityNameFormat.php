@@ -20,11 +20,10 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Class BackwardsCompatibilityNameFormat
+ * Class BackwardsCompatibilityNameFormat.
  */
 class BackwardsCompatibilityNameFormat
 {
-
     /** @var Settings */
     protected $settings;
 
@@ -36,17 +35,16 @@ class BackwardsCompatibilityNameFormat
     /**
      * looks for tt_address records with changes to the first, middle, and
      * last name fields to come by. This function will then write changes back
-     * to the old combined name field in a configurable format
+     * to the old combined name field in a configurable format.
      *
-     * @param string $status action status: new/update is relevant for us
-     * @param string $table db table
-     * @param int $id record uid
-     * @param array $fieldArray record
+     * @param string $status     action status: new/update is relevant for us
+     * @param string $table      db table
+     * @param int    $id         record uid
+     * @param array  $fieldArray record
      */
     public function processDatamap_postProcessFieldArray($status, $table, $id, &$fieldArray)
     {
         if ($table === 'tt_address' && ($status === 'new' || $status === 'update')) {
-
             if ($this->settings->isStoreBackwardsCompatName()) {
                 $address = $status === 'update' ? $this->getRecord($id) : $fieldArray;
 
@@ -68,6 +66,7 @@ class BackwardsCompatibilityNameFormat
 
     /**
      * @param int $id
+     *
      * @return array
      */
     protected function getRecord(int $id): array

@@ -22,28 +22,27 @@ use TYPO3\CMS\Core\TimeTracker\TimeTracker;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Service for category related stuff
+ * Service for category related stuff.
  */
 class CategoryService
 {
-
     /**
      * Get child categories by calling recursive function
-     * and using the caching framework to save some queries
+     * and using the caching framework to save some queries.
      *
-     * @param string $idList list of category ids to start
-     * @param int $counter
+     * @param string $idList          list of category ids to start
+     * @param int    $counter
      * @param string $additionalWhere additional where clause
+     *
      * @return string comma separated list of category ids
      */
     public static function getChildrenCategories(
         $idList,
         $counter = 0
-    )
-    {
+    ) {
         /** @var \TYPO3\CMS\Core\Cache\Frontend\FrontendInterface $cache */
         $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_ttaddress_category');
-        $cacheIdentifier = sha1('children' . $idList);
+        $cacheIdentifier = sha1('children'.$idList);
 
         $entry = $cache->get($cacheIdentifier);
         if (!$entry) {
@@ -55,10 +54,11 @@ class CategoryService
     }
 
     /**
-     * Get child categories
+     * Get child categories.
      *
-     * @param string $idList list of category ids to start
-     * @param int $counter
+     * @param string $idList  list of category ids to start
+     * @param int    $counter
+     *
      * @return string comma separated list of category ids
      */
     private static function getChildrenCategoriesRecursive($idList, $counter = 0): string
@@ -84,13 +84,15 @@ class CategoryService
             $counter++;
             if ($counter > 10000) {
                 GeneralUtility::makeInstance(TimeTracker::class)->setTSlogMessage('EXT:news: one or more recursive categories where found');
+
                 return implode(',', $result);
             }
             $subcategories = self::getChildrenCategoriesRecursive($row['uid'], $counter);
-            $result[] = $row['uid'] . ($subcategories ? ',' . $subcategories : '');
+            $result[] = $row['uid'].($subcategories ? ','.$subcategories : '');
         }
 
         $result = implode(',', $result);
+
         return $result;
     }
 

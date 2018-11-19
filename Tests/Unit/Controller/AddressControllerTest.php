@@ -7,7 +7,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class AddressControllerTest extends BaseTestCase
 {
-
     /**
      * @param $given
      * @param $expected
@@ -24,7 +23,7 @@ class AddressControllerTest extends BaseTestCase
     {
         return [
             'empty string' => ['', ''],
-            'dot at end' => ['foBar.', 'foBar'],
+            'dot at end'   => ['foBar.', 'foBar'],
         ];
     }
 }

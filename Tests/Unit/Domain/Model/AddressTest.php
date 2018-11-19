@@ -10,7 +10,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class AddressTest extends BaseTestCase
 {
-
     /** @var Address */
     protected $subject;
 
@@ -28,7 +27,6 @@ class AddressTest extends BaseTestCase
         $this->subject->setGender($value);
         $this->assertEquals($value, $this->subject->getGender());
     }
-
 
     /**
      * @test
@@ -390,6 +388,4 @@ class AddressTest extends BaseTestCase
         $this->subject->setCategories($value);
         $this->assertEquals($value, $this->subject->getCategories());
     }
-
-
 }

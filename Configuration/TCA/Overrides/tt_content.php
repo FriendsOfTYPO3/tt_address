@@ -1,4 +1,5 @@
 <?php
+
 defined('TYPO3_MODE') or die();
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
@@ -21,7 +22,7 @@ if ($settings->isActivatePiBase()) {
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
         [
             'LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_title',
-            $pluginSignature
+            $pluginSignature,
         ],
         'list_type',
         'tt_address'

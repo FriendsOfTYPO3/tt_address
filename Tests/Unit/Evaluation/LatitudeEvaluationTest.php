@@ -7,7 +7,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class LatitudeEvaluationTest extends BaseTestCase
 {
-
     /** @var LatitudeEvaluation */
     protected $subject;
 
@@ -50,14 +49,12 @@ class LatitudeEvaluationTest extends BaseTestCase
     public function latIsProperlyEvaluatedDataProvider(): array
     {
         return [
-            'empty string' => ['', ''],
-            'int' => ['12', '12.000000000000'],
-            'too large number' => ['95.33', '90.000000000000'],
-            'regular float' => ['13.312113', '13.312113000000'],
+            'empty string'           => ['', ''],
+            'int'                    => ['12', '12.000000000000'],
+            'too large number'       => ['95.33', '90.000000000000'],
+            'regular float'          => ['13.312113', '13.312113000000'],
             'negative regular float' => ['-13.312113', '-13.312113000000'],
-            'long float' => ['-11.3121131111111111212121212', '-11.312113111111'],
+            'long float'             => ['-11.3121131111111111212121212', '-11.312113111111'],
         ];
     }
-
-
 }

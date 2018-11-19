@@ -7,7 +7,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class SettingsTest extends BaseTestCase
 {
-
     /**
      * @test
      */
@@ -28,10 +27,10 @@ class SettingsTest extends BaseTestCase
     public function settingsAreSet()
     {
         $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address'] = serialize([
-            'backwardsCompatFormat' => '%s%s',
+            'backwardsCompatFormat'    => '%s%s',
             'storeBackwardsCompatName' => false,
-            'readOnlyNameField' => false,
-            'activatePiBase' => true
+            'readOnlyNameField'        => false,
+            'activatePiBase'           => true,
         ]);
         $subject = new Settings();
 

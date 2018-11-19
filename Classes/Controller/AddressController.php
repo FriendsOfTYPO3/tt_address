@@ -21,11 +21,10 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
- * AddressController
+ * AddressController.
  */
 class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
-
     /**
      * @var \FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository
      */
@@ -37,7 +36,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     public function showAction(\FriendsOfTYPO3\TtAddress\Domain\Model\Address $address = null)
     {
         if (!$address) {
-            $address = $this->addressRepository->findByUid((int)GeneralUtility::_GET('address'));
+            $address = $this->addressRepository->findByUid((int) GeneralUtility::_GET('address'));
             if ($address === null) {
                 $this->redirectToUri($this->uriBuilder->reset()->setTargetPageUid($GLOBALS['TSFE']->id)->build());
             }
@@ -47,7 +46,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
     /**
      * Lists addresses by settings in waterfall principle.
-     * singleRecords take precedence over categories which take precedence over records from pages
+     * singleRecords take precedence over categories which take precedence over records from pages.
      */
     public function listAction()
     {
@@ -71,9 +70,9 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
         // set the final orderings
         $orderings = $this->settings['sortOrder'] === 'ASC' ? [
-            $this->settings['sortBy'] => QueryInterface::ORDER_ASCENDING
+            $this->settings['sortBy'] => QueryInterface::ORDER_ASCENDING,
         ] : [
-            $this->settings['sortBy'] => QueryInterface::ORDER_DESCENDING
+            $this->settings['sortBy'] => QueryInterface::ORDER_DESCENDING,
         ];
 
         // get all the records
@@ -112,14 +111,13 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     }
 
     /**
-     * Injects the Configuration Manager and is initializing the framework settings
+     * Injects the Configuration Manager and is initializing the framework settings.
      *
      * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
      */
     public function injectConfigurationManager(
         \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
-    )
-    {
+    ) {
         $this->configurationManager = $configurationManager;
 
         // get the whole typoscript (_FRAMEWORK does not work anymore, don't know why)
@@ -161,8 +159,10 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     }
 
     /**
-     * Removes dots at the end of a configuration array
+     * Removes dots at the end of a configuration array.
+     *
      * @param array $settings the array to transformed
+     *
      * @return array $settings the transformed array
      */
     protected function removeDots($settings): array
@@ -171,13 +171,15 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         foreach ($settings as $key => $value) {
             $conf[$this->removeDotAtTheEnd($key)] = is_array($value) ? $this->removeDots($value) : $value;
         }
+
         return $conf;
     }
 
     /**
-     * Removes a dot in the end of a String
+     * Removes a dot in the end of a String.
      *
      * @param string $string
+     *
      * @return string
      */
     protected function removeDotAtTheEnd($string): string
@@ -186,7 +188,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     }
 
     /**
-     * Retrieves subpages of given pageIds recursively until reached $this->settings['recursive']
+     * Retrieves subpages of given pageIds recursively until reached $this->settings['recursive'].
      *
      * @return array an array with all pageIds
      */
@@ -204,6 +206,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $subtreePids = explode(',', $queryGenerator->getTreeList($pid, $this->settings['recursive'], 0, 1));
             $storagePIDsArray = array_merge($storagePIDsArray, $subtreePids);
         }
+
         return $storagePIDsArray;
     }
 }

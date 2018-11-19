@@ -25,7 +25,7 @@ use TYPO3\CMS\Frontend\Plugin\AbstractPlugin;
 
 /**
  * main class for the tt_address plugin, outputs addresses either by direct
- * selection or by selection via groups or a combination of both
+ * selection or by selection via groups or a combination of both.
  */
 class LegacyPluginController extends AbstractPlugin
 {
@@ -60,10 +60,11 @@ class LegacyPluginController extends AbstractPlugin
     protected $templateService;
 
     /**
-     * main method which controls the data flow and outputs the addresses
+     * main method which controls the data flow and outputs the addresses.
      *
      * @param string $content Content string, empty
-     * @param array $conf Configuration array with TS configuration
+     * @param array  $conf    Configuration array with TS configuration
+     *
      * @return string The processed addresses
      */
     public function main($content, $conf)
@@ -79,8 +80,8 @@ class LegacyPluginController extends AbstractPlugin
         $addresses = $this->sortAddresses($singleSelection, $groupSelection);
 
         // limit output to max listMaxItems addresses
-        if (((int)$this->conf['listMaxItems']) > 0) {
-            $addresses = array_slice($addresses, 0, (int)$this->conf['listMaxItems']);
+        if (((int) $this->conf['listMaxItems']) > 0) {
+            $addresses = array_slice($addresses, 0, (int) $this->conf['listMaxItems']);
         }
 
         // output
@@ -95,13 +96,13 @@ class LegacyPluginController extends AbstractPlugin
                     $subpartArray
                 );
 
-                $wrap = $this->conf['templates.'][$this->conf['templateName'] . '.']['wrap'];
+                $wrap = $this->conf['templates.'][$this->conf['templateName'].'.']['wrap'];
                 $content .= $this->cObj->wrap($addressContent, $wrap);
-                $content .= LF . LF;
+                $content .= LF.LF;
             }
         }
 
-        $templateAllWrap = $this->conf['templates.'][$this->conf['templateName'] . '.']['allWrap'];
+        $templateAllWrap = $this->conf['templates.'][$this->conf['templateName'].'.']['allWrap'];
         $content = $this->cObj->wrap($content, $templateAllWrap);
 
         $content = $this->cObj->wrap($content, $this->conf['wrap']);
@@ -111,7 +112,7 @@ class LegacyPluginController extends AbstractPlugin
 
     /**
      * initializes the configuration for the plugin and gets the settings from
-     * the flexform
+     * the flexform.
      *
      * @param array $conf Array with TS configuration
      */
@@ -124,13 +125,13 @@ class LegacyPluginController extends AbstractPlugin
 
         // flexform data
         $flexKeyMapping = [
-            'sDEF.singleRecords' => 'singleRecords',
-            'sDEF.groupSelection' => 'groupSelection',
-            'sDEF.combination' => 'combination',
-            'sDEF.sortBy' => 'sortBy',
-            'sDEF.sortOrder' => 'sortOrder',
-            'sDEF.pages' => 'pages',
-            'sDEF.recursive' => 'recursive',
+            'sDEF.singleRecords'    => 'singleRecords',
+            'sDEF.groupSelection'   => 'groupSelection',
+            'sDEF.combination'      => 'combination',
+            'sDEF.sortBy'           => 'sortBy',
+            'sDEF.sortOrder'        => 'sortOrder',
+            'sDEF.pages'            => 'pages',
+            'sDEF.recursive'        => 'recursive',
             'sDISPLAY.templateFile' => 'templateFile',
         ];
         $this->ffData = $this->getFlexFormConfig($flexKeyMapping);
@@ -163,7 +164,7 @@ class LegacyPluginController extends AbstractPlugin
             implode(GeneralUtility::intExplode(',', $pages), ',') :
             $this->getTypoScriptFrontendController()->id;
 
-        $recursive = (int)($this->ffData['recursive'] ?: $this->conf['recursive']);
+        $recursive = (int) ($this->ffData['recursive'] ?: $this->conf['recursive']);
 
         $this->conf['pidList'] = $this->pi_getPidList($pages, $recursive);
 
@@ -177,7 +178,7 @@ class LegacyPluginController extends AbstractPlugin
     }
 
     /**
-     * gets the records the user selected in the single address selection field
+     * gets the records the user selected in the single address selection field.
      *
      * @return array Array of addresses with their uids as array keys
      */
@@ -206,11 +207,12 @@ class LegacyPluginController extends AbstractPlugin
                 $singleRecords[$address['uid']] = $this->getGroupsForAddress($address);
             }
         }
+
         return $singleRecords;
     }
 
     /**
-     * gets the addresses which meet the group selection
+     * gets the addresses which meet the group selection.
      *
      * @return array Array of addresses with their uids as array keys
      */
@@ -289,9 +291,10 @@ class LegacyPluginController extends AbstractPlugin
     }
 
     /**
-     * gets the groups an address record is in
+     * gets the groups an address record is in.
      *
      * @param array $address An address record
+     *
      * @return array The address plus its groups
      */
     public function getGroupsForAddress($address)
@@ -313,7 +316,7 @@ class LegacyPluginController extends AbstractPlugin
                 )
             )
             ->where(
-                $queryBuilder->expr()->eq('mm.uid_foreign', $queryBuilder->createNamedParameter((int)$address['uid'], \PDO::PARAM_INT)),
+                $queryBuilder->expr()->eq('mm.uid_foreign', $queryBuilder->createNamedParameter((int) $address['uid'], \PDO::PARAM_INT)),
                 $queryBuilder->expr()->eq('mm.tablenames', 'tt_address'),
                 $queryBuilder->expr()->eq('mm.fieldname', 'categories')
             )
@@ -332,12 +335,14 @@ class LegacyPluginController extends AbstractPlugin
 
         $groupList = implode(', ', $groupTitles);
         $address['groupList'] = $groupList;
+
         return $address;
     }
 
     /**
      * @param array $singleSelection
      * @param array $groupSelection
+     *
      * @return array
      */
     protected function sortAddresses($singleSelection, $groupSelection)
@@ -372,9 +377,10 @@ class LegacyPluginController extends AbstractPlugin
     }
 
     /**
-     * puts the fields of an address in markers
+     * puts the fields of an address in markers.
      *
      * @param array $address An address record
+     *
      * @return array A marker array with filled markers acording to the address given
      */
     protected function getItemMarkerArray($address)
@@ -382,7 +388,7 @@ class LegacyPluginController extends AbstractPlugin
         $markerArray = [];
 
         //local configuration and local cObj
-        $lConf = $this->conf['templates.'][$this->conf['templateName'] . '.'];
+        $lConf = $this->conf['templates.'][$this->conf['templateName'].'.'];
         $lcObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
         $lcObj->data = $address;
 
@@ -423,35 +429,35 @@ class LegacyPluginController extends AbstractPlugin
         if (!empty($address['image'])) {
             $filesConf = [
                 'references.' => [
-                    'uid' => (int)$address['uid'],
-                    'table' => 'tt_address',
-                    'fieldName' => 'image'
+                    'uid'       => (int) $address['uid'],
+                    'table'     => 'tt_address',
+                    'fieldName' => 'image',
                 ],
-                'begin' => '0',
+                'begin'    => '0',
                 'maxItems' => '1',
 
-                'renderObj' => 'IMAGE',
+                'renderObj'  => 'IMAGE',
                 'renderObj.' => [
                     'file.' => [
                         'import.' => [
-                            'data' => 'file:current:uid_local // file:current:uid'
+                            'data' => 'file:current:uid_local // file:current:uid',
                         ],
-                        'treatIdAsReference' => '1'
+                        'treatIdAsReference' => '1',
                     ],
                     'altText.' => [
-                        'data' => 'file:current:alternative'
+                        'data' => 'file:current:alternative',
                     ],
                     'titleText.' => [
-                        'data' => 'file:current:title'
-                    ]
-                ]
+                        'data' => 'file:current:title',
+                    ],
+                ],
             ];
             if (is_array($lConf['image.'])) {
                 $filesConf['renderObj.'] = array_merge_recursive($filesConf['renderObj.'], $lConf['image.']);
             }
             for ($filesIndex = 0; $filesIndex < 6; $filesIndex++) {
                 $filesConf['begin'] = $filesIndex;
-                $markerArray['###IMAGE' . ($filesIndex == 0 ? '' : $filesIndex) . '###'] = $lcObj->cObjGetSingle('FILES',
+                $markerArray['###IMAGE'.($filesIndex == 0 ? '' : $filesIndex).'###'] = $lcObj->cObjGetSingle('FILES',
                     $filesConf);
             }
         } elseif (!empty($lConf['placeholderImage'])) {
@@ -476,23 +482,24 @@ class LegacyPluginController extends AbstractPlugin
     }
 
     /**
-     * gets the user defined subparts and returns their content as an array
+     * gets the user defined subparts and returns their content as an array.
      *
      * @param string $templateCode (HTML) template code
-     * @param array $markerArray markers with content
-     * @param array $address a tt_address record
+     * @param array  $markerArray  markers with content
+     * @param array  $address      a tt_address record
+     *
      * @return array Array of subparts
      */
     protected function getSubpartArray($templateCode, $markerArray, $address)
     {
         $subpartArray = [];
 
-        if (\is_array($this->conf['templates.'][$this->conf['templateName'] . '.']['subparts.'])) {
+        if (\is_array($this->conf['templates.'][$this->conf['templateName'].'.']['subparts.'])) {
             $lcObj = GeneralUtility::makeInstance(ContentObjectRenderer::class); // local cObj
             $lcObj->data = $address;
 
-            foreach ($this->conf['templates.'][$this->conf['templateName'] . '.']['subparts.'] as $spName => $spConf) {
-                $spName = '###SUBPART_' . strtoupper(substr($spName, 0, -1)) . '###';
+            foreach ($this->conf['templates.'][$this->conf['templateName'].'.']['subparts.'] as $spName => $spConf) {
+                $spName = '###SUBPART_'.strtoupper(substr($spName, 0, -1)).'###';
 
                 $spTemplate = $lcObj->getSubpart($templateCode, $spName);
                 $content = $lcObj->stdWrap(
@@ -515,7 +522,7 @@ class LegacyPluginController extends AbstractPlugin
     }
 
     /**
-     * gets the filename from the template file without the file extension
+     * gets the filename from the template file without the file extension.
      *
      * @return string The file name portion without the file extension
      */
@@ -545,7 +552,7 @@ class LegacyPluginController extends AbstractPlugin
 
     /**
      * gets the html template code from the selected template, extracts the
-     * address subpart and returns the html with unreplaced marker
+     * address subpart and returns the html with unreplaced marker.
      *
      * @return string html template code
      */
@@ -562,16 +569,18 @@ class LegacyPluginController extends AbstractPlugin
             $templateFile = $this->conf['defaultTemplateFileName'];
         }
 
-        $templateCode = file_get_contents(GeneralUtility::getFileAbsFileName($this->conf['templatePath'] . $templateFile));
+        $templateCode = file_get_contents(GeneralUtility::getFileAbsFileName($this->conf['templatePath'].$templateFile));
+
         return $this->templateService->getSubpart($templateCode, '###TEMPLATE_ADDRESS###');
     }
 
     /**
      * checks whether the given sorting criteria is a valid one. If it is valid
      * the given criteria is returned as it was, the default 'name' is
-     * returned if the given criteria is not valid
+     * returned if the given criteria is not valid.
      *
      * @param string $sortBy criteria you want to sort the addresses by
+     *
      * @return string the given sorting criteria if it was valid, 'name' otherwise
      */
     protected function checkSorting($sortBy)
@@ -603,7 +612,7 @@ class LegacyPluginController extends AbstractPlugin
             'image',
             'fax',
             'description',
-            'singleSelection'
+            'singleSelection',
         ];
 
         if (!\in_array($sortBy, $validSortings, true)) {
@@ -614,9 +623,10 @@ class LegacyPluginController extends AbstractPlugin
     }
 
     /**
-     * gets the flexform values as an array like defined by $flexKeyMapping
+     * gets the flexform values as an array like defined by $flexKeyMapping.
      *
      * @param array $flexKeyMapping mapping of sheet.flexformFieldName => variable name
+     *
      * @return array flexform configuration as an array
      */
     protected function getFlexFormConfig($flexKeyMapping)
@@ -630,15 +640,17 @@ class LegacyPluginController extends AbstractPlugin
                 $sheet
             );
         }
+
         return $conf;
     }
 
     /**
      * checks for the 'hasOneOf' constraint, at least one of the fields in
-     * $fieldList must not be empty to return true
+     * $fieldList must not be empty to return true.
      *
      * @param string $fieldList comma separated list of field names to check
-     * @param array $address a tt_address record
+     * @param array  $address   a tt_address record
+     *
      * @return bool true if at least one of the given fields is not empty
      */
     protected function hasOneOf($fieldList, $address)
@@ -649,6 +661,7 @@ class LegacyPluginController extends AbstractPlugin
                 return true;
             }
         }
+
         return false;
     }
 
@@ -657,6 +670,7 @@ class LegacyPluginController extends AbstractPlugin
      * sorting with multisort.
      *
      * @param mixed $value : value to clean
+     *
      * @return string cleaned value
      */
     protected function normalizeSortingString($value)
@@ -676,6 +690,7 @@ class LegacyPluginController extends AbstractPlugin
         $value = preg_replace('/é/', 'e', $value);
         $value = preg_replace('/è/', 'e', $value);
         $value = preg_replace('/ç/', 'c', $value);
+
         return $value;
     }
 

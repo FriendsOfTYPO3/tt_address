@@ -16,11 +16,10 @@ namespace FriendsOfTYPO3\TtAddress\Hooks\Tca;
  */
 
 /**
- * Class AddFieldsToSelector
+ * Class AddFieldsToSelector.
  */
 class AddFieldsToSelector
 {
-
     // TODO consolidate with list in pi1
     const sortFields = ['gender', 'first_name', 'middle_name', 'last_name', 'title', 'company', 'address', 'building', 'room', 'birthday', 'zip', 'city', 'region', 'country', 'email', 'www', 'phone', 'mobile', 'fax'];
 
@@ -38,14 +37,14 @@ class AddFieldsToSelector
 
             $selectOptions[] = [
                 'field' => $field,
-                'label' => $label
+                'label' => $label,
             ];
         }
 
         // add sorting by order of single selection
         $selectOptions[] = [
             'field' => 'singleSelection',
-            'label' => $GLOBALS['LANG']->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_flexform.sortBy.singleSelection')
+            'label' => $GLOBALS['LANG']->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_flexform.sortBy.singleSelection'),
         ];
 
         // sort by labels
@@ -60,7 +59,7 @@ class AddFieldsToSelector
         foreach ($selectOptions as $option) {
             $params['items'][] = [
                 $option['label'],
-                $option['field']
+                $option['field'],
             ];
         }
     }

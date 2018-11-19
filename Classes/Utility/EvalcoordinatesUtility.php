@@ -16,16 +16,16 @@ namespace FriendsOfTYPO3\TtAddress\Utility;
  */
 
 /**
- * Class EvalcoordinatesUtility
+ * Class EvalcoordinatesUtility.
  */
 class EvalcoordinatesUtility
 {
-
     const LATITUDE_UPPER = '90.000000000000';
     const LONGITUDE_UPPER = '180.000000000000';
 
     /**
      * @param $coordinate
+     *
      * @return float evaluated and well-formed coordinate
      */
     public static function formatLongitude(string $coordinate)
@@ -35,6 +35,7 @@ class EvalcoordinatesUtility
 
     /**
      * @param $coordinate
+     *
      * @return float evaluated and well-formed coordinate
      */
     public static function formatLatitude(string $coordinate)
@@ -45,11 +46,12 @@ class EvalcoordinatesUtility
     /**
      * @param $coordinate
      * @param string $upperRange
+     *
      * @return string
      */
     protected static function validate($coordinate, string $upperRange): string
     {
-// test if value is negative
+        // test if value is negative
         $negative = '';
         if ($coordinate[0] === '-') {
             $negative = '-';
@@ -81,7 +83,7 @@ class EvalcoordinatesUtility
         }
 
         // concatenate the whole string to a well-formed longitude and return
-        $coordinate = $integerPart . '.' . $decimalPart;
+        $coordinate = $integerPart.'.'.$decimalPart;
 
         // test if value is in the possible range. longitude can be -180 to +180.
         // latitude can be -90 to +90
@@ -92,6 +94,6 @@ class EvalcoordinatesUtility
         }
 
         // reapply signed/unsigned and return
-        return $negative . $coordinate;
+        return $negative.$coordinate;
     }
 }

@@ -7,7 +7,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class LongitudeEvaluationTest extends BaseTestCase
 {
-
     /** @var LongitudeEvaluation */
     protected $subject;
 
@@ -47,18 +46,15 @@ class LongitudeEvaluationTest extends BaseTestCase
         $this->assertEquals($expected, $this->subject->deevaluateFieldValue($params));
     }
 
-
     public function lngIsProperlyEvaluatedDataProvider(): array
     {
         return [
-            'empty string' => ['', ''],
-            'int' => ['12', '12.000000000000'],
-            'too large number' => ['193.33', '180.000000000000'],
-            'regular float' => ['13.312113', '13.312113000000'],
+            'empty string'           => ['', ''],
+            'int'                    => ['12', '12.000000000000'],
+            'too large number'       => ['193.33', '180.000000000000'],
+            'regular float'          => ['13.312113', '13.312113000000'],
             'negative regular float' => ['-13.312113', '-13.312113000000'],
-            'long float' => ['-11.3121131111111111212121212', '-11.312113111111'],
+            'long float'             => ['-11.3121131111111111212121212', '-11.312113111111'],
         ];
     }
-
-
 }

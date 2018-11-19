@@ -2,7 +2,7 @@
 
 namespace FriendsOfTYPO3\TtAddress\Updates;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -57,7 +57,7 @@ class ImageToFileReference extends AbstractUpdate
      */
     protected function init()
     {
-        $fileadminDirectory = rtrim($GLOBALS['TYPO3_CONF_VARS']['BE']['fileadminDir'], '/') . '/';
+        $fileadminDirectory = rtrim($GLOBALS['TYPO3_CONF_VARS']['BE']['fileadminDir'], '/').'/';
         /** @var $storageRepository \TYPO3\CMS\Core\Resource\StorageRepository */
         $storageRepository = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\StorageRepository');
         $storages = $storageRepository->findAll();
@@ -77,13 +77,14 @@ class ImageToFileReference extends AbstractUpdate
         }
         $this->fileFactory = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\ResourceFactory');
         $this->fileRepository = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\FileRepository');
-        $this->targetDirectory = PATH_site . $fileadminDirectory . self::FOLDER_ContentUploads . '/';
+        $this->targetDirectory = PATH_site.$fileadminDirectory.self::FOLDER_ContentUploads.'/';
     }
 
     /**
-     * Checks if an update is needed
+     * Checks if an update is needed.
      *
      * @param string &$description : The description for the update
+     *
      * @return bool TRUE if an update is needed, FALSE otherwise
      */
     public function checkForUpdate(&$description)
@@ -94,10 +95,10 @@ class ImageToFileReference extends AbstractUpdate
             $this->getWhereClauseForImagesToUpdate()
         );
         if ($notMigratedImageRowsCount > 0) {
-            $description = 'There are <strong>' . $notMigratedImageRowsCount . '</strong> addresses which are using the old image relation. '
-                . 'This wizard will copy the files to "fileadmin/' . self::FOLDER_ContentUploads . '".'
-                . '<br /><br /><strong>Important:</strong> The <strong>first</strong> local storage inside "' . $GLOBALS['TYPO3_CONF_VARS']['BE']['fileadminDir']
-                . '" will be used for the migration. If you have multiple storages, only enable the one which should be used for the migration.';
+            $description = 'There are <strong>'.$notMigratedImageRowsCount.'</strong> addresses which are using the old image relation. '
+                .'This wizard will copy the files to "fileadmin/'.self::FOLDER_ContentUploads.'".'
+                .'<br /><br /><strong>Important:</strong> The <strong>first</strong> local storage inside "'.$GLOBALS['TYPO3_CONF_VARS']['BE']['fileadminDir']
+                .'" will be used for the migration. If you have multiple storages, only enable the one which should be used for the migration.';
 
             return true;
         }
@@ -116,8 +117,9 @@ class ImageToFileReference extends AbstractUpdate
     /**
      * Performs the database update.
      *
-     * @param array &$dbQueries Queries done in this update
+     * @param array &$dbQueries      Queries done in this update
      * @param mixed &$customMessages Custom messages
+     *
      * @return bool TRUE on success, FALSE on error
      */
     public function performUpdate(array &$dbQueries, &$customMessages)
@@ -155,7 +157,7 @@ class ImageToFileReference extends AbstractUpdate
     }
 
     /**
-     * Processes the actual transformation to sys_file_references
+     * Processes the actual transformation to sys_file_references.
      *
      * @param array $address
      */
@@ -165,26 +167,26 @@ class ImageToFileReference extends AbstractUpdate
             $images = GeneralUtility::trimExplode(',', $address['image']);
             $imageCount = 0;
             foreach ($images as $image) {
-                if (!empty($image) && file_exists(PATH_site . 'uploads/pics/' . $image)) {
+                if (!empty($image) && file_exists(PATH_site.'uploads/pics/'.$image)) {
                     GeneralUtility::upload_copy_move(
-                        PATH_site . 'uploads/pics/' . $image,
-                        $this->targetDirectory . $image
+                        PATH_site.'uploads/pics/'.$image,
+                        $this->targetDirectory.$image
                     );
 
-                    $fileObject = $this->storage->getFile(self::FOLDER_ContentUploads . '/' . $image);
+                    $fileObject = $this->storage->getFile(self::FOLDER_ContentUploads.'/'.$image);
                     if ($fileObject instanceof File) {
                         $this->fileRepository->add($fileObject);
                         $dataArray = [
-                            'uid_local' => $fileObject->getUid(),
-                            'tablenames' => 'tt_address',
-                            'fieldname' => 'image',
-                            'uid_foreign' => $address['uid'],
-                            'table_local' => 'sys_file',
-                            'cruser_id' => 999,
-                            'pid' => $address['pid'],
-                            'sorting_foreign' => $imageCount,
-                            'hidden' => $address['hidden'],
-                            'sys_language_uid' => 0
+                            'uid_local'        => $fileObject->getUid(),
+                            'tablenames'       => 'tt_address',
+                            'fieldname'        => 'image',
+                            'uid_foreign'      => $address['uid'],
+                            'table_local'      => 'sys_file',
+                            'cruser_id'        => 999,
+                            'pid'              => $address['pid'],
+                            'sorting_foreign'  => $imageCount,
+                            'hidden'           => $address['hidden'],
+                            'sys_language_uid' => 0,
                         ];
 
                         if ($this->getDatabaseConnection()->exec_INSERTquery('sys_file_reference', $dataArray)) {
@@ -196,7 +198,7 @@ class ImageToFileReference extends AbstractUpdate
 
             $this->getDatabaseConnection()->exec_UPDATEquery(
                 'tt_address',
-                'uid = ' . (int)$address['uid'],
+                'uid = '.(int) $address['uid'],
                 ['image' => $imageCount]
             );
         }

@@ -22,13 +22,12 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
- * The repository for the domain model Address
+ * The repository for the domain model Address.
  */
 class AddressRepository extends Repository
 {
-
     /**
-     * override the storagePid settings (do not use storagePid) of extbase
+     * override the storagePid settings (do not use storagePid) of extbase.
      */
     public function initializeObject()
     {
@@ -37,11 +36,12 @@ class AddressRepository extends Repository
     }
 
     /**
-     * Retrieves all offers by settings (TypoScript and Flexform)
+     * Retrieves all offers by settings (TypoScript and Flexform).
      *
      * @param array settings
      * @param array orderings for query
-     * @return \FriendsOfTYPO3\TtAddress\Domain\Model\Address[]  The result list.
+     *
+     * @return \FriendsOfTYPO3\TtAddress\Domain\Model\Address[] The result list.
      */
     public function findTtAddressesByCategories($settings, $orderings)
     {
@@ -52,15 +52,17 @@ class AddressRepository extends Repository
             // fallback find all
             $ttAddresses = $this->findAll();
         }
+
         return $ttAddresses;
     }
 
     /**
-     * Find by multiple uids and maintain the list order
+     * Find by multiple uids and maintain the list order.
      *
      * @param string String containing the single uids
      * @param array orderings for query
-     * @return \FriendsOfTYPO3\TtAddress\Domain\Model\Address[]  The result list.
+     *
+     * @return \FriendsOfTYPO3\TtAddress\Domain\Model\Address[] The result list.
      */
     public function findByUidListOrderByList($settings, $orderings)
     {
@@ -86,6 +88,7 @@ class AddressRepository extends Repository
                     $finalList[] = $tempList[$uid];
                 }
             }
+
             return $finalList;
         } else {
             return $objects;
@@ -93,12 +96,13 @@ class AddressRepository extends Repository
     }
 
     /**
-     * Retrieves all tt_address records by categories
+     * Retrieves all tt_address records by categories.
      *
      * @param array orderings for query
-     * @param string $categories Comma-seperated list of Category IDs
-     * @param int $logicalOperaion : 1=OR; 0=AND
-     * @return Array<\FriendsOfTYPO3\TtAddress\Domain\Model\Address>  The result list.
+     * @param string $categories      Comma-seperated list of Category IDs
+     * @param int    $logicalOperaion : 1=OR; 0=AND
+     *
+     * @return Array<\FriendsOfTYPO3\TtAddress\Domain\Model\Address> The result list.
      */
     protected function buildQueryCategories($orderings, $categories, $logicalOperation = 0)
     {
@@ -120,17 +124,20 @@ class AddressRepository extends Repository
                 )
             );
         }
+
         return $query->execute();
     }
 
     /**
      * Returns a category constraint created by
-     * a given list of categories and a junction string
+     * a given list of categories and a junction string.
      *
      * @param QueryInterface $query
-     * @param  string $categories
-     * @return array|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|null
+     * @param string         $categories
+     *
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
+     *
+     * @return array|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|null
      */
     protected function createCategoryConstraint(QueryInterface $query, $categories)
     {
@@ -144,6 +151,7 @@ class AddressRepository extends Repository
         foreach ($categoriesRecursive as $category) {
             $constraints[] = $query->contains('categories', $category);
         }
+
         return $constraints;
     }
 }

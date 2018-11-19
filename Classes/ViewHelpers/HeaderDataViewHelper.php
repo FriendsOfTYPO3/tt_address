@@ -22,7 +22,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 /**
- * ViewHelper to render data in <head> section of website
+ * ViewHelper to render data in <head> section of website.
  *
  * # Example: Basic example
  * <code>
@@ -42,16 +42,15 @@ class HeaderDataViewHelper extends AbstractViewHelper
     use CompileWithRenderStatic;
 
     /**
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
+     * @param array                     $arguments
+     * @param \Closure                  $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
      */
     public static function renderStatic(
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    )
-    {
+    ) {
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $pageRenderer->addHeaderData($renderChildrenClosure());
     }

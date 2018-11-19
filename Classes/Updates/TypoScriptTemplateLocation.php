@@ -19,7 +19,7 @@ use TYPO3\CMS\Core\Database\DatabaseConnection;
 use TYPO3\CMS\Install\Updates\AbstractUpdate;
 
 /**
- * Migrate "tt_address" static template location of Legacy plugin from static/pi1 to Configuration/TypoScript/LegacyPlugin
+ * Migrate "tt_address" static template location of Legacy plugin from static/pi1 to Configuration/TypoScript/LegacyPlugin.
  */
 class TypoScriptTemplateLocation extends AbstractUpdate
 {
@@ -32,9 +32,10 @@ class TypoScriptTemplateLocation extends AbstractUpdate
     protected $newLocation = 'EXT:tt_address/Configuration/TypoScript/LegacyPlugin';
 
     /**
-     * Checks if an update is needed
+     * Checks if an update is needed.
      *
      * @param string &$description The description for the update
+     *
      * @return bool Whether an update is needed (TRUE) or not (FALSE)
      */
     public function checkForUpdate(&$description)
@@ -47,24 +48,26 @@ class TypoScriptTemplateLocation extends AbstractUpdate
             'uid',
             'sys_template',
             'deleted=0 AND'
-            . ' (constants LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
-                'sys_template') . '%"'
-            . ' OR config LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
-                'sys_template') . '%"'
-            . ' OR include_static_file LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
-                'sys_template') . '%")'
+            .' (constants LIKE "%'.$this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
+                'sys_template').'%"'
+            .' OR config LIKE "%'.$this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
+                'sys_template').'%"'
+            .' OR include_static_file LIKE "%'.$this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
+                'sys_template').'%")'
         );
         if ($affectedRows) {
             $description = 'tt_address\' Static templates have been relocated to EXT:tt_address/Configuration/TypoScript/LegacyPlugin';
         }
-        return (bool)$affectedRows;
+
+        return (bool) $affectedRows;
     }
 
     /**
-     * Performs the database update
+     * Performs the database update.
      *
-     * @param array &$databaseQueries Queries done in this update
-     * @param string &$customMessage Custom message
+     * @param array  &$databaseQueries Queries done in this update
+     * @param string &$customMessage   Custom message
+     *
      * @return bool
      */
     public function performUpdate(array &$databaseQueries, &$customMessage)
@@ -73,12 +76,12 @@ class TypoScriptTemplateLocation extends AbstractUpdate
             'uid, include_static_file, constants, config',
             'sys_template',
             'deleted=0 AND'
-            . ' (constants LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
-                'sys_template') . '%"'
-            . ' OR config LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
-                'sys_template') . '%"'
-            . ' OR include_static_file LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
-                'sys_template') . '%")'
+            .' (constants LIKE "%'.$this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
+                'sys_template').'%"'
+            .' OR config LIKE "%'.$this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
+                'sys_template').'%"'
+            .' OR include_static_file LIKE "%'.$this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
+                'sys_template').'%")'
         );
 
         foreach ($records as $record) {
@@ -86,21 +89,22 @@ class TypoScriptTemplateLocation extends AbstractUpdate
                 'include_static_file' => str_replace($this->oldLocation, $this->newLocation,
                     $record['include_static_file']),
                 'constants' => str_replace($this->oldLocation, $this->newLocation, $record['constants']),
-                'config' => str_replace($this->oldLocation, $this->newLocation, $record['config'])
+                'config'    => str_replace($this->oldLocation, $this->newLocation, $record['config']),
             ];
 
             $updateQuery = $this->getDatabaseConnection()->UPDATEquery(
                 'sys_template',
-                'uid=' . (int)$record['uid'],
+                'uid='.(int) $record['uid'],
                 $newData
             );
 
             $this->getDatabaseConnection()->sql_query($updateQuery);
 
-            $customMessage = 'Updated sys_template ' . $record['uid'] . '';
+            $customMessage = 'Updated sys_template '.$record['uid'].'';
             $databaseQueries[] = $updateQuery;
         }
         $this->markWizardAsDone();
+
         return true;
     }
 

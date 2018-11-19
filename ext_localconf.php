@@ -1,4 +1,5 @@
 <?php
+
 defined('TYPO3_MODE') or die();
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addUserTSConfig('options.saveDocNew.tt_address = 1');
@@ -34,7 +35,7 @@ if ($settings->isActivatePiBase()) {
         true
     );
     // Adds the old legacy plugin to New Content Element wizard
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . 'tt_address' . '/Configuration/TSconfig/AddLegacyPluginToNewCEWizard.typoscript">');
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:'.'tt_address'.'/Configuration/TSconfig/AddLegacyPluginToNewCEWizard.typoscript">');
 }
 
 /* ===========================================================================
@@ -42,16 +43,16 @@ if ($settings->isActivatePiBase()) {
 =========================================================================== */
 
 // Adds the new fluid/extbase-plugin to New Content Element wizard
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . 'tt_address' . '/Configuration/TSconfig/NewContentElementWizard.typoscript">');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:'.'tt_address'.'/Configuration/TSconfig/NewContentElementWizard.typoscript">');
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
     'FriendsOfTYPO3.tt_address',
     'ListView',
     [
-        'Address' => 'list,show'
+        'Address' => 'list,show',
     ],
     [
-        'Address' => 'list'
+        'Address' => 'list',
     ],
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN
 );

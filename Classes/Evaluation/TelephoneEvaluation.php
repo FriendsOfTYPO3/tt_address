@@ -17,13 +17,12 @@ namespace FriendsOfTYPO3\TtAddress\Evaluation;
 
 /**
  * Class for telephonenumber validation/evaluation to be used in 'eval' of TCA
- * removes everything except numbers and the plus-sign
+ * removes everything except numbers and the plus-sign.
  */
 class TelephoneEvaluation
 {
-
     /**
-     * JavaScript code for client side validation/evaluation
+     * JavaScript code for client side validation/evaluation.
      *
      * @return string JavaScript code for client side validation/evaluation
      */
@@ -35,9 +34,10 @@ class TelephoneEvaluation
     }
 
     /**
-     * Server-side validation/evaluation on saving the record
+     * Server-side validation/evaluation on saving the record.
      *
      * @param string $value The field value to be evaluated
+     *
      * @return string Evaluated field value
      */
     public function evaluateFieldValue($value)
@@ -46,9 +46,10 @@ class TelephoneEvaluation
     }
 
     /**
-     * Server-side validation/evaluation on opening the record
+     * Server-side validation/evaluation on opening the record.
      *
      * @param array $parameters Array with key 'value' containing the field value from the database
+     *
      * @return string Evaluated field value
      */
     public function deevaluateFieldValue(array $parameters)
@@ -59,6 +60,7 @@ class TelephoneEvaluation
     private function evaluate(string $in)
     {
         $data = preg_replace("/[^\d\+\s]/", '', $in);
+
         return trim($data);
     }
 }

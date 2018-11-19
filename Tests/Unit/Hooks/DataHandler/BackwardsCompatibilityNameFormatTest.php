@@ -8,11 +8,11 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class BackwardsCompatibilityNameFormatTest extends BaseTestCase
 {
-
     /**
      * @test
      */
-    public function constructorIsCalled() {
+    public function constructorIsCalled()
+    {
         $subject = $this->getAccessibleMock(BackwardsCompatibilityNameFormat::class, ['getRecord'], [], '', true);
 
         $settings = new Settings();
@@ -25,17 +25,16 @@ class BackwardsCompatibilityNameFormatTest extends BaseTestCase
     public function updateWillFillName()
     {
         $row = [
-            'first_name' => 'john',
+            'first_name'  => 'john',
             'middle_name' => 'j,',
-            'last_name' => 'doe',
+            'last_name'   => 'doe',
         ];
         $fieldArray = [
-            'first_name' => 'max',
+            'first_name'  => 'max',
             'middle_name' => '',
-            'last_name' => 'mustermann',
+            'last_name'   => 'mustermann',
         ];
         $settings = new Settings();
-
 
         $subject = $this->getAccessibleMock(BackwardsCompatibilityNameFormat::class, ['getRecord'], [], '', false);
         $subject->_set('settings', $settings);
@@ -46,24 +45,22 @@ class BackwardsCompatibilityNameFormatTest extends BaseTestCase
         $this->assertEquals($fieldArray['name'], 'max mustermann');
     }
 
-
     /**
      * @test
      */
     public function newWillFillName()
     {
         $row = [
-            'first_name' => 'john',
+            'first_name'  => 'john',
             'middle_name' => 'j,',
-            'last_name' => 'doe',
+            'last_name'   => 'doe',
         ];
         $fieldArray = [
-            'first_name' => 'max',
+            'first_name'  => 'max',
             'middle_name' => '',
-            'last_name' => 'mustermann',
+            'last_name'   => 'mustermann',
         ];
         $settings = new Settings();
-
 
         $subject = $this->getAccessibleMock(BackwardsCompatibilityNameFormat::class, ['getRecord'], [], '', false);
         $subject->_set('settings', $settings);

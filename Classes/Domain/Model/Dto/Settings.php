@@ -18,7 +18,7 @@ namespace FriendsOfTYPO3\TtAddress\Domain\Model\Dto;
 use TYPO3\CMS\Core\SingletonInterface;
 
 /**
- * Class Settings
+ * Class Settings.
  */
 class Settings implements SingletonInterface
 {
@@ -34,17 +34,15 @@ class Settings implements SingletonInterface
     /** @var bool */
     protected $activatePiBase = false;
 
-    /**
-     */
     public function __construct()
     {
         $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address']);
 
         if (\is_array($settings) && !empty($settings)) {
-            $this->backwardsCompatFormat = trim((string)$settings['backwardsCompatFormat']);
-            $this->storeBackwardsCompatName = (bool)$settings['storeBackwardsCompatName'];
-            $this->readOnlyNameField = (bool)$settings['readOnlyNameField'];
-            $this->activatePiBase = (bool)$settings['activatePiBase'];
+            $this->backwardsCompatFormat = trim((string) $settings['backwardsCompatFormat']);
+            $this->storeBackwardsCompatName = (bool) $settings['storeBackwardsCompatName'];
+            $this->readOnlyNameField = (bool) $settings['readOnlyNameField'];
+            $this->activatePiBase = (bool) $settings['activatePiBase'];
         }
     }
 

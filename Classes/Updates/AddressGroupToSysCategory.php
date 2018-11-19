@@ -20,7 +20,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\AbstractUpdate;
 
 /**
- * Class that migrates all tt_address_group records to sys_category records
+ * Class that migrates all tt_address_group records to sys_category records.
  */
 class AddressGroupToSysCategory extends AbstractUpdate
 {
@@ -35,6 +35,7 @@ class AddressGroupToSysCategory extends AbstractUpdate
      * Checks whether updates are required.
      *
      * @param string &$description The description for the update
+     *
      * @return bool Whether an update is required (TRUE) or not (FALSE)
      */
     public function checkForUpdate(&$description)
@@ -64,8 +65,9 @@ class AddressGroupToSysCategory extends AbstractUpdate
     /**
      * Performs the accordant updates.
      *
-     * @param array &$dbQueries Queries done in this update
+     * @param array &$dbQueries      Queries done in this update
      * @param mixed &$customMessages Custom messages
+     *
      * @return bool Whether everything went smoothly or not
      */
     public function performUpdate(array &$dbQueries, &$customMessages)
@@ -75,6 +77,7 @@ class AddressGroupToSysCategory extends AbstractUpdate
         $oldGroupTableFields = $this->getDatabaseConnection()->admin_get_fields(self::OLD_GROUP_TABLE);
         if (count($oldGroupTableFields) === 0) {
             $customMessages = 'Old group table does not exist anymore so no update needed.';
+
             return false;
         }
 
@@ -87,19 +90,21 @@ class AddressGroupToSysCategory extends AbstractUpdate
 
         if ($oldGroupCount === 0) {
             $customMessages = 'Old groups found so no update needed.';
+
             return false;
         }
 
         // A temporary migration column is needed in old category table. Add this when not already present
         if (!array_key_exists('migrate_sys_category_uid', $oldGroupTableFields)) {
             $this->getDatabaseConnection()->admin_query(
-                'ALTER TABLE ' . self::OLD_GROUP_TABLE . " ADD migrate_sys_category_uid int(11) DEFAULT '0' NOT NULL"
+                'ALTER TABLE '.self::OLD_GROUP_TABLE." ADD migrate_sys_category_uid int(11) DEFAULT '0' NOT NULL"
             );
         }
         // convert tt_address_group records
         $result = $this->migrateAddressGroupRecords();
         if (!$result) {
             $customMessages = implode('<br />', $this->messageArray);
+
             return false;
         }
 
@@ -109,22 +114,22 @@ class AddressGroupToSysCategory extends AbstractUpdate
         $this->migrateCategoryMmRecords($oldNewCategoryUidMapping);
         $this->updateFlexformCategories('tt_address_pi1', $oldNewCategoryUidMapping, 'groupSelection');
 
-        /**
+        /*
          * Finished category migration
          */
         return true;
     }
 
     /**
-     * Process not yet migrated tt_address group records to sys_category records
+     * Process not yet migrated tt_address group records to sys_category records.
      */
     protected function migrateAddressGroupRecords()
     {
 
         // migrate default language category records
         $rows = $this->getDatabaseConnection()->exec_SELECTgetRows(
-            'uid, pid, tstamp, crdate, cruser_id, sorting, ' .
-            'sys_language_uid, l18n_parent, l18n_diffsource, ' .
+            'uid, pid, tstamp, crdate, cruser_id, sorting, '.
+            'sys_language_uid, l18n_parent, l18n_diffsource, '.
             'title, description',
             self::OLD_GROUP_TABLE,
             'migrate_sys_category_uid = 0 AND deleted = 0 AND sys_language_uid = 0'
@@ -132,6 +137,7 @@ class AddressGroupToSysCategory extends AbstractUpdate
 
         if ($this->getDatabaseConnection()->sql_error()) {
             $this->messageArray[] = 'Failed selecting old default language group records';
+
             return false;
         }
 
@@ -164,20 +170,21 @@ class AddressGroupToSysCategory extends AbstractUpdate
                 $oldNewDefaultLanguageCategoryUidMapping[$oldUid] = $newUid;
                 $this->getDatabaseConnection()->exec_UPDATEquery(
                     self::OLD_GROUP_TABLE,
-                    'uid=' . $oldUid,
+                    'uid='.$oldUid,
                     ['migrate_sys_category_uid' => $newUid]
                 );
                 $newCategoryRecords++;
             } else {
-                $this->messageArray[] = 'Failed copying [' . $oldUid . '] ' . htmlspecialchars($row['title']) . ' to sys_category';
+                $this->messageArray[] = 'Failed copying ['.$oldUid.'] '.htmlspecialchars($row['title']).' to sys_category';
+
                 return false;
             }
         }
 
         // migrate non-default language category records
         $rows = $this->getDatabaseConnection()->exec_SELECTgetRows(
-            'uid, pid, tstamp, crdate, cruser_id, sorting, ' .
-            'sys_language_uid, l18n_parent, l18n_diffsource, ' .
+            'uid, pid, tstamp, crdate, cruser_id, sorting, '.
+            'sys_language_uid, l18n_parent, l18n_diffsource, '.
             'title, description',
             self::OLD_GROUP_TABLE,
             'migrate_sys_category_uid = 0 AND deleted = 0 AND sys_language_uid != 0'
@@ -185,6 +192,7 @@ class AddressGroupToSysCategory extends AbstractUpdate
 
         if ($this->getDatabaseConnection()->sql_error()) {
             $this->messageArray[] = 'Failed selecting old non-default language group records';
+
             return false;
         }
 
@@ -217,20 +225,22 @@ class AddressGroupToSysCategory extends AbstractUpdate
                 $oldNewDefaultLanguageCategoryUidMapping[$oldUid] = $newUid;
                 $this->getDatabaseConnection()->exec_UPDATEquery(
                     self::OLD_GROUP_TABLE,
-                    'uid=' . $oldUid,
+                    'uid='.$oldUid,
                     ['migrate_sys_category_uid' => $newUid]
                 );
                 $newCategoryRecords++;
             } else {
-                $this->messageArray[] = 'Failed copying [' . $oldUid . '] ' . htmlspecialchars($row['title']) . ' to sys_category';
+                $this->messageArray[] = 'Failed copying ['.$oldUid.'] '.htmlspecialchars($row['title']).' to sys_category';
+
                 return false;
             }
         }
+
         return true;
     }
 
     /**
-     * Create a mapping array of old->new category uids
+     * Create a mapping array of old->new category uids.
      *
      * @return array
      */
@@ -251,9 +261,10 @@ class AddressGroupToSysCategory extends AbstractUpdate
     }
 
     /**
-     * Update parent column of migrated categories
+     * Update parent column of migrated categories.
      *
      * @param array $oldNewCategoryUidMapping
+     *
      * @return bool
      */
     protected function updateParentFieldOfMigratedCategories(array $oldNewCategoryUidMapping)
@@ -270,19 +281,21 @@ class AddressGroupToSysCategory extends AbstractUpdate
                 $newParentUid = $oldNewCategoryUidMapping[$row['parent_group']];
                 $this->getDatabaseConnection()->exec_UPDATEquery(
                     'sys_category',
-                    'uid=' . $sysCategoryUid,
+                    'uid='.$sysCategoryUid,
                     ['parent' => $newParentUid]
                 );
                 $updatedRecords++;
             }
         }
+
         return true;
     }
 
     /**
-     * Create new category MM records
+     * Create new category MM records.
      *
      * @param array $oldNewCategoryUidMapping
+     *
      * @return bool
      */
     protected function migrateCategoryMmRecords(array $oldNewCategoryUidMapping)
@@ -298,21 +311,21 @@ class AddressGroupToSysCategory extends AbstractUpdate
 
             if (!empty($oldNewCategoryUidMapping[$oldCategoryUid])) {
                 $newMmRecord = [
-                    'uid_local' => (int)$oldNewCategoryUidMapping[$oldCategoryUid],
-                    'uid_foreign' => $oldMmRecord['uid_local'],
-                    'tablenames' => $oldMmRecord['tablenames'] ?: 'tt_address',
+                    'uid_local'       => (int) $oldNewCategoryUidMapping[$oldCategoryUid],
+                    'uid_foreign'     => $oldMmRecord['uid_local'],
+                    'tablenames'      => $oldMmRecord['tablenames'] ?: 'tt_address',
                     'sorting_foreign' => $oldMmRecord['sorting'],
-                    'fieldname' => 'categories',
+                    'fieldname'       => 'categories',
                 ];
 
                 // check if relation already exists
                 $foundRelations = $this->getDatabaseConnection()->exec_SELECTcountRows(
                     'uid_local',
                     'sys_category_record_mm',
-                    'uid_local=' . $newMmRecord['uid_local'] .
-                    ' AND uid_foreign=' . $newMmRecord['uid_foreign'] .
-                    ' AND tablenames="' . $newMmRecord['tablenames'] . '"' .
-                    ' AND fieldname="' . $newMmRecord['fieldname'] . '"'
+                    'uid_local='.$newMmRecord['uid_local'].
+                    ' AND uid_foreign='.$newMmRecord['uid_foreign'].
+                    ' AND tablenames="'.$newMmRecord['tablenames'].'"'.
+                    ' AND fieldname="'.$newMmRecord['fieldname'].'"'
                 );
 
                 if ($foundRelations === 0) {
@@ -324,27 +337,29 @@ class AddressGroupToSysCategory extends AbstractUpdate
             }
         }
 
-        $this->messageArray[] = 'Created ' . $newMmCount . ' new MM relations';
+        $this->messageArray[] = 'Created '.$newMmCount.' new MM relations';
+
         return true;
     }
 
     /**
-     * Update categories in flexforms
+     * Update categories in flexforms.
      *
      * @param string $pluginName
-     * @param array $oldNewCategoryUidMapping
-     * @param string $flexformField name of the flexform's field to look for
+     * @param array  $oldNewCategoryUidMapping
+     * @param string $flexformField            name of the flexform's field to look for
+     *
      * @return bool
      */
     protected function updateFlexformCategories($pluginName, $oldNewCategoryUidMapping, $flexformField)
     {
         $count = 0;
-        $title = 'Update flexforms categories (' . $pluginName . ':' . $flexformField . ')';
+        $title = 'Update flexforms categories ('.$pluginName.':'.$flexformField.')';
         $res = $this->getDatabaseConnection()->exec_SELECTquery(
             'uid, pi_flexform',
             'tt_content',
-            'CType="list" AND list_type=' . $this->getDatabaseConnection()->fullQuoteStr($pluginName,
-                'tt_content') . ' AND deleted=0'
+            'CType="list" AND list_type='.$this->getDatabaseConnection()->fullQuoteStr($pluginName,
+                'tt_content').' AND deleted=0'
         );
 
         /** @var \TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools $flexformTools */
@@ -355,11 +370,11 @@ class AddressGroupToSysCategory extends AbstractUpdate
             $xmlArray = GeneralUtility::xml2array($row['pi_flexform']);
 
             if (!is_array($xmlArray) || !isset($xmlArray['data'])) {
-                $this->messageArray[] = 'Flexform data of plugin "' . $pluginName . '" not found.';
+                $this->messageArray[] = 'Flexform data of plugin "'.$pluginName.'" not found.';
             } elseif (!isset($xmlArray['data']['sDEF']['lDEF'])) {
-                $this->messageArray[] = 'Flexform data of record tt_content:' . $row['uid'] . ' did not contain sheet: sDEF';
-            } elseif (isset($xmlArray[$flexformField . '_updated'])) {
-                $this->messageArray[] = 'Flexform data of record tt_content:' . $row['uid'] . ' is already updated for ' . $flexformField . '. No update needed...';
+                $this->messageArray[] = 'Flexform data of record tt_content:'.$row['uid'].' did not contain sheet: sDEF';
+            } elseif (isset($xmlArray[$flexformField.'_updated'])) {
+                $this->messageArray[] = 'Flexform data of record tt_content:'.$row['uid'].' is already updated for '.$flexformField.'. No update needed...';
             } else {
                 // Some flexforms may have displayCond
                 if (isset($xmlArray['data']['sDEF']['lDEF'][$flexformField]['vDEF'])) {
@@ -378,23 +393,23 @@ class AddressGroupToSysCategory extends AbstractUpdate
                                 $newCategories[] = $oldNewCategoryUidMapping[$uid];
                                 $updated = true;
                             } else {
-                                $this->messageArray[] = 'The category ' . $uid . ' of record tt_content:' . $row['uid'] . ' was not found in sys_category records. Maybe the category was deleted before the migration? Please check manually...';
+                                $this->messageArray[] = 'The category '.$uid.' of record tt_content:'.$row['uid'].' was not found in sys_category records. Maybe the category was deleted before the migration? Please check manually...';
                             }
                         }
 
                         if ($updated) {
                             $count++;
-                            $xmlArray[$flexformField . '_updated'] = 1;
+                            $xmlArray[$flexformField.'_updated'] = 1;
                             $xmlArray['data']['sDEF']['lDEF'][$flexformField]['vDEF'] = implode(',', $newCategories);
-                            $this->getDatabaseConnection()->exec_UPDATEquery('tt_content', 'uid=' . (int)$row['uid'], [
-                                'pi_flexform' => $flexformTools->flexArray2Xml($xmlArray)
+                            $this->getDatabaseConnection()->exec_UPDATEquery('tt_content', 'uid='.(int) $row['uid'], [
+                                'pi_flexform' => $flexformTools->flexArray2Xml($xmlArray),
                             ]);
                         }
                     }
                 }
             }
         }
-        $this->messageArray[] = 'Updated ' . $count . ' tt_content flexforms for  "' . $pluginName . ':' . $flexformField . '"';
+        $this->messageArray[] = 'Updated '.$count.' tt_content flexforms for  "'.$pluginName.':'.$flexformField.'"';
     }
 
     /**

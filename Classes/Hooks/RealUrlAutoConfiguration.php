@@ -16,16 +16,16 @@ namespace FriendsOfTYPO3\TtAddress\Hooks;
  */
 
 /**
- * AutoConfiguration-Hook for RealURL
+ * AutoConfiguration-Hook for RealURL.
  */
 class RealUrlAutoConfiguration
 {
-
     /**
-     * Generates additional RealURL configuration and merges it with provided configuration
+     * Generates additional RealURL configuration and merges it with provided configuration.
      *
-     * @param       array $params Default configuration
-     * @return      array Updated configuration
+     * @param array $params Default configuration
+     *
+     * @return array Updated configuration
      */
     public function addTtAddressConfig($params)
     {
@@ -41,39 +41,39 @@ class RealUrlAutoConfiguration
                         ],
                         'address' => [
                             [
-                                'GETvar' => 'tx_ttaddress_listview[action]',
+                                'GETvar'   => 'tx_ttaddress_listview[action]',
                                 'valueMap' => [
                                     'show' => '',
                                 ],
-                                'noMatch' => 'bypass'
+                                'noMatch' => 'bypass',
                             ],
                             [
-                                'GETvar' => 'tx_ttaddress_listview[controller]',
+                                'GETvar'   => 'tx_ttaddress_listview[controller]',
                                 'valueMap' => [
                                     'Address' => '',
                                 ],
-                                'noMatch' => 'bypass'
+                                'noMatch' => 'bypass',
                             ],
                             [
-                                'GETvar' => 'tx_ttaddress_listview[address]',
+                                'GETvar'      => 'tx_ttaddress_listview[address]',
                                 'lookUpTable' => [
-                                    'table' => 'tt_address',
-                                    'id_field' => 'uid',
-                                    'alias_field' => "CONCAT(first_name, '-', last_name)",
-                                    'useUniqueCache' => 1,
+                                    'table'               => 'tt_address',
+                                    'id_field'            => 'uid',
+                                    'alias_field'         => "CONCAT(first_name, '-', last_name)",
+                                    'useUniqueCache'      => 1,
                                     'useUniqueCache_conf' => [
-                                        'strtolower' => 1,
+                                        'strtolower'     => 1,
                                         'spaceCharacter' => '-',
                                     ],
-                                    'languageGetVar' => 'L',
+                                    'languageGetVar'        => 'L',
                                     'languageExceptionUids' => '',
-                                    'languageField' => 'sys_language_uid',
+                                    'languageField'         => 'sys_language_uid',
                                     'transOrigPointerField' => 'l10n_parent',
                                 ],
                             ],
                         ],
-                    ]
-                ]
+                    ],
+                ],
             ]
         );
     }

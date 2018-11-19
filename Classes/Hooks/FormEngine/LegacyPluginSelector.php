@@ -23,22 +23,22 @@ use TYPO3\CMS\Frontend\Page\PageRepository;
 /**
  * Hook class with two entry points:
  * - addFieldsToSelector (add additional fields to a dropdown)
- * - addFilesToSelector (check for template files for a dropdown)
+ * - addFilesToSelector (check for template files for a dropdown).
  */
 class LegacyPluginSelector
 {
     /**
      * Manipulating the input array, $params, adding new selectorbox items.
      *
-     * @param    array $params array of select field options (reference)
-     * @param    object $pObj parent object (reference)
+     * @param array  $params array of select field options (reference)
+     * @param object $pObj   parent object (reference)
      */
     public function addFieldsToSelector(&$params, &$pObj)
     {
         // TODO consolidate with list in pi1
         $coreSortFields = 'gender, first_name, middle_name, last_name, title, company, '
-            . 'address, building, room, birthday, zip, city, region, country, email, www, phone, mobile, '
-            . 'fax';
+            .'address, building, room, birthday, zip, city, region, country, email, www, phone, mobile, '
+            .'fax';
 
         $sortFields = GeneralUtility::trimExplode(',', $coreSortFields);
 
@@ -49,14 +49,14 @@ class LegacyPluginSelector
 
             $selectOptions[] = [
                 'field' => $field,
-                'label' => $label
+                'label' => $label,
             ];
         }
 
         // add sorting by order of single selection
         $selectOptions[] = [
             'field' => 'singleSelection',
-            'label' => $GLOBALS['LANG']->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_flexform.sortBy.singleSelection')
+            'label' => $GLOBALS['LANG']->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_flexform.sortBy.singleSelection'),
         ];
 
         // sort by labels
@@ -71,7 +71,7 @@ class LegacyPluginSelector
         foreach ($selectOptions as $option) {
             $params['items'][] = [
                 $option['label'],
-                $option['field']
+                $option['field'],
             ];
         }
     }
@@ -81,12 +81,12 @@ class LegacyPluginSelector
      *
      * Checks for the TypoScript path of the templates and looks up if there is a ".gif" file at the same location
      *
-     * @param    array $params array of select field options (reference)
-     * @param    object $pObj parent object (reference)
+     * @param array  $params array of select field options (reference)
+     * @param object $pObj   parent object (reference)
      */
     public function addFilesToSelector(&$params, &$pObj)
     {
-        $pageId = (int)$params['flexParentDatabaseRow']['pid'];
+        $pageId = (int) $params['flexParentDatabaseRow']['pid'];
         $readPath = $this->getTemplatePathFromTypoScriptOfPage($pageId);
 
         // If that directory is valid and is a directory then select files in it
@@ -103,7 +103,7 @@ class LegacyPluginSelector
                 $titleTagContent = $parseHTML->removeFirstAndLastTag($parts[1]);
 
                 // set the item label
-                $selectorBoxItem_title = trim($titleTagContent . ' (' . basename($htmlFilePath) . ')');
+                $selectorBoxItem_title = trim($titleTagContent.' ('.basename($htmlFilePath).')');
 
                 // try to look up an image icon for the template
                 $fI = GeneralUtility::split_fileref($htmlFilePath);
@@ -111,9 +111,9 @@ class LegacyPluginSelector
                 $fileExtensionsToCheck = ['.gif', '.png', '.jpeg', '.jpg'];
                 $selectorBoxItem_icon = '';
                 foreach ($fileExtensionsToCheck as $fileExtension) {
-                    $testImageFilename = $readPath . $fI['filebody'] . $fileExtension;
+                    $testImageFilename = $readPath.$fI['filebody'].$fileExtension;
                     if (@is_file($testImageFilename)) {
-                        $selectorBoxItem_icon = '../' . substr($testImageFilename, strlen(PATH_site));
+                        $selectorBoxItem_icon = '../'.substr($testImageFilename, strlen(PATH_site));
                         break;
                     }
                 }
@@ -122,7 +122,7 @@ class LegacyPluginSelector
                 $params['items'][] = [
                     $selectorBoxItem_title,
                     basename($htmlFilePath),
-                    $selectorBoxItem_icon
+                    $selectorBoxItem_icon,
                 ];
             }
         }
@@ -134,6 +134,7 @@ class LegacyPluginSelector
      * but it is kept for legacy reasons.
      *
      * @param int $pageId
+     *
      * @return string the path to the templates according to TypoScript
      */
     protected function getTemplatePathFromTypoScriptOfPage($pageId)
@@ -146,7 +147,7 @@ class LegacyPluginSelector
 
         /** @var PageRepository $sys_page */
         $sys_page = GeneralUtility::makeInstance(PageRepository::class);
-        $rootLine = $sys_page->getRootLine((int)$pageId);
+        $rootLine = $sys_page->getRootLine((int) $pageId);
         // generate the constants/config + hierarchy info for the template.
         $template->runThroughTemplates($rootLine);
         $template->generateConfig();

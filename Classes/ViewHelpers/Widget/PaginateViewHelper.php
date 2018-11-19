@@ -31,14 +31,13 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
  */
 class PaginateViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetViewHelper
 {
-
     /**
      * @var \FriendsOfTYPO3\TtAddress\ViewHelpers\Widget\Controller\PaginateController
      */
     protected $controller;
 
     /**
-     * Inject controller
+     * Inject controller.
      *
      * @param \FriendsOfTYPO3\TtAddress\ViewHelpers\Widget\Controller\PaginateController $controller
      */
@@ -48,7 +47,7 @@ class PaginateViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetView
     }
 
     /**
-     * Initialize arguments
+     * Initialize arguments.
      */
     public function initializeArguments()
     {
@@ -60,7 +59,7 @@ class PaginateViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetView
     }
 
     /**
-     * Render everything
+     * Render everything.
      *
      * @return string
      */

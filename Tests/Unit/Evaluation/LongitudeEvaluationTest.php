@@ -35,6 +35,19 @@ class LongitudeEvaluationTest extends BaseTestCase
         $this->assertEquals($expected, $this->subject->evaluateFieldValue($given));
     }
 
+    /**
+     * @param $given
+     * @param $expected
+     * @test
+     * @dataProvider lngIsProperlyEvaluatedDataProvider
+     */
+    public function lngIsProperlyDeEvaluated($given, $expected)
+    {
+        $params = ['value' => $given];
+        $this->assertEquals($expected, $this->subject->deevaluateFieldValue($params));
+    }
+
+
     public function lngIsProperlyEvaluatedDataProvider(): array
     {
         return [

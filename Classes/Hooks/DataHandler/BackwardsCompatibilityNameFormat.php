@@ -48,18 +48,12 @@ class BackwardsCompatibilityNameFormat
         if ($table === 'tt_address' && ($status === 'new' || $status === 'update')) {
 
             if ($this->settings->isStoreBackwardsCompatName()) {
-                if ($status === 'update') {
-                    $address = $this->getRecord($id);
-                } else {
-                    $address = $fieldArray;
-                }
-
-                $format = $this->settings->getBackwardsCompatFormat();
+                $address = $status === 'update' ? $this->getRecord($id) : $fieldArray;
 
                 $newRecord = array_merge($address, $fieldArray);
 
                 $combinedName = trim(sprintf(
-                    $format,
+                    $this->settings->getBackwardsCompatFormat(),
                     $newRecord['first_name'],
                     $newRecord['middle_name'],
                     $newRecord['last_name']
@@ -73,7 +67,7 @@ class BackwardsCompatibilityNameFormat
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return array
      */
     protected function getRecord(int $id): array

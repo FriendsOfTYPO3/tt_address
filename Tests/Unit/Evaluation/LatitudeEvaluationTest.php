@@ -35,6 +35,18 @@ class LatitudeEvaluationTest extends BaseTestCase
         $this->assertEquals($expected, $this->subject->evaluateFieldValue($given));
     }
 
+    /**
+     * @param $given
+     * @param $expected
+     * @test
+     * @dataProvider latIsProperlyEvaluatedDataProvider
+     */
+    public function latIsProperlyDeEvaluated($given, $expected)
+    {
+        $params = ['value' => $given];
+        $this->assertEquals($expected, $this->subject->deevaluateFieldValue($params));
+    }
+
     public function latIsProperlyEvaluatedDataProvider(): array
     {
         return [

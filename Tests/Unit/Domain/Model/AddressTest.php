@@ -341,6 +341,45 @@ class AddressTest extends BaseTestCase
     /**
      * @test
      */
+    public function imagesCanBeAttached()
+    {
+        $value = new ObjectStorage();
+
+        $item = new FileReference();
+        $item->setPid(123);
+        $value->attach($item);
+
+        $item2 = new FileReference();
+        $item2->setPid(345);
+
+        $this->subject->setImage($value);
+        $this->subject->addImage($item2);
+        $this->assertEquals(2, $this->subject->getImage()->count());
+    }
+
+    /**
+     * @test
+     */
+    public function imagesCanBeRemoved()
+    {
+        $value = new ObjectStorage();
+
+        $item = new FileReference();
+        $item->setPid(123);
+        $value->attach($item);
+
+        $item2 = new FileReference();
+        $item2->setPid(345);
+        $value->attach($item2);
+
+        $this->subject->setImage($value);
+        $this->subject->removeImage($item2);
+        $this->assertEquals(1, $this->subject->getImage()->count());
+    }
+
+    /**
+     * @test
+     */
     public function categoriesCanBeSet()
     {
         $value = new ObjectStorage();
@@ -351,5 +390,6 @@ class AddressTest extends BaseTestCase
         $this->subject->setCategories($value);
         $this->assertEquals($value, $this->subject->getCategories());
     }
+
 
 }

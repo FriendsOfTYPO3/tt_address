@@ -3,10 +3,10 @@
 namespace FriendsOfTypo3\TtAddress\Tests\Unit\ViewHelpers;
 
 use FriendsOfTYPO3\TtAddress\ViewHelpers\RemoveSpacesViewHelper;
-use TYPO3\TestingFramework\Fluid\Unit\ViewHelpers\ViewHelperBaseTestcase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
-class RemoveSpacesViewHelperTest extends ViewHelperBaseTestcase
+class RemoveSpacesViewHelperTest extends BaseTestCase
 {
     /**
      * @var RemoveSpacesViewHelper
@@ -25,10 +25,6 @@ class RemoveSpacesViewHelperTest extends ViewHelperBaseTestcase
      */
     public function spacelessVhIsCalled()
     {
-        if (TYPO3_branch !== '9.5') {
-            $this->markTestSkipped('Skipped as not finished for 8');
-        }
-
         $actualResult = $this->viewHelper->renderStatic(
             ['value' => ' +43 123 56 34 34 '],
             function () {

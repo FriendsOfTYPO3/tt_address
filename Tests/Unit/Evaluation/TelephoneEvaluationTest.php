@@ -56,6 +56,4 @@ class TelephoneEvaluationTest extends BaseTestCase
             'example 3' => [' +43 (0)699 12 54 12 1 DW:4 ', '+43 0699 12 54 12 1 4'],
         ];
     }
-
-
 }

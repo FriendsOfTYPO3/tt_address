@@ -12,7 +12,8 @@ class BackwardsCompatibilityNameFormatTest extends BaseTestCase
     /**
      * @test
      */
-    public function constructorIsCalled() {
+    public function constructorIsCalled()
+    {
         $subject = $this->getAccessibleMock(BackwardsCompatibilityNameFormat::class, ['getRecord'], [], '', true);
 
         $settings = new Settings();
@@ -36,7 +37,6 @@ class BackwardsCompatibilityNameFormatTest extends BaseTestCase
         ];
         $settings = new Settings();
 
-
         $subject = $this->getAccessibleMock(BackwardsCompatibilityNameFormat::class, ['getRecord'], [], '', false);
         $subject->_set('settings', $settings);
         $subject->expects($this->once())->method('getRecord')->with(1337)->willReturn($row);
@@ -45,7 +45,6 @@ class BackwardsCompatibilityNameFormatTest extends BaseTestCase
 
         $this->assertEquals($fieldArray['name'], 'max mustermann');
     }
-
 
     /**
      * @test
@@ -63,7 +62,6 @@ class BackwardsCompatibilityNameFormatTest extends BaseTestCase
             'last_name' => 'mustermann',
         ];
         $settings = new Settings();
-
 
         $subject = $this->getAccessibleMock(BackwardsCompatibilityNameFormat::class, ['getRecord'], [], '', false);
         $subject->_set('settings', $settings);

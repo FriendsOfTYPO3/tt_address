@@ -20,7 +20,6 @@ namespace FriendsOfTYPO3\TtAddress\Utility;
  */
 class EvalcoordinatesUtility
 {
-
     const LATITUDE_UPPER = '90.000000000000';
     const LONGITUDE_UPPER = '180.000000000000';
 
@@ -49,7 +48,7 @@ class EvalcoordinatesUtility
      */
     protected static function validate($coordinate, string $upperRange): string
     {
-// test if value is negative
+        // test if value is negative
         $negative = '';
         if ($coordinate[0] === '-') {
             $negative = '-';

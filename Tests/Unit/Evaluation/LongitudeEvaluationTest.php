@@ -47,7 +47,6 @@ class LongitudeEvaluationTest extends BaseTestCase
         $this->assertEquals($expected, $this->subject->deevaluateFieldValue($params));
     }
 
-
     public function lngIsProperlyEvaluatedDataProvider(): array
     {
         return [
@@ -59,6 +58,4 @@ class LongitudeEvaluationTest extends BaseTestCase
             'long float' => ['-11.3121131111111111212121212', '-11.312113111111'],
         ];
     }
-
-
 }

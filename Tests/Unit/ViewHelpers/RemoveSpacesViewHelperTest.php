@@ -34,5 +34,4 @@ class RemoveSpacesViewHelperTest extends BaseTestCase
 
         $this->assertEquals('+43123563434', $actualResult);
     }
-
 }

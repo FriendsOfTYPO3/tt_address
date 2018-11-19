@@ -8,7 +8,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 class EvalcoordinatesUtilityTest extends BaseTestCase
 {
 
-
     /**
      * @param $given
      * @param $expected
@@ -54,5 +53,4 @@ class EvalcoordinatesUtilityTest extends BaseTestCase
             'long float' => ['-11.3121131111111111212121212', '-11.312113111111'],
         ];
     }
-
 }

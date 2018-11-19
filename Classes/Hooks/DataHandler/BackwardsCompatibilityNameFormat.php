@@ -46,7 +46,6 @@ class BackwardsCompatibilityNameFormat
     public function processDatamap_postProcessFieldArray($status, $table, $id, &$fieldArray)
     {
         if ($table === 'tt_address' && ($status === 'new' || $status === 'update')) {
-
             if ($this->settings->isStoreBackwardsCompatName()) {
                 $address = $status === 'update' ? $this->getRecord($id) : $fieldArray;
 

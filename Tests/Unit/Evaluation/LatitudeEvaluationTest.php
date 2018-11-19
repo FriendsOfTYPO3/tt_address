@@ -58,6 +58,4 @@ class LatitudeEvaluationTest extends BaseTestCase
             'long float' => ['-11.3121131111111111212121212', '-11.312113111111'],
         ];
     }
-
-
 }

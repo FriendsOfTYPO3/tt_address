@@ -29,7 +29,6 @@ class AddressTest extends BaseTestCase
         $this->assertEquals($value, $this->subject->getGender());
     }
 
-
     /**
      * @test
      */
@@ -390,6 +389,4 @@ class AddressTest extends BaseTestCase
         $this->subject->setCategories($value);
         $this->assertEquals($value, $this->subject->getCategories());
     }
-
-
 }

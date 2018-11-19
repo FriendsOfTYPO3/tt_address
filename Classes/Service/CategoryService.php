@@ -39,8 +39,7 @@ class CategoryService
     public static function getChildrenCategories(
         $idList,
         $counter = 0
-    )
-    {
+    ) {
         /** @var \TYPO3\CMS\Core\Cache\Frontend\FrontendInterface $cache */
         $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_ttaddress_category');
         $cacheIdentifier = sha1('children' . $idList);

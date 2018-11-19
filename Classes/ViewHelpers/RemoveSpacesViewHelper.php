@@ -19,12 +19,9 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
-
 class RemoveSpacesViewHelper extends AbstractViewHelper
 {
-
     use CompileWithRenderStatic;
-
 
     /**
      * Initialize arguments
@@ -44,8 +41,7 @@ class RemoveSpacesViewHelper extends AbstractViewHelper
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    )
-    {
+    ) {
         $value = $arguments['value'] ?: $renderChildrenClosure();
         return str_replace(' ', '', $value);
     }

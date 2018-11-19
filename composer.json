@@ -45,8 +45,7 @@
     "typo3-ter/tt-address": "self.version"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^2.4",
-    "typo3/testing-framework": "^4"
+    "friendsofphp/php-cs-fixer": "^2.4"
   },
   "config": {
     "vendor-dir": ".Build/vendor",

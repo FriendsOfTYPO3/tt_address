@@ -23,8 +23,12 @@ class RemoveSpacesViewHelperTest extends ViewHelperBaseTestcase
     /**
      * @test
      */
-    public function viewHelperRendersThenChildIfBeUserWithSpecifiedRoleIsLoggedIn()
+    public function spacelessVhIsCalled()
     {
+        if (TYPO3_branch !== '9.5') {
+            $this->markTestSkipped('Skipped as not finished for 8');
+        }
+
         $actualResult = $this->viewHelper->renderStatic(
             ['value' => ' +43 123 56 34 34 '],
             function () {

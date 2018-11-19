@@ -2,14 +2,12 @@
 defined('TYPO3_MODE') or die();
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-    'TYPO3.tt_address',
+    'FriendsOfTYPO3.tt_address',
     'ListView',
     'LLL:EXT:tt_address/Resources/Private/Language/db/locallang.xlf:extbase_title'
 );
 
-$extensionName = strtolower(\TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase('tt_address'));
-$pluginName = 'listview';
-$pluginSignature = 'tt_address_listview';
+$pluginSignature = 'ttaddress_listview';
 
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages,recursive';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';

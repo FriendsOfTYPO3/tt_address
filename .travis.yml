@@ -3,12 +3,12 @@ language: php
 matrix:
   fast_finish: true
   include:
-    #    - php: 7.1
-    #      env: TYPO3_VERSION=^8
-    #    - php: 7.0
-    #      env: TYPO3_VERSION=^8
+    - php: 7.1
+      env: TYPO3_VERSION=^8 TESTING_FRAMEWORK=^1.3
+    - php: 7.0
+      env: TYPO3_VERSION=^8 TESTING_FRAMEWORK=^1.3
     - php: 7.2
-      env: TYPO3_VERSION=^9
+      env: TYPO3_VERSION=^9 TESTING_FRAMEWORK=^4
 
 sudo: false
 
@@ -27,7 +27,8 @@ before_install:
 
 before_script:
   - phpenv config-rm xdebug.ini
-  - composer require typo3/minimal=$TYPO3_VERSION
+  - composer require "typo3/minimal:${TYPO3_VERSION}"
+  - composer require "typo3/testing-framework:${TESTING_FRAMEWORK}"
   # Restore composer.json
   - git checkout composer.json
   - export TYPO3_PATH_WEB=$PWD/.Build/Web
@@ -36,7 +37,7 @@ script:
   - >
     echo;
     echo "Running unit tests";
-    .Build/bin/phpunit --colors -c .Build/phpunit.xml Tests/Unit/
+    .Build/bin/phpunit --colors -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTests.xml Tests/Unit/
 
   - >
     echo;

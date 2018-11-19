@@ -1,6 +1,6 @@
 <?php
 
-namespace TYPO3\TtAddress\Utility;
+namespace FriendsOfTYPO3\TtAddress\Utility;
 
 /**
  * This file is part of the TYPO3 CMS project.
@@ -95,8 +95,7 @@ class TypoScript
     {
         $this->setValueByReference($array, $path, $value);
 
-        $final = array_merge_recursive([], $array);
-        return $final;
+        return array_merge_recursive([], $array);
     }
 
     /**

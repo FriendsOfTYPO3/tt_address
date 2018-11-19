@@ -1,6 +1,6 @@
 <?php
 
-namespace TYPO3\TtAddress\Evaluation;
+namespace FriendsOfTYPO3\TtAddress\Evaluation;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -22,11 +22,11 @@ namespace TYPO3\TtAddress\Evaluation;
 class TelephoneEvaluation
 {
 
-   /**
-    * JavaScript code for client side validation/evaluation
-    *
-    * @return string JavaScript code for client side validation/evaluation
-    */
+    /**
+     * JavaScript code for client side validation/evaluation
+     *
+     * @return string JavaScript code for client side validation/evaluation
+     */
     public function returnFieldJS()
     {
         return '
@@ -38,14 +38,11 @@ class TelephoneEvaluation
      * Server-side validation/evaluation on saving the record
      *
      * @param string $value The field value to be evaluated
-     * @param string $is_in The "is_in" value of the field configuration from TCA
-     * @param bool $set Boolean defining if the value is written to the database or not. Must be passed by reference and changed if needed.
      * @return string Evaluated field value
      */
-    public function evaluateFieldValue($value, $is_in, &$set)
+    public function evaluateFieldValue($value)
     {
-        $value = preg_replace("/[^\d\+\s]/", '', $value);
-        return $value;
+        return $this->evaluate($value);
     }
 
     /**
@@ -56,7 +53,12 @@ class TelephoneEvaluation
      */
     public function deevaluateFieldValue(array $parameters)
     {
-        $parameters['value'] = preg_replace("/[^\d\+\s]/", '', $parameters['value']);
-        return $parameters['value'];
+        return $this->evaluate($parameters['value']);
+    }
+
+    private function evaluate(string $in)
+    {
+        $data = preg_replace("/[^\d\+\s]/", '', $in);
+        return trim($data);
     }
 }

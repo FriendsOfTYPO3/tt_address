@@ -1,6 +1,6 @@
 <?php
 
-namespace TYPO3\TtAddress\Hooks\FormEngine;
+namespace FriendsOfTYPO3\TtAddress\Hooks\FormEngine;
 
 /*
  * This file is part of the TYPO3 CMS project.

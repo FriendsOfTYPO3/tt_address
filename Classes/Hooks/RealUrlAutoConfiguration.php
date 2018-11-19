@@ -1,6 +1,6 @@
 <?php
 
-namespace TYPO3\TtAddress\Hooks;
+namespace FriendsOfTYPO3\TtAddress\Hooks;
 
 /*
  * This file is part of the TYPO3 CMS project.

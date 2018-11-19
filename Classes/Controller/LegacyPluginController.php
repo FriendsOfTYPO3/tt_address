@@ -1,6 +1,6 @@
 <?php
 
-namespace TYPO3\TtAddress\Controller;
+namespace FriendsOfTYPO3\TtAddress\Controller;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -26,8 +26,6 @@ use TYPO3\CMS\Frontend\Plugin\AbstractPlugin;
 /**
  * main class for the tt_address plugin, outputs addresses either by direct
  * selection or by selection via groups or a combination of both
- *
- * @author Ingo Renner <typo3@ingo-renner.com>
  */
 class LegacyPluginController extends AbstractPlugin
 {
@@ -72,7 +70,6 @@ class LegacyPluginController extends AbstractPlugin
     {
         $this->templateService = GeneralUtility::makeInstance(MarkerBasedTemplateService::class);
         $this->init($conf);
-        $content = '';
         $singleSelection = $this->getSingleRecords();
         $groupSelection = $this->getRecordsFromGroups();
 
@@ -100,7 +97,7 @@ class LegacyPluginController extends AbstractPlugin
 
                 $wrap = $this->conf['templates.'][$this->conf['templateName'] . '.']['wrap'];
                 $content .= $this->cObj->wrap($addressContent, $wrap);
-                $content .= chr(10) . chr(10);
+                $content .= LF . LF;
             }
         }
 
@@ -227,7 +224,7 @@ class LegacyPluginController extends AbstractPlugin
             $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_address');
             $queryBuilder->setRestrictions(GeneralUtility::makeInstance(FrontendRestrictionContainer::class));
 
-            if ($this->conf['combination'] == 'AND') {
+            if ($this->conf['combination'] === 'AND') {
                 $queryBuilder
                     ->select('tt_address.*', 'COUNT(tt_address.uid) AS c')
                     ->from('tt_address')
@@ -259,7 +256,7 @@ class LegacyPluginController extends AbstractPlugin
                     ->having(
                         $queryBuilder->expr()->eq('c', count($groups))
                     );
-            } elseif ($this->conf['combination'] == 'OR') {
+            } elseif ($this->conf['combination'] === 'OR') {
                 $queryBuilder
                     ->select('tt_address.*')
                     ->from('tt_address')
@@ -468,7 +465,7 @@ class LegacyPluginController extends AbstractPlugin
         }
 
         // adds hook for processing of extra item markers
-        if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tt_address']['extraItemMarkerHook'])) {
+        if (\is_array($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tt_address']['extraItemMarkerHook'])) {
             foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tt_address']['extraItemMarkerHook'] as $_classRef) {
                 $_procObj = GeneralUtility::makeInstance($_classRef);
                 $markerArray = $_procObj->extraItemMarkerProcessor($markerArray, $address, $lConf, $this);
@@ -490,7 +487,7 @@ class LegacyPluginController extends AbstractPlugin
     {
         $subpartArray = [];
 
-        if (is_array($this->conf['templates.'][$this->conf['templateName'] . '.']['subparts.'])) {
+        if (\is_array($this->conf['templates.'][$this->conf['templateName'] . '.']['subparts.'])) {
             $lcObj = GeneralUtility::makeInstance(ContentObjectRenderer::class); // local cObj
             $lcObj->data = $address;
 
@@ -609,7 +606,7 @@ class LegacyPluginController extends AbstractPlugin
             'singleSelection'
         ];
 
-        if (!in_array($sortBy, $validSortings, true)) {
+        if (!\in_array($sortBy, $validSortings, true)) {
             $sortBy = 'name';
         }
 

@@ -1,5 +1,6 @@
 <?php
-namespace TYPO3\TtAddress\Domain\Model;
+
+namespace FriendsOfTYPO3\TtAddress\Domain\Model;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -561,7 +562,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function setTwitter($twitter)
     {
-        if (substr($twitter, 0, 1) !== '@') {
+        if ($twitter[0] !== '@') {
             throw new \InvalidArgumentException('twitter name must start with @', 1357530444);
         }
 
@@ -585,7 +586,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function setFacebook($facebook)
     {
-        if (substr($facebook, 0, 1) !== '/') {
+        if ($facebook[0] !== '/') {
             throw new \InvalidArgumentException('Facebook name must start with /', 1357530471);
         }
 

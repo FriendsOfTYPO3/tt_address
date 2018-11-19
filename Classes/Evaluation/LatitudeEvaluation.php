@@ -1,6 +1,6 @@
 <?php
 
-namespace TYPO3\TtAddress\Evaluation;
+namespace FriendsOfTYPO3\TtAddress\Evaluation;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -15,7 +15,7 @@ namespace TYPO3\TtAddress\Evaluation;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\TtAddress\Utility\EvalcoordinatesUtility;
+use FriendsOfTYPO3\TtAddress\Utility\EvalcoordinatesUtility;
 
 /**
  * Class for validation/evaluation of longitude to be used in 'eval' of TCA
@@ -24,11 +24,11 @@ use TYPO3\TtAddress\Utility\EvalcoordinatesUtility;
 class LatitudeEvaluation
 {
 
-  /**
-   * JavaScript code for client side validation/evaluation
-   *
-   * @return string JavaScript code for client side validation/evaluation
-   */
+    /**
+     * JavaScript code for client side validation/evaluation
+     *
+     * @return string JavaScript code for client side validation/evaluation
+     */
     public function returnFieldJS()
     {
         // Nice to have: add javascript-code for evalution on blur
@@ -42,15 +42,13 @@ class LatitudeEvaluation
      * Tests if latutide is between -90 and +90, fills up with zeros to mach decimal (14,12) in database
      *
      * @param string $value The field value to be evaluated
-     * @param string $is_in The "is_in" value of the field configuration from TCA
-     * @param bool $set Boolean defining if the value is written to the database or not. Must be passed by reference and changed if needed.
      * @return string Evaluated field value
      */
-    public function evaluateFieldValue($value, $is_in, &$set)
+    public function evaluateFieldValue($value)
     {
         // test if we have any latitude
-        if ($value && $value != '') {
-            $value = EvalcoordinatesUtility::formatCoordinate($value);
+        if ($value && $value !== '') {
+            $value = EvalcoordinatesUtility::formatLatitude($value);
         }
         return $value;
     }
@@ -64,8 +62,8 @@ class LatitudeEvaluation
     public function deevaluateFieldValue(array $parameters)
     {
         // test if we have any latitude
-        if ($parameters['value'] && $parameters['value'] != '') {
-            $parameters['value'] = EvalcoordinatesUtility::formatCoordinate($parameters['value']);
+        if ($parameters['value'] && $parameters['value'] !== '') {
+            $parameters['value'] = EvalcoordinatesUtility::formatLatitude($parameters['value']);
         }
         return $parameters['value'];
     }

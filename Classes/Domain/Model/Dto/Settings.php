@@ -1,5 +1,6 @@
 <?php
-namespace TYPO3\TtAddress\Domain\Model\Dto;
+
+namespace FriendsOfTYPO3\TtAddress\Domain\Model\Dto;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -14,52 +15,43 @@ namespace TYPO3\TtAddress\Domain\Model\Dto;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\SingletonInterface;
+
 /**
  * Class Settings
  */
-class Settings
+class Settings implements SingletonInterface
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $backwardsCompatFormat = '%1$s %3$s';
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $storeBackwardsCompatName = true;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $readOnlyNameField = true;
 
-    /**
-     * @param array $settings extension manager settings
-     */
-    public function __construct(array $settings)
-    {
-        foreach ($settings as $key => $value) {
-            if (property_exists($this, $key)) {
-                $this->$key = $value;
-            }
-        }
-        $this->enforceCorrectPropertyTypes();
-    }
+    /** @var bool */
+    protected $activatePiBase = false;
 
     /**
      */
-    protected function enforceCorrectPropertyTypes()
+    public function __construct()
     {
-        $this->backwardsCompatFormat = trim((string)$this->backwardsCompatFormat);
-        $this->storeBackwardsCompatName = (bool)$this->storeBackwardsCompatName;
-        $this->readOnlyNameField = (bool)$this->readOnlyNameField;
+        $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address']);
+
+        if (\is_array($settings) && !empty($settings)) {
+            $this->backwardsCompatFormat = trim((string)$settings['backwardsCompatFormat']);
+            $this->storeBackwardsCompatName = (bool)$settings['storeBackwardsCompatName'];
+            $this->readOnlyNameField = (bool)$settings['readOnlyNameField'];
+            $this->activatePiBase = (bool)$settings['activatePiBase'];
+        }
     }
 
     /**
      * @return string
      */
-    public function getBackwardsCompatFormat()
+    public function getBackwardsCompatFormat(): string
     {
         return $this->backwardsCompatFormat;
     }
@@ -67,7 +59,7 @@ class Settings
     /**
      * @return bool
      */
-    public function isStoreBackwardsCompatName()
+    public function isStoreBackwardsCompatName(): bool
     {
         return $this->storeBackwardsCompatName;
     }
@@ -75,8 +67,16 @@ class Settings
     /**
      * @return bool
      */
-    public function isReadOnlyNameField()
+    public function isReadOnlyNameField(): bool
     {
         return $this->readOnlyNameField;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isActivatePiBase(): bool
+    {
+        return $this->activatePiBase;
     }
 }

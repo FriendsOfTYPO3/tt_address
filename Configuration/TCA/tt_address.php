@@ -1,10 +1,9 @@
 <?php
-$settings = \TYPO3\TtAddress\Utility\SettingsUtility::getSettings();
+$settings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings::class);
 
-$version8 = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('8.0');
 $version9 = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('9.3');
 
-$generalLanguageFilePrefix = $version9 ? 'LLL:EXT:core/Resources/Private/Language/' : ($version8 ? 'LLL:EXT:lang/Resources/Private/Language/' : 'LLL:EXT:lang/');
+$generalLanguageFilePrefix = $version9 ? 'LLL:EXT:core/Resources/Private/Language/' : 'LLL:EXT:lang/Resources/Private/Language/';
 
 return [
     'ctrl' => [
@@ -27,9 +26,8 @@ return [
         'enablecolumns' => [
             'disabled' => 'hidden'
         ],
-        'iconfile' => 'EXT:tt_address/ext_icon.gif',
+        'iconfile' => 'EXT:tt_address/Resources/Public/Icons/tt_address.gif',
         'searchFields' => 'name, first_name, middle_name, last_name, email',
-        'dividers2tabs' => 1,
     ],
     'interface' => [
         'showRecordFieldList' => 'first_name,middle_name,last_name,address,building,room,city,zip,region,country,phone,fax,email,www,title,company,image'
@@ -60,14 +58,14 @@ return [
             ]
         ],
         'hidden' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check'
             ]
         ],
         'sys_language_uid' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.language',
             'config' => [
                 'type' => 'select',
@@ -82,7 +80,7 @@ return [
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
@@ -106,18 +104,19 @@ return [
                 'default' => 'm',
                 'items' => [
                     ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.m', 'm'],
-                    ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.f', 'f']
+                    ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.f', 'f'],
+                    ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.undefined', '']
                 ]
             ]
         ],
         'title' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.title_person',
             'config' => [
                 'type' => 'input',
-                'size' => '8',
+                'size' => 8,
                 'eval' => 'trim',
-                'max' => '255'
+                'max' => 255
             ]
         ],
         'name' => [
@@ -125,49 +124,49 @@ return [
             'config' => [
                 'type' => 'input',
                 'readOnly' => $settings->isReadOnlyNameField(),
-                'size' => '40',
+                'size' => 40,
                 'eval' => 'trim',
-                'max' => '255'
+                'max' => 255
             ]
         ],
         'first_name' => [
-            'exclude' => 0,
+            'exclude' => false,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.first_name',
             'config' => [
                 'type' => 'input',
-                'size' => '20',
+                'size' => 20,
                 'eval' => 'trim',
-                'max' => '255'
+                'max' => 255
             ]
         ],
         'middle_name' => [
-            'exclude' => 0,
+            'exclude' => false,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.middle_name',
             'config' => [
                 'type' => 'input',
-                'size' => '20',
+                'size' => 20,
                 'eval' => 'trim',
-                'max' => '255'
+                'max' => 255
             ]
         ],
         'last_name' => [
-            'exclude' => 0,
+            'exclude' => false,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.last_name',
             'config' => [
                 'type' => 'input',
-                'size' => '20',
+                'size' => 20,
                 'eval' => 'trim',
-                'max' => '255'
+                'max' => 255
             ]
         ],
         'birthday' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.birthday',
             'config' => [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
                 'eval' => 'datetime,int',
-                'size' => '8',
+                'size' => 8,
                 'default' => 0
             ]
         ],
@@ -175,8 +174,8 @@ return [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.address',
             'config' => [
                 'type' => 'text',
-                'cols' => '20',
-                'rows' => '3'
+                'cols' => 20,
+                'rows' => 3
             ]
         ],
         'building' => [
@@ -184,8 +183,8 @@ return [
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
-                'size' => '20',
-                'max' => '20'
+                'size' => 20,
+                'max' => 20
             ]
         ],
         'room' => [
@@ -193,41 +192,41 @@ return [
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
-                'size' => '5',
-                'max' => '15'
+                'size' => 5,
+                'max' => 15
             ]
         ],
         'phone' => [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.phone',
             'config' => [
                 'type' => 'input',
-                'eval' => 'TYPO3\\TtAddress\\Evaluation\\TelephoneEvaluation',
-                'size' => '20',
-                'max' => '30'
+                'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class,
+                'size' => 20,
+                'max' => 30
             ]
         ],
         'fax' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.fax',
             'config' => [
                 'type' => 'input',
-                'size' => '20',
-                'eval' => 'TYPO3\\TtAddress\\Evaluation\\TelephoneEvaluation',
-                'max' => '30'
+                'size' => 20,
+                'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class,
+                'max' => 30
             ]
         ],
         'mobile' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.mobile',
             'config' => [
                 'type' => 'input',
-                'eval' => 'TYPO3\\TtAddress\\Evaluation\\TelephoneEvaluation',
-                'size' => '20',
-                'max' => '30'
+                'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class,
+                'size' => 20,
+                'max' => 30
             ]
         ],
         'www' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.www',
             'config' => [
                 'type' => 'input',
@@ -240,8 +239,8 @@ return [
                     ],
                 ],
                 'eval' => 'trim',
-                'size' => '20',
-                'max' => '255',
+                'size' => 20,
+                'max' => 255,
                 'softref' => 'typolink,url',
             ],
         ],
@@ -249,83 +248,83 @@ return [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.email',
             'config' => [
                 'type' => 'input',
-                'size' => '20',
+                'size' => 20,
                 'eval' => 'email',
-                'max' => '255',
+                'max' => 255,
                 'softref' => 'email'
             ]
         ],
         'skype' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.skype',
             'config' => [
                 'type' => 'input',
-                'size' => '20',
+                'size' => 20,
                 'eval' => 'trim',
-                'max' => '255',
+                'max' => 255,
                 'placeholder' => 'johndoe'
             ]
         ],
         'twitter' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.twitter',
             'config' => [
                 'type' => 'input',
-                'size' => '20',
+                'size' => 20,
                 'eval' => 'trim',
-                'max' => '255',
+                'max' => 255,
                 'placeholder' => '@johndoe'
             ]
         ],
         'facebook' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.facebook',
             'config' => [
                 'type' => 'input',
-                'size' => '20',
+                'size' => 20,
                 'eval' => 'trim',
-                'max' => '255',
+                'max' => 255,
                 'placeholder' => '/johndoe'
             ]
         ],
         'linkedin' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.linkedin',
             'config' => [
                 'type' => 'input',
-                'size' => '20',
+                'size' => 20,
                 'eval' => 'trim',
-                'max' => '255',
+                'max' => 255,
                 'placeholder' => 'johndoe'
             ]
         ],
         'company' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.organization',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
-                'size' => '20',
-                'max' => '255'
+                'size' => 20,
+                'max' => 255
             ]
         ],
         'position' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.position',
             'config' => [
                 'type' => 'input',
-                'size' => '20',
+                'size' => 20,
                 'eval' => 'trim',
-                'max' => '255'
+                'max' => 255
             ]
         ],
         'city' => [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.city',
             'config' => [
                 'type' => 'input',
-                'size' => '20',
+                'size' => 20,
                 'eval' => 'trim',
-                'max' => '255'
+                'max' => 255
             ]
         ],
         'zip' => [
@@ -333,32 +332,32 @@ return [
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
-                'size' => '10',
-                'max' => '20'
+                'size' => 10,
+                'max' => 20
             ]
         ],
         'region' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.region',
             'config' => [
                 'type' => 'input',
-                'size' => '10',
+                'size' => 10,
                 'eval' => 'trim',
-                'max' => '255'
+                'max' => 255
             ]
         ],
         'country' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.country',
             'config' => [
                 'type' => 'input',
-                'size' => '20',
+                'size' => 20,
                 'eval' => 'trim',
-                'max' => '128'
+                'max' => 128
             ]
         ],
         'image' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.image',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'image',
@@ -407,7 +406,7 @@ return [
             )
         ],
         'description' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.description',
             'config' => [
                 'type' => 'text',
@@ -417,25 +416,25 @@ return [
             ]
         ],
         'categories' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_category.categories',
             'config' => \TYPO3\CMS\Core\Category\CategoryRegistry::getTcaFieldConfiguration('tt_address')
         ],
         'latitude' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.latitude',
             'config' => [
                 'type' => 'input',
-                'eval' => 'null,TYPO3\\TtAddress\\Evaluation\\LatitudeEvaluation',
+                'eval' => 'null,' . \FriendsOfTYPO3\TtAddress\Evaluation\LatitudeEvaluation::class,
                 'default' => null
             ]
         ],
         'longitude' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.longitude',
             'config' => [
                 'type' => 'input',
-                'eval' => 'null,TYPO3\\TtAddress\\Evaluation\\LongitudeEvaluation',
+                'eval' => 'null,' . \FriendsOfTYPO3\TtAddress\Evaluation\LongitudeEvaluation::class,
                 'default' => null
             ]
         ],
@@ -448,6 +447,7 @@ return [
             image, description,
             --div--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_tab.contact,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.address;address,
+                --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.coordinates;coordinates,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.building;building,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.organization;organization,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.contact;contact,
@@ -460,8 +460,7 @@ return [
         'name' => [
             'showitem' => 'name, --linebreak--,
                             gender, title, --linebreak--,
-                            first_name, middle_name, --linebreak--,
-                            last_name'
+                            first_name, middle_name, last_name'
         ],
         'organization' => [
             'showitem' => 'position, company'
@@ -469,12 +468,13 @@ return [
         'address' => [
             'showitem' => 'address, --linebreak--,
                             city, zip, region, --linebreak--,
-                            country,  --linebreak--,
-                            latitude, --linebreak--,
-                            longitude'
+                            country,  --linebreak--,'
         ],
         'building' => [
             'showitem' => 'building, room'
+        ],
+        'coordinates' => [
+            'showitem' => 'latitude,longitude'
         ],
         'contact' => [
             'showitem' => 'email, --linebreak--,

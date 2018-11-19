@@ -1,4 +1,4 @@
-# TYPO3 Extension "tt_address": Address storage and display
+# TYPO3 Extension `tt_address: Address storage and display
 
 The basic aim of tt_address is to store your address data. The extension itself
 is shipped with a basic fluid/extbase plugin since version 4.0.0.

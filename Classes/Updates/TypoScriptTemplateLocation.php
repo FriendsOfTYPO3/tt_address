@@ -1,6 +1,6 @@
 <?php
 
-namespace TYPO3\TtAddress\Updates;
+namespace FriendsOfTYPO3\TtAddress\Updates;
 
 /*
  * This file is part of the TYPO3 CMS project.

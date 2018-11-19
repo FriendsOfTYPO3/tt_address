@@ -1,6 +1,6 @@
 <?php
 
-namespace TYPO3\TtAddress\Utility;
+namespace FriendsOfTYPO3\TtAddress\Utility;
 
 /**
  * This file is part of the TYPO3 CMS project.
@@ -21,25 +21,37 @@ namespace TYPO3\TtAddress\Utility;
 class EvalcoordinatesUtility
 {
 
+    const LATITUDE_UPPER = '90.000000000000';
+    const LONGITUDE_UPPER = '180.000000000000';
+
     /**
-     * Format coordinates to our needs, depending on the recommended database field type, which is decimal(14,12) or decimal(15,12)
-     * @param string $coordinate
-     * @param bool $isLongitude true=longitude, false=latitude
+     * @param $coordinate
      * @return float evaluated and well-formed coordinate
      */
-    public static function formatCoordinate($coordinate, $isLongitude = false)
+    public static function formatLongitude(string $coordinate)
     {
+        return self::validate($coordinate, self::LONGITUDE_UPPER);
+    }
 
-        // ATTN: use quotation, otherwise it will be rounded to 180/90
-        if ($isLongitude) {
-            $upperRange = '180.000000000000';
-        } else {
-            $upperRange = '90.000000000000';
-        }
+    /**
+     * @param $coordinate
+     * @return float evaluated and well-formed coordinate
+     */
+    public static function formatLatitude(string $coordinate)
+    {
+        return self::validate($coordinate, self::LATITUDE_UPPER);
+    }
 
-        // test if value is negative
+    /**
+     * @param $coordinate
+     * @param string $upperRange
+     * @return string
+     */
+    protected static function validate($coordinate, string $upperRange): string
+    {
+// test if value is negative
         $negative = '';
-        if ($coordinate[0] == '-') {
+        if ($coordinate[0] === '-') {
             $negative = '-';
         }
         // remove all chars not being digits and point
@@ -62,7 +74,7 @@ class EvalcoordinatesUtility
         $decimalPart = preg_replace("/[^\d]/", '', $decimalPart);
 
         // fill up with zeros or shorten to match our goal of decimal(14,12) in DB
-        if (strlen($decimalPart) >= 12) {
+        if (\strlen($decimalPart) >= 12) {
             $decimalPart = substr($decimalPart, 0, 12);
         } else {
             $decimalPart = str_pad($decimalPart, 12, '0', STR_PAD_RIGHT);

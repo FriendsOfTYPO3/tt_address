@@ -1,8 +1,8 @@
 config.tx_extbase.persistence.classes {
-	TYPO3\TtAddress\Domain\Model\Address.mapping {
-		tableName = tt_address
-		columns {
-			linkedin.mapOnProperty = linkedIn
-		}
-	}
+    FriendsOfTYPO3\TtAddress\Domain\Model\Address.mapping {
+        tableName = tt_address
+        columns {
+            linkedin.mapOnProperty = linkedIn
+        }
+    }
 }

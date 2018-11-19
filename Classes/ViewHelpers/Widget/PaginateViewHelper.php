@@ -1,6 +1,6 @@
 <?php
 
-namespace TYPO3\TtAddress\ViewHelpers\Widget;
+namespace FriendsOfTYPO3\TtAddress\ViewHelpers\Widget;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -33,16 +33,16 @@ class PaginateViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetView
 {
 
     /**
-     * @var \TYPO3\TtAddress\ViewHelpers\Widget\Controller\PaginateController
+     * @var \FriendsOfTYPO3\TtAddress\ViewHelpers\Widget\Controller\PaginateController
      */
     protected $controller;
 
     /**
      * Inject controller
      *
-     * @param \TYPO3\TtAddress\ViewHelpers\Widget\Controller\PaginateController $controller
+     * @param \FriendsOfTYPO3\TtAddress\ViewHelpers\Widget\Controller\PaginateController $controller
      */
-    public function injectController(\TYPO3\TtAddress\ViewHelpers\Widget\Controller\PaginateController $controller)
+    public function injectController(\FriendsOfTYPO3\TtAddress\ViewHelpers\Widget\Controller\PaginateController $controller)
     {
         $this->controller = $controller;
     }

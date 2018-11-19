@@ -1,4 +1,4 @@
 <?php
 return [
-    'tx_ttaddress_pi1' => \TYPO3\TtAddress\Controller\LegacyPluginController::class
+    'tx_ttaddress_pi1' => \FriendsOfTYPO3\TtAddress\Controller\LegacyPluginController::class
 ];

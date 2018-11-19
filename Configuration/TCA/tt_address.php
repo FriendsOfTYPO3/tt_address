@@ -1,10 +1,9 @@
 <?php
 $settings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings::class);
 
-$version8 = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('8.0');
 $version9 = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('9.3');
 
-$generalLanguageFilePrefix = $version9 ? 'LLL:EXT:core/Resources/Private/Language/' : ($version8 ? 'LLL:EXT:lang/Resources/Private/Language/' : 'LLL:EXT:lang/');
+$generalLanguageFilePrefix = $version9 ? 'LLL:EXT:core/Resources/Private/Language/' : 'LLL:EXT:lang/Resources/Private/Language/';
 
 return [
     'ctrl' => [
@@ -27,9 +26,8 @@ return [
         'enablecolumns' => [
             'disabled' => 'hidden'
         ],
-        'iconfile' => 'EXT:tt_address/ext_icon.gif',
+        'iconfile' => 'EXT:tt_address/Resources/Public/Icons/tt_address.gif',
         'searchFields' => 'name, first_name, middle_name, last_name, email',
-        'dividers2tabs' => 1,
     ],
     'interface' => [
         'showRecordFieldList' => 'first_name,middle_name,last_name,address,building,room,city,zip,region,country,phone,fax,email,www,title,company,image'
@@ -106,7 +104,8 @@ return [
                 'default' => 'm',
                 'items' => [
                     ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.m', 'm'],
-                    ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.f', 'f']
+                    ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.f', 'f'],
+                    ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.undefined', '']
                 ]
             ]
         ],
@@ -131,7 +130,7 @@ return [
             ]
         ],
         'first_name' => [
-            'exclude' => 0,
+            'exclude' => false,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.first_name',
             'config' => [
                 'type' => 'input',
@@ -141,7 +140,7 @@ return [
             ]
         ],
         'middle_name' => [
-            'exclude' => 0,
+            'exclude' => false,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.middle_name',
             'config' => [
                 'type' => 'input',
@@ -151,7 +150,7 @@ return [
             ]
         ],
         'last_name' => [
-            'exclude' => 0,
+            'exclude' => false,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.last_name',
             'config' => [
                 'type' => 'input',
@@ -201,7 +200,7 @@ return [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.phone',
             'config' => [
                 'type' => 'input',
-                'eval' => 'TYPO3\\TtAddress\\Evaluation\\TelephoneEvaluation',
+                'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class,
                 'size' => 20,
                 'max' => 30
             ]
@@ -212,7 +211,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 20,
-                'eval' => 'TYPO3\\TtAddress\\Evaluation\\TelephoneEvaluation',
+                'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class,
                 'max' => 30
             ]
         ],
@@ -221,7 +220,7 @@ return [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.mobile',
             'config' => [
                 'type' => 'input',
-                'eval' => 'TYPO3\\TtAddress\\Evaluation\\TelephoneEvaluation',
+                'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class,
                 'size' => 20,
                 'max' => 30
             ]
@@ -426,7 +425,7 @@ return [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.latitude',
             'config' => [
                 'type' => 'input',
-                'eval' => 'null,TYPO3\\TtAddress\\Evaluation\\LatitudeEvaluation',
+                'eval' => 'null,' . \FriendsOfTYPO3\TtAddress\Evaluation\LatitudeEvaluation::class,
                 'default' => null
             ]
         ],
@@ -435,7 +434,7 @@ return [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.longitude',
             'config' => [
                 'type' => 'input',
-                'eval' => 'null,TYPO3\\TtAddress\\Evaluation\\LongitudeEvaluation',
+                'eval' => 'null,' . \FriendsOfTYPO3\TtAddress\Evaluation\LongitudeEvaluation::class,
                 'default' => null
             ]
         ],
@@ -448,6 +447,7 @@ return [
             image, description,
             --div--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_tab.contact,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.address;address,
+                --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.coordinates;coordinates,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.building;building,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.organization;organization,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.contact;contact,
@@ -460,8 +460,7 @@ return [
         'name' => [
             'showitem' => 'name, --linebreak--,
                             gender, title, --linebreak--,
-                            first_name, middle_name, --linebreak--,
-                            last_name'
+                            first_name, middle_name, last_name'
         ],
         'organization' => [
             'showitem' => 'position, company'
@@ -469,12 +468,13 @@ return [
         'address' => [
             'showitem' => 'address, --linebreak--,
                             city, zip, region, --linebreak--,
-                            country,  --linebreak--,
-                            latitude, --linebreak--,
-                            longitude'
+                            country,  --linebreak--,'
         ],
         'building' => [
             'showitem' => 'building, room'
+        ],
+        'coordinates' => [
+            'showitem' => 'latitude,longitude'
         ],
         'contact' => [
             'showitem' => 'email, --linebreak--,

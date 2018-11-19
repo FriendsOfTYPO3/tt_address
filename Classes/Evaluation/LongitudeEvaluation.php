@@ -42,11 +42,9 @@ class LongitudeEvaluation
      * Tests if latutide is between -90 and +90, fills up with zeros to mach decimal (14,12) in database
      *
      * @param string $value The field value to be evaluated
-     * @param string $is_in The "is_in" value of the field configuration from TCA
-     * @param bool $set Boolean defining if the value is written to the database or not. Must be passed by reference and changed if needed.
      * @return string Evaluated field value
      */
-    public function evaluateFieldValue($value, $is_in, &$set)
+    public function evaluateFieldValue($value)
     {
         // test if we have any longitude
         if ($value && $value != '') {

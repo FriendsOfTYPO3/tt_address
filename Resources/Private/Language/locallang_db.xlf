@@ -4,88 +4,94 @@
         <header/>
         <body>
             <trans-unit id="tt_address">
-                <source>Address:</source>
+                <source>Address</source>
             </trans-unit>
             <trans-unit id="tt_address.gender">
-                <source>Gender:</source>
+                <source>Gender</source>
             </trans-unit>
             <trans-unit id="tt_address.gender.m">
-                <source>Male (Mr):</source>
+                <source>Male (Mr)</source>
             </trans-unit>
             <trans-unit id="tt_address.gender.f">
-                <source>Female (Mrs):</source>
+                <source>Female (Mrs)</source>
+            </trans-unit>
+            <trans-unit id="tt_address.gender.undefined">
+                <source>Undefined</source>
             </trans-unit>
             <trans-unit id="tt_address.first_name">
-                <source>First Name:</source>
+                <source>First Name</source>
             </trans-unit>
             <trans-unit id="tt_address.middle_name">
-                <source>Middle Name:</source>
+                <source>Middle Name</source>
             </trans-unit>
             <trans-unit id="tt_address.last_name">
-                <source>Last Name:</source>
+                <source>Last Name</source>
             </trans-unit>
             <trans-unit id="tt_address.birthday">
-                <source>Birthday:</source>
+                <source>Birthday</source>
             </trans-unit>
             <trans-unit id="tt_address.building">
-                <source>Building:</source>
+                <source>Building</source>
             </trans-unit>
             <trans-unit id="tt_address.room">
-                <source>Room:</source>
+                <source>Room</source>
             </trans-unit>
             <trans-unit id="tt_address.organization">
-                <source>Organization:</source>
+                <source>Organization</source>
             </trans-unit>
             <trans-unit id="tt_address.position">
-                <source>Position:</source>
+                <source>Position</source>
             </trans-unit>
             <trans-unit id="tt_address.region">
-                <source>Region / State:</source>
+                <source>Region / State</source>
             </trans-unit>
             <trans-unit id="tt_address.mobile">
-                <source>Mobile:</source>
+                <source>Mobile</source>
             </trans-unit>
             <trans-unit id="tt_address.skype">
-                <source>Skype:</source>
+                <source>Skype</source>
             </trans-unit>
             <trans-unit id="tt_address.twitter">
-                <source>Twitter:</source>
+                <source>Twitter</source>
             </trans-unit>
             <trans-unit id="tt_address.facebook">
-                <source>Facebook:</source>
+                <source>Facebook</source>
             </trans-unit>
             <trans-unit id="tt_address.linkedin">
-                <source>LinkedIn:</source>
+                <source>LinkedIn</source>
             </trans-unit>
             <trans-unit id="tt_address.latitude">
-                <source>Latitude:</source>
+                <source>Latitude</source>
             </trans-unit>
             <trans-unit id="tt_address.longitude">
-                <source>Longitude:</source>
+                <source>Longitude</source>
             </trans-unit>
             <trans-unit id="tt_address_tab.contact">
                 <source>Contact</source>
             </trans-unit>
             <trans-unit id="tt_address_palette.name">
-                <source>Name:</source>
+                <source>Name</source>
             </trans-unit>
             <trans-unit id="tt_address_palette.organization">
-                <source>Organisation:</source>
+                <source>Organisation</source>
             </trans-unit>
             <trans-unit id="tt_address_palette.address">
-                <source>Address:</source>
+                <source>Address</source>
             </trans-unit>
             <trans-unit id="tt_address_palette.building">
-                <source>Building:</source>
+                <source>Building</source>
             </trans-unit>
             <trans-unit id="tt_address_palette.contact">
-                <source>Contact:</source>
+                <source>Contact</source>
             </trans-unit>
             <trans-unit id="tt_address_palette.social">
-                <source>Social Networks:</source>
+                <source>Social Networks</source>
+            </trans-unit>
+            <trans-unit id="tt_address_palette.coordinates">
+                <source>Coordinates</source>
             </trans-unit>
             <trans-unit id="pi_tt_address">
-                <source>Addresses:</source>
+                <source>Addresses</source>
             </trans-unit>
         </body>
     </file>

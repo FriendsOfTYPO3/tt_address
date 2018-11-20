@@ -33,7 +33,7 @@ before_script:
   - composer require "typo3/testing-framework:${TESTING_FRAMEWORK}"
   # Restore composer.json
   - git checkout composer.json
-  - export TYPO3_PATH_WEB=$PWD/.Build/Web
+ # - export TYPO3_PATH_WEB=$PWD/.Build/Web
 
 script:
   - >

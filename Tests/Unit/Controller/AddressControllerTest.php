@@ -85,7 +85,6 @@ class AddressControllerTest extends BaseTestCase
         $this->assertEquals($mockedRepository, $subject->_get('addressRepository'));
     }
 
-
     /**
      * @test
      */
@@ -150,5 +149,4 @@ class AddressControllerTest extends BaseTestCase
         $subject->injectConfigurationManager($mockedConfigurationManager);
         $this->assertEquals($expectedSettings, $subject->_get('settings'));
     }
-
 }

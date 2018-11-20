@@ -125,9 +125,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @param ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
      */
-    public function injectConfigurationManager(
-        ConfigurationManagerInterface $configurationManager
-    )
+    public function injectConfigurationManager(ConfigurationManagerInterface $configurationManager)
     {
         $this->configurationManager = $configurationManager;
 

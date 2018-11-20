@@ -22,8 +22,8 @@
   "extra": {
     "typo3/cms": {
       "cms-package-dir": "{$vendor-dir}/typo3/cms",
-       "app-dir": ".Build",
-      "web-dir": ".Build/Web"
+      "app-dir": ".Build",
+      "web-dir": ".Build"
     },
     "typo3/class-alias-loader": {
       "class-alias-maps": [
@@ -53,6 +53,9 @@
     "bin-dir": ".Build/bin"
   },
   "scripts": {
-    
+    "post-autoload-dump": [
+      "mkdir -p .Build/Web/typo3conf/ext/",
+      "[ -L .Build/Web/typo3conf/ext/tt_address ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/tt_address"
+    ]
   }
 }

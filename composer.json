@@ -54,7 +54,7 @@
   },
   "scripts": {
     "post-autoload-dump": [
-      "FriendsOfTYPO3\\TtAddress\\Tests\\Functional\\ExtensionTestEnvironment::prepare"
+      "TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
     ]
   }
 }

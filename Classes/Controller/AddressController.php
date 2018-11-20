@@ -127,8 +127,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function injectConfigurationManager(
         ConfigurationManagerInterface $configurationManager
-    )
-    {
+    ) {
         $this->configurationManager = $configurationManager;
 
         // get the whole typoscript (_FRAMEWORK does not work anymore, don't know why)

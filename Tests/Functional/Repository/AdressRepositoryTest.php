@@ -38,8 +38,4 @@ class AdressRepositoryTest extends FunctionalTestCase
 
         $this->assertEquals($address->getFirstName(), 'john');
     }
-
-
-
-
 }

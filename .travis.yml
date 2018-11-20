@@ -51,6 +51,7 @@ script:
     ls .Build/Web;
     echo;
     ls .Build;
+    echo;
     export typo3DatabaseName="typo3";
     export typo3DatabaseHost="localhost";
     export typo3DatabaseUsername="root";

@@ -1,7 +1,9 @@
 # TYPO3 Extension `tt_address: Address storage and display
 
+[![Build Status](https://travis-ci.org/FriendsOfTYPO3/tt_address.svg?branch=master)](https://travis-ci.org/FriendsOfTYPO3/tt_address)
+
 The basic aim of tt_address is to store your address data. The extension itself
-is shipped with a basic fluid/extbase plugin since version 4.0.0.
+is shipped with a basic fluid/extbase plugin.
 
 The aim of tt_address is not to solve sophisticated address-data problems for you, but
 tt_address could be your basic domain-model which you can reuse and extend.

@@ -3,10 +3,10 @@ language: php
 matrix:
   fast_finish: true
   include:
-    - php: 7.0
-      env: TYPO3_VERSION=^8 TESTING_FRAMEWORK=^1.3
-    - php: 7.1
-      env: TYPO3_VERSION=^8 TESTING_FRAMEWORK=^1.3
+#    - php: 7.0
+#      env: TYPO3_VERSION=^8 TESTING_FRAMEWORK=^1.3
+#    - php: 7.1
+#      env: TYPO3_VERSION=^8 TESTING_FRAMEWORK=^1.3
     - php: 7.2
       env: TYPO3_VERSION=^8 TESTING_FRAMEWORK=^1.3
     - php: 7.2
@@ -48,6 +48,9 @@ script:
 
   - >
     echo;
+    ls .Build/Web;
+    echo;
+    ls .Build;
     export typo3DatabaseName="typo3";
     export typo3DatabaseHost="localhost";
     export typo3DatabaseUsername="root";

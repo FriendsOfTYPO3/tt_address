@@ -266,8 +266,8 @@ class AddressGroupToSysCategory extends AbstractUpdate
         );
         foreach ($toUpdate as $row) {
             if (!empty($oldNewCategoryUidMapping[$row['parent_group']])) {
-                $sysCategoryUid = $oldNewCategoryUidMapping[$row['uid']];
-                $newParentUid = $oldNewCategoryUidMapping[$row['parent_group']];
+                $sysCategoryUid = (int)$oldNewCategoryUidMapping[$row['uid']];
+                $newParentUid = (int)$oldNewCategoryUidMapping[$row['parent_group']];
                 $this->getDatabaseConnection()->exec_UPDATEquery(
                     'sys_category',
                     'uid=' . $sysCategoryUid,

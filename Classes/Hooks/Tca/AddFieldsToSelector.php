@@ -15,11 +15,21 @@ namespace FriendsOfTYPO3\TtAddress\Hooks\Tca;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Lang\LanguageService;
+
 /**
  * Class AddFieldsToSelector
  */
 class AddFieldsToSelector
 {
+
+    /** @var LanguageService */
+    protected $languageService;
+
+    public function __construct()
+    {
+        $this->languageService = $GLOBALS['LANG'];
+    }
 
     // TODO consolidate with list in pi1
     const sortFields = ['gender', 'first_name', 'middle_name', 'last_name', 'title', 'company', 'address', 'building', 'room', 'birthday', 'zip', 'city', 'region', 'country', 'email', 'www', 'phone', 'mobile', 'fax'];
@@ -33,7 +43,7 @@ class AddFieldsToSelector
     {
         $selectOptions = [];
         foreach (self::sortFields as $field) {
-            $label = $GLOBALS['LANG']->sL($GLOBALS['TCA']['tt_address']['columns'][$field]['label']);
+            $label = $this->languageService->sL($GLOBALS['TCA']['tt_address']['columns'][$field]['label']);
             $label = rtrim($label, ':');
 
             $selectOptions[] = [
@@ -45,7 +55,7 @@ class AddFieldsToSelector
         // add sorting by order of single selection
         $selectOptions[] = [
             'field' => 'singleSelection',
-            'label' => $GLOBALS['LANG']->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_flexform.sortBy.singleSelection')
+            'label' => $this->languageService->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_flexform.sortBy.singleSelection')
         ];
 
         // sort by labels

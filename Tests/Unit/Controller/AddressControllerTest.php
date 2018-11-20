@@ -83,7 +83,6 @@ class AddressControllerTest extends BaseTestCase
         $this->assertEquals($mockedRepository, $subject->_get('addressRepository'));
     }
 
-
     /**
      * @test
      */
@@ -104,7 +103,5 @@ class AddressControllerTest extends BaseTestCase
         ]);
 
         $this->assertEquals(['123', '456', '7', '8', '9'], $subject->_call('getPidList'));
-
     }
-
 }

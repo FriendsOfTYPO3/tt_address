@@ -18,7 +18,7 @@ class AdressRepositoryTest extends FunctionalTestCase
 
     protected $testExtensionsToLoad = ['typo3conf/ext/tt_address'];
 
-    protected $coreExtensionsToLoad = ['fluid'];
+    protected $coreExtensionsToLoad = ['fluid', 'extensionmanager'];
 
     public function setUp()
     {

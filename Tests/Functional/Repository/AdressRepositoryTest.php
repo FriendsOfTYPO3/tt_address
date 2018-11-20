@@ -18,6 +18,8 @@ class AdressRepositoryTest extends FunctionalTestCase
 
     protected $testExtensionsToLoad = ['typo3conf/ext/tt_address'];
 
+    protected $coreExtensionsToLoad = ['fluid'];
+
     public function setUp()
     {
         parent::setUp();

@@ -30,9 +30,8 @@
                         </f:for>
                     </f:then>
                     <f:else>
-                        <ttaddress:widget.paginate objects="{addresses}" as="paginatedAdresses"
-                                                   configuration="{settings.paginate}"
-                                                   initial="{offset:settings.offset,limit:settings.limit}">
+                        <f:widget.paginate objects="{addresses}" as="paginatedAdresses"
+                                                   configuration="{settings.paginate}">
                             <f:for each="{paginatedAdresses}" as="address" iteration="iterator">
                                 <f:render partial="AddressItemList"
                                           arguments="{address: address, settings:settings, iterator:iterator}"/>
@@ -45,7 +44,7 @@
                                     </f:else>
                                 </f:if>
                             </f:for>
-                        </ttaddress:widget.paginate>
+                        </f:widget.paginate>
                     </f:else>
                 </f:if>
             </f:then>

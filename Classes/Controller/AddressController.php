@@ -86,9 +86,8 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
         // get all the records
         if ($this->settings['singleRecords'] != '') {
-
             // get addresses by singleRecords
-            $addresses = $this->addressRepository->findByUidListOrderByList($this->settings, $orderings);
+            $addresses = $this->addressRepository->findByUidListOrderByList($this->settings);
         } elseif ($this->settings['groups'] != '') {
 
             // get addresses by category

@@ -62,7 +62,7 @@ class AddressRepository extends Repository
      * @param array orderings for query
      * @return \FriendsOfTYPO3\TtAddress\Domain\Model\Address[]  The result list.
      */
-    public function findByUidListOrderByList($settings, $orderings)
+    public function findByUidListOrderByList($settings, $orderings = [])
     {
         $uidArray = explode(',', $settings['singleRecords']);
         $query = $this->createQuery();

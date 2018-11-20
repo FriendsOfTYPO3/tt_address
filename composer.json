@@ -54,8 +54,8 @@
   },
   "scripts": {
     "post-autoload-dump": [
-      "mkdir -p .Build/Web/typo3conf/ext/",
-      "[ -L .Build/Web/typo3conf/ext/tt_address ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/tt_address"
+      "mkdir -p .Build/typo3conf/ext/",
+      "[ -L .Build/typo3conf/ext/tt_address ] || ln -snvf ../../../../. .Build/typo3conf/ext/tt_address"
     ]
   }
 }

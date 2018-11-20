@@ -15,6 +15,7 @@ namespace FriendsOfTYPO3\TtAddress\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
+use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
 use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -27,9 +28,7 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
 
-    /**
-     * @var \FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository
-     */
+    /** @var AddressRepository */
     protected $addressRepository;
 
     /** @var QueryGenerator */
@@ -62,7 +61,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     {
         // set singlePid if empty
         if ($this->settings['singlePid'] == '') {
-            $this->settings['singlePid'] = \intval($GLOBALS['TSFE']->id);
+            $this->settings['singlePid'] = (int)$GLOBALS['TSFE']->id;
         }
 
         // set default sortBy to last_name, or singleSelection if singleRecords are there
@@ -125,9 +124,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @param ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
      */
-    public function injectConfigurationManager(
-        ConfigurationManagerInterface $configurationManager
-    )
+    public function injectConfigurationManager(ConfigurationManagerInterface $configurationManager)
     {
         $this->configurationManager = $configurationManager;
 
@@ -162,9 +159,9 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     }
 
     /**
-     * @param \FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository $addressRepository
+     * @param AddressRepository $addressRepository
      */
-    public function injectAddressRepository(\FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository $addressRepository)
+    public function injectAddressRepository(AddressRepository $addressRepository)
     {
         $this->addressRepository = $addressRepository;
     }

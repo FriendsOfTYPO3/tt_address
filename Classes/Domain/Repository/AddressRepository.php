@@ -136,7 +136,8 @@ class AddressRepository extends Repository
     {
         $constraints = [];
 
-        $categoriesRecursive = CategoryService::getChildrenCategories($categories);
+        $categoryService = GeneralUtility::makeInstance(CategoryService::class);
+        $categoriesRecursive = $categoryService->getChildrenCategories($categories);
 
         if (!\is_array($categoriesRecursive)) {
             $categoriesRecursive = GeneralUtility::intExplode(',', $categoriesRecursive, true);

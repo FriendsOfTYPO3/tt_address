@@ -16,6 +16,7 @@ namespace FriendsOfTYPO3\TtAddress\Service;
  */
 
 use TYPO3\CMS\Core\Cache\CacheManager;
+use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\TimeTracker\TimeTracker;
@@ -27,6 +28,18 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class CategoryService
 {
 
+    /** @var TimeTracker */
+    protected $timeTracker;
+
+    /** @var FrontendInterface */
+    protected $cache;
+
+    public function __construct()
+    {
+        $this->timeTracker = GeneralUtility::makeInstance(TimeTracker::class);
+        $this->cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_ttaddress_category');
+    }
+
     /**
      * Get child categories by calling recursive function
      * and using the caching framework to save some queries
@@ -36,18 +49,14 @@ class CategoryService
      * @param string $additionalWhere additional where clause
      * @return string comma separated list of category ids
      */
-    public static function getChildrenCategories(
-        $idList,
-        $counter = 0
-    ) {
-        /** @var \TYPO3\CMS\Core\Cache\Frontend\FrontendInterface $cache */
-        $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_ttaddress_category');
+    public function getChildrenCategories($idList, int $counter = 0)
+    {
         $cacheIdentifier = sha1('children' . $idList);
 
-        $entry = $cache->get($cacheIdentifier);
+        $entry = $this->cache->get($cacheIdentifier);
         if (!$entry) {
-            $entry = self::getChildrenCategoriesRecursive($idList, $counter);
-            $cache->set($cacheIdentifier, $entry);
+            $entry = $this->getChildrenCategoriesRecursive($idList, $counter);
+            $this->cache->set($cacheIdentifier, $entry);
         }
 
         return $entry;
@@ -60,11 +69,11 @@ class CategoryService
      * @param int $counter
      * @return string comma separated list of category ids
      */
-    private static function getChildrenCategoriesRecursive($idList, $counter = 0): string
+    protected function getChildrenCategoriesRecursive($idList, $counter = 0): string
     {
         $result = [];
 
-        // add id list to the output too
+        // add id list to the output
         if ($counter === 0) {
             $result[] = $idList;
         }
@@ -82,22 +91,14 @@ class CategoryService
         while ($row = $res->fetch()) {
             $counter++;
             if ($counter > 10000) {
-                GeneralUtility::makeInstance(TimeTracker::class)->setTSlogMessage('EXT:news: one or more recursive categories where found');
+                $this->timeTracker->setTSlogMessage('EXT:news: one or more recursive categories where found');
                 return implode(',', $result);
             }
-            $subcategories = self::getChildrenCategoriesRecursive($row['uid'], $counter);
+            $subcategories = $this->getChildrenCategoriesRecursive($row['uid'], $counter);
             $result[] = $row['uid'] . ($subcategories ? ',' . $subcategories : '');
         }
 
         $result = implode(',', $result);
         return $result;
-    }
-
-    /**
-     * @return TimeTracker
-     */
-    protected static function getTimeTracker(): TimeTracker
-    {
-        return $GLOBALS['TT'];
     }
 }

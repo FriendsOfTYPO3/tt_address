@@ -24,7 +24,7 @@
       "extension-key": "tt_address",
       "cms-package-dir": "{$vendor-dir}/typo3/cms",
       "app-dir": ".Build",
-      "web-dir": ".Build"
+      "web-dir": ".Build/Web"
     },
     "typo3/class-alias-loader": {
       "class-alias-maps": [

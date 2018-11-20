@@ -5,6 +5,8 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Controller;
 use FriendsOfTYPO3\TtAddress\Controller\AddressController;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 use TYPO3\CMS\Core\Database\QueryGenerator;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class AddressControllerTest extends BaseTestCase
@@ -93,8 +95,6 @@ class AddressControllerTest extends BaseTestCase
         $mockedQueryGenerator->expects($this->any())->method('getTreeList')
             ->withConsecutive([123, 3], [456, 3])
             ->willReturnOnConsecutiveCalls('7,8,9', '');
-//        $mockedQueryGenerator->expects($this->any())->method('getTreeList')->with(123)->willReturn([7, 8, 9]);
-//        $mockedQueryGenerator->expects($this->any())->method('getTreeList')->with(456)->willReturn([]);
 
         $subject = $this->getAccessibleMock(AddressController::class, ['dummy'], [], '', false);
         $subject->_set('queryGenerator', $mockedQueryGenerator);
@@ -104,7 +104,51 @@ class AddressControllerTest extends BaseTestCase
         ]);
 
         $this->assertEquals(['123', '456', '7', '8', '9'], $subject->_call('getPidList'));
+    }
 
+    /**
+     * @test
+     */
+    public function settingsAreProperlyInjected()
+    {
+        $mockedConfigurationManager = $this->getAccessibleMock(ConfigurationManager::class, ['getConfiguration'], [], '', false);
+        $mockedConfigurationManager->expects($this->any())->method('getConfiguration')
+            ->withConsecutive([ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT], [ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS])
+            ->willReturnOnConsecutiveCalls(
+                [
+                    'plugin.' => [
+                        'tx_ttaddress.' => [
+                            'settings' => [
+                                'orderByAllowed' => 'sorting',
+                                'overrideFlexformSettingsIfEmpty' => 'key4,key5,key6',
+                                'key2' => 'abc',
+                                'key4' => 'fo',
+                                'key5' => '',
+                            ]
+                        ]
+                    ]
+                ],
+                [
+                    'key1' => 'value1',
+                    'orderByAllowed' => 'custom',
+                    'key2' => '',
+                    'key3' => '',
+                    'key4' => '',
+                    'key5' => '',
+                ]
+            );
+
+        $subject = $this->getAccessibleMock(AddressController::class, ['dummy'], [], '', false);
+        $expectedSettings = [
+            'key1' => 'value1',
+            'orderByAllowed' => 'sorting',
+            'key2' => '',
+            'key3' => '',
+            'key4' => 'fo',
+            'key5' => '',
+        ];
+        $subject->injectConfigurationManager($mockedConfigurationManager);
+        $this->assertEquals($expectedSettings, $subject->_get('settings'));
     }
 
 }

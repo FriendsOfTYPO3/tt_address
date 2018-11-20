@@ -18,6 +18,7 @@ namespace FriendsOfTYPO3\TtAddress\Controller;
 use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
 use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
@@ -122,17 +123,17 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * Injects the Configuration Manager and is initializing the framework settings
      *
-     * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
+     * @param ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
      */
     public function injectConfigurationManager(
-        \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
+        ConfigurationManagerInterface $configurationManager
     )
     {
         $this->configurationManager = $configurationManager;
 
         // get the whole typoscript (_FRAMEWORK does not work anymore, don't know why)
         $tsSettings = $this->configurationManager->getConfiguration(
-            \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT,
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT,
             '',
             ''
         );
@@ -143,7 +144,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         // get original settings
         // original means: what extbase does by munching flexform and TypoScript together, but leaving empty flexform-settings empty ...
         $originalSettings = $this->configurationManager->getConfiguration(
-            \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
         );
 
         $propertiesNotAllowedViaFlexForms = ['orderByAllowed'];

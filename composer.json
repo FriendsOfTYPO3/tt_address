@@ -54,9 +54,6 @@
   },
   "scripts": {
     "post-autoload-dump": [
-      "@prepare-extension-test-environment"
-    ],
-    "prepare-extension-test-structure": [
       "TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
     ]
   }

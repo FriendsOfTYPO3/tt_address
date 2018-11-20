@@ -31,6 +31,14 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     protected $addressRepository;
 
+    /** @var QueryGenerator */
+    protected $queryGenerator;
+
+    public function initializeAction()
+    {
+        $this->queryGenerator = GeneralUtility::makeInstance(QueryGenerator::class);
+    }
+
     /**
      * @param \FriendsOfTYPO3\TtAddress\Domain\Model\Address $address
      */
@@ -89,7 +97,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
             // get records from pages
             // first add recursive option
-            $storagePageIds = $this->getTreePids();
+            $storagePageIds = $this->getPidList();
             // set the query-settings
             $querySettings = $this->addressRepository->createQuery()->getQuerySettings();
             $querySettings->setRespectStoragePage(true);
@@ -118,7 +126,8 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function injectConfigurationManager(
         \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
-    ) {
+    )
+    {
         $this->configurationManager = $configurationManager;
 
         // get the whole typoscript (_FRAMEWORK does not work anymore, don't know why)
@@ -161,14 +170,15 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
     /**
      * Removes dots at the end of a configuration array
+     *
      * @param array $settings the array to transformed
      * @return array $settings the transformed array
      */
-    protected function removeDots($settings): array
+    protected function removeDots(array $settings): array
     {
         $conf = [];
         foreach ($settings as $key => $value) {
-            $conf[$this->removeDotAtTheEnd($key)] = is_array($value) ? $this->removeDots($value) : $value;
+            $conf[$this->removeDotAtTheEnd($key)] = \is_array($value) ? $this->removeDots($value) : $value;
         }
         return $conf;
     }
@@ -189,20 +199,19 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @return array an array with all pageIds
      */
-    protected function getTreePids()
+    protected function getPidList(): array
     {
-        $queryGenerator = GeneralUtility::makeInstance(QueryGenerator::class);
-        // make array of root-page ids
         $rootPIDs = explode(',', $this->settings['pages']);
-
-        // build array which will finally hold all accepted storagePages
-        $storagePIDsArray = explode(',', $this->settings['pages']);
+        $pidList = $rootPIDs;
 
         // iterate through root-page ids and merge to array
         foreach ($rootPIDs as $pid) {
-            $subtreePids = explode(',', $queryGenerator->getTreeList($pid, $this->settings['recursive'], 0, 1));
-            $storagePIDsArray = array_merge($storagePIDsArray, $subtreePids);
+            $result = $this->queryGenerator->getTreeList($pid, $this->settings['recursive'], 0, 1);
+            if ($result) {
+                $subtreePids = explode(',', $result);
+                $pidList = array_merge($pidList, $subtreePids);
+            }
         }
-        return $storagePIDsArray;
+        return $pidList;
     }
 }

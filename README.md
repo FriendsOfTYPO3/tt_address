@@ -1,4 +1,4 @@
-# TYPO3 Extension `tt_address: Address storage and display
+# TYPO3 Extension `tt_address`: Address storage and display
 
 [![Build Status](https://travis-ci.org/FriendsOfTYPO3/tt_address.svg?branch=master)](https://travis-ci.org/FriendsOfTYPO3/tt_address)
 

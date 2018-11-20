@@ -34,9 +34,8 @@ class AdressRepositoryTest extends FunctionalTestCase
      */
     public function findRecordsByUid()
     {
-        $this->assertTrue(true);
-//        $address = $this->addressRepository->findByUid(1);
-//
-//        $this->assertEquals($address->getFirstName(), 'John');
+        $address = $this->addressRepository->findByUid(1);
+
+        $this->assertEquals($address->getFirstName(), 'John');
     }
 }

@@ -29,7 +29,6 @@ use TYPO3\CMS\Frontend\Page\PageRepository;
 class LegacyPluginSelector
 {
 
-
     /** @var LanguageService */
     protected $languageService;
 

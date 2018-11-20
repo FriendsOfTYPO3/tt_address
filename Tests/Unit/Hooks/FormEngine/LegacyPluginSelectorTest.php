@@ -31,13 +31,12 @@ class LegacyPluginSelectorTest extends BaseTestCase
             $GLOBALS['TCA']['tt_address']['columns'][$sortField]['label'] = 'label_' . $sortField;
         }
 
-
         $mockedLanguageService = $this->getAccessibleMock(LanguageService::class, ['sL'], [], '', false);
         $mockedLanguageService->expects($this->any())
             ->method('sL')
             ->will($this->returnCallback(function ($o) {
                 return $o;
-            }));;
+            }));
         $subject = $this->getAccessibleMock(LegacyPluginSelector::class, ['getRecord'], [], '', false);
         $subject->_set('languageService', $mockedLanguageService);
 
@@ -70,5 +69,4 @@ class LegacyPluginSelectorTest extends BaseTestCase
         ];
         $this->assertEquals($expected, $items);
     }
-
 }

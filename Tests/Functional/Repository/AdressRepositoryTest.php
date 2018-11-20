@@ -16,7 +16,7 @@ class AdressRepositoryTest extends FunctionalTestCase
     /** @var AddressRepository */
     protected $addressRepository;
 
-    protected $testExtensionsToLoad = ['typo3conf/ext/tt_address'];
+//    protected $testExtensionsToLoad = ['typo3conf/ext/tt_address'];
 
     public function setUp()
     {
@@ -36,6 +36,6 @@ class AdressRepositoryTest extends FunctionalTestCase
     {
         $address = $this->addressRepository->findByUid(1);
 
-        $this->assertEquals($address->getFirstName(), 'john');
+        $this->assertEquals($address->getFirstName(), 'John');
     }
 }

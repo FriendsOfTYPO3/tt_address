@@ -55,7 +55,7 @@ final class ExtensionTestEnvironment
      *
      * @param Event $event
      */
-    public static function prepare(Event $event): void
+    public static function prepare(Event $event)
     {
         $composerConfigExtraSection = $event->getComposer()->getPackage()->getExtra();
         if (empty($composerConfigExtraSection['typo3/cms']['extension-key'])

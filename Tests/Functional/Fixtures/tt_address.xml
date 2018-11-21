@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+    <tt_address>
+        <uid>1</uid>
+        <pid>1</pid>
+        <first_name>John</first_name>
+        <last_name>Doe</last_name>
+    </tt_address>
+    <tt_address>
+        <uid>2</uid>
+        <pid>1</pid>
+        <first_name>Jane</first_name>
+        <last_name>Doe</last_name>
+    </tt_address>
+    <tt_address>
+        <uid>3</uid>
+        <pid>1</pid>
+        <first_name>Max</first_name>
+        <last_name>Mustermann</last_name>
+    </tt_address>
+    <tt_address>
+        <uid>4</uid>
+        <pid>1</pid>
+        <first_name>Maria</first_name>
+        <last_name>Musterfrau</last_name>
+    </tt_address>
+</dataset>

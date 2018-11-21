@@ -21,7 +21,8 @@
   },
   "extra": {
     "typo3/cms": {
-      "cms-package-dir": "{$vendor-dir}/typo3/cms",
+      "extension-key": "tt_address",
+      "app-dir": ".Build",
       "web-dir": ".Build/Web"
     },
     "typo3/class-alias-loader": {
@@ -53,8 +54,7 @@
   },
   "scripts": {
     "post-autoload-dump": [
-      "mkdir -p .Build/Web/typo3conf/ext/",
-      "[ -L .Build/Web/typo3conf/ext/tt_address ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/tt_address"
+      "TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
     ]
   }
 }

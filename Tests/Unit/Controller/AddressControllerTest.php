@@ -224,7 +224,6 @@ class AddressControllerTest extends BaseTestCase
         $subject->showAction(null);
     }
 
-
     /**
      * @test
      */
@@ -239,7 +238,6 @@ class AddressControllerTest extends BaseTestCase
         ];
         $demand = new Demand();
         $demand->setSingleRecords('134');
-
 
         $mockedRepository = $this->getAccessibleMock(AddressRepository::class, ['getAddressesByCustomSorting'], [], '', false);
         $mockedRepository->expects($this->once())->method('getAddressesByCustomSorting')->willReturn(['dummy return single']);
@@ -261,7 +259,6 @@ class AddressControllerTest extends BaseTestCase
         $subject->listAction();
     }
 
-
     /**
      * @test
      */
@@ -272,7 +269,6 @@ class AddressControllerTest extends BaseTestCase
         ];
         $demand = new Demand();
         $demand->setPages(['12']);
-
 
         $mockedRepository = $this->getAccessibleMock(AddressRepository::class, ['findByDemand'], [], '', false);
         $mockedRepository->expects($this->once())->method('findByDemand')->willReturn(['dummy return']);
@@ -293,6 +289,4 @@ class AddressControllerTest extends BaseTestCase
 
         $subject->listAction();
     }
-
-
 }

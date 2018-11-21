@@ -30,6 +30,8 @@ before_install:
 before_script:
   - composer require "typo3/minimal:${TYPO3_VERSION}"
   - composer require "typo3/testing-framework:${TESTING_FRAMEWORK}"
+  - composer require "phpunit/phpcov"
+  -
   -
   # Restore composer.json
   - git checkout composer.json

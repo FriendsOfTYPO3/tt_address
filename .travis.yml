@@ -58,5 +58,5 @@ script:
     fi
 
 after_script:
-  - .Build/bin/phpcov.php merge --clover build/logs/clover.xml build/cov
+  - .Build/bin/phpcov merge build/cov --clover build/logs/clover.xml
   - travis_retry php .Build/bin/php-coveralls -v

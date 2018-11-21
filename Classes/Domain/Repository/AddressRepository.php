@@ -51,7 +51,7 @@ class AddressRepository extends Repository
         // sorting
         $sortBy = $demand->getSortBy();
         if ($sortBy && $sortBy !== 'singleSelection') {
-            $order = strtolower($demand->getSortOrder()) === 'asc' ? QueryInterface::ORDER_ASCENDING : QueryInterface::ORDER_DESCENDING;
+            $order = strtolower($demand->getSortOrder()) === 'desc' ? QueryInterface::ORDER_DESCENDING : QueryInterface::ORDER_ASCENDING;
             $query->setOrderings([$sortBy => $order]);
         }
 
@@ -64,17 +64,9 @@ class AddressRepository extends Repository
         if ($categories) {
             $categoryConstraints = $this->createCategoryConstraint($query, $categories);
             if ($demand->getCategoryCombination() === 'or') {
-                $constraints['categories'] = $query->matching(
-                    $query->logicalOr(
-                        $categoryConstraints
-                    )
-                );
+                $constraints['categories'] = $query->logicalOr($categoryConstraints);
             } else {
-                $constraints['categories'] = $query->matching(
-                    $query->logicalAnd(
-                        $categoryConstraints
-                    )
-                );
+                $constraints['categories'] = $query->logicalAnd($categoryConstraints);
             }
         }
 
@@ -121,16 +113,15 @@ class AddressRepository extends Repository
      *
      * @param QueryInterface $query
      * @param  string $categories
-     * @return array|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|null
+     * @return array
      * @throws InvalidQueryException
      */
-    protected function createCategoryConstraint(QueryInterface $query, $categories)
+    protected function createCategoryConstraint(QueryInterface $query, $categories): array
     {
         $constraints = [];
 
         $categoryService = GeneralUtility::makeInstance(CategoryService::class);
         $categoriesRecursive = $categoryService->getChildrenCategories($categories);
-
         if (!\is_array($categoriesRecursive)) {
             $categoriesRecursive = GeneralUtility::intExplode(',', $categoriesRecursive, true);
         }

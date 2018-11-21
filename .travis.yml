@@ -30,7 +30,7 @@ before_install:
 before_script:
   - composer require "typo3/minimal:${TYPO3_VERSION}"
   - composer require "typo3/testing-framework:${TESTING_FRAMEWORK}"
-  - 
+  -
   # Restore composer.json
   - git checkout composer.json
  # - export TYPO3_PATH_WEB=$PWD/.Build/Web
@@ -39,8 +39,8 @@ script:
   - >
     echo;
     echo "Running unit tests";
-    .Build/bin/phpunit --coverage-clover clover.xml --colors -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTests.xml Tests/Unit/
-    ls
+    .Build/bin/phpunit --coverage-clover clover.xml --colors -c Build/UnitTests.xml Tests/Unit/
+    ls;
   - >
     echo;
     echo "Running php lint";

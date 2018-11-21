@@ -75,5 +75,4 @@ class DemandTest extends BaseTestCase
         $this->subject->setSingleRecords($value);
         $this->assertEquals($value, $this->subject->getSingleRecords());
     }
-
 }

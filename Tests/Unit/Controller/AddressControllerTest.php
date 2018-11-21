@@ -151,7 +151,6 @@ class AddressControllerTest extends BaseTestCase
         $this->assertEquals($expectedSettings, $subject->_get('settings'));
     }
 
-
     /**
      * @test
      */

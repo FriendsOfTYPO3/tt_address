@@ -125,5 +125,4 @@ class AdressRepositoryTest extends FunctionalTestCase
 
         return $idList;
     }
-
 }

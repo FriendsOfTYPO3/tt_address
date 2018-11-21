@@ -118,5 +118,4 @@ class Demand
     {
         $this->singleRecords = $singleRecords;
     }
-
 }

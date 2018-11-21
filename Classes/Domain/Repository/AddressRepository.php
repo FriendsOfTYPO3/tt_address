@@ -33,7 +33,7 @@ class AddressRepository extends Repository
     /**
      * override the storagePid settings (do not use storagePid) of extbase
      */
-    public function initializeObject(): void
+    public function initializeObject()
     {
         $this->defaultQuerySettings = $this->objectManager->get(Typo3QuerySettings::class);
         $this->defaultQuerySettings->setRespectStoragePage(false);

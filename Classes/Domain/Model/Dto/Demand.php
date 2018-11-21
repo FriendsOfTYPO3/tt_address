@@ -34,7 +34,7 @@ class Demand
     /**
      * @param array $pages
      */
-    public function setPages(array $pages): void
+    public function setPages(array $pages)
     {
         $this->pages = $pages;
     }
@@ -50,7 +50,7 @@ class Demand
     /**
      * @param string $sortBy
      */
-    public function setSortBy(string $sortBy): void
+    public function setSortBy(string $sortBy)
     {
         $this->sortBy = $sortBy;
     }
@@ -66,7 +66,7 @@ class Demand
     /**
      * @param string $sortOrder
      */
-    public function setSortOrder(string $sortOrder): void
+    public function setSortOrder(string $sortOrder)
     {
         $this->sortOrder = $sortOrder;
     }
@@ -82,7 +82,7 @@ class Demand
     /**
      * @param string $categories
      */
-    public function setCategories(string $categories): void
+    public function setCategories(string $categories)
     {
         $this->categories = $categories;
     }
@@ -98,7 +98,7 @@ class Demand
     /**
      * @param string $categoryCombination
      */
-    public function setCategoryCombination(string $categoryCombination): void
+    public function setCategoryCombination(string $categoryCombination)
     {
         $this->categoryCombination = $categoryCombination;
     }
@@ -114,7 +114,7 @@ class Demand
     /**
      * @param string $singleRecords
      */
-    public function setSingleRecords(string $singleRecords): void
+    public function setSingleRecords(string $singleRecords)
     {
         $this->singleRecords = $singleRecords;
     }

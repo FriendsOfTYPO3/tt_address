@@ -39,7 +39,7 @@ script:
   - >
     echo;
     echo "Running unit tests";
-    .Build/bin/phpunit --coverage-clover clover.xml --colors -c Build/UnitTests.xml Tests/Unit/
+    .Build/bin/phpunit --coverage-clover build/logs/clover.xml --colors -c Build/UnitTests.xml Tests/Unit/
     ls;
   - >
     echo;

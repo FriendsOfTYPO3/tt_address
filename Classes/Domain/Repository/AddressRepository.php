@@ -15,6 +15,7 @@ namespace FriendsOfTYPO3\TtAddress\Domain\Repository;
  * The TYPO3 project - inspiring people to share!
  */
 
+use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Service\CategoryService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
@@ -36,92 +37,72 @@ class AddressRepository extends Repository
         $this->defaultQuerySettings->setRespectStoragePage(false);
     }
 
-    /**
-     * Retrieves all offers by settings (TypoScript and Flexform)
-     *
-     * @param array settings
-     * @param array orderings for query
-     * @return \FriendsOfTYPO3\TtAddress\Domain\Model\Address[]  The result list.
-     */
-    public function findTtAddressesByCategories($settings, $orderings)
-    {
-        if ($settings['groups'] != '') {
-            // if at least one category is set, return category based query
-            $ttAddresses = $this->buildQueryCategories($orderings, $settings['groups'], $settings['groupsCombination']);
-        } else {
-            // fallback find all
-            $ttAddresses = $this->findAll();
-        }
-        return $ttAddresses;
-    }
-
-    /**
-     * Find by multiple uids and maintain the list order
-     *
-     * @param string String containing the single uids
-     * @param array orderings for query
-     * @return \FriendsOfTYPO3\TtAddress\Domain\Model\Address[]  The result list.
-     */
-    public function findByUidListOrderByList($settings, $orderings = [])
-    {
-        $uidArray = explode(',', $settings['singleRecords']);
-        $query = $this->createQuery();
-        $query->matching(
-            $query->in('uid', $uidArray)
-        );
-        $query->setOrderings($orderings);
-        $objects = $query->execute();
-
-        if ($settings['sortBy'] === 'singleSelection') {
-            $finalList = $tempList = [];
-            // make array reverse
-            if ($settings['sortOrder'] === 'DESC') {
-                $uidArray = array_reverse($uidArray);
-            }
-            foreach ($objects as $object) {
-                $tempList[$object->getUid()] = $object;
-            }
-            foreach ($uidArray as $uid) {
-                if (isset($tempList[$uid])) {
-                    $finalList[] = $tempList[$uid];
-                }
-            }
-            return $finalList;
-        } else {
-            return $objects;
-        }
-    }
-
-    /**
-     * Retrieves all tt_address records by categories
-     *
-     * @param array orderings for query
-     * @param string $categories Comma-seperated list of Category IDs
-     * @param int $logicalOperaion : 1=OR; 0=AND
-     * @return Array<\FriendsOfTYPO3\TtAddress\Domain\Model\Address>  The result list.
-     */
-    protected function buildQueryCategories($orderings, $categories, $logicalOperation = 0)
+    public function findByDemand(Demand $demand)
     {
         $query = $this->createQuery();
-        $query->setOrderings($orderings);
-        // get category constraint
-        $categoryConstraints = $this->createCategoryConstraint($query, $categories);
-        // build the query
-        if ($logicalOperation == 1) {
-            $query->matching(
-                $query->logicalOr(
-                    $categoryConstraints
-                )
-            );
-        } else {
-            $query->matching(
-                $query->logicalAnd(
-                    $categoryConstraints
-                )
-            );
+
+        // sorting
+        $sortBy = $demand->getSortBy();
+        if ($sortBy && $sortBy !== 'singleSelection') {
+            $order = strtolower($demand->getSortOrder()) === 'asc' ? QueryInterface::ORDER_ASCENDING : QueryInterface::ORDER_DESCENDING;
+            $query->setOrderings([$sortBy => $order]);
+        }
+
+        $constraints = [];
+        $pages = $demand->getPages();
+        if (!empty($pages)) {
+            $constraints['pages'] = $query->in('pid', $pages);
+        }
+        $categories = $demand->getCategories();
+        if ($categories) {
+            $categoryConstraints = $this->createCategoryConstraint($query, $categories);
+            // build the query
+            if ($demand->getCategoryCombination() === 'or') {
+                $constraints['categories'] = $query->matching(
+                    $query->logicalOr(
+                        $categoryConstraints
+                    )
+                );
+            } else {
+                $constraints['categories'] = $query->matching(
+                    $query->logicalAnd(
+                        $categoryConstraints
+                    )
+                );
+            }
+        }
+
+        if (!empty($constraints)) {
+            $query->matching($query->logicalAnd($constraints));
         }
         return $query->execute();
     }
+
+    public function getAddressesByCustomSorting(Demand $demand): array
+    {
+        $listOfIds = explode(',', $demand->getSingleRecords());
+        if ($demand->getSortOrder() === 'DESC') {
+            $listOfIds = array_reverse($listOfIds);
+        }
+
+        $query = $this->createQuery();
+        $query->matching(
+            $query->in('uid', $listOfIds)
+        );
+        $objects = $query->execute();
+
+        $finalList = $tempList = [];
+        foreach ($objects as $object) {
+            $tempList[$object->getUid()] = $object;
+        }
+        foreach ($listOfIds as $uid) {
+            if (isset($tempList[$uid])) {
+                $finalList[] = $tempList[$uid];
+            }
+        }
+        return $finalList;
+    }
+
 
     /**
      * Returns a category constraint created by

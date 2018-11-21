@@ -1,27 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dataset>
+    <pages>
+        <uid>1</uid>
+        <pid>0</pid>
+    </pages>
+    <pages>
+        <uid>2</uid>
+        <pid>1</pid>
+    </pages>
+    <pages>
+        <uid>3</uid>
+        <pid>2</pid>
+    </pages>
     <tt_address>
         <uid>1</uid>
         <pid>1</pid>
         <first_name>John</first_name>
         <last_name>Doe</last_name>
+        <categories>2</categories>
     </tt_address>
     <tt_address>
         <uid>2</uid>
         <pid>1</pid>
         <first_name>Jane</first_name>
         <last_name>Doe</last_name>
+        <categories>0</categories>
     </tt_address>
     <tt_address>
         <uid>3</uid>
         <pid>1</pid>
         <first_name>Max</first_name>
         <last_name>Mustermann</last_name>
+        <categories>0</categories>
     </tt_address>
     <tt_address>
         <uid>4</uid>
         <pid>1</pid>
         <first_name>Maria</first_name>
         <last_name>Musterfrau</last_name>
+        <categories>0</categories>
     </tt_address>
+    <tt_address>
+        <uid>5</uid>
+        <pid>2</pid>
+        <first_name>Auric</first_name>
+        <last_name>Goldfinger</last_name>
+        <categories>0</categories>
+    </tt_address>
+    <tt_address>
+        <uid>6</uid>
+        <pid>2</pid>
+        <first_name>Ernst</first_name>
+        <middle_name>Stravo</middle_name>
+        <last_name>Blofeld</last_name>
+        <categories>0</categories>
+    </tt_address>
+    <tt_address>
+        <uid>7</uid>
+        <pid>3</pid>
+        <first_name>Maximilian</first_name>
+        <last_name>Zargo</last_name>
+        <categories>0</categories>
+    </tt_address>
+
+    <sys_category>
+        <uid>1</uid>
+        <pid>1</pid>
+        <title>Madrid</title>
+        <parent>0</parent>
+    </sys_category>
+    <sys_category>
+        <uid>2</uid>
+        <pid>1</pid>
+        <title>Kiev</title>
+        <parent>0</parent>
+    </sys_category>
+    <sys_category>
+        <uid>3</uid>
+        <pid>1</pid>
+        <title>Rom</title>
+        <parent>0</parent>
+    </sys_category>
+    <sys_category>
+        <uid>4</uid>
+        <pid>1</pid>
+        <title>Paris</title>
+        <parent>0</parent>
+    </sys_category>
+    <sys_category>
+        <uid>5</uid>
+        <pid>1</pid>
+        <title>Wien</title>
+        <parent>0</parent>
+    </sys_category>
+    <sys_category>
+        <uid>6</uid>
+        <pid>1</pid>
+        <title>Hamburg</title>
+        <parent>0</parent>
+    </sys_category>
+    <sys_category>
+        <uid>7</uid>
+        <pid>1</pid>
+        <title>Mailand</title>
+        <parent>0</parent>
+    </sys_category>
+    <sys_category>
+        <uid>8</uid>
+        <pid>1</pid>
+        <title>Moskau</title>
+        <parent>0</parent>
+    </sys_category>
+
+    <sys_category_record_mm>
+        <uid_local>1</uid_local>
+        <uid_foreign>1</uid_foreign>
+        <tablenames>tt_address</tablenames>
+        <fieldname>categories</fieldname>
+    </sys_category_record_mm>
+    <sys_category_record_mm>
+        <uid_local>2</uid_local>
+        <uid_foreign>1</uid_foreign>
+        <tablenames>tt_address</tablenames>
+        <fieldname>categories</fieldname>
+    </sys_category_record_mm>
+    <sys_category_record_mm>
+        <uid_local>3</uid_local>
+        <uid_foreign>3</uid_foreign>
+        <tablenames>tt_address</tablenames>
+        <fieldname>categories</fieldname>
+    </sys_category_record_mm>
+    <sys_category_record_mm>
+        <uid_local>3</uid_local>
+        <uid_foreign>4</uid_foreign>
+        <tablenames>tt_address</tablenames>
+        <fieldname>categories</fieldname>
+    </sys_category_record_mm>
+    <sys_category_record_mm>
+        <uid_local>4</uid_local>
+        <uid_foreign>4</uid_foreign>
+        <tablenames>tt_address</tablenames>
+        <fieldname>categories</fieldname>
+    </sys_category_record_mm>
+    <sys_category_record_mm>
+        <uid_local>5</uid_local>
+        <uid_foreign>5</uid_foreign>
+        <tablenames>tt_address</tablenames>
+        <fieldname>categories</fieldname>
+    </sys_category_record_mm>
+    <sys_category_record_mm>
+        <uid_local>5</uid_local>
+        <uid_foreign>6</uid_foreign>
+        <tablenames>tt_address</tablenames>
+        <fieldname>categories</fieldname>
+    </sys_category_record_mm>
+    <sys_category_record_mm>
+        <uid_local>1</uid_local>
+        <uid_foreign>6</uid_foreign>
+        <tablenames>tt_address</tablenames>
+        <fieldname>categories</fieldname>
+    </sys_category_record_mm>
+    <sys_category_record_mm>
+        <uid_local>5</uid_local>
+        <uid_foreign>2</uid_foreign>
+        <tablenames>tt_address</tablenames>
+        <fieldname>categories</fieldname>
+    </sys_category_record_mm>
+    <sys_category_record_mm>
+        <uid_local>6</uid_local>
+        <uid_foreign>2</uid_foreign>
+        <tablenames>tt_address</tablenames>
+        <fieldname>categories</fieldname>
+    </sys_category_record_mm>
+    <sys_category_record_mm>
+        <uid_local>6</uid_local>
+        <uid_foreign>7</uid_foreign>
+        <tablenames>tt_address</tablenames>
+        <fieldname>categories</fieldname>
+    </sys_category_record_mm>
+    <sys_category_record_mm>
+        <uid_local>7</uid_local>
+        <uid_foreign>7</uid_foreign>
+        <tablenames>tt_address</tablenames>
+        <fieldname>categories</fieldname>
+    </sys_category_record_mm>
 </dataset>

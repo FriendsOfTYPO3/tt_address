@@ -3,6 +3,7 @@
 namespace FriendsOfTypo3\TtAddress\Tests\Unit\Controller;
 
 use FriendsOfTYPO3\TtAddress\Controller\AddressController;
+use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
@@ -148,5 +149,37 @@ class AddressControllerTest extends BaseTestCase
         ];
         $subject->injectConfigurationManager($mockedConfigurationManager);
         $this->assertEquals($expectedSettings, $subject->_get('settings'));
+    }
+
+
+    /**
+     * @test
+     */
+    public function demandIsCreated()
+    {
+        $demand = new Demand();
+        $mockedObjectManager = $this->getAccessibleMock(QueryGenerator::class, ['get'], [], '', false);
+        $mockedObjectManager->expects($this->any())->method('get')
+            ->withConsecutive([Demand::class])
+            ->willReturnOnConsecutiveCalls($demand);
+
+        $subject = $this->getAccessibleMock(AddressController::class, ['getPidList'], [], '', false);
+        $subject->expects($this->any())->method('getPidList')->willReturn(['123', '456']);
+        $subject->_set('objectManager', $mockedObjectManager);
+        $subject->_set('settings', [
+            'pages' => '123,456',
+            'singleRecords' => '7,4',
+            'recursive' => 3,
+            'groups' => '4,5,6',
+            'groupsCombination' => 1,
+        ]);
+
+        $expected = new Demand();
+        $expected->setPages(['123', '456']);
+        $expected->setSingleRecords('7,4');
+        $expected->setCategoryCombination('or');
+        $expected->setCategories('4,5,6');
+
+        $this->assertEquals($expected, $subject->_call('createDemandFromSettings'));
     }
 }

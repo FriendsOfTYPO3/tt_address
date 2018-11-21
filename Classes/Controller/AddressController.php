@@ -15,12 +15,12 @@ namespace FriendsOfTYPO3\TtAddress\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
+use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
 use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
  * AddressController
@@ -44,11 +44,8 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function showAction(\FriendsOfTYPO3\TtAddress\Domain\Model\Address $address = null)
     {
-        if (!$address) {
-            $address = $this->addressRepository->findByUid((int)GeneralUtility::_GET('address'));
-            if ($address === null) {
-                $this->redirectToUri($this->uriBuilder->reset()->setTargetPageUid($GLOBALS['TSFE']->id)->build());
-            }
+        if ($address === null) {
+            $this->redirectToUri($this->uriBuilder->reset()->setTargetPageUid($GLOBALS['TSFE']->id)->build());
         }
         $this->view->assign('address', $address);
     }
@@ -56,66 +53,26 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * Lists addresses by settings in waterfall principle.
      * singleRecords take precedence over categories which take precedence over records from pages
+     *
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      */
     public function listAction()
     {
-        // set singlePid if empty
-        if ($this->settings['singlePid'] == '') {
+        if ((int)$this->settings['singlePid'] === 0) {
             $this->settings['singlePid'] = (int)$GLOBALS['TSFE']->id;
         }
 
-        // set default sortBy to last_name, or singleSelection if singleRecords are there
-        if ($this->settings['sortBy'] === 'default' && $this->settings['singleRecords'] == '') {
-            $this->settings['sortBy'] = 'last_name';
-        } elseif ($this->settings['sortBy'] === 'default' && $this->settings['singleRecords'] != '') {
-            $this->settings['sortBy'] = 'singleSelection';
-        }
-
-        // set a working alternative in case there is no singleRecord and sorting is set to singleSelection
-        if ($this->settings['singleRecords'] == '' &&
-            $this->settings['sortBy'] === 'singleSelection') {
-            $this->settings['sortBy'] = 'sorting';
-        }
-
-        // set the final orderings
-        $orderings = $this->settings['sortOrder'] === 'ASC' ? [
-            $this->settings['sortBy'] => QueryInterface::ORDER_ASCENDING
-        ] : [
-            $this->settings['sortBy'] => QueryInterface::ORDER_DESCENDING
-        ];
-
-        // get all the records
-        if ($this->settings['singleRecords'] != '') {
-            // get addresses by singleRecords
-            $addresses = $this->addressRepository->findByUidListOrderByList($this->settings);
-        } elseif ($this->settings['groups'] != '') {
-
-            // get addresses by category
-            $addresses = $this->addressRepository->findTtAddressesByCategories($this->settings, $orderings);
-        } elseif ($this->settings['pages'] != '') {
-
-            // get records from pages
-            // first add recursive option
-            $storagePageIds = $this->getPidList();
-            // set the query-settings
-            $querySettings = $this->addressRepository->createQuery()->getQuerySettings();
-            $querySettings->setRespectStoragePage(true);
-            $querySettings->setStoragePageIds($storagePageIds);
-            $this->addressRepository->setDefaultOrderings($orderings);
-            $this->addressRepository->setDefaultQuerySettings($querySettings);
-            $addresses = $this->addressRepository->findAll();
+        $demand = $this->createDemandFromSettings();
+        if ($demand->getSingleRecords()) {
+            $addresses = $this->addressRepository->getAddressesByCustomSorting($demand);
         } else {
-            // Plugin settings are empty, just retrieve all records without respecting storagePage
-            $querySettings = $this->addressRepository->createQuery()->getQuerySettings();
-            $querySettings->setRespectStoragePage(false);
-            $this->addressRepository->setDefaultOrderings($orderings);
-            $this->addressRepository->setDefaultQuerySettings($querySettings);
-            // no settings, fallback to findAll
-            $addresses = $this->addressRepository->findAll();
+            $addresses = $this->addressRepository->findByDemand($demand);
         }
 
-        $this->view->assign('settings', $this->settings);
-        $this->view->assign('addresses', $addresses);
+        $this->view->assignMultiple([
+            'demand' => $demand,
+            'addresses' => $addresses
+        ]);
     }
 
     /**
@@ -155,6 +112,23 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         }
         // Re-set global settings
         $this->settings = $originalSettings;
+    }
+
+    protected function createDemandFromSettings(): Demand
+    {
+        $demand = $this->objectManager->get(Demand::class);
+        $demand->setCategories((string)$this->settings['groups']);
+        $categoryCombination = (int)$this->settings['groupsCombination'] === 1 ? 'or' : 'and';
+        $demand->setCategoryCombination($categoryCombination);
+
+        if ($this->settings['pages']) {
+            $demand->setPages($this->getPidList());
+        }
+        $demand->setSingleRecords((string)$this->settings['singleRecords']);
+        $demand->setSortBy((string)$this->settings['sortBy']);
+        $demand->setSortOrder((string)$this->settings['sortOrder']);
+
+        return $demand;
     }
 
     /**

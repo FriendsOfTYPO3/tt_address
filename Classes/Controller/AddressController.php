@@ -44,11 +44,8 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function showAction(\FriendsOfTYPO3\TtAddress\Domain\Model\Address $address = null)
     {
-        if (!$address) {
-            $address = $this->addressRepository->findByUid((int)GeneralUtility::_GET('address'));
-            if ($address === null) {
-                $this->redirectToUri($this->uriBuilder->reset()->setTargetPageUid($GLOBALS['TSFE']->id)->build());
-            }
+        if ($address === null) {
+            $this->redirectToUri($this->uriBuilder->reset()->setTargetPageUid($GLOBALS['TSFE']->id)->build());
         }
         $this->view->assign('address', $address);
     }
@@ -56,6 +53,8 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * Lists addresses by settings in waterfall principle.
      * singleRecords take precedence over categories which take precedence over records from pages
+     *
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      */
     public function listAction()
     {
@@ -118,16 +117,16 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     protected function createDemandFromSettings(): Demand
     {
         $demand = $this->objectManager->get(Demand::class);
-        $demand->setCategories($this->settings['groups']);
+        $demand->setCategories((string)$this->settings['groups']);
         $categoryCombination = (int)$this->settings['groupsCombination'] === 1 ? 'or' : 'and';
         $demand->setCategoryCombination($categoryCombination);
 
         if ($this->settings['pages']) {
             $demand->setPages($this->getPidList());
         }
-        $demand->setSingleRecords($this->settings['singleRecords']);
-        $demand->setSortBy($this->settings['sortBy']);
-        $demand->setSortOrder($this->settings['sortOrder']);
+        $demand->setSingleRecords((string)$this->settings['singleRecords']);
+        $demand->setSortBy((string)$this->settings['sortBy']);
+        $demand->setSortOrder((string)$this->settings['sortOrder']);
 
         return $demand;
     }

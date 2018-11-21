@@ -18,8 +18,10 @@ namespace FriendsOfTYPO3\TtAddress\Domain\Repository;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Service\CategoryService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
@@ -31,12 +33,17 @@ class AddressRepository extends Repository
     /**
      * override the storagePid settings (do not use storagePid) of extbase
      */
-    public function initializeObject()
+    public function initializeObject(): void
     {
         $this->defaultQuerySettings = $this->objectManager->get(Typo3QuerySettings::class);
         $this->defaultQuerySettings->setRespectStoragePage(false);
     }
 
+    /**
+     * @param Demand $demand
+     * @return QueryResultInterface
+     * @throws InvalidQueryException
+     */
     public function findByDemand(Demand $demand)
     {
         $query = $this->createQuery();
@@ -56,7 +63,6 @@ class AddressRepository extends Repository
         $categories = $demand->getCategories();
         if ($categories) {
             $categoryConstraints = $this->createCategoryConstraint($query, $categories);
-            // build the query
             if ($demand->getCategoryCombination() === 'or') {
                 $constraints['categories'] = $query->matching(
                     $query->logicalOr(
@@ -78,6 +84,11 @@ class AddressRepository extends Repository
         return $query->execute();
     }
 
+    /**
+     * @param Demand $demand
+     * @return array
+     * @throws InvalidQueryException
+     */
     public function getAddressesByCustomSorting(Demand $demand): array
     {
         $listOfIds = explode(',', $demand->getSingleRecords());
@@ -111,7 +122,7 @@ class AddressRepository extends Repository
      * @param QueryInterface $query
      * @param  string $categories
      * @return array|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|null
-     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
+     * @throws InvalidQueryException
      */
     protected function createCategoryConstraint(QueryInterface $query, $categories)
     {

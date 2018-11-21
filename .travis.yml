@@ -39,13 +39,13 @@ script:
   - >
     echo;
     echo "Running unit tests";
-    .Build/bin/phpunit --coverage-clover build/logs/clover.xml--colors -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTests.xml Tests/Unit/
+    .Build/bin/phpunit --coverage-clover build/logs/clover.xml --colors -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTests.xml Tests/Unit/
   - >
     echo;
     echo "Running php lint";
     find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
   - >
-    if [[ "$COVERAGE" == "1" ]]; then
+    if [[ "$COVERAGE" == "10" ]]; then
       echo;
       export typo3DatabaseName="typo3";
       export typo3DatabaseHost="localhost";

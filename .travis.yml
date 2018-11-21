@@ -28,9 +28,9 @@ before_install:
   - composer --version
 
 before_script:
-  - phpenv config-rm xdebug.ini
   - composer require "typo3/minimal:${TYPO3_VERSION}"
   - composer require "typo3/testing-framework:${TESTING_FRAMEWORK}"
+  - 
   # Restore composer.json
   - git checkout composer.json
  # - export TYPO3_PATH_WEB=$PWD/.Build/Web
@@ -39,7 +39,7 @@ script:
   - >
     echo;
     echo "Running unit tests";
-    .Build/bin/phpunit --colors -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTests.xml Tests/Unit/
+    .Build/bin/phpunit --coverage-clover build/logs/clover.xml--colors -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTests.xml Tests/Unit/
   - >
     echo;
     echo "Running php lint";

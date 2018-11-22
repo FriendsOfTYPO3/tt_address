@@ -30,7 +30,8 @@ before_install:
 before_script:
   - composer require "typo3/minimal:${TYPO3_VERSION}"
   - composer require "typo3/testing-framework:${TESTING_FRAMEWORK}"
-  - if [[ "$COVERAGE" == "0" ]]; then composer require "phpunit/phpcov";mkdir cov: fi
+  - if [[ "$COVERAGE" == "1" ]]; then composer require "phpunit/phpcov"; fi
+  - mkdir cov
   # Restore composer.json
   - git checkout composer.json
  # - export TYPO3_PATH_WEB=$PWD/.Build/Web

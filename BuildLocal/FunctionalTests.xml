@@ -26,4 +26,12 @@
 			<directory>../Tests/Functional/</directory>
 		</testsuite>
 	</testsuites>
+	<filter>
+		<whitelist>
+			<directory>../Classes/</directory>
+			<exclude>
+				<file>../Classes/Controller/LegacyPluginController.php</file>
+			</exclude>
+		</whitelist>
+	</filter>
 </phpunit>

@@ -22,6 +22,7 @@
         <whitelist>
             <directory>../Classes/</directory>
             <exclude>
+                <directory>../Classes/Updates</directory>
                 <file>../Classes/Controller/LegacyPluginController.php</file>
                 <file>../Classes/Hooks/FormEngine/LegacyPluginSelector.php</file>
             </exclude>

@@ -8,7 +8,6 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Unit\Hooks\Tca;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use FriendsOfTYPO3\TtAddress\Hooks\FormEngine\LegacyPluginSelector;
 use FriendsOfTYPO3\TtAddress\Hooks\Tca\AddFieldsToSelector;
 use TYPO3\CMS\Lang\LanguageService;

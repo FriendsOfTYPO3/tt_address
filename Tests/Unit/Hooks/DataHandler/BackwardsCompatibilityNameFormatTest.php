@@ -8,7 +8,6 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Unit\Hooks\DataHandler;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Hooks\DataHandler\BackwardsCompatibilityNameFormat;
 use TYPO3\TestingFramework\Core\BaseTestCase;

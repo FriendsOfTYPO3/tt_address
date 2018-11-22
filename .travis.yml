@@ -41,7 +41,7 @@ script:
   - >
     echo;
     echo "Running unit tests";
-    .Build/bin/phpunit --coverage-php cov/coverage-unit.cov ---colors -c Build/UnitTests.xml Tests/Unit/
+    .Build/bin/phpunit --coverage-php cov/coverage-unit.cov --colors -c Build/UnitTests.xml Tests/Unit/
   - >
     echo;
     echo "Running php lint";

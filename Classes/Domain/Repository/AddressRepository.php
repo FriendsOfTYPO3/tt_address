@@ -8,6 +8,7 @@ namespace FriendsOfTYPO3\TtAddress\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Service\CategoryService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -43,7 +44,7 @@ class AddressRepository extends Repository
 
         // sorting
         $sortBy = $demand->getSortBy();
-        if ($sortBy && $sortBy !== 'singleSelection') {
+        if ($sortBy && $sortBy !== 'singleSelection' && $sortBy !== 'default') {
             $order = strtolower($demand->getSortOrder()) === 'desc' ? QueryInterface::ORDER_DESCENDING : QueryInterface::ORDER_ASCENDING;
             $query->setOrderings([$sortBy => $order]);
         }

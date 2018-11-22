@@ -7,7 +7,6 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class BackwardsCompatibilityNameFormatTest extends FunctionalTestCase
 {
-
     protected $testExtensionsToLoad = ['typo3conf/ext/tt_address'];
 
     public function setUp()
@@ -27,5 +26,4 @@ class BackwardsCompatibilityNameFormatTest extends FunctionalTestCase
         $row = $subject->_call('getRecord', 7);
         $this->assertEquals('Zargo', $row['last_name']);
     }
-
 }

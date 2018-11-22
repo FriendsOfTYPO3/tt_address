@@ -3,6 +3,8 @@
 namespace FriendsOfTYPO3\TtAddress\Tests\Functional\Service;
 
 use FriendsOfTYPO3\TtAddress\Service\CategoryService;
+use TYPO3\CMS\Core\Cache\CacheManager;
+use TYPO3\CMS\Core\TimeTracker\TimeTracker;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
@@ -32,6 +34,21 @@ class CategoryServiceTest extends FunctionalTestCase
 
         $categories = $this->subject->getChildrenCategories('4,5,10919,6,7,8');
         $this->assertEquals('4,5,8', $categories);
+    }
+
+    /**
+     * @test
+     */
+    public function loggerInvokedWithTooManyCategories()
+    {
+        $mockedTimeTracker = $this->getAccessibleMock(TimeTracker::class, ['setTSlogMessage'], [], '', false);
+        $mockedTimeTracker->expects($this->any())->method('setTSlogMessage');
+
+        $subject = $this->getAccessibleMock(CategoryService::class, ['dummy'], [], '', false);
+        $subject->_set('timeTracker', $mockedTimeTracker);
+        $subject->_set('cache', GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_ttaddress_category'));
+
+        $categories = $subject->getChildrenCategories('2,4', 100000);
     }
 
 }

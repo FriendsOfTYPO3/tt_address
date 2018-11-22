@@ -46,7 +46,6 @@ class CategoryService
      *
      * @param string $idList list of category ids to start
      * @param int $counter
-     * @param string $additionalWhere additional where clause
      * @return string comma separated list of category ids
      */
     public function getChildrenCategories($idList, int $counter = 0)
@@ -94,7 +93,7 @@ class CategoryService
         while ($row = $res->fetch()) {
             $counter++;
             if ($counter > 10000) {
-                $this->timeTracker->setTSlogMessage('EXT:news: one or more recursive categories where found');
+                $this->timeTracker->setTSlogMessage('EXT:tt_address: one or more recursive categories where found');
                 return implode(',', $result);
             }
             $subcategories = $this->getChildrenCategoriesRecursive($row['uid'], $counter);

@@ -50,5 +50,4 @@ class CategoryServiceTest extends FunctionalTestCase
 
         $categories = $subject->getChildrenCategories('2,4', 100000);
     }
-
 }

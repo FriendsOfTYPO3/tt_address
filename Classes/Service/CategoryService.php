@@ -75,7 +75,10 @@ class CategoryService
 
         // add id list to the output
         if ($counter === 0) {
-            $result[] = $idList;
+            $newList = $this->getUidListFromRecords($idList);
+            if ($newList) {
+                $result[] = $newList;
+            }
         }
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
@@ -100,5 +103,31 @@ class CategoryService
 
         $result = implode(',', $result);
         return $result;
+    }
+
+    /**
+     * Fetch ids again from DB to avoid false positives
+     *
+     * @param string $idList
+     * @return string
+     */
+    protected function getUidListFromRecords(string $idList): string
+    {
+        $list = [];
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('sys_category');
+        $rows = $queryBuilder
+            ->select('uid')
+            ->from('sys_category')
+            ->where(
+                $queryBuilder->expr()->in('uid', $queryBuilder->createNamedParameter(explode(',', $idList), Connection::PARAM_INT_ARRAY))
+            )
+            ->execute()
+            ->fetchAll();
+        foreach ($rows as $row) {
+            $list[] = $row['uid'];
+        }
+
+        return implode(',', $list);
     }
 }

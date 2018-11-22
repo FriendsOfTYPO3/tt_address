@@ -23,7 +23,6 @@
             <directory>../Classes/</directory>
             <exclude>
                 <file>../Classes/Controller/LegacyPluginController.php</file>
-                <file>../Classes/Hooks/FormEngine/LegacyPluginSelector.php</file>
             </exclude>
         </whitelist>
     </filter>

@@ -3,12 +3,12 @@ language: php
 matrix:
   fast_finish: true
   include:
- #   - php: 7.0
- #     env: TYPO3_VERSION=^8 TESTING_FRAMEWORK=^1.3 FUNCTIONALS=0 COVERAGE=0
- #   - php: 7.1
- #     env: TYPO3_VERSION=^8 TESTING_FRAMEWORK=^1.3 FUNCTIONALS=0 COVERAGE=0
- #   - php: 7.2
- #     env: TYPO3_VERSION=^8 TESTING_FRAMEWORK=^1.3 FUNCTIONALS=0 COVERAGE=0
+    - php: 7.0
+      env: TYPO3_VERSION=^8 TESTING_FRAMEWORK=^1.3 FUNCTIONALS=0 COVERAGE=0
+    - php: 7.1
+      env: TYPO3_VERSION=^8 TESTING_FRAMEWORK=^1.3 FUNCTIONALS=0 COVERAGE=0
+    - php: 7.2
+      env: TYPO3_VERSION=^8 TESTING_FRAMEWORK=^1.3 FUNCTIONALS=0 COVERAGE=0
     - php: 7.2
       env: TYPO3_VERSION=^9 TESTING_FRAMEWORK=^4 FUNCTIONALS=1 COVERAGE=1
 
@@ -39,9 +39,17 @@ before_script:
 
 script:
   - >
-    echo;
-    echo "Running unit tests";
-    .Build/bin/phpunit --coverage-php cov/coverage-unit.cov --colors -c Build/UnitTests.xml Tests/Unit/
+    if [[ "$COVERAGE" == "0" ]]; then
+      echo;
+      echo "Running unit tests";
+      .Build/bin/phpunit --colors -c Build/UnitTests.xml Tests/Unit/
+    fi
+  - >
+    if [[ "$COVERAGE" == "1" ]]; then
+      echo;
+      echo "Running unit tests";
+      .Build/bin/phpunit --coverage-php cov/coverage-unit.cov --colors -c Build/UnitTests.xml Tests/Unit/
+    fi
   - >
     echo;
     echo "Running php lint";
@@ -57,5 +65,9 @@ script:
     fi
 
 after_script:
-  - .Build/bin/phpcov merge cov --clover build/logs/clover.xml
-  - travis_retry php .Build/bin/php-coveralls -v
+  - >
+    if [[ "$COVERAGE" == "1" ]]; then
+      echo;
+      .Build/bin/phpcov merge cov --clover build/logs/clover.xml
+      travis_retry php .Build/bin/php-coveralls -v
+    fi

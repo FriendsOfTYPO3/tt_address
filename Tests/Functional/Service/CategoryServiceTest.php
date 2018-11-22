@@ -2,6 +2,13 @@
 
 namespace FriendsOfTYPO3\TtAddress\Tests\Functional\Service;
 
+/**
+ * This file is part of the "tt_address" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 use FriendsOfTYPO3\TtAddress\Service\CategoryService;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\TimeTracker\TimeTracker;

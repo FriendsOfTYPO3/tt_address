@@ -2,6 +2,13 @@
 
 namespace FriendsOfTypo3\TtAddress\Tests\Unit\ViewHelpers;
 
+/**
+ * This file is part of the "tt_address" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 use FriendsOfTYPO3\TtAddress\ViewHelpers\RemoveSpacesViewHelper;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;

@@ -2,6 +2,13 @@
 
 namespace FriendsOfTYPO3\TtAddress\Tests\Functional\Repository;
 
+/**
+ * This file is part of the "tt_address" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;

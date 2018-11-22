@@ -8,7 +8,6 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Utility;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use FriendsOfTYPO3\TtAddress\Utility\EvalcoordinatesUtility;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 

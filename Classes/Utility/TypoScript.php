@@ -23,36 +23,36 @@ class TypoScript
 {
 
     /**
-     * @param array $base
-     * @param array $overload
+     * @param array $previousData
+     * @param array $tsData
      * @return array
      */
-    public function override(array $base, array $overload)
+    public function override(array $previousData, array $tsData)
     {
-        $validFields = GeneralUtility::trimExplode(',', $overload['settings']['overrideFlexformSettingsIfEmpty'], true);
+        $validFields = GeneralUtility::trimExplode(',', $tsData['settings']['overrideFlexformSettingsIfEmpty'], true);
         foreach ($validFields as $fieldName) {
             // Multilevel field
             if (strpos($fieldName, '.') !== false) {
                 $keyAsArray = explode('.', $fieldName);
 
-                $foundInCurrentTs = $this->getValue($base, $keyAsArray);
+                $foundInCurrentTs = $this->getValue($previousData, $keyAsArray);
 
                 if (is_string($foundInCurrentTs) && strlen($foundInCurrentTs) === 0) {
-                    $foundInOriginal = $this->getValue($overload['settings'], $keyAsArray);
+                    $foundInOriginal = $this->getValue($tsData['settings'], $keyAsArray);
                     if ($foundInOriginal) {
-                        $base = $this->setValue($base, $keyAsArray, $foundInOriginal);
+                        $previousData = $this->setValue($previousData, $keyAsArray, $foundInOriginal);
                     }
                 }
             } else {
                 // if flexform setting is empty and value is available in TS
-                if ((!isset($base[$fieldName]) || (strlen($base[$fieldName]) === 0))
-                    && isset($overload['settings'][$fieldName])
+                if ((!isset($previousData[$fieldName]) || (strlen($previousData[$fieldName]) === 0))
+                    && isset($tsData['settings'][$fieldName])
                 ) {
-                    $base[$fieldName] = $overload['settings'][$fieldName];
+                    $previousData[$fieldName] = $tsData['settings'][$fieldName];
                 }
             }
         }
-        return $base;
+        return $previousData;
     }
 
     /**
@@ -108,9 +108,6 @@ class TypoScript
     {
         while (count($path) > 1) {
             $key = array_shift($path);
-            if (!isset($array[$key])) {
-                $array[$key] = [];
-            }
             $array = &$array[$key];
         }
 

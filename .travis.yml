@@ -28,23 +28,31 @@ before_install:
   - composer --version
 
 before_script:
-  - phpenv config-rm xdebug.ini
   - composer require "typo3/minimal:${TYPO3_VERSION}"
   - composer require "typo3/testing-framework:${TESTING_FRAMEWORK}"
+  - if [[ "$COVERAGE" == "1" ]]; then composer require "phpunit/phpcov"; fi
+  - mkdir cov
   # Restore composer.json
   - git checkout composer.json
  # - export TYPO3_PATH_WEB=$PWD/.Build/Web
 
 script:
   - >
-    echo;
-    echo "Running unit tests";
-    .Build/bin/phpunit --colors -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTests.xml Tests/Unit/
+    if [[ "$COVERAGE" == "0" ]]; then
+      echo;
+      echo "Running unit tests";
+      .Build/bin/phpunit --colors -c Build/UnitTests.xml Tests/Unit/
+    fi
+  - >
+    if [[ "$COVERAGE" == "1" ]]; then
+      echo;
+      echo "Running unit tests";
+      .Build/bin/phpunit --coverage-php cov/coverage-unit.cov --colors -c Build/UnitTests.xml Tests/Unit/
+    fi
   - >
     echo;
     echo "Running php lint";
     find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
-
   - >
     if [[ "$COVERAGE" == "1" ]]; then
       echo;
@@ -52,5 +60,13 @@ script:
       export typo3DatabaseHost="localhost";
       export typo3DatabaseUsername="root";
       export typo3DatabasePassword="";
-      .Build/bin/phpunit --colors -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/FunctionalTests.xml Tests/Functional/
+      .Build/bin/phpunit --coverage-php cov/coverage-functional.cov --colors -c Build/FunctionalTests.xml Tests/Functional/
+    fi
+
+after_script:
+  - >
+    if [[ "$COVERAGE" == "1" ]]; then
+      echo;
+      .Build/bin/phpcov merge cov --clover build/logs/clover.xml
+      travis_retry php .Build/bin/php-coveralls -v
     fi

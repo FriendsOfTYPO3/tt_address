@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+    <sys_category>
+        <uid>1</uid>
+        <pid>1</pid>
+        <title>City</title>
+        <parent>0</parent>
+    </sys_category>
+    <sys_category>
+        <uid>2</uid>
+        <pid>1</pid>
+        <title>Person</title>
+        <parent>0</parent>
+    </sys_category>
+    <sys_category>
+        <uid>20</uid>
+        <pid>1</pid>
+        <title>Bond</title>
+        <parent>2</parent>
+    </sys_category>
+
+    <sys_category>
+        <uid>21</uid>
+        <pid>1</pid>
+        <title>blofeld</title>
+        <parent>20</parent>
+    </sys_category>
+    <sys_category>
+        <uid>211</uid>
+        <pid>1</pid>
+        <title>blofeld 1</title>
+        <parent>21</parent>
+    </sys_category>
+    <sys_category>
+        <uid>212</uid>
+        <pid>1</pid>
+        <title>blofeld 2</title>
+        <parent>21</parent>
+    </sys_category>
+
+    <sys_category>
+        <uid>30</uid>
+        <pid>1</pid>
+        <title>Band</title>
+        <parent>2</parent>
+    </sys_category>
+
+    <sys_category>
+        <uid>31</uid>
+        <pid>1</pid>
+        <title>beatles</title>
+        <parent>30</parent>
+    </sys_category>
+    <sys_category>
+        <uid>32</uid>
+        <pid>1</pid>
+        <title>george</title>
+        <parent>30</parent>
+    </sys_category>
+
+
+    <sys_category>
+        <uid>3</uid>
+        <pid>1</pid>
+        <title>Rom</title>
+        <parent>1</parent>
+    </sys_category>
+    <sys_category>
+        <uid>4</uid>
+        <pid>1</pid>
+        <title>Paris</title>
+        <parent>1</parent>
+    </sys_category>
+    <sys_category>
+        <uid>5</uid>
+        <pid>1</pid>
+        <title>Wien</title>
+        <parent>1</parent>
+    </sys_category>
+    <sys_category>
+        <uid>6</uid>
+        <pid>1</pid>
+        <title>Hamburg</title>
+        <parent>1</parent>
+        <deleted>1</deleted>
+    </sys_category>
+    <sys_category>
+        <uid>7</uid>
+        <pid>1</pid>
+        <title>Mailand</title>
+        <parent>1</parent>
+        <hidden>1</hidden>
+    </sys_category>
+    <sys_category>
+        <uid>8</uid>
+        <pid>1</pid>
+        <title>Moskau</title>
+        <parent>1</parent>
+    </sys_category>
+</dataset>

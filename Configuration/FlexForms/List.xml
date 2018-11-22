@@ -229,15 +229,7 @@
                                             LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.displayMode.singleView
                                         </numIndex>
                                         <numIndex index="1">1</numIndex>
-                                        <numIndex index="2">EXT:tt_address/ext_icon.gif</numIndex>
-                                    </numIndex>
-                                    <numIndex index="2" type="array">
-                                        <numIndex index="0">
-                                            LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.displayMode.mapView
-                                        </numIndex>
-                                        <numIndex index="1">2</numIndex>
-                                        <numIndex index="2">EXT:tt_address/Resources/Public/Icons/map_icon.svg
-                                        </numIndex>
+                                        <numIndex index="2">EXT:tt_address/Resources/Public/Icons/Extension.gif</numIndex>
                                     </numIndex>
                                 </items>
                             </config>
@@ -290,10 +282,6 @@
                             </config>
                         </TCEforms>
                     </settings.singlePid>
-
-                    <!-- ToDo:
-                      - Display alphabetical filter on/off
-                    -->
                 </el>
             </ROOT>
         </sDISPLAY>

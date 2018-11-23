@@ -51,7 +51,7 @@ if ($settings->isActivatePiBase()) {
         'Address' => 'list,show'
     ],
     [
-        'Address' => 'list'
+        'Address' => ''
     ],
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN
 );

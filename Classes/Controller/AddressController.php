@@ -14,6 +14,7 @@ use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
 use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 
 /**
  * AddressController
@@ -126,6 +127,17 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     public function injectAddressRepository(AddressRepository $addressRepository)
     {
         $this->addressRepository = $addressRepository;
+    }
+
+    /**
+     * Initializes the view before invoking an action method.
+     *
+     * @param ViewInterface $view The view to be initialized
+     */
+    protected function initializeView(ViewInterface $view)
+    {
+        $view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
+        parent::initializeView($view);
     }
 
     /**

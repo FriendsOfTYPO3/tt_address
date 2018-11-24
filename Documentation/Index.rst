@@ -29,13 +29,13 @@ Address List
 
 
     :Copyright:
-        2002-2015
+        2002-2018
 
     :Author:
-        Ingo Renner
+        tt_address Development Team
 
     :Email:
-        typo3@ingo-renner.com
+        friendsof@typo3.org
 
     :License:
         This document is published under the Open Publication License
@@ -55,8 +55,8 @@ Address List
     :titlesonly:
 
     Introduction/Index
+    Administration/Index
     UsersManual/Index
-    Adminstration/Index
     Configuration/Index
-    KnownProblems/Index
-    TodoList/Index
+    Tutorials/Index
+    Development/Index

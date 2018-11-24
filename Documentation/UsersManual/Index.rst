@@ -15,6 +15,5 @@ Users manual
     :maxdepth: 2
     :titlesonly:
 
-    CreatingAGroup/Index
-    AssigningGroupsToAnAddress/Index
+    CreatingRecords/Index
     CreatingAPluginContent/Index

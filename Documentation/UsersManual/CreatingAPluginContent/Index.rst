@@ -13,7 +13,7 @@ Creating a Plugin Content Element
 
 Go to the page view and navigate to the page where you want to insert one or more addresses. Create
 a new content element and in the “new content element wizard” scroll down to the plugins section
-and select “Address Selection”
+and select "Address Selection"
 
 |image-2|
 

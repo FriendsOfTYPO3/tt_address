@@ -441,10 +441,9 @@ return [
     ],
     'types' => [
         '0' => [
-            'showitem' =>
-                'hidden,
-            --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.name;name,
-            image, description,
+            'showitem' => '
+                --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.name;name,
+                    image, description,
             --div--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.address,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.address;address,
             
@@ -454,6 +453,8 @@ return [
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.building;building,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.social;social,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.coordinates;coordinates,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+                --palette--;;paletteHidden,
             --div--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_category.tabs.category, categories
             '
         ]
@@ -486,6 +487,11 @@ return [
         'social' => [
             'showitem' => 'skype, twitter, --linebreak--,
                             facebook, linkedin'
+        ],
+        'paletteHidden' => [
+            'showitem' => '
+                hidden
+            ',
         ],
     ],
 ];

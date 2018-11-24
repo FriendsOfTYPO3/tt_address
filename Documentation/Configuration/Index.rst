@@ -20,5 +20,6 @@ work!
     :maxdepth: 2
     :titlesonly:
 
-    Reference/Index
-    BackendConfiguration/Index
+    ExtensionSettings/Index
+    TypoScript/Index
+    TypoScriptAbstractPlugin/Index

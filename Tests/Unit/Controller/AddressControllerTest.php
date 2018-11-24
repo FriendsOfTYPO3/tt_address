@@ -13,10 +13,12 @@ use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 use TYPO3\CMS\Core\Database\QueryGenerator;
+use TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Fluid\View\TemplateView;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class AddressControllerTest extends BaseTestCase
@@ -294,5 +296,29 @@ class AddressControllerTest extends BaseTestCase
         $subject->_set('addressRepository', $mockedRepository);
 
         $subject->listAction();
+    }
+
+    /**
+     * @test
+     */
+    public function viewsAreInitiliazed()
+    {
+        $contentArray = ['uid' => 123, 'header' => 'a plugin'];
+        $mockedConfigurationManager = $this->getAccessibleMock(ConfigurationManager::class, ['assign'], [], '', false);
+        $mockedConcreteConfigurationManager = $this->getAccessibleMock(BackendConfigurationManager::class, ['assign'], [], '', false);
+        $mockedConfigurationManager->_set('concreteConfigurationManager', $mockedConcreteConfigurationManager);
+
+        $mockedContentObjectRenderer = $this->getAccessibleMock(ContentObjectRenderer::class, ['dummy'], [], '', false);
+        $mockedContentObjectRenderer->data = $contentArray;
+        $mockedConfigurationManager->setContentObject($mockedContentObjectRenderer);
+
+        $mockedView = $this->getAccessibleMock(TemplateView::class, ['assign'], [], '', false);
+        $mockedView->expects($this->once())->method('assign')->with('contentObjectData', $contentArray);
+
+        $subject = $this->getAccessibleMock(AddressController::class, ['dummy'], [], '', false);
+        $subject->_set('view', $mockedView);
+        $subject->_set('configurationManager', $mockedConfigurationManager);
+
+        $subject->_call('initializeView', $mockedView);
     }
 }

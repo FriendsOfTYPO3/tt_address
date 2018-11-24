@@ -6,9 +6,14 @@
 .. include:: ../Includes.txt
 
 
-.. _todo-list:
+.. _administration:
 
-To-Do list
-==========
+Administration
+==============
 
-Nothing yet, please add your ideas for improvements to the bugtracker.
+.. toctree::
+    :maxdepth: 2
+    :titlesonly:
+
+    Installation/Index
+    Updating/Index

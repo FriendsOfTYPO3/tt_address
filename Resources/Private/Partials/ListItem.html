@@ -17,8 +17,8 @@
                 <p class="position"><em>{address.position}</em></p>
             </f:if>
 
-            <f:render section="address" partial="Person" arguments="{_all}"/>
-            <f:render section="social" partial="Person" arguments="{_all}"/>
+            <f:render section="address" partial="Address" arguments="{_all}"/>
+            <f:render section="social" partial="Address" arguments="{_all}"/>
 
             <f:if condition="{settings.singlePid}">
                 <f:link.action action="show" arguments="{address : address}"

@@ -6,16 +6,14 @@
 .. include:: ../Includes.txt
 
 
-.. _adminstration:
+.. _development:
 
-Adminstration
-=============
-
-There's not much to say about administration here, just install the extension. After installation
-you need to configure the extension. For that, please consult the next section.
+Development
+===========
+Target group of this chapter are users who want to contribute to the extension, e.g. provide a bugfix or feature.
 
 .. toctree::
     :maxdepth: 2
     :titlesonly:
 
-    Updating/Index
+    Tests/Index

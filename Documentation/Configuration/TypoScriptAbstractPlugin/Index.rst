@@ -6,10 +6,14 @@
 .. include:: ../../Includes.txt
 
 
-.. _configuration-reference:
+.. _configuration-reference_old:
 
-Reference
----------
+Reference old plugin
+--------------------
+
+.. warning::
+
+    This TypoScript belongs to the deprecated plugin based on `AbstractPlugin`.
 
 ======================================  ==========  =============================================================  =========================
 Property:                               Data type:  Description:                                                   Default:
@@ -34,11 +38,11 @@ wrap                                    string      wraps the whole output
 --------------------------------------  ----------  -------------------------------------------------------------  -------------------------
 singleSelection                         string /
                                         stdWrap     Comma separated list of tt_address record uids, will be
-                                                    overriden with flexform data
+                                                    overridden with flexform data
 --------------------------------------  ----------  -------------------------------------------------------------  -------------------------
 groupSelection                          string /
                                         stdWrap     Comma separated list of tt_address group record uids,
-                                                    will be overriden with flexform data
+                                                    will be overridden with flexform data
 --------------------------------------  ----------  -------------------------------------------------------------  -------------------------
 combination                             int         0 = AND, 1 = OR
 --------------------------------------  ----------  -------------------------------------------------------------  -------------------------
@@ -77,7 +81,7 @@ templates.[TEMPLATE_NAME].[FIELD_NAME]  stdWrap     The configurations for the d
                                                     TEMPLATENAME is the file name without the extension.
                                                     Now you can configure each of these templates:
 
-                                                    **Example:**
+                                                    **Example:** ::
 
                                                     plugin.tx_ttaddress_pi1 {
 
@@ -107,7 +111,7 @@ templates.[TEMPLATE_NAME].[FIELD_NAME]  stdWrap     The configurations for the d
 
                                                     each standard tt_address field can be configured with
                                                     stdWrap properties. Like wrap and required which will
-                                                    propably be the most important and most used ones.
+                                                    probably be the most important and most used ones.
 
                                                     Here's the list of default fields you can use inside
                                                     each template configuration:
@@ -117,7 +121,7 @@ templates.[TEMPLATE_NAME].[FIELD_NAME]  stdWrap     The configurations for the d
                                                     birthday, organization, city, zip, region, country,
                                                     image, fax, description, mainGroup
 
-                                                    You can control max width and hight of an image with
+                                                    You can control max width and height of an image with
                                                     image.file.maxW and image.file.maxH
 
                                                     A placeholder image can be defined:

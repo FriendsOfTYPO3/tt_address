@@ -15,7 +15,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
-class AdressRepositoryTest extends FunctionalTestCase
+class AddressRepositoryTest extends FunctionalTestCase
 {
 
     /** @var ObjectManager */

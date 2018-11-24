@@ -137,7 +137,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * LinkedIn
      * @var string
      */
-    protected $linkedIn;
+    protected $linkedin;
 
     /**
      * Email
@@ -599,11 +599,11 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * sets the LinkedIn attribute
      *
-     * @param string $linkedIn
+     * @param string $linkedin
      */
-    public function setLinkedIn($linkedIn)
+    public function setLinkedin($linkedin)
     {
-        $this->linkedIn = $linkedIn;
+        $this->linkedin = $linkedin;
     }
 
     /**
@@ -611,9 +611,9 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string
      */
-    public function getLinkedIn()
+    public function getLinkedin()
     {
-        return $this->linkedIn;
+        return $this->linkedin;
     }
 
     /**

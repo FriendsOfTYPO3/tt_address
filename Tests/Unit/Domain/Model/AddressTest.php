@@ -365,6 +365,35 @@ class AddressTest extends BaseTestCase
     /**
      * @test
      */
+    public function firstImageCanBeRetrieved()
+    {
+        $value = new ObjectStorage();
+
+        $item = new FileReference();
+        $item->setPid(123);
+        $value->attach($item);
+
+        $item2 = new FileReference();
+        $item2->setPid(345);
+
+        $this->subject->setImage($value);
+        $this->assertEquals($item, $this->subject->getFirstImage());
+    }
+
+    /**
+     * @test
+     */
+    public function firstImageIsNullIfNoImages()
+    {
+        $value = new ObjectStorage();
+
+        $this->subject->setImage($value);
+        $this->assertNull($this->subject->getFirstImage());
+    }
+
+    /**
+     * @test
+     */
     public function imagesCanBeRemoved()
     {
         $value = new ObjectStorage();

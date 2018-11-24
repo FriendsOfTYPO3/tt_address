@@ -8,7 +8,8 @@ namespace FriendsOfTYPO3\TtAddress\Updates;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use TYPO3\CMS\Core\Database\DatabaseConnection;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\AbstractUpdate;
 
 /**
@@ -36,17 +37,28 @@ class TypoScriptTemplateLocation extends AbstractUpdate
             return false;
         }
 
-        $affectedRows = $this->getDatabaseConnection()->exec_SELECTcountRows(
-            'uid',
-            'sys_template',
-            'deleted=0 AND'
-            . ' (constants LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
-                'sys_template') . '%"'
-            . ' OR config LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
-                'sys_template') . '%"'
-            . ' OR include_static_file LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
-                'sys_template') . '%")'
-        );
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_template');
+        $queryBuilder->getRestrictions()->removeAll();
+        $affectedRows = $queryBuilder->count('uid')
+            ->from('sys_template')
+            ->where(
+                $queryBuilder->expr()->orX(
+                    $queryBuilder->expr()->like(
+                        'constants',
+                        $queryBuilder->createNamedParameter('%' . $this->oldLocation . '%', \PDO::PARAM_STR)
+                    ),
+                    $queryBuilder->expr()->like(
+                        'config',
+                        $queryBuilder->createNamedParameter('%' . $this->oldLocation . '%', \PDO::PARAM_STR)
+                    ),
+                    $queryBuilder->expr()->like(
+                        'include_static_file',
+                        $queryBuilder->createNamedParameter('%' . $this->oldLocation . '%', \PDO::PARAM_STR)
+                    )
+                )
+            )
+            ->execute()->fetchColumn(0);
+
         if ($affectedRows) {
             $description = 'tt_address\' Static templates have been relocated to EXT:tt_address/Configuration/TypoScript/LegacyPlugin';
         }
@@ -62,46 +74,55 @@ class TypoScriptTemplateLocation extends AbstractUpdate
      */
     public function performUpdate(array &$databaseQueries, &$customMessage)
     {
-        $records = $this->getDatabaseConnection()->exec_SELECTgetRows(
-            'uid, include_static_file, constants, config',
-            'sys_template',
-            'deleted=0 AND'
-            . ' (constants LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
-                'sys_template') . '%"'
-            . ' OR config LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
-                'sys_template') . '%"'
-            . ' OR include_static_file LIKE "%' . $this->getDatabaseConnection()->escapeStrForLike($this->oldLocation,
-                'sys_template') . '%")'
-        );
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('sys_template');
+
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_template');
+        $queryBuilder->getRestrictions()->removeAll();
+        $records = $queryBuilder
+            ->select('uid', 'include_static_file', 'constants', 'config')
+            ->from('sys_template')
+            ->where(
+                $queryBuilder->expr()->orX(
+                    $queryBuilder->expr()->like(
+                        'constants',
+                        $queryBuilder->createNamedParameter('%' . $this->oldLocation . '%', \PDO::PARAM_STR)
+                    ),
+                    $queryBuilder->expr()->like(
+                        'config',
+                        $queryBuilder->createNamedParameter('%' . $this->oldLocation . '%', \PDO::PARAM_STR)
+                    ),
+                    $queryBuilder->expr()->like(
+                        'include_static_file',
+                        $queryBuilder->createNamedParameter('%' . $this->oldLocation . '%', \PDO::PARAM_STR)
+                    )
+                )
+            )
+            ->execute()
+            ->fetchAll();
 
         foreach ($records as $record) {
-            $newData = [
-                'include_static_file' => str_replace($this->oldLocation, $this->newLocation,
-                    $record['include_static_file']),
+            $record = [
+                'include_static_file' => str_replace($this->oldLocation, $this->newLocation, $record['include_static_file']),
                 'constants' => str_replace($this->oldLocation, $this->newLocation, $record['constants']),
                 'config' => str_replace($this->oldLocation, $this->newLocation, $record['config'])
             ];
 
-            $updateQuery = $this->getDatabaseConnection()->UPDATEquery(
-                'sys_template',
-                'uid=' . (int)$record['uid'],
-                $newData
-            );
-
-            $this->getDatabaseConnection()->sql_query($updateQuery);
+            $queryBuilder = $connection->createQueryBuilder();
+            $queryBuilder->update('sys_template')
+                ->where(
+                    $queryBuilder->expr()->eq(
+                        'uid',
+                        $queryBuilder->createNamedParameter($record['uid'], \PDO::PARAM_INT)
+                    )
+                )
+                ->set('include_static_file', $record['include_static_file'])
+                ->set('constants', $record['constants'])
+                ->set('config', $record['config']);
+            $queryBuilder->execute();
 
             $customMessage = 'Updated sys_template ' . $record['uid'] . '';
-            $databaseQueries[] = $updateQuery;
         }
         $this->markWizardAsDone();
         return true;
-    }
-
-    /**
-     * @return DatabaseConnection
-     */
-    protected function getDatabaseConnection()
-    {
-        return $GLOBALS['TYPO3_DB'];
     }
 }

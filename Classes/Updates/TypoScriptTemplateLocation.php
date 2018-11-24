@@ -125,5 +125,4 @@ class TypoScriptTemplateLocation extends AbstractUpdate
         $this->markWizardAsDone();
         return true;
     }
-
 }

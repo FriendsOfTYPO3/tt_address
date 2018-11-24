@@ -8,6 +8,7 @@ namespace FriendsOfTYPO3\TtAddress\Domain\Model;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use TYPO3\CMS\Extbase\Domain\Model\Category;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
@@ -779,11 +780,28 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the images
      *
-     * @return ObjectStorage<FileReference>
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
      */
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Get first image
+     *
+     * @return FileReference|null
+     */
+    public function getFirstImage()
+    {
+        $images = $this->getImage();
+        if ($images) {
+            foreach ($images as $image) {
+                return $image;
+            }
+        }
+
+        return null;
     }
 
     /**

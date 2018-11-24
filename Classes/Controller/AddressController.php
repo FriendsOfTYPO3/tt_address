@@ -51,10 +51,6 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function listAction()
     {
-        if ((int)$this->settings['singlePid'] === 0) {
-            $this->settings['singlePid'] = (int)$GLOBALS['TSFE']->id;
-        }
-
         $demand = $this->createDemandFromSettings();
         if ($demand->getSingleRecords()) {
             $addresses = $this->addressRepository->getAddressesByCustomSorting($demand);

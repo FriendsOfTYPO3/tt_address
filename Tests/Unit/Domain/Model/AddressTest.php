@@ -8,6 +8,7 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Domain\Model;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use TYPO3\CMS\Extbase\Domain\Model\Category;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
@@ -360,6 +361,36 @@ class AddressTest extends BaseTestCase
         $this->subject->setImage($value);
         $this->subject->addImage($item2);
         $this->assertEquals(2, $this->subject->getImage()->count());
+    }
+
+
+    /**
+     * @test
+     */
+    public function firstImageCanBeRetrieved()
+    {
+        $value = new ObjectStorage();
+
+        $item = new FileReference();
+        $item->setPid(123);
+        $value->attach($item);
+
+        $item2 = new FileReference();
+        $item2->setPid(345);
+
+        $this->subject->setImage($value);
+        $this->assertEquals($item, $this->subject->getFirstImage());
+    }
+
+    /**
+     * @test
+     */
+    public function firstImageIsNullIfNoImages()
+    {
+        $value = new ObjectStorage();
+
+        $this->subject->setImage($value);
+        $this->assertNull($this->subject->getFirstImage());
     }
 
     /**

@@ -1,0 +1,98 @@
+<div class="vcard tt_address_detail" itemscope itemtype="http://schema.org/Person">
+    <h4 itemprop="name">{f:if(condition:address.title,then: '{address.title} ')}{address.firstName}
+        {f:if(condition:address.middleName,then: '{address.middleName} ')} {address.lastName}</h4>
+    <f:render section="position" partial="Person" arguments="{_all}"/>
+
+
+    <f:if condition="{address.image}">
+        <f:then>
+            <div class="row">
+                <div class="col-md-3">
+                    <figure class="figure">
+                        <f:image image="{address.firstImage}" width="600"
+                                 class="figure-img img-fluid img-thumbnail rounded"
+                                 alt="{img.originalResource.alt}"
+                                 title="{img.originalResource.title}"
+                                 additionalAttributes="{itemprop:'image'}"/>
+                        <f:if condition="{address.firstImage.originalResource.description}">
+                            <figcaption class="figure-caption">
+                                {address.firstImage.originalResource.description ->
+                                f:format.nl2br()}
+                            </figcaption>
+                        </f:if>
+                    </figure>
+                </div>
+                <div class="col-md-9">
+                    <f:render section="content" arguments="{_all}"/>
+                </div>
+            </div>
+        </f:then>
+        <f:else>
+            <f:render section="content" arguments="{_all}"/>
+        </f:else>
+    </f:if>
+</div>
+
+<f:section name="content">
+    <f:if condition="{address.description}">
+        <div class="description" itemprop="description">
+            {address.description -> f:format.nl2br()}
+        </div>
+    </f:if>
+
+    <f:render section="address" partial="Person" arguments="{_all}"/>
+
+    <f:if condition="{address.building} || {address.room}">
+        <ul class="list-inline">
+            <f:if condition="{address.building}">
+                <li class="list-inline-item">
+                    {f:translate(key:'label.building')}: {address.building}
+                </li>
+            </f:if>
+
+            <f:if condition="{address.room}">
+                <li class="list-inline-item">
+                    {f:translate(key:'label.room')}: {address.room}
+                </li>
+            </f:if>
+        </ul>
+    </f:if>
+
+
+    <f:render section="contact" partial="Person" arguments="{_all}"/>
+    <f:render section="social" partial="Person" arguments="{_all}"/>
+
+
+    <f:if condition="{address.image -> f:count() > 1}">
+        <div class="address-image-rows">
+            <div class="row">
+                <f:for each="{address.image}" as="img" iteration="iterator">
+                    <f:if condition="{iterator.cycle}>1">
+                        <div class="col-md-4">
+                            <figure class="figure">
+                                <a href="{f:uri.image(src:img.originalResource.publicUrl, maxWidth:1000)}"
+                                   class="media-object {settings.detail.imageClass}"
+                                   rel="images_tt_address_{address.uid}"
+                                   alt="{img.originalResource.alt}"
+                                   title="{img.originalResource.title}"
+                                   target="_blank">
+                                    <f:image image="{img}" width="400"
+                                             alt="{img.originalResource.alt}"
+                                             title="{img.originalResource.title}"
+                                             class="figure-img img-fluid img-thumbnail rounded"
+                                             additionalAttributes="{itemprop:'image'}"/>
+                                </a>
+                                <f:if condition="{img.originalResource.description}">
+                                    <figcaption class="figure-caption">
+                                        {img.originalResource.description -> f:format.nl2br()}
+                                    </figcaption>
+                                </f:if>
+                            </figure>
+                        </div>
+                    </f:if>
+                </f:for>
+            </div>
+        </div>
+    </f:if>
+
+</f:section>

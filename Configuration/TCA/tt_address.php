@@ -101,7 +101,7 @@ return [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender',
             'config' => [
                 'type' => 'radio',
-                'default' => 'm',
+                'default' => '',
                 'items' => [
                     ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.m', 'm'],
                     ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.f', 'f'],
@@ -165,8 +165,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
-                'eval' => 'datetime,int',
-                'size' => 8,
+                'eval' => 'date,int',
                 'default' => 0
             ]
         ],
@@ -365,6 +364,7 @@ return [
                     'maxitems' => 6,
                     'minitems' => 0,
                     'appearance' => [
+                        'collapseAll' => true,
                         'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'
                     ],
                     'overrideChildTca' => [
@@ -445,22 +445,23 @@ return [
                 'hidden,
             --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.name;name,
             image, description,
-            --div--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_tab.contact,
+            --div--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.address,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.address;address,
-                --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.coordinates;coordinates,
-                --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.building;building,
-                --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.organization;organization,
+            
+            --div--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_tab.contact,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.contact;contact,
+                --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.organization;organization,
+                --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.building;building,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.social;social,
+                --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.coordinates;coordinates,
             --div--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_category.tabs.category, categories
             '
         ]
     ],
     'palettes' => [
         'name' => [
-            'showitem' => 'name, --linebreak--,
-                            gender, title, --linebreak--,
-                            first_name, middle_name, last_name'
+            'showitem' => 'gender, title, --linebreak--,
+                            first_name, middle_name, last_name,--linebreak--,name'
         ],
         'organization' => [
             'showitem' => 'position, company'
@@ -478,16 +479,13 @@ return [
         ],
         'contact' => [
             'showitem' => 'email, --linebreak--,
-                            phone, fax, --linebreak--,
-                            mobile, --linebreak--,
+                            phone, mobile, fax, --linebreak--,
                             www, --linebreak--,
                             birthday'
         ],
         'social' => [
-            'showitem' => 'skype, --linebreak--,
-                            twitter, --linebreak--,
-                            facebook, --linebreak--,
-                            linkedin'
+            'showitem' => 'skype, twitter, --linebreak--,
+                            facebook, linkedin'
         ],
     ],
 ];

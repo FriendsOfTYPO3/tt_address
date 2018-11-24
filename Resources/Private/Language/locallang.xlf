@@ -48,10 +48,13 @@
       <trans-unit id="label.linkedin" xml:space="preserve">
         <source>LinkedIn</source>
       </trans-unit>
-      <trans-unit id="label.sykpe" xml:space="preserve">
+      <trans-unit id="label.skype" xml:space="preserve">
         <source>Skype</source>
       </trans-unit>
-      
+      <trans-unit id="label.birthday" xml:space="preserve">
+        <source>Birthday</source>
+      </trans-unit>
+
       <trans-unit id="paginate_overall" xml:space="preserve">
         <source>Page %s of %s</source>
       </trans-unit>
@@ -63,6 +66,9 @@
       </trans-unit>
       <trans-unit id="backToList">
         <target>Back to list</target>
+      </trans-unit>
+      <trans-unit id="more">
+        <source>More</source>
       </trans-unit>
     </body>
   </file>

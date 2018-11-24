@@ -75,10 +75,6 @@
         <source>Single view</source>
         <target>Detailansicht</target>
       </trans-unit>
-      <trans-unit id="pi1_flexform.displayMode.mapView" xml:space="preserve">
-        <source>Map view (not functional ATM)</source>
-        <target>Ausgabe auf Karte (not functional ATM!)</target>
-      </trans-unit>
       <trans-unit id="pi1_flexform.hidePagination" xml:space="preserve">
         <source>Do not display pagebrowser (listview)</source>
         <target>Blättern deaktivieren (Listenansicht)</target>
@@ -88,8 +84,8 @@
         <target>Anzahl der Einträge auf einer Seite (Listenansicht)</target>
       </trans-unit>
       <trans-unit id="pi1_flexform.singlePid" xml:space="preserve">
-        <source>Page for singelview (listview, this page if empty)</source>
-        <target>Seite für Detailansicht (Listenansicht, aktuelle Seite wenn leer)</target>
+        <source>Page for singelview </source>
+        <target>Seite für Detailansicht</target>
       </trans-unit>
 		</body>
 	</file>

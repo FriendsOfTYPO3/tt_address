@@ -245,8 +245,8 @@ class AddressTest extends BaseTestCase
     public function linkedinCanBeSet()
     {
         $value = 'www.linkedin.com/bar';
-        $this->subject->setLinkedIn($value);
-        $this->assertEquals($value, $this->subject->getLinkedIn());
+        $this->subject->setLinkedin($value);
+        $this->assertEquals($value, $this->subject->getLinkedin());
     }
 
     /**

@@ -8,7 +8,6 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Domain\Model;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use TYPO3\CMS\Extbase\Domain\Model\Category;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
@@ -362,7 +361,6 @@ class AddressTest extends BaseTestCase
         $this->subject->addImage($item2);
         $this->assertEquals(2, $this->subject->getImage()->count());
     }
-
 
     /**
      * @test

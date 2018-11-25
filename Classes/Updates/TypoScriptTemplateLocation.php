@@ -100,13 +100,8 @@ class TypoScriptTemplateLocation extends AbstractUpdate
             ->execute()
             ->fetchAll();
 
+        $listOfUpdateIds = [];
         foreach ($records as $record) {
-            $record = [
-                'include_static_file' => str_replace($this->oldLocation, $this->newLocation, $record['include_static_file']),
-                'constants' => str_replace($this->oldLocation, $this->newLocation, $record['constants']),
-                'config' => str_replace($this->oldLocation, $this->newLocation, $record['config'])
-            ];
-
             $queryBuilder = $connection->createQueryBuilder();
             $queryBuilder->update('sys_template')
                 ->where(
@@ -115,13 +110,13 @@ class TypoScriptTemplateLocation extends AbstractUpdate
                         $queryBuilder->createNamedParameter($record['uid'], \PDO::PARAM_INT)
                     )
                 )
-                ->set('include_static_file', $record['include_static_file'])
-                ->set('constants', $record['constants'])
-                ->set('config', $record['config']);
+                ->set('include_static_file', str_replace($this->oldLocation, $this->newLocation, $record['include_static_file']))
+                ->set('constants', str_replace($this->oldLocation, $this->newLocation, $record['constants']))
+                ->set('config', str_replace($this->oldLocation, $this->newLocation, $record['config']));
             $queryBuilder->execute();
-
-            $customMessage = 'Updated sys_template ' . $record['uid'] . '';
+            $listOfUpdateIds[] = $record['uid'];
         }
+        $customMessage = 'Updated sys_templates with UID: ' . implode(', ', $listOfUpdateIds);
         $this->markWizardAsDone();
         return true;
     }

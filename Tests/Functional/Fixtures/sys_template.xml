@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+    <sys_template>
+        <uid>1</uid>
+        <pid>1</pid>
+        <title>Some TS</title>
+        <constants>constants</constants>
+        <config>config</config>
+        <include_static_file></include_static_file>
+    </sys_template>
+    <sys_template>
+        <uid>2</uid>
+        <pid>1</pid>
+        <title>Reference in constants</title>
+        <constants>
+            <![CDATA[
+            # constants
+            <INCLUDE_TYPOSCRIPT: source="EXT:tt_address/static/pi1/constants.txt">
+           ]]>
+        </constants>
+        <config>config</config>
+        <include_static_file></include_static_file>
+    </sys_template>
+    <sys_template>
+        <uid>3</uid>
+        <pid>1</pid>
+        <title>Reference in config</title>
+        <constants></constants>
+        <config>
+            <![CDATA[
+            # setup
+            <INCLUDE_TYPOSCRIPT: source="EXT:tt_address/static/pi1/setup.txt">
+            # code in between
+            # code in between
+            <INCLUDE_TYPOSCRIPT: source="EXT:tt_address/static/pi1/setup.txt">
+           ]]>
+        </config>
+        <include_static_file></include_static_file>
+    </sys_template>
+    <sys_template>
+        <uid>4</uid>
+        <pid>1</pid>
+        <title>Reference in include static</title>
+        <include_static_file>EXT:fluid_styled_content/Configuration/TypoScript/,EXT:fluid_styled_content/Configuration/TypoScript/Styling/,EXT:tt_address/Configuration/TypoScript/,EXT:tt_address/static/pi1/</include_static_file>
+    </sys_template>
+</dataset>

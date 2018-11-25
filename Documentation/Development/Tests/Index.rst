@@ -52,5 +52,5 @@ Functional tests can be called by the following code:
 .. code-block:: bash
 
     cd typo3conf/ext/tt_address
-    export typo3DatabaseName="functional";export typo3DatabaseHost="mysql";export typo3DatabaseUsername="root";export typo3DatabasePassword="dev";../../../../phpunit   -c ./BuildLocal/FunctionalTests.xml Tests/Functional
+    export typo3DatabaseName="functional";export typo3DatabaseHost="mysql";export typo3DatabaseUsername="root";export typo3DatabasePassword="dev";../../../../phpunit   -c ./Build/Local/FunctionalTests.xml Tests/Functional
 

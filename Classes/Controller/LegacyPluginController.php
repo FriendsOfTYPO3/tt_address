@@ -19,6 +19,8 @@ use TYPO3\CMS\Frontend\Plugin\AbstractPlugin;
 /**
  * main class for the tt_address plugin, outputs addresses either by direct
  * selection or by selection via groups or a combination of both
+ *
+ * @deprecated will be removed in version 5.0.0, switch to the extbase based plugin
  */
 class LegacyPluginController extends AbstractPlugin
 {

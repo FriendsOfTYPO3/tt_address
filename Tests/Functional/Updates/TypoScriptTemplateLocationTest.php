@@ -14,6 +14,7 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class TypoScriptTemplateLocationTest extends FunctionalTestCase
 {
+
     protected $testExtensionsToLoad = ['typo3conf/ext/tt_address'];
 
     public function setUp()
@@ -22,30 +23,30 @@ class TypoScriptTemplateLocationTest extends FunctionalTestCase
 
         $this->importDataSet(__DIR__ . '/../Fixtures/sys_template.xml');
     }
-//
-//    /**
-//     * @test
-//     */
-//    public function doneWizardReturnsFalse()
-//    {
-//        $description = 'some description';
-//        $mockedSubject = $this->getAccessibleMock(TypoScriptTemplateLocation::class, ['isWizardDone'], [], '', false);
-//        $mockedSubject->expects($this->once())->method('isWizardDone')->willReturn(true);
-//
-//        $this->assertFalse($mockedSubject->checkForUpdate($description));
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function wizardReturnsTrueIfSomethingNeedsToBeUpdated()
-//    {
-//        $description = 'some description';
-//        $subject = GeneralUtility::makeInstance(TypoScriptTemplateLocation::class);
-//        $result = $subject->checkForUpdate($description);
-//        $this->assertTrue($result);
-//        $this->assertNotEquals('some description', $description);
-//    }
+
+    /**
+     * @test
+     */
+    public function doneWizardReturnsFalse()
+    {
+        $description = 'some description';
+        $mockedSubject = $this->getAccessibleMock(TypoScriptTemplateLocation::class, ['isWizardDone'], [], '', false);
+        $mockedSubject->expects($this->once())->method('isWizardDone')->willReturn(true);
+
+        $this->assertFalse($mockedSubject->checkForUpdate($description));
+    }
+
+    /**
+     * @test
+     */
+    public function wizardReturnsTrueIfSomethingNeedsToBeUpdated()
+    {
+        $description = 'some description';
+        $subject = GeneralUtility::makeInstance(TypoScriptTemplateLocation::class);
+        $result = $subject->checkForUpdate($description);
+        $this->assertTrue($result);
+        $this->assertNotEquals('some description', $description);
+    }
 
     /**
      * @test

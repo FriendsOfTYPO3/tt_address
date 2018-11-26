@@ -20,7 +20,7 @@ and select "Address Selection"
 Now on the first tab [1] you can add address records to the plugin, the second tab [2] is
 for selecting a template for how the address should look like, this needs to be configured by your
 administrator. If there're no templates on the second tab, just save the content element once and
-after saving it they should apear.
+after saving it they should appear.
 
 .. |image-2| image:: ../../Images/image-2.png
 

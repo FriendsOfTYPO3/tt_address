@@ -12,8 +12,7 @@ Usage of AddressRepository in custom extension
 ==============================================
 If you need to output addresses in your custom extension you can follow this short tutorial.
 
-All you nee to do is adopt the following code to you needs
-
+All you need to do is adopt the following code to your needs:
 
 .. code-block:: php
 

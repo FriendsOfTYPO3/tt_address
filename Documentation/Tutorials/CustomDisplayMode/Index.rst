@@ -18,7 +18,7 @@ on the selection.
 
 Add a new value
 ---------------
-Add the following code to your `Page TsConfig`, either in the page properties or better to your site package extension.
+Add the following code to your `Page TsConfig`, either in the field *TsConfig* in the page properties or better to your site package extension.
 
 .. code-block:: typoscript
 
@@ -37,3 +37,7 @@ Add the following code to your `Page TsConfig`, either in the page properties or
     }
 
 Now a new option **Map View** is available with the value `map`.
+
+Adopt templates
+---------------
+If a displaymode is selected, this can be checked in the template with `{settings.displayMode}`.

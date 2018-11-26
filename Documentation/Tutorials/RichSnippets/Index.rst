@@ -6,13 +6,13 @@
 .. include:: ../../Includes.txt
 
 
-.. _tutorial-richsnippets:
+.. _tutorial-rich_snippets:
 
 Rich snippets
 =============
-A quote on Google's website describes rich snippets best: When you use structured data to mark up content, you help
+When you use structured data to mark up content, you help
 Google better understand its context for display in Search, and you achieve better distribution of your content to
-users from Search.
+users from Search. (quote by google)
 
 The full article can be found at https://developers.google.com/search/docs/guides/mark-up-content
 

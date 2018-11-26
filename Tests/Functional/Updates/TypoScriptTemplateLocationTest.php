@@ -15,7 +15,6 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class TypoScriptTemplateLocationTest extends FunctionalTestCase
 {
-
     protected $testExtensionsToLoad = ['typo3conf/ext/tt_address'];
 
     public function setUp()

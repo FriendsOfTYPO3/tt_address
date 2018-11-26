@@ -50,6 +50,4 @@ The extension ships some TypoScript code which needs to be included.
 
 #. Press the link **Edit the whole template record** and switch to the tab *Includes*.
 
-#. Select **News (news)** at the field *Include static (from extensions):*
-
-|img-plugin-ts|
+#. Select **Addresses (Extbase/Fluid)** at the field *Include static (from extensions):*

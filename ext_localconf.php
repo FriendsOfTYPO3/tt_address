@@ -1,10 +1,6 @@
 <?php
 defined('TYPO3_MODE') or die();
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addUserTSConfig('options.saveDocNew.tt_address = 1');
-
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = \FriendsOfTYPO3\TtAddress\Hooks\DataHandler\BackwardsCompatibilityNameFormat::class;
-
 /* ===========================================================================
   Custom cache, done with the caching framework
 =========================================================================== */
@@ -15,6 +11,8 @@ if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations
 /* ===========================================================================
   Hooks
 =========================================================================== */
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['tt_address'] = \FriendsOfTYPO3\TtAddress\Hooks\DataHandler\BackwardsCompatibilityNameFormat::class;
+
 if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('realurl')) {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/realurl/class.tx_realurl_autoconfgen.php']['extensionConfiguration']['tt_address'] =
         'TYPO3\\TtAddress\\Hooks\\RealUrlAutoConfiguration->addTtAddressConfig';
@@ -34,7 +32,7 @@ if ($settings->isActivatePiBase()) {
         true
     );
     // Adds the old legacy plugin to New Content Element wizard
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . 'tt_address' . '/Configuration/TSconfig/AddLegacyPluginToNewCEWizard.typoscript">');
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:tt_address/Configuration/TSconfig/AddLegacyPluginToNewCEWizard.typoscript">');
 }
 
 /* ===========================================================================
@@ -42,7 +40,7 @@ if ($settings->isActivatePiBase()) {
 =========================================================================== */
 
 // Adds the new fluid/extbase-plugin to New Content Element wizard
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . 'tt_address' . '/Configuration/TSconfig/NewContentElementWizard.typoscript">');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:tt_address/Configuration/TSconfig/NewContentElementWizard.typoscript">');
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
     'FriendsOfTYPO3.tt_address',
@@ -52,8 +50,7 @@ if ($settings->isActivatePiBase()) {
     ],
     [
         'Address' => ''
-    ],
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN
+    ]
 );
 
 // Register evaluations for TCA

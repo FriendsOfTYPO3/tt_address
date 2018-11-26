@@ -10,6 +10,7 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Functional\Service;
  */
 use FriendsOfTYPO3\TtAddress\Updates\TypoScriptTemplateLocation;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class TypoScriptTemplateLocationTest extends FunctionalTestCase

@@ -1,41 +1,23 @@
-# TYPO3 Extension `tt_address`: Address storage and display
+# TYPO3 Extension `tt_address`
 
 [![Build Status](https://travis-ci.org/FriendsOfTYPO3/tt_address.svg?branch=master)](https://travis-ci.org/FriendsOfTYPO3/tt_address)
 [![Coverage Status](https://coveralls.io/repos/github/FriendsOfTYPO3/tt_address/badge.svg?branch=master)](https://coveralls.io/github/FriendsOfTYPO3/tt_address?branch=master)
 [![StyleCI](https://styleci.io/repos/51592958/shield?branch=master)](https://styleci.io/repos/51592958/)
 
-The basic aim of tt_address is to store your address data. The extension itself
-is shipped with a basic fluid/extbase plugin.
+The basic aim of tt_address is to store address and contact data and to output those in various ways:
 
-The aim of tt_address is not to solve sophisticated address-data problems for you, but
-tt_address could be your basic domain-model which you can reuse and extend.
-For example if you want nesting of address-records (e.g. "Home" and "Business"), you can do your
-own extension, which just references address records 1:n or n:m, whatever you need.
-Therefore you can focus on your special address-related problem to solve and have not to think about
-the general domain-model for storing an address-record with all its related fields.
+- Selection based on categories and sysfolder
+- Manual selection with custom sorting
+- List & detail view
 
-The fluid/extbase part comes with a list view and a detail view.
-List view is able to select by single records, categories or 'from pages' by waterfall principle.
+## Installation
 
-You can set the sorting order (manual ordering is also possible), deactivate pagination and there is
-also a limit option you can set.
+Install the extension by using composer and `composer req friendsoftypo3/tt-address` or by downloading it in the extension manager or on https://extensions.typo3.org/extension/tt_address/.
 
-Furthermore the category-based selection can be set to logical AND or logical OR.
+## Usage
 
-### Further Notes
+The extensions follows the principles known from any other TYPO3 extension:
 
-At the moment we also ship some ancient code, you might know: tt_address is nearly as old as TYPO3 itself.
-
-For version 4.0.0 we decided to ship the old pibase plugin, but keep in mind you need to actively activate it in
-the extensions settings, as we decided to deactivate it by default.
-
-You are encouraged to move along to the new extbase/fluid based plugin, in case you used the pibase part before.
-
-
-## License
-
-GPL v2+
-
-## Maintenance
-
-The extension is currently maintained by @BastianBalthasarBux and @bmack.
+1. Create some records
+2. Create a new tt_address plugin on a page
+3. You are done.

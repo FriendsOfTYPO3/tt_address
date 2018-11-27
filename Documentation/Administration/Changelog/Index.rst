@@ -3,18 +3,17 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../Includes.txt
+.. include:: ../../Includes.txt
 
 
-.. _administration:
+.. _changelog:
 
-Administration
-==============
+Changelog
+---------
 
 .. toctree::
-    :maxdepth: 2
-    :titlesonly:
+   :maxdepth: 5
+   :titlesonly:
+   :glob:
 
-    Installation/Index
-    Updating/Index
-    Changelog/Index
+   v/4-0-0

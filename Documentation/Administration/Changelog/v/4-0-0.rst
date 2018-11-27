@@ -1,0 +1,207 @@
+4.0.0 - 2018-12-xx
+==================
+
+.. include:: ../../../Includes.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+
+Deprecated pi1 plugin
+^^^^^^^^^^^^^^^^^^^^^
+The plugin based on `AbstractPlugin` (formerly known as pibase) has been marked as deprecated and will be removed with
+version 5.0.0. If you still want to use this version you need to enable it in the settings of the extension manager.
+
+Changed vendor name
+^^^^^^^^^^^^^^^^^^^
+The vendor name has been changed from `TYPO3` to `FriendsOfTYPO3`. This change is only relevant if you or any extension
+you are using extends tt_address.
+
+Installing the extension via composer **did not** change and is still `composer req friendsoftypo3/tt-address`.
+
+Features
+--------
+
+Extbase & Fluid
+^^^^^^^^^^^^^^^
+A new plugin has been added which is based on extbase & fluid, 2 very well known concepts of TYPO3 and its eco system.
+
+The default templates are based on Twitter Bootstrap to have a well known code base.
+
+Rich snippets
+^^^^^^^^^^^^^
+The templates integrate rich snippets for every field by default.
+
+Code base
+^^^^^^^^^
+The code base of tt_address has been changed and improved in every area. To keep the quality high, the whole code base
+is now covered with unit and functional tests which are executed with every commit and pull request.
+
+.. image:: https://coveralls.io/repos/github/FriendsOfTYPO3/tt_address/badge.svg?branch=master
+  :target: https://coveralls.io/github/FriendsOfTYPO3/tt_address?branch=master
+
+.. image:: https://styleci.io/repos/51592958/shield?branch=master
+  :target: https://styleci.io/repos/51592958/
+
+
+
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2018-11-26 [TASK] Improve docs (Commit 7e5ffdc by Georg Ringer)
+    2018-11-26 [TASK] Code cleanup (Commit 3ca26f8 by Georg Ringer)
+    2018-11-26 Apply fixes from StyleCI (#112) (Commit 7edb065 by Georg Ringer)
+    2018-11-26 [BUGFIX] Add missing use statement (Commit ca1508d by Georg Ringer)
+    2018-11-26 [DOC] Fix some typos in manual (Commit fae3ec4 by Georg Ringer)
+    2018-11-25 [BUGFIX] Make the update wizard work (Commit dedc6a1 by Georg Ringer)
+    2018-11-25 [BUGFIX] Fix update wizard (#110) (Commit b55b042 by Georg Ringer)
+    2018-11-25 [TASK] Add deprecation info to LegacyPluginController (Commit 7a93e5c by Georg Ringer)
+    2018-11-24 [TASK] Add github issue templates (Commit 7fdeacb by Georg Ringer)
+    2018-11-24 [TASK] Improve docs (Commit 18e1527 by Georg Ringer)
+    2018-11-24 [TASK] Fix getter & setter for linkedin propery (Commit 22070bb by Georg Ringer)
+    2018-11-24 [CLEANUP] Rename linkedin property (Commit 9204bf8 by ©lemens)
+    2018-11-24 [CLEANUP] Rename linkedin property (Commit 285188e by ©lemens)
+    2018-11-24 [FEATURE] Improve frontend (#103) (Commit f4d21b4 by Georg Ringer)
+    2018-11-23 [TASK] Add missing indexed_search comment (Commit bfe773d by Georg Ringer)
+    2018-11-22 [TASK] Remove old wizards (Commit 37bb913 by Georg Ringer)
+    2018-11-22 Apply fixes from StyleCI (#101) (Commit 6ba4f1d by Georg Ringer)
+    2018-11-22 [BUGFIX] Ignore default sorting (Commit 6938959 by Georg Ringer)
+    2018-11-22 Apply fixes from StyleCI (#100) (Commit 51d9ca0 by Georg Ringer)
+    2018-11-22 [TASK] Add .gitattributes file (Commit 9d002eb by Georg Ringer)
+    2018-11-22 [TASK] Move local build files (Commit 7530bfc by Georg Ringer)
+    2018-11-22 [TASK] Update license block (Commit aa52037 by Georg Ringer)
+    2018-11-22 [TASK] Remove wip map rendering (Commit be1e040 by Georg Ringer)
+    2018-11-22 Update README.md (Commit 7f02260 by Georg Ringer)
+    2018-11-22 [TASK] Check coverage (#96) (Commit 46a05fb by Georg Ringer)
+    2018-11-21 Apply fixes from StyleCI (#95) (Commit 5213bdb by Georg Ringer)
+    2018-11-21 [TASK] Add tests for actions (Commit 3227ce9 by Georg Ringer)
+    2018-11-21 [!!!][TASK] Remove HeaderDataViewHelper (Commit 7c813ca by Georg Ringer)
+    2018-11-21 Apply fixes from StyleCI (#94) (Commit fad073f by Georg Ringer)
+    2018-11-21 [TASK] Use demand object for creating proper queries (#93) (Commit 19653e6 by Georg Ringer)
+    2018-11-21 [TASK] Add functional testing (#92) (Commit 4125dad by Georg Ringer)
+    2018-11-20 Merge pull request #87 from FriendsOfTYPO3/analysis-qxoNQB (Commit cd4cb37 by Georg Ringer)
+    2018-11-20 Apply fixes from StyleCI (Commit 3d3d010 by Georg Ringer)
+    2018-11-20 [BUGFIX] Typecase int in migration #62 (Commit e532d4c by Georg Ringer)
+    2018-11-20 [!!!][TASK] Drop custom pagination (Commit 78cfa5c by Georg Ringer)
+    2018-11-20 [TASK] Add test to LegacyPluginSelector (Commit d5370b6 by Georg Ringer)
+    2018-11-20 [TASK] Add test for AddFieldsToSelector (Commit 9c0545d by Georg Ringer)
+    2018-11-20 [TASK] Add test for realurl hook (Commit f1e6254 by Georg Ringer)
+    2018-11-20 [TASK] Add styleci badge (Commit 537ce01 by Georg Ringer)
+    2018-11-20 [TASK] Improve code quality (Commit ca74c7d by Georg Ringer)
+    2018-11-20 [TASK] Add test for setting merge (Commit 0c920bc by Georg Ringer)
+    2018-11-20 [TASK] More tests to AddressController (Commit fec5bd0 by Georg Ringer)
+    2018-11-20 [TASK] Improve readme (Commit 5a58908 by Georg Ringer)
+    2018-11-19 Merge pull request #77 from FriendsOfTYPO3/analysis-qxo4NO (Commit 2f109cc by Georg Ringer)
+    2018-11-19 Apply fixes from StyleCI (Commit 8ab407c by Georg Ringer)
+    2018-11-19 [TASK] Add styleci configuration (Commit 62f0290 by Georg Ringer)
+    2018-11-19 Merge pull request #75 from georgringer/master (Commit b140a04 by Georg Ringer)
+    2018-11-19 [TASK] Add more tests and improve code (Commit 8f1e2f2 by Georg Ringer)
+    2018-11-19 [TASK] Allow php7.2 with 8 (Commit d238f58 by Georg Ringer)
+    2018-11-19 fix test (Commit e78f771 by Georg Ringer)
+    2018-11-19 [TASK] Add testing (Commit 95c5dc6 by Georg Ringer)
+    2018-11-19 [TASK] More (Commit dc1b5b8 by Georg Ringer)
+    2018-11-17 [TASK] Improve category (Commit aab52ef by Georg Ringer)
+    2018-11-17 [TASK] Rework everything (Commit dc2b814 by Georg Ringer)
+    2018-11-15 [TASK] Rename namespace (Commit 462b6d5 by Georg Ringer)
+    2018-11-15 [TASK] Move ext icon (Commit a44f473 by Georg Ringer)
+    2018-11-14 [TASK] Make legacy plugin compatible with v9 (Commit c8c0855 by Benni Mack)
+    2018-11-13 [CLEANUP] Added remarks, applied coding guidelines from Core (Commit 4b1bef5 by Benni Mack)
+    2018-11-13 Merge pull request #71 from BastianBalthasarBux/master (Commit cebe25e by Benni Mack)
+    2018-11-12 [TASK] Allow whitespaces for telephonenumbers (Commit 3bcdbd6 by clemens.riccabona)
+    2018-11-12 [FOLLOWUP][BUGFIX] Type mismatch in updater script (Commit 3fb0df7 by root)
+    2018-11-12 [BUGFIX] Type mismatch in updater script (Commit 08e755e by root)
+    2018-11-08 [TASK] Add some iterators as addressing a single FAL image in a set of images is not possible anymore by adding the index in FLUID since v9 (Commit 6976bef by Clemens Riccabona)
+    2018-11-08 [TASK] Fix link wizard for field webpage, because of constantly changing TCA (Commit 6ec5776 by Clemens Riccabona)
+    2018-11-08 [TASK] Make compatible with version 9 and remove some smaller bugs for 8 and 9 (Commit 9dea60c by Clemens Riccabona)
+    2018-11-08 Merge pull request #12 from halbkreativ/bugfix/make-rootpaths-overridable (Commit aba40bd by ©lemens)
+    2018-11-07 [TASK] remove Address folder from default Template path (Commit 291a98c by Christoph Schwob)
+    2018-11-07 [TASK] use *RootPaths array instead of strings to make it overridable (Commit dd6b49e by Christoph Schwob)
+    2018-11-03 [BUGFIX] Two small issues introduced with solving #11 (Commit e9db5a1 by ©lemens)
+    2018-11-01 [BUGFIX] Make sorting work with singleRecord selection (Commit 6510910 by Clemens Riccabona)
+    2018-10-26 [CLEANUP] remove empty language files (Commit 3228bed by Clemens Riccabona)
+    2018-10-26 [CLEANUPS] Moving things to their respective files according to the changes on v8 concerning ext_localconf.php and ext_tables.php (Commit d46887b by Clemens Riccabona)
+    2018-10-26 [BUGFIX] Re-add legacy plugin (Commit c63fb49 by Clemens Riccabona)
+    2018-10-26 [CLEANUP] Cleanup language files (Commit 180f519 by Clemens Riccabona)
+    2018-10-26 [CLEANUP] More cleanups of old, obsolete things concerning pi1 and wizicon (Commit b8a9b6f by Clemens Riccabona)
+    2018-10-26 [CLEANUP] Remove obsolete wizicon.php (Commit 6ff6a51 by Clemens Riccabona)
+    2018-10-26 [CLEANUP] Remove one more(git add --all) empty and obsolete default_hcard.htm (Commit b943fb4 by Clemens Riccabona)
+    2018-10-26 [CLEANUP] Remove empty and obsolete default_hcard.htm (Commit f236d54 by Clemens Riccabona)
+    2018-10-26 [BUGFIX][CLEANUP] Fix broken pagination viewhelper, remove some useless language files, fix bug with localization (Commit 1f6f82d by Clemens Riccabona)
+    2018-10-23 [TASK] Hide legacy plugin if not activated in EM configuration (Commit ad5a935 by Clemens Riccabona)
+    2018-10-19 [TASK][FOLLOWUP] Cleanup after rebasing (Commit 3d950f4 by Clemens Riccabona)
+    2018-06-28 [FOLLOWUP][TASK] Merging master with fork - wizicon part of the story (Commit d0daf44 by Clemens Riccabona)
+    2018-06-28 [FOLLOWUP][TASK] Clean up things after monster-merge during coding night (Commit 270f0e8 by Clemens Riccabona)
+    2018-06-25 [TASK] Rebase fork with current master (Commit 549ca0e by Clemens Riccabona)
+    2018-06-23 [FOLLOWUP] Solve conflicts with upstream (Commit fe405b7 by Clemens Riccabona)
+    2018-06-23 [FOLLOWUP] Solve conflicts with upstream (Commit 59498e0 by Clemens Riccabona)
+    2018-05-25 [BUGIFIX] Fix error "setOrderings" (Commit e9fb490 by Falk Gebauer)
+    2017-06-23 [BUGFIX] Remove @deprecated renderMode from f:flashMessages (Commit 533e759 by ©lemens)
+    2017-06-23 [BUGFIX] Remove @deprecated renderMode (Commit 944d738 by ©lemens)
+    2017-04-23 [CLEANUP] Remove unnecessary stdWrap functionality for TypoScript/FlexForm overridings (Commit 7cfec8c by Clemens Riccabona)
+    2017-04-23 [TASK] Smaller optical enhancements for FE (Commit 71295c4 by ©lemens)
+    2017-04-23 [TASK] Smaller optical enhancements for FE (Commit a752b9e by Clemens Riccabona)
+    2017-04-18 [BUGFIX] Correct headlines in README.md (Commit 8031e99 by ©lemens)
+    2017-04-18 [CLEANUP] Remove template from old path (Commit c3f57ed by ©lemens)
+    2017-04-18 [TASK] Add Fluid and Extbase Controller and output (Commit 4fdc8c2 by Clemens Riccabona)
+    2017-04-05 [BUGFIX] Correct mixedup l10n and l18n fields and add some language-exclusions (Commit 08150ad by Clemens Riccabona)
+    2017-04-04 [TASK] Add possibility to translate records; ATM only backend supports Multilanguage address records (Commit 0d01955 by Clemens Riccabona)
+    2017-04-04 [TASK] Move locallang_tca.xml to xliff in appropriate folder; Adding some missing german labels; Correction of some locallang references to EXT:cms not working anymore in TYPO3 8 (Commit 5240d2e by Clemens Riccabona)
+    2017-04-04 [TASK] Move locallang_csh.xml to XLIFF in Resources/Private/Language/ (Commit cd8de7e by Clemens Riccabona)
+    2017-04-04 [TASK] Move ce_wiz to new Resources folder and make pi1_wizicon ready for .xlf (Commit 3198088 by Clemens Riccabona)
+    2017-04-04 [TASK] Move hcard.gif to new Resources folder (Commit d0f05f6 by Clemens Riccabona)
+    2018-09-06 Merge pull request #69 from randomresult/master (Commit bf20f30 by ©lemens)
+    2018-09-05 Change birthday - eval (Commit b167aa4 by Harry Glatz)
+    2018-06-14 [BUGFIX] Fix wrong usage in legacy plugin (Commit 269080c by Benni Mack)
+    2018-01-19 [TASK] Update composer.json license definition (Commit 53362f2 by Stefan Neufeind)
+    2017-10-30 Require specific core package in composer.json (Commit cfbf3b0 by Benni)
+    2017-09-07 Merge pull request #49 from IchHabRecht/fetch-absolute-template (Commit 5c83fb3 by Benni)
+    2017-09-07 [BUGFIX] Fetch absolute template code (Commit c196cea by Nicole Cordes)
+    2017-08-22 [TASK] Move default template for LegacyPlugin to Resources/Public (Commit 99c52e1 by Benni Mack)
+    2017-08-22 [TASK] Minor improvements to TCA/FormEngine hooks (Commit 99550bc by Benni Mack)
+    2017-08-22 [TASK] Move old FormEngine methods to single class (Commit b08837c by Benni Mack)
+    2017-08-22 [TASK] Remove superfluous check for settings on hook registration (Commit 231b8e6 by Benni Mack)
+    2017-08-22 [BUGFIX] Use proper PHP class location for pi-based plugin (Commit 94e24b4 by Benni Mack)
+    2017-08-22 [TASK] Move TypoScript to Configuration/TypoScript/LegacyPlugin (Commit fa08c47 by Benni Mack)
+    2017-08-22 [!!!][TASK] Move pi1/*php to LegacyPluginController (Commit da66366 by Benni Mack)
+    2017-08-22 [BUGFIX] Use proper output / labels in FlexForm / TCA (Commit 7b2d8f1 by Benni Mack)
+    2017-08-22 [TASK] Add new content element wizard item via PageTSconfig (Commit 35f71f7 by Benni Mack)
+    2017-08-11 [TASK] Migrate locallang_tca.xml to xlf (Commit 3af9057 by Benni Mack)
+    2017-08-11 [TASK] Drop CSH support (Commit d19cc17 by Benni Mack)
+    2017-08-11 [TASK] Migrate locallang_pi1.xml to XLF format (Commit 685a71a by Benni Mack)
+    2017-08-11 [TASK] Remove TSconfig of tt_address_group (Commit d13c5b4 by Benni Mack)
+    2017-08-11 [TASK] Cleanup of Extbase TypoScript configuration (Commit 80e814a by Benni Mack)
+    2017-08-11 [CLEANUP] Use proper PHP variables and class names in ext_localconf.php (Commit e39a440 by Benni Mack)
+    2017-08-11 [TASK] Cleanup pi1 class and remove empty pi1/locallang.xml (Commit 122bb4b by Benni Mack)
+    2017-08-11 [TASK] Moved locallang.xml labels into locallang_pi1.xml file (Commit 3bcb5d9 by Benni Mack)
+    2017-08-11 [TASK] Moved new content element wizard hook to proper class (Commit 0aaa111 by Benni Mack)
+    2017-08-11 [TASK] Cleanup AddFilesToSelector Tca proc items call (Commit abc3cf7 by Benni Mack)
+    2017-08-11 [TASK] Renamed FlexForm Language File (Commit c5f308a by Benni Mack)
+    2017-08-11 [TASK] Move CSH locallang file to Resources/Private/Language (Commit a7b7aae by Benni Mack)
+    2017-08-09 [TASK] Move locallang_tca.xml to Resources/Private/Language (Commit 60eed63 by Benni Mack)
+    2017-08-09 [TASK] Move Wizard Icon to Resources/Public/Icons (Commit 935c552 by Benni Mack)
+    2017-08-09 [TASK] Moved FlexForm to Configuration/FlexForms (Commit 3e2d453 by Benni Mack)
+    2017-08-09 [!!!][TASK] Removed very old TypoScript definition / template (Commit 7403458 by Benni Mack)
+    2017-08-09 [TASK] Removed unused TCA option "canNotCollapse" (Commit d482ebd by Benni Mack)
+    2017-08-09 [TASK] Raised minimum TYPO3 version to 7 LTS (Commit 719051e by Benni Mack)
+    2017-08-09 [RELEASE] tt_address 3.3.0 (Commit 36bbf57 by Benni Mack)
+    2017-07-29 Merge pull request #42 from janmayer/psql-double-quotes (Commit 8227a55 by ©lemens)
+    2017-07-29 Merge pull request #40 from marcobiedermann/feature/categories (Commit d550a05 by ©lemens)
+    2017-07-28 Postgresql compatibility (Commit 6867998 by Jan Mayer)
+    2017-06-16 Merge pull request #39 from mindscreen/bugfix/image-rendering (Commit 5a85949 by Benni)
+    2017-06-16 Merge pull request #37 from chriwo/bugfix-phpversion (Commit c4b9477 by Benni)
+    2017-06-16 Add version constrain for php version (Commit 1b6abcf by Christian Wolfram)
+    2017-06-07 add getter and setter methods for categories (Commit 1d5edd5 by Marco Biedermann)
+    2017-05-19 Use string values in typoscript configuration (Commit 7487df6 by Thomas Heilmann)
+    2017-04-28 [BUGFIX] Wrong error syntax for array (Commit b045b04 by Christian Wolfram)
+
+
+This list has been created by using `git log v3.2.4..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

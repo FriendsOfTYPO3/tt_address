@@ -26,7 +26,7 @@ return [
         'enablecolumns' => [
             'disabled' => 'hidden'
         ],
-        'iconfile' => 'EXT:tt_address/Resources/Public/Icons/tt_address.gif',
+        'iconfile' => 'EXT:tt_address/Resources/Public/Icons/tt_address.svg',
         'searchFields' => 'name, first_name, middle_name, last_name, email',
     ],
     'interface' => [

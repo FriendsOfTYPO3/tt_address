@@ -65,5 +65,5 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['tt_address_l
 \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class)->registerIcon(
     'tt-address-plugin',
     \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-    ['source' => 'EXT:tt_address/Resources/Public/Icons/ContentElementWizard.gif']
+    ['source' => 'EXT:tt_address/Resources/Public/Icons/ContentElementWizard.svg']
 );

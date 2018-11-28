@@ -225,8 +225,6 @@
                                             LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_flexform.templateFile.I.0
                                         </numIndex>
                                         <numIndex index="1">default</numIndex>
-                                        <numIndex index="2">EXT:tt_address/Resources/Public/Icons/default_hcard.gif
-                                        </numIndex>
                                     </numIndex>
                                 </items>
                                 <itemsProcFunc>

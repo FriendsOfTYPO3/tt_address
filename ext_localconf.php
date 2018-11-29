@@ -63,7 +63,20 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['tt_address_l
 
 // Register icon
 \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class)->registerIcon(
-    'tt-address-plugin',
+    '',
     \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-    ['source' => 'EXT:tt_address/Resources/Public/Icons/ContentElementWizard.svg']
+    ['source' => 'EXT:tt_address/Resources/Public/Icons/']
 );
+
+$icons = [
+    'apps-pagetree-folder-contains-tt-address' => 'page-tree-module.svg',
+    'tt-address-plugin' => 'ContentElementWizard.svg',
+];
+$iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
+foreach ($icons as $identifier => $path) {
+    $iconRegistry->registerIcon(
+        $identifier,
+        \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        ['source' => 'EXT:tt_address/Resources/Public/Icons/' . $path]
+    );
+}

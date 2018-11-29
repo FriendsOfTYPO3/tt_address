@@ -8,7 +8,6 @@ $GLOBALS['TCA']['pages']['columns']['module']['config']['items'][] = [
     2 => 'apps-pagetree-folder-contains-tt-address'
 ];
 
-
 $GLOBALS['TCA']['pages']['ctrl']['typeicon_classes']['contains-tt-address'] = 'apps-pagetree-folder-contains-tt-address';
 $GLOBALS['TCA']['pages']['ctrl']['typeicon_classes']['contains-tt_address'] = 'apps-pagetree-folder-contains-tt-address';
 $GLOBALS['TCA']['pages']['ctrl']['typeicon_classes']['contains-ttaddress'] = 'apps-pagetree-folder-contains-tt-address';

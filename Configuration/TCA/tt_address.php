@@ -66,16 +66,19 @@ return [
         ],
         'sys_language_uid' => [
             'exclude' => true,
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.language',
+            'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.language',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'foreign_table' => 'sys_language',
-                'foreign_table_where' => 'ORDER BY sys_language.title',
+                'special' => 'languages',
                 'items' => [
-                    [$generalLanguageFilePrefix . 'locallang_general.xlf:LGL.allLanguages', -1],
-                    [$generalLanguageFilePrefix . 'locallang_general.xlf:LGL.default_value', 0],
-                ]
+                    [
+                        'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
+                        -1,
+                        'flags-multiple'
+                    ],
+                ],
+                'default' => 0,
             ]
         ],
         'l10n_parent' => [
@@ -85,6 +88,7 @@ return [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
+                'default' => 0,
                 'items' => [
                     ['', 0],
                 ],

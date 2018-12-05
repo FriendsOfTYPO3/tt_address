@@ -57,6 +57,14 @@ All Changes
 -----------
 This is a list of all changes in this release: ::
 
+    2018-12-05 [TASK] Improve flexforms (Commit fce71c7 by Georg Ringer)
+    2018-12-04 [TASK] Adopt icon (Commit 65361d0 by Georg Ringer)
+    2018-12-03 Apply fixes from StyleCI (#116) (Commit ca78158 by Georg Ringer)
+    2018-12-02 [BUGFIX] Improve TCA for sys_language_uid (Commit 852f865 by Georg Ringer)
+    2018-11-29 [FEATURE] Add page tree icon (Commit c060811 by Georg Ringer)
+    2018-11-28 [TASK] Update icons (Commit 745f93a by Georg Ringer)
+    2018-11-27 [TASK] Adopt readme (Commit ae60199 by Georg Ringer)
+    2018-11-27 [DOC] Add changelog (Commit 7008ed4 by Georg Ringer)
     2018-11-26 [TASK] Improve docs (Commit 7e5ffdc by Georg Ringer)
     2018-11-26 [TASK] Code cleanup (Commit 3ca26f8 by Georg Ringer)
     2018-11-26 Apply fixes from StyleCI (#112) (Commit 7edb065 by Georg Ringer)

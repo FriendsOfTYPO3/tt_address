@@ -12,8 +12,8 @@
 				<target>Einzelne Adressen</target>
 			</trans-unit>
 			<trans-unit id="pi1_flexform.group_selection" xml:space="preserve" approved="yes">
-				<source>Groups</source>
-				<target>Gruppen</target>
+				<source>Categories</source>
+				<target>Kategorien</target>
 			</trans-unit>
 			<trans-unit id="pi1_flexform.combination" xml:space="preserve" approved="yes">
 				<source>Combination</source>

@@ -11,7 +11,7 @@
 				<source>Single addresses</source>
 			</trans-unit>
             <trans-unit id="pi1_flexform.group_selection" xml:space="preserve">
-				<source>Groups</source>
+				<source>Categories</source>
 			</trans-unit>
             <trans-unit id="pi1_flexform.combination" xml:space="preserve">
 				<source>Combination</source>

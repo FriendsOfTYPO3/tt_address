@@ -76,27 +76,20 @@ class AddressRepository extends Repository
      */
     public function getAddressesByCustomSorting(Demand $demand): array
     {
-        $listOfIds = explode(',', $demand->getSingleRecords());
+        $idList = explode(',', $demand->getSingleRecords());
         if ($demand->getSortOrder() === 'DESC') {
-            $listOfIds = array_reverse($listOfIds);
+            $idList = array_reverse($idList);
         }
 
-        $query = $this->createQuery();
-        $query->matching(
-            $query->in('uid', $listOfIds)
-        );
-        $objects = $query->execute();
-
-        $finalList = $tempList = [];
-        foreach ($objects as $object) {
-            $tempList[$object->getUid()] = $object;
-        }
-        foreach ($listOfIds as $uid) {
-            if (isset($tempList[$uid])) {
-                $finalList[] = $tempList[$uid];
+        $list = [];
+        foreach ($idList as $id) {
+            $item = $this->findByIdentifier($id);
+            if ($item) {
+                $list[] = $item;
             }
         }
-        return $finalList;
+
+        return $list;
     }
 
     /**

@@ -29,6 +29,11 @@
                                         <type>suggest</type>
                                     </suggest>
                                 </wizards>
+                                <suggestOptions>
+                                    <default>
+                                        <addWhere>AND tt_address.sys_language_uid IN (-1,0)</addWhere>
+                                    </default>
+                                </suggestOptions>
                             </config>
                         </TCEforms>
                     </settings.singleRecords>

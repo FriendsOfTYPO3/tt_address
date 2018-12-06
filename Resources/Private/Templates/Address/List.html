@@ -11,8 +11,7 @@
                     </f:for>
                 </f:then>
                 <f:else>
-                    <f:widget.paginate objects="{addresses}" as="paginatedAdresses"
-                                       configuration="{settings.paginate}">
+                    <f:widget.paginate objects="{addresses}" as="paginatedAdresses">
                         <f:for each="{paginatedAdresses}" as="address" iteration="iterator">
                             <f:render partial="ListItem" arguments="{_all}"/>
                         </f:for>

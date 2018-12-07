@@ -216,11 +216,11 @@
                                 <items type="array">
                                     <numIndex index="0" type="array">
                                         <numIndex index="0">LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.displayMode.listView</numIndex>
-                                        <numIndex index="1">0</numIndex>
+                                        <numIndex index="1">list</numIndex>
                                     </numIndex>
                                     <numIndex index="1" type="array">
                                         <numIndex index="0">LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.displayMode.singleView</numIndex>
-                                        <numIndex index="1">1</numIndex>
+                                        <numIndex index="1">single</numIndex>
                                     </numIndex>
                                 </items>
                             </config>

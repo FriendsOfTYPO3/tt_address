@@ -3,18 +3,14 @@
         <sDEF>
             <ROOT>
                 <TCEforms>
-                    <sheetTitle>
-                        LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sheet_selection
-                    </sheetTitle>
+                    <sheetTitle>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sheet_selection</sheetTitle>
                 </TCEforms>
                 <type>array</type>
                 <el>
                     <settings.singleRecords>
                         <TCEforms>
                             <exclude>1</exclude>
-                            <label>
-                                LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.single_records
-                            </label>
+                            <label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.single_records</label>
                             <config>
                                 <type>group</type>
                                 <internal_type>db</internal_type>
@@ -39,9 +35,7 @@
                     </settings.singleRecords>
                     <settings.groups>
                         <TCEforms>
-                            <label>
-                                LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.group_selection
-                            </label>
+                            <label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.group_selection</label>
                             <config>
                                 <type>select</type>
                                 <renderMode>tree</renderMode>
@@ -67,9 +61,7 @@
                     </settings.groups>
                     <settings.groupsCombination>
                         <TCEforms>
-                            <label>
-                                LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.combination
-                            </label>
+                            <label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.combination</label>
                             <config>
                                 <type>select</type>
                                 <items type="array">
@@ -92,9 +84,7 @@
                     </settings.groupsCombination>
                     <settings.sortBy>
                         <TCEforms>
-                            <label>
-                                LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortBy
-                            </label>
+                            <label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortBy</label>
                             <config>
                                 <type>select</type>
                                 <items type="array">
@@ -110,22 +100,16 @@
                     </settings.sortBy>
                     <settings.sortOrder>
                         <TCEforms>
-                            <label>
-                                LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortOrder
-                            </label>
+                            <label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortOrder</label>
                             <config>
                                 <type>select</type>
                                 <items type="array">
                                     <numIndex index="0" type="array">
-                                        <numIndex index="0">
-                                            LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortOrder.ascending
-                                        </numIndex>
+                                        <numIndex index="0">LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortOrder.ascending</numIndex>
                                         <numIndex index="1">ASC</numIndex>
                                     </numIndex>
                                     <numIndex index="1" type="array">
-                                        <numIndex index="0">
-                                            LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortOrder.descending
-                                        </numIndex>
+                                        <numIndex index="0">LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortOrder.descending</numIndex>
                                         <numIndex index="1">DESC</numIndex>
                                     </numIndex>
                                 </items>
@@ -199,17 +183,13 @@
         <sDISPLAY>
             <ROOT>
                 <TCEforms>
-                    <sheetTitle>
-                        LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sheet_display
-                    </sheetTitle>
+                    <sheetTitle>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sheet_display</sheetTitle>
                 </TCEforms>
                 <type>array</type>
                 <el>
                     <settings.displayMode>
                         <TCEforms>
-                            <label>
-                                LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.displayMode
-                            </label>
+                            <label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.displayMode</label>
                             <config>
                                 <type>select</type>
                                 <renderType>selectSingle</renderType>
@@ -229,9 +209,7 @@
 
                     <settings.hidePagination>
                         <TCEforms>
-                            <label>
-                                LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.hidePagination
-                            </label>
+                            <label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.hidePagination</label>
                             <config>
                                 <type>check</type>
                             </config>
@@ -240,9 +218,7 @@
 
                     <settings.paginate.itemsPerPage>
                         <TCEforms>
-                            <label>
-                                LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.itemsPerPage
-                            </label>
+                            <label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.itemsPerPage</label>
                             <config>
                                 <type>input</type>
                                 <size>5</size>
@@ -254,9 +230,7 @@
 
                     <settings.singlePid>
                         <TCEforms>
-                            <label>
-                                LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.singlePid
-                            </label>
+                            <label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.singlePid</label>
                             <config>
                                 <type>group</type>
                                 <internal_type>db</internal_type>

@@ -37,6 +37,7 @@
 					</settings.singleRecords>
 					<settings.groups>
 						<TCEforms>
+							<exclude>1</exclude>
 							<label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.group_selection
 							</label>
 							<config>
@@ -64,6 +65,7 @@
 					</settings.groups>
 					<settings.groupsCombination>
 						<TCEforms>
+							<exclude>1</exclude>
 							<label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.combination</label>
 							<config>
 								<type>select</type>
@@ -87,6 +89,7 @@
 					</settings.groupsCombination>
 					<settings.sortBy>
 						<TCEforms>
+							<exclude>1</exclude>
 							<label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortBy</label>
 							<config>
 								<type>select</type>
@@ -103,6 +106,7 @@
 					</settings.sortBy>
 					<settings.sortOrder>
 						<TCEforms>
+							<exclude>1</exclude>
 							<label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortOrder</label>
 							<config>
 								<type>select</type>
@@ -146,6 +150,7 @@
 					</settings.pages>
 					<settings.recursive>
 						<TCEforms>
+							<exclude>1</exclude>
 							<label>LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.recursive</label>
 							<config>
 								<type>select</type>
@@ -205,6 +210,7 @@
 				<el>
 					<settings.displayMode>
 						<TCEforms>
+							<exclude>1</exclude>
 							<label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.displayMode</label>
 							<config>
 								<type>select</type>
@@ -229,6 +235,7 @@
 
 					<settings.hidePagination>
 						<TCEforms>
+							<exclude>1</exclude>
 							<label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.hidePagination
 							</label>
 							<config>
@@ -239,6 +246,7 @@
 
 					<settings.paginate.itemsPerPage>
 						<TCEforms>
+							<exclude>1</exclude>
 							<label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.itemsPerPage</label>
 							<config>
 								<type>input</type>
@@ -251,6 +259,7 @@
 
 					<settings.singlePid>
 						<TCEforms>
+							<exclude>1</exclude>
 							<label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.singlePid</label>
 							<config>
 								<type>group</type>

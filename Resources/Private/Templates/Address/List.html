@@ -2,11 +2,11 @@
 
 <f:section name="main">
     <div class="tt_address_list">
-        <f:render section="templateLayout_{settings.displayMode}" arguments="{_all}" />
+        <f:render section="displayMode_{settings.displayMode}" arguments="{_all}" />
     </div>
 </f:section>
 
-<f:section name="templateLayout_list">
+<f:section name="displayMode_list">
     <!--TYPO3SEARCH_end-->
     <f:if condition="{settings.hidePagination}">
         <f:then>
@@ -25,7 +25,7 @@
     <!--TYPO3SEARCH_begin-->
 </f:section>
 
-<f:section name="templateLayout_single">
+<f:section name="displayMode_single">
     <f:for each="{addresses}" as="address">
         <f:render partial="Full" arguments="{_all}"/>
     </f:for>

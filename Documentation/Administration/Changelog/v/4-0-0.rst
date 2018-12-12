@@ -1,4 +1,4 @@
-4.0.0 - 2018-12-xx
+4.0.0 - 2018-12-12
 ==================
 
 .. include:: ../../../Includes.txt
@@ -57,6 +57,10 @@ All Changes
 -----------
 This is a list of all changes in this release: ::
 
+    2018-12-12 [TASK] Rename sections (Commit 8ca949a by Georg Ringer)
+    2018-12-07 [!!!][TASK] Use template sections for displayMode (Commit 6a89e3f by Georg Ringer)
+    2018-12-06 [TASK] Change singlerecord DB (Commit 7dd7f45 by Georg Ringer)
+    2018-12-05 [DOC] Update changelog (Commit 758cc37 by Georg Ringer)
     2018-12-05 [TASK] Improve flexforms (Commit fce71c7 by Georg Ringer)
     2018-12-04 [TASK] Adopt icon (Commit 65361d0 by Georg Ringer)
     2018-12-03 Apply fixes from StyleCI (#116) (Commit ca78158 by Georg Ringer)
@@ -210,6 +214,7 @@ This is a list of all changes in this release: ::
     2017-06-07 add getter and setter methods for categories (Commit 1d5edd5 by Marco Biedermann)
     2017-05-19 Use string values in typoscript configuration (Commit 7487df6 by Thomas Heilmann)
     2017-04-28 [BUGFIX] Wrong error syntax for array (Commit b045b04 by Christian Wolfram)
+
 
 
 This list has been created by using `git log v3.2.4..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

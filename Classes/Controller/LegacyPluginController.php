@@ -299,7 +299,7 @@ class LegacyPluginController extends AbstractPlugin
             ->select('c.*')
             ->from('sys_category', 'c')
             ->join(
-                'sys_category',
+                'c',
                 'sys_category_record_mm',
                 'mm',
                 $queryBuilder->expr()->eq(
@@ -309,8 +309,8 @@ class LegacyPluginController extends AbstractPlugin
             )
             ->where(
                 $queryBuilder->expr()->eq('mm.uid_foreign', $queryBuilder->createNamedParameter((int)$address['uid'], \PDO::PARAM_INT)),
-                $queryBuilder->expr()->eq('mm.tablenames', 'tt_address'),
-                $queryBuilder->expr()->eq('mm.fieldname', 'categories')
+                $queryBuilder->expr()->eq('mm.tablenames', $queryBuilder->createNamedParameter('tt_address', \PDO::PARAM_STR)),
+                $queryBuilder->expr()->eq('mm.fieldname', $queryBuilder->createNamedParameter('categories', \PDO::PARAM_STR))
             )
             ->orderBy('mm.sorting_foreign')
             ->execute();

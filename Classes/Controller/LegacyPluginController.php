@@ -485,14 +485,16 @@ class LegacyPluginController extends AbstractPlugin
 
         if (\is_array($this->conf['templates.'][$this->conf['templateName'] . '.']['subparts.'])) {
             $lcObj = GeneralUtility::makeInstance(ContentObjectRenderer::class); // local cObj
+            $templateService = GeneralUtility::makeInstance(MarkerBasedTemplateService::class); // local cObj
+
             $lcObj->data = $address;
 
             foreach ($this->conf['templates.'][$this->conf['templateName'] . '.']['subparts.'] as $spName => $spConf) {
                 $spName = '###SUBPART_' . strtoupper(substr($spName, 0, -1)) . '###';
 
-                $spTemplate = $lcObj->getSubpart($templateCode, $spName);
+                $spTemplate = $templateService->getSubpart($templateCode, $spName);
                 $content = $lcObj->stdWrap(
-                    $lcObj->substituteMarkerArrayCached(
+                    $templateService->substituteMarkerArrayCached(
                         $spTemplate,
                         $markerArray
                     ),

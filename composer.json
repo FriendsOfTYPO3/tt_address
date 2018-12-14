@@ -46,7 +46,6 @@
     "typo3-ter/tt-address": "self.version"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^2.4",
     "php-coveralls/php-coveralls": "^2.1"
   },
   "config": {

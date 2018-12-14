@@ -221,7 +221,8 @@ class LegacyPluginController extends AbstractPlugin
 
             if ($this->conf['combination'] === 'AND') {
                 $queryBuilder
-                    ->select('tt_address.*', 'COUNT(tt_address.uid) AS c')
+                    ->select('tt_address.*')
+                    ->addSelectLiteral($queryBuilder->expr()->count('tt_address.uid', 'c'))
                     ->from('tt_address')
                     ->join(
                         'tt_address',
@@ -244,8 +245,8 @@ class LegacyPluginController extends AbstractPlugin
                     ->where(
                         $queryBuilder->expr()->in('sys_category_record_mm.uid_local', $groups),
                         $queryBuilder->expr()->in('tt_address.pid', $pageIds),
-                        $queryBuilder->expr()->eq('sys_category_record_mm.fieldname', 'categories'),
-                        $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', 'tt_address')
+                        $queryBuilder->expr()->eq('sys_category_record_mm.fieldname', $queryBuilder->createNamedParameter('categories', \PDO::PARAM_STR)),
+                        $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tt_address', \PDO::PARAM_STR))
                     )
                     ->groupBy('tt_address.uid')
                     ->having(
@@ -268,8 +269,8 @@ class LegacyPluginController extends AbstractPlugin
                     ->where(
                         $queryBuilder->expr()->in('sys_category_record_mm.uid_local', $groups),
                         $queryBuilder->expr()->in('tt_address.pid', $pageIds),
-                        $queryBuilder->expr()->eq('sys_category_record_mm.fieldname', 'categories'),
-                        $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', 'tt_address')
+                        $queryBuilder->expr()->eq('sys_category_record_mm.fieldname', $queryBuilder->createNamedParameter('categories', \PDO::PARAM_STR)),
+                        $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tt_address', \PDO::PARAM_STR))
                     )
                     ->groupBy('tt_address.uid');
             }

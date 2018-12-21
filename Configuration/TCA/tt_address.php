@@ -88,9 +88,8 @@ return [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'default' => 0,
                 'items' => [
-                    ['', 0],
+                    ['', 0]
                 ],
                 'foreign_table' => 'tt_address',
                 'foreign_table_where' => 'AND tt_address.pid=###CURRENT_PID### AND tt_address.sys_language_uid IN (-1,0)',
@@ -98,7 +97,8 @@ return [
         ],
         'l10n_diffsource' => [
             'config' => [
-                'type' => 'passthrough'
+                'type' => 'passthrough',
+                'default' => ''
             ]
         ],
         'gender' => [
@@ -457,6 +457,8 @@ return [
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.building;building,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.social;social,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.coordinates;coordinates,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+                --palette--;;language,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                 --palette--;;paletteHidden,
             --div--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_category.tabs.category, categories
@@ -497,5 +499,6 @@ return [
                 hidden
             ',
         ],
+        'language' => ['showitem' => 'sys_language_uid, l10n_parent'],
     ],
 ];

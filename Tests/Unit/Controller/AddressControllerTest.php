@@ -130,7 +130,7 @@ class AddressControllerTest extends BaseTestCase
                     'plugin.' => [
                         'tx_ttaddress.' => [
                             'settings' => [
-                                'orderByAllowed' => 'sorting',
+                                'sortBy' => 'sorting',
                                 'overrideFlexformSettingsIfEmpty' => 'key4,key5,key6',
                                 'key2' => 'abc',
                                 'key4' => 'fo',
@@ -141,7 +141,7 @@ class AddressControllerTest extends BaseTestCase
                 ],
                 [
                     'key1' => 'value1',
-                    'orderByAllowed' => 'custom',
+                    'sortBy' => 'custom',
                     'key2' => '',
                     'key3' => '',
                     'key4' => '',
@@ -152,7 +152,7 @@ class AddressControllerTest extends BaseTestCase
         $subject = $this->getAccessibleMock(AddressController::class, ['dummy'], [], '', false);
         $expectedSettings = [
             'key1' => 'value1',
-            'orderByAllowed' => 'sorting',
+            'sortBy' => 'sorting',
             'key2' => '',
             'key3' => '',
             'key4' => 'fo',

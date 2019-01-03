@@ -439,7 +439,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'eval' => 'null,' . \FriendsOfTYPO3\TtAddress\Evaluation\LongitudeEvaluation::class,
-                'default' => null
+                'default' => null,
             ]
         ],
     ],
@@ -448,7 +448,7 @@ return [
             'showitem' => '
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.name;name,
                     image, description,
-            --div--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.address,
+            --div--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_tab.address,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.address;address,
             
             --div--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_tab.contact,

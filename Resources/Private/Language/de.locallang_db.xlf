@@ -63,8 +63,14 @@
             <trans-unit id="tt_address.longitude">
                 <target>Längengrad:</target>
             </trans-unit>
+            <trans-unit id="tt_address.locationMapWizard">
+                <target>Koordinaten in Karte auswählen</target>
+            </trans-unit>
             <trans-unit id="tt_address_tab.contact">
                 <target>Kontakt</target>
+            </trans-unit>
+            <trans-unit id="tt_address_tab.address">
+                <target>Anschrift</target>
             </trans-unit>
             <trans-unit id="tt_address_palette.name">
                 <target>Name:</target>

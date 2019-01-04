@@ -15,6 +15,7 @@ define(['jquery'], function ($) {
     };
 
     $(function () {
+        // basic variable initalisation
         LeafBE.$element = $('#location-map-container-a');
         LeafBE.$latitude = LeafBE.$element.attr('data-lat');
         LeafBE.$longitude = LeafBE.$element.attr('data-lon');
@@ -23,7 +24,7 @@ define(['jquery'], function ($) {
         LeafBE.$fieldLon = LeafBE.$element.attr('data-namelon');
         LeafBE.$fieldLatActive = LeafBE.$element.attr('data-namelat-active');
 
-        // add the container to display the map nice as an overlay
+        // add the container to display the map as a nice overlay
         $('body').append(
             '<div id="t3js-location-map-wrap">' +
             '<div class="t3js-location-map-title">' +
@@ -57,13 +58,12 @@ define(['jquery'], function ($) {
                             if (key == "lon") {
                                 LeafBE.$longitude = value;
                                 // call createmap after geocoding success
+                                // @TODO test what happens if geocoding never returns, or returns empty.
                                 createMap();
                             }
                         });
                     });
                 } else {
-                    // @TODO fallback if really no lon/lat is available (gLatitude, gLongitude)
-                    // coordinates of Kopenhagen are taken.
                     createMap();
                 }
             }
@@ -71,6 +71,8 @@ define(['jquery'], function ($) {
             $('#t3js-location-map-wrap').addClass('active');
         });
         function createMap() {
+            // @TODO Fallback: user removes coordinate(s) after map initialization. -> maybe connect to next TODO
+            // @TODO fallback if really no lon/lat is available (gLatitude, gLongitude) coordinates of Kopenhagen are taken.
             LeafBE.$map = L.map('t3js-location-map-container', {
                 center: [LeafBE.$latitude, LeafBE.$longitude],
                 zoom: 13

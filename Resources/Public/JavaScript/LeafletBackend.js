@@ -9,6 +9,7 @@ define(['jquery'], function ($) {
         $longitude: null,
         $fieldLat: null,
         $fieldLon: null,
+        $fieldLatActive: null,
         $geoCodeUrl: null,
         $map: null
     };
@@ -20,6 +21,7 @@ define(['jquery'], function ($) {
         LeafBE.$geoCodeUrl = LeafBE.$element.attr('data-geocodeurl');
         LeafBE.$fieldLat = LeafBE.$element.attr('data-namelat');
         LeafBE.$fieldLon = LeafBE.$element.attr('data-namelon');
+        LeafBE.$fieldLatActive = LeafBE.$element.attr('data-namelat-active');
 
         // add the container to display the map nice as an overlay
         $('body').append(
@@ -95,7 +97,10 @@ define(['jquery'], function ($) {
                 // set hidden fields values
                 $('input[name="' + LeafBE.$fieldLat + '"]').val(marker.getLatLng().lat);
                 $('input[name="' + LeafBE.$fieldLon + '"]').val(marker.getLatLng().lng);
-                //$('input[data-formengine-input-name="' + LeafBE.$fieldLat + '"]').val(marker.getLatLng().lat);
+                // enable also latitude, if not already by user done.
+                $('input[id="' + LeafBE.$fieldLatActive + '"]').parentsUntil('.form-group').removeClass('disabled');
+                $('input[id="' + LeafBE.$fieldLatActive + '"]').prop('checked', true);
+                // close map after import of coordinates.
                 $('#t3js-location-map-wrap').removeClass('active');
             });
             // close overlay without any further action

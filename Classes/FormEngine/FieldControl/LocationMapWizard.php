@@ -24,6 +24,8 @@ class LocationMapWizard extends AbstractNode
 
         $nameLon = $paramArray['itemFormElName'];
         $nameLat = str_replace('longitude', 'latitude', $nameLon);
+        $nameLatActive = str_replace('data', 'control[active]', $nameLat);
+        $geoCodeUrl = '';
 
         if ($row['latitude'] != '') {
             $lat = htmlspecialchars($row['latitude']);
@@ -59,9 +61,10 @@ class LocationMapWizard extends AbstractNode
         $resultArray['linkAttributes']['class'] = 'locationMapWizard ';
         $resultArray['linkAttributes']['data-lat'] = $lat;
         $resultArray['linkAttributes']['data-lon'] = $lon;
-        $resultArray['linkAttributes']['data-geocodeurl'] = htmlspecialchars($geoCodeUrl);
-        $resultArray['linkAttributes']['data-namelat'] = $nameLat;
-        $resultArray['linkAttributes']['data-namelon'] = $nameLon;
+        $resultArray['linkAttributes']['data-geocodeurl'] = $geoCodeUrl;
+        $resultArray['linkAttributes']['data-namelat'] = htmlspecialchars($nameLat);
+        $resultArray['linkAttributes']['data-namelon'] = htmlspecialchars($nameLon);
+        $resultArray['linkAttributes']['data-namelat-active'] = htmlspecialchars($nameLatActive);
         $resultArray['linkAttributes']['id'] = 'location-map-container-a';
         $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Css/leaflet.css';
         $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Css/leafletBackend.css';

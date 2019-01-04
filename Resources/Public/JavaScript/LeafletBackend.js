@@ -86,8 +86,6 @@ define(['jquery'], function ($) {
             marker.on('dragend', function (event) {
                 var marker = event.target;
                 var position = marker.getLatLng();
-                console.log(position.lat);
-                console.log(position.lng);
             });
             // import coordinates and close overlay
             $('#t3js-ttaddress-import-position').on('click', function () {

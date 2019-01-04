@@ -90,6 +90,9 @@
             <trans-unit id="tt_address_palette.social">
                 <target>Soziale Netzwerke:</target>
             </trans-unit>
+            <trans-unit id="tt_address_palette.coordinates">
+                <target>Koordinaten</target>
+            </trans-unit>
             <trans-unit id="pi_tt_address">
                 <target>Adressen:</target>
             </trans-unit>

@@ -13,16 +13,61 @@ use TYPO3\CMS\Backend\Form\AbstractNode;
 
 class LocationMapWizard extends AbstractNode
 {
+    /**
+     * @return array
+     */
     public function render()
     {
-        $result = [
-         'iconIdentifier' => 'location-map-wizard',
-         'title' => $GLOBALS['LANG']->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.locationMapWizard'),
-         'linkAttributes' => [
-            'class' => 'locationMapWizard ',
-            'data-id' => $this->data['databaseRow']['longitude']
-         ],
-      ];
-        return $result;
+        $row = $this->data['databaseRow'];
+        $paramArray = $this->data['parameterArray'];
+        $resultArray = $this->initializeResultArray();
+
+        $nameLon = $paramArray['itemFormElName'];
+        $nameLat = str_replace('longitude', 'latitude', $nameLon);
+
+        if ($row['latitude'] != '') {
+            $lat = htmlspecialchars($row['latitude']);
+        } else {
+            $lat = '';
+        }
+        if ($row['longitude'] != '') {
+            $lon = htmlspecialchars($row['longitude']);
+        } else {
+            $lon = '';
+        }
+
+        if ($row['latitude'] || $row['longitude'] == '') {
+            // remove all after first slash in address (top, floor ...)
+            $address = preg_replace('/^([^\/]*).*$/', '$1', $row['address']) . ' ';
+            $address .= $row['city'];
+            // if we have at least some address part (saves geocoding calls)
+            if ($address != '') {
+                // base url
+                $geoCodeUrl = 'https://nominatim.openstreetmap.org/search/';
+                $geoCodeUrl .= $address;
+                // urlparams for nominatim which are fixed.
+                $geoCodeUrl .= '?format=json&addressdetails=1&limit=1&polygon_svg=1';
+                // replace newlines with spaces; remove multiple spaces
+                $geoCodeUrl = trim(preg_replace('/\s\s+/', ' ', $geoCodeUrl));
+            } else {
+                $geoCodeUrl = '';
+            }
+        }
+
+        $resultArray['iconIdentifier'] = 'location-map-wizard';
+        $resultArray['title'] = $GLOBALS['LANG']->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.locationMapWizard');
+        $resultArray['linkAttributes']['class'] = 'locationMapWizard ';
+        $resultArray['linkAttributes']['data-lat'] = $lat;
+        $resultArray['linkAttributes']['data-lon'] = $lon;
+        $resultArray['linkAttributes']['data-geocodeurl'] = htmlspecialchars($geoCodeUrl);
+        $resultArray['linkAttributes']['data-namelat'] = $nameLat;
+        $resultArray['linkAttributes']['data-namelon'] = $nameLon;
+        $resultArray['linkAttributes']['id'] = 'location-map-container-a';
+        $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Css/leaflet.css';
+        $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Css/leafletBackend.css';
+        $resultArray['requireJsModules'][] = 'TYPO3/CMS/TtAddress/leaflet-1.4.0';
+        $resultArray['requireJsModules'][] = 'TYPO3/CMS/TtAddress/LeafletBackend';
+
+        return $resultArray;
     }
 }

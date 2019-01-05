@@ -45,12 +45,14 @@ class LocationMapWizard extends AbstractNode
             // if we have at least some address part (saves geocoding calls)
             if ($address != '') {
                 // base url
-                $geoCodeUrl = 'https://nominatim.openstreetmap.org/search/';
-                $geoCodeUrl .= $address;
+                $geoCodeUrlBase = 'https://nominatim.openstreetmap.org/search/';
+                $geoCodeUrlAddress .= $address;
+                $geoCodeUrlCityOnly .= $row['city'];
                 // urlparams for nominatim which are fixed.
-                $geoCodeUrl .= '?format=json&addressdetails=1&limit=1&polygon_svg=1';
+                $geoCodeUrlQuery .= '?format=json&addressdetails=1&limit=1&polygon_svg=1';
                 // replace newlines with spaces; remove multiple spaces
-                $geoCodeUrl = trim(preg_replace('/\s\s+/', ' ', $geoCodeUrl));
+                $geoCodeUrl = trim(preg_replace('/\s\s+/', ' ', $geoCodeUrlBase . $geoCodeUrlAddress . $geoCodeUrlQuery));
+                $geoCodeUrlShort = trim(preg_replace('/\s\s+/', ' ', $geoCodeUrlBase . $geoCodeUrlCityOnly . $geoCodeUrlQuery));
             } else {
                 $geoCodeUrl = '';
             }
@@ -62,6 +64,7 @@ class LocationMapWizard extends AbstractNode
         $resultArray['linkAttributes']['data-lat'] = $lat;
         $resultArray['linkAttributes']['data-lon'] = $lon;
         $resultArray['linkAttributes']['data-geocodeurl'] = $geoCodeUrl;
+        $resultArray['linkAttributes']['data-geocodeurlshort'] = $geoCodeUrlShort;
         $resultArray['linkAttributes']['data-namelat'] = htmlspecialchars($nameLat);
         $resultArray['linkAttributes']['data-namelon'] = htmlspecialchars($nameLon);
         $resultArray['linkAttributes']['data-namelat-active'] = htmlspecialchars($nameLatActive);

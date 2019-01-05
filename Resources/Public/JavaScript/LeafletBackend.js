@@ -11,6 +11,7 @@ define(['jquery'], function ($) {
         $fieldLon: null,
         $fieldLatActive: null,
         $geoCodeUrl: null,
+        $geoCodeUrlShort: null,
         $map: null
     };
 
@@ -20,6 +21,7 @@ define(['jquery'], function ($) {
         LeafBE.$latitude = LeafBE.$element.attr('data-lat');
         LeafBE.$longitude = LeafBE.$element.attr('data-lon');
         LeafBE.$geoCodeUrl = LeafBE.$element.attr('data-geocodeurl');
+        LeafBE.$geoCodeUrlShort = LeafBE.$element.attr('data-geocodeurlshort');
         LeafBE.$fieldLat = LeafBE.$element.attr('data-namelat');
         LeafBE.$fieldLon = LeafBE.$element.attr('data-namelon');
         LeafBE.$fieldLatActive = LeafBE.$element.attr('data-namelat-active');
@@ -47,7 +49,16 @@ define(['jquery'], function ($) {
                 if ((LeafBE.$latitude == null || LeafBE.$longitude == null) && LeafBE.$geoCodeUrl != null) {
                     function geocode(callback) {
                         var temp = $.getJSON(LeafBE.$geoCodeUrl, function (data) {
-                            callback(data);
+                            if (data.length == 0) {
+                                // Fallback to city-only (less error-prone)
+                                var temp2 = $.getJSON(LeafBE.$geoCodeUrlShort, function (data) {
+                                    if (data.length == 0) {
+                                        createMap();
+                                    } else {
+                                        callback(data);
+                                    }
+                                });
+                            }
                         });
                     }
                     geocode(function (data) {
@@ -71,8 +82,12 @@ define(['jquery'], function ($) {
             $('#t3js-location-map-wrap').addClass('active');
         });
         function createMap() {
-            // @TODO Fallback: user removes coordinate(s) after map initialization. -> maybe connect to next TODO
-            // @TODO fallback if really no lon/lat is available (gLatitude, gLongitude) coordinates of Kopenhagen are taken.
+            // The ultimate fallback: if one of the coordinates is empty, fallback to Kopenhagen.
+            // Thank you Kaspar for TYPO3 and its great community! ;)
+            if (LeafBE.$latitude == null || LeafBE.$longitude == null) {
+                LeafBE.$latitude = '55.6760968';
+                LeafBE.$longitude = '12.5683371';
+            }
             LeafBE.$map = L.map('t3js-location-map-container', {
                 center: [LeafBE.$latitude, LeafBE.$longitude],
                 zoom: 13

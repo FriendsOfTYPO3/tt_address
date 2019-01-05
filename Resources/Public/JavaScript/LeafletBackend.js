@@ -69,7 +69,6 @@ define(['jquery'], function ($) {
                             if (key == "lon") {
                                 LeafBE.$longitude = value;
                                 // call createmap after geocoding success
-                                // @TODO test what happens if geocoding never returns, or returns empty.
                                 createMap();
                             }
                         });

@@ -12,6 +12,8 @@ define(['jquery'], function ($) {
         $fieldLatActive: null,
         $geoCodeUrl: null,
         $geoCodeUrlShort: null,
+        $tilesUrl: null,
+        $tilesCopy: null,
         $zoomLevel: 13,
         $marker: null,
         $map: null
@@ -22,6 +24,10 @@ define(['jquery'], function ($) {
         LeafBE.$element = $('#location-map-container-a');
         LeafBE.$latitude = LeafBE.$element.attr('data-lat');
         LeafBE.$longitude = LeafBE.$element.attr('data-lon');
+        LeafBE.$gLatitude = LeafBE.$element.attr('data-glat');
+        LeafBE.$gLongitude = LeafBE.$element.attr('data-glon');
+        LeafBE.$tilesUrl = LeafBE.$element.attr('data-tiles');
+        LeafBE.$tilesCopy = LeafBE.$element.attr('data-copy');
         LeafBE.$geoCodeUrl = LeafBE.$element.attr('data-geocodeurl');
         LeafBE.$geoCodeUrlShort = LeafBE.$element.attr('data-geocodeurlshort');
         LeafBE.$fieldLat = LeafBE.$element.attr('data-namelat');
@@ -34,7 +40,7 @@ define(['jquery'], function ($) {
             '<div class="t3js-location-map-title">' +
             '<div class="btn-group"><a href="#" class="btn btn-default" title="Close" id="t3js-ttaddress-close-map">' +
             '<img src="/typo3/sysext/core/Resources/Public/Icons/T3Icons/actions/actions-close.svg" width="16" height="16"></a>' +
-            '<a class="btn btn-default" href="#" title="Import marker position to edit-form" id="t3js-ttaddress-import-position">' +
+            '<a class="btn btn-default" href="#" title="Import marker position to form" id="t3js-ttaddress-import-position">' +
             'Import coordinates</a></div> Location Selector ' +
             '</div>' +
             '<div class="t3js-location-map-container" id="t3js-location-map-container">' +
@@ -60,6 +66,8 @@ define(['jquery'], function ($) {
                                         callback(data);
                                     }
                                 });
+                            } else {
+                                callback(data);
                             }
                         });
                     }
@@ -86,8 +94,8 @@ define(['jquery'], function ($) {
             // The ultimate fallback: if one of the coordinates is empty, fallback to Kopenhagen.
             // Thank you Kaspar for TYPO3 and its great community! ;)
             if (LeafBE.$latitude == null || LeafBE.$longitude == null) {
-                LeafBE.$latitude = '55.6760968';
-                LeafBE.$longitude = '12.5683371';
+                LeafBE.$latitude = LeafBE.$gLatitude;
+                LeafBE.$longitude = LeafBE.$gLongitude;
                 // set zoomlevel lower for faster navigation
                 LeafBE.$zoomLevel = 4;
             }
@@ -95,8 +103,8 @@ define(['jquery'], function ($) {
                 center: [LeafBE.$latitude, LeafBE.$longitude],
                 zoom: LeafBE.$zoomLevel
             });
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            L.tileLayer(LeafBE.$tilesUrl, {
+                attribution: LeafBE.$tilesCopy
             }).addTo(LeafBE.$map);
 
             LeafBE.$marker = L.marker([LeafBE.$latitude, LeafBE.$longitude], {

@@ -25,7 +25,11 @@ class LocationMapWizard extends AbstractNode
         $nameLon = $paramArray['itemFormElName'];
         $nameLat = str_replace('longitude', 'latitude', $nameLon);
         $nameLatActive = str_replace('data', 'control[active]', $nameLat);
+        $tilesUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        $tilesAttribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
         $geoCodeUrl = '';
+        $gLat = '55.6760968';
+        $gLon = '12.5683371';
 
         if ($row['latitude'] != '') {
             $lat = htmlspecialchars($row['latitude']);
@@ -61,14 +65,18 @@ class LocationMapWizard extends AbstractNode
         $resultArray['iconIdentifier'] = 'location-map-wizard';
         $resultArray['title'] = $GLOBALS['LANG']->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.locationMapWizard');
         $resultArray['linkAttributes']['class'] = 'locationMapWizard ';
+        $resultArray['linkAttributes']['id'] = 'location-map-container-a';
         $resultArray['linkAttributes']['data-lat'] = $lat;
         $resultArray['linkAttributes']['data-lon'] = $lon;
+        $resultArray['linkAttributes']['data-glat'] = $gLat;
+        $resultArray['linkAttributes']['data-glon'] = $gLon;
         $resultArray['linkAttributes']['data-geocodeurl'] = $geoCodeUrl;
         $resultArray['linkAttributes']['data-geocodeurlshort'] = $geoCodeUrlShort;
         $resultArray['linkAttributes']['data-namelat'] = htmlspecialchars($nameLat);
         $resultArray['linkAttributes']['data-namelon'] = htmlspecialchars($nameLon);
         $resultArray['linkAttributes']['data-namelat-active'] = htmlspecialchars($nameLatActive);
-        $resultArray['linkAttributes']['id'] = 'location-map-container-a';
+        $resultArray['linkAttributes']['data-tiles'] = htmlspecialchars($tilesUrl);
+        $resultArray['linkAttributes']['data-copy'] = $tilesAttribution;
         $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Css/leaflet.css';
         $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Css/leafletBackend.css';
         $resultArray['requireJsModules'][] = 'TYPO3/CMS/TtAddress/leaflet-1.4.0';

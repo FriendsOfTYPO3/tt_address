@@ -12,6 +12,8 @@ define(['jquery'], function ($) {
         $fieldLatActive: null,
         $geoCodeUrl: null,
         $geoCodeUrlShort: null,
+        $zoomLevel: 13,
+        $marker: null,
         $map: null
     };
 
@@ -86,31 +88,38 @@ define(['jquery'], function ($) {
             if (LeafBE.$latitude == null || LeafBE.$longitude == null) {
                 LeafBE.$latitude = '55.6760968';
                 LeafBE.$longitude = '12.5683371';
+                // set zoomlevel lower for faster navigation
+                LeafBE.$zoomLevel = 4;
             }
             LeafBE.$map = L.map('t3js-location-map-container', {
                 center: [LeafBE.$latitude, LeafBE.$longitude],
-                zoom: 13
+                zoom: LeafBE.$zoomLevel
             });
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(LeafBE.$map);
 
-            var marker = L.marker([LeafBE.$latitude, LeafBE.$longitude], {
+            LeafBE.$marker = L.marker([LeafBE.$latitude, LeafBE.$longitude], {
                 draggable: true
             }).addTo(LeafBE.$map);
 
-            marker.on('dragend', function (event) {
-                var marker = event.target;
-                var position = marker.getLatLng();
+            var position = LeafBE.$marker.getLatLng();
+
+            LeafBE.$marker.on('dragend', function (event) {
+                LeafBE.$marker = event.target;
+                position = LeafBE.$marker.getLatLng();
+            });
+            LeafBE.$map.on('click', function(event){
+                LeafBE.$marker.setLatLng(event.latlng);
             });
             // import coordinates and close overlay
             $('#t3js-ttaddress-import-position').on('click', function () {
                 // set visual coordinates
-                $('input[data-formengine-input-name="' + LeafBE.$fieldLat + '"]').val(marker.getLatLng().lat);
-                $('input[data-formengine-input-name="' + LeafBE.$fieldLon + '"]').val(marker.getLatLng().lng);
+                $('input[data-formengine-input-name="' + LeafBE.$fieldLat + '"]').val(LeafBE.$marker.getLatLng().lat);
+                $('input[data-formengine-input-name="' + LeafBE.$fieldLon + '"]').val(LeafBE.$marker.getLatLng().lng);
                 // set hidden fields values
-                $('input[name="' + LeafBE.$fieldLat + '"]').val(marker.getLatLng().lat);
-                $('input[name="' + LeafBE.$fieldLon + '"]').val(marker.getLatLng().lng);
+                $('input[name="' + LeafBE.$fieldLat + '"]').val(LeafBE.$marker.getLatLng().lat);
+                $('input[name="' + LeafBE.$fieldLon + '"]').val(LeafBE.$marker.getLatLng().lng);
                 // enable also latitude, if not already by user done.
                 $('input[id="' + LeafBE.$fieldLatActive + '"]').parentsUntil('.form-group').removeClass('disabled');
                 $('input[id="' + LeafBE.$fieldLatActive + '"]').prop('checked', true);

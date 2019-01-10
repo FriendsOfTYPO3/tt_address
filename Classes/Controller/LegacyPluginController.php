@@ -152,7 +152,7 @@ class LegacyPluginController extends AbstractPlugin
         $this->conf['sortOrder'] = strtoupper($sortOrder) === 'DESC' ? SORT_DESC : SORT_ASC;
 
         // overwrite TS pidList if set in flexform
-        $pages = !empty($this->ffData['pages']) ?:
+        $pages = !empty($this->ffData['pages']) ? $this->ffData['pages'] :
             trim($this->cObj->stdWrap($this->conf['pidList'], $this->conf['pidList.']));
         $pages = $pages ?
             implode(GeneralUtility::intExplode(',', $pages), ',') :

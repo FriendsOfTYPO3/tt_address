@@ -134,7 +134,6 @@ class MigrateLegacyPlugin extends AbstractUpdate
                 ->set('list_type', 'ttaddress_listview');
             $queryBuilder->execute();
             $listOfUpdateIds[] = $record['uid'];
-
         }
 
         $customMessage =

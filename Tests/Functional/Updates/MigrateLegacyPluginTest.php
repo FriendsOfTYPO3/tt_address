@@ -67,5 +67,10 @@ class MigrateLegacyPluginTest extends FunctionalTestCase
         $templateFileToDisplayModeIsCorrect =
             (bool)strpos($row['pi_flexform'], '<value index="vDEF">your_template_name</value>');
         $this->assertTrue($templateFileToDisplayModeIsCorrect);
+
+        $rowWithDefaultTemplateFile = BackendUtility::getRecord('tt_content', 2);
+        $defaultTemplateFileIsDefaultDisplayMode =
+            (bool)strpos($rowWithDefaultTemplateFile['pi_flexform'], '<value index="vDEF">list</value>');
+        $this->assertTrue($defaultTemplateFileIsDefaultDisplayMode);
     }
 }

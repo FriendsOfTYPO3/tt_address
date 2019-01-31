@@ -71,25 +71,41 @@ class AddressRepository extends Repository
 
     /**
      * @param Demand $demand
-     * @return array
+     * @return array|QueryResultInterface
      * @throws InvalidQueryException
      */
-    public function getAddressesByCustomSorting(Demand $demand): array
+    public function getAddressesByCustomSorting(Demand $demand)
     {
-        $idList = explode(',', $demand->getSingleRecords());
-        if ($demand->getSortOrder() === 'DESC') {
-            $idList = array_reverse($idList);
-        }
+        $idList = GeneralUtility::intExplode(',', $demand->getSingleRecords(), true);
+        $sortBy = $demand->getSortBy();
 
-        $list = [];
-        foreach ($idList as $id) {
-            $item = $this->findByIdentifier($id);
-            if ($item) {
-                $list[] = $item;
+        if ($sortBy && $sortBy !== 'default') {
+            $query = $this->createQuery();
+
+            $order = strtolower($demand->getSortOrder()) === 'desc' ? QueryInterface::ORDER_DESCENDING : QueryInterface::ORDER_ASCENDING;
+            $query->setOrderings([$sortBy => $order]);
+
+            $constraints = [
+                $query->in('uid', $idList)
+            ];
+
+            $query->matching($query->logicalAnd($constraints));
+            return $query->execute();
+        } else {
+            if ($demand->getSortOrder() === 'DESC') {
+                $idList = array_reverse($idList);
             }
-        }
 
-        return $list;
+            $list = [];
+            foreach ($idList as $id) {
+                $item = $this->findByIdentifier($id);
+                if ($item) {
+                    $list[] = $item;
+                }
+            }
+
+            return $list;
+        }
     }
 
     /**

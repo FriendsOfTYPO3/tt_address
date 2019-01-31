@@ -24,5 +24,13 @@ plugin.tx_ttaddress {
             ## Set your lightbox here. The address records UID is appended, see fluid template
             imageClass = lightbox lightbox_
         }
+
+        paginate {
+            # can be overriden by plugin
+            itemsPerPage = 10
+            insertAbove = 0
+            insertBelow = 1
+            maximumNumberOfLinks = 10
+        }
     }
 }

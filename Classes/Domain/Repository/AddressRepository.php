@@ -106,7 +106,6 @@ class AddressRepository extends Repository
 
             return $list;
         }
-
     }
 
     /**

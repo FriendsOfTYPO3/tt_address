@@ -134,7 +134,8 @@ class AddressRepositoryTest extends FunctionalTestCase
     /**
      * @test
      */
-    public function findRecordsByCategoryWithSubCheck() {
+    public function findRecordsByCategoryWithSubCheck()
+    {
         $demand = new Demand();
         $demand->setSortBy('uid');
         $demand->setCategoryCombination('or');

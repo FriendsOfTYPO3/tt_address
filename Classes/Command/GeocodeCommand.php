@@ -9,7 +9,6 @@ namespace FriendsOfTYPO3\TtAddress\Command;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Service\GeocodeService;
 use Symfony\Component\Console\Command\Command;
@@ -23,7 +22,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class GeocodeCommand extends Command
 {
-
 
     /** @var GeocodeService */
     protected $geocodeService;

@@ -74,5 +74,4 @@ class GeocodeServiceTest extends BaseTestCase
         $subject = $this->getAccessibleMock(GeocodeService::class, ['dummy'], [], '', false);
         $subject->_call('initializeCache', 'notExisting');
     }
-
 }

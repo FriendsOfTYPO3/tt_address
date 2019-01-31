@@ -8,6 +8,7 @@ namespace FriendsOfTYPO3\TtAddress\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Service\CategoryService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -55,7 +56,7 @@ class AddressRepository extends Repository
         }
         $categories = $demand->getCategories();
         if ($categories) {
-            $categoryConstraints = $this->createCategoryConstraint($query, $categories);
+            $categoryConstraints = $this->createCategoryConstraint($query, $categories, $demand->getIncludeSubCategories());
             if ($demand->getCategoryCombination() === 'or') {
                 $constraints['categories'] = $query->logicalOr($categoryConstraints);
             } else {
@@ -114,19 +115,25 @@ class AddressRepository extends Repository
      *
      * @param QueryInterface $query
      * @param  string $categories
+     * @param bool $includeSubCategories
      * @return array
      * @throws InvalidQueryException
      */
-    protected function createCategoryConstraint(QueryInterface $query, $categories): array
+    protected function createCategoryConstraint(QueryInterface $query, $categories, bool $includeSubCategories = false): array
     {
         $constraints = [];
 
-        $categoryService = GeneralUtility::makeInstance(CategoryService::class);
-        $categoriesRecursive = $categoryService->getChildrenCategories($categories);
-        if (!\is_array($categoriesRecursive)) {
-            $categoriesRecursive = GeneralUtility::intExplode(',', $categoriesRecursive, true);
+        if ($includeSubCategories) {
+            $categoryService = GeneralUtility::makeInstance(CategoryService::class);
+            $allCategories = $categoryService->getChildrenCategories($categories);
+            if (!\is_array($allCategories)) {
+                $allCategories = GeneralUtility::intExplode(',', $allCategories, true);
+            }
+        } else {
+            $allCategories = GeneralUtility::intExplode(',', $categories, true);
         }
-        foreach ($categoriesRecursive as $category) {
+
+        foreach ($allCategories as $category) {
             $constraints[] = $query->contains('categories', $category);
         }
         return $constraints;

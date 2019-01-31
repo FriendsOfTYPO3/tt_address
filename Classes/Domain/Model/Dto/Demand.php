@@ -23,6 +23,9 @@ class Demand
     /** @var string */
     protected $categories = '';
 
+    /** @var bool */
+    protected $includeSubCategories = false;
+
     /** @var string */
     protected $categoryCombination = '';
 
@@ -91,6 +94,22 @@ class Demand
     public function setCategories(string $categories)
     {
         $this->categories = $categories;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIncludeSubCategories(): bool
+    {
+        return $this->includeSubCategories;
+    }
+
+    /**
+     * @param bool $includeSubCategories
+     */
+    public function setIncludeSubCategories(bool $includeSubCategories): void
+    {
+        $this->includeSubCategories = $includeSubCategories;
     }
 
     /**

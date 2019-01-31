@@ -62,6 +62,18 @@
                             </config>
                         </TCEforms>
                     </settings.groups>
+
+                    <settings.includeSubcategories>
+                        <TCEforms>
+                            <exclude>1</exclude>
+                            <label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.includeSubcategories</label>
+                            <config>
+                                <type>check</type>
+                                <default>0</default>
+                            </config>
+                        </TCEforms>
+                    </settings.includeSubcategories>
+
                     <settings.groupsCombination>
                         <TCEforms>
                             <exclude>1</exclude>

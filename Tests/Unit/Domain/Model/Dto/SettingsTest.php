@@ -8,6 +8,7 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Domain\Model\Dto;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
@@ -26,6 +27,8 @@ class SettingsTest extends BaseTestCase
         $this->assertTrue($subject->isStoreBackwardsCompatName());
         $this->assertTrue($subject->isReadOnlyNameField());
         $this->assertFalse($subject->isActivatePiBase());
+        $this->assertFalse($subject->isEnableGeo());
+        $this->assertEquals('', $subject->getGoogleMapsKeyGeocoding());
     }
 
     /**
@@ -37,7 +40,9 @@ class SettingsTest extends BaseTestCase
             'backwardsCompatFormat' => '%s%s',
             'storeBackwardsCompatName' => false,
             'readOnlyNameField' => false,
-            'activatePiBase' => true
+            'activatePiBase' => true,
+            'enableGeo' => true,
+            'googleMapsKeyGeocoding' => '123',
         ]);
         $subject = new Settings();
 
@@ -45,5 +50,7 @@ class SettingsTest extends BaseTestCase
         $this->assertFalse($subject->isStoreBackwardsCompatName());
         $this->assertFalse($subject->isReadOnlyNameField());
         $this->assertTrue($subject->isActivatePiBase());
+        $this->assertTrue($subject->isEnableGeo());
+        $this->assertEquals('123', $subject->getGoogleMapsKeyGeocoding());
     }
 }

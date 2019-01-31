@@ -27,6 +27,12 @@ class Settings implements SingletonInterface
     /** @var bool */
     protected $activatePiBase = false;
 
+    /** @var bool */
+    protected $enableGeo = false;
+
+    /** @var string */
+    protected $googleMapsKeyGeocoding = '';
+
     /**
      */
     public function __construct()
@@ -38,6 +44,8 @@ class Settings implements SingletonInterface
             $this->storeBackwardsCompatName = (bool)$settings['storeBackwardsCompatName'];
             $this->readOnlyNameField = (bool)$settings['readOnlyNameField'];
             $this->activatePiBase = (bool)$settings['activatePiBase'];
+            $this->enableGeo = (bool)$settings['enableGeo'];
+            $this->googleMapsKeyGeocoding = (string)$settings['googleMapsKeyGeocoding'];
         }
     }
 
@@ -71,5 +79,21 @@ class Settings implements SingletonInterface
     public function isActivatePiBase(): bool
     {
         return $this->activatePiBase;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEnableGeo(): bool
+    {
+        return $this->enableGeo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGoogleMapsKeyGeocoding(): string
+    {
+        return $this->googleMapsKeyGeocoding;
     }
 }

@@ -9,3 +9,9 @@ readOnlyNameField = 1
 
   # cat=basic; type=boolean; label=Activate deprecated piBase plugin
 activatePiBase = 0
+
+# cat=geo; type=boolean; label=Enable Geocoding & Map
+enableGeo = 0
+
+# cat=gep; type=text; label=Google Maps Key for geocoding: This key is used for geocoding addresses
+googleMapsKeyGeocoding =

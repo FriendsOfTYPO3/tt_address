@@ -62,6 +62,14 @@
         <last_name>Zargo</last_name>
         <categories>0</categories>
     </tt_address>
+    <tt_address>
+        <uid>8</uid>
+        <pid>21</pid>
+        <first_name>John</first_name>
+        <last_name>Zane</last_name>
+        <categories>3</categories>
+    </tt_address>
+
 
     <sys_category>
         <uid>1</uid>
@@ -110,6 +118,19 @@
         <pid>1</pid>
         <title>Moskau</title>
         <parent>0</parent>
+    </sys_category>
+
+    <sys_category>
+        <uid>10</uid>
+        <pid>1</pid>
+        <title>Madrid sub</title>
+        <parent>1</parent>
+    </sys_category>
+    <sys_category>
+        <uid>11</uid>
+        <pid>1</pid>
+        <title>Madrid sub sub</title>
+        <parent>10</parent>
     </sys_category>
 
     <sys_category_record_mm>
@@ -181,6 +202,12 @@
     <sys_category_record_mm>
         <uid_local>7</uid_local>
         <uid_foreign>7</uid_foreign>
+        <tablenames>tt_address</tablenames>
+        <fieldname>categories</fieldname>
+    </sys_category_record_mm>
+    <sys_category_record_mm>
+        <uid_local>11</uid_local>
+        <uid_foreign>8</uid_foreign>
         <tablenames>tt_address</tablenames>
         <fieldname>categories</fieldname>
     </sys_category_record_mm>

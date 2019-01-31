@@ -152,7 +152,7 @@ class LegacyPluginController extends AbstractPlugin
         $this->conf['sortOrder'] = strtoupper($sortOrder) === 'DESC' ? SORT_DESC : SORT_ASC;
 
         // overwrite TS pidList if set in flexform
-        $pages = !empty($this->ffData['pages']) ?:
+        $pages = !empty($this->ffData['pages']) ? $this->ffData['pages'] :
             trim($this->cObj->stdWrap($this->conf['pidList'], $this->conf['pidList.']));
         $pages = $pages ?
             implode(GeneralUtility::intExplode(',', $pages), ',') :
@@ -221,7 +221,8 @@ class LegacyPluginController extends AbstractPlugin
 
             if ($this->conf['combination'] === 'AND') {
                 $queryBuilder
-                    ->select('tt_address.*', 'COUNT(tt_address.uid) AS c')
+                    ->select('tt_address.*')
+                    ->addSelectLiteral($queryBuilder->expr()->count('tt_address.uid', 'c'))
                     ->from('tt_address')
                     ->join(
                         'tt_address',
@@ -244,8 +245,8 @@ class LegacyPluginController extends AbstractPlugin
                     ->where(
                         $queryBuilder->expr()->in('sys_category_record_mm.uid_local', $groups),
                         $queryBuilder->expr()->in('tt_address.pid', $pageIds),
-                        $queryBuilder->expr()->eq('sys_category_record_mm.fieldname', 'categories'),
-                        $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', 'tt_address')
+                        $queryBuilder->expr()->eq('sys_category_record_mm.fieldname', $queryBuilder->createNamedParameter('categories', \PDO::PARAM_STR)),
+                        $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tt_address', \PDO::PARAM_STR))
                     )
                     ->groupBy('tt_address.uid')
                     ->having(
@@ -268,8 +269,8 @@ class LegacyPluginController extends AbstractPlugin
                     ->where(
                         $queryBuilder->expr()->in('sys_category_record_mm.uid_local', $groups),
                         $queryBuilder->expr()->in('tt_address.pid', $pageIds),
-                        $queryBuilder->expr()->eq('sys_category_record_mm.fieldname', 'categories'),
-                        $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', 'tt_address')
+                        $queryBuilder->expr()->eq('sys_category_record_mm.fieldname', $queryBuilder->createNamedParameter('categories', \PDO::PARAM_STR)),
+                        $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tt_address', \PDO::PARAM_STR))
                     )
                     ->groupBy('tt_address.uid');
             }
@@ -299,7 +300,7 @@ class LegacyPluginController extends AbstractPlugin
             ->select('c.*')
             ->from('sys_category', 'c')
             ->join(
-                'sys_category',
+                'c',
                 'sys_category_record_mm',
                 'mm',
                 $queryBuilder->expr()->eq(
@@ -309,8 +310,8 @@ class LegacyPluginController extends AbstractPlugin
             )
             ->where(
                 $queryBuilder->expr()->eq('mm.uid_foreign', $queryBuilder->createNamedParameter((int)$address['uid'], \PDO::PARAM_INT)),
-                $queryBuilder->expr()->eq('mm.tablenames', 'tt_address'),
-                $queryBuilder->expr()->eq('mm.fieldname', 'categories')
+                $queryBuilder->expr()->eq('mm.tablenames', $queryBuilder->createNamedParameter('tt_address', \PDO::PARAM_STR)),
+                $queryBuilder->expr()->eq('mm.fieldname', $queryBuilder->createNamedParameter('categories', \PDO::PARAM_STR))
             )
             ->orderBy('mm.sorting_foreign')
             ->execute();
@@ -429,7 +430,7 @@ class LegacyPluginController extends AbstractPlugin
                 'renderObj.' => [
                     'file.' => [
                         'import.' => [
-                            'data' => 'file:current:uid_local // file:current:uid'
+                            'data' => 'file:current:uid'
                         ],
                         'treatIdAsReference' => '1'
                     ],
@@ -484,14 +485,16 @@ class LegacyPluginController extends AbstractPlugin
 
         if (\is_array($this->conf['templates.'][$this->conf['templateName'] . '.']['subparts.'])) {
             $lcObj = GeneralUtility::makeInstance(ContentObjectRenderer::class); // local cObj
+            $templateService = GeneralUtility::makeInstance(MarkerBasedTemplateService::class); // local cObj
+
             $lcObj->data = $address;
 
             foreach ($this->conf['templates.'][$this->conf['templateName'] . '.']['subparts.'] as $spName => $spConf) {
                 $spName = '###SUBPART_' . strtoupper(substr($spName, 0, -1)) . '###';
 
-                $spTemplate = $lcObj->getSubpart($templateCode, $spName);
+                $spTemplate = $templateService->getSubpart($templateCode, $spName);
                 $content = $lcObj->stdWrap(
-                    $lcObj->substituteMarkerArrayCached(
+                    $templateService->substituteMarkerArrayCached(
                         $spTemplate,
                         $markerArray
                     ),

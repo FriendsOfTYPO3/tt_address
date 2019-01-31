@@ -9,5 +9,5 @@ We primarily use GitHub as an issue tracker; for usage and support questions, pl
 
 ---
 
-* Slack Chat: [https://typo3.slack.com](https://typo3.slack.com) in channel `#typo3-cms` (you can sign-up at [https://forger.typo3.com/slack](https://forger.typo3.com/slack) for an invite)
-* StackOverflow: https://stackoverflow.com/questions/tagged/tx-news using the tag `tx-ttaddress`
+* Slack Chat: [https://typo3.slack.com](https://typo3.slack.com) in channel `#tt_address` (you can sign-up at [https://forger.typo3.com/slack](https://forger.typo3.com/slack) for an invite)
+* StackOverflow: https://stackoverflow.com/questions/tagged/tx-ttaddress using the tag `tx-ttaddress`

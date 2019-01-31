@@ -1,0 +1,40 @@
+4.0.1 - 2018-12-21
+==================
+
+.. include:: ../../../Includes.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Breaking changes
+----------------
+
+Set exclude value in flexform fields
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+All fields of the extbase variant flexform have been improved by defining `<exclude>1</exclude>`.
+This makes it possible to limit an editor to specific fields of the plugin.
+
+If editors are allowed to create and edit plugins of tt_address (extbase variant) you must enable the needed fields
+in the backend usergroup configuration after updating from version 4.0.0.
+
+If only admins are allowed to create and edit plugins, no action is required.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2018-12-21 Apply fixes from StyleCI (#135) (Commit 14ba5da by Georg Ringer)
+    2018-12-21 [BUGFIX] Show language fields in TCA (Commit f602a24 by Georg Ringer)
+    2018-12-21 Use correct slack and stackoverflow info in support question issue template (#131) (Commit de03046 by Patrick Lenk)
+    2018-12-17 [BUGFIX] Use correct namespace for realurl auto conf (Commit 352f2d8 by Georg Ringer)
+    2018-12-14 [!!!][TASK] Add exclude 1 to flexform fields (Commit 31bd8fa by Georg Ringer)
+    2018-12-14 [BUGFIX] Use correct image reference in LegacyPlugin (Commit 2ff2f36 by Georg Ringer)
+    2018-12-14 [BUGFIX] Use MarkerBasedTemplateService (Commit 0a21bb3 by Georg Ringer)
+    2018-12-14 [BUGFIX] Fix get groups query for address in legacy plugin controller (#126) (Commit 80455cc by GertHammes)
+
+
+This list has been created by using `git log 4.0.0..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

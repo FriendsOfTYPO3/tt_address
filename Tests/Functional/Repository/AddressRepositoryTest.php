@@ -132,6 +132,23 @@ class AddressRepositoryTest extends FunctionalTestCase
     }
 
     /**
+     * @test
+     */
+    public function findRecordsByCategoryWithSubCheck()
+    {
+        $demand = new Demand();
+        $demand->setSortBy('uid');
+        $demand->setCategoryCombination('or');
+        $demand->setCategories('1');
+        $addresses = $this->addressRepository->findByDemand($demand);
+        $this->assertEquals([1, 6], $this->getListOfIds($addresses));
+
+        $demand->setIncludeSubCategories(true);
+        $addresses = $this->addressRepository->findByDemand($demand);
+        $this->assertEquals([1, 6, 8], $this->getListOfIds($addresses));
+    }
+
+    /**
      * @param Address[] $list
      * @param string $field
      * @return array

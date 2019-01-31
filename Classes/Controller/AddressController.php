@@ -110,6 +110,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $demand->setCategories((string)$this->settings['groups']);
         $categoryCombination = (int)$this->settings['groupsCombination'] === 1 ? 'or' : 'and';
         $demand->setCategoryCombination($categoryCombination);
+        $demand->setIncludeSubCategories((bool)$this->settings['includeSubcategories']);
 
         if ($this->settings['pages']) {
             $demand->setPages($this->getPidList());

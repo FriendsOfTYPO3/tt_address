@@ -8,7 +8,6 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Command;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use FriendsOfTYPO3\TtAddress\Command\GeocodeCommand;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use Symfony\Component\Console\Input\StringInput;
@@ -51,7 +50,6 @@ class GeocodeCommandTest extends BaseTestCase
         $subject->_call('execute', $input, $output);
     }
 
-
     /**
      * @test
      */
@@ -73,7 +71,6 @@ class GeocodeCommandTest extends BaseTestCase
         $output = $this->getAccessibleMock(ConsoleOutput::class, ['warning'], []);
         $subject->_call('execute', $input, $output);
     }
-
 
     /**
      * @test

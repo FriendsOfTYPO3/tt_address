@@ -8,7 +8,6 @@ namespace FriendsOfTYPO3\TtAddress\Service;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
@@ -123,7 +122,6 @@ class GeocodeService implements SingletonInterface
      */
     public function getCoordinatesForAddress($street = null, $zip = null, $city = null, $country = ''): array
     {
-
         $addressParts = [];
         foreach ([$street, $zip . ' ' . $city, $country] as $addressPart) {
             if (empty($addressPart)) {
@@ -157,7 +155,6 @@ class GeocodeService implements SingletonInterface
         return $result;
     }
 
-
     /**
      * @param string $url
      * @return array
@@ -171,7 +168,6 @@ class GeocodeService implements SingletonInterface
         }
         return [];
     }
-
 
     /**
      * Initializes the cache for the DB requests.
@@ -188,6 +184,4 @@ class GeocodeService implements SingletonInterface
             throw new \RuntimeException('Unable to load Cache!', 1548785854);
         }
     }
-
-
 }

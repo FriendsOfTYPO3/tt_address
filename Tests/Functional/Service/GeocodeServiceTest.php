@@ -8,14 +8,12 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Functional\Command;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use FriendsOfTYPO3\TtAddress\Service\GeocodeService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class GeocodeServiceTest extends FunctionalTestCase
 {
-
     protected $testExtensionsToLoad = ['typo3conf/ext/tt_address'];
 
     protected $coreExtensionsToLoad = ['fluid', 'extensionmanager'];
@@ -75,5 +73,4 @@ class GeocodeServiceTest extends FunctionalTestCase
     {
         $this->assertTrue(true);
     }
-
 }

@@ -107,7 +107,7 @@ class Demand
     /**
      * @param bool $includeSubCategories
      */
-    public function setIncludeSubCategories(bool $includeSubCategories): void
+    public function setIncludeSubCategories(bool $includeSubCategories)
     {
         $this->includeSubCategories = $includeSubCategories;
     }

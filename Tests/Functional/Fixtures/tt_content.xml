@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+    <tt_content>
+        <uid>1</uid>
+        <pid>1</pid>
+        <list_type>tt_address_pi1</list_type>
+        <pi_flexform>
+            <![CDATA[
+            <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+            <T3FlexForms>
+                <data>
+                    <sheet index="sDEF">
+                        <language index="lDEF">
+                            <field index="singleRecords">
+                                <value index="vDEF">1</value>
+                            </field>
+                            <field index="groupSelection">
+                                <value index="vDEF"></value>
+                            </field>
+                            <field index="combination">
+                                <value index="vDEF">0</value>
+                            </field>
+                            <field index="sortBy">
+                                <value index="vDEF">default</value>
+                            </field>
+                            <field index="sortOrder">
+                                <value index="vDEF">ASC</value>
+                            </field>
+                            <field index="pages">
+                                <value index="vDEF"></value>
+                            </field>
+                            <field index="recursive">
+                                <value index="vDEF"></value>
+                            </field>
+                        </language>
+                    </sheet>
+                    <sheet index="sDISPLAY">
+                        <language index="lDEF">
+                            <field index="templateFile">
+                                <value index="vDEF">your_template_name.html</value>
+                            </field>
+                        </language>
+                    </sheet>
+                </data>
+            </T3FlexForms>
+           ]]>
+        </pi_flexform>
+    </tt_content>
+    <tt_content>
+        <uid>2</uid>
+        <pid>1</pid>
+        <list_type>tt_address_pi1</list_type>
+        <pi_flexform>
+            <![CDATA[
+            <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+            <T3FlexForms>
+                <data>
+                    <sheet index="sDEF">
+                        <language index="lDEF">
+                            <field index="singleRecords">
+                                <value index="vDEF">1</value>
+                            </field>
+                            <field index="groupSelection">
+                                <value index="vDEF"></value>
+                            </field>
+                            <field index="combination">
+                                <value index="vDEF">0</value>
+                            </field>
+                            <field index="sortBy">
+                                <value index="vDEF">default</value>
+                            </field>
+                            <field index="sortOrder">
+                                <value index="vDEF">ASC</value>
+                            </field>
+                            <field index="pages">
+                                <value index="vDEF"></value>
+                            </field>
+                            <field index="recursive">
+                                <value index="vDEF"></value>
+                            </field>
+                        </language>
+                    </sheet>
+                    <sheet index="sDISPLAY">
+                        <language index="lDEF">
+                            <field index="templateFile">
+                                <value index="vDEF">default</value>
+                            </field>
+                        </language>
+                    </sheet>
+                </data>
+            </T3FlexForms>
+           ]]>
+        </pi_flexform>
+    </tt_content>
+</dataset>

@@ -28,7 +28,7 @@ class GeocodeCommand extends Command
     /** @var GeocodeService */
     protected $geocodeService;
 
-    public function __construct(?string $name = null)
+    public function __construct(string $name = null)
     {
         parent::__construct($name);
         $this->extensionSettings = GeneralUtility::makeInstance(Settings::class);

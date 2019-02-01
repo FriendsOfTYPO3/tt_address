@@ -24,7 +24,7 @@ class TelephoneEvaluation
     public function returnFieldJS()
     {
         return '
-         return value.replace(/[^\d\+\s]/g, "");
+         return value.replace(/[^\d\+\s\-]/g, "");
       ';
     }
 
@@ -52,7 +52,7 @@ class TelephoneEvaluation
 
     private function evaluate(string $in)
     {
-        $data = preg_replace("/[^\d\+\s]/", '', $in);
+        $data = preg_replace("/[^\d\+\s\-]/", '', $in);
         return trim($data);
     }
 }

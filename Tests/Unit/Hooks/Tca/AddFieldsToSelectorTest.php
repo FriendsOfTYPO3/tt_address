@@ -66,12 +66,14 @@ class AddFieldsToSelectorTest extends BaseTestCase
                 ['label_phone', 'phone'],
                 ['label_region', 'region'],
                 ['label_room', 'room'],
+                ['label_sorting', 'sorting'],
                 ['label_title', 'title'],
                 ['label_www', 'www'],
                 ['label_zip', 'zip'],
                 ['LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_flexform.sortBy.singleSelection', 'singleSelection'],
             ]
         ];
+
         $this->assertEquals($expected, $items);
     }
 }

@@ -64,11 +64,26 @@ class AddressRepositoryTest extends FunctionalTestCase
     public function findRecordsByCustomSortingDesc()
     {
         $demand = new Demand();
+        $demand->setSortBy('');
         $demand->setSingleRecords('3,6,2');
         $demand->setSortOrder('DESC');
         $addresses = $this->addressRepository->getAddressesByCustomSorting($demand);
 
         $this->assertEquals([2, 6, 3], $this->getListOfIds($addresses));
+    }
+
+    /**
+     * @test
+     */
+    public function findRecordsByCustomSortingAndSortFieldDesc()
+    {
+        $demand = new Demand();
+        $demand->setSortBy('last_name');
+        $demand->setSingleRecords('3,6,2');
+        $demand->setSortOrder('DESC');
+        $addresses = $this->addressRepository->getAddressesByCustomSorting($demand);
+
+        $this->assertEquals([3, 2, 6], $this->getListOfIds($addresses));
     }
 
     /**
@@ -114,6 +129,23 @@ class AddressRepositoryTest extends FunctionalTestCase
         $demand->setCategoryCombination('or');
         $addresses = $this->addressRepository->findByDemand($demand);
         $this->assertEquals([2, 5, 6, 7], $this->getListOfIds($addresses));
+    }
+
+    /**
+     * @test
+     */
+    public function findRecordsByCategoryWithSubCheck()
+    {
+        $demand = new Demand();
+        $demand->setSortBy('uid');
+        $demand->setCategoryCombination('or');
+        $demand->setCategories('1');
+        $addresses = $this->addressRepository->findByDemand($demand);
+        $this->assertEquals([1, 6], $this->getListOfIds($addresses));
+
+        $demand->setIncludeSubCategories(true);
+        $addresses = $this->addressRepository->findByDemand($demand);
+        $this->assertEquals([1, 6, 8], $this->getListOfIds($addresses));
     }
 
     /**

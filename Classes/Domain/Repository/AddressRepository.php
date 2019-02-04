@@ -55,7 +55,7 @@ class AddressRepository extends Repository
         }
         $categories = $demand->getCategories();
         if ($categories) {
-            $categoryConstraints = $this->createCategoryConstraint($query, $categories);
+            $categoryConstraints = $this->createCategoryConstraint($query, $categories, $demand->getIncludeSubCategories());
             if ($demand->getCategoryCombination() === 'or') {
                 $constraints['categories'] = $query->logicalOr($categoryConstraints);
             } else {
@@ -71,25 +71,41 @@ class AddressRepository extends Repository
 
     /**
      * @param Demand $demand
-     * @return array
+     * @return array|QueryResultInterface
      * @throws InvalidQueryException
      */
-    public function getAddressesByCustomSorting(Demand $demand): array
+    public function getAddressesByCustomSorting(Demand $demand)
     {
-        $idList = explode(',', $demand->getSingleRecords());
-        if ($demand->getSortOrder() === 'DESC') {
-            $idList = array_reverse($idList);
-        }
+        $idList = GeneralUtility::intExplode(',', $demand->getSingleRecords(), true);
+        $sortBy = $demand->getSortBy();
 
-        $list = [];
-        foreach ($idList as $id) {
-            $item = $this->findByIdentifier($id);
-            if ($item) {
-                $list[] = $item;
+        if ($sortBy && $sortBy !== 'default') {
+            $query = $this->createQuery();
+
+            $order = strtolower($demand->getSortOrder()) === 'desc' ? QueryInterface::ORDER_DESCENDING : QueryInterface::ORDER_ASCENDING;
+            $query->setOrderings([$sortBy => $order]);
+
+            $constraints = [
+                $query->in('uid', $idList)
+            ];
+
+            $query->matching($query->logicalAnd($constraints));
+            return $query->execute();
+        } else {
+            if ($demand->getSortOrder() === 'DESC') {
+                $idList = array_reverse($idList);
             }
-        }
 
-        return $list;
+            $list = [];
+            foreach ($idList as $id) {
+                $item = $this->findByIdentifier($id);
+                if ($item) {
+                    $list[] = $item;
+                }
+            }
+
+            return $list;
+        }
     }
 
     /**
@@ -98,19 +114,25 @@ class AddressRepository extends Repository
      *
      * @param QueryInterface $query
      * @param  string $categories
+     * @param bool $includeSubCategories
      * @return array
      * @throws InvalidQueryException
      */
-    protected function createCategoryConstraint(QueryInterface $query, $categories): array
+    protected function createCategoryConstraint(QueryInterface $query, $categories, bool $includeSubCategories = false): array
     {
         $constraints = [];
 
-        $categoryService = GeneralUtility::makeInstance(CategoryService::class);
-        $categoriesRecursive = $categoryService->getChildrenCategories($categories);
-        if (!\is_array($categoriesRecursive)) {
-            $categoriesRecursive = GeneralUtility::intExplode(',', $categoriesRecursive, true);
+        if ($includeSubCategories) {
+            $categoryService = GeneralUtility::makeInstance(CategoryService::class);
+            $allCategories = $categoryService->getChildrenCategories($categories);
+            if (!\is_array($allCategories)) {
+                $allCategories = GeneralUtility::intExplode(',', $allCategories, true);
+            }
+        } else {
+            $allCategories = GeneralUtility::intExplode(',', $categories, true);
         }
-        foreach ($categoriesRecursive as $category) {
+
+        foreach ($allCategories as $category) {
             $constraints[] = $query->contains('categories', $category);
         }
         return $constraints;

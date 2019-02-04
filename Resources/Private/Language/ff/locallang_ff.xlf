@@ -13,6 +13,9 @@
             <trans-unit id="pi1_flexform.group_selection" xml:space="preserve">
 				<source>Categories</source>
 			</trans-unit>
+            <trans-unit id="pi1_flexform.includeSubcategories" xml:space="preserve">
+				<source>Include subcategories</source>
+			</trans-unit>
             <trans-unit id="pi1_flexform.combination" xml:space="preserve">
 				<source>Combination</source>
 			</trans-unit>

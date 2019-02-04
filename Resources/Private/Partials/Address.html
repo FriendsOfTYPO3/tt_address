@@ -55,11 +55,11 @@
         </f:if>
 
         <f:if condition="{address.www}">
-            <meta itemprop="url" content="{address.www}"/>
+            <meta itemprop="url" content="{f:uri.typolink(parameter:address.www)}"/>
             <li>
                 <i class="fas fa-link"></i>
                 {f:translate(key:'label.www')}:
-                <f:link.external uri="{address.www}">{address.www}</f:link.external>
+                <f:link.typolink parameter="{address.www}">{address.www}</f:link.typolink>
             </li>
         </f:if>
         <f:if condition="{address.birthday}">

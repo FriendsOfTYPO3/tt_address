@@ -1,0 +1,34 @@
+4.1.0 - 2018-02-04
+==================
+
+.. include:: ../../../Includes.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Features
+--------
+
+Add subcategory flag
+^^^^^^^^^^^^^^^^^^^^
+The category selection is extended by a new field in the FlexForms settings called **Include subcategories**.
+By default it is disabled and only if enabled, sub categories are taken into account as well.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2019-01-31 [FEATURE Add subcategory flag (#151) (Commit e975c02 by Georg Ringer)
+    2019-01-31 [BUGFIX] Use pagination settings in template (Commit f9bc928 by Georg Ringer)
+    2019-01-31 [BUGFIX] Respect sorting field in customSelection (Commit 36477dd by Georg Ringer)
+    2019-01-31 [TASK] Add migration of legacy plugins to extbase plugins (#140) (Commit 82b176b by Christoph Lehmann)
+    2019-01-31 [TASK] Add checks for PHP 7.3 (Commit 7403729 by Georg Ringer)
+    2019-01-31 [TASK] Add sorting to field selector (Commit 25cc4bb by Georg Ringer)
+    2019-01-11 Bugfix: Overwriting of storage pid from flexform (#139) (Commit 1cc3a85 by Christoph Lehmann)
+    2019-01-09 [BUGFIX] Use f.link.typolink for links (Commit 4e36575 by Georg Ringer)
+
+This list has been created by using `git log 4.0.1..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

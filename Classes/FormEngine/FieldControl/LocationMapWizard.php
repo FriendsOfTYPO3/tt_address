@@ -11,12 +11,15 @@ namespace FriendsOfTYPO3\TtAddress\FormEngine\FieldControl;
  */
 use TYPO3\CMS\Backend\Form\AbstractNode;
 
+/**
+ * Adds a wizard for location selection via map
+ */
 class LocationMapWizard extends AbstractNode
 {
     /**
      * @return array
      */
-    public function render()
+    public function render(): array
     {
         $row = $this->data['databaseRow'];
         $paramArray = $this->data['parameterArray'];
@@ -77,9 +80,10 @@ class LocationMapWizard extends AbstractNode
         $resultArray['linkAttributes']['data-namelat-active'] = htmlspecialchars($nameLatActive);
         $resultArray['linkAttributes']['data-tiles'] = htmlspecialchars($tilesUrl);
         $resultArray['linkAttributes']['data-copy'] = $tilesAttribution;
-        $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Css/leaflet.css';
-        $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Css/leafletBackend.css';
-        $resultArray['requireJsModules'][] = 'TYPO3/CMS/TtAddress/leaflet-1.4.0';
+        $resultArray['linkAttributes']['data-icon-close'] = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('core') . 'Resources/Public/Icons/T3Icons/actions/actions-close.svg';
+        $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Contrib/leaflet-core-1.4.0.css';
+        $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Backend/LocationMapWizard/leafletBackend.css';
+        $resultArray['requireJsModules'][] = 'TYPO3/CMS/TtAddress/leaflet-core-1.4.0';
         $resultArray['requireJsModules'][] = 'TYPO3/CMS/TtAddress/LeafletBackend';
 
         return $resultArray;

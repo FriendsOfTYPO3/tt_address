@@ -72,7 +72,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['tt_address_l
 \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class)->registerIcon(
     'location-map-wizard',
     \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-    ['source' => 'EXT:tt_address/Resources/Public/Icons/layers-2x.png']
+    ['source' => 'EXT:tt_address/Resources/Public/Contrib/layers-2x.png']
 );
 
 $icons = [

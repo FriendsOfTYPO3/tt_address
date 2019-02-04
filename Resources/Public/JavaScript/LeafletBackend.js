@@ -33,13 +33,14 @@ define(['jquery'], function ($) {
         LeafBE.$fieldLat = LeafBE.$element.attr('data-namelat');
         LeafBE.$fieldLon = LeafBE.$element.attr('data-namelon');
         LeafBE.$fieldLatActive = LeafBE.$element.attr('data-namelat-active');
+        LeafBE.$iconClose = LeafBE.$element.attr('data-icon-close');
 
         // add the container to display the map as a nice overlay
         $('body').append(
             '<div id="t3js-location-map-wrap">' +
             '<div class="t3js-location-map-title">' +
             '<div class="btn-group"><a href="#" class="btn btn-default" title="Close" id="t3js-ttaddress-close-map">' +
-            '<img src="/typo3/sysext/core/Resources/Public/Icons/T3Icons/actions/actions-close.svg" width="16" height="16"></a>' +
+            '<img src="' + LeafBE.$iconClose + '" width="16" height="16"></a>' +
             '<a class="btn btn-default" href="#" title="Import marker position to form" id="t3js-ttaddress-import-position">' +
             'Import coordinates</a></div> Location Selector ' +
             '</div>' +

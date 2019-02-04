@@ -6,6 +6,6 @@
 conf.py:
   copyright: 2002-2018
   project: Address List
-  version: 4.0
-  release: 4.0.0
+  version: 4.1
+  release: 4.1.0
 ...

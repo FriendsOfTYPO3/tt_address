@@ -8,6 +8,8 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Utility;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
@@ -20,6 +22,17 @@ class TelephoneEvaluationTest extends BaseTestCase
     public function setUp()
     {
         $this->subject = new TelephoneEvaluation();
+    }
+
+    /**
+     * @test
+     */
+    public function constructorIsCalled()
+    {
+        $subject = $this->getAccessibleMock(TelephoneEvaluation::class, ['dummy'], [], '', true);
+
+        $settings = new Settings();
+        $this->assertEquals($settings, $subject->_get('extensionSettings'));
     }
 
     /**

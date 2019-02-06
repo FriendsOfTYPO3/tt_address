@@ -34,7 +34,7 @@ class TelephoneEvaluation
     public function returnFieldJS()
     {
         return '
-         return value.replace(' . $this->extensionSettings->getTelephoneValidationPatternForJs(). ', "");
+         return value.replace(' . $this->extensionSettings->getTelephoneValidationPatternForJs() . ', "");
       ';
     }
 

@@ -18,7 +18,7 @@ plugin.tx_ttaddress {
 
     settings {
         ## Override settings if empty in flexform
-        overrideFlexformSettingsIfEmpty = paginate.itemsPerPage, singlePid, recursive
+        overrideFlexformSettingsIfEmpty = paginate.itemsPerPage, singlePid, pages, recursive
 
         detail {
             ## Set your lightbox here. The address records UID is appended, see fluid template

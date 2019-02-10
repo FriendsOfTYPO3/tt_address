@@ -91,5 +91,18 @@
             </T3FlexForms>
            ]]>
         </pi_flexform>
+    </tt_content>    <tt_content>
+        <uid>3</uid>
+        <pid>1</pid>
+        <list_type>tt_address_pi1</list_type>
+        <pi_flexform>
+            <![CDATA[
+            <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+            <T3FlexForms>
+                <data>
+                </data>
+            </T3FlexForms>
+           ]]>
+        </pi_flexform>
     </tt_content>
 </dataset>

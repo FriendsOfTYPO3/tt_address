@@ -8,6 +8,7 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Domain\Model;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use TYPO3\CMS\Extbase\Domain\Model\Category;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
@@ -184,6 +185,28 @@ class AddressTest extends BaseTestCase
         $this->subject->setWww($value);
         $this->assertEquals($value, $this->subject->getWww());
     }
+
+    /**
+     * @test
+     * @dataProvider simplifiedWwwIsReturnedDataProvider
+     */
+    public function simplifiedWwwIsReturned(string $given, string $expected)
+    {
+        $this->subject->setWww($given);
+        $this->assertEquals($expected, $this->subject->getWwwSimplified());
+    }
+
+    public function simplifiedWwwIsReturnedDataProvider()
+    {
+        return [
+            'empty' => ['', ''],
+            'emptyAfterTrim' => [' ', ''],
+            'simpleLink' => ['www.typo3.org', 'www.typo3.org'],
+            'linkWithAdditionalAttributes' => ['https://typo3.com _blank', 'https://typo3.com'],
+            'linkWithAdditionalAttributes2' => ['https://typo3.com _blank TYPO3', 'https://typo3.com'],
+        ];
+    }
+
 
     /**
      * @test

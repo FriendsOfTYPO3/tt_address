@@ -95,6 +95,14 @@ class MigrateLegacyPlugin extends AbstractUpdate
             $flexformArray = GeneralUtility::xml2array($record['pi_flexform']);
             $newFlexformArray = $flexformArray;
 
+            // Skip migration of record, when flexform is inconsistent
+            if (!isset($flexformArray['data']) ||
+                !isset($flexformArray['data']['sDISPLAY']) ||
+                !isset($flexformArray['data']['sDEF'])
+            ) {
+                continue;
+            }
+
             foreach ($flexformArray['data']['sDEF']['lDEF'] as $key => $value) {
                 if (isset($this->configurationKeyMap[$key])) {
                     $newFlexformArray['data']['sDEF']['lDEF'][$this->configurationKeyMap[$key]] = $value;

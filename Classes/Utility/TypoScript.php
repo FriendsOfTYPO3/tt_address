@@ -8,6 +8,7 @@ namespace FriendsOfTYPO3\TtAddress\Utility;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -39,7 +40,7 @@ class TypoScript
                 }
             } else {
                 // if flexform setting is empty and value is available in TS
-                if ((!isset($previousData[$fieldName]) || (strlen($previousData[$fieldName]) === 0))
+                if (((!isset($previousData[$fieldName]) || (int)$previousData[$fieldName] === 0) || (strlen($previousData[$fieldName]) === 0))
                     && isset($tsData['settings'][$fieldName])
                 ) {
                     $previousData[$fieldName] = $tsData['settings'][$fieldName];

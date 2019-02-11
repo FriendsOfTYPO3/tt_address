@@ -79,7 +79,7 @@ class AddressRepository extends Repository
         $idList = GeneralUtility::intExplode(',', $demand->getSingleRecords(), true);
         $sortBy = $demand->getSortBy();
 
-        if ($sortBy && $sortBy !== 'default') {
+        if ($sortBy && $sortBy !== 'default' && $sortBy !== 'singleSelection') {
             $query = $this->createQuery();
 
             $order = strtolower($demand->getSortOrder()) === 'desc' ? QueryInterface::ORDER_DESCENDING : QueryInterface::ORDER_ASCENDING;

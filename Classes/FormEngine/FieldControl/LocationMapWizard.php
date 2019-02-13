@@ -83,7 +83,7 @@ class LocationMapWizard extends AbstractNode
         $resultArray['linkAttributes']['data-namelat-active'] = htmlspecialchars($nameLatActive);
         $resultArray['linkAttributes']['data-tiles'] = htmlspecialchars($tilesUrl);
         $resultArray['linkAttributes']['data-copy'] = $tilesAttribution;
-        $resultArray['linkAttributes']['data-icon-close'] = \TYPO3\CMS\Core\Utility\PathUtility::getAbsoluteWebPath($closeIconPath);
+        $resultArray['linkAttributes']['data-icon-close'] = \TYPO3\CMS\Core\Utility\PathUtility::getAbsoluteWebPath($closeIconPathAbsolute);
         $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Contrib/leaflet-core-1.4.0.css';
         $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Backend/LocationMapWizard/leafletBackend.css';
         $resultArray['requireJsModules'][] = 'TYPO3/CMS/TtAddress/leaflet-core-1.4.0';

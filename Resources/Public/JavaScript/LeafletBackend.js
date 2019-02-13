@@ -35,8 +35,6 @@ define(['jquery', 'TYPO3/CMS/TtAddress/leaflet-core-1.4.0'], function ($) {
         LeafBE.$fieldLatActive = LeafBE.$element.attr('data-namelat-active');
         LeafBE.$iconClose = LeafBE.$element.attr('data-icon-close');
 
-        //actions-close
-
         // add the container to display the map as a nice overlay
         $('body').append(
             '<div id="t3js-location-map-wrap">' +

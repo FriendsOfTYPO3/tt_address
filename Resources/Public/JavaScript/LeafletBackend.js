@@ -22,6 +22,9 @@ define(['jquery', 'TYPO3/CMS/TtAddress/leaflet-core-1.4.0'], function ($) {
     $(function () {
         // basic variable initalisation
         LeafBE.$element = $('#location-map-container-a');
+        LeafBE.$labelTitle = LeafBE.$element.attr('data-label-title');
+        LeafBE.$labelClose = LeafBE.$element.attr('data-label-close');
+        LeafBE.$labelImport = LeafBE.$element.attr('data-label-import');
         LeafBE.$latitude = LeafBE.$element.attr('data-lat');
         LeafBE.$longitude = LeafBE.$element.attr('data-lon');
         LeafBE.$gLatitude = LeafBE.$element.attr('data-glat');
@@ -39,14 +42,16 @@ define(['jquery', 'TYPO3/CMS/TtAddress/leaflet-core-1.4.0'], function ($) {
         $('body').append(
             '<div id="t3js-location-map-wrap">' +
             '<div class="t3js-location-map-title">' +
-            '<div class="btn-group"><a href="#" class="btn btn-icon btn-default" title="Close" id="t3js-ttaddress-close-map">' +
+            '<div class="btn-group"><a href="#" class="btn btn-icon btn-default" title="' + LeafBE.$labelClose + '" id="t3js-ttaddress-close-map">' +
             '<span class="icon icon-size-small icon-state-default">' +
             '<span class="icon-markup">' +
             '<img src="' + LeafBE.$iconClose + '" width="16" height="16"></a>' +
             '</span>' +
             '</span>' +
             '<a class="btn btn-default" href="#" title="Import marker position to form" id="t3js-ttaddress-import-position">' +
-            'Import coordinates</a></div> Location Selector ' +
+            LeafBE.$labelImport +
+            '</a></div>' +
+            LeafBE.$labelTitle +
             '</div>' +
             '<div class="t3js-location-map-container" id="t3js-location-map-container">' +
             '</div>' +

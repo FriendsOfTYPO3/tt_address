@@ -72,6 +72,9 @@ class LocationMapWizard extends AbstractNode
         $resultArray['title'] = $GLOBALS['LANG']->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.locationMapWizard');
         $resultArray['linkAttributes']['class'] = 'locationMapWizard ';
         $resultArray['linkAttributes']['id'] = 'location-map-container-a';
+        $resultArray['linkAttributes']['data-label-title'] = $GLOBALS['LANG']->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.locationMapWizard');
+        $resultArray['linkAttributes']['data-label-close'] = $GLOBALS['LANG']->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.locationMapWizard.close');
+        $resultArray['linkAttributes']['data-label-import'] = $GLOBALS['LANG']->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.locationMapWizard.import');
         $resultArray['linkAttributes']['data-lat'] = $lat;
         $resultArray['linkAttributes']['data-lon'] = $lon;
         $resultArray['linkAttributes']['data-glat'] = $gLat;

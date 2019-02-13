@@ -66,6 +66,12 @@
             <trans-unit id="tt_address.locationMapWizard">
                 <target>Koordinaten in Karte auswählen</target>
             </trans-unit>
+            <trans-unit id="tt_address.locationMapWizard.close">
+                <target>Schließe Karten-Wizard</target>
+            </trans-unit>
+            <trans-unit id="tt_address.locationMapWizard.import">
+                <target>Importiere Marker-Koordinaten</target>
+            </trans-unit>
             <trans-unit id="tt_address_tab.contact">
                 <target>Kontakt</target>
             </trans-unit>

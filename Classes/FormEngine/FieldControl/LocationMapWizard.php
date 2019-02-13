@@ -65,6 +65,9 @@ class LocationMapWizard extends AbstractNode
             }
         }
 
+        // due to deprecations in TYPO3 v8 we now need two calls for one icon, this one is the first:
+        $closeIconPathAbsolute = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName('EXT:core/Resources/Public/Icons/T3Icons/actions/actions-close.svg');
+
         $resultArray['iconIdentifier'] = 'location-map-wizard';
         $resultArray['title'] = $GLOBALS['LANG']->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.locationMapWizard');
         $resultArray['linkAttributes']['class'] = 'locationMapWizard ';
@@ -80,7 +83,7 @@ class LocationMapWizard extends AbstractNode
         $resultArray['linkAttributes']['data-namelat-active'] = htmlspecialchars($nameLatActive);
         $resultArray['linkAttributes']['data-tiles'] = htmlspecialchars($tilesUrl);
         $resultArray['linkAttributes']['data-copy'] = $tilesAttribution;
-        $resultArray['linkAttributes']['data-icon-close'] = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('core') . 'Resources/Public/Icons/T3Icons/actions/actions-close.svg';
+        $resultArray['linkAttributes']['data-icon-close'] = \TYPO3\CMS\Core\Utility\PathUtility::getAbsoluteWebPath($closeIconPath);
         $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Contrib/leaflet-core-1.4.0.css';
         $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Backend/LocationMapWizard/leafletBackend.css';
         $resultArray['requireJsModules'][] = 'TYPO3/CMS/TtAddress/leaflet-core-1.4.0';

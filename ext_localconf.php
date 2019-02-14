@@ -39,6 +39,13 @@ if ($settings->isActivatePiBase()) {
  END: Add old legacy plugin
 =========================================================================== */
 
+// Add wizard with map for setting geo location
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1546531781] = [
+   'nodeName' => 'locationMapWizard',
+   'priority' => 30,
+   'class' => \FriendsOfTYPO3\TtAddress\FormEngine\FieldControl\LocationMapWizard::class
+];
+
 // Adds the new fluid/extbase-plugin to New Content Element wizard
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:tt_address/Configuration/TSconfig/NewContentElementWizard.typoscript">');
 
@@ -62,11 +69,11 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals'][\FriendsOfTYPO3\Tt
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['tt_address_legacyplugintyposcript'] = \FriendsOfTYPO3\TtAddress\Updates\TypoScriptTemplateLocation::class;
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['tt_address_legacyplugintoextbase'] = \FriendsOfTYPO3\TtAddress\Updates\MigrateLegacyPlugin::class;
 
-// Register icon
+// Register icons
 \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class)->registerIcon(
-    '',
+    'location-map-wizard',
     \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-    ['source' => 'EXT:tt_address/Resources/Public/Icons/']
+    ['source' => 'EXT:tt_address/Resources/Public/Contrib/layers-2x.png']
 );
 
 $icons = [

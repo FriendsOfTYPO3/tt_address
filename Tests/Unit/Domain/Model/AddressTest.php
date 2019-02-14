@@ -187,6 +187,27 @@ class AddressTest extends BaseTestCase
 
     /**
      * @test
+     * @dataProvider simplifiedWwwIsReturnedDataProvider
+     */
+    public function simplifiedWwwIsReturned(string $given, string $expected)
+    {
+        $this->subject->setWww($given);
+        $this->assertEquals($expected, $this->subject->getWwwSimplified());
+    }
+
+    public function simplifiedWwwIsReturnedDataProvider()
+    {
+        return [
+            'empty' => ['', ''],
+            'emptyAfterTrim' => [' ', ''],
+            'simpleLink' => ['www.typo3.org', 'www.typo3.org'],
+            'linkWithAdditionalAttributes' => ['https://typo3.com _blank', 'https://typo3.com'],
+            'linkWithAdditionalAttributes2' => ['https://typo3.com _blank TYPO3', 'https://typo3.com'],
+        ];
+    }
+
+    /**
+     * @test
      */
     public function skypeCanBeSet()
     {

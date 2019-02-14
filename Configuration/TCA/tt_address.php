@@ -103,6 +103,7 @@ return [
         ],
         'gender' => [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender',
+            'l10n_display' => 'defaultAsReadonly',
             'config' => [
                 'type' => 'radio',
                 'default' => '',
@@ -120,7 +121,10 @@ return [
                 'type' => 'input',
                 'size' => 8,
                 'eval' => 'trim',
-                'max' => 255
+                'max' => 255,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'name' => [
@@ -136,6 +140,7 @@ return [
         'first_name' => [
             'exclude' => false,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.first_name',
+            'l10n_display' => 'defaultAsReadonly',
             'config' => [
                 'type' => 'input',
                 'size' => 20,
@@ -146,6 +151,7 @@ return [
         'middle_name' => [
             'exclude' => false,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.middle_name',
+            'l10n_display' => 'defaultAsReadonly',
             'config' => [
                 'type' => 'input',
                 'size' => 20,
@@ -156,6 +162,7 @@ return [
         'last_name' => [
             'exclude' => false,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.last_name',
+            'l10n_display' => 'defaultAsReadonly',
             'config' => [
                 'type' => 'input',
                 'size' => 20,
@@ -165,6 +172,7 @@ return [
         ],
         'birthday' => [
             'exclude' => true,
+            'l10n_display' => 'defaultAsReadonly',
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.birthday',
             'config' => [
                 'type' => 'input',
@@ -178,7 +186,10 @@ return [
             'config' => [
                 'type' => 'text',
                 'cols' => 20,
-                'rows' => 3
+                'rows' => 3,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'building' => [
@@ -187,7 +198,10 @@ return [
                 'type' => 'input',
                 'eval' => 'trim',
                 'size' => 20,
-                'max' => 20
+                'max' => 20,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'room' => [
@@ -196,7 +210,10 @@ return [
                 'type' => 'input',
                 'eval' => 'trim',
                 'size' => 5,
-                'max' => 15
+                'max' => 15,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'phone' => [
@@ -205,7 +222,10 @@ return [
                 'type' => 'input',
                 'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class,
                 'size' => 20,
-                'max' => 30
+                'max' => 30,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'fax' => [
@@ -215,7 +235,10 @@ return [
                 'type' => 'input',
                 'size' => 20,
                 'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class,
-                'max' => 30
+                'max' => 30,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'mobile' => [
@@ -225,7 +248,10 @@ return [
                 'type' => 'input',
                 'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class,
                 'size' => 20,
-                'max' => 30
+                'max' => 30,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'www' => [
@@ -245,6 +271,9 @@ return [
                 'size' => 20,
                 'max' => 255,
                 'softref' => 'typolink,url',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ],
         ],
         'email' => [
@@ -254,7 +283,10 @@ return [
                 'size' => 20,
                 'eval' => 'email',
                 'max' => 255,
-                'softref' => 'email'
+                'softref' => 'email',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'skype' => [
@@ -265,7 +297,10 @@ return [
                 'size' => 20,
                 'eval' => 'trim',
                 'max' => 255,
-                'placeholder' => 'johndoe'
+                'placeholder' => 'johndoe',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'twitter' => [
@@ -276,7 +311,10 @@ return [
                 'size' => 20,
                 'eval' => 'trim',
                 'max' => 255,
-                'placeholder' => '@johndoe'
+                'placeholder' => '@johndoe',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'facebook' => [
@@ -287,7 +325,10 @@ return [
                 'size' => 20,
                 'eval' => 'trim',
                 'max' => 255,
-                'placeholder' => '/johndoe'
+                'placeholder' => '/johndoe',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'linkedin' => [
@@ -298,7 +339,10 @@ return [
                 'size' => 20,
                 'eval' => 'trim',
                 'max' => 255,
-                'placeholder' => 'johndoe'
+                'placeholder' => 'johndoe',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'company' => [
@@ -308,7 +352,10 @@ return [
                 'type' => 'input',
                 'eval' => 'trim',
                 'size' => 20,
-                'max' => 255
+                'max' => 255,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'position' => [
@@ -318,7 +365,10 @@ return [
                 'type' => 'input',
                 'size' => 20,
                 'eval' => 'trim',
-                'max' => 255
+                'max' => 255,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'city' => [
@@ -327,7 +377,10 @@ return [
                 'type' => 'input',
                 'size' => 20,
                 'eval' => 'trim',
-                'max' => 255
+                'max' => 255,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'zip' => [
@@ -336,7 +389,10 @@ return [
                 'type' => 'input',
                 'eval' => 'trim',
                 'size' => 10,
-                'max' => 20
+                'max' => 20,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'region' => [
@@ -346,7 +402,10 @@ return [
                 'type' => 'input',
                 'size' => 10,
                 'eval' => 'trim',
-                'max' => 255
+                'max' => 255,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'country' => [
@@ -356,7 +415,10 @@ return [
                 'type' => 'input',
                 'size' => 20,
                 'eval' => 'trim',
-                'max' => 128
+                'max' => 128,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'image' => [
@@ -370,6 +432,9 @@ return [
                     'appearance' => [
                         'collapseAll' => true,
                         'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'
+                    ],
+                    'behaviour' => [
+                        'allowLanguageSynchronization' => true,
                     ],
                     'overrideChildTca' => [
                         'types' => [
@@ -417,6 +482,9 @@ return [
                 'rows' => 5,
                 'cols' => 48,
                 'softref' => 'typolink_tag,url',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'categories' => [
@@ -430,7 +498,10 @@ return [
             'config' => [
                 'type' => 'input',
                 'eval' => 'null,' . \FriendsOfTYPO3\TtAddress\Evaluation\LatitudeEvaluation::class,
-                'default' => null
+                'default' => null,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'longitude' => [
@@ -444,7 +515,10 @@ return [
                     'locationMap' => [
                         'renderType' => 'locationMapWizard'
                     ]
-                ]
+                ],
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
     ],

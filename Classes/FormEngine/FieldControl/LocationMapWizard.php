@@ -56,7 +56,6 @@ class LocationMapWizard extends AbstractNode
             }
         }
 
-        // due to deprecations in TYPO3 v8 we now need two calls for one icon, this one is the first:
         $closeIconPathAbsolute = GeneralUtility::getFileAbsFileName('EXT:core/Resources/Public/Icons/T3Icons/actions/actions-close.svg');
 
         $resultArray['iconIdentifier'] = 'location-map-wizard';

@@ -8,7 +8,6 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Unit\Hooks\Tca;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use FriendsOfTYPO3\TtAddress\FormEngine\FieldControl\LocationMapWizard;
 use TYPO3\CMS\Lang\LanguageService;
 use TYPO3\TestingFramework\Core\BaseTestCase;
@@ -53,5 +52,4 @@ class LocationMapWizardTest extends BaseTestCase
         $result = $subject->render();
         $this->assertEquals('location-map-wizard', $result['iconIdentifier']);
     }
-
 }

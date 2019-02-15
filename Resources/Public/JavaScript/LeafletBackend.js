@@ -39,23 +39,24 @@ define(['jquery', 'TYPO3/CMS/Backend/Icons', 'TYPO3/CMS/TtAddress/leaflet-core-1
         // Load icon via TYPO3 Icon-API and requireJS
         Icons.getIcon('actions-close', Icons.sizes.small).done(function (actionsClose) {
             LeafBE.$iconClose = actionsClose;
-        });
 
-        // add the container to display the map as a nice overlay
-        $('body').append(
-            '<div id="t3js-location-map-wrap">' +
-            '<div class="t3js-location-map-title">' +
-            '<div class="btn-group"><a href="#" class="btn btn-icon btn-default" title="' + LeafBE.$labelClose + '" id="t3js-ttaddress-close-map">' +
-            LeafBE.$iconClose + '</a>' +
-            '<a class="btn btn-default" href="#" title="Import marker position to form" id="t3js-ttaddress-import-position">' +
-            LeafBE.$labelImport +
-            '</a></div>' +
-            LeafBE.$labelTitle +
-            '</div>' +
-            '<div class="t3js-location-map-container" id="t3js-location-map-container">' +
-            '</div>' +
-            '</div>'
-        );
+            // add the container to display the map as a nice overlay
+            $('body').append(
+                '<div id="t3js-location-map-wrap">' +
+                '<div class="t3js-location-map-title">' +
+                '<div class="btn-group"><a href="#" class="btn btn-icon btn-default" title="' + LeafBE.$labelClose + '" id="t3js-ttaddress-close-map">' +
+                LeafBE.$iconClose +
+                '</a>' +
+                '<a class="btn btn-default" href="#" title="Import marker position to form" id="t3js-ttaddress-import-position">' +
+                LeafBE.$labelImport +
+                '</a></div>' +
+                LeafBE.$labelTitle +
+                '</div>' +
+                '<div class="t3js-location-map-container" id="t3js-location-map-container">' +
+                '</div>' +
+                '</div>'
+            );
+        });
 
         LeafBE.$element.on('click', function () {
             // generate map on first click and bind events
@@ -126,7 +127,7 @@ define(['jquery', 'TYPO3/CMS/Backend/Icons', 'TYPO3/CMS/TtAddress/leaflet-core-1
                 LeafBE.$marker = event.target;
                 position = LeafBE.$marker.getLatLng();
             });
-            LeafBE.$map.on('click', function(event){
+            LeafBE.$map.on('click', function (event) {
                 LeafBE.$marker.setLatLng(event.latlng);
             });
             // import coordinates and close overlay

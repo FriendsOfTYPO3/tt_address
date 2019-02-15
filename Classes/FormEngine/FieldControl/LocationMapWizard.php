@@ -10,8 +10,6 @@ namespace FriendsOfTYPO3\TtAddress\FormEngine\FieldControl;
  * LICENSE.txt file that was distributed with this source code.
  */
 use TYPO3\CMS\Backend\Form\AbstractNode;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Lang\LanguageService;
 
 /**
@@ -56,8 +54,6 @@ class LocationMapWizard extends AbstractNode
             }
         }
 
-        $closeIconPathAbsolute = GeneralUtility::getFileAbsFileName('EXT:core/Resources/Public/Icons/T3Icons/actions/actions-close.svg');
-
         $resultArray['iconIdentifier'] = 'location-map-wizard';
         $resultArray['title'] = $this->getLanguageService()->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.locationMapWizard');
         $resultArray['linkAttributes']['class'] = 'locationMapWizard ';
@@ -76,7 +72,6 @@ class LocationMapWizard extends AbstractNode
         $resultArray['linkAttributes']['data-namelat-active'] = htmlspecialchars($nameLatitudeActive);
         $resultArray['linkAttributes']['data-tiles'] = htmlspecialchars('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
         $resultArray['linkAttributes']['data-copy'] = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
-        $resultArray['linkAttributes']['data-icon-close'] = PathUtility::getAbsoluteWebPath($closeIconPathAbsolute);
         $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Contrib/leaflet-core-1.4.0.css';
         $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Backend/LocationMapWizard/leafletBackend.css';
         $resultArray['requireJsModules'][] = 'TYPO3/CMS/TtAddress/leaflet-core-1.4.0';

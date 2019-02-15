@@ -1,4 +1,4 @@
-define(['jquery', 'TYPO3/CMS/TtAddress/leaflet-core-1.4.0'], function ($) {
+define(['jquery', 'TYPO3/CMS/Backend/Icons', 'TYPO3/CMS/TtAddress/leaflet-core-1.4.0'], function ($, Icons) {
     'use strict';
 
     var LeafBE = {
@@ -36,18 +36,17 @@ define(['jquery', 'TYPO3/CMS/TtAddress/leaflet-core-1.4.0'], function ($) {
         LeafBE.$fieldLat = LeafBE.$element.attr('data-namelat');
         LeafBE.$fieldLon = LeafBE.$element.attr('data-namelon');
         LeafBE.$fieldLatActive = LeafBE.$element.attr('data-namelat-active');
-        LeafBE.$iconClose = LeafBE.$element.attr('data-icon-close');
+        // Load icon via TYPO3 Icon-API and requireJS
+        Icons.getIcon('actions-close', Icons.sizes.small).done(function (actionsClose) {
+            LeafBE.$iconClose = actionsClose;
+        });
 
         // add the container to display the map as a nice overlay
         $('body').append(
             '<div id="t3js-location-map-wrap">' +
             '<div class="t3js-location-map-title">' +
             '<div class="btn-group"><a href="#" class="btn btn-icon btn-default" title="' + LeafBE.$labelClose + '" id="t3js-ttaddress-close-map">' +
-            '<span class="icon icon-size-small icon-state-default">' +
-            '<span class="icon-markup">' +
-            '<img src="' + LeafBE.$iconClose + '" width="16" height="16"></a>' +
-            '</span>' +
-            '</span>' +
+            LeafBE.$iconClose + '</a>' +
             '<a class="btn btn-default" href="#" title="Import marker position to form" id="t3js-ttaddress-import-position">' +
             LeafBE.$labelImport +
             '</a></div>' +

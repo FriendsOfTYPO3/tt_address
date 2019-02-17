@@ -8,8 +8,6 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Unit\Hooks\Updates;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
-use FriendsOfTYPO3\TtAddress\Updates\MigrateLegacyPlugin;
 use FriendsOfTYPO3\TtAddress\Updates\TypoScriptTemplateLocation;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 

@@ -8,6 +8,7 @@ namespace FriendsOfTYPO3\TtAddress\Updates;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\AbstractUpdate;
@@ -24,6 +25,14 @@ class TypoScriptTemplateLocation extends AbstractUpdate
 
     protected $oldLocation = 'EXT:tt_address/static/pi1';
     protected $newLocation = 'EXT:tt_address/Configuration/TypoScript/LegacyPlugin';
+
+    /**
+     * @return string
+     */
+    public function getIdentifier(): string
+    {
+        return 'tt_address_legacyplugintyposcript';
+    }
 
     /**
      * Checks if an update is needed

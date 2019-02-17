@@ -8,6 +8,7 @@ namespace FriendsOfTYPO3\TtAddress\Updates;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -33,6 +34,14 @@ class MigrateLegacyPlugin extends AbstractUpdate
         'recursive' => 'settings.recursive',
         'templateFile' => 'settings.displayMode'
     ];
+
+    /**
+     * @return string
+     */
+    public function getIdentifier(): string
+    {
+        return 'tt_address_legacyplugintoextbase';
+    }
 
     /**
      * Checks if an update is needed

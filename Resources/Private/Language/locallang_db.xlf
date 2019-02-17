@@ -15,6 +15,9 @@
             <trans-unit id="tt_address.gender.f">
                 <source>Female (Mrs)</source>
             </trans-unit>
+            <trans-unit id="tt_address.gender.various">
+                <source>Various</source>
+            </trans-unit>
             <trans-unit id="tt_address.gender.undefined">
                 <source>Undefined</source>
             </trans-unit>

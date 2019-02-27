@@ -35,6 +35,14 @@ class MigrateLegacyPlugin extends AbstractUpdate
     ];
 
     /**
+     * @return string
+     */
+    public function getIdentifier(): string
+    {
+        return 'tt_address_legacyplugintoextbase';
+    }
+
+    /**
      * Checks if an update is needed
      *
      * @param string &$description The description for the update

@@ -30,7 +30,7 @@ return [
         'searchFields' => 'name, first_name, middle_name, last_name, email',
     ],
     'interface' => [
-        'showRecordFieldList' => 'first_name,middle_name,last_name,address,building,room,city,zip,region,country,phone,fax,email,www,title,company,image'
+        'showRecordFieldList' => 'first_name,middle_name,last_name,name,slug,address,building,room,city,zip,region,country,phone,fax,email,www,title,company,image'
     ],
     'columns' => [
         'pid' => [
@@ -126,6 +126,25 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
+            ]
+        ],
+        'slug' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:pages.slug',
+            'displayCond' => 'USER:' . \TYPO3\CMS\Core\Compatibility\PseudoSiteTcaDisplayCondition::class . '->isInPseudoSite:pages:false',
+            'config' => [
+                'type' => 'slug',
+                'size' => 50,
+                'generatorOptions' => [
+                    'fields' => ['first_name', 'middle_name', 'last_name'],
+                    'fieldSeparator' => '-',
+                    'replacements' => [
+                        '/' => '-'
+                    ],
+                ],
+                'fallbackCharacter' => '-',
+                'eval' => 'uniqueInSite',
+                'default' => ''
             ]
         ],
         'name' => [
@@ -548,7 +567,7 @@ return [
     'palettes' => [
         'name' => [
             'showitem' => 'gender, title, --linebreak--,
-                            first_name, middle_name, last_name,--linebreak--,name'
+                            first_name, middle_name, last_name,--linebreak--,name,--linebreak--,slug'
         ],
         'organization' => [
             'showitem' => 'position, company'

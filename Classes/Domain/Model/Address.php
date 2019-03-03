@@ -862,4 +862,20 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->categories = $categories;
     }
+
+    /**
+     * Get full name including title, first, middle and last name
+     *
+     * @return string
+     */
+    public function getFullName(): string
+    {
+        $list = [
+            $this->getTitle(),
+            $this->getFirstName(),
+            $this->getMiddleName(),
+            $this->getLastName(),
+        ];
+        return implode(' ', array_filter($list));
+    }
 }

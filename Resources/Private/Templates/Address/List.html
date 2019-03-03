@@ -32,9 +32,5 @@
 </f:section>
 
 <f:section name="displayMode_map">
-    <f:switch expression="{settings.map.rendering}">
-        <f:case value="googleMaps">
-            <f:render partial="Maps/GoogleMaps" arguments="{_all}"/>
-        </f:case>
-    </f:switch>
+    <f:render partial="Maps" section="{settings.map.rendering}" arguments="{_all}"/>
 </f:section>

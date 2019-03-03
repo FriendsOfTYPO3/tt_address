@@ -158,7 +158,7 @@ class Demand
     /**
      * @param bool $ignoreWithoutCoordinates
      */
-    public function setIgnoreWithoutCoordinates(bool $ignoreWithoutCoordinates): void
+    public function setIgnoreWithoutCoordinates(bool $ignoreWithoutCoordinates)
     {
         $this->ignoreWithoutCoordinates = $ignoreWithoutCoordinates;
     }

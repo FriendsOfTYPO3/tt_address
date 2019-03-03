@@ -28,9 +28,11 @@
             </div>
         </div>
 
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
 
-        <script src="https://maps.googleapis.com/maps/api/js?key={settings.map.googleMaps.key}" type="text/javascript"></script>
-        <script type="text/javascript" src="/typo3conf/ext/tt_address/Resources/Public/JavaScript/MapsGoogleMaps.js"></script>
+
+        <script type="text/javascript" src="/typo3conf/ext/tt_address/Resources/Public/JavaScript/MapsLeaflet.js"></script>
     </f:then>
     <f:else>
         <div class="alert alert-danger">No Google Maps key</div>

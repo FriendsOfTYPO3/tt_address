@@ -25,6 +25,13 @@ plugin.tx_ttaddress {
             imageClass = lightbox lightbox_
         }
 
+        map {
+            rendering = googleMaps
+            googleMaps {
+                key =
+            }
+        }
+
         paginate {
             # can be overriden by plugin
             itemsPerPage = 10

@@ -8,6 +8,7 @@ namespace FriendsOfTYPO3\TtAddress\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Service\CategoryService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -63,6 +64,11 @@ class AddressRepository extends Repository
             }
         }
 
+        if ($demand->getIgnoreWithoutCoordinates()) {
+            $constraints['coordinatesLat'] = $query->logicalNot($query->equals('latitude', null));
+            $constraints['coordinatesLng'] = $query->logicalNot($query->equals('longitude', null));
+        }
+
         if (!empty($constraints)) {
             $query->matching($query->logicalAnd($constraints));
         }
@@ -113,7 +119,7 @@ class AddressRepository extends Repository
      * a given list of categories and a junction string
      *
      * @param QueryInterface $query
-     * @param  string $categories
+     * @param string $categories
      * @param bool $includeSubCategories
      * @return array
      * @throws InvalidQueryException

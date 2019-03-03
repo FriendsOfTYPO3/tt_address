@@ -200,6 +200,17 @@
                         </TCEforms>
                     </settings.recursive>
 
+                    <settings.ignoreWithoutCoordinates>
+                        <TCEforms>
+                            <exclude>1</exclude>
+                            <label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.ignoreWithoutCoordinates</label>
+                            <config>
+                                <type>check</type>
+                                <default>0</default>
+                            </config>
+                        </TCEforms>
+                    </settings.ignoreWithoutCoordinates>
+
                     <settings.allowOverride>
                         <TCEforms>
                             <exclude>1</exclude>
@@ -238,6 +249,10 @@
                                     <numIndex index="1" type="array">
                                         <numIndex index="0">LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.displayMode.singleView</numIndex>
                                         <numIndex index="1">single</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.displayMode.map</numIndex>
+                                        <numIndex index="1">map</numIndex>
                                     </numIndex>
                                 </items>
                             </config>

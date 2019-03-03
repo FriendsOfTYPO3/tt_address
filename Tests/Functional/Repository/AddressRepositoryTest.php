@@ -153,6 +153,18 @@ class AddressRepositoryTest extends FunctionalTestCase
     }
 
     /**
+     * @test
+     */
+    public function findRecordsByCoordinates()
+    {
+        $demand = new Demand();
+        $demand->setPages(['25']);
+        $demand->setIgnoreWithoutCoordinates(true);
+        $addresses = $this->addressRepository->findByDemand($demand);
+        $this->assertEquals([14], $this->getListOfIds($addresses));
+    }
+
+    /**
      * @param Address[] $list
      * @param string $field
      * @return array

@@ -52,6 +52,7 @@ class AddressRepositoryTest extends FunctionalTestCase
     public function findRecordsByCustomSorting()
     {
         $demand = new Demand();
+        $demand->setPages(['1', '2', '3', '23']);
         $demand->setSingleRecords('3,6,2');
         $addresses = $this->addressRepository->getAddressesByCustomSorting($demand);
 
@@ -64,6 +65,7 @@ class AddressRepositoryTest extends FunctionalTestCase
     public function findRecordsByCustomSortingDesc()
     {
         $demand = new Demand();
+        $demand->setPages(['1', '2', '3', '23']);
         $demand->setSortBy('');
         $demand->setSingleRecords('3,6,2');
         $demand->setSortOrder('DESC');
@@ -117,6 +119,7 @@ class AddressRepositoryTest extends FunctionalTestCase
     public function findRecordsByCategory()
     {
         $demand = new Demand();
+        $demand->setPages(['1', '2', '3', '23']);
         $demand->setSortBy('uid');
         $demand->setCategories('5');
         $addresses = $this->addressRepository->findByDemand($demand);
@@ -137,6 +140,7 @@ class AddressRepositoryTest extends FunctionalTestCase
     public function findRecordsByCategoryWithSubCheck()
     {
         $demand = new Demand();
+        $demand->setPages(['1', '2', '3', '21', '23']);
         $demand->setSortBy('uid');
         $demand->setCategoryCombination('or');
         $demand->setCategories('1');

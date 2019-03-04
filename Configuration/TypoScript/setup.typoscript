@@ -27,6 +27,11 @@ plugin.tx_ttaddress {
 
         map {
             rendering = googleMaps
+
+            defaultPosition {
+                lat = 48.3057664
+                lng = 14.2873126
+            }
             googleMaps {
                 key =
             }

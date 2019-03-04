@@ -8,10 +8,9 @@
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
             integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
             crossorigin=""></script>
-
-
     <script type="text/javascript" src="/typo3conf/ext/tt_address/Resources/Public/JavaScript/MapsLeaflet.js"></script>
 </f:section>
+
 <f:section name="googleMaps">
     <f:if condition="{settings.map.googleMaps.key}">
         <f:then>
@@ -29,30 +28,29 @@
 <f:section name="rendering">
     <div class="row">
         <div class="col-md-3">
+            <ul class="list-group">
             <f:for each="{addresses}" as="address" iteration="i">
-                <div>
-                    <h3>{address.fullName}</h3>
-                    <f:if condition="{address.position}">
-                        <p class="position"><em>{address.position}</em></p>
-                    </f:if>
-
-                    <f:render section="address" partial="Address" arguments="{_all}"/>
-
+                <li class="list-group-item">
+                    <strong>{address.fullName}</strong><br>
                     <a href="#" data-iteration-id="{i.index}" class="marker-link">Open in map</a>
-                </div>
+                </li>
             </f:for>
+            </ul>
         </div>
         <div class="col-md-9">
-            <div id="ttaddress-map" style="width:100%;height:300px;background: #eee"></div>
-            <div id="ttaddress-map-records" style="display: none">
+            <div id="ttaddress-map" data-default-lat="{settings.map.defaultPosition.lat}" data-default-lng="{settings.map.defaultPosition.lng}" style="width:100%;height:300px;background: #eee"></div>
+            <ul id="ttaddress-map-records" style="display: none">
                 <f:for each="{addresses}" as="address">
                     <div id="ttaddress-map-record-{address.uid}" data-id="{address.uid}" data-lat="{address.latitude}"
                          data-lng="{address.longitude}" data-icon="icon">
-                        <h3>{address.fullName}</h3>
-                        <div>{address.uid}</div>
+                        <h6>{address.fullName}</h6>
+                        <div>
+                            <f:render partial="Address" section="address" arguments="{_all}" />
+                            <f:render partial="Address" section="contact" arguments="{_all}" />
+                        </div>
                     </div>
                 </f:for>
-            </div>
+            </ul>
         </div>
     </div>
 </f:section>

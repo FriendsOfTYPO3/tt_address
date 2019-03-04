@@ -1,0 +1,40 @@
+<f:if condition="{settings.map.googleMaps.key}">
+    <f:then>
+        <div class="row">
+            <div class="col-md-3">
+                <f:for each="{addresses}" as="address" iteration="i">
+                    <div>
+                        <h3>{address.title} {address.firstName} {address.middleName} {address.lastName}</h3>
+                        <f:if condition="{address.position}">
+                            <p class="position"><em>{address.position}</em></p>
+                        </f:if>
+
+                        <f:render section="address" partial="Address" arguments="{_all}"/>
+
+                        <a href="#" data-iteration-id="{i.index}" class="marker-link">Open in map</a>
+                    </div>
+                </f:for>
+            </div>
+            <div class="col-md-9">
+                <div id="ttaddress-map" style="width:100%;height:300px;background: #eee"></div>
+                <div id="ttaddress-map-records" style="display: none">
+                    <f:for each="{addresses}" as="address">
+                        <div id="ttaddress-map-record-{address.uid}" data-id="{address.uid}" data-lat="{address.latitude}" data-lng="{address.longitude}" data-icon="icon">
+                            <h3>{address.firstName} {address.lastName}</h3>
+                            <div>{address.uid}</div>
+                        </div>
+                    </f:for>
+                </div>
+            </div>
+        </div>
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+
+
+        <script type="text/javascript" src="/typo3conf/ext/tt_address/Resources/Public/JavaScript/MapsLeaflet.js"></script>
+    </f:then>
+    <f:else>
+        <div class="alert alert-danger">No Google Maps key</div>
+    </f:else>
+</f:if>

@@ -9,12 +9,12 @@ function initAutocomplete() {
         streetViewControl: false,
         fullscreenControl: false
     };
-    map = new google.maps.Map(document.getElementById('ttaddress-map'), mapOptions);
+    map = new google.maps.Map(document.getElementById('ttaddress__map'), mapOptions);
     infoWindow = new google.maps.InfoWindow();
 
     var bounds = new google.maps.LatLngBounds();
 
-    var records = document.getElementById("ttaddress-map-records");
+    var records = document.getElementById("ttaddress__records");
     for (var i = 0; i < records.childNodes.length; i++) {
         var item = records.childNodes[i];
 
@@ -26,7 +26,7 @@ function initAutocomplete() {
         });
 
         google.maps.event.addListener(marker, 'click', function (e) {
-            infoWindow.setContent(document.getElementById('ttaddress-map-record-' + this.recordId).innerHTML);
+            infoWindow.setContent(document.getElementById('ttaddress__record-' + this.recordId).innerHTML);
             infoWindow.open(map, this);
         });
 

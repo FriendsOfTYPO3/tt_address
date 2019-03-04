@@ -4,7 +4,7 @@
             <div class="col-md-3">
                 <f:for each="{addresses}" as="address" iteration="i">
                     <div>
-                        <h3>{address.title} {address.firstName} {address.middleName} {address.lastName}</h3>
+                        <h3>{address.fullName}</h3>
                         <f:if condition="{address.position}">
                             <p class="position"><em>{address.position}</em></p>
                         </f:if>
@@ -20,7 +20,7 @@
                 <div id="ttaddress-map-records" style="display: none">
                     <f:for each="{addresses}" as="address">
                         <div id="ttaddress-map-record-{address.uid}" data-id="{address.uid}" data-lat="{address.latitude}" data-lng="{address.longitude}" data-icon="icon">
-                            <h3>{address.firstName} {address.lastName}</h3>
+                            <h3>{address.fullName}</h3>
                             <div>{address.uid}</div>
                         </div>
                     </f:for>

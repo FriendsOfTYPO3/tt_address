@@ -1,6 +1,5 @@
 <div class="vcard tt_address_detail" itemscope itemtype="http://schema.org/Person">
-    <h4 itemprop="name">{f:if(condition:address.title,then: '{address.title} ')}{address.firstName}
-        {f:if(condition:address.middleName,then: '{address.middleName} ')} {address.lastName}</h4>
+    <h4 itemprop="name">{address.fullName}</h4>
     <f:render section="position" partial="Address" arguments="{_all}"/>
 
     <f:if condition="{address.image}">

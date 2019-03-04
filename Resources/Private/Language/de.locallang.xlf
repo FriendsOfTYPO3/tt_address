@@ -51,6 +51,9 @@
       <trans-unit id="backToList">
         <target>Zurück zur Liste</target>
       </trans-unit>
+      <trans-unit id="show_on_map">
+        <target>Auf Karte anzeigen</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

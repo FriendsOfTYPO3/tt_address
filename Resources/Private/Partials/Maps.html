@@ -32,16 +32,17 @@
         <div class="col-md-3">
             <ul class="list-group">
                 <f:for each="{addresses}" as="address" iteration="i">
-                    <li class="list-group-item">
+                    <li id="ttaddress__label-{address.uid}" class="ttaddress__label list-group-item">
                         <strong>{address.fullName}</strong><br>
-                        <a href="#" data-iteration-id="{i.index}" class="marker-link">Open in map</a>
+                        <f:render partial="Address" section="address" arguments="{_all}"/>
+                        <a href="#" data-iteration-id="{i.index}" class="ttaddress__markerlink">{f:translate(key:'show_on_map')}</a>
                     </li>
                 </f:for>
             </ul>
         </div>
         <div class="col-md-9">
             <div id="ttaddress__map" data-default-lat="{settings.map.defaultPosition.lat}"
-                 data-default-lng="{settings.map.defaultPosition.lng}" style="width:100%;height:300px;"></div>
+                 data-default-lng="{settings.map.defaultPosition.lng}" style="width:100%;min-height:300px;"></div>
             <ul id="ttaddress__records" style="display: none">
                 <f:for each="{addresses}" as="address">
                     <div id="ttaddress__record-{address.uid}" data-id="{address.uid}" data-lat="{address.latitude}"

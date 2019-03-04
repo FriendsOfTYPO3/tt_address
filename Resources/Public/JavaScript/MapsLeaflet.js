@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initAutocomplete();
 });
 document.addEventListener('click', function (event) {
-    if (!event.target.matches('.marker-link')) return;
+    if (!event.target.matches('.ttaddress__markerlink')) return;
     event.preventDefault();
     var element = event.target;
     markers[element.getAttribute('data-iteration-id')].openPopup();

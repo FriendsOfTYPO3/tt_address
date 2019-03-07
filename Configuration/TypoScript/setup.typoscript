@@ -26,8 +26,11 @@ plugin.tx_ttaddress {
         }
 
         map {
+
+            # leaflet, googleMaps, staticGoogleMaps
             rendering = googleMaps
 
+            # todo: needed?
             defaultPosition {
                 lat = 48.3057664
                 lng = 14.2873126
@@ -35,7 +38,7 @@ plugin.tx_ttaddress {
             googleMaps {
                 key =
             }
-            googleMapsStatic {
+            staticGoogleMaps {
                 parameters {
                     key =
                     size = 500x400

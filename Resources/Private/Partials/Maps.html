@@ -32,7 +32,7 @@
 <f:section name="googleMapsStatic">
     <f:if condition="{settings.map.googleMaps.key}">
         <f:then>
-            <img src="{ttaddr:googleMapsStatic(parameters:settings.map.googleMapsStatic.parameters,addresses:addresses)}" />
+            <img src="{ttaddr:staticGoogleMaps(parameters:settings.map.googleMapsStatic.parameters,addresses:addresses)}" />
         </f:then>
         <f:else>
             <div class="alert alert-danger">No Google Maps key</div>

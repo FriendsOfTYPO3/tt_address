@@ -14,7 +14,7 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
-class GoogleMapsStaticViewHelper extends AbstractViewHelper
+class StaticGoogleMapsViewHelper extends AbstractViewHelper
 {
     use CompileWithRenderStatic;
 

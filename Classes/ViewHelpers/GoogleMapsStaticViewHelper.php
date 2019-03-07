@@ -8,7 +8,6 @@ namespace FriendsOfTYPO3\TtAddress\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
@@ -38,8 +37,7 @@ class GoogleMapsStaticViewHelper extends AbstractViewHelper
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    )
-    {
+    ) {
         $mapArguments = $arguments['parameters'];
 
         $markers = [];

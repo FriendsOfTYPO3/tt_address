@@ -35,6 +35,12 @@ plugin.tx_ttaddress {
             googleMaps {
                 key =
             }
+            googleMapsStatic {
+                parameters {
+                    key =
+                    size = 500x400
+                }
+            }
         }
 
         paginate {

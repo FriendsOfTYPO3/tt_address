@@ -1,3 +1,5 @@
+{namespace ttaddr=FriendsOfTYPO3\TtAddress\ViewHelpers}
+
 <f:section name="leaflet">
 
     <f:render section="rendering" arguments="{_all}"/>
@@ -20,6 +22,17 @@
                     type="text/javascript"></script>
             <script type="text/javascript"
                     src="/typo3conf/ext/tt_address/Resources/Public/JavaScript/MapsGoogleMaps.js"></script>
+        </f:then>
+        <f:else>
+            <div class="alert alert-danger">No Google Maps key</div>
+        </f:else>
+    </f:if>
+</f:section>
+
+<f:section name="googleMapsStatic">
+    <f:if condition="{settings.map.googleMaps.key}">
+        <f:then>
+            <img src="{ttaddr:googleMapsStatic(parameters:settings.map.googleMapsStatic.parameters,addresses:addresses)}" />
         </f:then>
         <f:else>
             <div class="alert alert-danger">No Google Maps key</div>

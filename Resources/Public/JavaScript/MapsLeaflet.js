@@ -25,7 +25,7 @@ function initAutocomplete() {
     }
     var group = new L.featureGroup(markers);
 
-    map.fitBounds(group.getBounds().pad(Math.sqrt(2) / 2));
+    map.fitBounds(group.getBounds());
 }
 
 document.addEventListener("DOMContentLoaded", function () {

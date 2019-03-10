@@ -10,29 +10,49 @@
         :depth: 3
 
 
-
 Features
 --------
+The following features have been added to tt_address.
 
 Map support
 ^^^^^^^^^^^
+Since version *4.2.0* the extension is capable of rendering records on a map.
+The following variants are included by default:
+
+- Leaflet
+- Google Maps
+- Static Google Maps
+
+It is described in detail in :ref:`the docs <users-manual-maps:>`.
+
 
 Allow overriding demand object
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+It is now possible to override the configuration used to retrieve the proper records.
+It is described in detail in :ref:`the docs <tutorial-overrideDemand:>`. A simple example can look like this.
+
+.. code-block:: html
+
+   <f:link.page additionalParams="{tx_ttaddress_listview:{override:{categories: 1}}}">
+      Category 1
+   </f:link.page>
 
 Slug field
 ^^^^^^^^^^
+The address record has been extended by a slug field.
 
 Helper getters
-^^^^^^^^^^^^^
+^^^^^^^^^^^^^^
+The following getters have been added to the Address model:
 
-- `{address.fullName}`
-- `{address.wwwSimplified}`
+- `{address.fullName}`: Gives you the full name including title, first, middle and last name
+- `{address.wwwSimplified}`: Gives you the the web link without any possible parameters like *_blank*
 
 
 Configurable telephone validation regex
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+The regex used for validation the telephone number of a record is now configurable within
+the Extension Manager's settings.
 
 
 All Changes

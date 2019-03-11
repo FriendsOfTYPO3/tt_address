@@ -91,4 +91,14 @@ class DemandTest extends BaseTestCase
         $this->subject->setIncludeSubCategories($value);
         $this->assertEquals($value, $this->subject->getIncludeSubCategories());
     }
+
+    /**
+     * @test
+     */
+    public function ignoreWithoutCoordinatesCanBeSet()
+    {
+        $value = true;
+        $this->subject->setIgnoreWithoutCoordinates($value);
+        $this->assertEquals($value, $this->subject->getIgnoreWithoutCoordinates());
+    }
 }

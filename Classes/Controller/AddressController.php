@@ -126,6 +126,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $demand->setSingleRecords((string)$this->settings['singleRecords']);
         $demand->setSortBy((string)$this->settings['sortBy']);
         $demand->setSortOrder((string)$this->settings['sortOrder']);
+        $demand->setIgnoreWithoutCoordinates((bool)$this->settings['ignoreWithoutCoordinates']);
 
         return $demand;
     }

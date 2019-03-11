@@ -63,6 +63,11 @@ class AddressRepository extends Repository
             }
         }
 
+        if ($demand->getIgnoreWithoutCoordinates()) {
+            $constraints['coordinatesLat'] = $query->logicalNot($query->equals('latitude', null));
+            $constraints['coordinatesLng'] = $query->logicalNot($query->equals('longitude', null));
+        }
+
         if (!empty($constraints)) {
             $query->matching($query->logicalAnd($constraints));
         }
@@ -113,7 +118,7 @@ class AddressRepository extends Repository
      * a given list of categories and a junction string
      *
      * @param QueryInterface $query
-     * @param  string $categories
+     * @param string $categories
      * @param bool $includeSubCategories
      * @return array
      * @throws InvalidQueryException

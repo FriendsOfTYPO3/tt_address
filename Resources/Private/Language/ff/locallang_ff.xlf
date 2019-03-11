@@ -42,6 +42,9 @@
         <trans-unit id="pi1_flexform.sortOrder.descending" xml:space="preserve">
             <source>Descending</source>
         </trans-unit>
+        <trans-unit id="pi1_flexform.ignoreWithoutCoordinates" xml:space="preserve">
+            <source>Ignore records with no latitude/longitude</source>
+        </trans-unit>
         <trans-unit id="pi1_flexform.allowOverride" xml:space="preserve">
             <source>Allow override configuration by GET/POST</source>
         </trans-unit>
@@ -62,6 +65,9 @@
         </trans-unit>
         <trans-unit id="pi1_flexform.displayMode.singleView" xml:space="preserve">
             <source>Single view</source>
+        </trans-unit>
+        <trans-unit id="pi1_flexform.displayMode.map" xml:space="preserve">
+            <source>Map view</source>
         </trans-unit>
         <trans-unit id="pi1_flexform.hidePagination" xml:space="preserve">
             <source>Do not display pagebrowser (listview)</source>

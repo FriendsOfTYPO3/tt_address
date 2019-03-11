@@ -25,6 +25,27 @@ plugin.tx_ttaddress {
             imageClass = lightbox lightbox_
         }
 
+        map {
+
+            # leaflet, googleMaps, staticGoogleMaps
+            rendering = googleMaps
+
+            # todo: needed?
+            defaultPosition {
+                lat = 48.3057664
+                lng = 14.2873126
+            }
+            googleMaps {
+                key =
+            }
+            staticGoogleMaps {
+                parameters {
+                    key =
+                    size = 500x400
+                }
+            }
+        }
+
         paginate {
             # can be overriden by plugin
             itemsPerPage = 10

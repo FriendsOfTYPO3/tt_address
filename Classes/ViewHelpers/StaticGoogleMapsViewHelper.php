@@ -8,11 +8,13 @@ namespace FriendsOfTYPO3\TtAddress\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
-class RemoveSpacesViewHelper extends AbstractViewHelper
+class StaticGoogleMapsViewHelper extends AbstractViewHelper
 {
     use CompileWithRenderStatic;
 
@@ -21,7 +23,8 @@ class RemoveSpacesViewHelper extends AbstractViewHelper
      */
     public function initializeArguments()
     {
-        $this->registerArgument('value', 'string', 'value');
+        $this->registerArgument('addresses', 'mixed', 'Addresses', true);
+        $this->registerArgument('parameters', 'array', 'Parameters', true);
     }
 
     /**
@@ -32,7 +35,17 @@ class RemoveSpacesViewHelper extends AbstractViewHelper
      */
     public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
     {
-        $value = $arguments['value'] ?: $renderChildrenClosure();
-        return str_replace(' ', '', $value);
+        $mapArguments = $arguments['parameters'];
+
+        $markers = [];
+        foreach ($arguments['addresses'] as $address) {
+            /** @var Address $address */
+            $markers[] = '&markers=' . $address->getLatitude() . ',' . $address->getLongitude();
+        }
+        if (count($markers) === 1) {
+            $mapArguments['zoom'] = 13;
+        }
+
+        return 'http://maps.googleapis.com/maps/api/staticmap?' . GeneralUtility::implodeArrayForUrl('', $mapArguments, '', true) . implode('', $markers);
     }
 }

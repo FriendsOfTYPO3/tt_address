@@ -3,17 +3,17 @@
     <div class="row">
         <div class="col-md-2 addressImage">
             <f:link.action action="show" arguments="{address : address}"
-                           title="{address.title} {address.firstName} {address.middleName} {address.lastName}"
+                           title="{address.fullName}"
                            pageUid="{settings.singlePid}">
                 <f:if condition="{address.image}">
                     <f:media file="{address.firstImage}" width="400" class="img-fluid img-thumbnail rounded"
                              alt="{img.originalResource.alt}"
-                             title="{address.title} {address.firstName} {address.middleName} {address.lastName}"/>
+                             title="{address.fullName}"/>
                 </f:if>
             </f:link.action>
         </div>
         <div class="col-md-10">
-            <h3>{address.title} {address.firstName} {address.middleName} {address.lastName}</h3>
+            <h3>{address.fullName}</h3>
             <f:if condition="{address.position}">
                 <p class="position"><em>{address.position}</em></p>
             </f:if>
@@ -23,7 +23,7 @@
 
             <f:if condition="{settings.singlePid}">
                 <f:link.action action="show" arguments="{address : address}"
-                               title="{address.title} {address.firstName} {address.middleName} {address.lastName}"
+                               title="{address.fullName}"
                                pageUid="{settings.singlePid}" class="btn btn-default">{f:translate(key:'more')}
                 </f:link.action>
             </f:if>

@@ -445,4 +445,15 @@ class AddressTest extends BaseTestCase
         $this->subject->setCategories($value);
         $this->assertEquals($value, $this->subject->getCategories());
     }
+
+    /**
+     * @test
+     */
+    public function fullNameIsReturned()
+    {
+        $this->subject->setTitle('Dr.');
+        $this->subject->setLastName('Doe');
+
+        $this->assertEquals('Dr. Doe', $this->subject->getFullName());
+    }
 }

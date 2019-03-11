@@ -1,39 +1,51 @@
-var map = L.map('ttaddress__map').setView([51.505, -0.09], 13);
-var mapBounds = L.latLngBounds();
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    id: 'mapbox.streets'
-}).addTo(map);
+function ttAddressLeaflet() {
+    var obj = {};
 
+    obj.map = null;
+    obj.markers = [];
 
-var popup = L.popup();
+    obj.run = function () {
+        obj.map = L.map('ttaddress__map').setView([51.505, -0.09], 13);
+        var mapBounds = L.latLngBounds();
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+                '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            id: 'mapbox.streets'
+        }).addTo(obj.map);
 
-var markers = [];
+        var records = document.getElementById("ttaddress__records");
+        for (var i = 0; i < records.childNodes.length; i++) {
+            var item = records.childNodes[i];
 
-function initAutocomplete() {
+            var marker = L.marker([item.getAttribute('data-lat'), item.getAttribute('data-lng')]).addTo(obj.map)
+                .bindPopup(document.getElementById('ttaddress__record-' + item.getAttribute('data-id')).innerHTML);
+            obj.markers.push(marker);
+        }
+        var group = new L.featureGroup(obj.markers);
 
-    var records = document.getElementById("ttaddress__records");
-    for (var i = 0; i < records.childNodes.length; i++) {
-        var item = records.childNodes[i];
+        obj.map.fitBounds(group.getBounds());
+    };
 
-        var marker = L.marker([item.getAttribute('data-lat'), item.getAttribute('data-lng')]).addTo(map)
-            .bindPopup(document.getElementById('ttaddress__record-' + item.getAttribute('data-id')).innerHTML);
-        markers.push(marker);
-    }
-    var group = new L.featureGroup(markers);
+    obj.openMarker = function (markerId) {
+        obj.markers[markerId].openPopup();
+    };
 
-    map.fitBounds(group.getBounds());
+    return obj;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    initAutocomplete();
+    var ttAddressMapInstance = ttAddressLeaflet();
+    ttAddressMapInstance.run();
+
+    document.addEventListener('click', function (event) {
+        if (!event.target.matches('.ttaddress__markerlink')) {
+            return;
+        }
+        event.preventDefault();
+        var element = event.target;
+        ttAddressMapInstance.openMarker(parseInt(element.getAttribute('data-iteration-id')));
+    }, false);
+
 });
-document.addEventListener('click', function (event) {
-    if (!event.target.matches('.ttaddress__markerlink')) return;
-    event.preventDefault();
-    var element = event.target;
-    markers[element.getAttribute('data-iteration-id')].openPopup();
-}, false);

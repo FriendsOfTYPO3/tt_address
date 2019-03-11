@@ -23,13 +23,14 @@ The following variants are included by default:
 - Google Maps
 - Static Google Maps
 
-It is described in detail in :ref:`the docs <users-manual-maps:>`.
-
+It is described in detail in :ref:`the docs <users-manual-maps>`.
 
 Allow overriding demand object
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 It is now possible to override the configuration used to retrieve the proper records.
-It is described in detail in :ref:`the docs <tutorial-overrideDemand:>`. A simple example can look like this.
+It is described in detail in :ref:`the docs <tutorial-overrideDemand>`.
+
+A simple example can look like this.
 
 .. code-block:: html
 

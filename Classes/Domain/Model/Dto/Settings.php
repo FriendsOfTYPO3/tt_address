@@ -72,5 +72,4 @@ class Settings implements SingletonInterface
     {
         return $this->activatePiBase;
     }
-
 }

@@ -8,7 +8,6 @@ namespace FriendsOfTYPO3\TtAddress\Service;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Database\ConnectionPool;

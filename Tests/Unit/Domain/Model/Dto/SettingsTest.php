@@ -26,8 +26,6 @@ class SettingsTest extends BaseTestCase
         $this->assertTrue($subject->isStoreBackwardsCompatName());
         $this->assertTrue($subject->isReadOnlyNameField());
         $this->assertFalse($subject->isActivatePiBase());
-        $this->assertFalse($subject->isEnableGeo());
-        $this->assertEquals('', $subject->getGoogleMapsKeyGeocoding());
     }
 
     /**
@@ -40,8 +38,6 @@ class SettingsTest extends BaseTestCase
             'storeBackwardsCompatName' => false,
             'readOnlyNameField' => false,
             'activatePiBase' => true,
-            'enableGeo' => true,
-            'googleMapsKeyGeocoding' => '123',
         ]);
         $subject = new Settings();
 
@@ -49,7 +45,5 @@ class SettingsTest extends BaseTestCase
         $this->assertFalse($subject->isStoreBackwardsCompatName());
         $this->assertFalse($subject->isReadOnlyNameField());
         $this->assertTrue($subject->isActivatePiBase());
-        $this->assertTrue($subject->isEnableGeo());
-        $this->assertEquals('123', $subject->getGoogleMapsKeyGeocoding());
     }
 }

@@ -25,19 +25,15 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class GeocodeService implements SingletonInterface
 {
 
-    /** @var Settings */
-    protected $extensionSettings;
-
     /** @var int */
     protected $cacheTime = 7776000;
 
     /** @var string  */
     protected $geocodingUrl = 'https://maps.googleapis.com/maps/api/geocode/json?language=de&sensor=false';
 
-    public function __construct()
+    public function __construct(string $googleMapsKey)
     {
-        $this->extensionSettings = GeneralUtility::makeInstance(Settings::class);
-        $this->geocodingUrl .= '&key=' . $this->extensionSettings->getGoogleMapsKeyGeocoding();
+        $this->geocodingUrl .= '&key=' . $googleMapsKey;
     }
 
     /**

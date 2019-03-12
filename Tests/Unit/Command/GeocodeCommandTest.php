@@ -8,11 +8,11 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Command;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use FriendsOfTYPO3\TtAddress\Command\GeocodeCommand;
-use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
+use FriendsOfTYPO3\TtAddress\Service\GeocodeService;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
-use Symfony\Component\Console\Style\SymfonyStyle;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class GeocodeCommandTest extends BaseTestCase
@@ -21,55 +21,21 @@ class GeocodeCommandTest extends BaseTestCase
     /**
      * @test
      */
-    public function constructorWorks()
+    public function configurationIsProperlyConfigured()
     {
-        $settings = new Settings();
-        $subject = $this->getAccessibleMock(GeocodeCommand::class, ['dummy'], [], '', true);
-        $this->assertEquals($settings, $subject->_get('extensionSettings'));
+        $subject = $this->getAccessibleMock(GeocodeCommand::class, ['addArgument'], [], '', false);
+        $subject->_call('configure');
+        $this->assertEquals('Geocode tt_address records', $subject->getDescription());
     }
 
     /**
      * @test
      */
-    public function geocodingIsIgnoredIfDisabled()
+    public function geocodeServiceIsReturned()
     {
-        $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address'] = serialize([
-            'enableGeo' => false,
-            'googleMapsKeyGeocoding' => '123',
-        ]);
-        $settings = new Settings();
-        $mockedIo = $this->getAccessibleMock(SymfonyStyle::class, ['warning'], [], '', false);
-        $mockedIo->expects($this->once())->method('warning')->with('Geo stuff is not enabled for tt_address!');
-
-        $subject = $this->getAccessibleMock(GeocodeCommand::class, ['getSymfonyStyle'], [], '', false);
-        $subject->_set('extensionSettings', $settings);
-        $subject->expects($this->once())->method('getSymfonyStyle')->willReturn($mockedIo);
-
-        $input = $this->getAccessibleMock(StringInput::class, ['dummy'], [], '', false);
-        $output = $this->getAccessibleMock(ConsoleOutput::class, ['warning'], []);
-        $subject->_call('execute', $input, $output);
-    }
-
-    /**
-     * @test
-     */
-    public function geocodingIsIgnoredWithNoKey()
-    {
-        $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address'] = serialize([
-            'enableGeo' => true,
-            'googleMapsKeyGeocoding' => '',
-        ]);
-        $settings = new Settings();
-        $mockedIo = $this->getAccessibleMock(SymfonyStyle::class, ['warning'], [], '', false);
-        $mockedIo->expects($this->once())->method('warning')->with('No google maps key configured!');
-
-        $subject = $this->getAccessibleMock(GeocodeCommand::class, ['getSymfonyStyle'], [], '', false);
-        $subject->_set('extensionSettings', $settings);
-        $subject->expects($this->once())->method('getSymfonyStyle')->willReturn($mockedIo);
-
-        $input = $this->getAccessibleMock(StringInput::class, ['dummy'], [], '', false);
-        $output = $this->getAccessibleMock(ConsoleOutput::class, ['warning'], []);
-        $subject->_call('execute', $input, $output);
+        $subject = $this->getAccessibleMock(GeocodeCommand::class, ['dummy'], [], '', false);
+        $service = $subject->_call('getGeocodeService', '123');
+        $this->assertEquals(GeocodeService::class, get_class($service));
     }
 
     /**
@@ -77,19 +43,15 @@ class GeocodeCommandTest extends BaseTestCase
      */
     public function geocodingIsCalled()
     {
-        $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address'] = serialize([
-            'enableGeo' => true,
-            'googleMapsKeyGeocoding' => '123',
-        ]);
-        $settings = new Settings();
-
         $geocodeService = $this->getAccessibleMock(GeocodeCommand::class, ['calculateCoordinatesForAllRecordsInTable'], [], '', false);
-        $subject = $this->getAccessibleMock(GeocodeCommand::class, ['calculateCoordinatesForAllRecordsInTable'], [], '', false);
-        $subject->_set('extensionSettings', $settings);
-        $subject->_set('geocodeService', $geocodeService);
         $geocodeService->expects($this->once())->method('calculateCoordinatesForAllRecordsInTable');
 
-        $input = $this->getAccessibleMock(StringInput::class, ['dummy'], [], '', false);
+        $subject = $this->getAccessibleMock(GeocodeCommand::class, ['calculateCoordinatesForAllRecordsInTable', 'getGeocodeService'], [], '', false);
+        $subject->expects($this->once())->method('getGeocodeService')->willReturn($geocodeService);
+
+        $input = $this->getAccessibleMock(StringInput::class, ['getArgument'], [], '', false);
+        $input->expects($this->once())->method('getArgument')->willReturn('123');
+
         $output = $this->getAccessibleMock(ConsoleOutput::class, ['warning'], []);
         $subject->_call('execute', $input, $output);
     }

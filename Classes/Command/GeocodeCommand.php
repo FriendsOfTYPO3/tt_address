@@ -9,9 +9,11 @@ namespace FriendsOfTYPO3\TtAddress\Command;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Service\GeocodeService;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -23,22 +25,18 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class GeocodeCommand extends Command
 {
 
-    /** @var GeocodeService */
-    protected $geocodeService;
-
-    public function __construct(string $name = null)
-    {
-        parent::__construct($name);
-        $this->extensionSettings = GeneralUtility::makeInstance(Settings::class);
-        $this->geocodeService = GeneralUtility::makeInstance(GeocodeService::class);
-    }
-
     /**
      * Defines the allowed options for this command
      */
     protected function configure()
     {
-        $this->setDescription('Geocode tt_address records');
+        $this
+            ->setDescription('Geocode tt_address records')
+            ->addArgument(
+                'key',
+                InputArgument::REQUIRED,
+                'Google Maps key for geocoding'
+            );
     }
 
     /**
@@ -48,24 +46,15 @@ class GeocodeCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $io = $this->getSymfonyStyle($input, $output);
-
-        if (!$this->extensionSettings->isEnableGeo()) {
-            $io->warning('Geo stuff is not enabled for tt_address!');
-        } elseif (!$this->extensionSettings->getGoogleMapsKeyGeocoding()) {
-            $io->warning('No google maps key configured!');
-        } else {
-            $this->geocodeService->calculateCoordinatesForAllRecordsInTable();
-        }
+        $this->getGeocodeService($input->getArgument('key'))->calculateCoordinatesForAllRecordsInTable();
     }
 
     /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     * @return SymfonyStyle
+     * @param string $key Google Maps key
+     * @return GeocodeService
      */
-    protected function getSymfonyStyle(InputInterface $input, OutputInterface $output): SymfonyStyle
+    protected function getGeocodeService(string $key)
     {
-        return new SymfonyStyle($input, $output);
+        return GeneralUtility::makeInstance(GeocodeService::class, $key);
     }
 }

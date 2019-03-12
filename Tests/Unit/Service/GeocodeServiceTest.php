@@ -17,16 +17,6 @@ class GeocodeServiceTest extends BaseTestCase
     /**
      * @test
      */
-    public function constructorWorks()
-    {
-        $settings = new Settings();
-        $subject = $this->getAccessibleMock(GeocodeService::class, ['dummy'], [], '', true);
-        $this->assertEquals($settings, $subject->_get('extensionSettings'));
-    }
-
-    /**
-     * @test
-     */
     public function validAPiResultIsReturned()
     {
         $content = ['status' => 200, 'CONTENT' => 123];

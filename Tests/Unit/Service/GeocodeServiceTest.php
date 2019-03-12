@@ -2,7 +2,6 @@
 
 namespace FriendsOfTYPO3\TtAddress\Tests\Unit\Service;
 
-use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Service\GeocodeService;
 use Prophecy\Argument;
 use Psr\Http\Message\ResponseInterface;

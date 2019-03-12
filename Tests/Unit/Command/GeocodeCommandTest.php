@@ -8,7 +8,6 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Command;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use FriendsOfTYPO3\TtAddress\Command\GeocodeCommand;
 use FriendsOfTYPO3\TtAddress\Service\GeocodeService;
 use Symfony\Component\Console\Input\StringInput;

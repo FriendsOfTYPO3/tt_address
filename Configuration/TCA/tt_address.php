@@ -213,6 +213,7 @@ return [
             ]
         ],
         'building' => [
+            'exclude' => true,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.building',
             'config' => [
                 'type' => 'input',
@@ -225,6 +226,7 @@ return [
             ]
         ],
         'room' => [
+            'exclude' => true,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.room',
             'config' => [
                 'type' => 'input',

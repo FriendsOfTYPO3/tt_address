@@ -30,7 +30,7 @@ class GeocodeServiceTest extends FunctionalTestCase
      */
     public function properRecordsAreFound()
     {
-        $subject = $this->getAccessibleMock(GeocodeService::class, ['getCoordinatesForAddress']);
+        $subject = $this->getAccessibleMock(GeocodeService::class, ['getCoordinatesForAddress'], ['123']);
         $subject->expects($this->any())->method('getCoordinatesForAddress')
             ->withConsecutive([], [], [])
             ->willReturnOnConsecutiveCalls(
@@ -54,7 +54,7 @@ class GeocodeServiceTest extends FunctionalTestCase
         $result1 = ['results' => [0 => ['geometry' => ['location' => ['lat' => 11, 'lng' => '13']]]]];
         $resultEmpty = ['results' => []];
 
-        $subject = $this->getAccessibleMock(GeocodeService::class, ['getApiCallResult']);
+        $subject = $this->getAccessibleMock(GeocodeService::class, ['getApiCallResult'], ['123']);
         $subject->expects($this->any())->method('getApiCallResult')
             ->willReturnOnConsecutiveCalls($result1, $resultEmpty);
 

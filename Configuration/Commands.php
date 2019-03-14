@@ -7,7 +7,7 @@
  */
 return [
     'ttaddress:geocode' => [
-        'class' => \SMDM\KwbReferences\Command\GeocodeCommand::class,
+        'class' => \FriendsOfTYPO3\TtAddress\Command\GeocodeCommand::class,
         'schedulable' => true,
     ],
 ];

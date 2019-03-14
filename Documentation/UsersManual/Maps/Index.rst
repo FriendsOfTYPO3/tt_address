@@ -26,6 +26,18 @@ The coordinates can either be provided manually or by using the wizard in the ba
 
 .. image:: ../../Images/record_coordinate-wizard.png
 
+Mass geocoding
+~~~~~~~~~~~~~~
+By using a provided command it is possible to set coordinates to all records.
+A requirement for this is a **valid Google Maps key**. Read all about it at https://developers.google.com/maps/documentation/geocoding/intro
+
+The command is called by cli with the following line
+
+
+.. code-block:: bash
+
+   ./typo3cms ttaddress:geocode <your google maps key>
+
 Frontend integration
 --------------------
 To output the records, 2 important configurations need to be set in the plugin.

@@ -17,13 +17,15 @@ use Symfony\Component\Console\Output\OutputInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Command for geocoding coodinates
+ * Command for geocoding coordinates
  */
 class GeocodeCommand extends Command
 {
 
     /**
      * Defines the allowed options for this command
+     *
+     * @inheritdoc
      */
     protected function configure()
     {

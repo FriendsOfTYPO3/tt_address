@@ -8,11 +8,10 @@ $EM_CONF[$_EXTKEY] = [
     'clearCacheOnLoad' => true,
     'author' => 'tt_address Development Team',
     'author_email' => 'friendsof@typo3.org',
-    'version' => '4.1.0',
+    'version' => '4.2.0',
     'constraints' => [
         'depends' => [
             'typo3' => '8.7.19-9.5.99',
-            'php' => '7.0.0-7.2.99'
         ],
         'conflicts' => [
         ],

@@ -106,8 +106,12 @@
                                 <type>select</type>
                                 <items type="array">
                                     <numIndex index="0" type="array">
-                                        <numIndex index="0"></numIndex>
+                                        <numIndex index="0">LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortBy.sorting.default</numIndex>
                                         <numIndex index="1">default</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortBy.sorting.sorting</numIndex>
+                                        <numIndex index="1">sorting</numIndex>
                                     </numIndex>
                                 </items>
                                 <itemsProcFunc>FriendsOfTYPO3\TtAddress\Hooks\Tca\AddFieldsToSelector->main

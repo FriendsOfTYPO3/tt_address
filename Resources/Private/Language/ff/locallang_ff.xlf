@@ -33,6 +33,12 @@
         <trans-unit id="pi1_flexform.sortBy.sorting" xml:space="preserve" approved="yes">
             <source>Order of addresses</source>
         </trans-unit>
+        <trans-unit id="pi1_flexform.sortBy.sorting.default" xml:space="preserve" approved="yes">
+            <source>Default</source>
+        </trans-unit>
+        <trans-unit id="pi1_flexform.sortBy.sorting.sorting" xml:space="preserve" approved="yes">
+            <source>Manual sorting</source>
+        </trans-unit>
         <trans-unit id="pi1_flexform.sortOrder" xml:space="preserve">
             <source>Sort Order</source>
         </trans-unit>

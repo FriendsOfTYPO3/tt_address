@@ -62,6 +62,63 @@
         <last_name>Zargo</last_name>
         <categories>0</categories>
     </tt_address>
+    <tt_address>
+        <uid>8</uid>
+        <pid>21</pid>
+        <first_name>John</first_name>
+        <last_name>Zane</last_name>
+        <categories>3</categories>
+    </tt_address>
+
+    <!-- Coordinates-->
+    <tt_address>
+        <uid>12</uid>
+        <pid>25</pid>
+        <latitude>12.12</latitude>
+    </tt_address>
+    <tt_address>
+        <uid>13</uid>
+        <pid>25</pid>
+        <longitude>12.12</longitude>
+    </tt_address>
+    <tt_address>
+        <uid>14</uid>
+        <pid>25</pid>
+        <latitude>11.12</latitude>
+        <longitude>12.12</longitude>
+    </tt_address>
+
+    <!-- for geocoding-->
+    <tt_address>
+        <uid>21</uid>
+        <pid>100</pid>
+        <city>Linz</city>
+        <address>Dummystr</address>
+        <country>AT</country>
+    </tt_address>
+    <tt_address>
+        <uid>22</uid>
+        <pid>100</pid>
+        <city>Linz</city>
+        <address>Dummystr 2</address>
+        <country>AT</country>
+    </tt_address>
+    <tt_address>
+        <uid>23</uid>
+        <pid>100</pid>
+        <city>Linz</city>
+        <address>Dummystr 2</address>
+        <country>AT</country>
+    </tt_address>
+    <tt_address>
+        <uid>24</uid>
+        <pid>100</pid>
+        <city>Linz</city>
+        <address>Dummystr 2</address>
+        <country>AT</country>
+        <latitude>19.00000</latitude>
+        <longitude>49.00000</longitude>
+    </tt_address>
 
     <sys_category>
         <uid>1</uid>
@@ -110,6 +167,19 @@
         <pid>1</pid>
         <title>Moskau</title>
         <parent>0</parent>
+    </sys_category>
+
+    <sys_category>
+        <uid>10</uid>
+        <pid>1</pid>
+        <title>Madrid sub</title>
+        <parent>1</parent>
+    </sys_category>
+    <sys_category>
+        <uid>11</uid>
+        <pid>1</pid>
+        <title>Madrid sub sub</title>
+        <parent>10</parent>
     </sys_category>
 
     <sys_category_record_mm>
@@ -181,6 +251,12 @@
     <sys_category_record_mm>
         <uid_local>7</uid_local>
         <uid_foreign>7</uid_foreign>
+        <tablenames>tt_address</tablenames>
+        <fieldname>categories</fieldname>
+    </sys_category_record_mm>
+    <sys_category_record_mm>
+        <uid_local>11</uid_local>
+        <uid_foreign>8</uid_foreign>
         <tablenames>tt_address</tablenames>
         <fieldname>categories</fieldname>
     </sys_category_record_mm>

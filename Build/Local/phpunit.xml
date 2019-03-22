@@ -11,6 +11,7 @@
         stopOnIncomplete="false"
         stopOnSkipped="false"
         verbose="false"
+        convertDeprecationsToExceptions="false"
         beStrictAboutTestsThatDoNotTestAnything="false"
 >
     <testsuites>

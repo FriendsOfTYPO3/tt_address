@@ -70,6 +70,12 @@
       <trans-unit id="more">
         <source>More</source>
       </trans-unit>
+      <trans-unit id="show_on_map">
+        <source>Show on map</source>
+      </trans-unit>
+      <trans-unit id="no_google_maps_key">
+        <source>No Google Maps key provided with TypoScript</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -528,6 +528,16 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         return $this->www;
     }
 
+    public function getWwwSimplified()
+    {
+        $www = trim($this->www);
+        if (!$www) {
+            return '';
+        }
+        $parts = str_replace(['\\\\', '\\"'], ['\\', '"'], str_getcsv($www, ' '));
+        return $parts[0];
+    }
+
     /**
      * sets the Skype attribute
      *
@@ -851,5 +861,21 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setCategories(ObjectStorage $categories)
     {
         $this->categories = $categories;
+    }
+
+    /**
+     * Get full name including title, first, middle and last name
+     *
+     * @return string
+     */
+    public function getFullName(): string
+    {
+        $list = [
+            $this->getTitle(),
+            $this->getFirstName(),
+            $this->getMiddleName(),
+            $this->getLastName(),
+        ];
+        return implode(' ', array_filter($list));
     }
 }

@@ -15,7 +15,7 @@
             </f:for>
         </f:then>
         <f:else>
-            <f:widget.paginate objects="{addresses}" as="paginatedAdresses">
+            <f:widget.paginate objects="{addresses}" as="paginatedAdresses" configuration="{settings.paginate}">
                 <f:for each="{paginatedAdresses}" as="address" iteration="iterator">
                     <f:render partial="ListItem" arguments="{_all}"/>
                 </f:for>
@@ -29,4 +29,8 @@
     <f:for each="{addresses}" as="address">
         <f:render partial="Full" arguments="{_all}"/>
     </f:for>
+</f:section>
+
+<f:section name="displayMode_map">
+    <f:render partial="Maps" section="{settings.map.rendering}" arguments="{_all}"/>
 </f:section>

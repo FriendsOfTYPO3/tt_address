@@ -2,6 +2,9 @@
 
 namespace FriendsOfTYPO3\TtAddress\Evaluation;
 
+use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
@@ -10,11 +13,18 @@ namespace FriendsOfTYPO3\TtAddress\Evaluation;
  */
 
 /**
- * Class for telephonenumber validation/evaluation to be used in 'eval' of TCA
- * removes everything except numbers and the plus-sign
+ * Class for telephone number validation/evaluation to be used in 'eval' of TCA
  */
 class TelephoneEvaluation
 {
+
+    /** @var Settings */
+    protected $extensionSettings;
+
+    public function __construct()
+    {
+        $this->extensionSettings = GeneralUtility::makeInstance(Settings::class);
+    }
 
     /**
      * JavaScript code for client side validation/evaluation
@@ -24,7 +34,7 @@ class TelephoneEvaluation
     public function returnFieldJS()
     {
         return '
-         return value.replace(/[^\d\+\s]/g, "");
+         return value.replace(' . $this->extensionSettings->getTelephoneValidationPatternForJs() . ', "");
       ';
     }
 
@@ -52,7 +62,7 @@ class TelephoneEvaluation
 
     private function evaluate(string $in)
     {
-        $data = preg_replace("/[^\d\+\s]/", '', $in);
+        $data = preg_replace($this->extensionSettings->getTelephoneValidationPatternForPhp(), '', $in);
         return trim($data);
     }
 }

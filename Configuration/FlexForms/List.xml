@@ -62,6 +62,18 @@
                             </config>
                         </TCEforms>
                     </settings.groups>
+
+                    <settings.includeSubcategories>
+                        <TCEforms>
+                            <exclude>1</exclude>
+                            <label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.includeSubcategories</label>
+                            <config>
+                                <type>check</type>
+                                <default>0</default>
+                            </config>
+                        </TCEforms>
+                    </settings.includeSubcategories>
+
                     <settings.groupsCombination>
                         <TCEforms>
                             <exclude>1</exclude>
@@ -94,8 +106,12 @@
                                 <type>select</type>
                                 <items type="array">
                                     <numIndex index="0" type="array">
-                                        <numIndex index="0"></numIndex>
+                                        <numIndex index="0">LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortBy.sorting.default</numIndex>
                                         <numIndex index="1">default</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortBy.sorting.sorting</numIndex>
+                                        <numIndex index="1">sorting</numIndex>
                                     </numIndex>
                                 </items>
                                 <itemsProcFunc>FriendsOfTYPO3\TtAddress\Hooks\Tca\AddFieldsToSelector->main
@@ -187,6 +203,28 @@
                             </config>
                         </TCEforms>
                     </settings.recursive>
+
+                    <settings.ignoreWithoutCoordinates>
+                        <TCEforms>
+                            <exclude>1</exclude>
+                            <label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.ignoreWithoutCoordinates</label>
+                            <config>
+                                <type>check</type>
+                                <default>0</default>
+                            </config>
+                        </TCEforms>
+                    </settings.ignoreWithoutCoordinates>
+
+                    <settings.allowOverride>
+                        <TCEforms>
+                            <exclude>1</exclude>
+                            <label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.allowOverride</label>
+                            <config>
+                                <type>check</type>
+                                <default>0</default>
+                            </config>
+                        </TCEforms>
+                    </settings.allowOverride>
                 </el>
             </ROOT>
         </sDEF>
@@ -215,6 +253,10 @@
                                     <numIndex index="1" type="array">
                                         <numIndex index="0">LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.displayMode.singleView</numIndex>
                                         <numIndex index="1">single</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.displayMode.map</numIndex>
+                                        <numIndex index="1">map</numIndex>
                                     </numIndex>
                                 </items>
                             </config>

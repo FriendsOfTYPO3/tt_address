@@ -72,6 +72,7 @@ class AddFieldsToSelectorTest extends BaseTestCase
                 ['LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_flexform.sortBy.singleSelection', 'singleSelection'],
             ]
         ];
+
         $this->assertEquals($expected, $items);
     }
 }

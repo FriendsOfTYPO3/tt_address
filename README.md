@@ -9,6 +9,7 @@ The basic aim of tt_address is to store address and contact data and to output t
 - Selection based on categories and sysfolder
 - Manual selection with custom sorting
 - List & detail view
+- Various map views including Leaflet, Google Maps and static Google Maps
 
 ## Installation
 

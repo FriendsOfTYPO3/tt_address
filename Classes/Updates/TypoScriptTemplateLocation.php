@@ -26,6 +26,14 @@ class TypoScriptTemplateLocation extends AbstractUpdate
     protected $newLocation = 'EXT:tt_address/Configuration/TypoScript/LegacyPlugin';
 
     /**
+     * @return string
+     */
+    public function getIdentifier(): string
+    {
+        return 'tt_address_legacyplugintyposcript';
+    }
+
+    /**
      * Checks if an update is needed
      *
      * @param string &$description The description for the update

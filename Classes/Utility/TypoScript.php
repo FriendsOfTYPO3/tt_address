@@ -39,7 +39,7 @@ class TypoScript
                 }
             } else {
                 // if flexform setting is empty and value is available in TS
-                if ((!isset($previousData[$fieldName]) || (strlen($previousData[$fieldName]) === 0))
+                if (((!isset($previousData[$fieldName]) || (int)$previousData[$fieldName] === 0) || (strlen($previousData[$fieldName]) === 0))
                     && isset($tsData['settings'][$fieldName])
                 ) {
                     $previousData[$fieldName] = $tsData['settings'][$fieldName];

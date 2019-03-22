@@ -59,7 +59,7 @@ class TypoScriptTest extends BaseTestCase
                 ]
             ],
             'override_empty' => 'a_value',
-            'override_not_empty' => 'content_already_here',
+            'override_not_empty' => 'new_content',
             'override_sub' => [
                 'sub_empty' => 'some_value',
                 'sub_full' => 'sub_value',

@@ -1,6 +1,5 @@
 <div class="vcard tt_address_detail" itemscope itemtype="http://schema.org/Person">
-    <h4 itemprop="name">{f:if(condition:address.title,then: '{address.title} ')}{address.firstName}
-        {f:if(condition:address.middleName,then: '{address.middleName} ')} {address.lastName}</h4>
+    <h4 itemprop="name">{address.fullName}</h4>
     <f:render section="position" partial="Address" arguments="{_all}"/>
 
     <f:if condition="{address.image}">
@@ -67,18 +66,33 @@
                     <f:if condition="{iterator.cycle}>1">
                         <div class="col-md-4">
                             <figure class="figure">
-                                <a href="{f:uri.image(src:img.originalResource.publicUrl, maxWidth:1000)}"
-                                   class="media-object {settings.detail.imageClass}"
-                                   rel="images_tt_address_{address.uid}"
-                                   alt="{img.originalResource.alt}"
-                                   title="{img.originalResource.title}"
-                                   target="_blank">
-                                    <f:image image="{img}" width="400"
-                                             alt="{img.originalResource.alt}"
-                                             title="{img.originalResource.title}"
-                                             class="figure-img img-fluid img-thumbnail rounded"
-                                             additionalAttributes="{itemprop:'image'}"/>
-                                </a>
+                                <f:if condition="{img.originalResource.link}">
+                                    <f:then>
+                                        <f:link.typolink
+                                            parameter="{img.originalResource.link}"
+                                            class="media-object {settings.detail.imageClass}"
+                                            additionalAttributes="{title:img.originalResource.title}">
+                                            <f:image image="{img}" width="400"
+                                                     alt="{img.originalResource.alt}"
+                                                     title="{img.originalResource.title}"
+                                                     class="figure-img img-fluid img-thumbnail rounded"
+                                                     additionalAttributes="{itemprop:'image'}"/>
+                                        </f:link.typolink>
+                                    </f:then>
+                                    <f:else>
+                                        <a href="{f:uri.image(src:img.originalResource.publicUrl, maxWidth:1000)}"
+                                           class="media-object {settings.detail.imageClass}"
+                                           rel="images_tt_address_{address.uid}"
+                                           title="{img.originalResource.title}"
+                                           target="_blank">
+                                            <f:image image="{img}" width="400"
+                                                     alt="{img.originalResource.alt}"
+                                                     title="{img.originalResource.title}"
+                                                     class="figure-img img-fluid img-thumbnail rounded"
+                                                     additionalAttributes="{itemprop:'image'}"/>
+                                        </a>
+                                    </f:else>
+                                </f:if>
                                 <f:if condition="{img.originalResource.description}">
                                     <figcaption class="figure-caption">
                                         {img.originalResource.description -> f:format.nl2br()}

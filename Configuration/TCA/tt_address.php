@@ -503,6 +503,8 @@ return [
                 'type' => 'text',
                 'rows' => 5,
                 'cols' => 48,
+                'enableRichtext' => true,
+                'richtextConfiguration' => 'default',
                 'softref' => 'typolink_tag,url',
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,

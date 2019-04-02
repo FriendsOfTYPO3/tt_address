@@ -9,6 +9,8 @@ namespace FriendsOfTYPO3\TtAddress\Utility;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
+
 /**
  * Class CacheUtility
  */
@@ -25,13 +27,12 @@ class CacheUtility
      */
     public static function addCacheTagsByAddressRecords(array $addressRecords)
     {
-        if (count($addressRecords) == 0) {
-            return;
-        }
-
         $prefix = 'tt_address_';
         $cacheTags = [];
         foreach ($addressRecords as $addressRecord) {
+            if (!$addressRecord instanceof Address) {
+                continue;
+            }
             // cache tag for each addressRecord record
             $cacheTags[] = $prefix . $addressRecord->getUid();
 

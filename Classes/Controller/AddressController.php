@@ -10,12 +10,14 @@ namespace FriendsOfTYPO3\TtAddress\Controller;
  */
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
+use FriendsOfTYPO3\TtAddress\Utility\CacheUtility;
 use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
 use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
 /**
@@ -44,6 +46,8 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->redirectToUri($this->uriBuilder->reset()->setTargetPageUid($GLOBALS['TSFE']->id)->build());
         }
         $this->view->assign('address', $address);
+
+        CacheUtility::addCacheTagsByAddressRecords([$address]);
     }
 
     /**
@@ -71,6 +75,10 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             'demand' => $demand,
             'addresses' => $addresses
         ]);
+
+        CacheUtility::addCacheTagsByAddressRecords(
+            $addresses instanceof QueryResultInterface ? $addresses->toArray() : $addresses
+        );
     }
 
     /**

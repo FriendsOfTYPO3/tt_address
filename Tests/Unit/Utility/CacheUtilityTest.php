@@ -8,18 +8,17 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Utility;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\Utility\CacheUtility;
-use TYPO3\TestingFramework\Core\BaseTestCase;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class CacheUtilityTest extends BaseTestCase
 {
-
     protected function setUp()
     {
-        $GLOBALS['TSFE'] = $this->getAccessibleMock(TypoScriptFrontendController::class, ['addCacheTags'], [], '', false);
+        $GLOBALS['TSFE'] = $this->getAccessibleMock(TypoScriptFrontendController::class, ['addCacheTags'], [], '',
+            false);
     }
 
     /**

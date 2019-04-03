@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace FriendsOfTypo3\TtAddress\Tests\Unit\Utility;
 

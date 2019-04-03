@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Utility;
 
@@ -11,7 +12,7 @@ namespace FriendsOfTYPO3\TtAddress\Utility;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 
 /**
- * Class CacheUtility
+ * Class CacheUtility handles cache tags
  */
 class CacheUtility
 {

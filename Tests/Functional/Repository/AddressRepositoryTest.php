@@ -40,6 +40,20 @@ class AddressRepositoryTest extends FunctionalTestCase
     /**
      * @test
      */
+    public function rawQueryReturnsCorrectQuery()
+    {
+        $demand = new Demand();
+        $result = $this->addressRepository->getSqlQuery($demand);
+        $sql = 'SELECT `tt_address`.* FROM `tt_address` `tt_address` ' .
+            'WHERE (`tt_address`.`sys_language_uid` IN (0, -1)) ' .
+            'AND (`tt_address`.`hidden` = 0 AND tt_address.deleted=0)';
+
+        $this->assertEquals($sql, $result);
+    }
+
+    /**
+     * @test
+     */
     public function findRecordsByUid()
     {
         $address = $this->addressRepository->findByIdentifier(1);

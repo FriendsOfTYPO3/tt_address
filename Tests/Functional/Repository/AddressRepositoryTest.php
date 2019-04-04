@@ -8,6 +8,7 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Functional\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
@@ -35,6 +36,20 @@ class AddressRepositoryTest extends FunctionalTestCase
         $this->addressRepository = $this->objectManager->get(AddressRepository::class);
 
         $this->importDataSet(__DIR__ . '/../Fixtures/tt_address.xml');
+    }
+
+    /**
+     * @test
+     */
+    public function rawQueryReturnsCorrectQuery()
+    {
+        $demand = new Demand();
+        $result = $this->addressRepository->getSqlQuery($demand);
+        $sql = 'SELECT `tt_address`.* FROM `tt_address` `tt_address` ' .
+            'WHERE (`tt_address`.`sys_language_uid` IN (0, -1)) ' .
+            'AND (`tt_address`.`hidden` = 0 AND tt_address.deleted=0)';
+
+        $this->assertEquals($sql, $result);
     }
 
     /**

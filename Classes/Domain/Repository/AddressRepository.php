@@ -87,13 +87,13 @@ class AddressRepository extends Repository
     }
 
     /**
-     * Returns the database query to get the matching result
+     * Returns the database query to get the matching, see findByDemand()
      *
      * @param Demand $demand
      * @return string
      * @throws InvalidQueryException
      */
-    public function findByDemandRaw(Demand $demand): string
+    public function getSqlQuery(Demand $demand): string
     {
         $query = $this->createDemandQuery($demand);
         $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);

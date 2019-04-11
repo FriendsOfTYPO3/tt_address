@@ -42,7 +42,8 @@ return [
         'crdate' => [
             'label' => 'crdate',
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'input',
+                'eval' => 'datetime'
             ]
         ],
         'cruser_id' => [
@@ -54,7 +55,8 @@ return [
         'tstamp' => [
             'label' => 'tstamp',
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'input',
+                'eval' => 'datetime'
             ]
         ],
         'hidden' => [

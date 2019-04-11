@@ -17,7 +17,7 @@ CREATE TABLE tt_address (
     first_name tinytext,
     middle_name tinytext,
     last_name tinytext,
-    birthday int(11) DEFAULT '0' NOT NULL,
+    birthday bigint(20) DEFAULT '0' NOT NULL,
     title varchar(255) DEFAULT '' NOT NULL,
     email varchar(255) DEFAULT '' NOT NULL,
     phone varchar(30) DEFAULT '' NOT NULL,

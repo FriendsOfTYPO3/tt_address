@@ -91,14 +91,14 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $this->configurationManager = $configurationManager;
 
         // get the whole typoscript (_FRAMEWORK does not work anymore, don't know why)
-        $tsSettings = (array)$this->configurationManager->getConfiguration(
+        $tsSettings = $this->configurationManager->getConfiguration(
             ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT,
             '',
             ''
         );
 
         // correct the array to be in same shape like the _SETTINGS array
-        $tsSettings = $this->removeDots($tsSettings['plugin.']['tx_ttaddress.']);
+        $tsSettings = $this->removeDots((array)$tsSettings['plugin.']['tx_ttaddress.']);
 
         // get original settings
         // original means: what extbase does by munching flexform and TypoScript together, but leaving empty flexform-settings empty ...

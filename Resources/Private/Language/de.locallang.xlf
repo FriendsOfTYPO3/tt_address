@@ -56,13 +56,13 @@
         <target>Zurück zur Liste</target>
       </trans-unit>
       <trans-unit id="more">
-        <source>Mehr</source>
+        <target>Mehr</target>
       </trans-unit>
       <trans-unit id="show_on_map">
         <target>Auf Karte anzeigen</target>
       </trans-unit>
       <trans-unit id="no_google_maps_key">
-        <source>Kein GoogleMap-Key im TypoScript definiert</source>
+        <target>Kein GoogleMap-Key im TypoScript definiert</target>
       </trans-unit>
     </body>
   </file>

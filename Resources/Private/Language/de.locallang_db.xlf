@@ -15,7 +15,7 @@
             <trans-unit id="tt_address.gender.f">
                 <target>Weiblich (Frau)</target>
             </trans-unit>
-            <trans-unit id="tt_address.gender.various">
+            <trans-unit id="tt_address.gender.v">
                 <target>Divers</target>
             </trans-unit>
             <trans-unit id="tt_address.first_name">

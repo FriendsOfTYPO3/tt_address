@@ -39,6 +39,10 @@
       <trans-unit id="label.socialmedia" xml:space="preserve">
         <target>Kontaktdaten in den Sozialen Medien</target>
       </trans-unit>
+      <trans-unit id="label.birthday" xml:space="preserve">
+        <target>Geburtstag</target>
+      </trans-unit>
+
       <trans-unit id="paginate_overall" xml:space="preserve">
         <target>Seite %s von %s</target>
       </trans-unit>
@@ -51,8 +55,14 @@
       <trans-unit id="backToList">
         <target>Zurück zur Liste</target>
       </trans-unit>
+      <trans-unit id="more">
+        <target>Mehr</target>
+      </trans-unit>
       <trans-unit id="show_on_map">
         <target>Auf Karte anzeigen</target>
+      </trans-unit>
+      <trans-unit id="no_google_maps_key">
+        <target>Kein GoogleMap-Key im TypoScript definiert</target>
       </trans-unit>
     </body>
   </file>

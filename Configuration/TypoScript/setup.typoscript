@@ -28,7 +28,7 @@ plugin.tx_ttaddress {
         map {
 
             # leaflet, googleMaps, staticGoogleMaps
-            rendering = googleMaps
+            rendering = leaflet
 
             # todo: needed?
             defaultPosition {

@@ -56,7 +56,7 @@ class LocationMapWizard extends AbstractNode
 
         $pageRenderer = $this->getPageRenderer();
         $labels = ['tt_address.locationMapWizard', 'tt_address.locationMapWizard.close', 'tt_address.locationMapWizard.import'];
-        foreach($labels as $label) {
+        foreach ($labels as $label) {
             $pageRenderer->addInlineLanguageLabel('ttaddress-' . $label, $this->getLanguageService()->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:' . $label));
         }
 

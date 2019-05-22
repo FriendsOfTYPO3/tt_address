@@ -1,4 +1,4 @@
-define(['jquery', 'TYPO3/CMS/Backend/Icons', 'TYPO3/CMS/TtAddress/leaflet-core-1.4.0'], function ($, Icons) {
+define(['jquery', 'TYPO3/CMS/Backend/Icons', 'TYPO3/CMS/Backend/jquery.clearable', 'TYPO3/CMS/TtAddress/leaflet-core-1.4.0'], function ($, Icons) {
     'use strict';
 
     var LeafBE = {
@@ -12,6 +12,7 @@ define(['jquery', 'TYPO3/CMS/Backend/Icons', 'TYPO3/CMS/TtAddress/leaflet-core-1
         $fieldLatActive: null,
         $geoCodeUrl: null,
         $geoCodeUrlShort: null,
+        $searchUrl: null,
         $tilesUrl: null,
         $tilesCopy: null,
         $zoomLevel: 13,
@@ -22,8 +23,6 @@ define(['jquery', 'TYPO3/CMS/Backend/Icons', 'TYPO3/CMS/TtAddress/leaflet-core-1
     $(function () {
         // basic variable initalisation
         LeafBE.$element = $('#location-map-container-a');
-        LeafBE.$labelTitle = LeafBE.$element.attr('data-label-title');
-        LeafBE.$labelClose = LeafBE.$element.attr('data-label-close');
         LeafBE.$labelImport = LeafBE.$element.attr('data-label-import');
         LeafBE.$latitude = LeafBE.$element.attr('data-lat');
         LeafBE.$longitude = LeafBE.$element.attr('data-lon');
@@ -33,10 +32,11 @@ define(['jquery', 'TYPO3/CMS/Backend/Icons', 'TYPO3/CMS/TtAddress/leaflet-core-1
         LeafBE.$tilesCopy = LeafBE.$element.attr('data-copy');
         LeafBE.$geoCodeUrl = LeafBE.$element.attr('data-geocodeurl');
         LeafBE.$geoCodeUrlShort = LeafBE.$element.attr('data-geocodeurlshort');
+        LeafBE.$searchUrl = LeafBE.$element.attr('data-searchurl');
         LeafBE.$fieldLat = LeafBE.$element.attr('data-namelat');
         LeafBE.$fieldLon = LeafBE.$element.attr('data-namelon');
         LeafBE.$fieldLatActive = LeafBE.$element.attr('data-namelat-active');
-        // Load icon via TYPO3 Icon-API and requireJS
+
         Icons.getIcon('actions-close', Icons.sizes.small).done(function (actionsClose) {
             LeafBE.$iconClose = actionsClose;
 
@@ -44,18 +44,31 @@ define(['jquery', 'TYPO3/CMS/Backend/Icons', 'TYPO3/CMS/TtAddress/leaflet-core-1
             $('body').append(
                 '<div id="t3js-location-map-wrap">' +
                 '<div class="t3js-location-map-title">' +
-                '<div class="btn-group"><a href="#" class="btn btn-icon btn-default" title="' + LeafBE.$labelClose + '" id="t3js-ttaddress-close-map">' +
+                '<div class="btn-group"><a href="#" class="btn btn-icon btn-default" title="' + (TYPO3.lang['ttaddress-tt_address.locationMapWizard.close'] || 'Close') + '" id="t3js-ttaddress-close-map">' +
                 LeafBE.$iconClose +
                 '</a>' +
                 '<a class="btn btn-default" href="#" title="Import marker position to form" id="t3js-ttaddress-import-position">' +
-                LeafBE.$labelImport +
+                (TYPO3.lang['ttaddress-tt_address.locationMapWizard.import'] || 'Close') +
                 '</a></div>' +
-                LeafBE.$labelTitle +
+                (TYPO3.lang['ttaddress-tt_address.locationMapWizard'] || 'Map wizard') +
                 '</div>' +
+                '<form id="t3js-location-address-form" class="form-inline" role="search" style="background: #151515">' +
+                    '<div class="form-group">' +
+                        '<div class="form-control-holder">' +
+                            '<div class="form-control-icon" style="color:#fff"></div>' +
+                            '<input id="t3js-location-address" class="form-control toolbar-item-search-field t3js-clearable" placeholder="Search" autocomplete="off" style="color:#fff"/>'+
+                        '</div>' +
+                    '</div>' +
+                '<input id="t3js-location-address-submit" type="submit" class="btn btn-primary" />'+
+                '</form>'+
                 '<div class="t3js-location-map-container" id="t3js-location-map-container">' +
                 '</div>' +
                 '</div>'
             );
+        });
+
+        Icons.getIcon('apps-toolbar-menu-search', Icons.sizes.small, '', '', 'inline').done(function (icon) {
+            $('#t3js-location-address-form').find('.form-control-icon').append(icon);
         });
 
         LeafBE.$element.on('click', function () {
@@ -81,12 +94,13 @@ define(['jquery', 'TYPO3/CMS/Backend/Icons', 'TYPO3/CMS/TtAddress/leaflet-core-1
                             }
                         });
                     }
+
                     geocode(function (data) {
                         $.each(data[0], function (key, value) {
-                            if (key == "lat") {
+                            if (key === 'lat') {
                                 LeafBE.$latitude = value;
                             }
-                            if (key == "lon") {
+                            if (key === 'lon') {
                                 LeafBE.$longitude = value;
                                 // call createmap after geocoding success
                                 createMap();
@@ -100,6 +114,7 @@ define(['jquery', 'TYPO3/CMS/Backend/Icons', 'TYPO3/CMS/TtAddress/leaflet-core-1
             // display map if button clicked
             $('#t3js-location-map-wrap').addClass('active');
         });
+
         function createMap() {
             // The ultimate fallback: if one of the coordinates is empty, fallback to Kopenhagen.
             // Thank you Kaspar for TYPO3 and its great community! ;)
@@ -147,6 +162,31 @@ define(['jquery', 'TYPO3/CMS/Backend/Icons', 'TYPO3/CMS/TtAddress/leaflet-core-1
             // close overlay without any further action
             $('#t3js-ttaddress-close-map').on('click', function () {
                 $('#t3js-location-map-wrap').removeClass('active');
+            });
+
+            $('#t3js-location-address-form').on('submit', function (e) {
+                e.preventDefault();
+                var address = $('#t3js-location-address').val();
+                var url = LeafBE.$searchUrl;
+                url = url.replace('###ADDRESS###', address);
+                $.getJSON(url, function (data) {
+                    if (data.length > 0) {
+                        var newLat = 0;
+                        var newLng = 0;
+                        $.each(data[0], function (key, value) {
+                            if (key === 'lat') {
+                                newLat = value;
+                            }
+                            if (key === 'lon') {
+                                newLng = value;
+                            }
+                        });
+
+                        var newLatLng = new L.LatLng(newLat, newLng);
+                        LeafBE.$marker.setLatLng(newLatLng);
+                        LeafBE.$map.panTo(newLatLng);
+                    }
+                });
             });
         }
 

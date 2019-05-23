@@ -34,7 +34,7 @@
 <f:section name="content">
     <f:if condition="{address.description}">
         <div class="description" itemprop="description">
-            {address.description -> f:format.nl2br()}
+            {address.description -> f:format.html()}
         </div>
     </f:if>
 

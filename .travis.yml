@@ -16,6 +16,10 @@ matrix:
     - php: 7.3
       env: TYPO3_VERSION=^9 TESTING_FRAMEWORK=^4 FUNCTIONALS=1 COVERAGE=0
 
+services:
+  - mysql
+
+
 sudo: false
 
 addons:
@@ -61,7 +65,7 @@ script:
     if [[ "$COVERAGE" == "1" ]]; then
       echo;
       export typo3DatabaseName="typo3";
-      export typo3DatabaseHost="localhost";
+      export typo3DatabaseHost="127.0.0.1";
       export typo3DatabaseUsername="root";
       export typo3DatabasePassword="";
       .Build/bin/phpunit --coverage-php cov/coverage-functional.cov --colors -c Build/FunctionalTests.xml Tests/Functional/

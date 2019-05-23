@@ -43,7 +43,7 @@ class AddressRepositoryTest extends FunctionalTestCase
     public function rawQueryReturnsCorrectQuery()
     {
         $demand = new Demand();
-        $demand->setPages([1,2]);
+        $demand->setPages([1, 2]);
         $demand->setIgnoreWithoutCoordinates(true);
         $result = $this->addressRepository->getSqlQuery($demand);
         $sql = 'SELECT `tt_address`.* FROM `tt_address` `tt_address` WHERE (((`tt_address`.`pid` IN (1, 2)) AND ( NOT(`tt_address`.`latitude` IS NULL))) AND ( NOT(`tt_address`.`longitude` IS NULL))) AND (`tt_address`.`sys_language_uid` IN (0, -1)) AND (`tt_address`.`hidden` = 0 AND tt_address.deleted=0)';

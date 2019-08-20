@@ -71,6 +71,13 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $addresses = $this->addressRepository->findByDemand($demand);
         }
 
+        if (GeneralUtility::makeInstance(Settings::class)->getTreatGermanUmlautsAsLatinCharacters()) {
+            $addresses = $addresses->toArray();
+            usort($addresses, function($a, $b) {
+                return $this->convertStringToLatin($a->getLastName()) > $this->convertStringToLatin($b->getLastName());
+            });
+        }
+
         $this->view->assignMultiple([
             'demand' => $demand,
             'addresses' => $addresses
@@ -79,6 +86,17 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         CacheUtility::addCacheTagsByAddressRecords(
             $addresses instanceof QueryResultInterface ? $addresses->toArray() : $addresses
         );
+    }
+
+    /**
+     * Switch out all german umlaut characters with their expanded form
+     *
+     * @param string $string
+     * @return string
+     */
+    protected function convertStringToLatin(string $string): string
+    {
+        return str_replace(['ä', 'ü', 'ö', 'Ä', 'Ü', 'Ö', 'ß'], ['ae', 'ue', 'oe', 'Ae', 'Ue', 'Oe', 'ss'], $string);
     }
 
     /**

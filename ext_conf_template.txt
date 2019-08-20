@@ -15,3 +15,6 @@ telephoneValidationPatternForPhp = /[^\d\+\s\-]/
 
 # cat=backend; type=text; label=Pattern for validation telephone number in TCA with JS
 telephoneValidationPatternForJs = /[^\d\+\s\-]/g
+
+  # cat=basic; type=boolean; label=Treat umlauts as latin characters for sorting (e.g. Ã„ = Ae)
+treatGermanUmlautsAsLatinCharacters = 0

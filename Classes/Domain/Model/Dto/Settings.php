@@ -33,6 +33,9 @@ class Settings implements SingletonInterface
     /** @var string */
     protected $telephoneValidationPatternForJs = '/[^\d\+\s\-]/g';
 
+    /** @var bool */
+    protected $treatGermanUmlautsAsLatinCharacters = false;
+
     /**
      */
     public function __construct()
@@ -44,6 +47,7 @@ class Settings implements SingletonInterface
             $this->storeBackwardsCompatName = (bool)$settings['storeBackwardsCompatName'];
             $this->readOnlyNameField = (bool)$settings['readOnlyNameField'];
             $this->activatePiBase = (bool)$settings['activatePiBase'];
+            $this->treatGermanUmlautsAsLatinCharacters = (bool)$settings['treatGermanUmlautsAsLatinCharacters'];
 
             if ($settings['telephoneValidationPatternForPhp']) {
                 $this->telephoneValidationPatternForPhp = (string)$settings['telephoneValidationPatternForPhp'];
@@ -100,5 +104,13 @@ class Settings implements SingletonInterface
     public function getTelephoneValidationPatternForJs(): string
     {
         return $this->telephoneValidationPatternForJs;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getTreatGermanUmlautsAsLatinCharacters(): bool
+    {
+        return $this->treatGermanUmlautsAsLatinCharacters;
     }
 }

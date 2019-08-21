@@ -9,10 +9,12 @@ namespace FriendsOfTYPO3\TtAddress\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
+use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 use FriendsOfTYPO3\TtAddress\Utility\CacheUtility;
 use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
 use TYPO3\CMS\Core\Database\QueryGenerator;
+use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
@@ -73,9 +75,16 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
         if (GeneralUtility::makeInstance(Settings::class)->getTreatGermanUmlautsAsLatinCharacters()) {
             $addresses = $addresses->toArray();
-            usort($addresses, function($a, $b) {
-                return $this->convertStringToLatin($a->getLastName()) > $this->convertStringToLatin($b->getLastName());
-            });
+            $sortBy = 'get' . GeneralUtility::underscoredToUpperCamelCase($demand->getSortBy());
+            if (method_exists($addresses[0], $sortBy)) {
+                usort($addresses, function($a, $b) use($sortBy) {
+                    return $this->convertStringToLatin($a->$sortBy()) > $this->convertStringToLatin($b->$sortBy());
+                });
+            } else {
+                GeneralUtility::makeInstance(LogManager::class)
+                    ->getLogger(__CLASS__)
+                    ->alert('Tried sorting by ' . $demand->getSortBy() . ', no getter found.');
+            }
         }
 
         $this->view->assignMultiple([

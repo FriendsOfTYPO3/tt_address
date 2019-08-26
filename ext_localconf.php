@@ -24,27 +24,6 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('realurl')) {
         \FriendsOfTYPO3\TtAddress\Hooks\RealUrlAutoConfiguration::class . '->addTtAddressConfig';
 }
 
-/* ===========================================================================
- BEGIN: Add old legacy plugin
-=========================================================================== */
-$settings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings::class);
-
-if ($settings->isActivatePiBase()) {
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPItoST43(
-        'tt_address',
-        'Classes/Controller/LegacyPluginController.php',
-        '_pi1',
-        'list_type',
-        true
-    );
-    // Adds the old legacy plugin to New Content Element wizard
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:tt_address/Configuration/TSconfig/AddLegacyPluginToNewCEWizard.typoscript">');
-}
-
-/* ===========================================================================
- END: Add old legacy plugin
-=========================================================================== */
-
 // Add wizard with map for setting geo location
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1546531781] = [
    'nodeName' => 'locationMapWizard',

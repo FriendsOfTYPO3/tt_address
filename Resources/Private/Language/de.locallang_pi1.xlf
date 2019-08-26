@@ -45,12 +45,6 @@
             <trans-unit id="pi1_flexform.templateFile.I.0">
                 <target>Standard</target>
             </trans-unit>
-            <trans-unit id="pi1_title">
-                <target>Adressen (deprecated piBase Plugin!)</target>
-            </trans-unit>
-            <trans-unit id="pi1_plus_wiz_description">
-                <target>Zeigt ein oder mehrere Adressen an via deprecated piBase Plugin!</target>
-            </trans-unit>
         </body>
     </file>
 </xliff>

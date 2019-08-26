@@ -24,9 +24,6 @@ class Settings implements SingletonInterface
     /** @var bool */
     protected $readOnlyNameField = true;
 
-    /** @var bool */
-    protected $activatePiBase = false;
-
     /** @var string */
     protected $telephoneValidationPatternForPhp = '/[^\d\+\s\-]/';
 
@@ -43,7 +40,6 @@ class Settings implements SingletonInterface
             $this->backwardsCompatFormat = trim((string)$settings['backwardsCompatFormat']);
             $this->storeBackwardsCompatName = (bool)$settings['storeBackwardsCompatName'];
             $this->readOnlyNameField = (bool)$settings['readOnlyNameField'];
-            $this->activatePiBase = (bool)$settings['activatePiBase'];
 
             if ($settings['telephoneValidationPatternForPhp']) {
                 $this->telephoneValidationPatternForPhp = (string)$settings['telephoneValidationPatternForPhp'];
@@ -76,14 +72,6 @@ class Settings implements SingletonInterface
     public function isReadOnlyNameField(): bool
     {
         return $this->readOnlyNameField;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isActivatePiBase(): bool
-    {
-        return $this->activatePiBase;
     }
 
     /**

@@ -25,7 +25,6 @@ class SettingsTest extends BaseTestCase
         $this->assertEquals('%1$s %3$s', $subject->getBackwardsCompatFormat());
         $this->assertTrue($subject->isStoreBackwardsCompatName());
         $this->assertTrue($subject->isReadOnlyNameField());
-        $this->assertFalse($subject->isActivatePiBase());
         $this->assertEquals('/[^\d\+\s\-]/', $subject->getTelephoneValidationPatternForPhp());
         $this->assertEquals('/[^\d\+\s\-]/g', $subject->getTelephoneValidationPatternForJs());
     }
@@ -39,7 +38,6 @@ class SettingsTest extends BaseTestCase
             'backwardsCompatFormat' => '%s%s',
             'storeBackwardsCompatName' => false,
             'readOnlyNameField' => false,
-            'activatePiBase' => true,
             'telephoneValidationPatternForPhp' => 'regex1',
             'telephoneValidationPatternForJs' => 'regex2',
         ]);
@@ -48,7 +46,6 @@ class SettingsTest extends BaseTestCase
         $this->assertEquals('%s%s', $subject->getBackwardsCompatFormat());
         $this->assertFalse($subject->isStoreBackwardsCompatName());
         $this->assertFalse($subject->isReadOnlyNameField());
-        $this->assertTrue($subject->isActivatePiBase());
         $this->assertEquals('regex1', $subject->getTelephoneValidationPatternForPhp());
         $this->assertEquals('regex2', $subject->getTelephoneValidationPatternForJs());
     }

@@ -9,6 +9,8 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Utility;
  * LICENSE.txt file that was distributed with this source code.
  */
 use FriendsOfTYPO3\TtAddress\Evaluation\LatitudeEvaluation;
+use TYPO3\CMS\Core\Package\PackageManager;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class LatitudeEvaluationTest extends BaseTestCase
@@ -17,9 +19,12 @@ class LatitudeEvaluationTest extends BaseTestCase
     /** @var LatitudeEvaluation */
     protected $subject;
 
-    public function setUp()
+    public function setUp():void
     {
         $this->subject = new LatitudeEvaluation();
+
+        $packageManagerProphecy = $this->prophesize(PackageManager::class);
+        GeneralUtility::setSingletonInstance(PackageManager::class, $packageManagerProphecy->reveal());
     }
 
     /**

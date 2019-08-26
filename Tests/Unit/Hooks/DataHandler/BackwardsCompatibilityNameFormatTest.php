@@ -10,10 +10,19 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Unit\Hooks\DataHandler;
  */
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Hooks\DataHandler\BackwardsCompatibilityNameFormat;
+use TYPO3\CMS\Core\Package\PackageManager;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class BackwardsCompatibilityNameFormatTest extends BaseTestCase
 {
+
+    public function setUp(): void
+    {
+        $packageManagerProphecy = $this->prophesize(PackageManager::class);
+        GeneralUtility::setSingletonInstance(PackageManager::class, $packageManagerProphecy->reveal());
+    }
 
     /**
      * @test

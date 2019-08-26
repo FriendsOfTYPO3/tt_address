@@ -8,7 +8,10 @@ namespace FriendsOfTYPO3\TtAddress\Domain\Model\Dto;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class Settings
@@ -34,9 +37,9 @@ class Settings implements SingletonInterface
      */
     public function __construct()
     {
-        $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address']);
+        $settings = $this->getSettings();
 
-        if (\is_array($settings) && !empty($settings)) {
+        if (!empty($settings)) {
             $this->backwardsCompatFormat = trim((string)$settings['backwardsCompatFormat']);
             $this->storeBackwardsCompatName = (bool)$settings['storeBackwardsCompatName'];
             $this->readOnlyNameField = (bool)$settings['readOnlyNameField'];
@@ -88,5 +91,14 @@ class Settings implements SingletonInterface
     public function getTelephoneValidationPatternForJs(): string
     {
         return $this->telephoneValidationPatternForJs;
+    }
+
+    protected function getSettings(): array
+    {
+        try {
+            return GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('tt_address');
+        } catch (\Exception $e) {
+            return [];
+        }
     }
 }

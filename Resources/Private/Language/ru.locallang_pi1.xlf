@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns:t3="http://typo3.org/schemas/xliff" version="1.0">
-  <file t3:id="1415814821" source-language="en" datatype="plaintext" original="messages" date="2017-08-11T20:27:32Z" product-name="tt_address" target-language="de">
+  <file t3:id="1415814821" source-language="en" datatype="plaintext" original="messages" date="2017-08-11T20:27:32Z" product-name="tt_address" target-language="ru">
     <header/>
     <body>
       <trans-unit id="pi1_flexform.sheet_selection" approved="yes">
         <source>Selection</source>
-        <target state="translated">Auswahl</target>
+        <target state="translated">Выбор</target>
       </trans-unit>
       <trans-unit id="pi1_flexform.single_records" approved="yes">
         <source>Single addresses</source>
-        <target state="translated">Einzelne Adressen</target>
+        <target state="translated">Простые адреса</target>
       </trans-unit>
       <trans-unit id="pi1_flexform.group_selection" approved="yes">
         <source>Groups</source>
-        <target state="translated">Gruppen</target>
+        <target state="translated">Группы</target>
       </trans-unit>
       <trans-unit id="pi1_flexform.combination" approved="yes">
         <source>Combination</source>
-        <target state="translated">Kombination</target>
+        <target state="translated">Сочетание</target>
       </trans-unit>
       <trans-unit id="pi1_flexform.combination.and" approved="yes">
         <source>AND</source>
-        <target state="translated">UND</target>
+        <target state="translated">И</target>
       </trans-unit>
       <trans-unit id="pi1_flexform.combination.or" approved="yes">
         <source>OR</source>
-        <target state="translated">ODER</target>
+        <target state="translated">ИЛИ</target>
       </trans-unit>
       <trans-unit id="pi1_flexform.sortBy" approved="yes">
         <source>Sort By</source>
-        <target state="translated">Sortieren nach</target>
+        <target state="translated">Сортировать по</target>
       </trans-unit>
-      <trans-unit id="pi1_flexform.sortBy.singleSelection" approved="yes">
+      <trans-unit id="pi1_flexform.sortBy.singleSelection">
         <source>Order of single addresses</source>
-        <target state="translated">Reihenfolge einzelner Adressen</target>
+        <target state="needs-translation">Order of single addresses</target>
       </trans-unit>
       <trans-unit id="pi1_flexform.sortOrder" approved="yes">
         <source>Sort Order</source>
-        <target state="translated">Reihenfolge</target>
+        <target state="translated">Порядок сортировки</target>
       </trans-unit>
       <trans-unit id="pi1_flexform.sortOrder.ascending" approved="yes">
         <source>Ascending</source>
-        <target state="translated">Ansteigend</target>
+        <target state="translated">По возрастанию</target>
       </trans-unit>
       <trans-unit id="pi1_flexform.sortOrder.descending" approved="yes">
         <source>Descending</source>
-        <target state="translated">Absteigend</target>
+        <target state="translated">По убыванию</target>
       </trans-unit>
       <trans-unit id="pi1_flexform.sheet_display" approved="yes">
         <source>Display</source>
-        <target state="translated">Darstellung</target>
+        <target state="translated">Отображение</target>
       </trans-unit>
       <trans-unit id="pi1_flexform.templateFile" approved="yes">
         <source>Template</source>
-        <target state="translated">Vorlage</target>
+        <target state="translated">Шаблон</target>
       </trans-unit>
       <trans-unit id="pi1_flexform.templateFile.I.0" approved="yes">
         <source>Default</source>
-        <target state="translated">Standard</target>
+        <target state="translated">По умолчанию</target>
       </trans-unit>
       <trans-unit id="pi1_title" approved="yes">
         <source>Addresses (deprecated piBase Plugin!)</source>
-        <target state="translated">Adressen</target>
+        <target state="translated">Адреса</target>
       </trans-unit>
       <trans-unit id="pi1_plus_wiz_description" approved="yes">
         <source>Displays one or more addresses via deprecated piBase Plugin!</source>
-        <target state="translated">Zeigt eine oder mehrere Adressen an.</target>
+        <target state="translated">Отображение одного или нескольких адресов.</target>
       </trans-unit>
     </body>
   </file>

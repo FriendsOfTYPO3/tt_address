@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2017-04-05T08:11:35Z" product-name="tt_address" target-language="fr">
+    <header/>
+    <body>
+      <trans-unit id="pi1_flexform.sheet_selection" xml:space="preserve">
+          <source>Selection</source>
+        <target state="needs-translation">Selection</target></trans-unit>
+      <trans-unit id="pi1_flexform.single_records" xml:space="preserve">
+           <source>Single addresses</source>
+        <target state="needs-translation">Single addresses</target></trans-unit>
+      <trans-unit id="pi1_flexform.group_selection" xml:space="preserve">
+           <source>Categories</source>
+        <target state="needs-translation">Categories</target></trans-unit>
+      <trans-unit id="pi1_flexform.includeSubcategories" xml:space="preserve">
+           <source>Include subcategories</source>
+        <target state="needs-translation">Include subcategories</target></trans-unit>
+      <trans-unit id="pi1_flexform.combination" xml:space="preserve">
+         <source>Combination</source>
+        <target state="needs-translation">Combination</target></trans-unit>
+      <trans-unit id="pi1_flexform.combination.and" xml:space="preserve">
+          <source>AND</source>
+        <target state="needs-translation">AND</target></trans-unit>
+      <trans-unit id="pi1_flexform.combination.or" xml:space="preserve">
+           <source>OR</source>
+        <target state="needs-translation">OR</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortBy" xml:space="preserve">
+           <source>Sort By</source>
+        <target state="needs-translation">Sort By</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortBy.singleSelection" xml:space="preserve">
+            <source>Order of single addresses</source>
+        <target state="needs-translation">Order of single addresses</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortBy.sorting" xml:space="preserve">
+            <source>Order of addresses</source>
+        <target state="needs-translation">Order of addresses</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortBy.sorting.default" xml:space="preserve">
+            <source>Default</source>
+        <target state="needs-translation">Default</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortBy.sorting.sorting" xml:space="preserve">
+            <source>Manual sorting</source>
+        <target state="needs-translation">Manual sorting</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortOrder" xml:space="preserve">
+            <source>Sort Order</source>
+        <target state="needs-translation">Sort Order</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortOrder.ascending" xml:space="preserve">
+            <source>Ascending</source>
+        <target state="needs-translation">Ascending</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortOrder.descending" xml:space="preserve">
+            <source>Descending</source>
+        <target state="needs-translation">Descending</target></trans-unit>
+      <trans-unit id="pi1_flexform.ignoreWithoutCoordinates" xml:space="preserve">
+            <source>Ignore records with no latitude/longitude</source>
+        <target state="needs-translation">Ignore records with no latitude/longitude</target></trans-unit>
+      <trans-unit id="pi1_flexform.allowOverride" xml:space="preserve">
+            <source>Allow override configuration by GET/POST</source>
+        <target state="needs-translation">Allow override configuration by GET/POST</target></trans-unit>
+      <trans-unit id="pi1_flexform.sheet_display" xml:space="preserve">
+            <source>Display</source>
+        <target state="needs-translation">Display</target></trans-unit>
+      <trans-unit id="pi1_flexform.templateFile" xml:space="preserve">
+            <source>Template</source>
+        <target state="needs-translation">Template</target></trans-unit>
+      <trans-unit id="pi1_flexform.templateFile.I.0" xml:space="preserve">
+            <source>Default</source>
+        <target state="needs-translation">Default</target></trans-unit>
+      <trans-unit id="pi1_flexform.displayMode" xml:space="preserve">
+            <source>Select display mode</source>
+        <target state="needs-translation">Select display mode</target></trans-unit>
+      <trans-unit id="pi1_flexform.displayMode.listView" xml:space="preserve">
+            <source>List view</source>
+        <target state="needs-translation">List view</target></trans-unit>
+      <trans-unit id="pi1_flexform.displayMode.singleView" xml:space="preserve">
+            <source>Single view</source>
+        <target state="needs-translation">Single view</target></trans-unit>
+      <trans-unit id="pi1_flexform.displayMode.map" xml:space="preserve">
+            <source>Map view</source>
+        <target state="needs-translation">Map view</target></trans-unit>
+      <trans-unit id="pi1_flexform.hidePagination" xml:space="preserve">
+            <source>Do not display pagebrowser (listview)</source>
+        <target state="needs-translation">Do not display pagebrowser (listview)</target></trans-unit>
+      <trans-unit id="pi1_flexform.itemsPerPage" xml:space="preserve">
+            <source>Number of items to be displayed (listview)</source>
+        <target state="needs-translation">Number of items to be displayed (listview)</target></trans-unit>
+      <trans-unit id="pi1_flexform.singlePid" xml:space="preserve">
+            <source>Page for singelview</source>
+        <target state="needs-translation">Page for singelview</target></trans-unit>
+    </body>
+  </file>
+</xliff>

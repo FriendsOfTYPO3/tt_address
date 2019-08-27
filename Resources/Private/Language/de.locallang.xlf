@@ -36,7 +36,7 @@
       <trans-unit id="label.www" xml:space="preserve" approved="yes">
         <source>Go to website</source>
       <target state="translated">Gehe zur Website</target><alt-trans><target>Gehe zu Website</target></alt-trans></trans-unit>
-      <trans-unit id="label.socialmedia" xml:space="preserve">
+      <trans-unit id="label.socialmedia" xml:space="preserve" approved="yes">
         <source>Social media contacts</source>
       <target state="translated">Soziale Medien</target></trans-unit>
       <trans-unit id="label.twitter" xml:space="preserve" approved="yes">
@@ -57,13 +57,19 @@
       <trans-unit id="paginate_overall" xml:space="preserve" approved="yes">
         <source>Page %s of %s</source>
       <target state="translated">Seite %s von %s</target></trans-unit>
-      <trans-unit id="paginate_next">
+      <trans-unit id="paginate_next" approved="yes">
         <source>Next</source>
-        <target state="translated">Weiter</target>
+        <target state="translated">Nächste</target>
+        <alt-trans>
+          <target>Weiter</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="paginate_previous">
+      <trans-unit id="paginate_previous" approved="yes">
         <source>Previous</source>
-        <target state="translated">Zurück</target>
+        <target state="translated">Vorherige</target>
+        <alt-trans>
+          <target>Zurück</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="backToList">
         <target>Back to list</target>
@@ -72,11 +78,11 @@
         <source>More</source>
         <target state="translated">Mehr</target>
       </trans-unit>
-      <trans-unit id="show_on_map">
+      <trans-unit id="show_on_map" approved="yes">
         <source>Show on map</source>
         <target state="translated">Zeige auf Karte</target>
       </trans-unit>
-      <trans-unit id="no_google_maps_key">
+      <trans-unit id="no_google_maps_key" approved="yes">
         <source>No Google Maps key provided with TypoScript</source>
         <target state="translated">Kein Google Maps Schlüssel bereitgestellt über TypoScript</target>
       </trans-unit>

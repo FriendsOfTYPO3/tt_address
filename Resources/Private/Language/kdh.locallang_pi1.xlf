@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns:t3="http://typo3.org/schemas/xliff" version="1.0">
+  <file t3:id="1415814821" source-language="en" datatype="plaintext" original="messages" date="2017-08-11T20:27:32Z" product-name="tt_address" target-language="kdh">
+    <header/>
+    <body>
+      <trans-unit id="pi1_flexform.sheet_selection">
+        <source>Selection</source>
+        <target>crwdns45570:0crwdne45570:0</target>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.single_records">
+        <source>Single addresses</source>
+        <target>crwdns45572:0crwdne45572:0</target>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.group_selection">
+        <source>Groups</source>
+        <target>crwdns45574:0crwdne45574:0</target>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.combination">
+        <source>Combination</source>
+        <target>crwdns45576:0crwdne45576:0</target>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.combination.and">
+        <source>AND</source>
+        <target>crwdns45578:0crwdne45578:0</target>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.combination.or">
+        <source>OR</source>
+        <target>crwdns45580:0crwdne45580:0</target>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.sortBy">
+        <source>Sort By</source>
+        <target>crwdns45582:0crwdne45582:0</target>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.sortBy.singleSelection">
+        <source>Order of single addresses</source>
+        <target>crwdns45584:0crwdne45584:0</target>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.sortOrder">
+        <source>Sort Order</source>
+        <target>crwdns45586:0crwdne45586:0</target>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.sortOrder.ascending">
+        <source>Ascending</source>
+        <target>crwdns45588:0crwdne45588:0</target>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.sortOrder.descending">
+        <source>Descending</source>
+        <target>crwdns45590:0crwdne45590:0</target>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.sheet_display">
+        <source>Display</source>
+        <target>crwdns45592:0crwdne45592:0</target>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.templateFile">
+        <source>Template</source>
+        <target>crwdns45594:0crwdne45594:0</target>
+      </trans-unit>
+      <trans-unit id="pi1_flexform.templateFile.I.0">
+        <source>Default</source>
+        <target>crwdns45596:0crwdne45596:0</target>
+      </trans-unit>
+      <trans-unit id="pi1_title">
+        <source>Addresses (deprecated piBase Plugin!)</source>
+        <target>crwdns45598:0crwdne45598:0</target>
+      </trans-unit>
+      <trans-unit id="pi1_plus_wiz_description">
+        <source>Displays one or more addresses via deprecated piBase Plugin!</source>
+        <target>crwdns45600:0crwdne45600:0</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

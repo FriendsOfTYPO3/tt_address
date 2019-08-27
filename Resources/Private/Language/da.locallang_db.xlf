@@ -3,145 +3,187 @@
   <file t3:id="1502483828" source-language="en" datatype="plaintext" original="messages" date="2017-08-11T20:37:40Z" product-name="tt_address" target-language="da">
     <header/>
     <body>
-      <trans-unit id="tt_address">
+      <trans-unit id="tt_address" approved="yes">
         <source>Address</source>
-        <target state="needs-translation">Address</target>
+        <target state="translated">Adresse</target>
       </trans-unit>
-      <trans-unit id="tt_address.gender">
+      <trans-unit id="tt_address.gender" approved="yes">
         <source>Gender</source>
-        <target state="needs-translation">Gender</target>
+        <target state="translated">Køn</target>
+        <alt-trans>
+          <target>Køn:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.gender.m">
+      <trans-unit id="tt_address.gender.m" approved="yes">
         <source>Male (Mr)</source>
-        <target state="needs-translation">Male (Mr)</target>
+        <target state="translated">Mand (Hr)</target>
       </trans-unit>
-      <trans-unit id="tt_address.gender.f">
+      <trans-unit id="tt_address.gender.f" approved="yes">
         <source>Female (Mrs)</source>
-        <target state="needs-translation">Female (Mrs)</target>
+        <target state="translated">Kvinde (Fru)</target>
+        <alt-trans>
+          <target>Kvinde (Fr)</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.gender.v">
+      <trans-unit id="tt_address.gender.v" approved="yes">
         <source>Various</source>
-        <target state="needs-translation">Various</target>
+        <target state="translated">Diverse</target>
       </trans-unit>
-      <trans-unit id="tt_address.gender.undefined">
+      <trans-unit id="tt_address.gender.undefined" approved="yes">
         <source>Undefined</source>
-        <target state="needs-translation">Undefined</target>
+        <target state="translated">Udefineret</target>
       </trans-unit>
-      <trans-unit id="tt_address.first_name">
+      <trans-unit id="tt_address.first_name" approved="yes">
         <source>First Name</source>
-        <target state="needs-translation">First Name</target>
+        <target state="translated">Fornavn</target>
+        <alt-trans>
+          <target>Fornavn:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.middle_name">
+      <trans-unit id="tt_address.middle_name" approved="yes">
         <source>Middle Name</source>
-        <target state="needs-translation">Middle Name</target>
+        <target state="translated">Mellemnavn</target>
+        <alt-trans>
+          <target>Mellemnavn:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.last_name">
+      <trans-unit id="tt_address.last_name" approved="yes">
         <source>Last Name</source>
-        <target state="needs-translation">Last Name</target>
+        <target state="translated">Efternavn</target>
+        <alt-trans>
+          <target>Efternavn:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.birthday">
+      <trans-unit id="tt_address.birthday" approved="yes">
         <source>Birthday</source>
-        <target state="needs-translation">Birthday</target>
+        <target state="translated">Fødselsdag</target>
+        <alt-trans>
+          <target>Fødselsdag:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.building">
+      <trans-unit id="tt_address.building" approved="yes">
         <source>Building</source>
-        <target state="needs-translation">Building</target>
+        <target state="translated">Bygning</target>
+        <alt-trans>
+          <target>Bygning:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.room">
+      <trans-unit id="tt_address.room" approved="yes">
         <source>Room</source>
-        <target state="needs-translation">Room</target>
+        <target state="translated">Rum</target>
+        <alt-trans>
+          <target>Værelse:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.organization">
+      <trans-unit id="tt_address.organization" approved="yes">
         <source>Organization</source>
-        <target state="needs-translation">Organization</target>
+        <target state="translated">Organisation</target>
+        <alt-trans>
+          <target>Organisation:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.position">
+      <trans-unit id="tt_address.position" approved="yes">
         <source>Position</source>
-        <target state="needs-translation">Position</target>
+        <target state="translated">Stilling</target>
+        <alt-trans>
+          <target>Stilling:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.region">
+      <trans-unit id="tt_address.region" approved="yes">
         <source>Region / State</source>
-        <target state="needs-translation">Region / State</target>
+        <target state="translated">Region</target>
+        <alt-trans>
+          <target>Stat/Provins/Amt:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.mobile">
+      <trans-unit id="tt_address.mobile" approved="yes">
         <source>Mobile</source>
-        <target state="needs-translation">Mobile</target>
+        <target state="translated">Mobil</target>
+        <alt-trans>
+          <target>Mobil:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.skype">
+      <trans-unit id="tt_address.skype" approved="yes">
         <source>Skype</source>
-        <target state="needs-translation">Skype</target>
+        <target state="translated">Skype:</target>
       </trans-unit>
-      <trans-unit id="tt_address.twitter">
+      <trans-unit id="tt_address.twitter" approved="yes">
         <source>Twitter</source>
-        <target state="needs-translation">Twitter</target>
+        <target state="translated">Twitter:</target>
       </trans-unit>
-      <trans-unit id="tt_address.facebook">
+      <trans-unit id="tt_address.facebook" approved="yes">
         <source>Facebook</source>
-        <target state="needs-translation">Facebook</target>
+        <target state="translated">Facebook:</target>
       </trans-unit>
-      <trans-unit id="tt_address.linkedin">
+      <trans-unit id="tt_address.linkedin" approved="yes">
         <source>LinkedIn</source>
-        <target state="needs-translation">LinkedIn</target>
+        <target state="translated">Linkedin:</target>
       </trans-unit>
-      <trans-unit id="tt_address.latitude">
+      <trans-unit id="tt_address.latitude" approved="yes">
         <source>Latitude</source>
-        <target state="needs-translation">Latitude</target>
+        <target state="translated">Breddegrad</target>
+        <alt-trans>
+          <target>Breddegrad:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.longitude">
+      <trans-unit id="tt_address.longitude" approved="yes">
         <source>Longitude</source>
-        <target state="needs-translation">Longitude</target>
+        <target state="translated">Længdegrad</target>
+        <alt-trans>
+          <target>Længdegrad:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.locationMapWizard">
+      <trans-unit id="tt_address.locationMapWizard" approved="yes">
         <source>Map wizard for visual selection of coordinates</source>
-        <target state="needs-translation">Map wizard for visual selection of coordinates</target>
+        <target state="translated">Kortguide til visuelt valg af koordinater</target>
       </trans-unit>
-      <trans-unit id="tt_address.locationMapWizard.close">
+      <trans-unit id="tt_address.locationMapWizard.close" approved="yes">
         <source>Close Map Wizard</source>
-        <target state="needs-translation">Close Map Wizard</target>
+        <target state="translated">Luk kortguide</target>
       </trans-unit>
-      <trans-unit id="tt_address.locationMapWizard.import">
+      <trans-unit id="tt_address.locationMapWizard.import" approved="yes">
         <source>Import marker-coordinates</source>
-        <target state="needs-translation">Import marker-coordinates</target>
+        <target state="translated">Importér markør-koordinater</target>
       </trans-unit>
-      <trans-unit id="tt_address_tab.contact">
+      <trans-unit id="tt_address_tab.contact" approved="yes">
         <source>Contact</source>
-        <target state="needs-translation">Contact</target>
+        <target state="translated">Kontakt</target>
       </trans-unit>
-      <trans-unit id="tt_address_tab.address">
+      <trans-unit id="tt_address_tab.address" approved="yes">
         <source>Address</source>
-        <target state="needs-translation">Address</target>
+        <target state="translated">Adresse</target>
       </trans-unit>
-      <trans-unit id="tt_address_palette.name">
+      <trans-unit id="tt_address_palette.name" approved="yes">
         <source>Name</source>
-        <target state="needs-translation">Name</target>
+        <target state="translated">Navn</target>
       </trans-unit>
       <trans-unit id="tt_address_palette.organization">
         <source>Organisation</source>
         <target state="needs-translation">Organisation</target>
       </trans-unit>
-      <trans-unit id="tt_address_palette.address">
+      <trans-unit id="tt_address_palette.address" approved="yes">
         <source>Address</source>
-        <target state="needs-translation">Address</target>
+        <target state="translated">Adresse</target>
       </trans-unit>
-      <trans-unit id="tt_address_palette.building">
+      <trans-unit id="tt_address_palette.building" approved="yes">
         <source>Building</source>
-        <target state="needs-translation">Building</target>
+        <target state="translated">Bygning</target>
       </trans-unit>
-      <trans-unit id="tt_address_palette.contact">
+      <trans-unit id="tt_address_palette.contact" approved="yes">
         <source>Contact</source>
-        <target state="needs-translation">Contact</target>
+        <target state="translated">Kontakt</target>
       </trans-unit>
-      <trans-unit id="tt_address_palette.social">
+      <trans-unit id="tt_address_palette.social" approved="yes">
         <source>Social Networks</source>
-        <target state="needs-translation">Social Networks</target>
+        <target state="translated">Sociale netværk</target>
       </trans-unit>
-      <trans-unit id="tt_address_palette.coordinates">
+      <trans-unit id="tt_address_palette.coordinates" approved="yes">
         <source>Coordinates</source>
-        <target state="needs-translation">Coordinates</target>
+        <target state="translated">Koordinater</target>
       </trans-unit>
-      <trans-unit id="pi_tt_address">
+      <trans-unit id="pi_tt_address" approved="yes">
         <source>Addresses</source>
-        <target state="needs-translation">Addresses</target>
+        <target state="translated">Adresser</target>
       </trans-unit>
     </body>
   </file>

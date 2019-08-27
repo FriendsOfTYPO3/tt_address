@@ -51,7 +51,7 @@
       <trans-unit id="pi1_flexform.ignoreWithoutCoordinates" xml:space="preserve" approved="yes">
             <source>Ignore records with no latitude/longitude</source>
         <target state="translated">Einträge ohne Breitengrad/Längengrad ignorieren</target></trans-unit>
-      <trans-unit id="pi1_flexform.allowOverride" xml:space="preserve">
+      <trans-unit id="pi1_flexform.allowOverride" xml:space="preserve" approved="yes">
             <source>Allow override configuration by GET/POST</source>
         <target state="translated">Konfiguration durch Parameter erlauben</target><alt-trans><target>Erlaube das Überschreibender Konfiguration per GET/POST</target></alt-trans></trans-unit>
       <trans-unit id="pi1_flexform.sheet_display" xml:space="preserve" approved="yes">
@@ -66,22 +66,22 @@
       <trans-unit id="pi1_flexform.displayMode" xml:space="preserve" approved="yes">
             <source>Select display mode</source>
         <target state="translated">Ausgabemodus wählen</target></trans-unit>
-      <trans-unit id="pi1_flexform.displayMode.listView" xml:space="preserve">
+      <trans-unit id="pi1_flexform.displayMode.listView" xml:space="preserve" approved="yes">
             <source>List view</source>
         <target state="translated">Listenansicht</target></trans-unit>
-      <trans-unit id="pi1_flexform.displayMode.singleView" xml:space="preserve">
+      <trans-unit id="pi1_flexform.displayMode.singleView" xml:space="preserve" approved="yes">
             <source>Single view</source>
         <target state="translated">Detailansicht</target></trans-unit>
-      <trans-unit id="pi1_flexform.displayMode.map" xml:space="preserve">
+      <trans-unit id="pi1_flexform.displayMode.map" xml:space="preserve" approved="yes">
             <source>Map view</source>
         <target state="translated">Kartenansicht</target></trans-unit>
-      <trans-unit id="pi1_flexform.hidePagination" xml:space="preserve">
+      <trans-unit id="pi1_flexform.hidePagination" xml:space="preserve" approved="yes">
             <source>Do not display pagebrowser (listview)</source>
         <target state="translated">Blättern deaktivieren (Listenansicht)</target></trans-unit>
-      <trans-unit id="pi1_flexform.itemsPerPage" xml:space="preserve">
+      <trans-unit id="pi1_flexform.itemsPerPage" xml:space="preserve" approved="yes">
             <source>Number of items to be displayed (listview)</source>
         <target state="translated">Anzahl der Einträge auf einer Seite (Listenansicht)</target></trans-unit>
-      <trans-unit id="pi1_flexform.singlePid" xml:space="preserve">
+      <trans-unit id="pi1_flexform.singlePid" xml:space="preserve" approved="yes">
             <source>Page for singelview</source>
         <target state="translated">Seite für Detailansicht</target></trans-unit>
     </body>

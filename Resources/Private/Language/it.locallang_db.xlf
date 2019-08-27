@@ -3,93 +3,138 @@
   <file t3:id="1502483828" source-language="en" datatype="plaintext" original="messages" date="2017-08-11T20:37:40Z" product-name="tt_address" target-language="it">
     <header/>
     <body>
-      <trans-unit id="tt_address">
+      <trans-unit id="tt_address" approved="yes">
         <source>Address</source>
-        <target state="needs-translation">Address</target>
+        <target state="translated">Indirizzo</target>
       </trans-unit>
-      <trans-unit id="tt_address.gender">
+      <trans-unit id="tt_address.gender" approved="yes">
         <source>Gender</source>
-        <target state="needs-translation">Gender</target>
+        <target state="translated">Sesso</target>
+        <alt-trans>
+          <target>Sesso:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.gender.m">
+      <trans-unit id="tt_address.gender.m" approved="yes">
         <source>Male (Mr)</source>
-        <target state="needs-translation">Male (Mr)</target>
+        <target state="translated">Maschio (Sig.)</target>
+        <alt-trans>
+          <target>Maschile (Sig.)</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.gender.f">
+      <trans-unit id="tt_address.gender.f" approved="yes">
         <source>Female (Mrs)</source>
-        <target state="needs-translation">Female (Mrs)</target>
+        <target state="translated">Femmina (Sig.ra)</target>
+        <alt-trans>
+          <target>Femminile (Sig.ra)</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.gender.v">
         <source>Various</source>
         <target state="needs-translation">Various</target>
       </trans-unit>
-      <trans-unit id="tt_address.gender.undefined">
+      <trans-unit id="tt_address.gender.undefined" approved="yes">
         <source>Undefined</source>
-        <target state="needs-translation">Undefined</target>
+        <target state="translated">Indefinito</target>
       </trans-unit>
-      <trans-unit id="tt_address.first_name">
+      <trans-unit id="tt_address.first_name" approved="yes">
         <source>First Name</source>
-        <target state="needs-translation">First Name</target>
+        <target state="translated">Nome</target>
+        <alt-trans>
+          <target>Nome:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.middle_name">
+      <trans-unit id="tt_address.middle_name" approved="yes">
         <source>Middle Name</source>
-        <target state="needs-translation">Middle Name</target>
+        <target state="translated">Secondo Nome</target>
+        <alt-trans>
+          <target>Secondo nome:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.last_name">
+      <trans-unit id="tt_address.last_name" approved="yes">
         <source>Last Name</source>
-        <target state="needs-translation">Last Name</target>
+        <target state="translated">Cognome</target>
+        <alt-trans>
+          <target>Cognome:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.birthday">
+      <trans-unit id="tt_address.birthday" approved="yes">
         <source>Birthday</source>
-        <target state="needs-translation">Birthday</target>
+        <target state="translated">Data di nascita</target>
+        <alt-trans>
+          <target>Data di nascita:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.building">
+      <trans-unit id="tt_address.building" approved="yes">
         <source>Building</source>
-        <target state="needs-translation">Building</target>
+        <target state="translated">Edificio</target>
+        <alt-trans>
+          <target>Edificio:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.room">
+      <trans-unit id="tt_address.room" approved="yes">
         <source>Room</source>
-        <target state="needs-translation">Room</target>
+        <target state="translated">Stanza</target>
+        <alt-trans>
+          <target>Stanza:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.organization">
+      <trans-unit id="tt_address.organization" approved="yes">
         <source>Organization</source>
-        <target state="needs-translation">Organization</target>
+        <target state="translated">Organizzazione</target>
+        <alt-trans>
+          <target>Organizzazione:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.position">
+      <trans-unit id="tt_address.position" approved="yes">
         <source>Position</source>
-        <target state="needs-translation">Position</target>
+        <target state="translated">Posizione</target>
+        <alt-trans>
+          <target>Posizione:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.region">
+      <trans-unit id="tt_address.region" approved="yes">
         <source>Region / State</source>
-        <target state="needs-translation">Region / State</target>
+        <target state="translated">Provincia</target>
+        <alt-trans>
+          <target>Provincia:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.mobile">
+      <trans-unit id="tt_address.mobile" approved="yes">
         <source>Mobile</source>
-        <target state="needs-translation">Mobile</target>
+        <target state="translated">Telefono cellulare</target>
+        <alt-trans>
+          <target>Cellulare:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.skype">
+      <trans-unit id="tt_address.skype" approved="yes">
         <source>Skype</source>
-        <target state="needs-translation">Skype</target>
+        <target state="translated">Skype:</target>
       </trans-unit>
-      <trans-unit id="tt_address.twitter">
+      <trans-unit id="tt_address.twitter" approved="yes">
         <source>Twitter</source>
-        <target state="needs-translation">Twitter</target>
+        <target state="translated">Twitter:</target>
       </trans-unit>
-      <trans-unit id="tt_address.facebook">
+      <trans-unit id="tt_address.facebook" approved="yes">
         <source>Facebook</source>
-        <target state="needs-translation">Facebook</target>
+        <target state="translated">Facebook:</target>
       </trans-unit>
-      <trans-unit id="tt_address.linkedin">
+      <trans-unit id="tt_address.linkedin" approved="yes">
         <source>LinkedIn</source>
-        <target state="needs-translation">LinkedIn</target>
+        <target state="translated">LinkedIn:</target>
       </trans-unit>
-      <trans-unit id="tt_address.latitude">
+      <trans-unit id="tt_address.latitude" approved="yes">
         <source>Latitude</source>
-        <target state="needs-translation">Latitude</target>
+        <target state="translated">Latitudine</target>
+        <alt-trans>
+          <target>Latitudine:</target>
+        </alt-trans>
       </trans-unit>
-      <trans-unit id="tt_address.longitude">
+      <trans-unit id="tt_address.longitude" approved="yes">
         <source>Longitude</source>
-        <target state="needs-translation">Longitude</target>
+        <target state="translated">Longitudine</target>
+        <alt-trans>
+          <target>Longitudine:</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.locationMapWizard">
         <source>Map wizard for visual selection of coordinates</source>
@@ -103,45 +148,45 @@
         <source>Import marker-coordinates</source>
         <target state="needs-translation">Import marker-coordinates</target>
       </trans-unit>
-      <trans-unit id="tt_address_tab.contact">
+      <trans-unit id="tt_address_tab.contact" approved="yes">
         <source>Contact</source>
-        <target state="needs-translation">Contact</target>
+        <target state="translated">Contatto</target>
       </trans-unit>
-      <trans-unit id="tt_address_tab.address">
+      <trans-unit id="tt_address_tab.address" approved="yes">
         <source>Address</source>
-        <target state="needs-translation">Address</target>
+        <target state="translated">Indirizzo</target>
       </trans-unit>
-      <trans-unit id="tt_address_palette.name">
+      <trans-unit id="tt_address_palette.name" approved="yes">
         <source>Name</source>
-        <target state="needs-translation">Name</target>
+        <target state="translated">Nome</target>
       </trans-unit>
-      <trans-unit id="tt_address_palette.organization">
+      <trans-unit id="tt_address_palette.organization" approved="yes">
         <source>Organisation</source>
-        <target state="needs-translation">Organisation</target>
+        <target state="translated">Organizzazione</target>
       </trans-unit>
-      <trans-unit id="tt_address_palette.address">
+      <trans-unit id="tt_address_palette.address" approved="yes">
         <source>Address</source>
-        <target state="needs-translation">Address</target>
+        <target state="translated">Indirizzo</target>
       </trans-unit>
-      <trans-unit id="tt_address_palette.building">
+      <trans-unit id="tt_address_palette.building" approved="yes">
         <source>Building</source>
-        <target state="needs-translation">Building</target>
+        <target state="translated">Edificio</target>
       </trans-unit>
-      <trans-unit id="tt_address_palette.contact">
+      <trans-unit id="tt_address_palette.contact" approved="yes">
         <source>Contact</source>
-        <target state="needs-translation">Contact</target>
+        <target state="translated">Contatto</target>
       </trans-unit>
-      <trans-unit id="tt_address_palette.social">
+      <trans-unit id="tt_address_palette.social" approved="yes">
         <source>Social Networks</source>
-        <target state="needs-translation">Social Networks</target>
+        <target state="translated">Social Network</target>
       </trans-unit>
-      <trans-unit id="tt_address_palette.coordinates">
+      <trans-unit id="tt_address_palette.coordinates" approved="yes">
         <source>Coordinates</source>
-        <target state="needs-translation">Coordinates</target>
+        <target state="translated">Coordinate</target>
       </trans-unit>
-      <trans-unit id="pi_tt_address">
+      <trans-unit id="pi_tt_address" approved="yes">
         <source>Addresses</source>
-        <target state="needs-translation">Addresses</target>
+        <target state="translated">Indirizzi</target>
       </trans-unit>
     </body>
   </file>

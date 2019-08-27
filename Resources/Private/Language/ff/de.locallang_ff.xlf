@@ -12,7 +12,7 @@
       <trans-unit id="pi1_flexform.group_selection" xml:space="preserve" approved="yes">
            <source>Categories</source>
         <target state="translated">Kategorien</target></trans-unit>
-      <trans-unit id="pi1_flexform.includeSubcategories" xml:space="preserve">
+      <trans-unit id="pi1_flexform.includeSubcategories" xml:space="preserve" approved="yes">
            <source>Include subcategories</source>
         <target state="translated">Unterkategorien mit einbeziehen</target></trans-unit>
       <trans-unit id="pi1_flexform.combination" xml:space="preserve" approved="yes">
@@ -33,10 +33,10 @@
       <trans-unit id="pi1_flexform.sortBy.sorting" xml:space="preserve" approved="yes">
             <source>Order of addresses</source>
         <target state="translated">Reihenfolge der Adressen</target></trans-unit>
-      <trans-unit id="pi1_flexform.sortBy.sorting.default" xml:space="preserve">
+      <trans-unit id="pi1_flexform.sortBy.sorting.default" xml:space="preserve" approved="yes">
             <source>Default</source>
         <target state="translated">Standard</target></trans-unit>
-      <trans-unit id="pi1_flexform.sortBy.sorting.sorting" xml:space="preserve">
+      <trans-unit id="pi1_flexform.sortBy.sorting.sorting" xml:space="preserve" approved="yes">
             <source>Manual sorting</source>
         <target state="translated">Manuelle Sortierung</target></trans-unit>
       <trans-unit id="pi1_flexform.sortOrder" xml:space="preserve" approved="yes">
@@ -48,7 +48,7 @@
       <trans-unit id="pi1_flexform.sortOrder.descending" xml:space="preserve" approved="yes">
             <source>Descending</source>
         <target state="translated">Absteigend</target></trans-unit>
-      <trans-unit id="pi1_flexform.ignoreWithoutCoordinates" xml:space="preserve">
+      <trans-unit id="pi1_flexform.ignoreWithoutCoordinates" xml:space="preserve" approved="yes">
             <source>Ignore records with no latitude/longitude</source>
         <target state="translated">Einträge ohne Breitengrad/Längengrad ignorieren</target></trans-unit>
       <trans-unit id="pi1_flexform.allowOverride" xml:space="preserve">
@@ -63,7 +63,7 @@
       <trans-unit id="pi1_flexform.templateFile.I.0" xml:space="preserve" approved="yes">
             <source>Default</source>
         <target state="translated">Standard</target></trans-unit>
-      <trans-unit id="pi1_flexform.displayMode" xml:space="preserve">
+      <trans-unit id="pi1_flexform.displayMode" xml:space="preserve" approved="yes">
             <source>Select display mode</source>
         <target state="translated">Ausgabemodus wählen</target></trans-unit>
       <trans-unit id="pi1_flexform.displayMode.listView" xml:space="preserve">

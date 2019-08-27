@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns:t3="http://typo3.org/schemas/xliff" version="1.0">
+  <file t3:id="1502483828" source-language="en" datatype="plaintext" original="messages" date="2017-08-11T20:37:40Z" product-name="tt_address" target-language="nl">
+    <header/>
+    <body>
+      <trans-unit id="tt_address">
+        <source>Address</source>
+        <target state="needs-translation">Address</target>
+      </trans-unit>
+      <trans-unit id="tt_address.gender">
+        <source>Gender</source>
+        <target state="needs-translation">Gender</target>
+      </trans-unit>
+      <trans-unit id="tt_address.gender.m">
+        <source>Male (Mr)</source>
+        <target state="needs-translation">Male (Mr)</target>
+      </trans-unit>
+      <trans-unit id="tt_address.gender.f">
+        <source>Female (Mrs)</source>
+        <target state="needs-translation">Female (Mrs)</target>
+      </trans-unit>
+      <trans-unit id="tt_address.gender.v">
+        <source>Various</source>
+        <target state="needs-translation">Various</target>
+      </trans-unit>
+      <trans-unit id="tt_address.gender.undefined">
+        <source>Undefined</source>
+        <target state="needs-translation">Undefined</target>
+      </trans-unit>
+      <trans-unit id="tt_address.first_name">
+        <source>First Name</source>
+        <target state="needs-translation">First Name</target>
+      </trans-unit>
+      <trans-unit id="tt_address.middle_name">
+        <source>Middle Name</source>
+        <target state="needs-translation">Middle Name</target>
+      </trans-unit>
+      <trans-unit id="tt_address.last_name">
+        <source>Last Name</source>
+        <target state="needs-translation">Last Name</target>
+      </trans-unit>
+      <trans-unit id="tt_address.birthday">
+        <source>Birthday</source>
+        <target state="needs-translation">Birthday</target>
+      </trans-unit>
+      <trans-unit id="tt_address.building">
+        <source>Building</source>
+        <target state="needs-translation">Building</target>
+      </trans-unit>
+      <trans-unit id="tt_address.room">
+        <source>Room</source>
+        <target state="needs-translation">Room</target>
+      </trans-unit>
+      <trans-unit id="tt_address.organization">
+        <source>Organization</source>
+        <target state="needs-translation">Organization</target>
+      </trans-unit>
+      <trans-unit id="tt_address.position">
+        <source>Position</source>
+        <target state="needs-translation">Position</target>
+      </trans-unit>
+      <trans-unit id="tt_address.region">
+        <source>Region / State</source>
+        <target state="needs-translation">Region / State</target>
+      </trans-unit>
+      <trans-unit id="tt_address.mobile">
+        <source>Mobile</source>
+        <target state="needs-translation">Mobile</target>
+      </trans-unit>
+      <trans-unit id="tt_address.skype">
+        <source>Skype</source>
+        <target state="needs-translation">Skype</target>
+      </trans-unit>
+      <trans-unit id="tt_address.twitter">
+        <source>Twitter</source>
+        <target state="needs-translation">Twitter</target>
+      </trans-unit>
+      <trans-unit id="tt_address.facebook">
+        <source>Facebook</source>
+        <target state="needs-translation">Facebook</target>
+      </trans-unit>
+      <trans-unit id="tt_address.linkedin">
+        <source>LinkedIn</source>
+        <target state="needs-translation">LinkedIn</target>
+      </trans-unit>
+      <trans-unit id="tt_address.latitude">
+        <source>Latitude</source>
+        <target state="needs-translation">Latitude</target>
+      </trans-unit>
+      <trans-unit id="tt_address.longitude">
+        <source>Longitude</source>
+        <target state="needs-translation">Longitude</target>
+      </trans-unit>
+      <trans-unit id="tt_address.locationMapWizard">
+        <source>Map wizard for visual selection of coordinates</source>
+        <target state="needs-translation">Map wizard for visual selection of coordinates</target>
+      </trans-unit>
+      <trans-unit id="tt_address.locationMapWizard.close">
+        <source>Close Map Wizard</source>
+        <target state="needs-translation">Close Map Wizard</target>
+      </trans-unit>
+      <trans-unit id="tt_address.locationMapWizard.import">
+        <source>Import marker-coordinates</source>
+        <target state="needs-translation">Import marker-coordinates</target>
+      </trans-unit>
+      <trans-unit id="tt_address_tab.contact">
+        <source>Contact</source>
+        <target state="needs-translation">Contact</target>
+      </trans-unit>
+      <trans-unit id="tt_address_tab.address">
+        <source>Address</source>
+        <target state="needs-translation">Address</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.name">
+        <source>Name</source>
+        <target state="needs-translation">Name</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.organization">
+        <source>Organisation</source>
+        <target state="needs-translation">Organisation</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.address">
+        <source>Address</source>
+        <target state="needs-translation">Address</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.building">
+        <source>Building</source>
+        <target state="needs-translation">Building</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.contact">
+        <source>Contact</source>
+        <target state="needs-translation">Contact</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.social">
+        <source>Social Networks</source>
+        <target state="needs-translation">Social Networks</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.coordinates">
+        <source>Coordinates</source>
+        <target state="needs-translation">Coordinates</target>
+      </trans-unit>
+      <trans-unit id="pi_tt_address">
+        <source>Addresses</source>
+        <target state="needs-translation">Addresses</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

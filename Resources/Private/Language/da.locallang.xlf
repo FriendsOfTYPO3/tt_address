@@ -3,42 +3,42 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2017-04-13T10:24:37Z" product-name="tt_address" target-language="da">
     <header/>
     <body>
-      <trans-unit id="label.address" xml:space="preserve">
+      <trans-unit id="label.address" xml:space="preserve" approved="yes">
         <source>Address</source>
-      <target state="needs-translation">Address</target></trans-unit>
-      <trans-unit id="label.building" xml:space="preserve">
+      <target state="translated">Adresse</target></trans-unit>
+      <trans-unit id="label.building" xml:space="preserve" approved="yes">
         <source>Building</source>
-      <target state="needs-translation">Building</target></trans-unit>
-      <trans-unit id="label.room" xml:space="preserve">
+      <target state="translated">Bygning</target></trans-unit>
+      <trans-unit id="label.room" xml:space="preserve" approved="yes">
         <source>Room</source>
-      <target state="needs-translation">Room</target></trans-unit>
-      <trans-unit id="label.position" xml:space="preserve">
+      <target state="translated">Rum</target></trans-unit>
+      <trans-unit id="label.position" xml:space="preserve" approved="yes">
         <source>Position</source>
-      <target state="needs-translation">Position</target></trans-unit>
-      <trans-unit id="label.zip" xml:space="preserve">
+      <target state="translated">Stilling</target></trans-unit>
+      <trans-unit id="label.zip" xml:space="preserve" approved="yes">
         <source>Postal code</source>
-      <target state="needs-translation">Postal code</target></trans-unit>
-      <trans-unit id="label.city" xml:space="preserve">
+      <target state="translated">Postnummer</target></trans-unit>
+      <trans-unit id="label.city" xml:space="preserve" approved="yes">
         <source>City</source>
-      <target state="needs-translation">City</target></trans-unit>
-      <trans-unit id="label.telephone" xml:space="preserve">
+      <target state="translated">By</target></trans-unit>
+      <trans-unit id="label.telephone" xml:space="preserve" approved="yes">
         <source>Telephone</source>
-      <target state="needs-translation">Telephone</target></trans-unit>
+      <target state="translated">Telefon</target></trans-unit>
       <trans-unit id="label.fax" xml:space="preserve">
         <source>Fax</source>
       <target state="needs-translation">Fax</target></trans-unit>
-      <trans-unit id="label.mobile" xml:space="preserve">
+      <trans-unit id="label.mobile" xml:space="preserve" approved="yes">
         <source>Mobile phone</source>
-      <target state="needs-translation">Mobile phone</target></trans-unit>
-      <trans-unit id="label.email" xml:space="preserve">
+      <target state="translated">Mobilnummer</target></trans-unit>
+      <trans-unit id="label.email" xml:space="preserve" approved="yes">
         <source>E-mail</source>
-      <target state="needs-translation">E-mail</target></trans-unit>
-      <trans-unit id="label.www" xml:space="preserve">
+      <target state="translated">Email</target></trans-unit>
+      <trans-unit id="label.www" xml:space="preserve" approved="yes">
         <source>Go to website</source>
-      <target state="needs-translation">Go to website</target></trans-unit>
-      <trans-unit id="label.socialmedia" xml:space="preserve">
+      <target state="translated">Gå til website</target></trans-unit>
+      <trans-unit id="label.socialmedia" xml:space="preserve" approved="yes">
         <source>Social media contacts</source>
-      <target state="needs-translation">Social media contacts</target></trans-unit>
+      <target state="translated">Social medie kontakt</target></trans-unit>
       <trans-unit id="label.twitter" xml:space="preserve">
         <source>Twitter</source>
       <target state="needs-translation">Twitter</target></trans-unit>
@@ -51,34 +51,34 @@
       <trans-unit id="label.skype" xml:space="preserve">
         <source>Skype</source>
       <target state="needs-translation">Skype</target></trans-unit>
-      <trans-unit id="label.birthday" xml:space="preserve">
+      <trans-unit id="label.birthday" xml:space="preserve" approved="yes">
         <source>Birthday</source>
-      <target state="needs-translation">Birthday</target></trans-unit>
-      <trans-unit id="paginate_overall" xml:space="preserve">
+      <target state="translated">Fødselsdag</target></trans-unit>
+      <trans-unit id="paginate_overall" xml:space="preserve" approved="yes">
         <source>Page %s of %s</source>
-      <target state="needs-translation">Page %s of %s</target></trans-unit>
-      <trans-unit id="paginate_next">
+      <target state="translated">Side %s af %s</target></trans-unit>
+      <trans-unit id="paginate_next" approved="yes">
         <source>Next</source>
-        <target state="needs-translation">Next</target>
+        <target state="translated">Næste</target>
       </trans-unit>
-      <trans-unit id="paginate_previous">
+      <trans-unit id="paginate_previous" approved="yes">
         <source>Previous</source>
-        <target state="needs-translation">Previous</target>
+        <target state="translated">Forrige</target>
       </trans-unit>
       <trans-unit id="backToList">
         <target>Back to list</target>
       </trans-unit>
-      <trans-unit id="more">
+      <trans-unit id="more" approved="yes">
         <source>More</source>
-        <target state="needs-translation">More</target>
+        <target state="translated">Mere</target>
       </trans-unit>
-      <trans-unit id="show_on_map">
+      <trans-unit id="show_on_map" approved="yes">
         <source>Show on map</source>
-        <target state="needs-translation">Show on map</target>
+        <target state="translated">Vis på kort</target>
       </trans-unit>
-      <trans-unit id="no_google_maps_key">
+      <trans-unit id="no_google_maps_key" approved="yes">
         <source>No Google Maps key provided with TypoScript</source>
-        <target state="needs-translation">No Google Maps key provided with TypoScript</target>
+        <target state="translated">Ingen tilgængelig Google Map nøgle via TypoScript</target>
       </trans-unit>
     </body>
   </file>

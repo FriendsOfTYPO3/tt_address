@@ -28,7 +28,7 @@
       </trans-unit>
       <trans-unit id="tt_address.gender.undefined">
         <source>Undefined</source>
-        <target state="needs-translation">Undefined</target>
+        <target state="translated">Απροσδιόριστο</target>
       </trans-unit>
       <trans-unit id="tt_address.first_name" approved="yes">
         <source>First Name</source>
@@ -81,7 +81,7 @@
       </trans-unit>
       <trans-unit id="tt_address.position">
         <source>Position</source>
-        <target state="needs-translation">Position</target>
+        <target state="translated">Θέση</target>
       </trans-unit>
       <trans-unit id="tt_address.region" approved="yes">
         <source>Region / State</source>
@@ -115,11 +115,11 @@
       </trans-unit>
       <trans-unit id="tt_address.latitude">
         <source>Latitude</source>
-        <target state="needs-translation">Latitude</target>
+        <target state="translated">Γεωγραφικό πλάτος</target>
       </trans-unit>
       <trans-unit id="tt_address.longitude">
         <source>Longitude</source>
-        <target state="needs-translation">Longitude</target>
+        <target state="translated">Γεωγραφικό μήκος</target>
       </trans-unit>
       <trans-unit id="tt_address.locationMapWizard">
         <source>Map wizard for visual selection of coordinates</source>
@@ -135,15 +135,15 @@
       </trans-unit>
       <trans-unit id="tt_address_tab.contact">
         <source>Contact</source>
-        <target state="needs-translation">Contact</target>
+        <target state="translated">Επαφή</target>
       </trans-unit>
       <trans-unit id="tt_address_tab.address">
         <source>Address</source>
-        <target state="needs-translation">Address</target>
+        <target state="translated">Διεύθυνση</target>
       </trans-unit>
       <trans-unit id="tt_address_palette.name">
         <source>Name</source>
-        <target state="needs-translation">Name</target>
+        <target state="translated">Όνομα</target>
       </trans-unit>
       <trans-unit id="tt_address_palette.organization">
         <source>Organisation</source>
@@ -165,15 +165,15 @@
       </trans-unit>
       <trans-unit id="tt_address_palette.contact">
         <source>Contact</source>
-        <target state="needs-translation">Contact</target>
+        <target state="translated">Επαφή</target>
       </trans-unit>
       <trans-unit id="tt_address_palette.social">
         <source>Social Networks</source>
-        <target state="needs-translation">Social Networks</target>
+        <target state="translated">Κοινωνικά Δίκτυα</target>
       </trans-unit>
       <trans-unit id="tt_address_palette.coordinates">
         <source>Coordinates</source>
-        <target state="needs-translation">Coordinates</target>
+        <target state="translated">Συντεταγμένες</target>
       </trans-unit>
       <trans-unit id="pi_tt_address" approved="yes">
         <source>Addresses</source>

@@ -9,7 +9,10 @@
       </trans-unit>
       <trans-unit id="tt_address.gender" approved="yes">
         <source>Gender</source>
-        <target state="translated">Φύλο:</target>
+        <target state="translated">Φύλο</target>
+        <alt-trans>
+          <target>Φύλο:</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.gender.m" approved="yes">
         <source>Male (Mr)</source>
@@ -21,7 +24,7 @@
       </trans-unit>
       <trans-unit id="tt_address.gender.v">
         <source>Various</source>
-        <target state="needs-translation">Various</target>
+        <target state="translated">Διάφορα</target>
       </trans-unit>
       <trans-unit id="tt_address.gender.undefined">
         <source>Undefined</source>
@@ -29,31 +32,52 @@
       </trans-unit>
       <trans-unit id="tt_address.first_name" approved="yes">
         <source>First Name</source>
-        <target state="translated">Όνομα:</target>
+        <target state="translated">Όνομα</target>
+        <alt-trans>
+          <target>Όνομα:</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.middle_name" approved="yes">
         <source>Middle Name</source>
-        <target state="translated">Πατρώνυμο:</target>
+        <target state="translated">Πατρώνυμο</target>
+        <alt-trans>
+          <target>Πατρώνυμο:</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.last_name" approved="yes">
         <source>Last Name</source>
-        <target state="translated">Επώνυμο:</target>
+        <target state="translated">Επώνυμο</target>
+        <alt-trans>
+          <target>Επώνυμο:</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.birthday" approved="yes">
         <source>Birthday</source>
-        <target state="translated">Ημερομηνία Γέννησης:</target>
+        <target state="translated">Ημερομηνία γέννησης</target>
+        <alt-trans>
+          <target>Ημερομηνία Γέννησης:</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.building" approved="yes">
         <source>Building</source>
-        <target state="translated">Κτίριο:</target>
+        <target state="translated">Κτίριο</target>
+        <alt-trans>
+          <target>Κτίριο:</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.room" approved="yes">
         <source>Room</source>
-        <target state="translated">Δωμάτιο:</target>
+        <target state="translated">Χώρος</target>
+        <alt-trans>
+          <target>Δωμάτιο:</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.organization" approved="yes">
         <source>Organization</source>
-        <target state="translated">Οργανισμός:</target>
+        <target state="translated">Οργανισμός</target>
+        <alt-trans>
+          <target>Οργανισμός:</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.position">
         <source>Position</source>
@@ -61,11 +85,17 @@
       </trans-unit>
       <trans-unit id="tt_address.region" approved="yes">
         <source>Region / State</source>
-        <target state="translated">Περιοχή:</target>
+        <target state="translated">Περιοχή / Περιφέρεια</target>
+        <alt-trans>
+          <target>Περιοχή:</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.mobile" approved="yes">
         <source>Mobile</source>
-        <target state="translated">Κινητό:</target>
+        <target state="translated">Κινητό</target>
+        <alt-trans>
+          <target>Κινητό:</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.skype">
         <source>Skype</source>
@@ -117,7 +147,10 @@
       </trans-unit>
       <trans-unit id="tt_address_palette.organization">
         <source>Organisation</source>
-        <target state="translated">Οργανισμός:</target>
+        <target state="translated">Οργανισμός</target>
+        <alt-trans>
+          <target>Οργανισμός:</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address_palette.address" approved="yes">
         <source>Address</source>
@@ -125,7 +158,10 @@
       </trans-unit>
       <trans-unit id="tt_address_palette.building">
         <source>Building</source>
-        <target state="translated">Κτίριο:</target>
+        <target state="translated">Κτίριο</target>
+        <alt-trans>
+          <target>Κτίριο:</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address_palette.contact">
         <source>Contact</source>

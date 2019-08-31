@@ -53,28 +53,28 @@
         <target state="translated">Αγνόησε εγγραφές που δεν έχουν γεωγραφικό πλάτος/μήκος</target></trans-unit>
       <trans-unit id="pi1_flexform.allowOverride" xml:space="preserve">
             <source>Allow override configuration by GET/POST</source>
-        <target state="needs-translation">Allow override configuration by GET/POST</target></trans-unit>
+        <target state="translated">Επιτρέπεται η αντικατάσταση ρυθμίσεων μέσω GET/POST</target></trans-unit>
       <trans-unit id="pi1_flexform.sheet_display" xml:space="preserve">
             <source>Display</source>
-        <target state="needs-translation">Display</target></trans-unit>
+        <target state="translated">Εμφάνιση</target></trans-unit>
       <trans-unit id="pi1_flexform.templateFile" xml:space="preserve">
             <source>Template</source>
-        <target state="needs-translation">Template</target></trans-unit>
+        <target state="translated">Πρότυπο (Template)</target></trans-unit>
       <trans-unit id="pi1_flexform.templateFile.I.0" xml:space="preserve">
             <source>Default</source>
-        <target state="needs-translation">Default</target></trans-unit>
+        <target state="translated">Προκαθορισμένη</target></trans-unit>
       <trans-unit id="pi1_flexform.displayMode" xml:space="preserve">
             <source>Select display mode</source>
-        <target state="needs-translation">Select display mode</target></trans-unit>
+        <target state="translated">Επιλογή τρόπου προβολής</target><alt-trans><target>Επιλογή τρόπου εμφάνισης</target></alt-trans></trans-unit>
       <trans-unit id="pi1_flexform.displayMode.listView" xml:space="preserve">
             <source>List view</source>
-        <target state="needs-translation">List view</target></trans-unit>
+        <target state="translated">Προβολή λίστας</target></trans-unit>
       <trans-unit id="pi1_flexform.displayMode.singleView" xml:space="preserve">
             <source>Single view</source>
-        <target state="needs-translation">Single view</target></trans-unit>
+        <target state="translated">Μεμονωμένη προβολή</target></trans-unit>
       <trans-unit id="pi1_flexform.displayMode.map" xml:space="preserve">
             <source>Map view</source>
-        <target state="needs-translation">Map view</target></trans-unit>
+        <target state="translated">Προβολή χάρτη</target></trans-unit>
       <trans-unit id="pi1_flexform.hidePagination" xml:space="preserve">
             <source>Do not display pagebrowser (listview)</source>
         <target state="needs-translation">Do not display pagebrowser (listview)</target></trans-unit>
@@ -83,7 +83,7 @@
         <target state="needs-translation">Number of items to be displayed (listview)</target></trans-unit>
       <trans-unit id="pi1_flexform.singlePid" xml:space="preserve">
             <source>Page for singelview</source>
-        <target state="needs-translation">Page for singelview</target></trans-unit>
+        <target state="translated">Σελίδα για μεμονωμένη προβολή</target></trans-unit>
     </body>
   </file>
 </xliff>

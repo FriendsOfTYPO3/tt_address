@@ -22,4 +22,4 @@ work!
 
     ExtensionSettings/Index
     TypoScript/Index
-    TypoScriptAbstractPlugin/Index
+    Routing/Index

@@ -159,7 +159,7 @@
       </trans-unit>
       <trans-unit id="tt_address_palette.organization">
         <source>Organisation</source>
-        <target state="needs-translation">Organisation</target>
+        <target state="translated">Organisation</target>
       </trans-unit>
       <trans-unit id="tt_address_palette.address" approved="yes">
         <source>Address</source>

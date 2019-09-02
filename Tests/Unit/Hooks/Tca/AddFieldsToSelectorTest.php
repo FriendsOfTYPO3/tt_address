@@ -69,7 +69,7 @@ class AddFieldsToSelectorTest extends BaseTestCase
                 ['label_title', 'title'],
                 ['label_www', 'www'],
                 ['label_zip', 'zip'],
-                ['LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_flexform.sortBy.singleSelection', 'singleSelection'],
+                ['LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortBy.singleSelection', 'singleSelection'],
             ]
         ];
 

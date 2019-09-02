@@ -48,7 +48,7 @@ class AddFieldsToSelector
         // add sorting by order of single selection
         $selectOptions[] = [
             'field' => 'singleSelection',
-            'label' => $this->languageService->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_flexform.sortBy.singleSelection')
+            'label' => $this->languageService->sL('LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortBy.singleSelection')
         ];
 
         // sort by labels

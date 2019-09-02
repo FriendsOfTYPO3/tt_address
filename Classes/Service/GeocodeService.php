@@ -31,7 +31,7 @@ class GeocodeService implements SingletonInterface
     /** @var string  */
     protected $geocodingUrl = 'https://maps.googleapis.com/maps/api/geocode/json?language=de&sensor=false';
 
-    public function __construct(string $googleMapsKey)
+    public function __construct(string $googleMapsKey = '')
     {
         $this->geocodingUrl .= '&key=' . $googleMapsKey;
     }

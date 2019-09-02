@@ -8,6 +8,16 @@
 
 .. _administration-updating:
 
+Updating from 4.x to 5.0.0
+--------------------------
+
+.. warning::
+
+	The upgrade wizard to migrate from pibase to extbase plugins have been removed. If you need those, please install versionn 4.x first and upgrade afterwards.
+
+With the version 5.0.0 the TYPO3 versions 9 and 10 are supported which also means that the support for version 8 has been dropped.
+
+
 Updating from 3.x to 4.0.0
 --------------------------
 With the version 4.0.0 the code base changed a lot to support TYPO3 8.7 LTS and 9.5 LTS.

@@ -43,7 +43,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     public function showAction(\FriendsOfTYPO3\TtAddress\Domain\Model\Address $address = null)
     {
         if ($address === null) {
-            $this->redirectToUri($this->uriBuilder->reset()->setTargetPageUid($GLOBALS['TSFE']->id)->build());
+            $this->redirectToUri($this->uriBuilder->reset()->setTargetPageUid((int)$GLOBALS['TSFE']->id)->build());
         }
         $this->view->assign('address', $address);
 

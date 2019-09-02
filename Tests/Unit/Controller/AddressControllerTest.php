@@ -24,7 +24,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class AddressControllerTest extends BaseTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $GLOBALS['TSFE'] = $this->getAccessibleMock(TypoScriptFrontendController::class, ['addCacheTags'], [], '', false);
     }

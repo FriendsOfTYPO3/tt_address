@@ -24,12 +24,6 @@ The following settings are available:
 ======================================  ==========  =============================================================  =========================
 Property:                               Data type:  Description:                                                   Default:
 ======================================  ==========  =============================================================  =========================
-activatePiBase                          boolean     If set, the ancient plugin based on `AbstractPlugin`,          0
-                                                    formerly known as `piBase` is enabled and can be used.
-                                                    However, be aware that this plugin has been marked as
-                                                    deprecated and will be removed in version 5.0.0.
-                                                    Try not using this plugin!
---------------------------------------  ----------  -------------------------------------------------------------  -------------------------
 storeBackwardsCompatName                boolean     If set, the field `name` is populated with the values of the   1
                                                     fields `first_name`, `middle_name` and `last_name`.
 --------------------------------------  ----------  -------------------------------------------------------------  -------------------------

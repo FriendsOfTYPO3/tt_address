@@ -8,7 +8,7 @@ namespace FriendsOfTYPO3\TtAddress\Hooks\Tca;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use TYPO3\CMS\Lang\LanguageService;
+use TYPO3\CMS\Core\Localization\LanguageService;
 
 /**
  * Class AddFieldsToSelector
@@ -48,7 +48,7 @@ class AddFieldsToSelector
         // add sorting by order of single selection
         $selectOptions[] = [
             'field' => 'singleSelection',
-            'label' => $this->languageService->sL('LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_flexform.sortBy.singleSelection')
+            'label' => $this->languageService->sL('LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortBy.singleSelection')
         ];
 
         // sort by labels

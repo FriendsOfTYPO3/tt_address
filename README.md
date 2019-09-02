@@ -15,6 +15,15 @@ The basic aim of tt_address is to store address and contact data and to output t
 
 Install the extension by using composer and `composer req friendsoftypo3/tt-address` or by downloading it in the extension manager or on https://extensions.typo3.org/extension/tt_address/.
 
+### Version matrix
+
+|          | 5.x | 4.x | 3.x |
+| -------- | --- | --- | --- |
+| TYPO3 10 | yes | no  | no  |
+| TYPO3 9  | yes | yes | no  |
+| TYPO3 8  | no  | yes | yes |
+| TYPO3 7  | no  | no  | yes |
+
 ## Usage
 
 The extensions follows the principles known from any other TYPO3 extension:

@@ -1,0 +1,33 @@
+5.0.0 - 2018-xx-08
+==================
+
+.. include:: ../../../Includes.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+
+This release is the 1st release which supports TYPO3 10 and TYPO3 9 LTS only.
+
+Cleanup codebase
+^^^^^^^^^^^^^^^^
+The following code parts have been changed:
+
+- Removal of the piBase/AbstractPlugin plugin
+- Removal of the file:`locallang_pi1.xlf` file.
+- Removal of the update wizards
+- Removal of hook to support EXT:realurl
+- Support of php:`$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['tt_address']` instead of the serialized configuration in :php:`$GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address']`
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+
+This list has been created by using `git log v3.2.4..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

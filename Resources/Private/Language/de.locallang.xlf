@@ -35,7 +35,7 @@
       <target state="translated">E-Mail</target></trans-unit>
       <trans-unit id="label.www" xml:space="preserve" approved="yes">
         <source>Go to website</source>
-      <target state="translated">Gehe zur Website</target><alt-trans><target>Gehe zu Website</target></alt-trans></trans-unit>
+      <target state="translated">Gehe zur Website</target></trans-unit>
       <trans-unit id="label.socialmedia" xml:space="preserve" approved="yes">
         <source>Social media contacts</source>
       <target state="translated">Soziale Medien</target></trans-unit>
@@ -60,16 +60,10 @@
       <trans-unit id="paginate_next" approved="yes">
         <source>Next</source>
         <target state="translated">Nächste</target>
-        <alt-trans>
-          <target>Weiter</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="paginate_previous" approved="yes">
         <source>Previous</source>
         <target state="translated">Vorherige</target>
-        <alt-trans>
-          <target>Zurück</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="backToList">
         <target>Back to list</target>

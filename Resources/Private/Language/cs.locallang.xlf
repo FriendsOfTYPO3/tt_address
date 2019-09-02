@@ -3,82 +3,8 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2017-04-13T10:24:37Z" product-name="tt_address" target-language="cs">
     <header/>
     <body>
-      <trans-unit id="label.address" xml:space="preserve">
-        <source>Address</source>
-      <target state="needs-translation">Address</target></trans-unit>
-      <trans-unit id="label.building" xml:space="preserve">
-        <source>Building</source>
-      <target state="needs-translation">Building</target></trans-unit>
-      <trans-unit id="label.room" xml:space="preserve">
-        <source>Room</source>
-      <target state="needs-translation">Room</target></trans-unit>
-      <trans-unit id="label.position" xml:space="preserve">
-        <source>Position</source>
-      <target state="needs-translation">Position</target></trans-unit>
-      <trans-unit id="label.zip" xml:space="preserve">
-        <source>Postal code</source>
-      <target state="needs-translation">Postal code</target></trans-unit>
-      <trans-unit id="label.city" xml:space="preserve">
-        <source>City</source>
-      <target state="needs-translation">City</target></trans-unit>
-      <trans-unit id="label.telephone" xml:space="preserve">
-        <source>Telephone</source>
-      <target state="needs-translation">Telephone</target></trans-unit>
-      <trans-unit id="label.fax" xml:space="preserve">
-        <source>Fax</source>
-      <target state="needs-translation">Fax</target></trans-unit>
-      <trans-unit id="label.mobile" xml:space="preserve">
-        <source>Mobile phone</source>
-      <target state="needs-translation">Mobile phone</target></trans-unit>
-      <trans-unit id="label.email" xml:space="preserve">
-        <source>E-mail</source>
-      <target state="needs-translation">E-mail</target></trans-unit>
-      <trans-unit id="label.www" xml:space="preserve">
-        <source>Go to website</source>
-      <target state="needs-translation">Go to website</target></trans-unit>
-      <trans-unit id="label.socialmedia" xml:space="preserve">
-        <source>Social media contacts</source>
-      <target state="needs-translation">Social media contacts</target></trans-unit>
-      <trans-unit id="label.twitter" xml:space="preserve">
-        <source>Twitter</source>
-      <target state="needs-translation">Twitter</target></trans-unit>
-      <trans-unit id="label.facebook" xml:space="preserve">
-        <source>Facebook</source>
-      <target state="needs-translation">Facebook</target></trans-unit>
-      <trans-unit id="label.linkedin" xml:space="preserve">
-        <source>LinkedIn</source>
-      <target state="needs-translation">LinkedIn</target></trans-unit>
-      <trans-unit id="label.skype" xml:space="preserve">
-        <source>Skype</source>
-      <target state="needs-translation">Skype</target></trans-unit>
-      <trans-unit id="label.birthday" xml:space="preserve">
-        <source>Birthday</source>
-      <target state="needs-translation">Birthday</target></trans-unit>
-      <trans-unit id="paginate_overall" xml:space="preserve">
-        <source>Page %s of %s</source>
-      <target state="needs-translation">Page %s of %s</target></trans-unit>
-      <trans-unit id="paginate_next">
-        <source>Next</source>
-        <target state="needs-translation">Next</target>
-      </trans-unit>
-      <trans-unit id="paginate_previous">
-        <source>Previous</source>
-        <target state="needs-translation">Previous</target>
-      </trans-unit>
       <trans-unit id="backToList">
         <target>Back to list</target>
-      </trans-unit>
-      <trans-unit id="more">
-        <source>More</source>
-        <target state="needs-translation">More</target>
-      </trans-unit>
-      <trans-unit id="show_on_map">
-        <source>Show on map</source>
-        <target state="needs-translation">Show on map</target>
-      </trans-unit>
-      <trans-unit id="no_google_maps_key">
-        <source>No Google Maps key provided with TypoScript</source>
-        <target state="needs-translation">No Google Maps key provided with TypoScript</target>
       </trans-unit>
     </body>
   </file>

@@ -24,43 +24,21 @@
       <trans-unit id="label.telephone" xml:space="preserve" approved="yes">
         <source>Telephone</source>
       <target state="translated">Telefono</target></trans-unit>
-      <trans-unit id="label.fax" xml:space="preserve">
-        <source>Fax</source>
-      <target state="needs-translation">Fax</target></trans-unit>
       <trans-unit id="label.mobile" xml:space="preserve" approved="yes">
         <source>Mobile phone</source>
       <target state="translated">Telefono cellulare</target></trans-unit>
-      <trans-unit id="label.email" xml:space="preserve">
-        <source>E-mail</source>
-      <target state="needs-translation">E-mail</target></trans-unit>
       <trans-unit id="label.www" xml:space="preserve" approved="yes">
         <source>Go to website</source>
       <target state="translated">Vai al sito web</target></trans-unit>
       <trans-unit id="label.socialmedia" xml:space="preserve" approved="yes">
         <source>Social media contacts</source>
       <target state="translated">Contatti social media</target></trans-unit>
-      <trans-unit id="label.twitter" xml:space="preserve">
-        <source>Twitter</source>
-      <target state="needs-translation">Twitter</target></trans-unit>
-      <trans-unit id="label.facebook" xml:space="preserve">
-        <source>Facebook</source>
-      <target state="needs-translation">Facebook</target></trans-unit>
-      <trans-unit id="label.linkedin" xml:space="preserve">
-        <source>LinkedIn</source>
-      <target state="needs-translation">LinkedIn</target></trans-unit>
-      <trans-unit id="label.skype" xml:space="preserve">
-        <source>Skype</source>
-      <target state="needs-translation">Skype</target></trans-unit>
       <trans-unit id="label.birthday" xml:space="preserve" approved="yes">
         <source>Birthday</source>
       <target state="translated">Data di nascita</target></trans-unit>
       <trans-unit id="paginate_overall" xml:space="preserve" approved="yes">
         <source>Page %s of %s</source>
       <target state="translated">Pagina %s di %s</target></trans-unit>
-      <trans-unit id="paginate_next">
-        <source>Next</source>
-        <target state="translated">Successiva</target>
-      </trans-unit>
       <trans-unit id="paginate_previous" approved="yes">
         <source>Previous</source>
         <target state="translated">Precedente</target>
@@ -68,17 +46,9 @@
       <trans-unit id="backToList">
         <target>Back to list</target>
       </trans-unit>
-      <trans-unit id="more">
-        <source>More</source>
-        <target state="needs-translation">More</target>
-      </trans-unit>
       <trans-unit id="show_on_map" approved="yes">
         <source>Show on map</source>
         <target state="translated">Mostra sulla mappa</target>
-      </trans-unit>
-      <trans-unit id="no_google_maps_key">
-        <source>No Google Maps key provided with TypoScript</source>
-        <target state="needs-translation">No Google Maps key provided with TypoScript</target>
       </trans-unit>
     </body>
   </file>

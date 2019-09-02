@@ -10,9 +10,6 @@
       <trans-unit id="tt_address.gender" approved="yes">
         <source>Gender</source>
         <target state="translated">Køn</target>
-        <alt-trans>
-          <target>Køn:</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.gender.m" approved="yes">
         <source>Male (Mr)</source>
@@ -21,9 +18,6 @@
       <trans-unit id="tt_address.gender.f" approved="yes">
         <source>Female (Mrs)</source>
         <target state="translated">Kvinde (Fru)</target>
-        <alt-trans>
-          <target>Kvinde (Fr)</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.gender.v" approved="yes">
         <source>Various</source>
@@ -36,72 +30,42 @@
       <trans-unit id="tt_address.first_name" approved="yes">
         <source>First Name</source>
         <target state="translated">Fornavn</target>
-        <alt-trans>
-          <target>Fornavn:</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.middle_name" approved="yes">
         <source>Middle Name</source>
         <target state="translated">Mellemnavn</target>
-        <alt-trans>
-          <target>Mellemnavn:</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.last_name" approved="yes">
         <source>Last Name</source>
         <target state="translated">Efternavn</target>
-        <alt-trans>
-          <target>Efternavn:</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.birthday" approved="yes">
         <source>Birthday</source>
         <target state="translated">Fødselsdag</target>
-        <alt-trans>
-          <target>Fødselsdag:</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.building" approved="yes">
         <source>Building</source>
         <target state="translated">Bygning</target>
-        <alt-trans>
-          <target>Bygning:</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.room" approved="yes">
         <source>Room</source>
         <target state="translated">Rum</target>
-        <alt-trans>
-          <target>Værelse:</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.organization" approved="yes">
         <source>Organization</source>
         <target state="translated">Organisation</target>
-        <alt-trans>
-          <target>Organisation:</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.position" approved="yes">
         <source>Position</source>
         <target state="translated">Stilling</target>
-        <alt-trans>
-          <target>Stilling:</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.region" approved="yes">
         <source>Region / State</source>
         <target state="translated">Region</target>
-        <alt-trans>
-          <target>Stat/Provins/Amt:</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.mobile" approved="yes">
         <source>Mobile</source>
         <target state="translated">Mobil</target>
-        <alt-trans>
-          <target>Mobil:</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.skype" approved="yes">
         <source>Skype</source>
@@ -122,16 +86,10 @@
       <trans-unit id="tt_address.latitude" approved="yes">
         <source>Latitude</source>
         <target state="translated">Breddegrad</target>
-        <alt-trans>
-          <target>Breddegrad:</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.longitude" approved="yes">
         <source>Longitude</source>
         <target state="translated">Længdegrad</target>
-        <alt-trans>
-          <target>Længdegrad:</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="tt_address.locationMapWizard" approved="yes">
         <source>Map wizard for visual selection of coordinates</source>
@@ -156,10 +114,6 @@
       <trans-unit id="tt_address_palette.name" approved="yes">
         <source>Name</source>
         <target state="translated">Navn</target>
-      </trans-unit>
-      <trans-unit id="tt_address_palette.organization">
-        <source>Organisation</source>
-        <target state="translated">Organisation</target>
       </trans-unit>
       <trans-unit id="tt_address_palette.address" approved="yes">
         <source>Address</source>

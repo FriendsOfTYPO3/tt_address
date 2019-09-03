@@ -57,9 +57,6 @@
       <trans-unit id="pi1_flexform.displayMode.singleView" xml:space="preserve" approved="yes">
             <source>Single view</source>
         <target state="translated">Visualizzazione singola</target></trans-unit>
-      <trans-unit id="pi1_flexform.singlePid" xml:space="preserve" approved="yes">
-            <source>Page for singelview</source>
-        <target state="translated">Pagina per visualizzazione singola</target></trans-unit>
     </body>
   </file>
 </xliff>

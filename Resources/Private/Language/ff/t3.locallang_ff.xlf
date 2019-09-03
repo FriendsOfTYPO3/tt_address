@@ -82,8 +82,8 @@
             <source>Number of items to be displayed (listview)</source>
         <target>crwdns45660:0crwdne45660:0</target></trans-unit>
       <trans-unit id="pi1_flexform.singlePid" xml:space="preserve">
-            <source>Page for singelview</source>
-        <target>crwdns45662:0crwdne45662:0</target></trans-unit>
+            <source>Page for single view</source>
+        <target>crwdns45666:0crwdne45666:0</target></trans-unit>
     </body>
   </file>
 </xliff>

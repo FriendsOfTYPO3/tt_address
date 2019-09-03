@@ -81,9 +81,6 @@
       <trans-unit id="pi1_flexform.itemsPerPage" xml:space="preserve" approved="yes">
             <source>Number of items to be displayed (listview)</source>
         <target state="translated">Antal emner der skal vises (listevisning)</target></trans-unit>
-      <trans-unit id="pi1_flexform.singlePid" xml:space="preserve" approved="yes">
-            <source>Page for singelview</source>
-        <target state="translated">Side med enkeltvisning</target></trans-unit>
     </body>
   </file>
 </xliff>

@@ -53,7 +53,7 @@
         <target state="translated">Einträge ohne Breitengrad/Längengrad ignorieren</target></trans-unit>
       <trans-unit id="pi1_flexform.allowOverride" xml:space="preserve" approved="yes">
             <source>Allow override configuration by GET/POST</source>
-        <target state="translated">Konfiguration durch Parameter erlauben</target><alt-trans><target>Erlaube das Überschreibender Konfiguration per GET/POST</target></alt-trans></trans-unit>
+        <target state="translated">Konfiguration durch Parameter erlauben</target></trans-unit>
       <trans-unit id="pi1_flexform.sheet_display" xml:space="preserve" approved="yes">
             <source>Display</source>
         <target state="translated">Darstellung</target></trans-unit>

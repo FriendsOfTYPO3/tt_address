@@ -18,12 +18,6 @@
       <trans-unit id="pi1_flexform.combination" xml:space="preserve" approved="yes">
          <source>Combination</source>
         <target state="translated">Combinazione</target></trans-unit>
-      <trans-unit id="pi1_flexform.combination.and" xml:space="preserve">
-          <source>AND</source>
-        <target state="needs-translation">AND</target></trans-unit>
-      <trans-unit id="pi1_flexform.combination.or" xml:space="preserve">
-           <source>OR</source>
-        <target state="needs-translation">OR</target></trans-unit>
       <trans-unit id="pi1_flexform.sortBy" xml:space="preserve" approved="yes">
            <source>Sort By</source>
         <target state="translated">Ordina per</target></trans-unit>
@@ -33,15 +27,9 @@
       <trans-unit id="pi1_flexform.sortBy.sorting" xml:space="preserve" approved="yes">
             <source>Order of addresses</source>
         <target state="translated">Ordine degli indirizzi</target></trans-unit>
-      <trans-unit id="pi1_flexform.sortBy.sorting.default" xml:space="preserve">
-            <source>Default</source>
-        <target state="needs-translation">Default</target></trans-unit>
       <trans-unit id="pi1_flexform.sortBy.sorting.sorting" xml:space="preserve" approved="yes">
             <source>Manual sorting</source>
         <target state="translated">Ordinamento manuale</target></trans-unit>
-      <trans-unit id="pi1_flexform.sortOrder" xml:space="preserve">
-            <source>Sort Order</source>
-        <target state="needs-translation">Sort Order</target></trans-unit>
       <trans-unit id="pi1_flexform.sortOrder.ascending" xml:space="preserve" approved="yes">
             <source>Ascending</source>
         <target state="translated">Crescente</target></trans-unit>
@@ -57,9 +45,6 @@
       <trans-unit id="pi1_flexform.sheet_display" xml:space="preserve" approved="yes">
             <source>Display</source>
         <target state="translated">Visualizza</target></trans-unit>
-      <trans-unit id="pi1_flexform.templateFile" xml:space="preserve">
-            <source>Template</source>
-        <target state="needs-translation">Template</target></trans-unit>
       <trans-unit id="pi1_flexform.templateFile.I.0" xml:space="preserve" approved="yes">
             <source>Default</source>
         <target state="translated">Predefinito</target></trans-unit>
@@ -72,15 +57,6 @@
       <trans-unit id="pi1_flexform.displayMode.singleView" xml:space="preserve" approved="yes">
             <source>Single view</source>
         <target state="translated">Visualizzazione singola</target></trans-unit>
-      <trans-unit id="pi1_flexform.displayMode.map" xml:space="preserve">
-            <source>Map view</source>
-        <target state="needs-translation">Map view</target></trans-unit>
-      <trans-unit id="pi1_flexform.hidePagination" xml:space="preserve">
-            <source>Do not display pagebrowser (listview)</source>
-        <target state="needs-translation">Do not display pagebrowser (listview)</target></trans-unit>
-      <trans-unit id="pi1_flexform.itemsPerPage" xml:space="preserve">
-            <source>Number of items to be displayed (listview)</source>
-        <target state="needs-translation">Number of items to be displayed (listview)</target></trans-unit>
       <trans-unit id="pi1_flexform.singlePid" xml:space="preserve" approved="yes">
             <source>Page for singelview</source>
         <target state="translated">Pagina per visualizzazione singola</target></trans-unit>

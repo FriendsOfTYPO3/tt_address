@@ -36,6 +36,9 @@ All Changes
 -----------
 This is a list of all changes in this release: ::
 
+   2019-09-03 [TASK] Remove empty localizations (Commit fc1b46a by Georg Ringer)
+   2019-09-03 [TASK] Reduce duplicates in translations (Commit eeb20d9 by Georg Ringer)
+   2019-09-03 [TASK] Release 5.0.0 (Commit 48feed3 by Georg Ringer)
    2019-09-02 [TASK] Add .crowdin.yml to .gitattributes (Commit c5aac11 by Georg Ringer)
    2019-09-02 [DOC] Improve release notes (Commit f87fed1 by Georg Ringer)
    2019-09-02 [!!!][TASK] Make it ready for 9+10 (Commit bff33d0 by Georg Ringer)

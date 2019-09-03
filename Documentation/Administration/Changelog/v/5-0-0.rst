@@ -1,4 +1,4 @@
-5.0.0 - 2018-xx-08
+5.0.0 - 2018-03-08
 ==================
 
 .. include:: ../../../Includes.txt
@@ -36,6 +36,8 @@ All Changes
 -----------
 This is a list of all changes in this release: ::
 
+   2019-09-02 [TASK] Add .crowdin.yml to .gitattributes (Commit c5aac11 by Georg Ringer)
+   2019-09-02 [DOC] Improve release notes (Commit f87fed1 by Georg Ringer)
    2019-09-02 [!!!][TASK] Make it ready for 9+10 (Commit bff33d0 by Georg Ringer)
    2019-09-02 [TASK] Add more translations (Commit e2e4791 by Georg Ringer)
    2019-08-27 [TASK] Update translations (Commit fec3510 by Georg Ringer)

@@ -19,6 +19,14 @@
         <source>Female (Mrs)</source>
         <target state="translated">Femme (Mme)</target>
       </trans-unit>
+      <trans-unit id="tt_address.gender.v" approved="yes">
+        <source>Various</source>
+        <target state="translated">Divers</target>
+      </trans-unit>
+      <trans-unit id="tt_address.gender.undefined" approved="yes">
+        <source>Undefined</source>
+        <target state="translated">Non défini</target>
+      </trans-unit>
       <trans-unit id="tt_address.first_name" approved="yes">
         <source>First Name</source>
         <target state="translated">Prénom</target>
@@ -47,6 +55,10 @@
         <source>Organization</source>
         <target state="translated">Organisation</target>
       </trans-unit>
+      <trans-unit id="tt_address.position" approved="yes">
+        <source>Position</source>
+        <target state="translated">Position</target>
+      </trans-unit>
       <trans-unit id="tt_address.region" approved="yes">
         <source>Region / State</source>
         <target state="translated">Région/Etat</target>
@@ -55,9 +67,77 @@
         <source>Mobile</source>
         <target state="translated">Téléphone portable</target>
       </trans-unit>
+      <trans-unit id="tt_address.skype" approved="yes">
+        <source>Skype</source>
+        <target state="translated">Skype</target>
+      </trans-unit>
+      <trans-unit id="tt_address.twitter" approved="yes">
+        <source>Twitter</source>
+        <target state="translated">Twitter</target>
+      </trans-unit>
+      <trans-unit id="tt_address.facebook" approved="yes">
+        <source>Facebook</source>
+        <target state="translated">Facebook</target>
+      </trans-unit>
+      <trans-unit id="tt_address.linkedin" approved="yes">
+        <source>LinkedIn</source>
+        <target state="translated">LinkedIn</target>
+      </trans-unit>
+      <trans-unit id="tt_address.latitude" approved="yes">
+        <source>Latitude</source>
+        <target state="translated">Latitude</target>
+      </trans-unit>
+      <trans-unit id="tt_address.longitude" approved="yes">
+        <source>Longitude</source>
+        <target state="translated">Longitude</target>
+      </trans-unit>
+      <trans-unit id="tt_address.locationMapWizard" approved="yes">
+        <source>Map wizard for visual selection of coordinates</source>
+        <target state="translated">Assistant de carte pour la sélection visuelle des coordonnées</target>
+      </trans-unit>
+      <trans-unit id="tt_address.locationMapWizard.close" approved="yes">
+        <source>Close Map Wizard</source>
+        <target state="translated">Fermer l'assistant de carte</target>
+      </trans-unit>
+      <trans-unit id="tt_address.locationMapWizard.import" approved="yes">
+        <source>Import marker-coordinates</source>
+        <target state="translated">Importer les coordonnées du marqueur</target>
+      </trans-unit>
+      <trans-unit id="tt_address_tab.contact" approved="yes">
+        <source>Contact</source>
+        <target state="translated">Contact</target>
+      </trans-unit>
+      <trans-unit id="tt_address_tab.address" approved="yes">
+        <source>Address</source>
+        <target state="translated">Adresse</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.name" approved="yes">
+        <source>Name</source>
+        <target state="translated">Nom</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.organization" approved="yes">
+        <source>Organisation</source>
+        <target state="translated">Organisation</target>
+      </trans-unit>
       <trans-unit id="tt_address_palette.address" approved="yes">
         <source>Address</source>
         <target state="translated">Adresse</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.building" approved="yes">
+        <source>Building</source>
+        <target state="translated">Bâtiment</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.contact" approved="yes">
+        <source>Contact</source>
+        <target state="translated">Contact</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.social" approved="yes">
+        <source>Social Networks</source>
+        <target state="translated">Réseaux sociaux</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.coordinates" approved="yes">
+        <source>Coordinates</source>
+        <target state="translated">Coordonnées</target>
       </trans-unit>
       <trans-unit id="pi_tt_address" approved="yes">
         <source>Addresses</source>

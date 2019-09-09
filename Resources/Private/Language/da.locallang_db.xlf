@@ -115,6 +115,10 @@
         <source>Name</source>
         <target state="translated">Navn</target>
       </trans-unit>
+      <trans-unit id="tt_address_palette.organization" approved="yes">
+        <source>Organisation</source>
+        <target state="translated">Organisation</target>
+      </trans-unit>
       <trans-unit id="tt_address_palette.address" approved="yes">
         <source>Address</source>
         <target state="translated">Adresse</target>

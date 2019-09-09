@@ -364,7 +364,7 @@ class AddressControllerTest extends BaseTestCase
     {
         $data = [];
 
-        // simple override + skipped field including differnt case
+        // simple override + skipped field including different case
         $demand1In = new Demand();
         $demand1In->setCategories('12,34');
         $demand1In->setSortBy('uid');

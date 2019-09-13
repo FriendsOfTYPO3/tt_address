@@ -9,7 +9,6 @@ namespace FriendsOfTYPO3\TtAddress\Seo;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use TYPO3\CMS\Core\PageTitle\AbstractPageTitleProvider;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -19,7 +18,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class AddressTitleProvider extends AbstractPageTitleProvider
 {
-
     private const DEFAULT_PROPERTIES = 'firstName,middleName,lastName';
     private const DEFAULT_GLUE = '" "';
 

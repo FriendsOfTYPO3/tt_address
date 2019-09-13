@@ -8,7 +8,6 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Unit\Seo;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\Seo\AddressTitleProvider;
 use TYPO3\TestingFramework\Core\BaseTestCase;

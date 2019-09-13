@@ -14,6 +14,9 @@ use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use TYPO3\CMS\Core\PageTitle\AbstractPageTitleProvider;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * Generate page title based on properties of the address model
+ */
 class AddressTitleProvider extends AbstractPageTitleProvider
 {
 

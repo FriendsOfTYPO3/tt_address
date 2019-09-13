@@ -48,8 +48,9 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         } else {
             $provider = GeneralUtility::makeInstance(AddressTitleProvider::class);
             $provider->setTitle($address, (array)$this->settings['seo']['pageTitle']);
-            $this->view->assign('address', $address);
         }
+
+        $this->view->assign('address', $address);
 
         CacheUtility::addCacheTagsByAddressRecords([$address]);
     }

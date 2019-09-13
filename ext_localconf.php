@@ -64,3 +64,12 @@ foreach ($icons as $identifier => $path) {
         ['source' => 'EXT:tt_address/Resources/Public/Icons/' . $path]
     );
 }
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(trim('
+    config.pageTitleProviders {
+        tt_address {
+            provider = FriendsOfTYPO3\TtAddress\Seo\AddressTitleProvider
+            before = altPageTitle,record,seo
+        }
+    }
+'));

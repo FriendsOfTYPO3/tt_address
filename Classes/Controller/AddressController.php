@@ -10,6 +10,7 @@ namespace FriendsOfTYPO3\TtAddress\Controller;
  */
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
+use FriendsOfTYPO3\TtAddress\Seo\AddressTitleProvider;
 use FriendsOfTYPO3\TtAddress\Utility\CacheUtility;
 use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
 use TYPO3\CMS\Core\Database\QueryGenerator;
@@ -44,8 +45,11 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     {
         if ($address === null) {
             $this->redirectToUri($this->uriBuilder->reset()->setTargetPageUid((int)$GLOBALS['TSFE']->id)->build());
+        } else {
+            $provider = GeneralUtility::makeInstance(AddressTitleProvider::class);
+            $provider->setTitle($address, (array)$this->settings['seo']['pageTitle']);
+            $this->view->assign('address', $address);
         }
-        $this->view->assign('address', $address);
 
         CacheUtility::addCacheTagsByAddressRecords([$address]);
     }

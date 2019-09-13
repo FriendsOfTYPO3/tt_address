@@ -52,5 +52,12 @@ plugin.tx_ttaddress {
             insertBelow = 1
             maximumNumberOfLinks = 10
         }
+
+        seo {
+            pageTitle {
+                properties = title,firstName,middleName,lastName
+                glue = " "
+            }
+        }
     }
 }

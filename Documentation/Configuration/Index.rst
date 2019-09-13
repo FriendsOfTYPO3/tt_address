@@ -22,4 +22,4 @@ work!
 
     ExtensionSettings/Index
     TypoScript/Index
-    Routing/Index
+    Seo/Index

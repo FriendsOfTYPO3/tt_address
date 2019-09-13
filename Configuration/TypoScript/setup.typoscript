@@ -55,8 +55,8 @@ plugin.tx_ttaddress {
 
         seo {
             pageTitle {
-                properties = fullName
-                glue =
+                properties = title,firstName,middleName,lastName
+                glue = " "
             }
         }
     }

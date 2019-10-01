@@ -39,16 +39,16 @@
       <trans-unit id="label.socialmedia" xml:space="preserve">
         <source>Social media contacts</source>
       <target>crwdns45476:0crwdne45476:0</target></trans-unit>
-      <trans-unit id="label.twitter" xml:space="preserve">
+      <trans-unit id="label.twitter" xml:space="preserve" translate="no">
         <source>Twitter</source>
       <target>crwdns45478:0crwdne45478:0</target></trans-unit>
-      <trans-unit id="label.facebook" xml:space="preserve">
+      <trans-unit id="label.facebook" xml:space="preserve" translate="no">
         <source>Facebook</source>
       <target>crwdns45480:0crwdne45480:0</target></trans-unit>
-      <trans-unit id="label.linkedin" xml:space="preserve">
+      <trans-unit id="label.linkedin" xml:space="preserve" translate="no">
         <source>LinkedIn</source>
       <target>crwdns45482:0crwdne45482:0</target></trans-unit>
-      <trans-unit id="label.skype" xml:space="preserve">
+      <trans-unit id="label.skype" xml:space="preserve" translate="no">
         <source>Skype</source>
       <target>crwdns45484:0crwdne45484:0</target></trans-unit>
       <trans-unit id="label.birthday" xml:space="preserve">

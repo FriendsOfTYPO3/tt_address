@@ -5,63 +5,63 @@
     <body>
       <trans-unit id="tt_address" approved="yes">
         <source>Address</source>
-        <target state="translated">Adresa</target>
+        <target state="final">Adresa</target>
       </trans-unit>
       <trans-unit id="tt_address.gender" approved="yes">
         <source>Gender</source>
-        <target state="translated">Pohlaví:</target>
+        <target state="final">Pohlaví:</target>
       </trans-unit>
       <trans-unit id="tt_address.gender.m" approved="yes">
         <source>Male (Mr)</source>
-        <target state="translated">Muž (Pan)</target>
+        <target state="final">Muž (Pan)</target>
       </trans-unit>
       <trans-unit id="tt_address.gender.f" approved="yes">
         <source>Female (Mrs)</source>
-        <target state="translated">Žena (Paní)</target>
+        <target state="final">Žena (Paní)</target>
       </trans-unit>
       <trans-unit id="tt_address.first_name" approved="yes">
         <source>First Name</source>
-        <target state="translated">Křestní jméno:</target>
+        <target state="final">Křestní jméno:</target>
       </trans-unit>
       <trans-unit id="tt_address.middle_name" approved="yes">
         <source>Middle Name</source>
-        <target state="translated">Prostřední jméno:</target>
+        <target state="final">Prostřední jméno:</target>
       </trans-unit>
       <trans-unit id="tt_address.last_name" approved="yes">
         <source>Last Name</source>
-        <target state="translated">Příjmení:</target>
+        <target state="final">Příjmení:</target>
       </trans-unit>
       <trans-unit id="tt_address.birthday" approved="yes">
         <source>Birthday</source>
-        <target state="translated">Datum narození:</target>
+        <target state="final">Datum narození:</target>
       </trans-unit>
       <trans-unit id="tt_address.building" approved="yes">
         <source>Building</source>
-        <target state="translated">Budova:</target>
+        <target state="final">Budova:</target>
       </trans-unit>
       <trans-unit id="tt_address.room" approved="yes">
         <source>Room</source>
-        <target state="translated">Místnost:</target>
+        <target state="final">Místnost:</target>
       </trans-unit>
       <trans-unit id="tt_address.organization" approved="yes">
         <source>Organization</source>
-        <target state="translated">Organizace:</target>
+        <target state="final">Organizace:</target>
       </trans-unit>
       <trans-unit id="tt_address.region" approved="yes">
         <source>Region / State</source>
-        <target state="translated">Region/stát:</target>
+        <target state="final">Region/stát:</target>
       </trans-unit>
       <trans-unit id="tt_address.mobile" approved="yes">
         <source>Mobile</source>
-        <target state="translated">Mobil:</target>
+        <target state="final">Mobil:</target>
       </trans-unit>
       <trans-unit id="tt_address_palette.address" approved="yes">
         <source>Address</source>
-        <target state="translated">Adresa</target>
+        <target state="final">Adresa</target>
       </trans-unit>
       <trans-unit id="pi_tt_address" approved="yes">
         <source>Addresses</source>
-        <target state="translated">Adresy</target>
+        <target state="final">Adresy</target>
       </trans-unit>
     </body>
   </file>

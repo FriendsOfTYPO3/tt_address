@@ -5,63 +5,63 @@
     <body>
       <trans-unit id="tt_address" approved="yes">
         <source>Address</source>
-        <target state="translated">Адрес:</target>
+        <target state="final">Адрес:</target>
       </trans-unit>
       <trans-unit id="tt_address.gender" approved="yes">
         <source>Gender</source>
-        <target state="translated">Пол:</target>
+        <target state="final">Пол:</target>
       </trans-unit>
       <trans-unit id="tt_address.gender.m" approved="yes">
         <source>Male (Mr)</source>
-        <target state="translated">Мужской</target>
+        <target state="final">Мужской</target>
       </trans-unit>
       <trans-unit id="tt_address.gender.f" approved="yes">
         <source>Female (Mrs)</source>
-        <target state="translated">Женский</target>
+        <target state="final">Женский</target>
       </trans-unit>
       <trans-unit id="tt_address.first_name" approved="yes">
         <source>First Name</source>
-        <target state="translated">Имя:</target>
+        <target state="final">Имя:</target>
       </trans-unit>
       <trans-unit id="tt_address.middle_name" approved="yes">
         <source>Middle Name</source>
-        <target state="translated">Отчество:</target>
+        <target state="final">Отчество:</target>
       </trans-unit>
       <trans-unit id="tt_address.last_name" approved="yes">
         <source>Last Name</source>
-        <target state="translated">Фамилия:</target>
+        <target state="final">Фамилия:</target>
       </trans-unit>
       <trans-unit id="tt_address.birthday" approved="yes">
         <source>Birthday</source>
-        <target state="translated">День рождения:</target>
+        <target state="final">День рождения:</target>
       </trans-unit>
       <trans-unit id="tt_address.building" approved="yes">
         <source>Building</source>
-        <target state="translated">Здание:</target>
+        <target state="final">Здание:</target>
       </trans-unit>
       <trans-unit id="tt_address.room" approved="yes">
         <source>Room</source>
-        <target state="translated">Комната:</target>
+        <target state="final">Комната:</target>
       </trans-unit>
       <trans-unit id="tt_address.organization" approved="yes">
         <source>Organization</source>
-        <target state="translated">Организация:</target>
+        <target state="final">Организация:</target>
       </trans-unit>
       <trans-unit id="tt_address.region" approved="yes">
         <source>Region / State</source>
-        <target state="translated">Область/край:</target>
+        <target state="final">Область/край:</target>
       </trans-unit>
       <trans-unit id="tt_address.mobile" approved="yes">
         <source>Mobile</source>
-        <target state="translated">Мобильный телефон:</target>
+        <target state="final">Мобильный телефон:</target>
       </trans-unit>
       <trans-unit id="tt_address_palette.address" approved="yes">
         <source>Address</source>
-        <target state="translated">Адрес:</target>
+        <target state="final">Адрес:</target>
       </trans-unit>
       <trans-unit id="pi_tt_address" approved="yes">
         <source>Addresses</source>
-        <target state="translated">Адреса</target>
+        <target state="final">Адреса</target>
       </trans-unit>
     </body>
   </file>

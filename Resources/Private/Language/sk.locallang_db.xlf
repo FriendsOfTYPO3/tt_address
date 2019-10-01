@@ -5,63 +5,63 @@
     <body>
       <trans-unit id="tt_address" approved="yes">
         <source>Address</source>
-        <target state="translated">Adresa</target>
+        <target state="final">Adresa</target>
       </trans-unit>
       <trans-unit id="tt_address.gender" approved="yes">
         <source>Gender</source>
-        <target state="translated">Pohlavie:</target>
+        <target state="final">Pohlavie:</target>
       </trans-unit>
       <trans-unit id="tt_address.gender.m" approved="yes">
         <source>Male (Mr)</source>
-        <target state="translated">Muž</target>
+        <target state="final">Muž</target>
       </trans-unit>
       <trans-unit id="tt_address.gender.f" approved="yes">
         <source>Female (Mrs)</source>
-        <target state="translated">Žena</target>
+        <target state="final">Žena</target>
       </trans-unit>
       <trans-unit id="tt_address.first_name" approved="yes">
         <source>First Name</source>
-        <target state="translated">Meno:</target>
+        <target state="final">Meno:</target>
       </trans-unit>
       <trans-unit id="tt_address.middle_name" approved="yes">
         <source>Middle Name</source>
-        <target state="translated">Stredné meno:</target>
+        <target state="final">Stredné meno:</target>
       </trans-unit>
       <trans-unit id="tt_address.last_name" approved="yes">
         <source>Last Name</source>
-        <target state="translated">Priezvisko:</target>
+        <target state="final">Priezvisko:</target>
       </trans-unit>
       <trans-unit id="tt_address.birthday" approved="yes">
         <source>Birthday</source>
-        <target state="translated">Dátum narodenia:</target>
+        <target state="final">Dátum narodenia:</target>
       </trans-unit>
       <trans-unit id="tt_address.building" approved="yes">
         <source>Building</source>
-        <target state="translated">Číslo domu:</target>
+        <target state="final">Číslo domu:</target>
       </trans-unit>
       <trans-unit id="tt_address.room" approved="yes">
         <source>Room</source>
-        <target state="translated">Čísli bytu:</target>
+        <target state="final">Čísli bytu:</target>
       </trans-unit>
       <trans-unit id="tt_address.organization" approved="yes">
         <source>Organization</source>
-        <target state="translated">Organizácia:</target>
+        <target state="final">Organizácia:</target>
       </trans-unit>
       <trans-unit id="tt_address.region" approved="yes">
         <source>Region / State</source>
-        <target state="translated">Región/štát:</target>
+        <target state="final">Región/štát:</target>
       </trans-unit>
       <trans-unit id="tt_address.mobile" approved="yes">
         <source>Mobile</source>
-        <target state="translated">Mobil:</target>
+        <target state="final">Mobil:</target>
       </trans-unit>
       <trans-unit id="tt_address_palette.address" approved="yes">
         <source>Address</source>
-        <target state="translated">Adresa</target>
+        <target state="final">Adresa</target>
       </trans-unit>
       <trans-unit id="pi_tt_address" approved="yes">
         <source>Addresses</source>
-        <target state="translated">Adresy</target>
+        <target state="final">Adresy</target>
       </trans-unit>
     </body>
   </file>

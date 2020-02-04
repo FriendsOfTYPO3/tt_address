@@ -1,0 +1,7 @@
+files:
+  - source: /Resources/Private/Language/locallang*.xlf
+    translation: /Resources/Private/Language/%two_letters_code%.%original_file_name%
+  - source: /Resources/Private/Language/db/locallang*.xlf
+    translation: /Resources/Private/Language/db/%two_letters_code%.%original_file_name%
+  - source: /Resources/Private/Language/ff/locallang*.xlf
+    translation: /Resources/Private/Language/ff/%two_letters_code%.%original_file_name%

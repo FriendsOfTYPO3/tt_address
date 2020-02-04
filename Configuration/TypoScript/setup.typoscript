@@ -30,7 +30,6 @@ plugin.tx_ttaddress {
             # leaflet, googleMaps, staticGoogleMaps
             rendering = leaflet
 
-            # todo: needed?
             defaultPosition {
                 lat = 48.3057664
                 lng = 14.2873126
@@ -47,11 +46,18 @@ plugin.tx_ttaddress {
         }
 
         paginate {
-            # can be overriden by plugin
+            # can be overridden by plugin
             itemsPerPage = 10
             insertAbove = 0
             insertBelow = 1
             maximumNumberOfLinks = 10
+        }
+
+        seo {
+            pageTitle {
+                properties = title,firstName,middleName,lastName
+                glue = " "
+            }
         }
     }
 }

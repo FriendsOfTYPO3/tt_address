@@ -20,7 +20,7 @@ class AddressTest extends BaseTestCase
     /** @var Address */
     protected $subject;
 
-    public function setup()
+    public function setup(): void
     {
         $this->subject = new Address();
     }

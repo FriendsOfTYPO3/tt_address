@@ -1,0 +1,57 @@
+5.0.0 - 2019-03-08
+==================
+
+.. include:: ../../../Includes.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+
+This release is the 1st release which supports TYPO3 10 and TYPO3 9 LTS only.
+This also means that the support for version 8 has been removed.
+
+However version 8 will be still supported for priority bugfixes in the 4.x branch.
+
+Cleanup codebase
+^^^^^^^^^^^^^^^^
+The following code parts have been changed:
+
+- Removal of the piBase/AbstractPlugin plugin
+- Removal of the file:`locallang_pi1.xlf` file.
+- Removal of the update wizards
+- Removal of hook to support EXT:realurl
+- Support of php:`$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['tt_address']` instead of the serialized configuration in :php:`$GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tt_address']`
+
+Use crowdin for localization
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The project uses https://crowdin.com/project/typo3-extension-ttaddress for localization of the xlf files.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2019-09-03 [TASK] Remove empty localizations (Commit fc1b46a by Georg Ringer)
+   2019-09-03 [TASK] Reduce duplicates in translations (Commit eeb20d9 by Georg Ringer)
+   2019-09-03 [TASK] Release 5.0.0 (Commit 48feed3 by Georg Ringer)
+   2019-09-02 [TASK] Add .crowdin.yml to .gitattributes (Commit c5aac11 by Georg Ringer)
+   2019-09-02 [DOC] Improve release notes (Commit f87fed1 by Georg Ringer)
+   2019-09-02 [!!!][TASK] Make it ready for 9+10 (Commit bff33d0 by Georg Ringer)
+   2019-09-02 [TASK] Add more translations (Commit e2e4791 by Georg Ringer)
+   2019-08-27 [TASK] Update translations (Commit fec3510 by Georg Ringer)
+   2019-08-27 [TASK] Add all translations (Commit 05e65d7 by Georg Ringer)
+   2019-08-27 Update Crowdin configuration file (Commit cc76ece by Georg Ringer)
+   2019-08-27 Update Crowdin configuration file (Commit 1b1781a by Georg Ringer)
+   2019-05-23 [TASK] Raise testing coverage (#229) (Commit 6781b0f by Georg Ringer)
+   2019-05-23 fixed: SQL error: 'Incorrect integer value: '' for column 'l10n_parent' at row 1' (tt_address:NEW5cd1552965f6b253387324) on copy&paste tt_address record (#217) (Commit b0b7afe by Christian-Hackl)
+   2019-05-23 [BUGFIX] Add mysql to the travis services (#227) (Commit de6268f by Georg Ringer)
+   2019-05-20 [BUGFIX] Remove itemprop="email" from templates (Commit 9e06656 by Georg Ringer)
+   2019-05-20 [BUGFIX] Use f:format.html for description (Commit 5f552dd by Georg Ringer)
+
+
+This list has been created by using `git log 4.3.0..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

@@ -10,7 +10,7 @@ namespace FriendsOfTYPO3\TtAddress\FormEngine\FieldControl;
  * LICENSE.txt file that was distributed with this source code.
  */
 use TYPO3\CMS\Backend\Form\AbstractNode;
-use TYPO3\CMS\Lang\LanguageService;
+use TYPO3\CMS\Core\Localization\LanguageService;
 
 /**
  * Adds a wizard for location selection via map

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2017-04-05T08:11:35Z" product-name="tt_address" target-language="fr">
+    <header/>
+    <body>
+      <trans-unit id="pi1_flexform.sheet_selection" xml:space="preserve" approved="yes">
+          <source>Selection</source>
+        <target state="translated">Sélection</target></trans-unit>
+      <trans-unit id="pi1_flexform.single_records" xml:space="preserve" approved="yes">
+           <source>Single addresses</source>
+        <target state="translated">Adresses uniques</target></trans-unit>
+      <trans-unit id="pi1_flexform.group_selection" xml:space="preserve" approved="yes">
+           <source>Categories</source>
+        <target state="translated">Catégories</target></trans-unit>
+      <trans-unit id="pi1_flexform.includeSubcategories" xml:space="preserve" approved="yes">
+           <source>Include subcategories</source>
+        <target state="translated">Inclure les sous-catégories</target></trans-unit>
+      <trans-unit id="pi1_flexform.combination" xml:space="preserve" approved="yes">
+         <source>Combination</source>
+        <target state="translated">Combinaison</target></trans-unit>
+      <trans-unit id="pi1_flexform.combination.and" xml:space="preserve" approved="yes">
+          <source>AND</source>
+        <target state="translated">ET</target></trans-unit>
+      <trans-unit id="pi1_flexform.combination.or" xml:space="preserve" approved="yes">
+           <source>OR</source>
+        <target state="translated">OU</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortBy" xml:space="preserve" approved="yes">
+           <source>Sort By</source>
+        <target state="translated">Trier par</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortBy.singleSelection" xml:space="preserve" approved="yes">
+            <source>Order of single addresses</source>
+        <target state="translated">Ordre des adresses uniques</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortBy.sorting" xml:space="preserve" approved="yes">
+            <source>Order of addresses</source>
+        <target state="translated">Ordre des adresses</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortBy.sorting.default" xml:space="preserve" approved="yes">
+            <source>Default</source>
+        <target state="translated">Par défaut</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortBy.sorting.sorting" xml:space="preserve" approved="yes">
+            <source>Manual sorting</source>
+        <target state="translated">Tri manuel</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortOrder" xml:space="preserve" approved="yes">
+            <source>Sort Order</source>
+        <target state="translated">Ordre de tri</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortOrder.ascending" xml:space="preserve" approved="yes">
+            <source>Ascending</source>
+        <target state="translated">Ascendant</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortOrder.descending" xml:space="preserve" approved="yes">
+            <source>Descending</source>
+        <target state="translated">Descendant</target></trans-unit>
+      <trans-unit id="pi1_flexform.ignoreWithoutCoordinates" xml:space="preserve" approved="yes">
+            <source>Ignore records with no latitude/longitude</source>
+        <target state="translated">Ignorer les enregistrements sans latitude/longitude</target></trans-unit>
+      <trans-unit id="pi1_flexform.allowOverride" xml:space="preserve" approved="yes">
+            <source>Allow override configuration by GET/POST</source>
+        <target state="translated">Autoriser la surcharge de configuration par GET/POST</target></trans-unit>
+      <trans-unit id="pi1_flexform.sheet_display" xml:space="preserve" approved="yes">
+            <source>Display</source>
+        <target state="translated">Affichage</target></trans-unit>
+      <trans-unit id="pi1_flexform.templateFile" xml:space="preserve" approved="yes">
+            <source>Template</source>
+        <target state="translated">Gabarit</target></trans-unit>
+      <trans-unit id="pi1_flexform.templateFile.I.0" xml:space="preserve" approved="yes">
+            <source>Default</source>
+        <target state="translated">Par défaut</target></trans-unit>
+      <trans-unit id="pi1_flexform.displayMode" xml:space="preserve" approved="yes">
+            <source>Select display mode</source>
+        <target state="translated">Sélectionner le mode d'affichage</target></trans-unit>
+      <trans-unit id="pi1_flexform.displayMode.listView" xml:space="preserve" approved="yes">
+            <source>List view</source>
+        <target state="translated">Vue en liste</target></trans-unit>
+      <trans-unit id="pi1_flexform.displayMode.singleView" xml:space="preserve" approved="yes">
+            <source>Single view</source>
+        <target state="translated">Vue simple</target></trans-unit>
+      <trans-unit id="pi1_flexform.displayMode.map" xml:space="preserve" approved="yes">
+            <source>Map view</source>
+        <target state="translated">Vue de la carte</target></trans-unit>
+      <trans-unit id="pi1_flexform.hidePagination" xml:space="preserve" approved="yes">
+            <source>Do not display pagebrowser (listview)</source>
+        <target state="translated">Ne pas afficher le navigateur de page (vue en liste)</target></trans-unit>
+      <trans-unit id="pi1_flexform.itemsPerPage" xml:space="preserve" approved="yes">
+            <source>Number of items to be displayed (listview)</source>
+        <target state="translated">Nombre d'éléments à afficher (vue en liste)</target></trans-unit>
+      <trans-unit id="pi1_flexform.singlePid" xml:space="preserve" approved="yes">
+            <source>Page for single view</source>
+        <target state="translated">Page de la vue détaillée</target></trans-unit>
+    </body>
+  </file>
+</xliff>

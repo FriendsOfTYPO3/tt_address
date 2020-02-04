@@ -10,6 +10,8 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Utility;
  */
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation;
+use TYPO3\CMS\Core\Package\PackageManager;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class TelephoneEvaluationTest extends BaseTestCase
@@ -18,9 +20,12 @@ class TelephoneEvaluationTest extends BaseTestCase
     /** @var TelephoneEvaluation */
     protected $subject;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new TelephoneEvaluation();
+
+        $packageManagerProphecy = $this->prophesize(PackageManager::class);
+        GeneralUtility::setSingletonInstance(PackageManager::class, $packageManagerProphecy->reveal());
     }
 
     /**

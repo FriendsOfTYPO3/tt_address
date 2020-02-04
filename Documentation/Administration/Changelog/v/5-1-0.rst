@@ -1,0 +1,51 @@
+5.1.0 - 2019-xx-09
+==================
+
+.. include:: ../../../Includes.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+
+Custom page title provider
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+A custom page title provider makes it possible to generate a page title on the detail view.
+
+.. code-block:: typoscript
+
+   plugin.tx_ttaddress.settings.seo {
+      pageTitle {
+          properties = title,firstName,middleName,lastName
+          glue = " "
+      }
+   }
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2019-09-13 [FEATURE] Add page title provider for detail view (Commit 1bf95d9 by Georg Ringer)
+   2019-09-09 [TASK] Fix more typos (Commit b956fba by Georg Ringer)
+   2019-09-09 [TASK] Fix typo (Commit bc5b272 by Georg Ringer)
+   2019-09-09 [TASK] Update translations (Commit 90e34a5 by Georg Ringer)
+   2019-09-09 [TASK] Remove legacy TypoScript (Commit c06c4e5 by Georg Ringer)
+   2019-09-03 [TASK] Add translations (Commit f3380ce by Georg Ringer)
+   2019-09-03 New translations locallang_db.xlf (French) (Commit a9a33c3 by Georg Ringer)
+   2019-09-03 New translations locallang.xlf (French) (Commit fa8f8be by Georg Ringer)
+   2019-09-03 New translations locallang_ff.xlf (French) (Commit 91c8d89 by Georg Ringer)
+   2019-09-03 New translations locallang.xlf (French) (Commit d25353b by Georg Ringer)
+   2019-09-03 New translations locallang_db.xlf (French) (Commit 90d3275 by Georg Ringer)
+   2019-09-03 New translations locallang_ff.xlf (TYPO3 In-Context Localization) (Commit e6cab8e by Georg Ringer)
+   2019-09-03 New translations locallang_ff.xlf (Danish) (Commit 678b3bb by Georg Ringer)
+   2019-09-03 New translations locallang_ff.xlf (German) (Commit 6ba5c12 by Georg Ringer)
+   2019-09-03 New translations locallang_ff.xlf (Italian) (Commit 84692a6 by Georg Ringer)
+   2019-09-03 [TASK] Fix translation for `pi1_flexform.singlePid` (Commit 9511431 by Georg Ringer)
+
+
+This list has been created by using `git log 5.0.0..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

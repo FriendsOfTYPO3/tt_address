@@ -38,7 +38,7 @@ It migrates `EXT:tt_address/static/pi1` to `EXT:tt_address/Configuration/TypoScr
 Another upgrade wizard migrates old piBase plugins to extbase plugins. The `Template` option is converted to
 `Display mode`. So for example your `Template` is `my_template.html`, then
 
-- Add TSconfig `TCEFORM.tt_content.pi_flexform.ttaddress_listview.sDISPLAY.settings\.displayMode.addItems.my_template = My Template`
+- Add TSconfig `TCEFORM.tt_content.pi_flexform.ttaddress_listview.sDISPLAY.settings\\.displayMode.addItems.my_template = My Template`
 - Add a section named `displayMode_my_template` in your custom `List.html` fluid template
 
 After execution (via cli) you get a list of custom templates you used in your installation.
@@ -48,4 +48,3 @@ Updating from 2.x to 4.0.0
 
 It is **not** possible to upgrade from version 2.x to 4.0 directly! Update first to the latest 3.x version and use
 the upgrade wizards to migrate from custom category records to sys_category records and to FAL elements.
-

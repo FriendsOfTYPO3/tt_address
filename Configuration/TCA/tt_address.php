@@ -163,6 +163,7 @@ return [
         'first_name' => [
             'exclude' => false,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.first_name',
+            'l10n_mode' => 'exclude',
             'l10n_display' => 'defaultAsReadonly',
             'config' => [
                 'type' => 'input',
@@ -174,6 +175,7 @@ return [
         'middle_name' => [
             'exclude' => false,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.middle_name',
+            'l10n_mode' => 'exclude',
             'l10n_display' => 'defaultAsReadonly',
             'config' => [
                 'type' => 'input',
@@ -185,6 +187,7 @@ return [
         'last_name' => [
             'exclude' => false,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.last_name',
+            'l10n_mode' => 'exclude',
             'l10n_display' => 'defaultAsReadonly',
             'config' => [
                 'type' => 'input',

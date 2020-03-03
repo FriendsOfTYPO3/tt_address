@@ -127,19 +127,36 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
     protected function createDemandFromSettings(): Demand
     {
-        $demand = $this->objectManager->get(Demand::class);
-        $demand->setCategories((string)$this->settings['groups']);
-        $categoryCombination = (int)$this->settings['groupsCombination'] === 1 ? 'or' : 'and';
-        $demand->setCategoryCombination($categoryCombination);
-        $demand->setIncludeSubCategories((bool)$this->settings['includeSubcategories']);
+        $calculatedSettings = $this->settings;
+       
+        // Use stdWrap for given defined settings
+        if (isset($calculatedSettings['useStdWrap']) && !empty($calculatedSettings['useStdWrap'])) {
+            $typoScriptService = GeneralUtility::makeInstance(\TYPO3\CMS\Core\TypoScript\TypoScriptService::class);
+            $typoScriptArray = $typoScriptService->convertPlainArrayToTypoScriptArray($calculatedSettings);
+            $stdWrapProperties = GeneralUtility::trimExplode(',', $calculatedSettings['useStdWrap'], true);
+            foreach ($stdWrapProperties as $key) {
+                if (is_array($typoScriptArray[$key . '.'])) {
+                    $calculatedSettings[$key] = $this->configurationManager->getContentObject()->stdWrap(
+                        $typoScriptArray[$key],
+                        $typoScriptArray[$key . '.']
+                    );
+                }
+            }
+        }
 
-        if ($this->settings['pages']) {
+        $demand = $this->objectManager->get(Demand::class);
+        $demand->setCategories((string)$calculatedSettings['groups']);
+        $categoryCombination = (int)$calculatedSettings['groupsCombination'] === 1 ? 'or' : 'and';
+        $demand->setCategoryCombination($categoryCombination);
+        $demand->setIncludeSubCategories((bool)$calculatedSettings['includeSubcategories']);
+
+        if ($calculatedSettings['pages']) {
             $demand->setPages($this->getPidList());
         }
-        $demand->setSingleRecords((string)$this->settings['singleRecords']);
-        $demand->setSortBy((string)$this->settings['sortBy']);
-        $demand->setSortOrder((string)$this->settings['sortOrder']);
-        $demand->setIgnoreWithoutCoordinates((bool)$this->settings['ignoreWithoutCoordinates']);
+        $demand->setSingleRecords((string)$calculatedSettings['singleRecords']);
+        $demand->setSortBy((string)$calculatedSettings['sortBy']);
+        $demand->setSortOrder((string)$calculatedSettings['sortOrder']);
+        $demand->setIgnoreWithoutCoordinates((bool)$calculatedSettings['ignoreWithoutCoordinates']);
 
         return $demand;
     }

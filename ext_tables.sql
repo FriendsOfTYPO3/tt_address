@@ -40,8 +40,8 @@ CREATE TABLE tt_address (
     twitter varchar(255) DEFAULT '',
     facebook varchar(255) DEFAULT '',
     linkedin varchar(255) DEFAULT '',
-    latitude decimal(14,12) default NULL,
-    longitude decimal(15,12) default NULL,
+    latitude decimal(11,8) default NULL,
+    longitude decimal(11,8) default NULL,
 
     image tinyblob,
     categories int(11) DEFAULT '0' NOT NULL,

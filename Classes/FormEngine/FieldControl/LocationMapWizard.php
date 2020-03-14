@@ -38,19 +38,20 @@ class LocationMapWizard extends AbstractNode
 
         if ($row['latitude'] || $row['longitude'] == '') {
             // remove all after first slash in address (top, floor ...)
-            $address = preg_replace('/^([^\/]*).*$/', '$1', $row['address']) . ' ';
-            $address .= $row['city'];
+            $address = preg_replace('/^([^\/]*).*$/', '$1', $row['address']);
+            $city = $row['zip'] . ' ' . $row['city']; // zip is currently ignored by osm
+            $address .= ', '. $city;
             // if we have at least some address part (saves geocoding calls)
             if ($address) {
                 // base url
                 $geoCodeUrlBase = 'https://nominatim.openstreetmap.org/search/';
-                $geoCodeUrlAddress = $address;
-                $geoCodeUrlCityOnly = $row['city'];
+                $geoCodeUrlAddress = trim((string)$address, ' ,');
+                $geoCodeUrlCityOnly = trim((string)$city, ' ,');
                 // urlparams for nominatim which are fixed.
-                $geoCodeUrlQuery = '?format=json&addressdetails=1&limit=1&polygon_svg=1';
+                $geoCodeUrlQuery = '?format=json&addressdetails=1&limit=1';
                 // replace newlines with spaces; remove multiple spaces
-                $geoCodeUrl = trim(preg_replace('/\s\s+/', ' ', $geoCodeUrlBase . $geoCodeUrlAddress . $geoCodeUrlQuery));
-                $geoCodeUrlShort = trim(preg_replace('/\s\s+/', ' ', $geoCodeUrlBase . $geoCodeUrlCityOnly . $geoCodeUrlQuery));
+                $geoCodeUrl = trim(preg_replace('/\s\s+/', ' ', $geoCodeUrlBase . urlencode($geoCodeUrlAddress) . $geoCodeUrlQuery));
+                $geoCodeUrlShort = trim(preg_replace('/\s\s+/', ' ', $geoCodeUrlBase . urlencode($geoCodeUrlCityOnly) . $geoCodeUrlQuery));
             }
         }
 

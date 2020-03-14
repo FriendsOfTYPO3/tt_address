@@ -64,7 +64,7 @@ define(['jquery', 'TYPO3/CMS/Backend/Icons', 'TYPO3/CMS/TtAddress/leaflet-core-1
                 // Geocode only first time
                 // Geocode only if lat OR lon is empty AND wie have geocoding url
                 // this saves geocoding calls
-                if ((LeafBE.$latitude == null || LeafBE.$longitude == null) && LeafBE.$geoCodeUrl != null) {
+                if (((!LeafBE.$latitude || !LeafBE.$longitude) || (LeafBE.$latitude == 0 && LeafBE.$longitude == 0)) && LeafBE.$geoCodeUrl != null) {
                     function geocode(callback) {
                         var temp = $.getJSON(LeafBE.$geoCodeUrl, function (data) {
                             if (data.length == 0) {

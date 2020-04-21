@@ -37,7 +37,6 @@
     }
   },
   "replace": {
-    "tt_address": "self.version",
     "typo3-ter/tt-address": "self.version"
   },
   "require-dev": {

@@ -20,7 +20,7 @@ class LocationMapWizardTest extends BaseTestCase
      */
     public function languageServiceIsReturned()
     {
-        $languageService = new LanguageService();
+        $languageService = $this->getAccessibleMock(LanguageService::class, ['dummy'], [], '', false, false);
         $GLOBALS['LANG'] = $languageService;
 
         $subject = $this->getAccessibleMock(LocationMapWizard::class, ['dummy'], [], '', false);

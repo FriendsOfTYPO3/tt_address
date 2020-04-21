@@ -47,7 +47,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->redirectToUri($this->uriBuilder->reset()->setTargetPageUid((int)$GLOBALS['TSFE']->id)->build());
         } else {
             $provider = GeneralUtility::makeInstance(AddressTitleProvider::class);
-            $provider->setTitle($address, (array)$this->settings['seo']['pageTitle']);
+            $provider->setTitle($address, (array)($this->settings['seo']['pageTitle'] ?? []));
         }
 
         $this->view->assign('address', $address);

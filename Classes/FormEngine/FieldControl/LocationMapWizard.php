@@ -38,14 +38,14 @@ class LocationMapWizard extends AbstractNode
 
         if ($row['latitude'] || $row['longitude'] == '') {
             // remove all after first slash in address (top, floor ...)
-            $address = preg_replace('/^([^\/]*).*$/', '$1', $row['address']) . ' ';
-            $address .= $row['city'];
+            $address = preg_replace('/^([^\/]*).*$/', '$1', $row['address'] ?? '') . ' ';
+            $address .= $row['city'] ?? '';
             // if we have at least some address part (saves geocoding calls)
             if ($address) {
                 // base url
                 $geoCodeUrlBase = 'https://nominatim.openstreetmap.org/search/';
                 $geoCodeUrlAddress = $address;
-                $geoCodeUrlCityOnly = $row['city'];
+                $geoCodeUrlCityOnly = ($row['city'] ?? '');
                 // urlparams for nominatim which are fixed.
                 $geoCodeUrlQuery = '?format=json&addressdetails=1&limit=1&polygon_svg=1';
                 // replace newlines with spaces; remove multiple spaces

@@ -4,7 +4,7 @@ defined('TYPO3_MODE') or die();
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'FriendsOfTYPO3.tt_address',
     'ListView',
-    'LLL:EXT:tt_address/Resources/Private/Language/db/locallang.xlf:title'
+    'LLL:EXT:tt_address/Resources/Private/Language/db/locallang.xlf:extbase_title'
 );
 
 $pluginSignature = 'ttaddress_listview';

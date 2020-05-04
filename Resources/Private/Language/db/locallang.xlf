@@ -3,10 +3,10 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2017-04-04T12:30:37Z" product-name="tt_address">
 		<header/>
 		<body>
-		<trans-unit id="title" xml:space="preserve">
+		<trans-unit id="extbase_title" xml:space="preserve">
 			<source>Addresses</source>
 		</trans-unit>
-		<trans-unit id="description" xml:space="preserve">
+		<trans-unit id="extbase_description" xml:space="preserve">
 			<source>Displays one or more addresses.</source>
 		</trans-unit>
 		</body>

@@ -3,11 +3,11 @@
     <file source-language="en" datatype="plaintext" original="messages" date="2017-04-04T12:30:37Z" product-name="tt_address" target-language="t3">
         <header/>
         <body>
-            <trans-unit id="title" xml:space="preserve">
+            <trans-unit id="extbase_title" xml:space="preserve">
                 <source>Addresses</source>
                 <target>crwdns45606:0crwdne45606:0</target>
             </trans-unit>
-            <trans-unit id="description" xml:space="preserve">
+            <trans-unit id="extbase_description" xml:space="preserve">
                 <source>Displays one or more addresses.</source>
                 <target>crwdns45608:0crwdne45608:0</target>
             </trans-unit>

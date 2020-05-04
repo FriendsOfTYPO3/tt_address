@@ -5,16 +5,16 @@
     <body>
       <trans-unit id="pi1_title" xml:space="preserve" approved="yes">
 				<source>Addresses</source>
-			<target state="translated">Indirizzi</target></trans-unit>
+			<target state="final">Indirizzi</target></trans-unit>
       <trans-unit id="pi1_plus_wiz_description" xml:space="preserve" approved="yes">
 				<source>Displays one or more addresses.</source>
-			<target state="translated">Visualizza uno o più indirizzi.</target></trans-unit>
+			<target state="final">Visualizza uno o più indirizzi.</target></trans-unit>
       <trans-unit id="extbase_title" xml:space="preserve" approved="yes">
         <source>Addresses (Fluid/Extbase)</source>
-      <target state="translated">Indirizzi (Fluid/Extbase)</target></trans-unit>
+      <target state="final">Indirizzi (Fluid/Extbase)</target></trans-unit>
       <trans-unit id="extbase_description" xml:space="preserve" approved="yes">
         <source>Displays one or more addresses with Fluid and Extbase.</source>
-      <target state="translated">Visualizza uno o più indirizzi con Fluid e Extbase.</target></trans-unit>
+      <target state="final">Visualizza uno o più indirizzi con Fluid e Extbase.</target></trans-unit>
     </body>
   </file>
 </xliff>

@@ -1,110 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xliff version="1.0" xmlns:t3="http://typo3.org/schemas/xliff">
-    <file t3:id="1502484203" target-language="de" datatype="plaintext" original="messages" date="2017-08-11T20:43:52Z" product-name="tt_address">
-        <header/>
-        <body>
-            <trans-unit id="tt_address">
-                <target>Adresse:</target>
-            </trans-unit>
-            <trans-unit id="tt_address.gender">
-                <target>Geschlecht (Anrede):</target>
-            </trans-unit>
-            <trans-unit id="tt_address.gender.m">
-                <target>Männlich (Herr)</target>
-            </trans-unit>
-            <trans-unit id="tt_address.gender.f">
-                <target>Weiblich (Frau)</target>
-            </trans-unit>
-            <trans-unit id="tt_address.gender.v">
-                <target>Divers</target>
-            </trans-unit>
-            <trans-unit id="tt_address.first_name">
-                <target>Vorname:</target>
-            </trans-unit>
-            <trans-unit id="tt_address.middle_name">
-                <target>Mittelname:</target>
-            </trans-unit>
-            <trans-unit id="tt_address.last_name">
-                <target>Nachname:</target>
-            </trans-unit>
-            <trans-unit id="tt_address.birthday">
-                <target>Geburtstag:</target>
-            </trans-unit>
-            <trans-unit id="tt_address.building">
-                <target>Gebäude:</target>
-            </trans-unit>
-            <trans-unit id="tt_address.room">
-                <target>Raum:</target>
-            </trans-unit>
-            <trans-unit id="tt_address.organization">
-                <target>Organisation:</target>
-            </trans-unit>
-            <trans-unit id="tt_address.position">
-                <target>Position:</target>
-            </trans-unit>
-            <trans-unit id="tt_address.region">
-                <target>Region / Bundesland:</target>
-            </trans-unit>
-            <trans-unit id="tt_address.mobile">
-                <target>Mobil:</target>
-            </trans-unit>
-            <trans-unit id="tt_address.skype">
-                <target>Skype:</target>
-            </trans-unit>
-            <trans-unit id="tt_address.twitter">
-                <target>Twitter:</target>
-            </trans-unit>
-            <trans-unit id="tt_address.facebook">
-                <target>Facebook:</target>
-            </trans-unit>
-            <trans-unit id="tt_address.linkedin">
-                <target>LinkedIn:</target>
-            </trans-unit>
-            <trans-unit id="tt_address.latitude">
-                <target>Breitengrad:</target>
-            </trans-unit>
-            <trans-unit id="tt_address.longitude">
-                <target>Längengrad:</target>
-            </trans-unit>
-            <trans-unit id="tt_address.locationMapWizard">
-                <target>Koordinaten in Karte auswählen</target>
-            </trans-unit>
-            <trans-unit id="tt_address.locationMapWizard.close">
-                <target>Schließe Karten-Wizard</target>
-            </trans-unit>
-            <trans-unit id="tt_address.locationMapWizard.import">
-                <target>Importiere Marker-Koordinaten</target>
-            </trans-unit>
-            <trans-unit id="tt_address_tab.contact">
-                <target>Kontakt</target>
-            </trans-unit>
-            <trans-unit id="tt_address_tab.address">
-                <target>Anschrift</target>
-            </trans-unit>
-            <trans-unit id="tt_address_palette.name">
-                <target>Name:</target>
-            </trans-unit>
-            <trans-unit id="tt_address_palette.organization">
-                <target>Organisation:</target>
-            </trans-unit>
-            <trans-unit id="tt_address_palette.address">
-                <target>Anschrift:</target>
-            </trans-unit>
-            <trans-unit id="tt_address_palette.building">
-                <target>Gebäude:</target>
-            </trans-unit>
-            <trans-unit id="tt_address_palette.contact">
-                <target>Kontakt:</target>
-            </trans-unit>
-            <trans-unit id="tt_address_palette.social">
-                <target>Soziale Netzwerke:</target>
-            </trans-unit>
-            <trans-unit id="tt_address_palette.coordinates">
-                <target>Koordinaten</target>
-            </trans-unit>
-            <trans-unit id="pi_tt_address">
-                <target>Adressen:</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff xmlns:t3="http://typo3.org/schemas/xliff" version="1.0">
+  <file t3:id="1502483828" source-language="en" datatype="plaintext" original="messages" date="2017-08-11T20:37:40Z" product-name="tt_address" target-language="de">
+    <header/>
+    <body>
+      <trans-unit id="tt_address" approved="yes">
+        <source>Address</source>
+        <target state="translated">Adresse</target>
+      </trans-unit>
+      <trans-unit id="tt_address.gender" approved="yes">
+        <source>Gender</source>
+        <target state="translated">Geschlecht:</target>
+      </trans-unit>
+      <trans-unit id="tt_address.gender.m" approved="yes">
+        <source>Male (Mr)</source>
+        <target state="translated">Männlich (Herr)</target>
+      </trans-unit>
+      <trans-unit id="tt_address.gender.f" approved="yes">
+        <source>Female (Mrs)</source>
+        <target state="translated">Weiblich (Frau)</target>
+      </trans-unit>
+      <trans-unit id="tt_address.gender.v" approved="yes">
+        <source>Various</source>
+        <target state="translated">Andere</target>
+      </trans-unit>
+      <trans-unit id="tt_address.gender.undefined" approved="yes">
+        <source>Undefined</source>
+        <target state="translated">Nicht definiert</target>
+      </trans-unit>
+      <trans-unit id="tt_address.first_name" approved="yes">
+        <source>First Name</source>
+        <target state="translated">Vorname:</target>
+      </trans-unit>
+      <trans-unit id="tt_address.middle_name" approved="yes">
+        <source>Middle Name</source>
+        <target state="translated">Zweiter Vorname:</target>
+      </trans-unit>
+      <trans-unit id="tt_address.last_name" approved="yes">
+        <source>Last Name</source>
+        <target state="translated">Nachname:</target>
+      </trans-unit>
+      <trans-unit id="tt_address.birthday" approved="yes">
+        <source>Birthday</source>
+        <target state="translated">Geburtstag:</target>
+      </trans-unit>
+      <trans-unit id="tt_address.building" approved="yes">
+        <source>Building</source>
+        <target state="translated">Gebäude:</target>
+      </trans-unit>
+      <trans-unit id="tt_address.room" approved="yes">
+        <source>Room</source>
+        <target state="translated">Raum:</target>
+      </trans-unit>
+      <trans-unit id="tt_address.organization" approved="yes">
+        <source>Organization</source>
+        <target state="translated">Organisation:</target>
+      </trans-unit>
+      <trans-unit id="tt_address.position" approved="yes">
+        <source>Position</source>
+        <target state="translated">Position</target>
+      </trans-unit>
+      <trans-unit id="tt_address.region" approved="yes">
+        <source>Region / State</source>
+        <target state="translated">Region/Bundesland:</target>
+      </trans-unit>
+      <trans-unit id="tt_address.mobile" approved="yes">
+        <source>Mobile</source>
+        <target state="translated">Mobil:</target>
+      </trans-unit>
+      <trans-unit id="tt_address.skype" approved="yes">
+        <source>Skype</source>
+        <target state="translated">Skype</target>
+      </trans-unit>
+      <trans-unit id="tt_address.twitter" approved="yes">
+        <source>Twitter</source>
+        <target state="translated">Twitter</target>
+      </trans-unit>
+      <trans-unit id="tt_address.facebook" approved="yes">
+        <source>Facebook</source>
+        <target state="translated">Facebook</target>
+      </trans-unit>
+      <trans-unit id="tt_address.linkedin" approved="yes">
+        <source>LinkedIn</source>
+        <target state="translated">LinkedIn</target>
+      </trans-unit>
+      <trans-unit id="tt_address.latitude" approved="yes">
+        <source>Latitude</source>
+        <target state="translated">Breitengrad</target>
+      </trans-unit>
+      <trans-unit id="tt_address.longitude" approved="yes">
+        <source>Longitude</source>
+        <target state="translated">Längengrad</target>
+      </trans-unit>
+      <trans-unit id="tt_address.locationMapWizard" approved="yes">
+        <source>Map wizard for visual selection of coordinates</source>
+        <target state="translated">Kartenassistent für Auswahl der Koordinaten</target>
+      </trans-unit>
+      <trans-unit id="tt_address.locationMapWizard.close" approved="yes">
+        <source>Close Map Wizard</source>
+        <target state="translated">Kartenassistent schließen</target>
+      </trans-unit>
+      <trans-unit id="tt_address.locationMapWizard.import" approved="yes">
+        <source>Import marker-coordinates</source>
+        <target state="translated">Marker-Koordinaten importieren</target>
+      </trans-unit>
+      <trans-unit id="tt_address_tab.contact" approved="yes">
+        <source>Contact</source>
+        <target state="translated">Kontakt</target>
+      </trans-unit>
+      <trans-unit id="tt_address_tab.address" approved="yes">
+        <source>Address</source>
+        <target state="translated">Adresse</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.name" approved="yes">
+        <source>Name</source>
+        <target state="translated">Name</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.organization" approved="yes">
+        <source>Organisation</source>
+        <target state="translated">Organisation</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.address" approved="yes">
+        <source>Address</source>
+        <target state="translated">Adresse</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.building" approved="yes">
+        <source>Building</source>
+        <target state="translated">Gebäude</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.contact" approved="yes">
+        <source>Contact</source>
+        <target state="translated">Kontakt</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.social" approved="yes">
+        <source>Social Networks</source>
+        <target state="translated">Soziale Netzwerke</target>
+      </trans-unit>
+      <trans-unit id="tt_address_palette.coordinates" approved="yes">
+        <source>Coordinates</source>
+        <target state="translated">Koordinaten</target>
+      </trans-unit>
+      <trans-unit id="pi_tt_address" approved="yes">
+        <source>Addresses</source>
+        <target state="translated">Adressen</target>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>

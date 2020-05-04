@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2017-04-05T08:11:35Z" product-name="tt_address" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="pi1_flexform.sheet_selection" xml:space="preserve">
+          <source>Selection</source>
+        <target>crwdns45610:0crwdne45610:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.single_records" xml:space="preserve">
+           <source>Single addresses</source>
+        <target>crwdns45612:0crwdne45612:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.group_selection" xml:space="preserve">
+           <source>Categories</source>
+        <target>crwdns45614:0crwdne45614:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.includeSubcategories" xml:space="preserve">
+           <source>Include subcategories</source>
+        <target>crwdns45616:0crwdne45616:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.combination" xml:space="preserve">
+         <source>Combination</source>
+        <target>crwdns45618:0crwdne45618:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.combination.and" xml:space="preserve">
+          <source>AND</source>
+        <target>crwdns45620:0crwdne45620:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.combination.or" xml:space="preserve">
+           <source>OR</source>
+        <target>crwdns45622:0crwdne45622:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortBy" xml:space="preserve">
+           <source>Sort By</source>
+        <target>crwdns45624:0crwdne45624:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortBy.singleSelection" xml:space="preserve">
+            <source>Order of single addresses</source>
+        <target>crwdns45626:0crwdne45626:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortBy.sorting" xml:space="preserve">
+            <source>Order of addresses</source>
+        <target>crwdns45628:0crwdne45628:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortBy.sorting.default" xml:space="preserve">
+            <source>Default</source>
+        <target>crwdns45630:0crwdne45630:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortBy.sorting.sorting" xml:space="preserve">
+            <source>Manual sorting</source>
+        <target>crwdns45632:0crwdne45632:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortOrder" xml:space="preserve">
+            <source>Sort Order</source>
+        <target>crwdns45634:0crwdne45634:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortOrder.ascending" xml:space="preserve">
+            <source>Ascending</source>
+        <target>crwdns45636:0crwdne45636:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.sortOrder.descending" xml:space="preserve">
+            <source>Descending</source>
+        <target>crwdns45638:0crwdne45638:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.ignoreWithoutCoordinates" xml:space="preserve">
+            <source>Ignore records with no latitude/longitude</source>
+        <target>crwdns45640:0crwdne45640:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.allowOverride" xml:space="preserve">
+            <source>Allow override configuration by GET/POST</source>
+        <target>crwdns45642:0crwdne45642:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.sheet_display" xml:space="preserve">
+            <source>Display</source>
+        <target>crwdns45644:0crwdne45644:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.templateFile" xml:space="preserve">
+            <source>Template</source>
+        <target>crwdns45646:0crwdne45646:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.templateFile.I.0" xml:space="preserve">
+            <source>Default</source>
+        <target>crwdns45648:0crwdne45648:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.displayMode" xml:space="preserve">
+            <source>Select display mode</source>
+        <target>crwdns45650:0crwdne45650:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.displayMode.listView" xml:space="preserve">
+            <source>List view</source>
+        <target>crwdns45652:0crwdne45652:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.displayMode.singleView" xml:space="preserve">
+            <source>Single view</source>
+        <target>crwdns45654:0crwdne45654:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.displayMode.map" xml:space="preserve">
+            <source>Map view</source>
+        <target>crwdns45656:0crwdne45656:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.hidePagination" xml:space="preserve">
+            <source>Do not display pagebrowser (listview)</source>
+        <target>crwdns45658:0crwdne45658:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.itemsPerPage" xml:space="preserve">
+            <source>Number of items to be displayed (listview)</source>
+        <target>crwdns45660:0crwdne45660:0</target></trans-unit>
+      <trans-unit id="pi1_flexform.singlePid" xml:space="preserve">
+            <source>Page for single view</source>
+        <target>crwdns45666:0crwdne45666:0</target></trans-unit>
+    </body>
+  </file>
+</xliff>

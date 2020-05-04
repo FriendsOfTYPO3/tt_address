@@ -1,0 +1,22 @@
+5.1.2 - 2020-04-21
+==================
+
+.. include:: ../../../Includes.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2020-04-21 [TASK] Force 10.4 (#275) (Commit 86d6dba by Georg Ringer)
+   2020-04-21 [BUGFIX] Take care about failing tests  (#276) (Commit 0844912 by Georg Ringer)
+   2020-04-15 [BUGFIX] Frontend Leaflet map: .getAttribute does not work on childNodes[i] (Commit 4fe8025 by ©lemens)
+
+This list has been created by using `git log 5.1.1..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

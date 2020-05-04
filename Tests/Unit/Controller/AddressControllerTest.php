@@ -24,7 +24,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class AddressControllerTest extends BaseTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $GLOBALS['TSFE'] = $this->getAccessibleMock(TypoScriptFrontendController::class, ['addCacheTags'], [], '', false);
     }
@@ -364,7 +364,7 @@ class AddressControllerTest extends BaseTestCase
     {
         $data = [];
 
-        // simple override + skipped field including differnt case
+        // simple override + skipped field including different case
         $demand1In = new Demand();
         $demand1In->setCategories('12,34');
         $demand1In->setSortBy('uid');

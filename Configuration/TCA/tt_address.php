@@ -24,7 +24,9 @@ return [
         'origUid' => 't3_origuid',
         'thumbnail' => 'image',
         'enablecolumns' => [
-            'disabled' => 'hidden'
+            'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime',
         ],
         'iconfile' => 'EXT:tt_address/Resources/Public/Icons/tt_address.svg',
         'searchFields' => 'name, first_name, middle_name, last_name, email',
@@ -66,6 +68,34 @@ return [
                 'type' => 'check'
             ]
         ],
+        'starttime' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel',
+            'config' => [
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'size' => 16,
+                'eval' => 'datetime,int',
+                'default' => 0,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+            ]
+        ],
+        'endtime' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel',
+            'config' => [
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'size' => 16,
+                'eval' => 'datetime,int',
+                'default' => 0,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+            ]
+        ],
         'sys_language_uid' => [
             'exclude' => true,
             'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.language',
@@ -85,7 +115,6 @@ return [
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => true,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
@@ -163,6 +192,7 @@ return [
         'first_name' => [
             'exclude' => false,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.first_name',
+            'l10n_mode' => 'exclude',
             'l10n_display' => 'defaultAsReadonly',
             'config' => [
                 'type' => 'input',
@@ -174,6 +204,7 @@ return [
         'middle_name' => [
             'exclude' => false,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.middle_name',
+            'l10n_mode' => 'exclude',
             'l10n_display' => 'defaultAsReadonly',
             'config' => [
                 'type' => 'input',
@@ -185,6 +216,7 @@ return [
         'last_name' => [
             'exclude' => false,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.last_name',
+            'l10n_mode' => 'exclude',
             'l10n_display' => 'defaultAsReadonly',
             'config' => [
                 'type' => 'input',
@@ -567,6 +599,7 @@ return [
                 --palette--;;language,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                 --palette--;;paletteHidden,
+                --palette--;;paletteAccess,
             --div--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_category.tabs.category, categories
             '
         ]
@@ -601,8 +634,13 @@ return [
                             facebook, linkedin'
         ],
         'paletteHidden' => [
+            'showitem' => 'hidden',
+        ],
+        'paletteAccess' => [
+            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access',
             'showitem' => '
-                hidden
+                starttime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel,
+                endtime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel
             ',
         ],
         'language' => ['showitem' => 'sys_language_uid, l10n_parent'],

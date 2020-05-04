@@ -17,7 +17,7 @@ class DemandTest extends BaseTestCase
     /** @var Demand */
     protected $subject;
 
-    public function setup()
+    public function setup():void
     {
         $this->subject = new Demand();
     }

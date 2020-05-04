@@ -10,6 +10,7 @@ namespace FriendsOfTYPO3\TtAddress\Controller;
  */
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
+use FriendsOfTYPO3\TtAddress\Seo\AddressTitleProvider;
 use FriendsOfTYPO3\TtAddress\Utility\CacheUtility;
 use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
 use TYPO3\CMS\Core\Database\QueryGenerator;
@@ -43,8 +44,12 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     public function showAction(\FriendsOfTYPO3\TtAddress\Domain\Model\Address $address = null)
     {
         if ($address === null) {
-            $this->redirectToUri($this->uriBuilder->reset()->setTargetPageUid($GLOBALS['TSFE']->id)->build());
+            $this->redirectToUri($this->uriBuilder->reset()->setTargetPageUid((int)$GLOBALS['TSFE']->id)->build());
+        } else {
+            $provider = GeneralUtility::makeInstance(AddressTitleProvider::class);
+            $provider->setTitle($address, (array)($this->settings['seo']['pageTitle'] ?? []));
         }
+
         $this->view->assign('address', $address);
 
         CacheUtility::addCacheTagsByAddressRecords([$address]);
@@ -126,15 +131,15 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $demand->setCategories((string)$this->settings['groups']);
         $categoryCombination = (int)$this->settings['groupsCombination'] === 1 ? 'or' : 'and';
         $demand->setCategoryCombination($categoryCombination);
-        $demand->setIncludeSubCategories((bool)$this->settings['includeSubcategories']);
+        $demand->setIncludeSubCategories((bool)($this->settings['includeSubcategories'] ?? false));
 
         if ($this->settings['pages']) {
             $demand->setPages($this->getPidList());
         }
         $demand->setSingleRecords((string)$this->settings['singleRecords']);
-        $demand->setSortBy((string)$this->settings['sortBy']);
-        $demand->setSortOrder((string)$this->settings['sortOrder']);
-        $demand->setIgnoreWithoutCoordinates((bool)$this->settings['ignoreWithoutCoordinates']);
+        $demand->setSortBy((string)($this->settings['sortBy'] ?? ''));
+        $demand->setSortOrder((string)($this->settings['sortOrder'] ?? ''));
+        $demand->setIgnoreWithoutCoordinates((bool)($this->settings['ignoreWithoutCoordinates'] ?? false));
 
         return $demand;
     }

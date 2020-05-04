@@ -12,6 +12,7 @@ use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Service\CategoryService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
+use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
 use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
@@ -39,6 +40,17 @@ class AddressRepository extends Repository
      */
     public function findByDemand(Demand $demand)
     {
+        $query = $this->createDemandQuery($demand);
+        return $query->execute();
+    }
+
+    /**
+     * @param Demand $demand
+     * @return QueryInterface
+     * @throws InvalidQueryException
+     */
+    protected function createDemandQuery(Demand $demand): QueryInterface
+    {
         $query = $this->createQuery();
 
         // sorting
@@ -63,10 +75,40 @@ class AddressRepository extends Repository
             }
         }
 
+        if ($demand->getIgnoreWithoutCoordinates()) {
+            $constraints['coordinatesLat'] = $query->logicalNot($query->equals('latitude', null));
+            $constraints['coordinatesLng'] = $query->logicalNot($query->equals('longitude', null));
+        }
+
         if (!empty($constraints)) {
             $query->matching($query->logicalAnd($constraints));
         }
-        return $query->execute();
+        return $query;
+    }
+
+    /**
+     * Returns the database query to get the matching, see findByDemand()
+     *
+     * @param Demand $demand
+     * @return string
+     * @throws InvalidQueryException
+     */
+    public function getSqlQuery(Demand $demand): string
+    {
+        $query = $this->createDemandQuery($demand);
+        $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
+
+        $queryBuilder = $queryParser->convertQueryToDoctrineQueryBuilder($query);
+        $queryParameters = $queryBuilder->getParameters();
+        $params = [];
+        foreach ($queryParameters as $key => $value) {
+            // prefix array keys with ':'
+            $params[':' . $key] = (\is_numeric($value)) ? $value : "'" . $value . "'"; //all non numeric values have to be quoted
+            unset($params[$key]);
+        }
+        // replace placeholders with real values
+        $query = strtr($queryBuilder->getSQL(), $params);
+        return $query;
     }
 
     /**
@@ -91,21 +133,21 @@ class AddressRepository extends Repository
 
             $query->matching($query->logicalAnd($constraints));
             return $query->execute();
-        } else {
-            if ($demand->getSortOrder() === 'DESC') {
-                $idList = array_reverse($idList);
-            }
-
-            $list = [];
-            foreach ($idList as $id) {
-                $item = $this->findByIdentifier($id);
-                if ($item) {
-                    $list[] = $item;
-                }
-            }
-
-            return $list;
         }
+
+        if ($demand->getSortOrder() === 'DESC') {
+            $idList = array_reverse($idList);
+        }
+
+        $list = [];
+        foreach ($idList as $id) {
+            $item = $this->findByIdentifier($id);
+            if ($item) {
+                $list[] = $item;
+            }
+        }
+
+        return $list;
     }
 
     /**
@@ -113,7 +155,7 @@ class AddressRepository extends Repository
      * a given list of categories and a junction string
      *
      * @param QueryInterface $query
-     * @param  string $categories
+     * @param string $categories
      * @param bool $includeSubCategories
      * @return array
      * @throws InvalidQueryException

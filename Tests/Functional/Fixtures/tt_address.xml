@@ -70,6 +70,55 @@
         <categories>3</categories>
     </tt_address>
 
+    <!-- Coordinates-->
+    <tt_address>
+        <uid>12</uid>
+        <pid>25</pid>
+        <latitude>12.12</latitude>
+    </tt_address>
+    <tt_address>
+        <uid>13</uid>
+        <pid>25</pid>
+        <longitude>12.12</longitude>
+    </tt_address>
+    <tt_address>
+        <uid>14</uid>
+        <pid>25</pid>
+        <latitude>11.12</latitude>
+        <longitude>12.12</longitude>
+    </tt_address>
+
+    <!-- for geocoding-->
+    <tt_address>
+        <uid>21</uid>
+        <pid>100</pid>
+        <city>Linz</city>
+        <address>Dummystr</address>
+        <country>AT</country>
+    </tt_address>
+    <tt_address>
+        <uid>22</uid>
+        <pid>100</pid>
+        <city>Linz</city>
+        <address>Dummystr 2</address>
+        <country>AT</country>
+    </tt_address>
+    <tt_address>
+        <uid>23</uid>
+        <pid>100</pid>
+        <city>Linz</city>
+        <address>Dummystr 2</address>
+        <country>AT</country>
+    </tt_address>
+    <tt_address>
+        <uid>24</uid>
+        <pid>100</pid>
+        <city>Linz</city>
+        <address>Dummystr 2</address>
+        <country>AT</country>
+        <latitude>19.00000</latitude>
+        <longitude>49.00000</longitude>
+    </tt_address>
 
     <sys_category>
         <uid>1</uid>

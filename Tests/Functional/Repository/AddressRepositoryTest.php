@@ -8,6 +8,7 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Functional\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
@@ -28,13 +29,28 @@ class AddressRepositoryTest extends FunctionalTestCase
 
     protected $coreExtensionsToLoad = ['fluid', 'extensionmanager'];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         $this->addressRepository = $this->objectManager->get(AddressRepository::class);
 
         $this->importDataSet(__DIR__ . '/../Fixtures/tt_address.xml');
+    }
+
+    /**
+     * @test
+     */
+    public function rawQueryReturnsCorrectQuery()
+    {
+        $demand = new Demand();
+        $demand->setPages([1, 2]);
+        $demand->setIgnoreWithoutCoordinates(true);
+        $result = $this->addressRepository->getSqlQuery($demand);
+        $time = $GLOBALS['SIM_ACCESS_TIME'];
+        $sql = 'SELECT `tt_address`.* FROM `tt_address` `tt_address` WHERE (((`tt_address`.`pid` IN (1, 2)) AND ( NOT(`tt_address`.`latitude` IS NULL))) AND ( NOT(`tt_address`.`longitude` IS NULL))) AND (`tt_address`.`sys_language_uid` IN (0, -1)) AND ((`tt_address`.`hidden` = 0) AND (`tt_address`.`starttime` <= ' . $time . ') AND ((`tt_address`.`endtime` = 0) OR (`tt_address`.`endtime` > ' . $time . ')) AND tt_address.deleted=0)';
+
+        $this->assertEquals($sql, $result);
     }
 
     /**
@@ -52,6 +68,7 @@ class AddressRepositoryTest extends FunctionalTestCase
     public function findRecordsByCustomSorting()
     {
         $demand = new Demand();
+        $demand->setPages(['1', '2', '3', '23']);
         $demand->setSingleRecords('3,6,2');
         $addresses = $this->addressRepository->getAddressesByCustomSorting($demand);
 
@@ -64,6 +81,7 @@ class AddressRepositoryTest extends FunctionalTestCase
     public function findRecordsByCustomSortingDesc()
     {
         $demand = new Demand();
+        $demand->setPages(['1', '2', '3', '23']);
         $demand->setSortBy('');
         $demand->setSingleRecords('3,6,2');
         $demand->setSortOrder('DESC');
@@ -117,6 +135,7 @@ class AddressRepositoryTest extends FunctionalTestCase
     public function findRecordsByCategory()
     {
         $demand = new Demand();
+        $demand->setPages(['1', '2', '3', '23']);
         $demand->setSortBy('uid');
         $demand->setCategories('5');
         $addresses = $this->addressRepository->findByDemand($demand);
@@ -137,6 +156,7 @@ class AddressRepositoryTest extends FunctionalTestCase
     public function findRecordsByCategoryWithSubCheck()
     {
         $demand = new Demand();
+        $demand->setPages(['1', '2', '3', '21', '23']);
         $demand->setSortBy('uid');
         $demand->setCategoryCombination('or');
         $demand->setCategories('1');
@@ -146,6 +166,18 @@ class AddressRepositoryTest extends FunctionalTestCase
         $demand->setIncludeSubCategories(true);
         $addresses = $this->addressRepository->findByDemand($demand);
         $this->assertEquals([1, 6, 8], $this->getListOfIds($addresses));
+    }
+
+    /**
+     * @test
+     */
+    public function findRecordsByCoordinates()
+    {
+        $demand = new Demand();
+        $demand->setPages(['25']);
+        $demand->setIgnoreWithoutCoordinates(true);
+        $addresses = $this->addressRepository->findByDemand($demand);
+        $this->assertEquals([14], $this->getListOfIds($addresses));
     }
 
     /**

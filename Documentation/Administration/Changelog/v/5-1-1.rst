@@ -1,0 +1,20 @@
+5.1.1 - 2020-03-30
+==================
+
+.. include:: ../../../Includes.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2020-03-30 [TASK] Remove exclude config from l10n_parent (Commit 2a01dc3 by Georg Ringer)
+
+This list has been created by using `git log 5.1.0..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

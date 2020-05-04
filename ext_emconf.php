@@ -8,11 +8,10 @@ $EM_CONF[$_EXTKEY] = [
     'clearCacheOnLoad' => true,
     'author' => 'tt_address Development Team',
     'author_email' => 'friendsof@typo3.org',
-    'version' => '4.1.0',
+    'version' => '5.1.2',
     'constraints' => [
         'depends' => [
-            'typo3' => '8.7.19-9.5.99',
-            'php' => '7.0.0-7.2.99'
+            'typo3' => '9.5.9-10.4.99',
         ],
         'conflicts' => [
         ],
@@ -21,5 +20,9 @@ $EM_CONF[$_EXTKEY] = [
     ],
     'autoload' => [
         'classmap' => ['Classes'],
-    ]
+    ],
+    'autoload-dev' =>
+        [
+            'psr-4' => ['FriendsOfTYPO3\\TtAddress\\Tests\\' => 'Tests']
+        ],
 ];

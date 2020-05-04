@@ -9,10 +9,20 @@ The basic aim of tt_address is to store address and contact data and to output t
 - Selection based on categories and sysfolder
 - Manual selection with custom sorting
 - List & detail view
+- Various map views including Leaflet, Google Maps and static Google Maps
 
 ## Installation
 
 Install the extension by using composer and `composer req friendsoftypo3/tt-address` or by downloading it in the extension manager or on https://extensions.typo3.org/extension/tt_address/.
+
+### Version matrix
+
+|          | 5.x | 4.x | 3.x |
+| -------- | --- | --- | --- |
+| TYPO3 10 | yes | no  | no  |
+| TYPO3 9  | yes | yes | no  |
+| TYPO3 8  | no  | yes | yes |
+| TYPO3 7  | no  | no  | yes |
 
 ## Usage
 

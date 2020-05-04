@@ -1,0 +1,84 @@
+4.2.0 - 2019-03-15
+==================
+
+.. include:: ../../../Includes.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Features
+--------
+The following features have been added to tt_address.
+
+Map support
+^^^^^^^^^^^
+Since version *4.2.0* the extension is capable of rendering records on a map.
+The following variants are included by default:
+
+- Leaflet
+- Google Maps
+- Static Google Maps
+
+It is described in detail in :ref:`the docs <users-manual-maps>`.
+
+Allow overriding demand object
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+It is now possible to override the configuration used to retrieve the proper records.
+It is described in detail in :ref:`the docs <tutorial-overrideDemand>`.
+
+A simple example can look like this.
+
+.. code-block:: html
+
+   <f:link.page
+      additionalParams="{tx_ttaddress_listview:{override:{categories: 1}}}">
+      Category 1
+   </f:link.page>
+
+Slug field
+^^^^^^^^^^
+The address record has been extended by a slug field.
+
+Helper getters
+^^^^^^^^^^^^^^
+The following getters have been added to the Address model:
+
+- `{address.fullName}`: Gives you the full name including title, first, middle and last name
+- `{address.wwwSimplified}`: Gives you the the web link without any possible parameters like *_blank*
+
+
+Configurable telephone validation regex
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The regex used for validation the telephone number of a record is now configurable within
+the Extension Manager's settings.
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2019-03-03 [TASK] Add pages to all functional checks (Commit 0213651 by Georg Ringer)
+   2019-02-28 [FEATURE] Allow overriding demand object (#186) (Commit 506c3e1 by Georg Ringer)
+   2019-02-28 [FEATURE] Add slug field (Commit 926520a by Georg Ringer)
+   2019-02-27 [TASK] Move to Icon-API via requireJS (Commit 508b546 by ©lemens)
+   2019-02-27 [TASK] Use phpunit/codecov ^5 (Commit 3acf8e6 by Georg Ringer)
+   2019-02-17 [BUGFIX] Fix failing update wizard (#180) (Commit 556db7a by Georg Ringer)
+   2019-02-17 [TASK] Added "various" as additional option for gender field (#178) (Commit 2609f07 by Torben Hansen)
+   2019-02-14 [FEATURE] Geocoding Wizard in TCA (Commit 3a4673f by Georg Ringer)
+   2019-02-12 [BUGFIX] Respect bool values in overrideFlexformSettingsIfEmpty (#170) (Commit 76d149e by Georg Ringer)
+   2019-02-11 [BUGFIX] Check for invalid sorting field (#168) (Commit e161dc4 by Georg Ringer)
+   2019-02-11 [TASK] Respect link of sys_file_references in template (Commit 85f5de8 by Georg Ringer)
+   2019-02-11 [TASK] Skip inconsistent flexform in migration task (#161) (Commit b4483e5 by Torben Hansen)
+   2019-02-10 [BUGFIX] Show link without attributes (#164) (Commit 4f1d4c1 by Georg Ringer)
+   2019-02-08 [FEATURE] Added allowLanguageSynchronization to TCA (#162) (Commit 0ed1eca by Torben Hansen)
+   2019-02-08 [TASK] Minor bugfiles and improvements (#159) (Commit 2b6f83e by Torben Hansen)
+   2019-02-06 [FEATURE] Make telephone regex configurable (#157) (Commit 5b62953 by Georg Ringer)
+   2019-02-04 Merge pull request #153 from svewap/master (Commit df4c2b9 by ©lemens)
+   2019-02-01 Allow hyphen for phone number extension. See https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers#Germany (Commit 24a96e1 by Sven Wappler)
+
+
+This list has been created by using `git log 4.1.0..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

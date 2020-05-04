@@ -9,14 +9,17 @@ CREATE TABLE tt_address (
     cruser_id int(11) DEFAULT '0' NOT NULL,
     deleted tinyint(3) DEFAULT '0',
     hidden tinyint(4) DEFAULT '0' NOT NULL,
+    starttime int(11) DEFAULT '0' NOT NULL,
+    endtime int(11) DEFAULT '0' NOT NULL,
     sorting int(11) DEFAULT '0' NOT NULL,
-    
+
     gender varchar(1) DEFAULT '' NOT NULL,
     name tinytext,
+    slug varchar(2048),
     first_name tinytext,
     middle_name tinytext,
     last_name tinytext,
-    birthday int(11) DEFAULT '0' NOT NULL,
+    birthday bigint(20) DEFAULT '0' NOT NULL,
     title varchar(255) DEFAULT '' NOT NULL,
     email varchar(255) DEFAULT '' NOT NULL,
     phone varchar(30) DEFAULT '' NOT NULL,
@@ -39,14 +42,14 @@ CREATE TABLE tt_address (
     linkedin varchar(255) DEFAULT '',
     latitude decimal(14,12) default NULL,
     longitude decimal(15,12) default NULL,
-    
+
     image tinyblob,
     categories int(11) DEFAULT '0' NOT NULL,
-    
+
     sys_language_uid int(11) DEFAULT '0' NOT NULL,
     l10n_parent int(11) DEFAULT '0' NOT NULL,
     l10n_diffsource mediumblob,
-    
+
     t3ver_oid int(11) DEFAULT '0' NOT NULL,
     t3ver_id int(11) DEFAULT '0' NOT NULL,
     t3ver_wsid int(11) DEFAULT '0' NOT NULL,
@@ -57,7 +60,7 @@ CREATE TABLE tt_address (
     t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
     t3ver_move_id int(11) DEFAULT '0' NOT NULL,
     t3_origuid int(11) DEFAULT '0' NOT NULL,
-    
+
     PRIMARY KEY (uid),
     KEY parent (pid),
     KEY pid (pid,email)

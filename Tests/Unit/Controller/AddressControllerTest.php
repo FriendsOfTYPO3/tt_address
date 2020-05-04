@@ -19,10 +19,15 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Fluid\View\TemplateView;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class AddressControllerTest extends BaseTestCase
 {
+    protected function setUp(): void
+    {
+        $GLOBALS['TSFE'] = $this->getAccessibleMock(TypoScriptFrontendController::class, ['addCacheTags'], [], '', false);
+    }
 
     /**
      * @param $given
@@ -237,9 +242,6 @@ class AddressControllerTest extends BaseTestCase
      */
     public function listActionFillsViewForSingleRecords()
     {
-        $fakeTsfe = new \stdClass();
-        $fakeTsfe->id = 123;
-        $GLOBALS['TSFE'] = $fakeTsfe;
         $settings = [
             'singlePid' => 0,
             'singleRecords' => 1
@@ -320,5 +322,62 @@ class AddressControllerTest extends BaseTestCase
         $subject->_set('configurationManager', $mockedConfigurationManager);
 
         $subject->_call('initializeView', $mockedView);
+    }
+
+    /**
+     * @test
+     */
+    public function overrideDemandMethodIsCalledIfEnabled()
+    {
+        $mockedRepository = $this->getAccessibleMock(AddressRepository::class, ['getAddressesByCustomSorting', 'findByDemand'], [], '', false);
+        $mockedRepository->expects($this->any())->method('findByDemand')->willReturn([]);
+        $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple'], [], '', false);
+        $mockedView->expects($this->once())->method('assignMultiple');
+        $subject = $this->getAccessibleMock(AddressController::class, ['overrideDemand', 'createDemandFromSettings'], [], '', false);
+        $subject->expects($this->any())->method('overrideDemand');
+
+        $demand = new Demand();
+        $subject->expects($this->any())->method('createDemandFromSettings')->willReturn($demand);
+
+        $settings = [
+            'allowOverride' => true
+        ];
+        $subject->_set('settings', $settings);
+        $subject->_set('addressRepository', $mockedRepository);
+        $subject->_set('view', $mockedView);
+
+        $subject->listAction(['not', 'empty']);
+    }
+
+    /**
+     * @test
+     * @dataProvider overrideDemandWorksDataProvider
+     */
+    public function overrideDemandWorks(Demand $demandIn, Demand $demandOut, array $override)
+    {
+        $subject = $this->getAccessibleMock(AddressController::class, ['dummy'], [], '', false);
+
+        $this->assertEquals($demandOut, $subject->_call('overrideDemand', $demandIn, $override));
+    }
+
+    public function overrideDemandWorksDataProvider(): array
+    {
+        $data = [];
+
+        // simple override + skipped field including different case
+        $demand1In = new Demand();
+        $demand1In->setCategories('12,34');
+        $demand1In->setSortBy('uid');
+        $demand1Out = clone $demand1In;
+        $demand1Out->setCategories('56');
+        $data['skipSimple'] = [$demand1In, $demand1Out, ['categories' => '56', 'sortby' => 'title']];
+
+        // not existing field
+        $demand2In = new Demand();
+        $demand2In->setCategories('7');
+        $demand2Out = clone $demand2In;
+        $data['ignoreNotExisting'] = [$demand2In, $demand2Out, ['categoriesX' => '56', 'ysortby' => 'title']];
+
+        return $data;
     }
 }

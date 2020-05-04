@@ -20,7 +20,7 @@ class AddressTest extends BaseTestCase
     /** @var Address */
     protected $subject;
 
-    public function setup()
+    public function setup(): void
     {
         $this->subject = new Address();
     }
@@ -444,5 +444,16 @@ class AddressTest extends BaseTestCase
         $value->attach($item);
         $this->subject->setCategories($value);
         $this->assertEquals($value, $this->subject->getCategories());
+    }
+
+    /**
+     * @test
+     */
+    public function fullNameIsReturned()
+    {
+        $this->subject->setTitle('Dr.');
+        $this->subject->setLastName('Doe');
+
+        $this->assertEquals('Dr. Doe', $this->subject->getFullName());
     }
 }

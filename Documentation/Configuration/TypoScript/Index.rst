@@ -47,6 +47,20 @@ overrideFlexformSettingsIfEmpty         string      A comma separated list of fi
 recursive                               int         Defines how many levels to search for tt_address
                                                     records from the given pages in pidList.
 --------------------------------------  ----------  -------------------------------------------------------------  ------------------------------------------------------
-wrap                                    string      wraps the whole output
-======================================  ==========  =============================================================  =========================
+paginate                                array       Configuration of the pagination ViewHelper                     paginate {
+                                                    which is provided by the core                                    itemsPerPage = 10
+                                                                                                                     insertAbove = 0
+                                                                                                                     insertBelow = 1
+                                                                                                                     maximumNumberOfLinks = 10
+                                                                                                                   }
+--------------------------------------  ----------  -------------------------------------------------------------  ------------------------------------------------------
+map.rendering                           string      Map rendering which is used in the Fronted                     leaflet
+                                                    Available: leaflet, googleMaps, staticGoogleMaps                                                               }
+--------------------------------------  ----------  -------------------------------------------------------------  ------------------------------------------------------
+map.googleMaps.key                      string      Key for variant **Google Maps**
+--------------------------------------  ----------  -------------------------------------------------------------  ------------------------------------------------------
+map.staticGoogleMaps.parameters         array       Parameters for Static Google Maps configuration
+                                                    See: `official docs https://developers.google.com/maps/documentation/maps-static/dev-guide>`_
+
+======================================  ==========  =============================================================  ======================================================
 

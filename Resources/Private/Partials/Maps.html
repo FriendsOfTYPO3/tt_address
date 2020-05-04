@@ -1,0 +1,68 @@
+{namespace ttaddr=FriendsOfTYPO3\TtAddress\ViewHelpers}
+
+<f:section name="leaflet">
+
+    <f:render section="rendering" arguments="{_all}"/>
+
+    <link rel="stylesheet" href="{f:uri.resource(path:'Contrib/leaflet-core-1.4.0.css')}" />
+    <script type="text/javascript" src="{f:uri.resource(path:'JavaScript/leaflet-core-1.4.0.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path:'JavaScript/Frontend/Leaflet.js')}"></script>
+</f:section>
+
+<f:section name="googleMaps">
+    <f:if condition="{settings.map.googleMaps.key}">
+        <f:then>
+            <f:render section="rendering" arguments="{_all}"/>
+
+            <script src="https://maps.googleapis.com/maps/api/js?key={settings.map.googleMaps.key}"
+                    type="text/javascript"></script>
+            <script type="text/javascript" src="{f:uri.resource(path:'JavaScript/Frontend/GoogleMaps.js')}"></script>
+        </f:then>
+        <f:else>
+            <div class="alert alert-danger">{f:translate(key:'no_google_maps_key')}</div>
+        </f:else>
+    </f:if>
+</f:section>
+
+<f:section name="staticGoogleMaps">
+    <f:if condition="{settings.map.staticGoogleMaps.parameters.key}">
+        <f:then>
+            <img src="{ttaddr:staticGoogleMaps(parameters:settings.map.staticGoogleMaps.parameters,addresses:addresses)}" />
+        </f:then>
+        <f:else>
+            <div class="alert alert-danger">{f:translate(key:'no_google_maps_key')}</div>
+        </f:else>
+    </f:if>
+</f:section>
+
+<f:section name="rendering">
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="list-group">
+                <f:for each="{addresses}" as="address" iteration="i">
+                    <li id="ttaddress__label-{address.uid}" class="ttaddress__label list-group-item">
+                        <strong>{address.fullName}</strong><br>
+                        <f:render partial="Address" section="address" arguments="{_all}"/>
+                        <a href="#" data-iteration-id="{i.index}" class="ttaddress__markerlink">{f:translate(key:'show_on_map')}</a>
+                    </li>
+                </f:for>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div id="ttaddress__map" data-default-lat="{settings.map.defaultPosition.lat}"
+                 data-default-lng="{settings.map.defaultPosition.lng}" style="width:100%;min-height:300px;"></div>
+            <ul id="ttaddress__records" style="display: none">
+                <f:for each="{addresses}" as="address">
+                    <div id="ttaddress__record-{address.uid}" data-id="{address.uid}" data-lat="{address.latitude}"
+                         data-lng="{address.longitude}" data-icon="icon">
+                        <h6>{address.fullName}</h6>
+                        <div>
+                            <f:render partial="Address" section="address" arguments="{_all}"/>
+                            <f:render partial="Address" section="contact" arguments="{_all}"/>
+                        </div>
+                    </div>
+                </f:for>
+            </ul>
+        </div>
+    </div>
+</f:section>

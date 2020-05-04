@@ -24,13 +24,15 @@ return [
         'origUid' => 't3_origuid',
         'thumbnail' => 'image',
         'enablecolumns' => [
-            'disabled' => 'hidden'
+            'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime',
         ],
         'iconfile' => 'EXT:tt_address/Resources/Public/Icons/tt_address.svg',
         'searchFields' => 'name, first_name, middle_name, last_name, email',
     ],
     'interface' => [
-        'showRecordFieldList' => 'first_name,middle_name,last_name,address,building,room,city,zip,region,country,phone,fax,email,www,title,company,image'
+        'showRecordFieldList' => 'first_name,middle_name,last_name,name,slug,address,building,room,city,zip,region,country,phone,fax,email,www,title,company,image'
     ],
     'columns' => [
         'pid' => [
@@ -42,7 +44,8 @@ return [
         'crdate' => [
             'label' => 'crdate',
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'input',
+                'eval' => 'datetime'
             ]
         ],
         'cruser_id' => [
@@ -54,7 +57,8 @@ return [
         'tstamp' => [
             'label' => 'tstamp',
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'input',
+                'eval' => 'datetime'
             ]
         ],
         'hidden' => [
@@ -62,6 +66,34 @@ return [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check'
+            ]
+        ],
+        'starttime' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel',
+            'config' => [
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'size' => 16,
+                'eval' => 'datetime,int',
+                'default' => 0,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+            ]
+        ],
+        'endtime' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel',
+            'config' => [
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'size' => 16,
+                'eval' => 'datetime,int',
+                'default' => 0,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'sys_language_uid' => [
@@ -83,7 +115,6 @@ return [
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => true,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
@@ -91,6 +122,7 @@ return [
                 'items' => [
                     ['', 0]
                 ],
+                'default' => 0,
                 'foreign_table' => 'tt_address',
                 'foreign_table_where' => 'AND tt_address.pid=###CURRENT_PID### AND tt_address.sys_language_uid IN (-1,0)',
             ]
@@ -110,7 +142,7 @@ return [
                 'items' => [
                     ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.m', 'm'],
                     ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.f', 'f'],
-                    ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.various', 'various'],
+                    ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.v', 'v'],
                     ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.undefined', '']
                 ]
             ]
@@ -128,6 +160,25 @@ return [
                 ],
             ]
         ],
+        'slug' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:pages.slug',
+            'displayCond' => 'USER:' . \TYPO3\CMS\Core\Compatibility\PseudoSiteTcaDisplayCondition::class . '->isInPseudoSite:pages:false',
+            'config' => [
+                'type' => 'slug',
+                'size' => 50,
+                'generatorOptions' => [
+                    'fields' => ['first_name', 'middle_name', 'last_name'],
+                    'fieldSeparator' => '-',
+                    'replacements' => [
+                        '/' => '-'
+                    ],
+                ],
+                'fallbackCharacter' => '-',
+                'eval' => 'uniqueInSite',
+                'default' => ''
+            ]
+        ],
         'name' => [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.name',
             'config' => [
@@ -141,6 +192,7 @@ return [
         'first_name' => [
             'exclude' => false,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.first_name',
+            'l10n_mode' => 'exclude',
             'l10n_display' => 'defaultAsReadonly',
             'config' => [
                 'type' => 'input',
@@ -152,6 +204,7 @@ return [
         'middle_name' => [
             'exclude' => false,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.middle_name',
+            'l10n_mode' => 'exclude',
             'l10n_display' => 'defaultAsReadonly',
             'config' => [
                 'type' => 'input',
@@ -163,6 +216,7 @@ return [
         'last_name' => [
             'exclude' => false,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.last_name',
+            'l10n_mode' => 'exclude',
             'l10n_display' => 'defaultAsReadonly',
             'config' => [
                 'type' => 'input',
@@ -194,6 +248,7 @@ return [
             ]
         ],
         'building' => [
+            'exclude' => true,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.building',
             'config' => [
                 'type' => 'input',
@@ -206,6 +261,7 @@ return [
             ]
         ],
         'room' => [
+            'exclude' => true,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.room',
             'config' => [
                 'type' => 'input',
@@ -482,6 +538,8 @@ return [
                 'type' => 'text',
                 'rows' => 5,
                 'cols' => 48,
+                'enableRichtext' => true,
+                'richtextConfiguration' => 'default',
                 'softref' => 'typolink_tag,url',
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
@@ -531,7 +589,7 @@ return [
             --div--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_tab.address,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.address;address,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.coordinates;coordinates,
-            
+
             --div--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_tab.contact,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.contact;contact,
                 --palette--;LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address_palette.organization;organization,
@@ -541,6 +599,7 @@ return [
                 --palette--;;language,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                 --palette--;;paletteHidden,
+                --palette--;;paletteAccess,
             --div--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_category.tabs.category, categories
             '
         ]
@@ -548,7 +607,7 @@ return [
     'palettes' => [
         'name' => [
             'showitem' => 'gender, title, --linebreak--,
-                            first_name, middle_name, last_name,--linebreak--,name'
+                            first_name, middle_name, last_name,--linebreak--,name,--linebreak--,slug'
         ],
         'organization' => [
             'showitem' => 'position, company'
@@ -575,8 +634,13 @@ return [
                             facebook, linkedin'
         ],
         'paletteHidden' => [
+            'showitem' => 'hidden',
+        ],
+        'paletteAccess' => [
+            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access',
             'showitem' => '
-                hidden
+                starttime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel,
+                endtime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel
             ',
         ],
         'language' => ['showitem' => 'sys_language_uid, l10n_parent'],

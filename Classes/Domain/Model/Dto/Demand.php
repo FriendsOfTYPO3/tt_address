@@ -32,6 +32,9 @@ class Demand
     /** @var string */
     protected $singleRecords = '';
 
+    /** @var bool */
+    protected $ignoreWithoutCoordinates = false;
+
     /**
      * @return array
      */
@@ -142,5 +145,21 @@ class Demand
     public function setSingleRecords(string $singleRecords)
     {
         $this->singleRecords = $singleRecords;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIgnoreWithoutCoordinates(): bool
+    {
+        return $this->ignoreWithoutCoordinates;
+    }
+
+    /**
+     * @param bool $ignoreWithoutCoordinates
+     */
+    public function setIgnoreWithoutCoordinates(bool $ignoreWithoutCoordinates)
+    {
+        $this->ignoreWithoutCoordinates = $ignoreWithoutCoordinates;
     }
 }

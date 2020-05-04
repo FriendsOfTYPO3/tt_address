@@ -17,3 +17,4 @@ Users manual
 
     CreatingRecords/Index
     CreatingAPluginContent/Index
+    Maps/Index

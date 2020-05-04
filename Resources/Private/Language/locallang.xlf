@@ -39,16 +39,16 @@
       <trans-unit id="label.socialmedia" xml:space="preserve">
         <source>Social media contacts</source>
       </trans-unit>
-      <trans-unit id="label.twitter" xml:space="preserve">
+      <trans-unit id="label.twitter" xml:space="preserve" translate="no">
         <source>Twitter</source>
       </trans-unit>
-      <trans-unit id="label.facebook" xml:space="preserve">
+      <trans-unit id="label.facebook" xml:space="preserve" translate="no">
         <source>Facebook</source>
       </trans-unit>
-      <trans-unit id="label.linkedin" xml:space="preserve">
+      <trans-unit id="label.linkedin" xml:space="preserve" translate="no">
         <source>LinkedIn</source>
       </trans-unit>
-      <trans-unit id="label.skype" xml:space="preserve">
+      <trans-unit id="label.skype" xml:space="preserve" translate="no">
         <source>Skype</source>
       </trans-unit>
       <trans-unit id="label.birthday" xml:space="preserve">
@@ -69,6 +69,12 @@
       </trans-unit>
       <trans-unit id="more">
         <source>More</source>
+      </trans-unit>
+      <trans-unit id="show_on_map">
+        <source>Show on map</source>
+      </trans-unit>
+      <trans-unit id="no_google_maps_key">
+        <source>No Google Maps key provided with TypoScript</source>
       </trans-unit>
     </body>
   </file>

@@ -25,7 +25,7 @@ class AddFieldsToSelector
     }
 
     // TODO consolidate with list in pi1
-    const sortFields = ['gender', 'first_name', 'middle_name', 'last_name', 'title', 'company', 'address', 'building', 'room', 'birthday', 'zip', 'city', 'region', 'country', 'email', 'www', 'phone', 'mobile', 'fax'];
+    const sortFields = ['gender', 'name', 'first_name', 'middle_name', 'last_name', 'title', 'company', 'address', 'building', 'room', 'birthday', 'zip', 'city', 'region', 'country', 'email', 'www', 'phone', 'mobile', 'fax'];
 
     /**
      * Manipulating the input array, $params, adding new selectorbox items.

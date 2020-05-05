@@ -64,9 +64,6 @@ plugin.tx_ttaddress {
                     size = 500x400
                 }
             }
-            
-            # single view page ID, used in rendering section of partial Maps.html to show link to single view if set
-            singlePid = 
         }
 
         paginate {

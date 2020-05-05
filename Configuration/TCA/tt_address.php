@@ -45,6 +45,7 @@ return [
             'label' => 'crdate',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputDateTime',
                 'eval' => 'datetime'
             ]
         ],
@@ -58,6 +59,7 @@ return [
             'label' => 'tstamp',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputDateTime',
                 'eval' => 'datetime'
             ]
         ],

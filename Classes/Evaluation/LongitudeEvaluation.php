@@ -41,9 +41,9 @@ class LongitudeEvaluation
     {
         // test if we have any longitude
         if ($value && $value != '') {
-            $value = EvalcoordinatesUtility::formatLongitude($value);
+            return EvalcoordinatesUtility::formatLongitude($value);
         }
-        return $value;
+        return null;
     }
 
     /**

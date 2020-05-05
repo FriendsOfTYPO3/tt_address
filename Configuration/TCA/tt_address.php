@@ -45,6 +45,7 @@ return [
             'label' => 'crdate',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputDateTime',
                 'eval' => 'datetime'
             ]
         ],
@@ -58,6 +59,7 @@ return [
             'label' => 'tstamp',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputDateTime',
                 'eval' => 'datetime'
             ]
         ],
@@ -115,7 +117,6 @@ return [
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => true,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',

@@ -15,9 +15,9 @@ function ttAddressLeaflet() {
             id: 'mapbox.streets'
         }).addTo(obj.map);
 
-        var records = document.getElementById("ttaddress__records");
-        for (var i = 0; i < records.childNodes.length; i++) {
-            var item = records.childNodes[i];
+        var records = document.getElementById("ttaddress__records").children;
+        for (var i = 0; i < records.length; i++) {
+            var item = records[i];
 
             var marker = L.marker([item.getAttribute('data-lat'), item.getAttribute('data-lng')]).addTo(obj.map)
                 .bindPopup(document.getElementById('ttaddress__record-' + item.getAttribute('data-id')).innerHTML);

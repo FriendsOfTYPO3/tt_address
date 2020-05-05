@@ -16,7 +16,7 @@
   ],
   "license": "GPL-2.0-or-later",
   "require": {
-    "typo3/cms-core": "^9.5 || ^10",
+    "typo3/cms-core": "^9.5 || ^10.4",
     "php": ">=7.2"
   },
   "extra": {
@@ -37,7 +37,6 @@
     }
   },
   "replace": {
-    "tt_address": "self.version",
     "typo3-ter/tt-address": "self.version"
   },
   "require-dev": {

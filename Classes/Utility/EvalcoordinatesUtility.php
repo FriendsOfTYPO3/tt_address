@@ -43,7 +43,7 @@ class EvalcoordinatesUtility
     protected static function validate($coordinate, string $upperRange): string
     {
         if ($coordinate === '') {
-            return '.000000000000';
+            return '.00000000';
         }
 
         // test if value is negative

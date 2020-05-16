@@ -28,7 +28,7 @@ class EvalcoordinatesUtilityTest extends BaseTestCase
     public function longIsProperlyEvaluatedDataProvider(): array
     {
         return [
-            'empty string' => ['', ''],
+            'empty string' => ['', '.00000000'],
             'int' => ['12', '12.00000000'],
             'too large number' => ['193.33', '180.00000000'],
             'regular float' => ['13.312113', '13.31211300'],
@@ -51,7 +51,7 @@ class EvalcoordinatesUtilityTest extends BaseTestCase
     public function latIsProperlyEvaluatedDataProvider(): array
     {
         return [
-            'empty string' => ['', ''],
+            'empty string' => ['', '.00000000'],
             'int' => ['12', '12.00000000'],
             'too large number' => ['95.33', '90.00000000'],
             'regular float' => ['13.312113', '13.31211300'],

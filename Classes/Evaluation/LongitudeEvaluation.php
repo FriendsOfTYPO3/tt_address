@@ -40,7 +40,7 @@ class LongitudeEvaluation
     public function evaluateFieldValue($value)
     {
         // test if we have any longitude
-        if ($value && $value != '') {
+        if ($value && $value !== '') {
             return EvalcoordinatesUtility::formatLongitude($value);
         }
         return null;

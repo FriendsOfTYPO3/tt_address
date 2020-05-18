@@ -14,7 +14,7 @@ namespace FriendsOfTYPO3\TtAddress\Utility;
  */
 class EvalcoordinatesUtility
 {
-    const LATITUDE_UPPER  =  '90.00000000';
+    const LATITUDE_UPPER = '90.00000000';
     const LONGITUDE_UPPER = '180.00000000';
 
     /**

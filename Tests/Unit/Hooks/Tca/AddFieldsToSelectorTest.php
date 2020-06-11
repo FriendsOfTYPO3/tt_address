@@ -63,6 +63,7 @@ class AddFieldsToSelectorTest extends BaseTestCase
                 ['label_last_name', 'last_name'],
                 ['label_middle_name', 'middle_name'],
                 ['label_mobile', 'mobile'],
+                ['label_name', 'name'],
                 ['label_phone', 'phone'],
                 ['label_region', 'region'],
                 ['label_room', 'room'],

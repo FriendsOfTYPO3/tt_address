@@ -558,7 +558,7 @@ return [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.latitude',
             'config' => [
                 'type' => 'input',
-                'eval' => 'null,' . \FriendsOfTYPO3\TtAddress\Evaluation\LatitudeEvaluation::class,
+                'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\LatitudeEvaluation::class,
                 'default' => null,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
@@ -570,7 +570,7 @@ return [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.longitude',
             'config' => [
                 'type' => 'input',
-                'eval' => 'null,' . \FriendsOfTYPO3\TtAddress\Evaluation\LongitudeEvaluation::class,
+                'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\LongitudeEvaluation::class,
                 'default' => null,
                 'fieldControl' => [
                     'locationMap' => [

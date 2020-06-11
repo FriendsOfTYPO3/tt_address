@@ -59,6 +59,11 @@
                         <div>
                             <f:render partial="Address" section="address" arguments="{_all}"/>
                             <f:render partial="Address" section="contact" arguments="{_all}"/>
+                            <f:if condition="{settings.singlePid}">
+                                <f:link.action action="show" arguments="{address : address}" title="{address.fullName}" class="btn"
+                                    pageUid="{settings.singlePid}">{f:translate(key:'more')}
+                                </f:link.action>
+                            </f:if>
                         </div>
                     </div>
                 </f:for>

@@ -41,9 +41,9 @@ class LatitudeEvaluation
     {
         // test if we have any latitude
         if ($value && $value !== '') {
-            $value = EvalcoordinatesUtility::formatLatitude($value);
+            return EvalcoordinatesUtility::formatLatitude($value);
         }
-        return $value;
+        return null;
     }
 
     /**

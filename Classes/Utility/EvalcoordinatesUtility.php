@@ -14,8 +14,8 @@ namespace FriendsOfTYPO3\TtAddress\Utility;
  */
 class EvalcoordinatesUtility
 {
-    const LATITUDE_UPPER = '90.000000000000';
-    const LONGITUDE_UPPER = '180.000000000000';
+    const LATITUDE_UPPER = '90.00000000';
+    const LONGITUDE_UPPER = '180.00000000';
 
     /**
      * @param $coordinate
@@ -43,7 +43,7 @@ class EvalcoordinatesUtility
     protected static function validate($coordinate, string $upperRange): string
     {
         if ($coordinate === '') {
-            return '.000000000000';
+            return '.00000000';
         }
 
         // test if value is negative
@@ -70,11 +70,11 @@ class EvalcoordinatesUtility
         // remove all points from decimal-part
         $decimalPart = preg_replace("/[^\d]/", '', $decimalPart);
 
-        // fill up with zeros or shorten to match our goal of decimal(14,12) in DB
-        if (\strlen($decimalPart) >= 12) {
-            $decimalPart = substr($decimalPart, 0, 12);
+        // fill up with zeros or shorten to match our goal of decimal(latitude: 10,8 and longitude: 11,8) in DB
+        if (\strlen($decimalPart) >= 8) {
+            $decimalPart = substr($decimalPart, 0, 8);
         } else {
-            $decimalPart = str_pad($decimalPart, 12, '0', STR_PAD_RIGHT);
+            $decimalPart = str_pad($decimalPart, 8, '0', STR_PAD_RIGHT);
         }
 
         // concatenate the whole string to a well-formed longitude and return

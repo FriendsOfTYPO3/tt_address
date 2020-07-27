@@ -114,7 +114,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var string
      */
     protected $www;
-    
+
     /**
      * slug
      * @var string
@@ -543,7 +543,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $parts = str_replace(['\\\\', '\\"'], ['\\', '"'], str_getcsv($www, ' '));
         return $parts[0];
     }
-    
+
     /**
      * sets the slug attribute
      *

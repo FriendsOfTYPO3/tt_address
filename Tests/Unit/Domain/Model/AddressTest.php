@@ -209,6 +209,16 @@ class AddressTest extends BaseTestCase
     /**
      * @test
      */
+    public function slugCanBeSet()
+    {
+        $value = '/testaddress/';
+        $this->subject->setSlug($value);
+        $this->assertEquals($value, $this->subject->getSlug());
+    }
+
+    /**
+     * @test
+     */
     public function skypeCanBeSet()
     {
         $value = 'fo.com';

@@ -114,6 +114,12 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var string
      */
     protected $www;
+    
+    /**
+     * slug
+     * @var string
+     */
+    protected $slug;
 
     /**
      * Skype
@@ -536,6 +542,26 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         }
         $parts = str_replace(['\\\\', '\\"'], ['\\', '"'], str_getcsv($www, ' '));
         return $parts[0];
+    }
+    
+    /**
+     * sets the slug attribute
+     *
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * returns the slug attribute
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**

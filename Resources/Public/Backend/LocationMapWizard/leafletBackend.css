@@ -1,4 +1,5 @@
 #t3js-location-map-wrap {
+    background: #EDEDED;
     position: absolute;
     width: 80vw;
     height: 80vh;
@@ -21,11 +22,6 @@
     border: 1px solid #CCC;
 }
 
-.t3js-location-map-title>div.btn-group {
-    position: absolute;
-    left: 15px;
-}
-
 .t3js-location-map-title a {
     font-weight: bold;
 }
@@ -34,6 +30,14 @@
     background: rgb(237, 237, 237);
     font-family: Share, Verdana, Arial, Helvetica, sans-serif;
     font-size: 20px;
-    padding: 5px 15px;
-    text-align: center;
+    text-align: left;
+    position: relative;
+    padding: 0 15px 10px;
+}
+
+#t3js-location-map-search {
+    margin-top: 10px;
+}
+.t3js-location-map-search-input {
+    max-width: 200px;
 }

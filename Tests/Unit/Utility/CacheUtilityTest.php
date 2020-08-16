@@ -18,8 +18,13 @@ class CacheUtilityTest extends BaseTestCase
 {
     protected function setUp():void
     {
-        $GLOBALS['TSFE'] = $this->getAccessibleMock(TypoScriptFrontendController::class, ['addCacheTags'], [], '',
-            false);
+        $GLOBALS['TSFE'] = $this->getAccessibleMock(
+            TypoScriptFrontendController::class,
+            ['addCacheTags'],
+            [],
+            '',
+            false
+        );
     }
 
     /**

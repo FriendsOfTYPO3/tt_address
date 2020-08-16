@@ -37,7 +37,8 @@ class GeocodeServiceTest extends FunctionalTestCase
                 ['latitude' => 10.000, 'longitude' => 12.000],
                 ['latitude' => 10.000, 'longitude' => 12.000],
                 [],
-                ['latitude' => 13.000, 'longitude' => 14.000]);
+                ['latitude' => 13.000, 'longitude' => 14.000]
+            );
 
         $count = $subject->calculateCoordinatesForAllRecordsInTable('pid=100');
         $this->assertEquals(3, $count);

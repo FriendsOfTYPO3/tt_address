@@ -1,5 +1,5 @@
 preset: psr2
-
+risky: true
 enabled:
   - no_leading_import_slash
   - no_trailing_comma_in_singleline_array

@@ -15,14 +15,18 @@ define(['jquery', 'TYPO3/CMS/Backend/Icons', 'TYPO3/CMS/TtAddress/leaflet-core-1
         $tilesUrl: null,
         $tilesCopy: null,
         $zoomLevel: 13,
+        $zoomLevelDetail: 13,
         $marker: null,
         $map: null
     };
+
+    var geoCodeService = 'https://nominatim.openstreetmap.org/search/';
 
     $(function () {
         // basic variable initalisation
         LeafBE.$element = $('#location-map-container-a');
         LeafBE.$labelTitle = LeafBE.$element.attr('data-label-title');
+        LeafBE.$labelSearch = LeafBE.$element.attr('data-label-search');
         LeafBE.$labelClose = LeafBE.$element.attr('data-label-close');
         LeafBE.$labelImport = LeafBE.$element.attr('data-label-import');
         LeafBE.$latitude = LeafBE.$element.attr('data-lat');
@@ -44,13 +48,19 @@ define(['jquery', 'TYPO3/CMS/Backend/Icons', 'TYPO3/CMS/TtAddress/leaflet-core-1
             $('body').append(
                 '<div id="t3js-location-map-wrap">' +
                 '<div class="t3js-location-map-title">' +
+                '<h4>' + LeafBE.$labelTitle + '</h4>' +
                 '<div class="btn-group"><a href="#" class="btn btn-icon btn-default" title="' + LeafBE.$labelClose + '" id="t3js-ttaddress-close-map">' +
                 LeafBE.$iconClose +
                 '</a>' +
                 '<a class="btn btn-default" href="#" title="Import marker position to form" id="t3js-ttaddress-import-position">' +
                 LeafBE.$labelImport +
                 '</a></div>' +
-                LeafBE.$labelTitle +
+                '<form id="t3js-location-map-search" class="input-group">' +
+                    '<input id="t3js-location-map-search-input" type="text" class="form-control" />' +
+                    '<span class="input-group-btn">' +
+                        '<button type="button" id="t3js-location-map-search-submit"  class="btn btn-default">' + LeafBE.$labelSearch + '</button>' +
+                    '</span>' +
+                '</form>' +
                 '</div>' +
                 '<div class="t3js-location-map-container" id="t3js-location-map-container">' +
                 '</div>' +
@@ -143,6 +153,27 @@ define(['jquery', 'TYPO3/CMS/Backend/Icons', 'TYPO3/CMS/TtAddress/leaflet-core-1
                 $('input[id="' + LeafBE.$fieldLatActive + '"]').prop('checked', true);
                 // close map after import of coordinates.
                 $('#t3js-location-map-wrap').removeClass('active');
+            });
+            $('#t3js-location-map-search').on('submit', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                var params = {
+                    q: $('#t3js-location-map-search-input').val(),
+                    format: 'json',
+                    addressdetails: true,
+                    limit: 1
+                };
+                $.getJSON(geoCodeService, params, function (data) {
+                    if (data.length > 0) {
+                        var location = {lat: data[0].lat, lng: data[0].lon};
+                        LeafBE.$marker.setLatLng(location);
+                        LeafBE.$map.panTo(location);
+                        LeafBE.$map.setZoom(LeafBE.$zoomLevelDetail);
+                    }
+                });
+
+                return false;
             });
             // close overlay without any further action
             $('#t3js-ttaddress-close-map').on('click', function () {

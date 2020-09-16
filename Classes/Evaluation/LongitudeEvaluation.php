@@ -24,7 +24,7 @@ class LongitudeEvaluation
      */
     public function returnFieldJS()
     {
-        // Nice to have: add javascript-code for evalution on blur
+        // Nice to have: add javascript-code for evaluation on blur
         return '
       return value;
     ';
@@ -32,7 +32,7 @@ class LongitudeEvaluation
 
     /**
      * Server-side validation/evaluation on saving the record
-     * Tests if latutide is between -90 and +90, fills up with zeros to mach decimal (14,12) in database
+     * Tests if latitude is between -90 and +90, fills up with zeros to mach decimal (14,12) in database
      *
      * @param string $value The field value to be evaluated
      * @return string Evaluated field value
@@ -40,10 +40,10 @@ class LongitudeEvaluation
     public function evaluateFieldValue($value)
     {
         // test if we have any longitude
-        if ($value && $value != '') {
-            $value = EvalcoordinatesUtility::formatLongitude($value);
+        if ($value && $value !== '') {
+            return EvalcoordinatesUtility::formatLongitude($value);
         }
-        return $value;
+        return null;
     }
 
     /**

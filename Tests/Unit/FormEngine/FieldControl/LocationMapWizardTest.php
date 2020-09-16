@@ -9,7 +9,7 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Unit\Hooks\Tca;
  * LICENSE.txt file that was distributed with this source code.
  */
 use FriendsOfTYPO3\TtAddress\FormEngine\FieldControl\LocationMapWizard;
-use TYPO3\CMS\Lang\LanguageService;
+use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class LocationMapWizardTest extends BaseTestCase
@@ -20,7 +20,7 @@ class LocationMapWizardTest extends BaseTestCase
      */
     public function languageServiceIsReturned()
     {
-        $languageService = new LanguageService();
+        $languageService = $this->getAccessibleMock(LanguageService::class, ['dummy'], [], '', false, false);
         $GLOBALS['LANG'] = $languageService;
 
         $subject = $this->getAccessibleMock(LocationMapWizard::class, ['dummy'], [], '', false);

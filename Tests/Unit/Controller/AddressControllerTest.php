@@ -19,10 +19,15 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Fluid\View\TemplateView;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class AddressControllerTest extends BaseTestCase
 {
+    protected function setUp(): void
+    {
+        $GLOBALS['TSFE'] = $this->getAccessibleMock(TypoScriptFrontendController::class, ['addCacheTags'], [], '', false);
+    }
 
     /**
      * @param $given
@@ -237,9 +242,6 @@ class AddressControllerTest extends BaseTestCase
      */
     public function listActionFillsViewForSingleRecords()
     {
-        $fakeTsfe = new \stdClass();
-        $fakeTsfe->id = 123;
-        $GLOBALS['TSFE'] = $fakeTsfe;
         $settings = [
             'singlePid' => 0,
             'singleRecords' => 1
@@ -328,6 +330,7 @@ class AddressControllerTest extends BaseTestCase
     public function overrideDemandMethodIsCalledIfEnabled()
     {
         $mockedRepository = $this->getAccessibleMock(AddressRepository::class, ['getAddressesByCustomSorting', 'findByDemand'], [], '', false);
+        $mockedRepository->expects($this->any())->method('findByDemand')->willReturn([]);
         $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple'], [], '', false);
         $mockedView->expects($this->once())->method('assignMultiple');
         $subject = $this->getAccessibleMock(AddressController::class, ['overrideDemand', 'createDemandFromSettings'], [], '', false);
@@ -361,7 +364,7 @@ class AddressControllerTest extends BaseTestCase
     {
         $data = [];
 
-        // simple override + skipped field including differnt case
+        // simple override + skipped field including different case
         $demand1In = new Demand();
         $demand1In->setCategories('12,34');
         $demand1In->setSortBy('uid');

@@ -10,7 +10,7 @@ namespace FriendsOfTYPO3\TtAddress\FormEngine\FieldControl;
  * LICENSE.txt file that was distributed with this source code.
  */
 use TYPO3\CMS\Backend\Form\AbstractNode;
-use TYPO3\CMS\Lang\LanguageService;
+use TYPO3\CMS\Core\Localization\LanguageService;
 
 /**
  * Adds a wizard for location selection via map
@@ -38,14 +38,14 @@ class LocationMapWizard extends AbstractNode
 
         if ($row['latitude'] || $row['longitude'] == '') {
             // remove all after first slash in address (top, floor ...)
-            $address = preg_replace('/^([^\/]*).*$/', '$1', $row['address']) . ' ';
-            $address .= $row['city'];
+            $address = preg_replace('/^([^\/]*).*$/', '$1', $row['address'] ?? '') . ' ';
+            $address .= $row['city'] ?? '';
             // if we have at least some address part (saves geocoding calls)
             if ($address) {
                 // base url
                 $geoCodeUrlBase = 'https://nominatim.openstreetmap.org/search/';
                 $geoCodeUrlAddress = $address;
-                $geoCodeUrlCityOnly = $row['city'];
+                $geoCodeUrlCityOnly = ($row['city'] ?? '');
                 // urlparams for nominatim which are fixed.
                 $geoCodeUrlQuery = '?format=json&addressdetails=1&limit=1&polygon_svg=1';
                 // replace newlines with spaces; remove multiple spaces

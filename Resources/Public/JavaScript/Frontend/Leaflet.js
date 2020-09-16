@@ -15,9 +15,9 @@ function ttAddressLeaflet() {
             id: 'mapbox.streets'
         }).addTo(obj.map);
 
-        var records = document.getElementById("ttaddress__records");
-        for (var i = 0; i < records.childNodes.length; i++) {
-            var item = records.childNodes[i];
+        var records = document.getElementById("ttaddress__records").children;
+        for (var i = 0; i < records.length; i++) {
+            var item = records[i];
 
             var marker = L.marker([item.getAttribute('data-lat'), item.getAttribute('data-lng')]).addTo(obj.map)
                 .bindPopup(document.getElementById('ttaddress__record-' + item.getAttribute('data-id')).innerHTML);
@@ -35,7 +35,7 @@ function ttAddressLeaflet() {
     return obj;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+function ttAddressOnload() {
     var ttAddressMapInstance = ttAddressLeaflet();
     ttAddressMapInstance.run();
 
@@ -47,5 +47,16 @@ document.addEventListener("DOMContentLoaded", function () {
         var element = event.target;
         ttAddressMapInstance.openMarker(parseInt(element.getAttribute('data-iteration-id')));
     }, false);
+}
 
-});
+/** event listener on DOMContentLoaded does not work with scripts which are loaded async.
+  * With TYPO3 this could e.g. happen with EXT:scriptmerger
+  * Thus we listen only if document.readyState is loading, otherwise we can already fire as DOM is loaded already.
+ **/
+if (document.readyState === 'loading') {
+    document.addEventListener("DOMContentLoaded", function () {
+        ttAddressOnload();
+    });
+} else {
+    ttAddressOnload();
+}

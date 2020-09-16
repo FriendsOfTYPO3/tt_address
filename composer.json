@@ -16,19 +16,14 @@
   ],
   "license": "GPL-2.0-or-later",
   "require": {
-    "typo3/cms-core": "^8.7 || ^9.5",
-    "php": ">=7.0"
+    "typo3/cms-core": "^9.5.20 || ^10.4.6",
+    "php": ">=7.2"
   },
   "extra": {
     "typo3/cms": {
       "extension-key": "tt_address",
       "app-dir": ".Build",
       "web-dir": ".Build/Web"
-    },
-    "typo3/class-alias-loader": {
-      "class-alias-maps": [
-        "Migrations/Code/ClassAliasMap.php"
-      ]
     }
   },
   "autoload": {
@@ -42,7 +37,6 @@
     }
   },
   "replace": {
-    "tt_address": "self.version",
     "typo3-ter/tt-address": "self.version"
   },
   "require-dev": {

@@ -34,7 +34,7 @@
 <f:section name="content">
     <f:if condition="{address.description}">
         <div class="description" itemprop="description">
-            {address.description -> f:format.nl2br()}
+            {address.description -> f:format.html()}
         </div>
     </f:if>
 
@@ -59,7 +59,7 @@
     <f:render section="contact" partial="Address" arguments="{_all}"/>
     <f:render section="social" partial="Address" arguments="{_all}"/>
 
-    <f:if condition="{address.image -> f:count() > 1}">
+    <f:if condition="{address.image -> f:count()} > 1">
         <div class="address-image-rows">
             <div class="row">
                 <f:for each="{address.image}" as="img" iteration="iterator">

@@ -1,0 +1,66 @@
+4.3.0 - 2019-04-25
+==================
+
+.. include:: ../../../Includes.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Features
+--------
+The following features have been added to tt_address.
+
+RTE for description
+^^^^^^^^^^^^^^^^^^^
+The description field is now rendered using an RTE.
+
+Method to get raw query
+^^^^^^^^^^^^^^^^^^^^^^^
+A new method `\FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository::getSqlQuery`
+has been added which can be used to retrieve the raw database query which could be used for further calls.
+Example
+
+.. code-block:: php
+
+        $demand = new Demand();
+        $demand->setPages(['1', '2']);
+        $sql = $this->addressRepository->getSqlQuery($demand);
+
+
+Important changes
+-----------------
+
+The default rendering option for maps has been changed to `leaflet`.
+
+Thanks to
+---------
+
+Thanks to all all contributors, especially to
+- Ralf Tönjes
+- Christoph Lehmann
+- Georg Ringer
+
+and also thanks to *Studio Mitte Digital Media Gmbh* (https://studiomitte.com/) for sponsoring work time and supporting this project!
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2019-04-24  fixed wrong language variables for gender various (#216) (Commit c73de2e by Ralf Tönjes)
+   2019-04-24 set default rendering to leaflet as described in the documents (#213) (Commit 67298af by Ralf Tönjes)
+   2019-04-12 [BUGFIX] Move typecast (Commit 4c2213d by Georg Ringer)
+   2019-04-11 [TASK] Add type and eval to tstamp & crdate fields (Commit 2f883e3 by Georg Ringer)
+   2019-04-11 [TASK] Change birthday field to bigint (Commit b284722 by Georg Ringer)
+   2019-04-04 [FEATURE] Provide raw query option (#205) (Commit 79be032 by Georg Ringer)
+   2019-04-04 [FEATURE] Cache invalidation for address records (#207) (Commit 296d2df by Christoph Lehmann)
+   2019-04-01 [TASK] Enable RTE for description field (Commit 9db05d7 by Georg Ringer)
+   2019-03-28 [BUGFIX] Add type cast to array to avoid errors (Commit 6c0c7e2 by Georg Ringer)
+   2019-03-22 [DOC] Describe usage of extender for tt_address (Commit 450317e by Georg Ringer)
+   2019-03-22 [BUGFIX] Provide missing labels for flexform sorting (Commit 54ddf48 by Georg Ringer)
+
+
+This list has been created by using `git log 4.2.0..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

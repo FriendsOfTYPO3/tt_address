@@ -20,7 +20,7 @@ class AddressTest extends BaseTestCase
     /** @var Address */
     protected $subject;
 
-    public function setup()
+    public function setup(): void
     {
         $this->subject = new Address();
     }
@@ -204,6 +204,16 @@ class AddressTest extends BaseTestCase
             'linkWithAdditionalAttributes' => ['https://typo3.com _blank', 'https://typo3.com'],
             'linkWithAdditionalAttributes2' => ['https://typo3.com _blank TYPO3', 'https://typo3.com'],
         ];
+    }
+
+    /**
+     * @test
+     */
+    public function slugCanBeSet()
+    {
+        $value = '/testaddress/';
+        $this->subject->setSlug($value);
+        $this->assertEquals($value, $this->subject->getSlug());
     }
 
     /**

@@ -9,7 +9,7 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Unit\Hooks\Tca;
  * LICENSE.txt file that was distributed with this source code.
  */
 use FriendsOfTYPO3\TtAddress\Hooks\Tca\AddFieldsToSelector;
-use TYPO3\CMS\Lang\LanguageService;
+use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class AddFieldsToSelectorTest extends BaseTestCase
@@ -20,7 +20,7 @@ class AddFieldsToSelectorTest extends BaseTestCase
      */
     public function constructorIsCalled()
     {
-        $languageService = new LanguageService();
+        $languageService = $this->getAccessibleMock(LanguageService::class, ['dummy'], [], '', false, false);
         $GLOBALS['LANG'] = $languageService;
 
         $subject = $this->getAccessibleMock(AddFieldsToSelector::class, ['dummy'], [], '', true);
@@ -63,13 +63,14 @@ class AddFieldsToSelectorTest extends BaseTestCase
                 ['label_last_name', 'last_name'],
                 ['label_middle_name', 'middle_name'],
                 ['label_mobile', 'mobile'],
+                ['label_name', 'name'],
                 ['label_phone', 'phone'],
                 ['label_region', 'region'],
                 ['label_room', 'room'],
                 ['label_title', 'title'],
                 ['label_www', 'www'],
                 ['label_zip', 'zip'],
-                ['LLL:EXT:tt_address/Resources/Private/Language/locallang_pi1.xlf:pi1_flexform.sortBy.singleSelection', 'singleSelection'],
+                ['LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortBy.singleSelection', 'singleSelection'],
             ]
         ];
 

@@ -12,6 +12,18 @@
 Installation
 ============
 
++----------+-----+-----+-----+
+|          | 5.x | 4.x | 3.x |
++==========+=====+=====+=====+
+| TYPO3 10 | yes | no  | no  |
++----------+-----+-----+-----+
+| TYPO3 9  | yes | yes | no  |
++----------+-----+-----+-----+
+| TYPO3 8  | no  | yes | yes |
++----------+-----+-----+-----+
+| TYPO3 7  | no  | no  | yes |
++----------+-----+-----+-----+
+
 The extension needs to be installed as any other extension of TYPO3 CMS:
 
 #. Get the extension

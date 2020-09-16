@@ -82,7 +82,7 @@
             <source>Number of items to be displayed (listview)</source>
         </trans-unit>
         <trans-unit id="pi1_flexform.singlePid" xml:space="preserve">
-            <source>Page for singelview</source>
+            <source>Page for single view</source>
         </trans-unit>
     </body>
     </file>

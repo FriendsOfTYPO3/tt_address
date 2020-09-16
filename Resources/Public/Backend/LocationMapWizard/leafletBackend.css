@@ -5,7 +5,7 @@
     top: 6vh;
     left: 10vw;
     opacity: 0;
-    box-shadow: 0px 2px 15px #000000;
+    box-shadow: 0 2px 15px #000;
     transition: opacity 1500ms;
     z-index: -1;
 }
@@ -18,7 +18,7 @@
 .t3js-location-map-container {
     width: 100%;
     height: calc(100% - 40px);
-    border: 1px solid #CCCCCC;
+    border: 1px solid #CCC;
 }
 
 .t3js-location-map-title>div.btn-group {

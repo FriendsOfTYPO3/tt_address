@@ -3,18 +3,8 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2017-04-04T12:30:37Z" product-name="tt_address" target-language="fr">
     <header/>
     <body>
-      <trans-unit id="pi1_title" xml:space="preserve" approved="yes">
-				<source>Addresses</source>
-			<target state="final">Adresses</target></trans-unit>
-      <trans-unit id="pi1_plus_wiz_description" xml:space="preserve" approved="yes">
-				<source>Displays one or more addresses.</source>
-			<target state="final">Affiche une ou plusieurs adresses.</target></trans-unit>
-      <trans-unit id="extbase_title" xml:space="preserve" approved="yes">
-        <source>Addresses (Fluid/Extbase)</source>
-      <target state="final">Adresses (Fluid/Extbase)</target></trans-unit>
-      <trans-unit id="extbase_description" xml:space="preserve" approved="yes">
-        <source>Displays one or more addresses with Fluid and Extbase.</source>
-      <target state="final">Affiche une ou plusieurs adresses avec Fluid et Extbase.</target></trans-unit>
-    </body>
+		
+		
+		</body>
   </file>
 </xliff>

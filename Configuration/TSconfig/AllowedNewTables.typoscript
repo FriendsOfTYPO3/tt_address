@@ -1,0 +1,1 @@
+mod.web_list.allowedNewTables := addToList(tt_address)

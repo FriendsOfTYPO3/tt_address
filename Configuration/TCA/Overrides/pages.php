@@ -11,3 +11,8 @@ $GLOBALS['TCA']['pages']['columns']['module']['config']['items'][] = [
 $GLOBALS['TCA']['pages']['ctrl']['typeicon_classes']['contains-tt-address'] = 'apps-pagetree-folder-contains-tt-address';
 $GLOBALS['TCA']['pages']['ctrl']['typeicon_classes']['contains-tt_address'] = 'apps-pagetree-folder-contains-tt-address';
 $GLOBALS['TCA']['pages']['ctrl']['typeicon_classes']['contains-ttaddress'] = 'apps-pagetree-folder-contains-tt-address';
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerPageTSConfigFile(
+    'tt_address',
+    'Configuration/TSconfig/AllowedNewTables.typoscript',
+    'EXT:tt_address :: Restrict pages to tt_address records');

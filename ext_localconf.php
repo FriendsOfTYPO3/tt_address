@@ -68,3 +68,9 @@ foreach ($icons as $identifier => $path) {
         }
     }
 '));
+
+// Plugin Preview
+
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem']['tt_address']
+    = \FriendsOfTYPO3\TtAddress\Hooks\PageLayoutViewHook::class;
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('mod.web_layout.tt_content.preview.list.ttaddress_listview = EXT:tt_address/Resources/Private/Templates/Backend/PluginPreview.html');

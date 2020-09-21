@@ -1,0 +1,95 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:variable name="flex">{pi_flexform_transformed.settings}</f:variable>
+<table class="table table-condensed table-triped">
+    <thead>
+    <tr>
+        <td colspan="2"><strong>{f:translate(key:'LLL:EXT:tt_address/Resources/Private/Language/db/locallang.xlf:extbase_title')}</strong>
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+    <f:if condition="{flex.displayMode}">
+        <tr>
+            <th>{f:translate(key:'{_extended.lll}pi1_flexform.displayMode')}</th>
+            <td>
+                <f:switch expression="{flex.displayMode}">
+                    <f:case value="list">{f:translate(key:'{_extended.lll}pi1_flexform.displayMode.listView')}</f:case>
+                    <f:case value="single">{f:translate(key:'{_extended.lll}pi1_flexform.displayMode.singleView')}
+                    </f:case>
+                    <f:case value="map">{f:translate(key:'{_extended.lll}pi1_flexform.displayMode.map')}</f:case>
+                    <f:defaultCase>{flex.displayMode}</f:defaultCase>
+                </f:switch>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{_extended.singleRecords}">
+        <tr>
+            <th>{f:translate(key:'{_extended.lll}pi1_flexform.single_records')}</th>
+            <td>
+                <f:for each="{_extended.singleRecords}" as="row">
+                    <f:render section="rowElement" arguments="{table:'tt_address', row:row}"/>
+                </f:for>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{_extended.pages}">
+        <tr>
+            <th>{f:translate(key:'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.startingpoint')}
+            </th>
+            <td>
+                <f:for each="{_extended.pages}" as="row">
+                    <f:render section="rowElement" arguments="{table:'pages', row:row}"/>
+                </f:for>
+                <f:if condition="{flex.recursive}">
+                    {f:translate(key:'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.recursive')}:
+                    {f:translate(key:'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.{flex.recursive}')}
+                </f:if>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{_extended.singlePid}">
+        <tr>
+            <th>{f:translate(key:'{_extended.lll}pi1_flexform.singlePid')}</th>
+            <td>
+                <f:render section="rowElement" arguments="{table:'pages', row:_extended.singlePid}"/>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{_extended.groups}">
+        <tr>
+            <th>{f:translate(key:'{_extended.lll}pi1_flexform.group_selection')}</th>
+            <td>
+                <f:for each="{_extended.groups}" as="row">
+                    <f:render section="rowElement" arguments="{table:'sys_category', row:row}"/>
+                </f:for>
+                <hr style="margin:1px"/>
+                <f:if condition="{flex.includeSubcategories}">
+                    <core:icon identifier="actions-check" size="small"/>
+                    {f:translate(key:'{_extended.lll}pi1_flexform.includeSubcategories')}<br>
+                </f:if>
+                <core:icon identifier="actions-viewmode-photos" size="small"/>
+                {f:translate(key:'{_extended.lll}pi1_flexform.combination')}:
+                <f:if condition="{flex.groupsCombination}">
+                    <f:then>
+                        {f:translate(key:'{_extended.lll}pi1_flexform.combination.or')}<br>
+                    </f:then>
+                    <f:else>
+                        {f:translate(key:'{_extended.lll}pi1_flexform.combination.and')}<br>
+                    </f:else>
+                </f:if>
+            </td>
+        </tr>
+    </f:if>
+    </tbody>
+</table>
+
+<f:section name="rowElement">
+    <a href="#" class="t3js-contextmenutrigger" data-table="{table}" data-uid="{row.uid}" title="id={row.uid}">
+        <core:iconForRecord row="{row}" table="{table}"/>
+    </a>
+    {row._computed.title}<br>
+</f:section>
+</html>

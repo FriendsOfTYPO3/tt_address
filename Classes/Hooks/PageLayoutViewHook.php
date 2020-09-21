@@ -90,5 +90,4 @@ class PageLayoutViewHook implements PageLayoutViewDrawItemHookInterface
         }
         return $settings;
     }
-
 }

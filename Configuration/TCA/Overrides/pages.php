@@ -15,4 +15,5 @@ $GLOBALS['TCA']['pages']['ctrl']['typeicon_classes']['contains-ttaddress'] = 'ap
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerPageTSConfigFile(
     'tt_address',
     'Configuration/TSconfig/AllowedNewTables.typoscript',
-    'EXT:tt_address :: Restrict pages to tt_address records');
+    'EXT:tt_address :: Restrict pages to tt_address records'
+);

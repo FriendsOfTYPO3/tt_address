@@ -1,0 +1,95 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:variable name="flex">{pi_flexform_transformed.settings}</f:variable>
+<table class="table table-condensed table-triped">
+    <thead>
+    <tr>
+        <td colspan="2"><strong>{f:translate(key:'LLL:EXT:tt_address/Resources/Private/Language/db/locallang.xlf:extbase_title')}</strong>
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+    <f:if condition="{flex.displayMode}">
+        <tr>
+            <th>{f:translate(key:'{_computed.lll}displayMode')}</th>
+            <td>
+                <f:switch expression="{flex.displayMode}">
+                    <f:case value="list">{f:translate(key:'{_computed.lll}displayMode.listView')}</f:case>
+                    <f:case value="single">{f:translate(key:'{_computed.lll}displayMode.singleView')}
+                    </f:case>
+                    <f:case value="map">{f:translate(key:'{_computed.lll}displayMode.map')}</f:case>
+                    <f:defaultCase>{flex.displayMode}</f:defaultCase>
+                </f:switch>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{_computed.singleRecords}">
+        <tr>
+            <th>{f:translate(key:'{_computed.lll}single_records')}</th>
+            <td>
+                <f:for each="{_computed.singleRecords}" as="row">
+                    <f:render section="rowElement" arguments="{table:'tt_address', row:row}"/>
+                </f:for>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{_computed.pages}">
+        <tr>
+            <th>{f:translate(key:'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.startingpoint')}
+            </th>
+            <td>
+                <f:for each="{_computed.pages}" as="row">
+                    <f:render section="rowElement" arguments="{table:'pages', row:row}"/>
+                </f:for>
+                <f:if condition="{flex.recursive}">
+                    {f:translate(key:'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.recursive')}:
+                    {f:translate(key:'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.{flex.recursive}')}
+                </f:if>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{_computed.singlePid}">
+        <tr>
+            <th>{f:translate(key:'{_computed.lll}singlePid')}</th>
+            <td>
+                <f:render section="rowElement" arguments="{table:'pages', row:_computed.singlePid}"/>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{_computed.groups}">
+        <tr>
+            <th>{f:translate(key:'{_computed.lll}group_selection')}</th>
+            <td>
+                <f:for each="{_computed.groups}" as="row">
+                    <f:render section="rowElement" arguments="{table:'sys_category', row:row}"/>
+                </f:for>
+                <hr style="margin:5px"/>
+                {f:translate(key:'{_computed.lll}combination')}:
+                <f:if condition="{flex.groupsCombination}">
+                    <f:then>
+                        {f:translate(key:'{_computed.lll}combination.or')}
+                    </f:then>
+                    <f:else>
+                        {f:translate(key:'{_computed.lll}combination.and')}
+                    </f:else>
+                </f:if>
+                <br>
+                <f:if condition="{flex.includeSubcategories}">
+                    <core:icon identifier="actions-check" size="small"/>
+                    {f:translate(key:'{_computed.lll}includeSubcategories')}
+                </f:if>
+            </td>
+        </tr>
+    </f:if>
+    </tbody>
+</table>
+
+<f:section name="rowElement">
+    <a href="#" class="t3js-contextmenutrigger" data-table="{table}" data-uid="{row.uid}" title="id={row.uid}">
+        <core:iconForRecord row="{row}" table="{table}"/>
+    </a>
+    {row._computed.title}<br>
+</f:section>
+</html>

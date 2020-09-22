@@ -91,7 +91,8 @@
             </T3FlexForms>
            ]]>
         </pi_flexform>
-    </tt_content>    <tt_content>
+    </tt_content>
+    <tt_content>
         <uid>3</uid>
         <pid>1</pid>
         <list_type>tt_address_pi1</list_type>
@@ -102,6 +103,71 @@
                 <data>
                 </data>
             </T3FlexForms>
+           ]]>
+        </pi_flexform>
+    </tt_content>
+    <tt_content>
+        <uid>4</uid>
+        <pid>1</pid>
+        <CType>list</CType>
+        <list_type>ttaddress_listview</list_type>
+        <pi_flexform>
+            <![CDATA[
+            <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3FlexForms>
+    <data>
+        <sheet index="sDEF">
+            <language index="lDEF">
+                <field index="settings.singleRecords">
+                    <value index="vDEF">2,1</value>
+                </field>
+                <field index="settings.groups">
+                    <value index="vDEF">1,2</value>
+                </field>
+                <field index="settings.includeSubcategories">
+                    <value index="vDEF">1</value>
+                </field>
+                <field index="settings.groupsCombination">
+                    <value index="vDEF">1</value>
+                </field>
+                <field index="settings.sortBy">
+                    <value index="vDEF">singleSelection</value>
+                </field>
+                <field index="settings.sortOrder">
+                    <value index="vDEF">ASC</value>
+                </field>
+                <field index="settings.pages">
+                    <value index="vDEF">7</value>
+                </field>
+                <field index="settings.recursive">
+                    <value index="vDEF">3</value>
+                </field>
+                <field index="settings.ignoreWithoutCoordinates">
+                    <value index="vDEF">1</value>
+                </field>
+                <field index="settings.allowOverride">
+                    <value index="vDEF">1</value>
+                </field>
+            </language>
+        </sheet>
+        <sheet index="sDISPLAY">
+            <language index="lDEF">
+                <field index="settings.displayMode">
+                    <value index="vDEF">list</value>
+                </field>
+                <field index="settings.hidePagination">
+                    <value index="vDEF">1</value>
+                </field>
+                <field index="settings.paginate.itemsPerPage">
+                    <value index="vDEF">10</value>
+                </field>
+                <field index="settings.singlePid">
+                    <value index="vDEF">9</value>
+                </field>
+            </language>
+        </sheet>
+    </data>
+</T3FlexForms>
            ]]>
         </pi_flexform>
     </tt_content>

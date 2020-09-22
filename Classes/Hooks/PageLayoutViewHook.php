@@ -49,13 +49,13 @@ class PageLayoutViewHook implements PageLayoutViewDrawItemHookInterface
                 $records = $this->getRecords($fieldConfiguration['table'], $settings['settings'][$fieldName]);
 
                 if ($fieldConfiguration['multiValue']) {
-                    $row['_extended'][$fieldName] = $records;
+                    $row['_computed'][$fieldName] = $records;
                 } else {
-                    $row['_extended'][$fieldName] = $records[0] ?: [];
+                    $row['_computed'][$fieldName] = $records[0] ?: [];
                 }
             }
         }
-        $row['_extended']['lll'] = 'LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:';
+        $row['_computed']['lll'] = 'LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:';
         return $row;
     }
 

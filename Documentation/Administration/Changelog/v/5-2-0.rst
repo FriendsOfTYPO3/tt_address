@@ -1,0 +1,78 @@
+5.2.0 - 22th September 2020
+===========================
+
+.. include:: ../../../Includes.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+Important changes
+-----------------
+
+Custom page title provider
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+
+   2020-09-22 [FEATURE] Plugin preview in page module (#302) (Commit ab91dd8 by Georg Ringer)
+   2020-09-22 Merge pull request #305 from jokumer/patch-1 (Commit 15d3239 by Benni Mack)
+   2020-09-22 Fix TCA locallang for field sys_language_uid (Commit ad4ac9e by jokumer)
+   2020-09-21 [FEATURE] Provide filter TsConfig for allowedNewTables (Commit fcdb474 by Georg Ringer)
+   2020-09-19 Merge pull request #271 from Patta/cleanup-plugin-title (Commit 2fdb254 by C. Riccabona)
+   2020-09-19 Merge branch 'master' into cleanup-plugin-title (Commit bc2eb91 by C. Riccabona)
+   2020-09-19 [TASK] Merge pull request #298 from mmunz/map-wizard-inline (Commit e868a9c by C. Riccabona)
+   2020-09-16 Merge branch 'master' into cleanup-plugin-title (Commit 7bebe67 by C. Riccabona)
+   2020-09-16 Merge branch 'master' into map-wizard-inline (Commit c704250 by C. Riccabona)
+   2020-09-09 [BUGFIX] replace displayCondition for slug field (#294) (Commit 4501d1f by devmes)
+   2020-08-26 Merge branch 'map-wizard-inline' of github.com:mmunz/tt_address into map-wizard-inline (Commit ee7e0cf by Manuel Munz)
+   2020-08-26 [TASK] Make LocationMapWizard work with multiple latlon fields and when used in inline relations (Commit a0b63b5 by Manuel Munz)
+   2020-08-26 rework the LocationMapWizard to work with multiple latlon fields and fields in inline relations (Commit d99ad20 by Manuel Munz)
+   2020-08-19 [TASK] Apply fixes from StyleCI (#297) (Commit fd2d4e2 by Georg Ringer)
+   2020-08-19 [TASK] Don't remove layout field for plugin (Commit e65d97b by Georg Ringer)
+   2020-08-18 Merge branch 'master' into cleanup-plugin-title (Commit ee5ec0e by C. Riccabona)
+   2020-08-16 [TASK] Update composer.json to recommended values (Commit 1fb0f8d by C. Riccabona)
+   2020-08-16 Merge pull request #289 from BastianBalthasarBux/master (Commit ae17b13 by C. Riccabona)
+   2020-08-16 Merge branch 'master' into master (Commit ff52db8 by C. Riccabona)
+   2020-08-16 [FIX] Remove editlock (Commit 943039e by Clemens Riccabona)
+   2020-08-16 [TASK] Add fe_group to palette access, resolves #279 (Commit dae2a4a by Clemens Riccabona)
+   2020-08-14 [FIX] Enable risky mode (Commit b36b265 by C. Riccabona)
+   2020-08-14 Merge pull request #286 from BastianBalthasarBux/master (Commit d0591f1 by C. Riccabona)
+   2020-08-14 Merge branch 'master' into master (Commit 105b323 by C. Riccabona)
+   2020-07-31 [BUGFIX] Load map also if scripts are loaded async (Commit 96a8c3e by C. Riccabona)
+   2020-07-27 Merge pull request #283 from BastianBalthasarBux/master (Commit a390fa4 by C. Riccabona)
+   2020-07-27 [TASK] Add test for setter/getter of slug (Commit e7a2057 by C. Riccabona)
+   2020-07-27 [FIX] CGL - remove some whitespaces (Commit 86f76a7 by C. Riccabona)
+   2020-07-27 [TASK] Add getter and setter for slug (Commit 4611cde by C. Riccabona)
+   2020-06-13 Merge branch 'master' into cleanup-plugin-title (Commit 7b6cafe by C. Riccabona)
+   2020-06-11 Merge pull request #278 from BastianBalthasarBux/master (Commit f88affc by ©lemens)
+   2020-05-18 Update EvalcoordinatesUtility.php (Commit b29bd6e by Georg Ringer)
+   2020-05-16 [FIX] eval coordinates test (Commit 4ae8786 by Clemens Riccabona)
+   2020-05-16 [FIX] eval coordinates test (Commit 46c8b1b by Clemens Riccabona)
+   2020-05-16 [FIX] sort order of tested array in unit tests ... (Commit 1afacd9 by Clemens Riccabona)
+   2020-05-16 [FIX] Fix another test (Commit 24e5041 by Clemens Riccabona)
+   2020-05-16 [FIX] Fix two other occurrences of coordinates length tests (Commit defb1c6 by Clemens Riccabona)
+   2020-05-16 [TASK] Adjust tests for evalution of lat and lon due to optimized db sizes of coordinates (Commit ecd6ab3 by Clemens Riccabona)
+   2020-05-16 [TASK] Update composer.json to avoid security message concerning unsecure TYPO3 versions (Commit ebb1644 by Clemens Riccabona)
+   2020-05-16 Merge branch 'master' of https://github.com/FriendsOfTYPO3/tt_address (Commit f1e72b5 by Clemens Riccabona)
+   2020-05-06 [!!!] Set slug eval to unique (Commit e3bcabc by Georg Ringer)
+   2020-05-06 [TASK] Allow sortOrder by combined name field, feature request #261 (Commit 3ace437 by Clemens Riccabona)
+   2020-05-06 [TASK] Re-add css-class btn for map-view singlePid link, remove duplicated title, remove hellip (not useful within buttons) (Commit c322877 by Clemens Riccabona)
+   2020-05-06 [TASK] Include most parts from PR #274, a big thank you for that contribution goes to @colorcube (Commit 39eac8c by Clemens Riccabona)
+   2020-05-06 [TASK][FOLLOWUP] Revert settings.map.singlePid, this will prevent from respecting pre-existing flexform field for mapView (Commit 1b1a7eb by Clemens Riccabona)
+   2020-05-05 Merge branch 'master' of https://github.com/FriendsOfTYPO3/tt_address (Commit b57ec8f by Clemens Riccabona)
+   2020-05-05 [TASK] Add some TS defaults (Commit f156922 by heikohaensge)
+   2020-05-05 Merge branch 'master' into cleanup-plugin-title (Commit d1b6838 by ©lemens)
+   2020-05-05 TCA migrations - add renderType to dateTime fields (#277) (Commit 044f768 by Henri Nathanson)
+   2020-05-05 [FIX][FOLLOWUP] Remove css-class from single view link in bubble (Commit 13edac8 by Clemens Riccabona)
+   2020-05-05 [TASK] Include link to single view in maps bubble if singlePid is set; Thanks to @heikohaensge with PR #235 (Commit 4eda8e0 by Clemens Riccabona)
+   2020-05-04 [TASK] Keep extbase prefix in plugin title and description label identifier to avoid a breaking change (Commit 3036718 by Patrick Lenk)
+   2020-05-04 [TASK] Merge with upstream (Commit ad62aaf by Clemens Riccabona)
+   2020-04-21 [BUGFIX] Fix composer v2.0 compatibility (Commit fbc2157 by Benni Mack)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

@@ -16,6 +16,7 @@ Changelog
    :titlesonly:
    :glob:
 
+   v/5-2-0
    v/5-1-2
    v/5-1-1
    v/5-1-0

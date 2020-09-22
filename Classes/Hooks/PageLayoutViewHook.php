@@ -55,7 +55,7 @@ class PageLayoutViewHook implements PageLayoutViewDrawItemHookInterface
                 }
             }
         }
-        $row['_computed']['lll'] = 'LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:';
+        $row['_computed']['lll'] = 'LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.';
         return $row;
     }
 
@@ -90,5 +90,4 @@ class PageLayoutViewHook implements PageLayoutViewDrawItemHookInterface
         }
         return $settings;
     }
-
 }

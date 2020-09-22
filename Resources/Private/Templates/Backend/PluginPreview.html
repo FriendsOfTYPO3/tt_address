@@ -13,13 +13,13 @@
     <tbody>
     <f:if condition="{flex.displayMode}">
         <tr>
-            <th>{f:translate(key:'{_computed.lll}pi1_flexform.displayMode')}</th>
+            <th>{f:translate(key:'{_computed.lll}displayMode')}</th>
             <td>
                 <f:switch expression="{flex.displayMode}">
-                    <f:case value="list">{f:translate(key:'{_computed.lll}pi1_flexform.displayMode.listView')}</f:case>
-                    <f:case value="single">{f:translate(key:'{_computed.lll}pi1_flexform.displayMode.singleView')}
+                    <f:case value="list">{f:translate(key:'{_computed.lll}displayMode.listView')}</f:case>
+                    <f:case value="single">{f:translate(key:'{_computed.lll}displayMode.singleView')}
                     </f:case>
-                    <f:case value="map">{f:translate(key:'{_computed.lll}pi1_flexform.displayMode.map')}</f:case>
+                    <f:case value="map">{f:translate(key:'{_computed.lll}displayMode.map')}</f:case>
                     <f:defaultCase>{flex.displayMode}</f:defaultCase>
                 </f:switch>
             </td>
@@ -27,7 +27,7 @@
     </f:if>
     <f:if condition="{_computed.singleRecords}">
         <tr>
-            <th>{f:translate(key:'{_computed.lll}pi1_flexform.single_records')}</th>
+            <th>{f:translate(key:'{_computed.lll}single_records')}</th>
             <td>
                 <f:for each="{_computed.singleRecords}" as="row">
                     <f:render section="rowElement" arguments="{table:'tt_address', row:row}"/>
@@ -52,7 +52,7 @@
     </f:if>
     <f:if condition="{_computed.singlePid}">
         <tr>
-            <th>{f:translate(key:'{_computed.lll}pi1_flexform.singlePid')}</th>
+            <th>{f:translate(key:'{_computed.lll}singlePid')}</th>
             <td>
                 <f:render section="rowElement" arguments="{table:'pages', row:_computed.singlePid}"/>
             </td>
@@ -60,25 +60,25 @@
     </f:if>
     <f:if condition="{_computed.groups}">
         <tr>
-            <th>{f:translate(key:'{_computed.lll}pi1_flexform.group_selection')}</th>
+            <th>{f:translate(key:'{_computed.lll}group_selection')}</th>
             <td>
                 <f:for each="{_computed.groups}" as="row">
                     <f:render section="rowElement" arguments="{table:'sys_category', row:row}"/>
                 </f:for>
-                <hr style="margin:1px"/>
-                <f:if condition="{flex.includeSubcategories}">
-                    <core:icon identifier="actions-check" size="small"/>
-                    {f:translate(key:'{_computed.lll}pi1_flexform.includeSubcategories')}<br>
-                </f:if>
-                <core:icon identifier="actions-viewmode-photos" size="small"/>
-                {f:translate(key:'{_computed.lll}pi1_flexform.combination')}:
+                <hr style="margin:5px"/>
+                {f:translate(key:'{_computed.lll}combination')}:
                 <f:if condition="{flex.groupsCombination}">
                     <f:then>
-                        {f:translate(key:'{_computed.lll}pi1_flexform.combination.or')}<br>
+                        {f:translate(key:'{_computed.lll}combination.or')}
                     </f:then>
                     <f:else>
-                        {f:translate(key:'{_computed.lll}pi1_flexform.combination.and')}<br>
+                        {f:translate(key:'{_computed.lll}combination.and')}
                     </f:else>
+                </f:if>
+                <br>
+                <f:if condition="{flex.includeSubcategories}">
+                    <core:icon identifier="actions-check" size="small"/>
+                    {f:translate(key:'{_computed.lll}includeSubcategories')}
                 </f:if>
             </td>
         </tr>

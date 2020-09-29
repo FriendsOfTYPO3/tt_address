@@ -368,7 +368,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 20,
-                'eval' => 'email',
+                'eval' => 'trim,email',
                 'max' => 255,
                 'softref' => 'email',
                 'behaviour' => [

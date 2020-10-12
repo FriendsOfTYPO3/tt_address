@@ -44,12 +44,12 @@ class BackwardsCompatibilityNameFormat
 
                 $newRecord = array_merge($address, $fieldArray);
 
-                $combinedName = trim(sprintf(
+                $combinedName = preg_replace('/\s+/', ' ', trim(sprintf(
                     $this->settings->getBackwardsCompatFormat(),
                     $newRecord['first_name'],
                     $newRecord['middle_name'],
                     $newRecord['last_name']
-                ));
+                )));
 
                 if (!empty($combinedName)) {
                     $fieldArray['name'] = $combinedName;

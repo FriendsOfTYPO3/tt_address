@@ -42,10 +42,12 @@ class GeocodeCommand extends Command
      * Geocode all records
      *
      * @inheritdoc
+     * @return int
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->getGeocodeService($input->getArgument('key'))->calculateCoordinatesForAllRecordsInTable();
+        return 0;
     }
 
     /**

@@ -21,7 +21,7 @@ class TypoScriptTest extends BaseTestCase
     {
         $subject = new TypoScript();
 
-        $previousData = [
+        $flexforms = [
             'default1' => 'value',
             'default_as_array' => [
                 'sub' => 'value sub',
@@ -30,6 +30,7 @@ class TypoScriptTest extends BaseTestCase
                 ]
             ],
             'override_empty' => '',
+            'override_int' => '0',
             'override_not_empty' => 'content_already_here',
             'override_sub' => [
                 'sub_empty' => '',
@@ -40,9 +41,10 @@ class TypoScriptTest extends BaseTestCase
         ];
         $tsData = [
             'settings' => [
-                'overrideFlexformSettingsIfEmpty' => 'override_empty,override_not_existing,override_not_empty,override_sub.sub_empty,override_sub.sub_full,override_sub.sub_notexisting',
+                'overrideFlexformSettingsIfEmpty' => 'override_empty,override_not_existing,override_int_empty,override_not_empty,override_sub.sub_empty,override_sub.sub_full,override_sub.sub_notexisting',
                 'override_empty' => 'a_value',
                 'override_not_empty' => 'new_content',
+                'override_int' => 'int fallback',
                 'override_sub' => [
                     'sub_empty' => 'some_value',
                     'sub_full' => 'sub_value_2',
@@ -59,7 +61,8 @@ class TypoScriptTest extends BaseTestCase
                 ]
             ],
             'override_empty' => 'a_value',
-            'override_not_empty' => 'new_content',
+            'override_not_empty' => 'content_already_here',
+            'override_int' => '0',
             'override_sub' => [
                 'sub_empty' => 'some_value',
                 'sub_full' => 'sub_value',
@@ -67,6 +70,6 @@ class TypoScriptTest extends BaseTestCase
             ]
         ];
 
-        $this->assertEquals($expected, $subject->override($previousData, $tsData));
+        $this->assertEquals($expected, $subject->override($flexforms, $tsData));
     }
 }

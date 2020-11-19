@@ -29,7 +29,7 @@ class LocationMapWizard extends AbstractNode
         $nameLongitude = $paramArray['itemFormElName'];
         $nameLatitude = str_replace('longitude', 'latitude', $nameLongitude);
         $nameLatitudeActive = str_replace('data', 'control[active]', $nameLatitude);
-        $geoCodeUrl = '';
+        $geoCodeUrl = $geoCodeUrlShort = '';
         $gLat = '55.6760968';
         $gLon = '12.5683371';
 

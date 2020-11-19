@@ -18,7 +18,7 @@ class EvalcoordinatesUtility
     const LONGITUDE_UPPER = '180.00000000';
 
     /**
-     * @param $coordinate
+     * @param string $coordinate
      * @return float evaluated and well-formed coordinate
      */
     public static function formatLongitude(string $coordinate)
@@ -27,7 +27,7 @@ class EvalcoordinatesUtility
     }
 
     /**
-     * @param $coordinate
+     * @param string $coordinate
      * @return float evaluated and well-formed coordinate
      */
     public static function formatLatitude(string $coordinate)
@@ -36,7 +36,7 @@ class EvalcoordinatesUtility
     }
 
     /**
-     * @param $coordinate
+     * @param string $coordinate
      * @param string $upperRange
      * @return string
      */

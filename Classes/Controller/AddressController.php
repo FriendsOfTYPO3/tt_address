@@ -3,15 +3,14 @@ declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Controller;
 
-use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
+use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 /**
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 use FriendsOfTYPO3\TtAddress\Seo\AddressTitleProvider;
 use FriendsOfTYPO3\TtAddress\Utility\CacheUtility;
@@ -19,6 +18,7 @@ use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
 use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;

@@ -2,6 +2,8 @@
 
 namespace FriendsOfTYPO3\TtAddress\Controller;
 
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 /**
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
@@ -24,7 +26,7 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 /**
  * AddressController
  */
-class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class AddressController extends ActionController
 {
 
     /** @var AddressRepository */
@@ -41,7 +43,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * @param \FriendsOfTYPO3\TtAddress\Domain\Model\Address $address
      */
-    public function showAction(\FriendsOfTYPO3\TtAddress\Domain\Model\Address $address = null)
+    public function showAction(Address $address = null)
     {
         if ($address === null) {
             $this->redirectToUri($this->uriBuilder->reset()->setTargetPageUid((int)$GLOBALS['TSFE']->id)->build());

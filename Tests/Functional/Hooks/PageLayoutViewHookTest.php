@@ -19,7 +19,7 @@ class PageLayoutViewHookTest extends FunctionalTestCase
 {
     protected $testExtensionsToLoad = ['typo3conf/ext/tt_address'];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

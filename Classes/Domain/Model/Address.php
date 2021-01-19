@@ -2,6 +2,7 @@
 
 namespace FriendsOfTYPO3\TtAddress\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 /**
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
@@ -17,7 +18,7 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  *
  * @entity
  */
-class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Address extends AbstractEntity
 {
     /**
      * Gender

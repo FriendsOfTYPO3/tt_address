@@ -8,6 +8,7 @@ namespace FriendsOfTYPO3\TtAddress\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
@@ -21,7 +22,7 @@ class StaticGoogleMapsViewHelper extends AbstractViewHelper
     /**
      * Initialize arguments
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('addresses', 'mixed', 'Addresses', true);
         $this->registerArgument('parameters', 'array', 'Parameters', true);
@@ -46,6 +47,6 @@ class StaticGoogleMapsViewHelper extends AbstractViewHelper
             $mapArguments['zoom'] = 13;
         }
 
-        return 'http://maps.googleapis.com/maps/api/staticmap?' . GeneralUtility::implodeArrayForUrl('', $mapArguments, '', true) . implode('', $markers);
+        return 'https://maps.googleapis.com/maps/api/staticmap?' . GeneralUtility::implodeArrayForUrl('', $mapArguments, '', true) . implode('', $markers);
     }
 }

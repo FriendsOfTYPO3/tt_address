@@ -18,7 +18,7 @@ class GeocodeServiceTest extends FunctionalTestCase
 
     protected $coreExtensionsToLoad = ['fluid', 'extensionmanager'];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Service;
 
+use TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException;
 /**
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
@@ -176,7 +177,7 @@ class GeocodeService implements SingletonInterface
         try {
             $cacheManager = GeneralUtility::makeInstance(CacheManager::class);
             return $cacheManager->getCache($name);
-        } catch (\TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException $e) {
+        } catch (NoSuchCacheException $e) {
             throw new \RuntimeException('Unable to load Cache!', 1548785854);
         }
     }

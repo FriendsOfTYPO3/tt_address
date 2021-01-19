@@ -1,9 +1,5 @@
 <?php
 
-$version9 = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('9.3');
-
-$generalLanguageFilePrefix = $version9 ? 'LLL:EXT:core/Resources/Private/Language/' : 'LLL:EXT:lang/Resources/Private/Language/';
-
 return [
     'ctrl' => [
         'label' => 'name',
@@ -16,7 +12,7 @@ return [
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
-        'prependAtCopy' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.prependAtCopy',
+        'prependAtCopy' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.prependAtCopy',
         'delete' => 'deleted',
         'title' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address',
         'versioningWS' => true,
@@ -65,7 +61,7 @@ return [
         ],
         'hidden' => [
             'exclude' => true,
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.hidden',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check'
             ]
@@ -127,14 +123,14 @@ return [
         ],
         'sys_language_uid' => [
             'exclude' => true,
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.language',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'special' => 'languages',
                 'items' => [
                     [
-                        $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.allLanguages',
+                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
                         -1,
                         'flags-multiple'
                     ],
@@ -144,7 +140,7 @@ return [
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.l18n_parent',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -178,7 +174,7 @@ return [
         ],
         'title' => [
             'exclude' => true,
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.title_person',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.title_person',
             'config' => [
                 'type' => 'input',
                 'size' => 8,
@@ -209,7 +205,7 @@ return [
             ]
         ],
         'name' => [
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.name',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.name',
             'config' => [
                 'type' => 'input',
                 'size' => 40,
@@ -265,7 +261,7 @@ return [
             ]
         ],
         'address' => [
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.address',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.address',
             'config' => [
                 'type' => 'text',
                 'cols' => 20,
@@ -302,7 +298,7 @@ return [
             ]
         ],
         'phone' => [
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.phone',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.phone',
             'config' => [
                 'type' => 'input',
                 'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class,
@@ -315,7 +311,7 @@ return [
         ],
         'fax' => [
             'exclude' => true,
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.fax',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.fax',
             'config' => [
                 'type' => 'input',
                 'size' => 20,
@@ -341,7 +337,7 @@ return [
         ],
         'www' => [
             'exclude' => true,
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.www',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.www',
             'config' => [
                 'type' => 'input',
                 'renderType' => 'inputLink',
@@ -362,7 +358,7 @@ return [
             ],
         ],
         'email' => [
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.email',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.email',
             'config' => [
                 'type' => 'input',
                 'size' => 20,
@@ -457,7 +453,7 @@ return [
             ]
         ],
         'city' => [
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.city',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.city',
             'config' => [
                 'type' => 'input',
                 'size' => 20,
@@ -469,7 +465,7 @@ return [
             ]
         ],
         'zip' => [
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.zip',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.zip',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -495,7 +491,7 @@ return [
         ],
         'country' => [
             'exclude' => true,
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.country',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.country',
             'config' => [
                 'type' => 'input',
                 'size' => 20,
@@ -508,7 +504,7 @@ return [
         ],
         'image' => [
             'exclude' => true,
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.image',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.image',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'image',
                 [
@@ -525,32 +521,32 @@ return [
                         'types' => [
                             '0' => [
                                 'showitem' => '
-                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;' . 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
                                     --palette--;;filePalette'
                             ],
                             \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
                                 'showitem' => '
-                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;' . 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
                                     --palette--;;filePalette'
                             ],
                             \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
                                 'showitem' => '
-                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;' . 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
                                     --palette--;;filePalette'
                             ],
                             \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
                                 'showitem' => '
-                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;' . 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
                                     --palette--;;filePalette'
                             ],
                             \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
                                 'showitem' => '
-                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;' . 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
                                     --palette--;;filePalette'
                             ],
                             \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
                                 'showitem' => '
-                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;' . 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
                                     --palette--;;filePalette'
                             ],
                         ],
@@ -561,7 +557,7 @@ return [
         ],
         'description' => [
             'exclude' => true,
-            'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.description',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.description',
             'config' => [
                 'type' => 'text',
                 'rows' => 5,
@@ -576,7 +572,7 @@ return [
         ],
         'categories' => [
             'exclude' => true,
-            'label' => $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_category.categories',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_category.categories',
             'config' => \TYPO3\CMS\Core\Category\CategoryRegistry::getTcaFieldConfiguration('tt_address')
         ],
         'latitude' => [
@@ -628,7 +624,7 @@ return [
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                 --palette--;;paletteHidden,
                 --palette--;;paletteAccess,
-            --div--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_category.tabs.category, categories
+            --div--;' . 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_category.tabs.category, categories
             '
         ]
     ],

@@ -70,7 +70,7 @@ class StaticGoogleMapsViewHelperTest extends BaseTestCase
                     ],
                     'addresses' => $addresses1
                 ],
-                'http://maps.googleapis.com/maps/api/staticmap?&key=abcdefgh&size=300x400&zoom=13&markers=1.1,1.2'
+                'https://maps.googleapis.com/maps/api/staticmap?&key=abcdefgh&size=300x400&zoom=13&markers=1.1,1.2'
             ],
             '2 addresses' => [
                 [
@@ -80,7 +80,7 @@ class StaticGoogleMapsViewHelperTest extends BaseTestCase
                     ],
                     'addresses' => $addresses2
                 ],
-                'http://maps.googleapis.com/maps/api/staticmap?&key=abcdefgh&size=300x400&markers=1.1,1.2&markers=2.1,2.2'
+                'https://maps.googleapis.com/maps/api/staticmap?&key=abcdefgh&size=300x400&markers=1.1,1.2&markers=2.1,2.2'
             ]
         ];
     }

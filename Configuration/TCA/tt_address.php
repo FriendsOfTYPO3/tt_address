@@ -27,9 +27,6 @@ return [
         'iconfile' => 'EXT:tt_address/Resources/Public/Icons/tt_address.svg',
         'searchFields' => 'name, first_name, middle_name, last_name, email',
     ],
-    'interface' => [
-        'showRecordFieldList' => 'first_name,middle_name,last_name,name,slug,address,building,room,city,zip,region,country,phone,fax,email,www,title,company,image'
-    ],
     'columns' => [
         'pid' => [
             'label' => 'pid',

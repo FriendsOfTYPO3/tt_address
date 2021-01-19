@@ -81,4 +81,4 @@ jobs:
           .Build/bin/phpunit --colors -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/FunctionalTests.xml Tests/Functional
 
       - name: Reset composer.json
-          run: git checkout composer.json;
+        run: git checkout composer.json;

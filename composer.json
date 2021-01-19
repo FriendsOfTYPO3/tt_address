@@ -1,54 +1,54 @@
 {
-  "name": "friendsoftypo3/tt-address",
-  "type": "typo3-cms-extension",
-  "description": "Displays a list of addresses from an address table on the page.",
-  "keywords": [
-    "TYPO3",
-    "extension",
-    "addresses"
-  ],
-  "homepage": "https://github.com/FriendsOfTYPO3/tt_address",
-  "authors": [
-    {
-      "name": "tt_address Development Team",
-      "role": "Developer"
-    }
-  ],
-  "license": "GPL-2.0-or-later",
-  "require": {
-    "typo3/cms-core": "^10.4.6 || 11.0",
-    "php": ">=7.2"
-  },
-  "extra": {
-    "typo3/cms": {
-      "extension-key": "tt_address",
-      "app-dir": ".Build",
-      "web-dir": ".Build/Web"
-    }
-  },
-  "autoload": {
-    "psr-4": {
-      "FriendsOfTYPO3\\TtAddress\\": "Classes"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "FriendsOfTYPO3\\TtAddress\\Tests\\": "Tests"
-    }
-  },
-  "replace": {
-    "typo3-ter/tt-address": "self.version"
-  },
-  "require-dev": {
-    "php-coveralls/php-coveralls": "^2.1"
-  },
-  "config": {
-    "vendor-dir": ".Build/vendor",
-    "bin-dir": ".Build/bin"
-  },
-  "scripts": {
-    "post-autoload-dump": [
-      "TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
-    ]
-  }
+	"name": "friendsoftypo3/tt-address",
+	"type": "typo3-cms-extension",
+	"description": "Displays a list of addresses from an address table on the page.",
+	"keywords": [
+		"TYPO3",
+		"extension",
+		"addresses"
+	],
+	"homepage": "https://github.com/FriendsOfTYPO3/tt_address",
+	"authors": [
+		{
+			"name": "tt_address Development Team",
+			"role": "Developer"
+		}
+	],
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"typo3/cms-core": "^10.4.6 || 11.0",
+		"php": ">=7.2"
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "tt_address",
+			"app-dir": ".Build",
+			"web-dir": ".Build/public"
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"FriendsOfTYPO3\\TtAddress\\": "Classes"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"FriendsOfTYPO3\\TtAddress\\Tests\\": "Tests"
+		}
+	},
+	"replace": {
+		"typo3-ter/tt-address": "self.version"
+	},
+	"require-dev": {
+		"php-coveralls/php-coveralls": "^2.1"
+	},
+	"config": {
+		"vendor-dir": ".Build/vendor",
+		"bin-dir": ".Build/bin"
+	},
+	"scripts": {
+		"post-autoload-dump": [
+			"TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
+		]
+	}
 }

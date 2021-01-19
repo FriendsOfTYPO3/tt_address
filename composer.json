@@ -40,7 +40,6 @@
 		"typo3-ter/tt-address": "self.version"
 	},
 	"require-dev": {
-		"typo3/testing-framework": "^5",
 		"php-coveralls/php-coveralls": "^2.1"
 	},
 	"config": {

@@ -17,12 +17,13 @@ Install the extension by using composer and `composer req friendsoftypo3/tt-addr
 
 ### Version matrix
 
-|          | 5.x | 4.x | 3.x |
-| -------- | --- | --- | --- |
-| TYPO3 10 | yes | no  | no  |
-| TYPO3 9  | yes | yes | no  |
-| TYPO3 8  | no  | yes | yes |
-| TYPO3 7  | no  | no  | yes |
+|          | 6.x | 5.x | 4.x | 3.x |
+|:---------|:----|:----|:----|:----|
+| TYPO3 11 | yes | yes | no  | no  |
+| TYPO3 10 | yes | yes | no  | no  |
+| TYPO3 9  | no  | yes | yes | no  |
+| TYPO3 8  | no  | no  | yes | yes |
+| TYPO3 7  | no  | no  | no  | yes |
 
 ## Usage
 

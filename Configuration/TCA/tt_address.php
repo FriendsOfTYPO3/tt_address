@@ -1,5 +1,4 @@
 <?php
-$settings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings::class);
 
 $version9 = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger('9.3');
 
@@ -213,7 +212,6 @@ return [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.name',
             'config' => [
                 'type' => 'input',
-                'readOnly' => $settings->isReadOnlyNameField(),
                 'size' => 40,
                 'eval' => 'trim',
                 'max' => 255

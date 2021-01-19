@@ -18,15 +18,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class Settings implements SingletonInterface
 {
     /** @var string */
-    protected $backwardsCompatFormat = '%1$s %3$s';
-
-    /** @var bool */
-    protected $storeBackwardsCompatName = true;
-
-    /** @var bool */
-    protected $readOnlyNameField = true;
-
-    /** @var string */
     protected $telephoneValidationPatternForPhp = '/[^\d\+\s\-]/';
 
     /** @var string */
@@ -39,10 +30,6 @@ class Settings implements SingletonInterface
         $settings = $this->getSettings();
 
         if (!empty($settings)) {
-            $this->backwardsCompatFormat = trim((string)$settings['backwardsCompatFormat']);
-            $this->storeBackwardsCompatName = (bool)$settings['storeBackwardsCompatName'];
-            $this->readOnlyNameField = (bool)$settings['readOnlyNameField'];
-
             if ($settings['telephoneValidationPatternForPhp']) {
                 $this->telephoneValidationPatternForPhp = (string)$settings['telephoneValidationPatternForPhp'];
             }
@@ -50,30 +37,6 @@ class Settings implements SingletonInterface
                 $this->telephoneValidationPatternForJs = (string)$settings['telephoneValidationPatternForJs'];
             }
         }
-    }
-
-    /**
-     * @return string
-     */
-    public function getBackwardsCompatFormat(): string
-    {
-        return $this->backwardsCompatFormat;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isStoreBackwardsCompatName(): bool
-    {
-        return $this->storeBackwardsCompatName;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isReadOnlyNameField(): bool
-    {
-        return $this->readOnlyNameField;
     }
 
     /**

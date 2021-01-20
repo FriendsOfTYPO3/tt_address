@@ -306,7 +306,6 @@ class AddressControllerTest extends BaseTestCase
         $subject->_set('addressRepository', $mockedRepository);
         $subject->_set('extensionConfiguration', $this->getMockedSettings());
 
-
         $subject->listAction();
     }
 
@@ -392,7 +391,8 @@ class AddressControllerTest extends BaseTestCase
         return $data;
     }
 
-    protected function getMockedSettings() {
+    protected function getMockedSettings()
+    {
         $mockedSettings = $this->getAccessibleMock(Settings::class, ['getSettings'], [], '', false);
         $mockedSettings->expects($this->any())->method('getSettings')->willReturn([]);
 

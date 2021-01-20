@@ -88,9 +88,9 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
             $itemsPerPage= $this->settings['paginate']['itemsPerPage'] ?? 10;
             if (is_array($addresses)) {
-                $paginator = new ArrayPaginator($addresses, $currentPage,$itemsPerPage );
-            } elseif($addresses instanceof QueryResultInterface) {
-                $paginator = new QueryResultPaginator($addresses, $currentPage,$itemsPerPage );
+                $paginator = new ArrayPaginator($addresses, $currentPage, $itemsPerPage);
+            } elseif ($addresses instanceof QueryResultInterface) {
+                $paginator = new QueryResultPaginator($addresses, $currentPage, $itemsPerPage);
             } else {
                 throw new \RuntimeException(sprintf('Only array and query result interface allowed for pagination, given "%s"', get_class($addresses)), 1611168593);
             }

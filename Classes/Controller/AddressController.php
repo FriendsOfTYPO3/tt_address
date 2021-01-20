@@ -8,6 +8,7 @@ namespace FriendsOfTYPO3\TtAddress\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
@@ -16,6 +17,7 @@ use FriendsOfTYPO3\TtAddress\Utility\CacheUtility;
 use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
 use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
+use TYPO3\CMS\Core\Pagination\PaginatorInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
@@ -85,15 +87,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         }
 
         if ($this->extensionConfiguration->getNewPagination() && class_exists(SimplePagination::class)) {
-            $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
-            $itemsPerPage= $this->settings['paginate']['itemsPerPage'] ?? 10;
-            if (is_array($addresses)) {
-                $paginator = new ArrayPaginator($addresses, $currentPage,$itemsPerPage );
-            } elseif($addresses instanceof QueryResultInterface) {
-                $paginator = new QueryResultPaginator($addresses, $currentPage,$itemsPerPage );
-            } else {
-                throw new \RuntimeException(sprintf('Only array and query result interface allowed for pagination, given "%s"', get_class($addresses)), 1611168593);
-            }
+            $paginator = $this->getPaginator($addresses);
             $pagination = new SimplePagination($paginator);
             $this->view->assign('newPagination', true);
             $this->view->assign('pagination', [
@@ -255,5 +249,25 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             }
         }
         return $pidList;
+    }
+
+    /**
+     * @param QueryResultInterface|array $addresses
+     * @return ArrayPaginator|QueryResultPaginator
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException
+     */
+    protected function getPaginator($addresses): PaginatorInterface
+    {
+        $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
+        $itemsPerPage = $this->settings['paginate']['itemsPerPage'] ?? 10;
+
+        if (is_array($addresses)) {
+            $paginator = new ArrayPaginator($addresses, $currentPage, $itemsPerPage);
+        } elseif ($addresses instanceof QueryResultInterface) {
+            $paginator = new QueryResultPaginator($addresses, $currentPage, $itemsPerPage);
+        } else {
+            throw new \RuntimeException(sprintf('Only array and query result interface allowed for pagination, given "%s"', get_class($addresses)), 1611168593);
+        }
+        return $paginator;
     }
 }

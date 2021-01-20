@@ -15,7 +15,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Class Settings
  */
-class Settings implements SingletonInterface
+class Settings
 {
     /** @var string */
     protected $backwardsCompatFormat = '%1$s %3$s';

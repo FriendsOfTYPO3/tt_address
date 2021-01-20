@@ -11,8 +11,11 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Controller;
 use FriendsOfTYPO3\TtAddress\Controller\AddressController;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
+use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 use TYPO3\CMS\Core\Database\QueryGenerator;
+use TYPO3\CMS\Core\Package\PackageManager;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
@@ -81,7 +84,11 @@ class AddressControllerTest extends BaseTestCase
      */
     public function initializeActionWorks()
     {
+        $packageManagerProphecy = $this->prophesize(PackageManager::class);
+        GeneralUtility::setSingletonInstance(PackageManager::class, $packageManagerProphecy->reveal());
+
         $subject = $this->getAccessibleMock(AddressController::class, ['dummy'], [], '', false);
+        $subject->_set('extensionConfiguration', $this->getMockedSettings());
         $subject->initializeAction();
 
         $expected = new QueryGenerator();
@@ -265,6 +272,7 @@ class AddressControllerTest extends BaseTestCase
         $subject->_set('settings', $settings);
         $subject->_set('view', $mockedView);
         $subject->_set('addressRepository', $mockedRepository);
+        $subject->_set('extensionConfiguration', $this->getMockedSettings());
 
         $subject->listAction();
     }
@@ -296,6 +304,8 @@ class AddressControllerTest extends BaseTestCase
         $subject->_set('settings', $settings);
         $subject->_set('view', $mockedView);
         $subject->_set('addressRepository', $mockedRepository);
+        $subject->_set('extensionConfiguration', $this->getMockedSettings());
+
 
         $subject->listAction();
     }
@@ -334,6 +344,7 @@ class AddressControllerTest extends BaseTestCase
         $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple'], [], '', false);
         $mockedView->expects($this->once())->method('assignMultiple');
         $subject = $this->getAccessibleMock(AddressController::class, ['overrideDemand', 'createDemandFromSettings'], [], '', false);
+        $subject->_set('extensionConfiguration', $this->getMockedSettings());
         $subject->expects($this->any())->method('overrideDemand');
 
         $demand = new Demand();
@@ -379,5 +390,12 @@ class AddressControllerTest extends BaseTestCase
         $data['ignoreNotExisting'] = [$demand2In, $demand2Out, ['categoriesX' => '56', 'ysortby' => 'title']];
 
         return $data;
+    }
+
+    protected function getMockedSettings() {
+        $mockedSettings = $this->getAccessibleMock(Settings::class, ['getSettings'], [], '', false);
+        $mockedSettings->expects($this->any())->method('getSettings')->willReturn([]);
+
+        return $mockedSettings;
     }
 }

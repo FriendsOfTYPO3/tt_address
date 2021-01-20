@@ -32,6 +32,9 @@ class Settings implements SingletonInterface
     /** @var string */
     protected $telephoneValidationPatternForJs = '/[^\d\+\s\-]/g';
 
+    /** @var bool */
+    protected $newPagination = false;
+
     /**
      */
     public function __construct()
@@ -42,6 +45,7 @@ class Settings implements SingletonInterface
             $this->backwardsCompatFormat = trim((string)$settings['backwardsCompatFormat']);
             $this->storeBackwardsCompatName = (bool)$settings['storeBackwardsCompatName'];
             $this->readOnlyNameField = (bool)$settings['readOnlyNameField'];
+            $this->newPagination = (bool)($settings['newPagination'] ?? false);
 
             if ($settings['telephoneValidationPatternForPhp']) {
                 $this->telephoneValidationPatternForPhp = (string)$settings['telephoneValidationPatternForPhp'];
@@ -90,6 +94,14 @@ class Settings implements SingletonInterface
     public function getTelephoneValidationPatternForJs(): string
     {
         return $this->telephoneValidationPatternForJs;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getNewPagination(): bool
+    {
+        return $this->newPagination;
     }
 
     protected function getSettings(): array

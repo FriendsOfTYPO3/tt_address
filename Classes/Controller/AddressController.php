@@ -84,7 +84,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $addresses = $this->addressRepository->findByDemand($demand);
         }
 
-        if ($this->extensionConfiguration->getNewPagination()) {
+        if ($this->extensionConfiguration->getNewPagination() && class_exists(SimplePagination::class)) {
             $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
             $itemsPerPage= $this->settings['paginate']['itemsPerPage'] ?? 10;
             if (is_array($addresses)) {

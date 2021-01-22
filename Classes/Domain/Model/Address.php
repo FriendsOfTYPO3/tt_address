@@ -24,152 +24,152 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var string
      */
-    protected $gender;
+    protected $gender = '';
 
     /**
      * @var string
      */
-    protected $name;
+    protected $name = '';
 
     /**
      * @var string
      */
-    protected $firstName;
+    protected $firstName = '';
 
     /**
      * @var string
      */
-    protected $middleName;
+    protected $middleName = '';
 
     /**
      * @var string
      */
-    protected $lastName;
+    protected $lastName = '';
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $birthday;
 
     /**
      * @var string
      */
-    protected $title;
+    protected $title = '';
 
     /**
      * @var string
      */
-    protected $address;
+    protected $address = '';
 
     /**
      * @var string
      */
-    protected $latitude;
+    protected $latitude = '';
 
     /**
      * @var string
      */
-    protected $longitude;
+    protected $longitude = '';
 
     /**
      * @var string
      */
-    protected $building;
+    protected $building = '';
 
     /**
      * @var string
      */
-    protected $room;
+    protected $room = '';
 
     /**
      * @var string
      */
-    protected $phone;
+    protected $phone = '';
 
     /**
      * @var string
      */
-    protected $fax;
+    protected $fax = '';
 
     /**
      * @var string
      */
-    protected $mobile;
+    protected $mobile = '';
 
     /**
      * @var string
      */
-    protected $www;
+    protected $www = '';
 
     /**
      * @var string
      */
-    protected $slug;
+    protected $slug = '';
 
     /**
      * @var string
      */
-    protected $skype;
+    protected $skype = '';
 
     /**
      * @var string
      */
-    protected $twitter;
+    protected $twitter = '';
 
     /**
      * @var string
      */
-    protected $facebook;
+    protected $facebook = '';
 
     /**
      * @var string
      */
-    protected $linkedin;
+    protected $linkedin = '';
 
     /**
      * @var string
      */
-    protected $email;
+    protected $email = '';
 
     /**
      * @var string
      */
-    protected $company;
+    protected $company = '';
 
     /**
      * @var string
      */
-    protected $position;
+    protected $position = '';
 
     /**
      * @var string
      */
-    protected $city;
+    protected $city = '';
 
     /**
      * @var string
      */
-    protected $zip;
+    protected $zip = '';
 
     /**
      * @var string
      */
-    protected $region;
+    protected $region = '';
 
     /**
      * @var string
      */
-    protected $country;
+    protected $country = '';
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
      */
-    protected $image = null;
+    protected $image;
 
     /**
      * @var string
      */
-    protected $description;
+    protected $description = '';
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
@@ -179,6 +179,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function __construct()
     {
         $this->image = new ObjectStorage();
+        $this->categories = new ObjectStorage();
     }
 
     public function setGender(string $gender): void

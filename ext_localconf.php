@@ -26,19 +26,29 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1546531781] = [
    'class' => \FriendsOfTYPO3\TtAddress\FormEngine\FieldControl\LocationMapWizard::class
 ];
 
-// Adds the new fluid/extbase-plugin to New Content Element wizard
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:tt_address/Configuration/TSconfig/NewContentElementWizard.typoscript">');
 
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'FriendsOfTYPO3.tt_address',
-    'ListView',
-    [
-        'Address' => 'list,show'
-    ],
-    [
-        'Address' => ''
-    ]
-);
+$majorVersion = (int)(explode('.', TYPO3_branch)[0]);
+if ($majorVersion === 9) {
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'FriendsOfTYPO3.tt_address',
+        'ListView',
+        [
+            'Address' => 'list,show'
+        ],
+        [
+            'Address' => ''
+        ]
+    );
+} else {
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'TtAddress',
+        'ListView',
+        [
+           \FriendsOfTYPO3\TtAddress\Controller\AddressController::class => 'list,show'
+        ],
+    );
+}
 
 // Register evaluations for TCA
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals'][\FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class] = '';

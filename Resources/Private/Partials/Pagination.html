@@ -21,7 +21,7 @@
             </f:comment>
         </f:else>
     </f:if>
-    <f:for each="{pages}" as="page">
+    <f:for each="{pagination.allPageNumbers}" as="page">
         <li class="{f:if(condition: '{page} == {paginator.currentPageNumber}', then:'current')}">
             <a href="{f:uri.action(action:actionName, arguments:{currentPage: page})}">{page}</a>
         </li>

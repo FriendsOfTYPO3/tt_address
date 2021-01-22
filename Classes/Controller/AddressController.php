@@ -93,7 +93,6 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->view->assign('pagination', [
                 'paginator' => $paginator,
                 'pagination' => $pagination,
-                'pages' => range(1, $pagination->getLastPageNumber()),
             ]);
         }
 

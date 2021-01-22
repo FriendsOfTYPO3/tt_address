@@ -24,7 +24,7 @@
         <f:if condition="{address.phone}">
             <li>
                 <i class="fas fa-phone"></i>
-                {f:translate(key:'label.telephone')}: <a href="tel:{address.phone->ttaddr:removeSpaces()}">
+                {f:translate(key:'label.telephone')}: <a href="tel:{address.cleanedPhone}">
                 <span itemprop="telephone">{address.phone}</span>
             </a>
             </li>
@@ -33,7 +33,7 @@
         <f:if condition="{address.mobile}">
             <li>
                 <i class="fas fa-mobile-alt"></i>
-                {f:translate(key:'label.mobile')}: <a href="tel:{address.mobile->ttaddr:removeSpaces()}">
+                {f:translate(key:'label.mobile')}: <a href="tel:{address.cleanedMobile}">
                 <span itemprop="telephone">{address.mobile}</span>
             </a>
             </li>

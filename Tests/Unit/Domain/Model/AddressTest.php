@@ -145,6 +145,22 @@ class AddressTest extends BaseTestCase
         $this->assertEquals($value, $this->subject->getRoom());
     }
 
+    public function telephoneFormatDataProvider()
+    {
+        return [
+            'phone number' => ['0122333', '0122333'],
+            'phone number with spaces' => [' 0 122 333 ', '0122333'],
+            'phone number with dashes' => ['0122-333-4444', '01223334444'],
+            'phone number with slash' => ['0122/333', '0122333'],
+            'phone number with invalid chars' => ['!0"1§2$2%/&3/3(3)', '0122333'],
+            'phone number with allowed special chars' => ['#06*', '#06*'],
+            'phone number with brackets in front' => ['(0)22333', '022333'],
+            'phone number with brackets in middle' => ['+49(0)22333', '+4922333'],
+            'phone number with number in brackets' => ['+49 (122) 333', '+49122333'],
+            'phone number with letters' => ['tel: +49 122 333', '+49122333'],
+        ];
+    }
+
     /**
      * @test
      */
@@ -153,6 +169,20 @@ class AddressTest extends BaseTestCase
         $value = '+43129';
         $this->subject->setPhone($value);
         $this->assertEquals($value, $this->subject->getPhone());
+    }
+
+    /**
+     * @test
+     * @dataProvider telephoneFormatDataProvider
+     */
+    public function phoneWithCleanedChars($number, $expectedNumber)
+    {
+        $this->subject->setPhone($number);
+
+        self::assertSame(
+            $expectedNumber,
+            $this->subject->getCleanedPhone()
+        );
     }
 
     /**
@@ -167,12 +197,40 @@ class AddressTest extends BaseTestCase
 
     /**
      * @test
+     * @dataProvider telephoneFormatDataProvider
+     */
+    public function faxWithCleanedChars($number, $expectedNumber)
+    {
+        $this->subject->setFax($number);
+
+        self::assertSame(
+            $expectedNumber,
+            $this->subject->getCleanedFax()
+        );
+    }
+
+    /**
+     * @test
      */
     public function mobileCanBeSet()
     {
         $value = '+431294111';
         $this->subject->setMobile($value);
         $this->assertEquals($value, $this->subject->getMobile());
+    }
+
+    /**
+     * @test
+     * @dataProvider telephoneFormatDataProvider
+     */
+    public function mobileWithCleanedChars($number, $expectedNumber)
+    {
+        $this->subject->setMobile($number);
+
+        self::assertSame(
+            $expectedNumber,
+            $this->subject->getCleanedMobile()
+        );
     }
 
     /**

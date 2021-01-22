@@ -475,6 +475,16 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
+     * returns a cleaned version of the phone
+     *
+     * @return string
+     */
+    public function getCleanedPhone()
+    {
+        return $this->getCleanedNumber($this->phone);
+    }
+
+    /**
      * sets the fax attribute
      *
      * @param string $fax
@@ -495,6 +505,16 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
+     * returns a cleaned version of the fax
+     *
+     * @return string
+     */
+    public function getCleanedFax()
+    {
+        return $this->getCleanedNumber($this->fax);
+    }
+
+    /**
      * sets the mobile attribute
      *
      * @param string $mobile
@@ -512,6 +532,16 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getMobile()
     {
         return $this->mobile;
+    }
+
+    /**
+     * returns a cleaned version of the mobile
+     *
+     * @return string
+     */
+    public function getCleanedMobile()
+    {
+        return $this->getCleanedNumber($this->mobile);
     }
 
     /**
@@ -887,6 +917,25 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setCategories(ObjectStorage $categories)
     {
         $this->categories = $categories;
+    }
+
+    /**
+     * Get cleaned number of a given telephone, fax or mobile number.
+     * It removes all chars which are not possible to enter on your cell phone.
+     *
+     * @param string $number
+     * @return string
+     */
+    protected function getCleanedNumber(string $number)
+    {
+        $number = trim($number);
+
+        // Remove 0 on +49(0)221, but keep 0 on (0)221
+        if (strpos($number, '(0)') > 0) {
+            $number = str_replace('(0)', '', $number);
+        }
+
+        return preg_replace('/[^0-9#+*]/', '', $number);
     }
 
     /**

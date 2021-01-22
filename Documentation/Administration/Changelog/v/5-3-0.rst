@@ -1,0 +1,44 @@
+5.3.0 - xxth February 2021
+==========================
+
+.. include:: ../../../Includes.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+Important changes
+-----------------
+
+Supported & Required TYPO3 versions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- **TYPO3 9**: This release is the last one which will support TYPO3 9.
+- **TYPO3 10**: If the new pagination API is used, TYPO3 10.4.13 is required
+- **TYPO3 11**: This is the 1st version which supports 11.0
+
+Support of Pagination API
+^^^^^^^^^^^^^^^^^^^^^^^^^
+Since TYPO3 10 a new pagination API has been introduced as the pagination via widgets has been marked as deprecated.
+Read more about it at https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Pagination/Index.html.
+
+To simplify updates and getting you used to this API, this release includes the new paginiation API as well.
+
+.. note::
+
+   It needs to be enabled in the extension settings globally and is disabled by default.
+
+Please be aware that the routing configuration needs to be adopted as the name of the variable changed from `[widget_0][currentPage]=2` to `[currentPage]=2`!
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2020-10-08 [BUGFIX] Change check if TS setting should be overriden via flexforms (#310) (Commit 8a4c088 by Georg Ringer)
+   2020-10-07 [TASK] Add return value for command #309 (Commit 2c90a91 by Georg Ringer)
+   2020-10-07 [TASK] Add eval trim to email address (Commit ddc963c by bucheggerOnline)
+   2020-10-06 [TASK] Improve CGL (Commit bec7497 by Georg Ringer)
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

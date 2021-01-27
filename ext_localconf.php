@@ -46,7 +46,7 @@ if ($majorVersion === 9) {
         'ListView',
         [
            \FriendsOfTYPO3\TtAddress\Controller\AddressController::class => 'list,show'
-        ],
+        ]
     );
 }
 

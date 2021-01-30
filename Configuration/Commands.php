@@ -1,4 +1,7 @@
 <?php
+
+use FriendsOfTYPO3\TtAddress\Command\GeocodeCommand;
+
 /**
  * Commands to be executed by typo3, where the key of the array
  * is the name of the command (to be called as the first argument after typo3).
@@ -7,7 +10,7 @@
  */
 return [
     'ttaddress:geocode' => [
-        'class' => \FriendsOfTYPO3\TtAddress\Command\GeocodeCommand::class,
+        'class' => GeocodeCommand::class,
         'schedulable' => true,
     ],
 ];

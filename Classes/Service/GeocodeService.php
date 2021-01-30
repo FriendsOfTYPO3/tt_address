@@ -3,13 +3,14 @@ declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Service;
 
+use TYPO3\CMS\Core\Cache\CacheManager;
 /**
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use TYPO3\CMS\Core\Cache\CacheManager;
+use TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryHelper;
@@ -176,7 +177,7 @@ class GeocodeService implements SingletonInterface
         try {
             $cacheManager = GeneralUtility::makeInstance(CacheManager::class);
             return $cacheManager->getCache($name);
-        } catch (\TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException $e) {
+        } catch (NoSuchCacheException $e) {
             throw new \RuntimeException('Unable to load Cache!', 1548785854);
         }
     }

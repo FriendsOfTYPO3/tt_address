@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Tests\Functional\Command;
 
@@ -18,7 +19,7 @@ class GeocodeServiceTest extends FunctionalTestCase
 
     protected $coreExtensionsToLoad = ['fluid', 'extensionmanager'];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

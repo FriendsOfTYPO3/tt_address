@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Tests\Functional\Hooks;
 
@@ -19,7 +20,7 @@ class PageLayoutViewHookTest extends FunctionalTestCase
 {
     protected $testExtensionsToLoad = ['typo3conf/ext/tt_address'];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace FriendsOfTypo3\TtAddress\Tests\Unit\Domain\Model\Dto;
 
@@ -29,9 +30,6 @@ class SettingsTest extends BaseTestCase
         $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['tt_address'] = [];
         $subject = new Settings();
 
-        $this->assertEquals('%1$s %3$s', $subject->getBackwardsCompatFormat());
-        $this->assertTrue($subject->isStoreBackwardsCompatName());
-        $this->assertTrue($subject->isReadOnlyNameField());
         $this->assertEquals('/[^\d\+\s\-]/', $subject->getTelephoneValidationPatternForPhp());
         $this->assertEquals('/[^\d\+\s\-]/g', $subject->getTelephoneValidationPatternForJs());
     }
@@ -50,9 +48,6 @@ class SettingsTest extends BaseTestCase
         ];
         $subject = new Settings();
 
-        $this->assertEquals('%s%s', $subject->getBackwardsCompatFormat());
-        $this->assertFalse($subject->isStoreBackwardsCompatName());
-        $this->assertFalse($subject->isReadOnlyNameField());
         $this->assertEquals('regex1', $subject->getTelephoneValidationPatternForPhp());
         $this->assertEquals('regex2', $subject->getTelephoneValidationPatternForJs());
     }

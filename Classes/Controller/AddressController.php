@@ -14,6 +14,7 @@ use FriendsOfTYPO3\TtAddress\Seo\AddressTitleProvider;
 use FriendsOfTYPO3\TtAddress\Utility\CacheUtility;
 use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
 use TYPO3\CMS\Core\Database\QueryGenerator;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
@@ -33,9 +34,13 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /** @var QueryGenerator */
     protected $queryGenerator;
 
+    /** @var TypoScriptService */
+    protected $typoScriptService;
+
     public function initializeAction()
     {
         $this->queryGenerator = GeneralUtility::makeInstance(QueryGenerator::class);
+        $this->typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
     }
 
     /**
@@ -111,9 +116,23 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
         );
 
-        $propertiesNotAllowedViaFlexForms = ['orderByAllowed'];
+        $propertiesNotAllowedViaFlexForms = ['sortBy'];
         foreach ($propertiesNotAllowedViaFlexForms as $property) {
             $originalSettings[$property] = $tsSettings['settings'][$property];
+        }
+
+        // Use stdWrap for given defined settings
+        if (isset($originalSettings['useStdWrap']) && !empty($originalSettings['useStdWrap'])) {
+            $typoScriptArray = $this->typoScriptService->convertPlainArrayToTypoScriptArray($originalSettings);
+            $stdWrapProperties = GeneralUtility::trimExplode(',', $originalSettings['useStdWrap'], true);
+            foreach ($stdWrapProperties as $key) {
+                if (\is_array($typoScriptArray[$key . '.'])) {
+                    $originalSettings[$key] = $this->configurationManager->getContentObject()->stdWrap(
+                        $typoScriptArray[$key],
+                        $typoScriptArray[$key . '.']
+                    );
+                }
+            }
         }
 
         // start override

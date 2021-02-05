@@ -124,7 +124,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             foreach ($stdWrapProperties as $key) {
                 if (is_array($typoScriptArray[$key . '.'])) {
                     $originalSettings[$key] = $this->configurationManager->getContentObject()->stdWrap(
-                        $typoScriptArray[$key], 
+                        $typoScriptArray[$key],
                         $typoScriptArray[$key . '.']
                     );
                 }

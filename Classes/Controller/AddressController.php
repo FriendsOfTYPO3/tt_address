@@ -8,15 +8,21 @@ namespace FriendsOfTYPO3\TtAddress\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
+use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 use FriendsOfTYPO3\TtAddress\Seo\AddressTitleProvider;
 use FriendsOfTYPO3\TtAddress\Utility\CacheUtility;
 use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
 use TYPO3\CMS\Core\Database\QueryGenerator;
+use TYPO3\CMS\Core\Pagination\ArrayPaginator;
+use TYPO3\CMS\Core\Pagination\PaginatorInterface;
+use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
+use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
@@ -33,9 +39,13 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /** @var QueryGenerator */
     protected $queryGenerator;
 
+    /** @var Settings */
+    protected $extensionConfiguration;
+
     public function initializeAction()
     {
         $this->queryGenerator = GeneralUtility::makeInstance(QueryGenerator::class);
+        $this->extensionConfiguration = GeneralUtility::makeInstance(Settings::class);
     }
 
     /**
@@ -74,6 +84,16 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $addresses = $this->addressRepository->getAddressesByCustomSorting($demand);
         } else {
             $addresses = $this->addressRepository->findByDemand($demand);
+        }
+
+        if ($this->extensionConfiguration->getNewPagination() && class_exists(SimplePagination::class)) {
+            $paginator = $this->getPaginator($addresses);
+            $pagination = new SimplePagination($paginator);
+            $this->view->assign('newPagination', true);
+            $this->view->assign('pagination', [
+                'paginator' => $paginator,
+                'pagination' => $pagination,
+            ]);
         }
 
         $this->view->assignMultiple([
@@ -228,5 +248,25 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             }
         }
         return $pidList;
+    }
+
+    /**
+     * @param QueryResultInterface|array $addresses
+     * @return ArrayPaginator|QueryResultPaginator
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException
+     */
+    protected function getPaginator($addresses): PaginatorInterface
+    {
+        $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
+        $itemsPerPage = $this->settings['paginate']['itemsPerPage'] ?? 10;
+
+        if (is_array($addresses)) {
+            $paginator = new ArrayPaginator($addresses, $currentPage, $itemsPerPage);
+        } elseif ($addresses instanceof QueryResultInterface) {
+            $paginator = new QueryResultPaginator($addresses, $currentPage, $itemsPerPage);
+        } else {
+            throw new \RuntimeException(sprintf('Only array and query result interface allowed for pagination, given "%s"', get_class($addresses)), 1611168593);
+        }
+        return $paginator;
     }
 }

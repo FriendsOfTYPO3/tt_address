@@ -4,8 +4,8 @@
 
 ---
 conf.py:
-  copyright: 2002-2020
+  copyright: 2002-2021
   project: Address List
   version: 5.2
-  release: 5.2.0
+  release: 5.2.1
 ...

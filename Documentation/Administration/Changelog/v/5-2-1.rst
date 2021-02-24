@@ -1,0 +1,30 @@
+5.2.1 - 24th February 2021
+==========================
+
+.. include:: ../../../Includes.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+Important changes
+-----------------
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2021-02-09 [TASK] Remove unnecessary limit (#338) (Commit 21b69d3 by nebrot)
+   2021-01-27 [BUGFIX] Remove trailing comma to keep compatibility with PHP 7.2 (#336) (Commit 1f45e44 by Xavier Perseguers)
+   2021-01-22 [TASK] Use new plugin configuration (Commit 0ca38f6 by Georg Ringer)
+   2021-01-22 [FEATURE]  Clean phone number for tel links (Commit 8c1ea14 by Stefan Frömken)
+   2020-12-22 [DOC] Fix typo in readme (Commit 458e7b9 by Dirk Jüttner)
+   2020-10-08 [BUGFIX] Change check if TS setting should be overriden via flexforms (#310) (Commit 8a4c088 by Georg Ringer)
+   2020-10-07 [TASK] Add return value for command #309 (Commit 2c90a91 by Georg Ringer)
+   2020-10-07 [TASK] Add eval trim to email address (Commit ddc963c by bucheggerOnline)
+   2020-10-06 [TASK] Improve CGL (Commit bec7497 by Georg Ringer)
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

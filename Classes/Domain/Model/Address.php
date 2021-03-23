@@ -225,7 +225,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * sets the hidden attribute
      *
-     * @param boolean $hidden
+     * @param bool $hidden
      * @return void
      */
     public function setHidden($hidden)
@@ -236,7 +236,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * returns the hidden attribute
      *
-     * @return boolean $hidden
+     * @return bool $hidden
      */
     public function getHidden()
     {

@@ -19,6 +19,14 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
+
+    /**
+     * Hidden
+     *
+     * @var bool
+     */
+    protected $hidden = false;
+
     /**
      * Gender
      * @var string
@@ -212,6 +220,27 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function __construct()
     {
         $this->image = new ObjectStorage();
+    }
+
+    /**
+     * sets the hidden attribute
+     *
+     * @param boolean $hidden
+     * @return void
+     */
+    public function setHidden($hidden)
+    {
+        $this->hidden = $hidden;
+    }
+
+    /**
+     * returns the hidden attribute
+     *
+     * @return boolean $hidden
+     */
+    public function getHidden()
+    {
+        return $this->hidden;
     }
 
     /**

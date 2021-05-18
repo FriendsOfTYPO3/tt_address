@@ -14,8 +14,6 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * The domain model of a Address
- *
- * @entity
  */
 class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {

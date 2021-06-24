@@ -64,5 +64,5 @@ CREATE TABLE tt_address (
 
     PRIMARY KEY (uid),
     KEY parent (pid),
-    KEY pid (pid,email)
+    KEY pid (pid,email(191))
 );

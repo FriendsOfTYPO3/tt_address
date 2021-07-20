@@ -5,63 +5,63 @@
     <body>
       <trans-unit id="tt_address" approved="yes">
         <source>Address</source>
-        <target state="translated">Adres</target>
+        <target state="final">Adres</target>
       </trans-unit>
       <trans-unit id="tt_address.gender" approved="yes">
         <source>Gender</source>
-        <target state="translated">Geslacht:</target>
+        <target state="final">Geslacht:</target>
       </trans-unit>
       <trans-unit id="tt_address.gender.m" approved="yes">
         <source>Male (Mr)</source>
-        <target state="translated">Man (Dhr)</target>
+        <target state="final">Man (Dhr)</target>
       </trans-unit>
       <trans-unit id="tt_address.gender.f" approved="yes">
         <source>Female (Mrs)</source>
-        <target state="translated">Vrouw (Mevr)</target>
+        <target state="final">Vrouw (Mevr)</target>
       </trans-unit>
       <trans-unit id="tt_address.first_name" approved="yes">
         <source>First Name</source>
-        <target state="translated">Voornaam:</target>
+        <target state="final">Voornaam:</target>
       </trans-unit>
       <trans-unit id="tt_address.middle_name" approved="yes">
         <source>Middle Name</source>
-        <target state="translated">Tussenvoegsel:</target>
+        <target state="final">Tussenvoegsel:</target>
       </trans-unit>
       <trans-unit id="tt_address.last_name" approved="yes">
         <source>Last Name</source>
-        <target state="translated">Achternaam:</target>
+        <target state="final">Achternaam:</target>
       </trans-unit>
       <trans-unit id="tt_address.birthday" approved="yes">
         <source>Birthday</source>
-        <target state="translated">Geboortedatum:</target>
+        <target state="final">Geboortedatum:</target>
       </trans-unit>
       <trans-unit id="tt_address.building" approved="yes">
         <source>Building</source>
-        <target state="translated">Gebouw:</target>
+        <target state="final">Gebouw:</target>
       </trans-unit>
       <trans-unit id="tt_address.room" approved="yes">
         <source>Room</source>
-        <target state="translated">Kamer:</target>
+        <target state="final">Kamer:</target>
       </trans-unit>
       <trans-unit id="tt_address.organization" approved="yes">
         <source>Organization</source>
-        <target state="translated">Organisatie:</target>
+        <target state="final">Organisatie:</target>
       </trans-unit>
       <trans-unit id="tt_address.region" approved="yes">
         <source>Region / State</source>
-        <target state="translated">Provincie:</target>
+        <target state="final">Provincie:</target>
       </trans-unit>
       <trans-unit id="tt_address.mobile" approved="yes">
         <source>Mobile</source>
-        <target state="translated">GSM:</target>
+        <target state="final">GSM:</target>
       </trans-unit>
       <trans-unit id="tt_address_palette.address" approved="yes">
         <source>Address</source>
-        <target state="translated">Adres</target>
+        <target state="final">Adres</target>
       </trans-unit>
       <trans-unit id="pi_tt_address" approved="yes">
         <source>Addresses</source>
-        <target state="translated">Adressen</target>
+        <target state="final">Adressen</target>
       </trans-unit>
     </body>
   </file>

@@ -5,80 +5,80 @@
     <body>
       <trans-unit id="label.address" xml:space="preserve" approved="yes">
         <source>Address</source>
-      <target state="translated">Adresse</target></trans-unit>
+      <target state="final">Adresse</target></trans-unit>
       <trans-unit id="label.building" xml:space="preserve" approved="yes">
         <source>Building</source>
-      <target state="translated">Bygning</target></trans-unit>
+      <target state="final">Bygning</target></trans-unit>
       <trans-unit id="label.room" xml:space="preserve" approved="yes">
         <source>Room</source>
-      <target state="translated">Rum</target></trans-unit>
+      <target state="final">Rum</target></trans-unit>
       <trans-unit id="label.position" xml:space="preserve" approved="yes">
         <source>Position</source>
-      <target state="translated">Stilling</target></trans-unit>
+      <target state="final">Stilling</target></trans-unit>
       <trans-unit id="label.zip" xml:space="preserve" approved="yes">
         <source>Postal code</source>
-      <target state="translated">Postnummer</target></trans-unit>
+      <target state="final">Postnummer</target></trans-unit>
       <trans-unit id="label.city" xml:space="preserve" approved="yes">
         <source>City</source>
-      <target state="translated">By</target></trans-unit>
+      <target state="final">By</target></trans-unit>
       <trans-unit id="label.telephone" xml:space="preserve" approved="yes">
         <source>Telephone</source>
-      <target state="translated">Telefon</target></trans-unit>
+      <target state="final">Telefon</target></trans-unit>
       <trans-unit id="label.fax" xml:space="preserve" approved="yes">
         <source>Fax</source>
-      <target state="translated">Fax</target></trans-unit>
+      <target state="final">Fax</target></trans-unit>
       <trans-unit id="label.mobile" xml:space="preserve" approved="yes">
         <source>Mobile phone</source>
-      <target state="translated">Mobilnummer</target></trans-unit>
+      <target state="final">Mobilnummer</target></trans-unit>
       <trans-unit id="label.email" xml:space="preserve" approved="yes">
         <source>E-mail</source>
-      <target state="translated">Email</target></trans-unit>
+      <target state="final">Email</target></trans-unit>
       <trans-unit id="label.www" xml:space="preserve" approved="yes">
         <source>Go to website</source>
-      <target state="translated">Gå til website</target></trans-unit>
+      <target state="final">Gå til website</target></trans-unit>
       <trans-unit id="label.socialmedia" xml:space="preserve" approved="yes">
         <source>Social media contacts</source>
-      <target state="translated">Social medie kontakt</target></trans-unit>
-      <trans-unit id="label.twitter" xml:space="preserve" approved="yes">
+      <target state="final">Social medie kontakt</target></trans-unit>
+      <trans-unit id="label.twitter" xml:space="preserve" translate="no" approved="yes">
         <source>Twitter</source>
-      <target state="translated">Twitter</target></trans-unit>
-      <trans-unit id="label.facebook" xml:space="preserve" approved="yes">
+      <target state="final">Twitter</target></trans-unit>
+      <trans-unit id="label.facebook" xml:space="preserve" translate="no" approved="yes">
         <source>Facebook</source>
-      <target state="translated">Facebook</target></trans-unit>
-      <trans-unit id="label.linkedin" xml:space="preserve" approved="yes">
+      <target state="final">Facebook</target></trans-unit>
+      <trans-unit id="label.linkedin" xml:space="preserve" translate="no" approved="yes">
         <source>LinkedIn</source>
-      <target state="translated">LinkedIn</target></trans-unit>
-      <trans-unit id="label.skype" xml:space="preserve" approved="yes">
+      <target state="final">LinkedIn</target></trans-unit>
+      <trans-unit id="label.skype" xml:space="preserve" translate="no" approved="yes">
         <source>Skype</source>
-      <target state="translated">Skype</target></trans-unit>
+      <target state="final">Skype</target></trans-unit>
       <trans-unit id="label.birthday" xml:space="preserve" approved="yes">
         <source>Birthday</source>
-      <target state="translated">Fødselsdag</target></trans-unit>
+      <target state="final">Fødselsdag</target></trans-unit>
       <trans-unit id="paginate_overall" xml:space="preserve" approved="yes">
         <source>Page %s of %s</source>
-      <target state="translated">Side %s af %s</target></trans-unit>
+      <target state="final">Side %s af %s</target></trans-unit>
       <trans-unit id="paginate_next" approved="yes">
         <source>Next</source>
-        <target state="translated">Næste</target>
+        <target state="final">Næste</target>
       </trans-unit>
       <trans-unit id="paginate_previous" approved="yes">
         <source>Previous</source>
-        <target state="translated">Forrige</target>
+        <target state="final">Forrige</target>
       </trans-unit>
       <trans-unit id="backToList">
         <target>Back to list</target>
       </trans-unit>
       <trans-unit id="more" approved="yes">
         <source>More</source>
-        <target state="translated">Mere</target>
+        <target state="final">Mere</target>
       </trans-unit>
       <trans-unit id="show_on_map" approved="yes">
         <source>Show on map</source>
-        <target state="translated">Vis på kort</target>
+        <target state="final">Vis på kort</target>
       </trans-unit>
       <trans-unit id="no_google_maps_key" approved="yes">
         <source>No Google Maps key provided with TypoScript</source>
-        <target state="translated">Ingen tilgængelig Google Map nøgle via TypoScript</target>
+        <target state="final">Ingen tilgængelig Google Map nøgle via TypoScript</target>
       </trans-unit>
     </body>
   </file>

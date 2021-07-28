@@ -1,4 +1,4 @@
-5.3.0 - xxth February 2021
+5.3.0 - 24th February 2021
 ==========================
 
 .. include:: ../../../Includes.txt
@@ -14,7 +14,7 @@ Important changes
 
 Supported & Required TYPO3 versions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-- **TYPO3 9**: This release is the last one which will support TYPO3 9.
+- **TYPO3 9**: This release is the last planned one which will support TYPO3 9.
 - **TYPO3 10**: If the new pagination API is used, TYPO3 10.4.13 is required
 - **TYPO3 11**: This is the 1st version which supports 11.0
 
@@ -35,10 +35,18 @@ All Changes
 -----------
 This is a list of all changes in this release: ::
 
-   2020-10-08 [BUGFIX] Change check if TS setting should be overriden via flexforms (#310) (Commit 8a4c088 by Georg Ringer)
-   2020-10-07 [TASK] Add return value for command #309 (Commit 2c90a91 by Georg Ringer)
-   2020-10-07 [TASK] Add eval trim to email address (Commit ddc963c by bucheggerOnline)
-   2020-10-06 [TASK] Improve CGL (Commit bec7497 by Georg Ringer)
+   2021-07-28 [TASK] Exclude Domain/Model from autowiring (Commit 0e4b9ef by Georg Ringer)
+   2021-07-26 Compatibility with Apache 2.4.x (#355) (Commit 1c43d12 by Stefan Neufeind)
+   2021-07-20 [BUGFIX] Set proper size of flexform settings.groups (#349) (Commit 7c8667d by Patrick Lenk)
+   2021-05-18 [TASK] Remove @entity from model (Commit 63928da by Georg Ringer)
+   2021-04-10 [BUGFIX] Use the correct ImageReference in partials (#347) (Commit f4b5786 by ayacoo)
+   2021-03-25 [TASK] Remove show_thumbs in Flexform (#344) (Commit a174ef0 by Sybille Peters)
+   2021-03-23 Merge pull request #342 from tantebootsy/master (Commit 5a4f592 by Benni Mack)
+   2021-03-23 change boolean to bool (Commit 62e9105 by Michael Bakonyi)
+   2021-03-23 add hidden to model (Commit 2433b32 by Michael Bakonyi)
+   2021-02-24 [TASK] Raise version to 5.3.0 (Commit d017991 by Georg Ringer)
+   2021-02-24 [FEATURE] Support Pagination API of 10+ (Commit 24de820 by Georg Ringer)
+
 
 
 This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

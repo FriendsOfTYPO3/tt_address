@@ -6,3 +6,4 @@ services:
 
   FriendsOfTYPO3\TtAddress\:
     resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'

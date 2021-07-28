@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Controller;
 
@@ -9,6 +10,7 @@ namespace FriendsOfTYPO3\TtAddress\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
@@ -21,6 +23,7 @@ use TYPO3\CMS\Core\Pagination\PaginatorInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
@@ -30,7 +33,7 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 /**
  * AddressController
  */
-class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class AddressController extends ActionController
 {
 
     /** @var AddressRepository */
@@ -51,7 +54,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * @param \FriendsOfTYPO3\TtAddress\Domain\Model\Address $address
      */
-    public function showAction(\FriendsOfTYPO3\TtAddress\Domain\Model\Address $address = null)
+    public function showAction(Address $address = null)
     {
         if ($address === null) {
             $this->redirectToUri($this->uriBuilder->reset()->setTargetPageUid((int)$GLOBALS['TSFE']->id)->build());

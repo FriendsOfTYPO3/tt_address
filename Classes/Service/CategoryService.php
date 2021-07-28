@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Service;
 
@@ -41,7 +42,7 @@ class CategoryService
      * @param int $counter
      * @return string comma separated list of category ids
      */
-    public function getChildrenCategories($idList, int $counter = 0)
+    public function getChildrenCategories(string $idList, int $counter = 0)
     {
         $cacheIdentifier = sha1('children' . $idList);
 
@@ -61,7 +62,7 @@ class CategoryService
      * @param int $counter
      * @return string comma separated list of category ids
      */
-    protected function getChildrenCategoriesRecursive($idList, $counter = 0): string
+    protected function getChildrenCategoriesRecursive(string $idList, $counter = 0): string
     {
         $result = [];
 
@@ -89,7 +90,7 @@ class CategoryService
                 $this->timeTracker->setTSlogMessage('EXT:tt_address: one or more recursive categories where found');
                 return implode(',', $result);
             }
-            $subcategories = $this->getChildrenCategoriesRecursive($row['uid'], $counter);
+            $subcategories = $this->getChildrenCategoriesRecursive((string)$row['uid'], $counter);
             $result[] = $row['uid'] . ($subcategories ? ',' . $subcategories : '');
         }
 

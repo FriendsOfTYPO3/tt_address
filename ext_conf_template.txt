@@ -9,9 +9,3 @@ readOnlyNameField = 1
 
 # cat=basic; type=boolean; label=Use new pagination API
 newPagination = 1
-
-# cat=backend; type=text; label=Pattern for validation telephone number in TCA with PHP
-telephoneValidationPatternForPhp = /[^\d\+\s\-]/
-
-# cat=backend; type=text; label=Pattern for validation telephone number in TCA with JS
-telephoneValidationPatternForJs = /[^\d\+\s\-]/g

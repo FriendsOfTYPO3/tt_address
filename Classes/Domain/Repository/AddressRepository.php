@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Domain\Repository;
 
@@ -160,7 +161,7 @@ class AddressRepository extends Repository
      * @return array
      * @throws InvalidQueryException
      */
-    protected function createCategoryConstraint(QueryInterface $query, $categories, bool $includeSubCategories = false): array
+    protected function createCategoryConstraint(QueryInterface $query, string $categories, bool $includeSubCategories = false): array
     {
         $constraints = [];
 

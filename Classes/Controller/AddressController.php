@@ -261,7 +261,7 @@ class AddressController extends ActionController
     protected function getPaginator($addresses): PaginatorInterface
     {
         $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
-        $itemsPerPage = $this->settings['paginate']['itemsPerPage'] ?? 10;
+        $itemsPerPage = (int)($this->settings['paginate']['itemsPerPage'] ?? 10);
 
         if (is_array($addresses)) {
             $paginator = new ArrayPaginator($addresses, $currentPage, $itemsPerPage);

@@ -36,5 +36,5 @@ CREATE TABLE tt_address (
     categories int(11) DEFAULT '0' NOT NULL,
 
     KEY parent (pid),
-    KEY pid (pid,email(191))
+    KEY pid_email (pid,email(191))
 );

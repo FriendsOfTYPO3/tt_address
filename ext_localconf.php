@@ -31,10 +31,10 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1546531781] = [
     'FriendsOfTYPO3.tt_address',
     'ListView',
     [
-        'Address' => 'list,show'
+        \FriendsOfTYPO3\TtAddress\Controller\AddressController::class => 'list,show'
     ],
     [
-        'Address' => ''
+        \FriendsOfTYPO3\TtAddress\Controller\AddressController::class => ''
     ]
 );
 

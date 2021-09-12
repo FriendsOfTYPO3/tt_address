@@ -11,12 +11,15 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\ViewHelpers;
  */
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\ViewHelpers\StaticGoogleMapsViewHelper;
+use Prophecy\PhpUnit\ProphecyTrait;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 class StaticGoogleMapsViewHelperTest extends BaseTestCase
 {
+    use ProphecyTrait;
+
     /**
      * @var StaticGoogleMapsViewHelper
      */

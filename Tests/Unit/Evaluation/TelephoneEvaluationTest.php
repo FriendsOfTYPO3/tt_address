@@ -11,12 +11,14 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Utility;
  */
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation;
+use Prophecy\PhpUnit\ProphecyTrait;
 use TYPO3\CMS\Core\Package\PackageManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class TelephoneEvaluationTest extends BaseTestCase
 {
+    use ProphecyTrait;
 
     /** @var TelephoneEvaluation */
     protected $subject;

@@ -10,12 +10,15 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Domain\Model\Dto;
  * LICENSE.txt file that was distributed with this source code.
  */
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
+use Prophecy\PhpUnit\ProphecyTrait;
 use TYPO3\CMS\Core\Package\PackageManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class SettingsTest extends BaseTestCase
 {
+    use ProphecyTrait;
+
     public function setUp(): void
     {
         $packageManagerProphecy = $this->prophesize(PackageManager::class);

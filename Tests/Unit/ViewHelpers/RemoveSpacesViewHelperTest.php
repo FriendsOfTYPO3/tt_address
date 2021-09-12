@@ -10,11 +10,14 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 use FriendsOfTYPO3\TtAddress\ViewHelpers\RemoveSpacesViewHelper;
+use Prophecy\PhpUnit\ProphecyTrait;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 class RemoveSpacesViewHelperTest extends BaseTestCase
 {
+    use ProphecyTrait;
+
     /**
      * @var RemoveSpacesViewHelper
      */

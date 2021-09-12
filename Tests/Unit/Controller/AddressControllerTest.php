@@ -10,11 +10,11 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 use FriendsOfTYPO3\TtAddress\Controller\AddressController;
+use FriendsOfTYPO3\TtAddress\Database\QueryGenerator;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
-use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Package\PackageManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager;

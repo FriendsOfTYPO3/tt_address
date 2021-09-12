@@ -10,12 +10,15 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Utility;
  * LICENSE.txt file that was distributed with this source code.
  */
 use FriendsOfTYPO3\TtAddress\Evaluation\LongitudeEvaluation;
+use Prophecy\PhpUnit\ProphecyTrait;
 use TYPO3\CMS\Core\Package\PackageManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class LongitudeEvaluationTest extends BaseTestCase
 {
+
+    use ProphecyTrait;
 
     /** @var LongitudeEvaluation */
     protected $subject;

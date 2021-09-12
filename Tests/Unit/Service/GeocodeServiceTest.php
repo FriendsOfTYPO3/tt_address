@@ -5,6 +5,7 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Unit\Service;
 
 use FriendsOfTYPO3\TtAddress\Service\GeocodeService;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 use TYPO3\CMS\Core\Http\RequestFactory;
@@ -13,6 +14,8 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class GeocodeServiceTest extends BaseTestCase
 {
+
+    use ProphecyTrait;
 
     /**
      * @test

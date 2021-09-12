@@ -18,7 +18,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class TelephoneEvaluationTest extends BaseTestCase
 {
-
     use ProphecyTrait;
 
     /** @var TelephoneEvaluation */

@@ -17,7 +17,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class SettingsTest extends BaseTestCase
 {
-
     use ProphecyTrait;
 
     public function setUp(): void

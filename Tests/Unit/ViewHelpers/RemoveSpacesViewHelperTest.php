@@ -16,7 +16,6 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 class RemoveSpacesViewHelperTest extends BaseTestCase
 {
-
     use ProphecyTrait;
 
     /**

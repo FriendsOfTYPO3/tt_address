@@ -17,7 +17,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class LongitudeEvaluationTest extends BaseTestCase
 {
-
     use ProphecyTrait;
 
     /** @var LongitudeEvaluation */

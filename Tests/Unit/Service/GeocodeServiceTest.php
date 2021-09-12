@@ -14,7 +14,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class GeocodeServiceTest extends BaseTestCase
 {
-
     use ProphecyTrait;
 
     /**

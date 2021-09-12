@@ -10,6 +10,7 @@ namespace FriendsOfTYPO3\TtAddress\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use FriendsOfTYPO3\TtAddress\Database\QueryGenerator;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
@@ -17,7 +18,6 @@ use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 use FriendsOfTYPO3\TtAddress\Seo\AddressTitleProvider;
 use FriendsOfTYPO3\TtAddress\Utility\CacheUtility;
 use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
-use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Pagination\PaginatorInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;

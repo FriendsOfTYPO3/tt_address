@@ -10,10 +10,10 @@ namespace FriendsOfTYPO3\TtAddress\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use FriendsOfTYPO3\TtAddress\Database\QueryGenerator;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
-use FriendsOfTYPO3\TtAddress\Database\QueryGenerator;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 use FriendsOfTYPO3\TtAddress\Seo\AddressTitleProvider;
 use FriendsOfTYPO3\TtAddress\Utility\CacheUtility;

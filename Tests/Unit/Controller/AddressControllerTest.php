@@ -29,7 +29,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class AddressControllerTest extends BaseTestCase
 {
-
     use ProphecyTrait;
 
     protected function setUp(): void

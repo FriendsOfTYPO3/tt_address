@@ -18,7 +18,6 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 class StaticGoogleMapsViewHelperTest extends BaseTestCase
 {
-
     use ProphecyTrait;
 
     /**

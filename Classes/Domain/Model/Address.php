@@ -68,14 +68,14 @@ class Address extends AbstractEntity
     protected $address = '';
 
     /**
-     * @var string
+     * @var float
      */
-    protected $latitude = '';
+    protected $latitude = 0;
 
     /**
-     * @var string
+     * @var float
      */
-    protected $longitude = '';
+    protected $longitude = 0;
 
     /**
      * @var string
@@ -278,22 +278,22 @@ class Address extends AbstractEntity
         return $this->address;
     }
 
-    public function setLatitude(string $latitude): void
+    public function setLatitude(float $latitude): void
     {
         $this->latitude = $latitude;
     }
 
-    public function getLatitude(): string
+    public function getLatitude(): float
     {
         return $this->latitude;
     }
 
-    public function setLongitude(string $longitude): void
+    public function setLongitude(float $longitude): void
     {
         $this->longitude = $longitude;
     }
 
-    public function getLongitude(): string
+    public function getLongitude(): float
     {
         return $this->longitude;
     }

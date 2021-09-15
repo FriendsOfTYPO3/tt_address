@@ -81,7 +81,7 @@ class AddressTest extends BaseTestCase
      */
     public function birthdayCanBeSet()
     {
-        $value = 123456;
+        $value = new \DateTime();
         $this->subject->setBirthday($value);
         $this->assertEquals($value, $this->subject->getBirthday());
     }

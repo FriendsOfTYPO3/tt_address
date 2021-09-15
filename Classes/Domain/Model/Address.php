@@ -28,572 +28,352 @@ class Address extends AbstractEntity
     protected $hidden = false;
 
     /**
-     * Gender
      * @var string
      */
-    protected $gender;
+    protected $gender = '';
 
     /**
-     * Name
      * @var string
      */
-    protected $name;
+    protected $name = '';
 
     /**
-     * First Name
      * @var string
      */
-    protected $firstName;
+    protected $firstName = '';
 
     /**
-     * Middle Name
      * @var string
      */
-    protected $middleName;
+    protected $middleName = '';
 
     /**
-     * Last Name
      * @var string
      */
-    protected $lastName;
+    protected $lastName = '';
 
     /**
-     * Birthday
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $birthday;
 
     /**
-     * Title
      * @var string
      */
-    protected $title;
+    protected $title = '';
 
     /**
-     * Address
      * @var string
      */
-    protected $address;
+    protected $address = '';
 
     /**
-     * Latitude
      * @var string
      */
-    protected $latitude;
+    protected $latitude = '';
 
     /**
-     * Longitude
      * @var string
      */
-    protected $longitude;
+    protected $longitude = '';
 
     /**
-     * Building
      * @var string
      */
-    protected $building;
+    protected $building = '';
 
     /**
-     * Room
      * @var string
      */
-    protected $room;
+    protected $room = '';
 
     /**
-     * Phone
      * @var string
      */
-    protected $phone;
+    protected $phone = '';
 
     /**
-     * Fax
      * @var string
      */
-    protected $fax;
+    protected $fax = '';
 
     /**
-     * Mobile
      * @var string
      */
-    protected $mobile;
+    protected $mobile = '';
 
     /**
-     * www
      * @var string
      */
-    protected $www;
+    protected $www = '';
 
     /**
-     * slug
      * @var string
      */
-    protected $slug;
+    protected $slug = '';
 
     /**
-     * Skype
      * @var string
      */
-    protected $skype;
+    protected $skype = '';
 
     /**
-     * twitter
      * @var string
      */
-    protected $twitter;
+    protected $twitter = '';
 
     /**
-     * Facebook
      * @var string
      */
-    protected $facebook;
+    protected $facebook = '';
 
     /**
-     * LinkedIn
      * @var string
      */
-    protected $linkedin;
+    protected $linkedin = '';
 
     /**
-     * Email
      * @var string
      */
-    protected $email;
+    protected $email = '';
 
     /**
-     * Organization
      * @var string
      */
-    protected $company;
+    protected $company = '';
 
     /**
-     * Position
      * @var string
      */
-    protected $position;
+    protected $position = '';
 
     /**
-     * City
      * @var string
      */
-    protected $city;
+    protected $city = '';
 
     /**
-     * Zipcode
      * @var string
      */
-    protected $zip;
+    protected $zip = '';
 
     /**
-     * Region/State
      * @var string
      */
-    protected $region;
+    protected $region = '';
 
     /**
-     * Country
      * @var string
      */
-    protected $country;
+    protected $country = '';
 
     /**
-     * Image
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
      */
-    protected $image = null;
+    protected $image;
 
     /**
-     * Description
      * @var string
      */
-    protected $description;
+    protected $description = '';
 
     /**
-     * Categories
-     *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
      */
     protected $categories;
 
-    /**
-     * __construct
-     */
     public function __construct()
     {
         $this->image = new ObjectStorage();
+        $this->categories = new ObjectStorage();
     }
 
-    /**
-     * sets the hidden attribute
-     *
-     * @param bool $hidden
-     * @return void
-     */
-    public function setHidden($hidden)
+    public function setHidden($hidden): void
     {
         $this->hidden = $hidden;
     }
 
-    /**
-     * returns the hidden attribute
-     *
-     * @return bool $hidden
-     */
-    public function getHidden()
+    public function getHidden(): bool
     {
         return $this->hidden;
     }
 
-    /**
-     * sets the gender attribute
-     *
-     * @param string $gender
-     */
-    public function setGender($gender)
+    public function setGender(string $gender): void
     {
         $this->gender = $gender;
     }
 
-    /**
-     * returns the gender attribute
-     *
-     * @return string
-     */
-    public function getGender()
+    public function getGender(): string
     {
         return $this->gender;
     }
 
-    /**
-     * sets the name attribute
-     *
-     * @param string $name
-     */
-    public function setName($name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
 
-    /**
-     * returns the name attribute
-     *
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * sets the firstName attribute
-     *
-     * @param string $firstName
-     */
-    public function setFirstName($firstName)
+    public function setFirstName(string $firstName): void
     {
         $this->firstName = $firstName;
     }
 
-    /**
-     * returns the firstName attribute
-     *
-     * @return string
-     */
-    public function getFirstName()
+    public function getFirstName(): string
     {
         return $this->firstName;
     }
 
-    /**
-     * sets the middleName attribute
-     *
-     * @param string $middleName
-     */
-    public function setMiddleName($middleName)
+    public function setMiddleName(string $middleName): void
     {
         $this->middleName = $middleName;
     }
 
-    /**
-     * returns the middleName attribute
-     *
-     * @return string
-     */
-    public function getMiddleName()
+    public function getMiddleName(): string
     {
         return $this->middleName;
     }
 
-    /**
-     * sets the lastName attribute
-     *
-     * @param string $lastName
-     */
-    public function setLastName($lastName)
+    public function setLastName(string $lastName): void
     {
         $this->lastName = $lastName;
     }
 
-    /**
-     * returns the lastName attribute
-     *
-     * @return string
-     */
-    public function getLastName()
+    public function getLastName(): string
     {
         return $this->lastName;
     }
 
-    /**
-     * sets the birthday attribute
-     *
-     * @param \DateTime $birthday
-     */
-    public function setBirthday($birthday)
+    public function setBirthday(?\DateTime $birthday = null): void
     {
         $this->birthday = $birthday;
     }
 
-    /**
-     * returns the birthday attribute
-     *
-     * @return \DateTime
-     */
-    public function getBirthday()
+    public function getBirthday(): ?\DateTime
     {
         return $this->birthday;
     }
 
-    /**
-     * sets the title attribute
-     *
-     * @param string $title
-     */
-    public function setTitle($title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
-    /**
-     * returns the title attribute
-     *
-     * @return string
-     */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * sets the address attribute
-     *
-     * @param string $address
-     */
-    public function setAddress($address)
+    public function setAddress(string $address): void
     {
         $this->address = $address;
     }
 
-    /**
-     * returns the address attribute
-     *
-     * @return string
-     */
-    public function getAddress()
+    public function getAddress(): string
     {
         return $this->address;
     }
 
-    /**
-     * sets the latitude attribute
-     *
-     * @param string $latitude
-     */
-    public function setLatitude($latitude)
+    public function setLatitude(string $latitude): void
     {
         $this->latitude = $latitude;
     }
 
-    /**
-     * returns the latitude attribute
-     *
-     * @return string
-     */
-    public function getLatitude()
+    public function getLatitude(): string
     {
         return $this->latitude;
     }
 
-    /**
-     * sets the longitude attribute
-     *
-     * @param string $longitude
-     */
-    public function setLongitude($longitude)
+    public function setLongitude(string $longitude): void
     {
         $this->longitude = $longitude;
     }
 
-    /**
-     * returns the longitude attribute
-     *
-     * @return string
-     */
-    public function getLongitude()
+    public function getLongitude(): string
     {
         return $this->longitude;
     }
 
-    /**
-     * sets the building attribute
-     *
-     * @param string $building
-     */
-    public function setBuilding($building)
+    public function setBuilding(string $building): void
     {
         $this->building = $building;
     }
 
-    /**
-     * returns the building attribute
-     *
-     * @return string
-     */
-    public function getBuilding()
+    public function getBuilding(): string
     {
         return $this->building;
     }
 
-    /**
-     * sets the room attribute
-     *
-     * @param string $room
-     */
-    public function setRoom($room)
+    public function setRoom(string $room): void
     {
         $this->room = $room;
     }
 
-    /**
-     * returns the room attribute
-     *
-     * @return string
-     */
-    public function getRoom()
+    public function getRoom(): string
     {
         return $this->room;
     }
 
-    /**
-     * sets the phone attribute
-     *
-     * @param string $phone
-     */
-    public function setPhone($phone)
+    public function setPhone(string $phone): void
     {
         $this->phone = $phone;
     }
 
-    /**
-     * returns the phone attribute
-     *
-     * @return string
-     */
-    public function getPhone()
+    public function getPhone(): string
     {
         return $this->phone;
     }
 
-    /**
-     * returns a cleaned version of the phone
-     *
-     * @return string
-     */
-    public function getCleanedPhone()
+    public function getCleanedPhone(): string
     {
         return $this->getCleanedNumber($this->phone);
     }
 
-    /**
-     * sets the fax attribute
-     *
-     * @param string $fax
-     */
-    public function setFax($fax)
+    public function setFax(string $fax): void
     {
         $this->fax = $fax;
     }
 
-    /**
-     * returns the fax attribute
-     *
-     * @return string
-     */
-    public function getFax()
+    public function getFax(): string
     {
         return $this->fax;
     }
 
-    /**
-     * returns a cleaned version of the fax
-     *
-     * @return string
-     */
-    public function getCleanedFax()
+    public function getCleanedFax(): string
     {
         return $this->getCleanedNumber($this->fax);
     }
 
-    /**
-     * sets the mobile attribute
-     *
-     * @param string $mobile
-     */
-    public function setMobile($mobile)
+    public function setMobile(string $mobile): void
     {
         $this->mobile = $mobile;
     }
 
-    /**
-     * returns the mobile attribute
-     *
-     * @return string
-     */
-    public function getMobile()
+    public function getMobile(): string
     {
         return $this->mobile;
     }
 
-    /**
-     * returns a cleaned version of the mobile
-     *
-     * @return string
-     */
-    public function getCleanedMobile()
+    public function getCleanedMobile(): string
     {
         return $this->getCleanedNumber($this->mobile);
     }
 
-    /**
-     * sets the www attribute
-     *
-     * @param string $www
-     */
-    public function setWww($www)
+    public function setWww(string $www): void
     {
         $this->www = $www;
     }
 
-    /**
-     * returns the www attribute
-     *
-     * @return string
-     */
-    public function getWww()
+    public function getWww(): string
     {
         return $this->www;
     }
 
-    public function getWwwSimplified()
+    public function getWwwSimplified(): string
     {
         $www = trim($this->www);
         if (!$www) {
@@ -603,52 +383,27 @@ class Address extends AbstractEntity
         return $parts[0];
     }
 
-    /**
-     * sets the slug attribute
-     *
-     * @param string $slug
-     */
-    public function setSlug($slug)
+    public function setSlug(string $slug): void
     {
         $this->slug = $slug;
     }
 
-    /**
-     * returns the slug attribute
-     *
-     * @return string
-     */
-    public function getSlug()
+    public function getSlug(): string
     {
         return $this->slug;
     }
 
-    /**
-     * sets the Skype attribute
-     *
-     * @param string $skype
-     */
-    public function setSkype($skype)
+    public function setSkype(string $skype): void
     {
         $this->skype = $skype;
     }
 
-    /**
-     * returns the Skype attribute
-     *
-     * @return string
-     */
-    public function getSkype()
+    public function getSkype(): string
     {
         return $this->skype;
     }
 
-    /**
-     * sets the twitter attribute
-     *
-     * @param string $twitter
-     */
-    public function setTwitter($twitter)
+    public function setTwitter(string $twitter): void
     {
         if ($twitter[0] !== '@') {
             throw new \InvalidArgumentException('twitter name must start with @', 1357530444);
@@ -657,22 +412,12 @@ class Address extends AbstractEntity
         $this->twitter = $twitter;
     }
 
-    /**
-     * returns the twitter attribute
-     *
-     * @return string
-     */
-    public function getTwitter()
+    public function getTwitter(): string
     {
         return $this->twitter;
     }
 
-    /**
-     * sets the Facebook attribute
-     *
-     * @param string $facebook
-     */
-    public function setFacebook($facebook)
+    public function setFacebook(string $facebook): void
     {
         if ($facebook[0] !== '/') {
             throw new \InvalidArgumentException('Facebook name must start with /', 1357530471);
@@ -681,212 +426,110 @@ class Address extends AbstractEntity
         $this->facebook = $facebook;
     }
 
-    /**
-     * returns the Facebook attribute
-     *
-     * @return string
-     */
-    public function getFacebook()
+    public function getFacebook(): string
     {
         return $this->facebook;
     }
 
-    /**
-     * sets the LinkedIn attribute
-     *
-     * @param string $linkedin
-     */
-    public function setLinkedin($linkedin)
+    public function setLinkedin(string $linkedin): void
     {
         $this->linkedin = $linkedin;
     }
 
-    /**
-     * returns the LinkedIn attribute
-     *
-     * @return string
-     */
-    public function getLinkedin()
+    public function getLinkedin(): string
     {
         return $this->linkedin;
     }
 
-    /**
-     * sets the email attribute
-     *
-     * @param string $email
-     */
-    public function setEmail($email)
+    public function setEmail(string $email): void
     {
         $this->email = $email;
     }
 
-    /**
-     * returns the email attribute
-     *
-     * @return string
-     */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     * sets the company attribute
-     *
-     * @param string $company
-     */
-    public function setCompany($company)
+    public function setCompany(string $company): void
     {
         $this->company = $company;
     }
 
-    /**
-     * returns the company attribute
-     *
-     * @return string
-     */
-    public function getCompany()
+    public function getCompany(): string
     {
         return $this->company;
     }
 
-    /**
-     * sets the position attribute
-     *
-     * @param string $position
-     */
-    public function setPosition($position)
+    public function setPosition(string $position): void
     {
         $this->position = $position;
     }
 
-    /**
-     * returns the position attribute
-     *
-     * @return string
-     */
-    public function getPosition()
+    public function getPosition(): string
     {
         return $this->position;
     }
 
-    /**
-     * sets the city attribute
-     *
-     * @param string $city
-     */
-    public function setCity($city)
+    public function setCity(string $city): void
     {
         $this->city = $city;
     }
 
-    /**
-     * returns the city attribute
-     *
-     * @return string
-     */
-    public function getCity()
+    public function getCity(): string
     {
         return $this->city;
     }
 
-    /**
-     * sets the zip attribute
-     *
-     * @param string $zip
-     */
-    public function setZip($zip)
+    public function setZip(string $zip): void
     {
         $this->zip = $zip;
     }
 
-    /**
-     * returns the zip attribute
-     *
-     * @return string
-     */
-    public function getZip()
+    public function getZip(): string
     {
         return $this->zip;
     }
 
-    /**
-     * sets the region attribute
-     *
-     * @param string $region
-     */
-    public function setRegion($region)
+    public function setRegion(string $region): void
     {
         $this->region = $region;
     }
 
-    /**
-     * returns the region attribute
-     *
-     * @return string
-     */
-    public function getRegion()
+    public function getRegion(): string
     {
         return $this->region;
     }
 
-    /**
-     * sets the country attribute
-     *
-     * @param string $country
-     */
-    public function setCountry($country)
+    public function setCountry(string $country): void
     {
         $this->country = $country;
     }
 
-    /**
-     * returns the country attribute
-     *
-     * @return string
-     */
-    public function getCountry()
+    public function getCountry(): string
     {
         return $this->country;
     }
 
-    /**
-     * Adds a FileReference
-     *
-     * @param FileReference $image
-     */
-    public function addImage(FileReference $image)
+    public function addImage(FileReference $image): void
     {
         $this->image->attach($image);
     }
 
-    /**
-     * Removes a FileReference
-     *
-     * @param FileReference $imageToRemove The FileReference to be removed
-     */
-    public function removeImage(FileReference $imageToRemove)
+    public function removeImage(FileReference $imageToRemove): void
     {
         $this->image->detach($imageToRemove);
     }
 
     /**
-     * Returns the images
-     *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
      */
-    public function getImage()
+    public function getImage(): ObjectStorage
     {
         return $this->image;
     }
 
-    /**
-     * Get first image
-     *
-     * @return FileReference|null
-     */
-    public function getFirstImage()
+    public function getFirstImage(): ?FileReference
     {
         $images = $this->getImage();
         if ($images) {
@@ -899,51 +542,35 @@ class Address extends AbstractEntity
     }
 
     /**
-     * Sets the images
-     *
      * @param ObjectStorage<FileReference> $image
      */
-    public function setImage(ObjectStorage $image)
+    public function setImage(ObjectStorage $image): void
     {
         $this->image = $image;
     }
 
-    /**
-     * sets the description attribute
-     *
-     * @param string $description
-     */
-    public function setDescription($description)
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }
 
-    /**
-     * returns the description attribute
-     *
-     * @return string
-     */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
 
     /**
-     * returns the categories
-     *
-     * @return ObjectStorage<Category> $categories
+     * @return ObjectStorage<Category>
      */
-    public function getCategories()
+    public function getCategories(): ObjectStorage
     {
         return $this->categories;
     }
 
     /**
-     * sets the categories
-     *
      * @param ObjectStorage<Category> $categories
      */
-    public function setCategories(ObjectStorage $categories)
+    public function setCategories(ObjectStorage $categories): void
     {
         $this->categories = $categories;
     }
@@ -955,7 +582,7 @@ class Address extends AbstractEntity
      * @param string $number
      * @return string
      */
-    protected function getCleanedNumber(string $number)
+    protected function getCleanedNumber(string $number): string
     {
         $number = trim($number);
 

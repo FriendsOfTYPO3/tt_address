@@ -70,6 +70,6 @@ class QueryGenerator
                 }
             }
         }
-        return $theList;
+        return (string)$theList;
     }
 }

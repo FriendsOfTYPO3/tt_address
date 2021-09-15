@@ -35,10 +35,10 @@ class Settings
         if (!empty($settings)) {
             $this->newPagination = (bool)($settings['newPagination'] ?? false);
 
-            if ($settings['telephoneValidationPatternForPhp']) {
+            if ($settings['telephoneValidationPatternForPhp'] ?? '') {
                 $this->telephoneValidationPatternForPhp = (string)$settings['telephoneValidationPatternForPhp'];
             }
-            if ($settings['telephoneValidationPatternForJs']) {
+            if ($settings['telephoneValidationPatternForJs'] ?? '') {
                 $this->telephoneValidationPatternForJs = (string)$settings['telephoneValidationPatternForJs'];
             }
         }

@@ -126,7 +126,7 @@ class AddressController extends ActionController
         );
 
         // correct the array to be in same shape like the _SETTINGS array
-        $tsSettings = $this->removeDots((array)$tsSettings['plugin.']['tx_ttaddress.']);
+        $tsSettings = $this->removeDots((array)($tsSettings['plugin.']['tx_ttaddress.'] ?? []));
 
         // get original settings
         // original means: what extbase does by munching flexform and TypoScript together, but leaving empty flexform-settings empty ...
@@ -136,7 +136,9 @@ class AddressController extends ActionController
 
         $propertiesNotAllowedViaFlexForms = ['orderByAllowed'];
         foreach ($propertiesNotAllowedViaFlexForms as $property) {
-            $originalSettings[$property] = $tsSettings['settings'][$property];
+            if (isset($tsSettings['settings'][$property])) {
+                $originalSettings[$property] = $tsSettings['settings'][$property];
+            }
         }
 
         // start override
@@ -229,7 +231,7 @@ class AddressController extends ActionController
      */
     protected function removeDotAtTheEnd($string): string
     {
-        return preg_replace('/\.$/', '', $string);
+        return preg_replace('/\.$/', '', (string)$string);
     }
 
     /**
@@ -244,7 +246,7 @@ class AddressController extends ActionController
 
         // iterate through root-page ids and merge to array
         foreach ($rootPIDs as $pid) {
-            $result = (string)$this->queryGenerator->getTreeList($pid, $this->settings['recursive'], 0, 1);
+            $result = $this->queryGenerator->getTreeList($pid, $this->settings['recursive'], 0, 1);
             if ($result) {
                 $subtreePids = explode(',', $result);
                 $pidList = array_merge($pidList, $subtreePids);
@@ -262,6 +264,9 @@ class AddressController extends ActionController
     {
         $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
         $itemsPerPage = (int)($this->settings['paginate']['itemsPerPage'] ?? 10);
+        if ($itemsPerPage === 0) {
+            $itemsPerPage = 10;
+        }
 
         if (is_array($addresses)) {
             $paginator = new ArrayPaginator($addresses, $currentPage, $itemsPerPage);

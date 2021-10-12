@@ -524,7 +524,7 @@ class Address extends AbstractEntity
     /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
      */
-    public function getImage(): ObjectStorage
+    public function getImage(): ?ObjectStorage
     {
         return $this->image;
     }

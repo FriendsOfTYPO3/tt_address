@@ -1,0 +1,67 @@
+6.0.0 - 2021-10-xx
+==================
+
+.. include:: ../../../Includes.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+
+The following changes could be breaking for you.
+
+Handling of field `name`
+^^^^^^^^^^^^^^^^^^^^^^^^
+The field `name` is **not** filled automatically anymore by the first and last name and the field will be remove with one of the next versions.
+
+Code cleanup
+^^^^^^^^^^^^
+The following code cleanups have been added:
+
+- Removal of translated XLF files: Download the translations from the translation server via Install Tool.
+- Strict types and type hints have been added
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2021-10-12 [TASK] Use own partial for f:widget (Commit d75fc88 by Georg Ringer)
+    2021-10-12 [BUGFIX] Address:getImage might return null (Commit c9c8fe4 by Georg Ringer)
+    2021-10-12 [TASK] Allow TYPO3 11.5 (Commit 3d89fac by Georg Ringer)
+    2021-09-29 [TASK] Add PHP8 for tests (#374) (Commit bf1545d by Georg Ringer)
+    2021-09-15 [TASK] Add strict types (#372) (Commit d1b5a06 by Georg Ringer)
+    2021-09-15 [TASK] Enhance List.xml Flexform (#371) (Commit c3a4e45 by Max Amann)
+    2021-09-15 [BUGFIX] Check array keys before accessing those (Commit 2370e64 by Georg Ringer)
+    2021-09-14 [BUGFIX] Check proper cache configuration (Commit f667b1b by Georg Ringer)
+    2021-09-12 [TASK] Drop outdated plugin registration (Commit f6d895c by Georg Ringer)
+    2021-09-12 [TASK] Use prophecy traits (#369) (Commit 6cf691e by Georg Ringer)
+    2021-09-12 [TASK] Use own QueryGenerator (#367) (Commit 7c98cf1 by Georg Ringer)
+    2021-09-12 [TASK] Change ubuntu version for tests (Commit 3ac6dd0 by Georg Ringer)
+    2021-09-01 [TASK] Change sql index name to avoid a name conflict (#361) (Commit a34c2e2 by ayacoo)
+    2021-08-09 [BUGFIX] Typecast to string for page id list (Commit 403750f by Georg Ringer)
+    2021-08-09 [BUGFIX] Typecast for itemsPerPage (Commit 2e56d65 by Georg Ringer)
+    2021-07-28 [BUGFIX] Make table key uf8mb4 compatible (#352) (Commit 3782d92 by Marc Bastian Heinrichs)
+    2021-07-28 [TASK] Support of 10-11 (Commit 3d105a5 by Georg Ringer)
+    2021-01-19 [TASK] Run tests on github (Commit bbfd685 by Georg Ringer)
+    2021-01-19 [BUGFIX] Fix failing tests (Commit 553ff4b by Georg Ringer)
+    2021-01-19 Apply fixes from StyleCI (#327) (Commit 98f99a3 by Georg Ringer)
+    2021-01-19 [DOC] Update version matrix (Commit f75eb27 by Georg Ringer)
+    2021-01-19 [!!!][TASK] Make all classes strict (Commit 6165c17 by Georg Ringer)
+    2021-01-19 [TASK] Simplfy ext_tables.sql (Commit 0c65d8a by Georg Ringer)
+    2021-01-19 [BUGFIX] Update test to use https (Commit 53ab13f by Georg Ringer)
+    2021-01-19 [TASK] Remove .travis.yml (Commit b4134a9 by Georg Ringer)
+    2021-01-19 [TASK] Cleanup tca (Commit c93cf54 by Georg Ringer)
+    2021-01-19 [TASK] Fix nitpickings of phpstan (Commit 7cd7f94 by Georg Ringer)
+    2021-01-19 [TASK] Remove label check from TCA (Commit 7c995d5 by Georg Ringer)
+    2021-01-19 [TASK] Raise minimum typo3 version (Commit 9c419ca by Georg Ringer)
+    2021-01-19 [TASK] Drop mapping in typoscript (Commit e02d01f by Georg Ringer)
+    2021-01-19 [!!!][TASK] Remove backwards compat name field (Commit b3c8ffc by Georg Ringer)
+    2021-01-19 [!!!][TASK] Remove localized xlf files (Commit 01eb699 by Georg Ringer)
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

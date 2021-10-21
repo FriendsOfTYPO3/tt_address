@@ -47,8 +47,8 @@ ext_emconf.php
        'version' => '1.0.0',
        'constraints' => [
            'depends' => [
-               'extender' => '6.6.0-6.99.99',
-               'tt_address' => '4.0.0-4.99.99'
+               'extender' => '',
+               'tt_address' => ''
            ],
            'conflicts' => [],
            'suggests' => [],
@@ -107,15 +107,15 @@ Configuration of EXT:extender
 
 Create the following files
 
-Classes/Domain/Model/Address.php
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Classes/Extending/Domain/Model/Address.php
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The extension "extender" merges with the one of `tt_address`. Be aware that it is only possible to extend the model by new properties and methods but not to change existing ones!
 
 .. code-block:: php
 
    <?php
 
-   namespace GeorgRinger\AddressField\Domain\Model;
+   namespace GeorgRinger\AddressField\Extending\Domain\Model;
 
    class Address extends \FriendsOfTYPO3\TtAddress\Domain\Model\Address
    {
@@ -147,8 +147,7 @@ ext_localconf.php
 
    <?php
 
-   $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tt_address']['extender'][\FriendsOfTYPO3\TtAddress\Domain\Model\Address::class]['ext_ttaddress']
-       = 'EXT:address_field/Classes/Domain/Model/Address.php';
+   $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['tt_address']['extender'][\FriendsOfTYPO3\TtAddress\Domain\Model\Address::class]['address_field'] = 'Domain/Model/Address';
 
 
 Use the field in frontend

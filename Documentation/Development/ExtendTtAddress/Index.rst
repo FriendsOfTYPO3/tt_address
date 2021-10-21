@@ -17,10 +17,15 @@ This documentation prefers the usage of the extension `extender` (https://extens
 
 This documentation is divided into the following sections:
 
+- Install EXT:extender
 - Setup extension
 - Make the field available in backend
 - Configuration of EXT:extender
 - Use the field in frontend
+
+Install EXT:extender
+--------------------
+Install the extension `extender` by either retrieve it from https://extensions.typo3.org/extension/extender or from the Extension Manager or use `composer req evoweb/extender`.
 
 Setup extension
 ---------------
@@ -96,6 +101,8 @@ Configuration/TCA/Overrides/tt_address.php
    ];
    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_address', $columns);
    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tt_address', 'quote', '', 'after:description');
+   // use next line to add it to an existing palette
+   // \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('tt_address', 'name', 'quote');
 
 .. important::
 

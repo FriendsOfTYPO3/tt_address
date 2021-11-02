@@ -273,8 +273,6 @@ class AddressControllerTest extends BaseTestCase
         $mockedView->expects($this->once())->method('assignMultiple')->with($assignments);
 
         $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument'], [], '', false);
-        $mockedRequest->expects($this->once())->method('hasArgument')->with('currentPage')->willReturn(true);
-        $mockedRequest->expects($this->once())->method('getArgument')->with('currentPage')->willReturn(2);
 
         $subject = $this->getAccessibleMock(AddressController::class, ['createDemandFromSettings'], [], '', false);
         $subject->expects($this->once())->method('createDemandFromSettings')->willReturn($demand);
@@ -307,8 +305,6 @@ class AddressControllerTest extends BaseTestCase
         ];
 
         $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument'], [], '', false);
-        $mockedRequest->expects($this->once())->method('hasArgument')->with('currentPage')->willReturn(true);
-        $mockedRequest->expects($this->once())->method('getArgument')->with('currentPage')->willReturn(2);
 
         $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple'], [], '', false);
         $mockedView->expects($this->once())->method('assignMultiple')->with($assignments);
@@ -354,8 +350,6 @@ class AddressControllerTest extends BaseTestCase
     public function overrideDemandMethodIsCalledIfEnabled()
     {
         $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument'], [], '', false);
-        $mockedRequest->expects($this->once())->method('hasArgument')->with('currentPage')->willReturn(true);
-        $mockedRequest->expects($this->once())->method('getArgument')->with('currentPage')->willReturn(2);
 
         $mockedRepository = $this->getAccessibleMock(AddressRepository::class, ['getAddressesByCustomSorting', 'findByDemand'], [], '', false);
         $mockedRepository->expects($this->any())->method('findByDemand')->willReturn([]);

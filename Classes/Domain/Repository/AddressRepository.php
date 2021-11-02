@@ -104,7 +104,13 @@ class AddressRepository extends Repository
     public function getSqlQuery(Demand $demand): string
     {
         $query = $this->createDemandQuery($demand);
-        $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
+
+        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
+        if ($versionInformation->getMajorVersion() >= 11) {
+            $queryParser = GeneralUtility::makeInstance(Typo3DbQueryParser::class);
+        } else {
+            $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
+        }
 
         $queryBuilder = $queryParser->convertQueryToDoctrineQueryBuilder($query);
         $queryParameters = $queryBuilder->getParameters();

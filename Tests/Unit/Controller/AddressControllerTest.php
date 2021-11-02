@@ -269,7 +269,7 @@ class AddressControllerTest extends BaseTestCase
             'addresses' => ['dummy return single']
         ];
 
-        $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple'], [], '', false);
+        $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
         $mockedView->expects($this->once())->method('assignMultiple')->with($assignments);
 
         $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument'], [], '', false);
@@ -306,7 +306,7 @@ class AddressControllerTest extends BaseTestCase
 
         $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument'], [], '', false);
 
-        $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple'], [], '', false);
+        $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
         $mockedView->expects($this->once())->method('assignMultiple')->with($assignments);
 
         $subject = $this->getAccessibleMock(AddressController::class, ['createDemandFromSettings'], [], '', false);
@@ -353,7 +353,7 @@ class AddressControllerTest extends BaseTestCase
 
         $mockedRepository = $this->getAccessibleMock(AddressRepository::class, ['getAddressesByCustomSorting', 'findByDemand'], [], '', false);
         $mockedRepository->expects($this->any())->method('findByDemand')->willReturn([]);
-        $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple'], [], '', false);
+        $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
         $mockedView->expects($this->once())->method('assignMultiple');
         $subject = $this->getAccessibleMock(AddressController::class, ['overrideDemand', 'createDemandFromSettings'], [], '', false);
         $subject->_set('extensionConfiguration', $this->getMockedSettings());

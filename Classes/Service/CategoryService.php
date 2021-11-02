@@ -13,6 +13,7 @@ use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\TimeTracker\TimeTracker;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -31,7 +32,9 @@ class CategoryService
     public function __construct()
     {
         $this->timeTracker = GeneralUtility::makeInstance(TimeTracker::class);
-        $this->cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_ttaddress_category');
+        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion();
+        $cacheIdentifier = $versionInformation >= 11 ? 'ttaddress_category' : 'cache_ttaddress_category';
+        $this->cache = GeneralUtility::makeInstance(CacheManager::class)->getCache($cacheIdentifier);
     }
 
     /**

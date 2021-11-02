@@ -11,6 +11,7 @@ namespace FriendsOfTYPO3\TtAddress\Domain\Repository;
  */
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Service\CategoryService;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
@@ -30,7 +31,13 @@ class AddressRepository extends Repository
      */
     public function initializeObject()
     {
-        $this->defaultQuerySettings = $this->objectManager->get(Typo3QuerySettings::class);
+        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
+        if ($versionInformation->getMajorVersion() >= 11) {
+            $this->defaultQuerySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
+        } else {
+            $this->defaultQuerySettings = $this->objectManager->get(Typo3QuerySettings::class);
+        }
+
         $this->defaultQuerySettings->setRespectStoragePage(false);
     }
 
@@ -97,7 +104,13 @@ class AddressRepository extends Repository
     public function getSqlQuery(Demand $demand): string
     {
         $query = $this->createDemandQuery($demand);
-        $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
+
+        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
+        if ($versionInformation->getMajorVersion() >= 11) {
+            $queryParser = GeneralUtility::makeInstance(Typo3DbQueryParser::class);
+        } else {
+            $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
+        }
 
         $queryBuilder = $queryParser->convertQueryToDoctrineQueryBuilder($query);
         $queryParameters = $queryBuilder->getParameters();

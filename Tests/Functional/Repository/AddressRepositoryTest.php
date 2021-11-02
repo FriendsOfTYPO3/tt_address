@@ -13,15 +13,13 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Functional\Repository;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class AddressRepositoryTest extends FunctionalTestCase
 {
-
-    /** @var ObjectManager */
-    protected $objectManager;
 
     /** @var AddressRepository */
     protected $addressRepository;
@@ -33,8 +31,12 @@ class AddressRepositoryTest extends FunctionalTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        $this->addressRepository = $this->objectManager->get(AddressRepository::class);
+        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
+        if ($versionInformation->getMajorVersion() >= 11) {
+            $this->addressRepository = $this->getContainer()->get(AddressRepository::class);
+        } else {
+            $this->addressRepository = GeneralUtility::makeInstance(ObjectManager::class)->get(AddressRepository::class);
+        }
 
         $this->importDataSet(__DIR__ . '/../Fixtures/tt_address.xml');
     }

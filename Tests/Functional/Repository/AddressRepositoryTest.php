@@ -13,6 +13,7 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Functional\Repository;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -30,7 +31,7 @@ class AddressRepositoryTest extends FunctionalTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
+        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
         if ($versionInformation->getMajorVersion() >= 11) {
             $this->addressRepository = $this->getContainer()->get(AddressRepository::class);
         } else {

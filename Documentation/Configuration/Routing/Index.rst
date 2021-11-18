@@ -6,6 +6,7 @@
 .. include:: ../../Includes.txt
 
 .. _routing:
+.. _configuration-extension-routing:
 
 ===========================
 Use Routing to rewrite URLs

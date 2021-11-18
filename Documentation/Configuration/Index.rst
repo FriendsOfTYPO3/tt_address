@@ -23,3 +23,4 @@ work!
     ExtensionSettings/Index
     TypoScript/Index
     Seo/Index
+    Routing/Index

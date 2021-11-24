@@ -178,7 +178,7 @@ class Address extends AbstractEntity
     protected $description = '';
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Category>
      */
     protected $categories;
 
@@ -608,5 +608,21 @@ class Address extends AbstractEntity
             $this->getLastName(),
         ];
         return implode(' ', array_filter($list));
+    }
+
+    /**
+     * Get first category
+     *
+     * @return \TYPO3\CMS\Extbase\Domain\Model\Category
+     */
+    public function getFirstCategory()
+    {
+        $categories = $this->getCategories();
+        if (!is_null($categories)) {
+            $categories->rewind();
+            return $categories->current();
+        }
+
+        return null;
     }
 }

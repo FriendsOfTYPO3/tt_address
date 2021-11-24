@@ -59,4 +59,13 @@ To use one of the partial you just need to call
 
     <f:render section="social" partial="Address" arguments="{_all}"/>
 
+Templates
+---------
+
+.. toctree::
+	:maxdepth: 5
+	:titlesonly:
+
+	GroupAddressRecords/Index
+
 

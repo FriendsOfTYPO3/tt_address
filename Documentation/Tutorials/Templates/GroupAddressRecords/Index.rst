@@ -20,9 +20,9 @@ The following example will group all given address records by the property "firs
 	<f:if condition="{addresses}">
 		<f:then>
 			<div style="border:1px solid red">
-				<f:groupedFor each="{addresses}" as="groupedAddresses" groupBy="firstCategory" groupKey="cat">
+				<f:groupedFor each="{addresses}" as="groupedAddresses" groupBy="firstCategory" groupKey="category">
 					<div style="border:1px solid blue;padding:10px;margin:10px;">
-						<h1>{cat.title}</h1>
+						<h1>{category.title}</h1>
 						<f:for each="{groupedAddresses}" as="address">
 							<div style="border:1px solid pink;padding:5px;margin:5px;">
 								{address.firstName} {address.lastName}

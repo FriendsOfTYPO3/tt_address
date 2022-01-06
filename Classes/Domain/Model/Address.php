@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Domain\Model;
 
-use TYPO3\CMS\Extbase\Domain\Model\Category;
 /**
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
@@ -13,6 +12,7 @@ use TYPO3\CMS\Extbase\Domain\Model\Category;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\Domain\Model\Category;
 
 /**
  * The domain model of a Address
@@ -611,11 +611,11 @@ class Address extends AbstractEntity
     }
 
     /**
-     * Get first category
+     * Gets the first category
      *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\Category
+     * @return \TYPO3\CMS\Extbase\Domain\Model\Category|null the first category
      */
-    public function getFirstCategory()
+    public function getFirstCategory(): ?Category
     {
         $categories = $this->getCategories();
         if (!is_null($categories)) {

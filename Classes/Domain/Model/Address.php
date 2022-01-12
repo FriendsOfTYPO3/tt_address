@@ -3,13 +3,14 @@ declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Domain\Model;
 
-use TYPO3\CMS\Extbase\Domain\Model\Category;
 /**
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use TYPO3\CMS\Extbase\Domain\Model\Category;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
@@ -178,7 +179,7 @@ class Address extends AbstractEntity
     protected $description = '';
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Category>
      */
     protected $categories;
 
@@ -608,5 +609,21 @@ class Address extends AbstractEntity
             $this->getLastName(),
         ];
         return implode(' ', array_filter($list));
+    }
+
+    /**
+     * Gets the first category
+     *
+     * @return \TYPO3\CMS\Extbase\Domain\Model\Category|null the first category
+     */
+    public function getFirstCategory(): ?Category
+    {
+        $categories = $this->getCategories();
+        if (!is_null($categories)) {
+            $categories->rewind();
+            return $categories->current();
+        }
+
+        return null;
     }
 }

@@ -650,4 +650,14 @@ class Address extends AbstractEntity
 
         return null;
     }
+
+    public function getAddressInOneLine(): string
+    {
+        return implode(', ', array_filter([
+            str_replace(chr(10), ',', $this->address),
+            $this->city,
+            $this->region,
+            $this->country,
+        ]));
+    }
 }

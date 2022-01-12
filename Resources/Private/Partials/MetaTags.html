@@ -1,0 +1,9 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:ttaddr="http://typo3.org/ns/FriendsOfTYPO3/TtAddress/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+    <f:variable name="address">{address.fullName} {f:if(condition: address.phone,then:'☎ {address.phone}')} {f:if(condition: address.addressInOneLine,then:'➤ {address.addressInOneLine}')}</f:variable>
+    <ttaddr:metaTag property="description">{address}</ttaddr:metaTag>
+    <ttaddr:metaTag property="og:description">{address}</ttaddr:metaTag>
+</html>

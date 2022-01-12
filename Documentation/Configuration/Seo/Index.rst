@@ -39,3 +39,13 @@ The following configuration is set by default:
 
 - The setting `properties` is a comma separated list of properties of the `Address` model which should be taken into account (if not empty).
 - The setting `glue` defines how the values are combined together.
+
+Meta Tags
+---------
+Meta Tags are rendered by using the ViewHelper `MetaTagViewHelper`.
+.. code-block:: html
+
+    <!-- Example can be found in Partials/MetaTags.html
+    <ttaddr:metaTag property="description">{address}</ttaddr:metaTag>
+
+By default the meta tags for `description` and `og:description` are set.

@@ -3,7 +3,8 @@
 return [
     'ctrl' => [
         'label' => 'name',
-        'label_alt' => 'email',
+        'label_alt' => 'email,last_name,first_name',
+        'label_alt_force' => true,
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',

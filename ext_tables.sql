@@ -10,6 +10,7 @@ CREATE TABLE tt_address (
     last_name tinytext,
     birthday bigint(20) DEFAULT '0' NOT NULL,
     title varchar(255) DEFAULT '' NOT NULL,
+    title_suffix varchar(100) DEFAULT '' NOT NULL,
     email varchar(255) DEFAULT '' NOT NULL,
     phone varchar(30) DEFAULT '' NOT NULL,
     mobile varchar(30) DEFAULT '' NOT NULL,

@@ -63,6 +63,9 @@ class Address extends AbstractEntity
      */
     protected $title = '';
 
+    /** @var string */
+    protected $titleSuffix = '';
+
     /**
      * @var string
      */
@@ -267,6 +270,22 @@ class Address extends AbstractEntity
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitleSuffix(): string
+    {
+        return $this->titleSuffix;
+    }
+
+    /**
+     * @param string $titleSuffix
+     */
+    public function setTitleSuffix(string $titleSuffix): void
+    {
+        $this->titleSuffix = $titleSuffix;
     }
 
     public function setAddress(string $address): void
@@ -608,7 +627,12 @@ class Address extends AbstractEntity
             $this->getMiddleName(),
             $this->getLastName(),
         ];
-        return implode(' ', array_filter($list));
+
+        $name = implode(' ', array_filter($list));
+        if ($this->titleSuffix) {
+            $name .= ', ' . $this->titleSuffix;
+        }
+        return $name;
     }
 
     /**

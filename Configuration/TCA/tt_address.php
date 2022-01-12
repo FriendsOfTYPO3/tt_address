@@ -183,6 +183,19 @@ return [
                 ],
             ]
         ],
+        'title_suffix' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.title_suffix',
+            'config' => [
+                'type' => 'input',
+                'size' => 8,
+                'eval' => 'trim',
+                'max' => 255,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+            ]
+        ],
         'slug' => [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:pages.slug',
@@ -628,7 +641,7 @@ return [
     ],
     'palettes' => [
         'name' => [
-            'showitem' => 'gender, title, --linebreak--,
+            'showitem' => 'gender, title, title_suffix,--linebreak--,
                             first_name, middle_name, last_name,--linebreak--,name,--linebreak--,slug'
         ],
         'organization' => [

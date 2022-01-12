@@ -69,6 +69,9 @@
             <trans-unit id="tt_address.longitude">
                 <source>Longitude</source>
             </trans-unit>
+			<trans-unit id="tt_address.title_suffix">
+				<source>Title suffix</source>
+			</trans-unit>
             <trans-unit id="tt_address.locationMapWizard">
                 <source>Map wizard for visual selection of coordinates</source>
             </trans-unit>

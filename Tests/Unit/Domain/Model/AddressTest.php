@@ -9,6 +9,7 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Domain\Model;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use TYPO3\CMS\Extbase\Domain\Model\Category;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
@@ -517,12 +518,24 @@ class AddressTest extends BaseTestCase
 
     /**
      * @test
+     * @dataProvider fullNameDataProvider
      */
-    public function fullNameIsReturned()
+    public function fullNameIsReturned(string $expected, array $nameParts): void
     {
-        $this->subject->setTitle('Dr.');
-        $this->subject->setLastName('Doe');
+        $this->subject->setTitle($nameParts[0]);
+        $this->subject->setFirstName($nameParts[1]);
+        $this->subject->setLastName($nameParts[2]);
+        $this->subject->setTitleSuffix($nameParts[3]);
 
-        $this->assertEquals('Dr. Doe', $this->subject->getFullName());
+        $this->assertEquals($expected, $this->subject->getFullName());
+    }
+
+    public function fullNameDataProvider(): array
+    {
+        return [
+            'simple name' => ['John Doe', ['', 'John', 'Doe', '']],
+            'name with title' => ['Dr. Jane Doe', ['Dr.', 'Jane', 'Doe', '']],
+            'name with title and 2nd title' => ['Dr. Max Mustermann, Junior', ['Dr.', 'Max', 'Mustermann', 'Junior']],
+        ];
     }
 }

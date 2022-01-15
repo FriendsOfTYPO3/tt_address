@@ -18,7 +18,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class Label
 {
-
     public function getAddressLabel(array &$params): void
     {
         if (!($params['row']['pid'] ?? 0)) {

@@ -22,5 +22,6 @@ work!
 
     ExtensionSettings/Index
     TypoScript/Index
+    TsConfig/Index
     Seo/Index
     Routing/Index

@@ -3,8 +3,9 @@
 return [
     'ctrl' => [
         'label' => 'name',
-        'label_alt' => 'email,last_name,first_name',
+        'label_alt' => 'last_name,first_name,email',
         'label_alt_force' => true,
+        'label_userFunc' => \FriendsOfTYPO3\TtAddress\Hooks\Tca\Label::class . '->getAddressLabel',
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',

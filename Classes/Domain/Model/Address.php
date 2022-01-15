@@ -10,6 +10,7 @@ namespace FriendsOfTYPO3\TtAddress\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use FriendsOfTYPO3\TtAddress\Utility\PropertyModification;
 use TYPO3\CMS\Extbase\Domain\Model\Category;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
@@ -350,7 +351,7 @@ class Address extends AbstractEntity
 
     public function getCleanedPhone(): string
     {
-        return $this->getCleanedNumber($this->phone);
+        return PropertyModification::getCleanedNumber($this->phone);
     }
 
     public function setFax(string $fax): void
@@ -365,7 +366,7 @@ class Address extends AbstractEntity
 
     public function getCleanedFax(): string
     {
-        return $this->getCleanedNumber($this->fax);
+        return PropertyModification::getCleanedNumber($this->fax);
     }
 
     public function setMobile(string $mobile): void
@@ -380,7 +381,7 @@ class Address extends AbstractEntity
 
     public function getCleanedMobile(): string
     {
-        return $this->getCleanedNumber($this->mobile);
+        return PropertyModification::getCleanedNumber($this->mobile);
     }
 
     public function setWww(string $www): void
@@ -395,12 +396,7 @@ class Address extends AbstractEntity
 
     public function getWwwSimplified(): string
     {
-        $www = trim($this->www);
-        if (!$www) {
-            return '';
-        }
-        $parts = str_replace(['\\\\', '\\"'], ['\\', '"'], str_getcsv($www, ' '));
-        return $parts[0];
+        return PropertyModification::getCleanedDomain($this->www);
     }
 
     public function setSlug(string $slug): void
@@ -593,25 +589,6 @@ class Address extends AbstractEntity
     public function setCategories(ObjectStorage $categories): void
     {
         $this->categories = $categories;
-    }
-
-    /**
-     * Get cleaned number of a given telephone, fax or mobile number.
-     * It removes all chars which are not possible to enter on your cell phone.
-     *
-     * @param string $number
-     * @return string
-     */
-    protected function getCleanedNumber(string $number): string
-    {
-        $number = trim($number);
-
-        // Remove 0 on +49(0)221, but keep 0 on (0)221
-        if (strpos($number, '(0)') > 0) {
-            $number = str_replace('(0)', '', $number);
-        }
-
-        return preg_replace('/[^0-9#+*]/', '', $number);
     }
 
     /**

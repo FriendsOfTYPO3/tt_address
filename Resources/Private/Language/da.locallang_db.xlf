@@ -91,6 +91,10 @@
         <source>Longitude</source>
         <target state="final">Længdegrad</target>
       </trans-unit>
+      <trans-unit id="tt_address.title_suffix" approved="yes">
+        <source>Title suffix</source>
+        <target state="final">Titel-endelse</target>
+      </trans-unit>
       <trans-unit id="tt_address.locationMapWizard" approved="yes">
         <source>Map wizard for visual selection of coordinates</source>
         <target state="final">Kortguide til visuelt valg af koordinater</target>

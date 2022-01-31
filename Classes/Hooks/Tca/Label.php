@@ -18,7 +18,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class Label
 {
-
     private const FALLBACK = [
         ['last_name', 'first_name'],
         ['email'],

@@ -3,7 +3,7 @@
 return [
     'ctrl' => [
         'label' => 'name',
-        'label_alt' => 'last_name,first_name,email',
+        'label_alt' => 'last_name,first_name,email,pid',
         'label_alt_force' => true,
         'label_userFunc' => \FriendsOfTYPO3\TtAddress\Hooks\Tca\Label::class . '->getAddressLabel',
         'languageField' => 'sys_language_uid',

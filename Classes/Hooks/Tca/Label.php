@@ -19,6 +19,11 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class Label
 {
 
+    private const FALLBACK = [
+        ['last_name', 'first_name'],
+        ['email'],
+    ];
+
     public function getAddressLabel(array &$params): void
     {
         if (!($params['row']['pid'] ?? 0)) {
@@ -49,7 +54,7 @@ class Label
     {
         $labelConfiguration = BackendUtility::getPagesTSconfig($pid)['tt_address.']['label'] ?? '';
         if (!$labelConfiguration) {
-            return [];
+            return self::FALLBACK;
         }
 
         $configuration = [];

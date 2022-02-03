@@ -1,5 +1,5 @@
-6.0.0 - 2021-10-xx
-==================
+6.0.0 - 3th February 2022
+=========================
 
 .. include:: ../../../Includes.txt
 
@@ -26,10 +26,71 @@ The following code cleanups have been added:
 - Removal of translated XLF files: Download the translations from the translation server via Install Tool.
 - Strict types and type hints have been added
 
+Features
+--------
+
+Improved record title in backend
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+It is possible to change the used fields for the title of the record by TsConfig.
+This is nice if using the extension for various purposes, e.g. locations and newsletter subscriptions.
+
+.. code-block:: typoscript
+
+    # Page TsConfig
+    tt_address.label = name;last_name,first_name;email
+
+Each label group is divided by `;` and each group can hold a list of field names.
+
+1. In the given example, the value of the field `name` is shown if filled.
+2. If the field is empty, the values of the fields `last_name` and `first_name` are shown.
+3. If this combination is still empty, the email address is shown
+
+
+New properties & getters
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+- The field `titleSuffix` has been added
+- The getter `getFirstCategory` has been added to make it easier in fluid to retrive the first category with `{address.firstCategory}`.
+
+New ViewHelpers
+^^^^^^^^^^^^^^^
+
+The following ViewHelpers have been added:
+
+- `<address:clean.domain />
+- `<address:clean.phoneNumber />
+
+Those trigger the same cleaning as `{address.cleanedPhoneNumber}` and `{address.wwwSimplified}`.
+
+If address records are retrieved directly, e.g. by using a DataProcessor, it is possible to clean the values as in the templates.
+
 All Changes
 -----------
 This is a list of all changes in this release: ::
 
+    2022-02-03 [DOC] Provide some more badges in the main readme (Commit f957599 by Georg Ringer)
+    2022-02-03 Apply fixes from StyleCI (#397) (Commit f539473 by Georg Ringer)
+    2022-02-03 [BUGFIX] Remove unused argument from QueryGenerator (Commit c9e1431 by Georg Ringer)
+    2022-01-31 Apply fixes from StyleCI (#395) (Commit 17e1a1b by Georg Ringer)
+    2022-01-31 [TASK] Improve fallback for titles (Commit 2912099 by Georg Ringer)
+    2022-01-15 [FEATURE] Dynamic label configuration (Commit ff78ce9 by Georg Ringer)
+    2022-01-15 [FEATURE] Extract property modification to utility (#391) (Commit cedcd55 by Georg Ringer)
+    2022-01-12 [FEATURE] Provide proper metatag description (Commit 544df31 by Georg Ringer)
+    2022-01-12 [FEATURE] Provide suffix title field (Commit cdc0988 by Georg Ringer)
+    2022-01-12 [BUGFIX] Provide more fields at ctrl|label_alt (Commit d0ca8ab by Georg Ringer)
+    2022-01-12 [FEATURE] implement firstCategory property (#383) (Commit 4341d2e by Henrik Ziegenhain)
+    2022-01-12 [TASK] Check for TYPO3_MODE for icon registry (Commit 2df50d0 by Georg Ringer)
+    2021-11-23 [DOCS] Add explanation and example for Routing (#380) (Commit 47496ad by Lina Wolf)
+    2021-11-02 [BUGFIX] Ignore newPagination setting for TYPO3 11 (#378) (Commit 288ae5f by Georg Ringer)
+    2021-11-02 [TASK] Avoid usage of ObjectManager in AddressRepository (Commit a058e83 by Georg Ringer)
+    2021-11-02 [TASK] Avoid usage of ObjectManager in AddressRepository (Commit e980c05 by Georg Ringer)
+    2021-11-02 [TASK] Avoid usage of ObjectManager in test (Commit 3b1e09a by Georg Ringer)
+    2021-11-02 [TASK] Use correct cache name in ext_localconf (Commit 88e3728 by Georg Ringer)
+    2021-11-02 [TASK] Use proper cache name (Commit e1efc7d by Georg Ringer)
+    2021-11-02 [TASK] Use TCA type language in TYPO3 11 (Commit 8ced7e5 by Georg Ringer)
+    2021-10-21 [DOC] Followup (Commit 6768741 by Georg Ringer)
+    2021-10-21 [DOC] Fix example of extending model (Commit cb39e4c by Georg Ringer)
+    2021-10-12 [DOC] Start changelog of 6.0.0 (Commit 87acc2c by Georg Ringer)
     2021-10-12 [TASK] Use own partial for f:widget (Commit d75fc88 by Georg Ringer)
     2021-10-12 [BUGFIX] Address:getImage might return null (Commit c9c8fe4 by Georg Ringer)
     2021-10-12 [TASK] Allow TYPO3 11.5 (Commit 3d89fac by Georg Ringer)

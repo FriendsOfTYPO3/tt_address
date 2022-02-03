@@ -27,10 +27,9 @@ class QueryGenerator
      * @param int $id uid of the page
      * @param int $depth
      * @param int $begin
-     * @param string $permClause
      * @return string comma separated list of descendant pages
      */
-    public function getTreeList($id, $depth, $begin = 0, $permClause = ''): string
+    public function getTreeList($id, $depth, $begin = 0): string
     {
         $depth = (int)$depth;
         $begin = (int)$begin;
@@ -53,16 +52,14 @@ class QueryGenerator
                     $queryBuilder->expr()->eq('sys_language_uid', 0)
                 )
                 ->orderBy('uid');
-            if ($permClause !== '') {
-                $queryBuilder->andWhere(QueryHelper::stripLogicalOperatorPrefix($permClause));
-            }
+
             $statement = $queryBuilder->execute();
             while ($row = $statement->fetchAssociative()) {
                 if ($begin <= 0) {
                     $theList .= ',' . $row['uid'];
                 }
                 if ($depth > 1) {
-                    $theSubList = $this->getTreeList($row['uid'], $depth - 1, $begin - 1, $permClause);
+                    $theSubList = $this->getTreeList($row['uid'], $depth - 1, $begin - 1);
                     if (!empty($theList) && !empty($theSubList) && ($theSubList[0] !== ',')) {
                         $theList .= ',';
                     }

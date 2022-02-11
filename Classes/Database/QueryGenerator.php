@@ -53,7 +53,7 @@ class QueryGenerator
                 ->orderBy('uid');
 
             $statement = $queryBuilder->execute();
-            while ($row = $statement->fetchAssociative()) {
+            while ($row = $statement->fetch()) {
                 if ($begin <= 0) {
                     $theList .= ',' . $row['uid'];
                 }

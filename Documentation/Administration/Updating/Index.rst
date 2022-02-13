@@ -5,15 +5,35 @@
 
 .. include:: ../../Includes.txt
 
-
 .. _administration-updating:
+
+========
+Updating
+========
+
+In general after every update you should update the database scheme in
+:guilabel:`Admin tools > Maintenance > Analyze Database` and flush all caches.
+
+Updating from 5.x to 6.0.0
+--------------------------
+
+The field `name` is **not** filled automatically anymore by the first and last
+name and the field will be remove with one of the next versions. If your
+templates or third party extension depend on this field to be filled you can
+activate the legacy behaviour in
+:guilabel:`Admin tools > Settings > Extension Configuration` by checking
+:guilabel:`Store backwards compatibility name in name field`.
+
+Translation files for languages other then English are not included directly
+in the extension anymore. You can get them from the translation server at
+:guilabel:`Admin tools > Maintenance > Manage Languages`.
 
 Updating from 4.x to 5.0.0
 --------------------------
 
 .. warning::
 
-	The upgrade wizard to migrate from pibase to extbase plugins have been removed. If you need those, please install versionn 4.x first and upgrade afterwards.
+	The upgrade wizard to migrate from pibase to extbase plugins have been removed. If you need those, please install version 4.x first and upgrade afterwards.
 
 With the version 5.0.0 the TYPO3 versions 9 and 10 are supported which also means that the support for version 8 has been dropped.
 

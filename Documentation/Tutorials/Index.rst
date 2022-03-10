@@ -17,6 +17,7 @@ Tutorials
     :titlesonly:
 
     Templates/Index
+    Linkhandler
     RichSnippets/Index
     CustomDisplayMode/Index
     OverrideDemand/Index

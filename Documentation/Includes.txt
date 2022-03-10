@@ -17,5 +17,8 @@
    :class:  typoscript
 
 .. role::   php(code)
+.. role::   html(code)
+.. role::   yaml(code)
+.. role::   shell(code)
 
 .. highlight:: php

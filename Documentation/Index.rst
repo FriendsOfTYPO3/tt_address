@@ -11,44 +11,35 @@
 Address List
 ============
 
-.. only:: html
+:Extension key:
+    tt_address
 
-    :Classification:
-        tt_address
+:Version:
+    |release|
 
-    :Version:
-        |release|
+:Language:
+    en
 
-    :Language:
-        en
+:Author:
+    tt_address Development Team
 
-    :Description:
-        Displays a list of addresses from an address table on the page.
+:License:
+    This document is published under the Open Publication License
+    available from https://www.opencontent.org/openpub/
 
-    :Keywords:
-
-
-    :Copyright:
-        2002-2018
-
-    :Author:
-        tt_address Development Team
-
-    :Email:
-        friendsof@typo3.org
-
-    :License:
-        This document is published under the Open Publication License
-        available from http://www.opencontent.org/openpub/
-
-    :Rendered:
-        |today|
-
-    The content of this document is related to TYPO3,
-    a GNU/GPL CMS/Framework available from `www.typo3.org <https://typo3.org/>`__.
+:Rendered:
+    |today|
 
 
-    **Table of Contents**
+The basic aim of tt_address is to store address and contact data and to output those in various ways:
+
+- Selection based on categories and sysfolder
+- Manual selection with custom sorting
+- List & detail view
+- Various map views including Leaflet, Google Maps and static Google Maps
+
+
+**Table of Contents**
 
 .. toctree::
     :maxdepth: 3

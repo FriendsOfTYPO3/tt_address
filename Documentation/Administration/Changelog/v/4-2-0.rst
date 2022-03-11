@@ -1,7 +1,7 @@
 4.2.0 - 2019-03-15
 ==================
 
-.. include:: ../../../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. only:: html
 

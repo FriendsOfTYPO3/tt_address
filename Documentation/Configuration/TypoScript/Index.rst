@@ -8,7 +8,6 @@
 
 .. _configuration-reference:
 
-=========
 Reference
 =========
 

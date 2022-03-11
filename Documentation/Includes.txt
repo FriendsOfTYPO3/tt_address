@@ -18,4 +18,7 @@
 
 .. role::   php(code)
 
+.. role::   html(code)
+.. role::   fluid(code)
+
 .. highlight:: php

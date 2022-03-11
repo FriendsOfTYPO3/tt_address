@@ -21,4 +21,7 @@
 .. role::   yaml(code)
 .. role::   shell(code)
 
+.. role::   html(code)
+.. role::   fluid(code)
+
 .. highlight:: php

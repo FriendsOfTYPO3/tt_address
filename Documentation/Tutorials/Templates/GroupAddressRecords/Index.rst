@@ -7,7 +7,7 @@
 
 
 Group address records
-------------------
+---------------------
 
 .. tip::
 	This is a feature delivered by fluid, so you can use it also in other extensions and projects.

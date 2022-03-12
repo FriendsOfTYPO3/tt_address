@@ -70,6 +70,7 @@ View
    Example: See :confval:`view.templateRootPaths`.
 
 .. confval:: view.layoutRootPaths
+
    :Path: plugin.tx_ttaddress
    :type: array
 

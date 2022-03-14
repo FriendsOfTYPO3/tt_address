@@ -57,10 +57,10 @@ New ViewHelpers
 
 The following ViewHelpers have been added:
 
-- `<address:clean.domain />
-- `<address:clean.phoneNumber />
+- :fluid:`<address:clean.domain />`
+- :fluid:`<address:clean.phoneNumber />`
 
-Those trigger the same cleaning as `{address.cleanedPhoneNumber}` and `{address.wwwSimplified}`.
+Those trigger the same cleaning as :fluid:`{address.cleanedPhoneNumber}` and :fluid:`{address.wwwSimplified}`.
 
 If address records are retrieved directly, e.g. by using a DataProcessor, it is possible to clean the values as in the templates.
 
@@ -125,4 +125,8 @@ This is a list of all changes in this release: ::
     2021-01-19 [!!!][TASK] Remove localized xlf files (Commit 01eb699 by Georg Ringer)
 
 
-This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
+This list has been created by using:
+
+.. code-block:: shell
+
+   git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short

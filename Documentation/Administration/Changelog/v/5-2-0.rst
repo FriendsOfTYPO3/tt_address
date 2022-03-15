@@ -1,7 +1,7 @@
 5.2.0 - 22th September 2020
 ===========================
 
-.. include:: ../../../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. only:: html
 

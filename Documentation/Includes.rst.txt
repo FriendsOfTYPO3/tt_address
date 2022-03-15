@@ -1,0 +1,21 @@
+.. This is 'Includes.rst.txt'. It is included at the very top of each and
+   every ReST source file in this documentation project (= manual).
+
+
+.. ==================================================
+.. DEFINE SOME TEXT ROLES
+.. --------------------------------------------------
+
+.. role::   html(code)
+.. role::   php(code)
+.. role::   shell(code)
+.. role::   typoscript(code)
+.. role::   yaml(code)
+
+.. role::   fluid(code)
+   :class:  html
+
+.. role::   ts(code)
+   :class:  typoscript
+
+.. highlight:: php

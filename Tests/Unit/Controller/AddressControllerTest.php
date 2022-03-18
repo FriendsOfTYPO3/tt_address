@@ -394,6 +394,7 @@ class AddressControllerTest extends BaseTestCase
         $demand1In->setSortBy('uid');
         $demand1Out = clone $demand1In;
         $demand1Out->setCategories('56');
+        $demand1Out->setSortBy('title');
         $data['skipSimple'] = [$demand1In, $demand1Out, ['categories' => '56', 'sortby' => 'title']];
 
         // not existing field

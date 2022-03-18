@@ -171,11 +171,16 @@ class AddressController extends ActionController
 
     protected function overrideDemand(Demand $demand, array $override): Demand
     {
-        $ignoredValues = ['singleRecords', 'sortBy', 'pages'];
+        $ignoredValues = ['singleRecords', 'pages'];
         $ignoredValuesLower = array_map('strtolower', $ignoredValues);
 
         foreach ($ignoredValues as $property) {
             unset($override[$property]);
+        }
+
+        // check if field exists
+        if (isset($override['sortBy']) && !isset($GLOBALS['TCA']['tt_address']['columns'][$override['sortBy']])) {
+            unset($override['sortBy']);
         }
 
         foreach ($override as $propertyName => $propertyValue) {

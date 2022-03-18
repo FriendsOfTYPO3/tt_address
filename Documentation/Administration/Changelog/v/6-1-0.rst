@@ -1,0 +1,28 @@
+6.0.1 - 18th Match 2022
+=======================
+
+.. include:: /Includes.rst.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2022-03-18 [FEATURE] Allow sortBy by override (#410) (Commit 1a149ca by Georg Ringer)
+    2022-03-16 [BUGFIX] Fix notice in AddressController (Commit 7785757 by Georg Ringer)
+    2022-03-15 [DOCS] Update docs (#407) (Commit e451d43 by Alexander Nitsche)
+    2022-03-14 [DOCS] Fix rendering errors (#408) (Commit 3fc8b44 by Lina Wolf)
+    2022-03-10 [DOCS] Provide LinkHandler configuration (#405) (Commit bad89ad by Lina Wolf)
+    2022-02-22 [FEATURE] Information on updating from v5.x to 6.0 (#402) (Commit e25a685 by Lina Wolf)
+
+This list has been created by using:
+
+.. code-block:: shell
+
+   git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short

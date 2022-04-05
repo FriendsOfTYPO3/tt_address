@@ -23,22 +23,24 @@ Installation
 
 The extension needs to be installed as any other extension of TYPO3 CMS:
 
-#. Get the extension
+#. **Get it from the Extension Manager:** Press the “Retrieve/Update”
+   button and search for the extension key `tt_address` and import the
+   extension from the repository.
 
-   #. **Get it from the Extension Manager:** Press the “Retrieve/Update”
-      button and search for the extension key `tt_address` and import the
-      extension from the repository.
+#. **Get it from typo3.org:** You can always get current version from
+   the `TER`_ by downloading either the t3x or zip version. Upload
+   the file afterwards in the Extension Manager.
 
-   #. **Get it from typo3.org:** You can always get current version from
-      `http://typo3.org/extensions/repository/view/tt_address/current/
-      <http://typo3.org/extensions/repository/view/tt_address/current/>`_ by
-      downloading either the t3x or zip version. Upload
-      the file afterwards in the Extension Manager.
+#. **Use composer**: Run
 
-   #. **Use composer**: Use `composer require friendsoftypo3/tt-address`.
+   .. code-block:: bash
 
-#. The Extension Manager offers some basic configuration which is
-   explained :ref:`here <configuration-extension-configuration>`.
+      composer require friendsoftypo3/tt-address
+
+.. _TER: https://extensions.typo3.org/extension/tt_address
+
+The Extension Manager offers some basic configuration which is explained
+:ref:`here <configuration-extension-configuration>`.
 
 Latest version from git
 -----------------------

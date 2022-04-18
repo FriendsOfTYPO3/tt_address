@@ -56,6 +56,10 @@ class AddressController extends ActionController
      */
     public function showAction(Address $address = null)
     {
+        if (is_a($address, Address::class) && ($this->settings['detail']['checkPidOfAddressRecord'] ?? false)) {
+            $address = $this->checkPidOfAddressRecord($address);
+        }
+
         if ($address === null) {
             $this->redirectToUri($this->uriBuilder->reset()->setTargetPageUid((int)$GLOBALS['TSFE']->id)->build());
         } else {
@@ -281,5 +285,22 @@ class AddressController extends ActionController
             throw new \RuntimeException(sprintf('Only array and query result interface allowed for pagination, given "%s"', get_class($addresses)), 1611168593);
         }
         return $paginator;
+    }
+
+    /**
+     * Checks if the address PID could be found in the storagePage settings of the detail plugin and
+     * if the pid is not found null is returned
+     *
+     * @param Address $address
+     * @return Address|null
+     */
+    protected function checkPidOfAddressRecord(Address $address): ?Address
+    {
+        $allowedStoragePages = array_map('intval', $this->getPidList());
+        if (count($allowedStoragePages) > 0 && !in_array($address->getPid(), $allowedStoragePages, true)) {
+            $address = null;
+        }
+
+        return $address;
     }
 }

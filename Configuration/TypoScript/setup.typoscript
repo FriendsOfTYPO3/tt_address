@@ -44,6 +44,9 @@ plugin.tx_ttaddress {
         detail {
             ## Set your lightbox here. The address records UID is appended, see fluid template
             imageClass = lightbox lightbox_
+
+            ## Check PID of address record
+            checkPidOfAddressRecord = 0
         }
 
         map {

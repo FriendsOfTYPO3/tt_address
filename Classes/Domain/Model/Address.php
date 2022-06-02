@@ -590,7 +590,7 @@ class Address extends AbstractEntity
     {
         $this->categories = $categories;
     }
-    
+
     public function getSysLanguageUid(): int
     {
         return $this->_languageUid;

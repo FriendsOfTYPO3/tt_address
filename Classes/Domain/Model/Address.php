@@ -590,6 +590,11 @@ class Address extends AbstractEntity
     {
         $this->categories = $categories;
     }
+    
+    public function getSysLanguageUid(): int
+    {
+        return $this->_languageUid;
+    }
 
     /**
      * Get full name including title, first, middle and last name

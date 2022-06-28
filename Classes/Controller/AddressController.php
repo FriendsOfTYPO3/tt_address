@@ -60,16 +60,13 @@ class AddressController extends ActionController
             $address = $this->checkPidOfAddressRecord($address);
         }
 
-        if ($address === null) {
-            $this->redirectToUri($this->uriBuilder->reset()->setTargetPageUid((int)$GLOBALS['TSFE']->id)->build());
-        } else {
+        if ($address !== null) {
             $provider = GeneralUtility::makeInstance(AddressTitleProvider::class);
             $provider->setTitle($address, (array)($this->settings['seo']['pageTitle'] ?? []));
+            CacheUtility::addCacheTagsByAddressRecords([$address]);
         }
 
         $this->view->assign('address', $address);
-
-        CacheUtility::addCacheTagsByAddressRecords([$address]);
     }
 
     /**

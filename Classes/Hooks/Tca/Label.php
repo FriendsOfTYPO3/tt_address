@@ -30,7 +30,7 @@ class Label
         }
 
         $row = $params['row'];
-        $configuration = $this->getConfiguration($row['pid']);
+        $configuration = $this->getConfiguration((int) $row['pid']);
         if (!$configuration) {
             return;
         }

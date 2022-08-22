@@ -45,7 +45,7 @@ class PageLayoutViewHook implements PageLayoutViewDrawItemHookInterface
         $settings = $this->getFlexFormData($row['pi_flexform'] ?? '');
 
         foreach ($this->recordMapping as $fieldName => $fieldConfiguration) {
-            if ($settings['settings'][$fieldName]) {
+            if ($settings['settings'][$fieldName] ?? false) {
                 $records = $this->getRecords($fieldConfiguration['table'], $settings['settings'][$fieldName]);
 
                 if ($fieldConfiguration['multiValue']) {

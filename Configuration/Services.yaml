@@ -7,3 +7,11 @@ services:
   FriendsOfTYPO3\TtAddress\:
     resource: '../Classes/*'
     exclude: '../Classes/Domain/Model/*'
+   
+  FriendsOfTYPO3\TtAddress\Command\GeocodeCommand:
+    tags:
+      - name: 'console.command'
+        command: 'ttaddress:geocode'
+        description: 'Geocode tt_address records'
+        schedulable: true
+        hidden: false

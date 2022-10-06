@@ -31,13 +31,7 @@ class AddressRepository extends Repository
      */
     public function initializeObject()
     {
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-        if ($versionInformation->getMajorVersion() >= 11) {
-            $this->defaultQuerySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
-        } else {
-            $this->defaultQuerySettings = $this->objectManager->get(Typo3QuerySettings::class);
-        }
-
+        $this->defaultQuerySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
         $this->defaultQuerySettings->setRespectStoragePage(false);
     }
 
@@ -77,9 +71,9 @@ class AddressRepository extends Repository
         if ($categories) {
             $categoryConstraints = $this->createCategoryConstraint($query, $categories, $demand->getIncludeSubCategories());
             if ($demand->getCategoryCombination() === 'or') {
-                $constraints['categories'] = $query->logicalOr($categoryConstraints);
+                $constraints['categories'] = $query->logicalOr(...$categoryConstraints);
             } else {
-                $constraints['categories'] = $query->logicalAnd($categoryConstraints);
+                $constraints['categories'] = $query->logicalAnd(...$categoryConstraints);
             }
         }
 
@@ -89,7 +83,7 @@ class AddressRepository extends Repository
         }
 
         if (!empty($constraints)) {
-            $query->matching($query->logicalAnd($constraints));
+            $query->matching($query->logicalAnd(...$constraints));
         }
         return $query;
     }
@@ -104,13 +98,7 @@ class AddressRepository extends Repository
     public function getSqlQuery(Demand $demand): string
     {
         $query = $this->createDemandQuery($demand);
-
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-        if ($versionInformation->getMajorVersion() >= 11) {
-            $queryParser = GeneralUtility::makeInstance(Typo3DbQueryParser::class);
-        } else {
-            $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
-        }
+        $queryParser = GeneralUtility::makeInstance(Typo3DbQueryParser::class);
 
         $queryBuilder = $queryParser->convertQueryToDoctrineQueryBuilder($query);
         $queryParameters = $queryBuilder->getParameters();
@@ -145,7 +133,7 @@ class AddressRepository extends Repository
                 $query->in('uid', $idList)
             ];
 
-            $query->matching($query->logicalAnd($constraints));
+            $query->matching($query->logicalAnd(...$constraints));
             return $query->execute();
         }
 

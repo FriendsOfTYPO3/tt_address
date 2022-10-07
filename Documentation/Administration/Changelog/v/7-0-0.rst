@@ -1,0 +1,75 @@
+7.0.0 - 7th October 2022
+========================
+
+.. include:: /Includes.rst.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+
+The following changes could be breaking for you.
+
+Support of TYPO3 12
+^^^^^^^^^^^^^^^^^^^
+12.0 has been released on 4th of October 2022. Read more about it at https://typo3.org/article/typo3-v120-release-your-power!
+No breaking changes are planned anymore which makes it possible for extensions to start to be compatible with the next awesome TYPO3 version.
+
+.. important::
+
+    Support of TYPO3 11 will be kept. Currently PHP 7.4 is still supported by EXT:tt_address and *currently* there are no plans to drop that but this might change in the future. Please update to PHP 8.x!
+
+Drop support of TYPO3 10
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+With the release of version 7, the support of TYPO3 10 has been stopped.
+tt_address is kind of feature complete and without known bugs, therefore no further 6.x releases are planned.
+
+Removal of automatic redirect in detail view
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Previously a redirect has been triggered in the detail view if no record has been found.
+This redirect has been removed.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2022-10-07 [TASK] Use correct psr4 in ext_emconf (Commit 98d4565 by Georg Ringer)
+    2022-10-07 Apply fixes from StyleCI (#438) (Commit a0e4028 by Georg Ringer)
+    2022-10-07 [BUGFIX] Fix undefined notice for new records (Commit 905f291 by Georg Ringer)
+    2022-10-07 [TASK] Replace PageLayoutViewHook with PreviewRenderer (Commit c2d0ae1 by Georg Ringer)
+    2022-10-07 [BUGFIX] Use correct DB call (Commit 009608c by Georg Ringer)
+    2022-10-07 Apply fixes from StyleCI (#436) (Commit 9a7e5b8 by Georg Ringer)
+    2022-10-07 [BUGFIX] Check t3 version for js module (Commit d1a81ef by Georg Ringer)
+    2022-10-07 add composer tf bridge (Commit d95e5de by Georg Ringer)
+    2022-10-07 add composer tf bridge (Commit d928d84 by Georg Ringer)
+    2022-10-07 Revert "[TASK] Add php 8.2" (Commit f730950 by Georg Ringer)
+    2022-10-07 [TASK] Add php 8.2 (Commit e1057b3 by Georg Ringer)
+    2022-10-07 [BUGFIX] Use array_values for unpacking (Commit ced151d by Georg Ringer)
+    2022-10-07 followup (Commit 7e77fb8 by Georg Ringer)
+    2022-10-07 [TASK] Use latest TF (Commit 3e646fd by Georg Ringer)
+    2022-10-07 [TASK] Migrate tests (Commit 64fb44a by Georg Ringer)
+    2022-10-07 [BUGFIX] Fix failing tests (Commit 6dc4ecb by Georg Ringer)
+    2022-10-06 [TASK] Allow composer plugins (Commit b6670f3 by Georg Ringer)
+    2022-10-06 [TASK] Migrate 1st run (Commit bfa1f72 by Georg Ringer)
+    2022-10-06 [BUGFIX] Register command in services.yaml (Commit 154009a by Georg Ringer)
+    2022-08-22 [BUGFIX] Fix warning in pagelayoutview (Commit be3e18b by Georg Ringer)
+    2022-07-21 [TASK] int cast for pid value (#419) (Commit a52ef48 by ayacoo)
+    2022-06-28 Apply fixes from StyleCI (#418) (Commit a7c94cc by Georg Ringer)
+    2022-06-28 [!!!][TASK] Remove redirect in detail view (Commit 08aca68 by Georg Ringer)
+    2022-06-02 [FEATURE] Provide getter in model for the language id (Commit 351a9dc by Georg Ringer)
+    2022-05-10 [FEATURE] Added storage page check for showAction (#415) (Commit 1543d9f by Torben Hansen)
+    2022-04-11 [TASK] Add TER + documentation + repository to composer.json (#413) (Commit 040c0b4 by Alexander Nitsche)
+    2022-04-05 [TASK] Align with new TYPO3 documentation standards (#411) (Commit 8c53536 by Alexander Nitsche)
+
+
+This list has been created by using:
+
+.. code-block:: shell
+
+   git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short

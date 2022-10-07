@@ -67,7 +67,7 @@ class GeocodeService implements SingletonInterface
             ->select('*')
             ->from($tableName)
             ->where(
-                $queryBuilder->expr()->orX(
+                $queryBuilder->expr()->or(
                     $queryBuilder->expr()->isNull($latitudeField),
                     $queryBuilder->expr()->eq($latitudeField, $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
                     $queryBuilder->expr()->eq($latitudeField, 0.00000000000),
@@ -80,7 +80,7 @@ class GeocodeService implements SingletonInterface
         if (!empty($addWhereClause)) {
             $queryBuilder->andWhere(QueryHelper::stripLogicalOperatorPrefix($addWhereClause));
         }
-        $records = $queryBuilder->execute()->fetchAll();
+        $records = $queryBuilder->executeQuery()->fetchAllAssociative();
         if (\count($records) > 0) {
             foreach ($records as $record) {
                 $country = $record[$countryField];

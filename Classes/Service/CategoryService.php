@@ -85,9 +85,9 @@ class CategoryService
             ->where(
                 $queryBuilder->expr()->in('parent', $queryBuilder->createNamedParameter(explode(',', $idList), Connection::PARAM_INT_ARRAY))
             )
-            ->execute();
+            ->executeQuery();
 
-        while ($row = $res->fetch()) {
+        while ($row = $res->fetchAssociative()) {
             $counter++;
             if ($counter > 10000) {
                 $this->timeTracker->setTSlogMessage('EXT:tt_address: one or more recursive categories where found');
@@ -118,8 +118,8 @@ class CategoryService
             ->where(
                 $queryBuilder->expr()->in('uid', $queryBuilder->createNamedParameter(explode(',', $idList), Connection::PARAM_INT_ARRAY))
             )
-            ->execute()
-            ->fetchAll();
+            ->executeQuery()
+            ->fetchAllAssociative();
         foreach ($rows as $row) {
             $list[] = $row['uid'];
         }

@@ -15,15 +15,15 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class GeocodeServiceTest extends FunctionalTestCase
 {
-    protected $testExtensionsToLoad = ['typo3conf/ext/tt_address'];
+    protected array $testExtensionsToLoad = ['typo3conf/ext/tt_address'];
 
-    protected $coreExtensionsToLoad = ['fluid', 'extensionmanager'];
+    protected array $coreExtensionsToLoad = ['fluid', 'extensionmanager'];
 
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->importDataSet(__DIR__ . '/../Fixtures/tt_address.xml');
+        $this->importCSVDataSet(__DIR__ . '/../Fixtures/tt_address.csv');
     }
 
     /**

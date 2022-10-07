@@ -22,14 +22,14 @@ class CategoryServiceTest extends FunctionalTestCase
     /** @var CategoryService */
     protected $subject;
 
-    protected $testExtensionsToLoad = ['typo3conf/ext/tt_address'];
+    protected array $testExtensionsToLoad = ['typo3conf/ext/tt_address'];
 
     public function setUp(): void
     {
         parent::setUp();
         $this->subject = GeneralUtility::makeInstance(CategoryService::class);
 
-        $this->importDataSet(__DIR__ . '/../Fixtures/sys_categories.xml');
+        $this->importCSVDataSet(__DIR__ . '/../Fixtures/sys_categories.csv');
     }
 
     /**

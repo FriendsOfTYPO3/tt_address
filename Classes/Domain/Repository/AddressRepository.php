@@ -78,8 +78,18 @@ class AddressRepository extends Repository
         }
 
         if ($demand->getIgnoreWithoutCoordinates()) {
-            $constraints['coordinatesLat'] = $query->logicalNot($query->equals('latitude', null));
-            $constraints['coordinatesLng'] = $query->logicalNot($query->equals('longitude', null));
+            $constraints['coordinatesLat'] = $query->logicalNot(
+                $query->logicalOr(
+                    $query->equals('latitude', null),
+                    $query->equals('latitude', 0.0)
+                )
+            );
+            $constraints['coordinatesLng'] = $query->logicalNot(
+                $query->logicalOr(
+                    $query->equals('longitude', null),
+                    $query->equals('longitude', 0.0)
+                )
+            );
         }
 
         if (!empty($constraints)) {

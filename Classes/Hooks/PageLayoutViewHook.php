@@ -73,8 +73,8 @@ class PageLayoutViewHook implements PageLayoutViewDrawItemHookInterface
                     $queryBuilder->createNamedParameter(GeneralUtility::intExplode(',', $idList, true), Connection::PARAM_INT_ARRAY)
                 )
             )
-            ->execute()
-            ->fetchAll();
+            ->executeQuery()
+            ->fetchAssociative();
 
         foreach ($rows as &$row) {
             $row['_computed']['title'] = BackendUtility::getRecordTitle($table, $row);

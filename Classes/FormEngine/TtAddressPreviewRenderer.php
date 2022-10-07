@@ -98,5 +98,4 @@ class TtAddressPreviewRenderer extends StandardContentPreviewRenderer
         }
         return $settings;
     }
-
 }

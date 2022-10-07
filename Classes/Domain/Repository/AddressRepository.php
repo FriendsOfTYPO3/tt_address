@@ -93,7 +93,7 @@ class AddressRepository extends Repository
         }
 
         if (!empty($constraints)) {
-            $query->matching($query->logicalAnd(...$constraints));
+            $query->matching($query->logicalAnd(...array_values($constraints)));
         }
         return $query;
     }

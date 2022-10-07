@@ -62,8 +62,10 @@ class AddressController extends ActionController
             CacheUtility::addCacheTagsByAddressRecords([$address]);
         }
 
-        $this->view->assign('address', $address);
-        $this->view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
+        $this->view->assignMultiple([
+            'address' => $address,
+            'contentObjectData' => $this->configurationManager->getContentObject()->data,
+        ]);
         return $this->htmlResponse();
     }
 

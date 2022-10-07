@@ -74,13 +74,11 @@ class LocationMapWizard extends AbstractNode
         $resultArray['linkAttributes']['data-copy'] = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
         $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Contrib/leaflet-core-1.4.0.css';
         $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Backend/LocationMapWizard/leafletBackend.css';
-//        $resultArray['requireJsModules'][] = 'TYPO3/CMS/TtAddress/leaflet-core-1.4.0';
 
         $id = StringUtility::getUniqueId('t3js-formengine-fieldcontrol-');
         $resultArray['requireJsModules'][] = JavaScriptModuleInstruction::forRequireJS(
             'TYPO3/CMS/TtAddress/leaflet-core-1.4.0'
         )->instance($id);
-//        $resultArray['requireJsModules'][] = 'TYPO3/CMS/TtAddress/LeafletBackend';
         $resultArray['requireJsModules'][] = JavaScriptModuleInstruction::forRequireJS(
             'TYPO3/CMS/TtAddress/LeafletBackend'
         )->instance($id);

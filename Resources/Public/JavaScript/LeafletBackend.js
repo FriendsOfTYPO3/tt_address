@@ -21,7 +21,7 @@ define(['jquery', 'TYPO3/CMS/Backend/Icons', 'TYPO3/CMS/Backend/FormEngine', 'TY
     };
 
     // Load icon via TYPO3 Icon-API and requireJS
-    Icons.getIcon('actions-close', Icons.sizes.default, null, null).then(function(markup) {
+    Icons.getIcon('actions-close', Icons.sizes.small, null, null).then(function(markup) {
         LeafBE['$iconClose']= markup;
     });
 

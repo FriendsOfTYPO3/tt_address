@@ -19,7 +19,7 @@ $EM_CONF[$_EXTKEY] = [
         ],
     ],
     'autoload' => [
-        'classmap' => ['Classes'],
+        'psr-4' => ['FriendsOfTYPO3\\TtAddress\\' => 'Classes']
     ],
     'autoload-dev' =>
         [

@@ -1,20 +1,29 @@
 <?php
 declare(strict_types=1);
 
-namespace FriendsOfTYPO3\TtAddress\Hooks;
+namespace FriendsOfTYPO3\TtAddress\FormEngine;
+
+/**
+ * This file is part of the "tt_address" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
 
 use Doctrine\DBAL\Connection;
+use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Backend\View\PageLayoutView;
-use TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-class PageLayoutViewHook implements PageLayoutViewDrawItemHookInterface
+/**
+ * Improve the rendering of the plugin in page module
+ */
+class TtAddressPreviewRenderer extends StandardContentPreviewRenderer
 {
-    protected $recordMapping = [
+    protected array $recordMapping = [
         'singleRecords' => [
             'table' => 'tt_address',
             'multiValue' => true,
@@ -33,11 +42,10 @@ class PageLayoutViewHook implements PageLayoutViewDrawItemHookInterface
         ],
     ];
 
-    public function preProcess(PageLayoutView &$parentObject, &$drawItem, &$headerContent, &$itemContent, array &$row)
+    protected function renderContentElementPreviewFromFluidTemplate(array $row): ?string
     {
-        if ($row['list_type'] === 'ttaddress_listview' && $row['CType'] === 'list') {
-            $row = $this->enrichRow($row);
-        }
+        $row = $this->enrichRow($row);
+        return parent::renderContentElementPreviewFromFluidTemplate($row);
     }
 
     protected function enrichRow(array $row): array
@@ -59,7 +67,7 @@ class PageLayoutViewHook implements PageLayoutViewDrawItemHookInterface
         return $row;
     }
 
-    protected function getRecords(string $table, string $idList)
+    protected function getRecords(string $table, string $idList): array
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
         $queryBuilder->getRestrictions()->removeByType(HiddenRestriction::class);
@@ -73,8 +81,8 @@ class PageLayoutViewHook implements PageLayoutViewDrawItemHookInterface
                     $queryBuilder->createNamedParameter(GeneralUtility::intExplode(',', $idList, true), Connection::PARAM_INT_ARRAY)
                 )
             )
-            ->execute()
-            ->fetchAll();
+            ->executeQuery()
+            ->fetchAllAssociative();
 
         foreach ($rows as &$row) {
             $row['_computed']['title'] = BackendUtility::getRecordTitle($table, $row);

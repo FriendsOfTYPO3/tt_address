@@ -52,8 +52,8 @@ class QueryGenerator
                 )
                 ->orderBy('uid');
 
-            $statement = $queryBuilder->execute();
-            while ($row = $statement->fetch()) {
+            $statement = $queryBuilder->executeQuery();
+            while ($row = $statement->fetchAssociative()) {
                 if ($begin <= 0) {
                     $theList .= ',' . $row['uid'];
                 }

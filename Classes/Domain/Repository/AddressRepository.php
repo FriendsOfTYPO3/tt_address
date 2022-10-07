@@ -11,7 +11,6 @@ namespace FriendsOfTYPO3\TtAddress\Domain\Repository;
  */
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Service\CategoryService;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
@@ -31,13 +30,7 @@ class AddressRepository extends Repository
      */
     public function initializeObject()
     {
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-        if ($versionInformation->getMajorVersion() >= 11) {
-            $this->defaultQuerySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
-        } else {
-            $this->defaultQuerySettings = $this->objectManager->get(Typo3QuerySettings::class);
-        }
-
+        $this->defaultQuerySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
         $this->defaultQuerySettings->setRespectStoragePage(false);
     }
 
@@ -77,19 +70,29 @@ class AddressRepository extends Repository
         if ($categories) {
             $categoryConstraints = $this->createCategoryConstraint($query, $categories, $demand->getIncludeSubCategories());
             if ($demand->getCategoryCombination() === 'or') {
-                $constraints['categories'] = $query->logicalOr($categoryConstraints);
+                $constraints['categories'] = $query->logicalOr(...$categoryConstraints);
             } else {
-                $constraints['categories'] = $query->logicalAnd($categoryConstraints);
+                $constraints['categories'] = $query->logicalAnd(...$categoryConstraints);
             }
         }
 
         if ($demand->getIgnoreWithoutCoordinates()) {
-            $constraints['coordinatesLat'] = $query->logicalNot($query->equals('latitude', null));
-            $constraints['coordinatesLng'] = $query->logicalNot($query->equals('longitude', null));
+            $constraints['coordinatesLat'] = $query->logicalNot(
+                $query->logicalOr(
+                    $query->equals('latitude', null),
+                    $query->equals('latitude', 0.0)
+                )
+            );
+            $constraints['coordinatesLng'] = $query->logicalNot(
+                $query->logicalOr(
+                    $query->equals('longitude', null),
+                    $query->equals('longitude', 0.0)
+                )
+            );
         }
 
         if (!empty($constraints)) {
-            $query->matching($query->logicalAnd($constraints));
+            $query->matching($query->logicalAnd(...array_values($constraints)));
         }
         return $query;
     }
@@ -104,13 +107,7 @@ class AddressRepository extends Repository
     public function getSqlQuery(Demand $demand): string
     {
         $query = $this->createDemandQuery($demand);
-
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-        if ($versionInformation->getMajorVersion() >= 11) {
-            $queryParser = GeneralUtility::makeInstance(Typo3DbQueryParser::class);
-        } else {
-            $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
-        }
+        $queryParser = GeneralUtility::makeInstance(Typo3DbQueryParser::class);
 
         $queryBuilder = $queryParser->convertQueryToDoctrineQueryBuilder($query);
         $queryParameters = $queryBuilder->getParameters();
@@ -145,7 +142,7 @@ class AddressRepository extends Repository
                 $query->in('uid', $idList)
             ];
 
-            $query->matching($query->logicalAnd($constraints));
+            $query->matching($query->logicalAnd(...$constraints));
             return $query->execute();
         }
 

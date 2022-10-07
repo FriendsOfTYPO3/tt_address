@@ -24,9 +24,7 @@ use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
-use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
@@ -51,9 +49,6 @@ class AddressController extends ActionController
         $this->extensionConfiguration = GeneralUtility::makeInstance(Settings::class);
     }
 
-    /**
-     * @param \FriendsOfTYPO3\TtAddress\Domain\Model\Address $address
-     */
     public function showAction(Address $address = null)
     {
         if (is_a($address, Address::class) && ($this->settings['detail']['checkPidOfAddressRecord'] ?? false)) {
@@ -66,17 +61,19 @@ class AddressController extends ActionController
             CacheUtility::addCacheTagsByAddressRecords([$address]);
         }
 
-        $this->view->assign('address', $address);
+        $this->view->assignMultiple([
+            'address' => $address,
+            'contentObjectData' => $this->configurationManager->getContentObject()->data,
+        ]);
+        return $this->htmlResponse();
     }
 
     /**
      * Lists addresses by settings in waterfall principle.
      * singleRecords take precedence over categories which take precedence over records from pages
      *
-     * @param array $override Optional overriding demand
-     * @throws InvalidQueryException
      */
-    public function listAction(array $override = [])
+    public function listAction(?array $override = [])
     {
         $demand = $this->createDemandFromSettings();
 
@@ -102,12 +99,14 @@ class AddressController extends ActionController
 
         $this->view->assignMultiple([
             'demand' => $demand,
-            'addresses' => $addresses
+            'addresses' => $addresses,
+            'contentObjectData' => $this->configurationManager->getContentObject()->data,
         ]);
 
         CacheUtility::addCacheTagsByAddressRecords(
             $addresses instanceof QueryResultInterface ? $addresses->toArray() : $addresses
         );
+        return $this->htmlResponse();
     }
 
     /**
@@ -117,6 +116,7 @@ class AddressController extends ActionController
      */
     public function injectConfigurationManager(ConfigurationManagerInterface $configurationManager)
     {
+        parent::injectConfigurationManager($configurationManager);
         $this->configurationManager = $configurationManager;
 
         // get the whole typoscript (_FRAMEWORK does not work anymore, don't know why)
@@ -153,7 +153,7 @@ class AddressController extends ActionController
 
     protected function createDemandFromSettings(): Demand
     {
-        $demand = $this->objectManager->get(Demand::class);
+        $demand = new Demand();
         $demand->setCategories((string)$this->settings['groups']);
         $categoryCombination = (int)$this->settings['groupsCombination'] === 1 ? 'or' : 'and';
         $demand->setCategoryCombination($categoryCombination);
@@ -170,7 +170,7 @@ class AddressController extends ActionController
         return $demand;
     }
 
-    protected function overrideDemand(Demand $demand, array $override): Demand
+    protected function overrideDemand(Demand $demand, array $override = []): Demand
     {
         $ignoredValues = ['singleRecords', 'pages'];
         $ignoredValuesLower = array_map('strtolower', $ignoredValues);
@@ -201,17 +201,6 @@ class AddressController extends ActionController
     public function injectAddressRepository(AddressRepository $addressRepository)
     {
         $this->addressRepository = $addressRepository;
-    }
-
-    /**
-     * Initializes the view before invoking an action method.
-     *
-     * @param ViewInterface $view The view to be initialized
-     */
-    protected function initializeView(ViewInterface $view)
-    {
-        $view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
-        parent::initializeView($view);
     }
 
     /**

@@ -15,8 +15,10 @@ use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 use TYPO3\CMS\Core\Pagination\PaginatorInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Mvc\Request;
 use TYPO3\CMS\Fluid\View\TemplateView;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
@@ -56,7 +58,8 @@ class AddressControllerPaginationTest extends BaseTestCase
         }
         $assignments = [
             'demand' => $demand,
-            'addresses' => $rows
+            'addresses' => $rows,
+            'contentObjectData' => [],
         ];
 
         $mockedRepository->expects($this->once())->method('getAddressesByCustomSorting')->willReturn($rows);
@@ -73,13 +76,20 @@ class AddressControllerPaginationTest extends BaseTestCase
                 ['pagination'] // the result can't be mocked, therefore just testing if it exists
             );
 
-        $subject = $this->getAccessibleMock(AddressController::class, ['createDemandFromSettings'], [], '', false);
+        $mockContentObject = $this->createMock(ContentObjectRenderer::class);
+        $mockConfigurationManager = $this->createMock(ConfigurationManager::class);
+        $mockConfigurationManager->method('getContentObject')
+            ->willReturn($mockContentObject);
+
+        $subject = $this->getAccessibleMock(AddressController::class, ['createDemandFromSettings', 'htmlResponse'], [], '', false);
         $subject->expects($this->once())->method('createDemandFromSettings')->willReturn($demand);
+        $subject->expects($this->once())->method('htmlResponse');
         $subject->_set('settings', $settings);
         $subject->_set('view', $mockedView);
         $subject->_set('request', $mockedRequest);
         $subject->_set('addressRepository', $mockedRepository);
         $subject->_set('extensionConfiguration', $this->getMockedSettings());
+        $subject->_set('configurationManager', $mockConfigurationManager);
 
         $subject->listAction();
     }

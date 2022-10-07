@@ -1,5 +1,5 @@
 <?php
-defined('TYPO3_MODE') or die();
+defined('TYPO3_MODE') or defined('TYPO3') or die();
 
 // Override news icon
 $GLOBALS['TCA']['pages']['columns']['module']['config']['items'][] = [

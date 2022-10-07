@@ -1,0 +1,49 @@
+"pages"
+,"uid","pid","sorting","title"
+,1,0,128,"Root"
+,2,1,128,"Sub"
+,3,2,128,"Sub II"
+"tt_address"
+,"uid","pid","first_name","last_name","categories","longitude", "latitude","city","address","country"
+,1,1,"John","Doe",2,"0.0","0.0","","",""
+,2,1,"Jane","Doe",0,"0.0","0.0","","",""
+,3,1,"Max","Mustermann",0,"0.0","0.0","","",""
+,4,1,"Maria","Musterfrau",0,"0.0","0.0","","",""
+,5,2,"Auric","Goldfinger",0,"0.0","0.0","","",""
+,6,2,"Ernst","Blofeld",0,"0.0","0.0","","",""
+,7,3,"Maximilian","Zargo",0,"0.0","0.0","","",""
+,8,21,"John","Zane",3,"0.0","0.0","","",""
+,12,25,"","",0,0.0,"12.12","","","",
+,13,25,"","",0,"12.12","0.0","","",""
+,14,25,"","",0,"12.12", "11.12","","",""
+,21,100,"","",0,"0.0","0.0","Linz","Dummystr","AT"
+,22,100,"","",0,"0.0","0.0","Linz","Dummystr 2","AT"
+,23,100,"","",0,"0.0","0.0","Linz","Dummystr 2","AT"
+,24,100,"","",0,"19.0000", "49.0000","Linz","Dummystr 2","AT"
+"sys_category"
+,"uid","pid","title","parent"
+,1,1,"Madrid",0
+,2,1,"Kiev",0
+,3,1,"Rom",0
+,4,1,"Paris",0
+,5,1,"Wien",0
+,6,1,"Hamburg",0
+,7,1,"Mailand",0
+,8,1,"Moskau",0
+,10,1,"Madrid sub",1
+,11,1,"Madrid sub sub",10
+"sys_category_record_mm"
+,"tablenames","fieldname","uid_local","uid_foreign"
+,"tt_address","categories",1,1
+,"tt_address","categories",2,1
+,"tt_address","categories",3,3
+,"tt_address","categories",3,4
+,"tt_address","categories",4,4
+,"tt_address","categories",5,5
+,"tt_address","categories",5,6
+,"tt_address","categories",1,6
+,"tt_address","categories",5,2
+,"tt_address","categories",6,2
+,"tt_address","categories",6,7
+,"tt_address","categories",7,7
+,"tt_address","categories",11,8

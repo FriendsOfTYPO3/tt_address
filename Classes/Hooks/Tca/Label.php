@@ -38,7 +38,7 @@ class Label
         foreach ($configuration as $fieldList) {
             $label = [];
             foreach ($fieldList as $field) {
-                if (isset($row[$field]) && !empty($row[$field])) {
+                if (isset($row['uid'], $row[$field]) && !empty($row[$field])) {
                     $label[] = BackendUtility::getProcessedValue('tt_address', $field, $row[$field], 0, false, 0, $row['uid']);
                 }
             }

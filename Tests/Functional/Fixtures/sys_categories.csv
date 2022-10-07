@@ -1,0 +1,18 @@
+"sys_category"
+,"uid","pid","title","parent","deleted","hidden"
+,1,1,"City",0,0,0
+,2,1,"Person",0,0,0
+,20,1,"Bond",2,0,0
+,21,1,"blofeld",20,0,0
+,211,1,"blofeld 1",21,0,0
+,212,1,"blofeld 2",21,0,0
+,30,1,"Band",2,0,0
+,31,1,"Beatles",30,0,0
+,32,1,"george",30,0,0
+,3,1,"rom",1,0,0
+,4,1,"paris",1,0,0
+,5,1,"wien",1,0,0
+,6,1,"hamburg",1,1,0
+,7,1,"mailand",1,0,1
+,8,1,"moskau",1,0,0
+

@@ -14,7 +14,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class PageLayoutViewHook implements PageLayoutViewDrawItemHookInterface
 {
-    protected $recordMapping = [
+    protected array $recordMapping = [
         'singleRecords' => [
             'table' => 'tt_address',
             'multiValue' => true,
@@ -59,7 +59,7 @@ class PageLayoutViewHook implements PageLayoutViewDrawItemHookInterface
         return $row;
     }
 
-    protected function getRecords(string $table, string $idList)
+    protected function getRecords(string $table, string $idList): array
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
         $queryBuilder->getRestrictions()->removeByType(HiddenRestriction::class);
@@ -74,7 +74,7 @@ class PageLayoutViewHook implements PageLayoutViewDrawItemHookInterface
                 )
             )
             ->executeQuery()
-            ->fetchAssociative();
+            ->fetchAllAssociative();
 
         foreach ($rows as &$row) {
             $row['_computed']['title'] = BackendUtility::getRecordTitle($table, $row);

@@ -15,23 +15,15 @@
             </f:for>
         </f:then>
         <f:else>
-            <f:if condition="{newPagination}">
-                <f:then>
-                    <f:if condition="{settings.paginate.insertAbove}">
-                        <f:render partial="Pagination" arguments="{pagination: pagination.pagination, pages: pagination.pages, paginator: pagination.paginator}" />
-                    </f:if>
-                    <f:for each="{pagination.paginator.paginatedItems}" as="address" iteration="iterator">
-                        <f:render partial="ListItem" arguments="{_all}"/>
-                    </f:for>
-                    <f:if condition="{settings.paginate.insertBelow}">
-                        <f:render partial="Pagination" arguments="{pagination: pagination.pagination, pages: pagination.pages, paginator: pagination.paginator}" />
-                    </f:if>
-                </f:then>
-                <f:else>
-                    <f:render partial="ListWithOldPagination" arguments="{_all}" />
-                </f:else>
+            <f:if condition="{settings.paginate.insertAbove}">
+                <f:render partial="Pagination" arguments="{pagination: pagination.pagination, pages: pagination.pages, paginator: pagination.paginator}" />
             </f:if>
-
+            <f:for each="{pagination.paginator.paginatedItems}" as="address" iteration="iterator">
+                <f:render partial="ListItem" arguments="{_all}"/>
+            </f:for>
+            <f:if condition="{settings.paginate.insertBelow}">
+                <f:render partial="Pagination" arguments="{pagination: pagination.pagination, pages: pagination.pages, paginator: pagination.paginator}" />
+            </f:if>
         </f:else>
     </f:if>
     <!--TYPO3SEARCH_begin-->

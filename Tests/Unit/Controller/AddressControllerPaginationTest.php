@@ -136,7 +136,6 @@ class AddressControllerPaginationTest extends BaseTestCase
     {
         $mockedSettings = $this->getAccessibleMock(Settings::class, ['getSettings', 'getNewPagination'], [], '', false);
         $mockedSettings->expects($this->any())->method('getSettings')->willReturn([]);
-        $mockedSettings->expects($this->any())->method('getNewPagination')->willReturn(true);
 
         return $mockedSettings;
     }

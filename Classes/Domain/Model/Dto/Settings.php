@@ -24,9 +24,6 @@ class Settings
     /** @var string */
     protected $telephoneValidationPatternForJs = '/[^\d\+\s\-]/g';
 
-    /** @var bool */
-    protected $newPagination = false;
-
     /**
      */
     public function __construct()
@@ -59,14 +56,6 @@ class Settings
     public function getTelephoneValidationPatternForJs(): string
     {
         return $this->telephoneValidationPatternForJs;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getNewPagination(): bool
-    {
-        return $this->newPagination || GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() >= 11;
     }
 
     protected function getSettings(): array

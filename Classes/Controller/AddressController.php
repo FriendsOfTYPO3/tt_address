@@ -87,15 +87,14 @@ class AddressController extends ActionController
             $addresses = $this->addressRepository->findByDemand($demand);
         }
 
-        if ($this->extensionConfiguration->getNewPagination() && class_exists(SimplePagination::class)) {
-            $paginator = $this->getPaginator($addresses);
-            $pagination = new SimplePagination($paginator);
-            $this->view->assign('newPagination', true);
-            $this->view->assign('pagination', [
-                'paginator' => $paginator,
-                'pagination' => $pagination,
-            ]);
-        }
+        $paginator = $this->getPaginator($addresses);
+        $pagination = new SimplePagination($paginator);
+        // @todo remove with version 8
+        $this->view->assign('newPagination', true);
+        $this->view->assign('pagination', [
+            'paginator' => $paginator,
+            'pagination' => $pagination,
+        ]);
 
         $this->view->assignMultiple([
             'demand' => $demand,

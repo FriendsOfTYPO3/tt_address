@@ -56,12 +56,33 @@ These are added manually in the :file:`config.yaml`:
       - routePath: '/{address-title}'
         _controller: 'Address::show'
         _arguments:
-          address-title: address
+          address_title: address
+      - routePath: '/{page-label}-{page}'
+        _controller: 'Address::list'
+        _arguments:
+          page: 'currentPage'
+    defaultController: 'Address::list'
     aspects:
       address-title:
         type: PersistedAliasMapper
         tableName: tt_address
         routeFieldName: slug
+      page:
+        type: StaticRangeMapper
+        start: '1'
+        end: '100'
+      page-label:
+        type: LocaleModifier
+        default: seite
+        localeMap:
+          - locale: 'en_.*'
+            value: page
+          - locale: 'it_.*'
+            value: pagina
+          - locale: 'fr_.*'
+            value: page
+          - locale: 'es_.*'
+            value: pagina
 
 .. tip::
 

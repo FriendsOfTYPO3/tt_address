@@ -50,7 +50,7 @@ These are added manually in the :file:`config.yaml`:
       - 8
       - 10
       - 11
-    extension: tt_address
+    extension: TtAddress
     plugin: ListView
     routes:
       - routePath: '/{address-title}'

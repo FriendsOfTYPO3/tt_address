@@ -6,6 +6,3 @@ storeBackwardsCompatName = 1
 
   # cat=basic; type=boolean; label=Name field is read only
 readOnlyNameField = 1
-
-# cat=basic; type=boolean; label=Use new pagination API
-newPagination = 1

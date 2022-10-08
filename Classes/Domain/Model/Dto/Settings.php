@@ -10,7 +10,6 @@ namespace FriendsOfTYPO3\TtAddress\Domain\Model\Dto;
  * LICENSE.txt file that was distributed with this source code.
  */
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -23,9 +22,6 @@ class Settings
 
     /** @var string */
     protected $telephoneValidationPatternForJs = '/[^\d\+\s\-]/g';
-
-    /** @var bool */
-    protected $newPagination = false;
 
     /**
      */
@@ -59,14 +55,6 @@ class Settings
     public function getTelephoneValidationPatternForJs(): string
     {
         return $this->telephoneValidationPatternForJs;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getNewPagination(): bool
-    {
-        return $this->newPagination || GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() >= 11;
     }
 
     protected function getSettings(): array

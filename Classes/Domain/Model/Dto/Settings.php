@@ -10,7 +10,6 @@ namespace FriendsOfTYPO3\TtAddress\Domain\Model\Dto;
  * LICENSE.txt file that was distributed with this source code.
  */
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**

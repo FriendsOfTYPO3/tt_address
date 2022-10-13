@@ -9,7 +9,7 @@
             </li>
             </f:comment>
             <li class="previous">
-                <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.previousPageNumber})}" title="{f:translate(key:'pagination.previous')}">
+                <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.previousPageNumber})}" title="{f:translate(key:'widget.pagination.previous', extensionName: 'fluid')}">
                     {f:translate(key:'widget.pagination.previous', extensionName: 'fluid')}
                 </a>
             </li>
@@ -30,7 +30,7 @@
     <f:if condition="{pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber}">
         <f:then>
             <li class="next">
-                <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.nextPageNumber})}" title="{f:translate(key:'pagination.next')}">
+                <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.nextPageNumber})}" title="{f:translate(key:'widget.pagination.next', extensionName: 'fluid')}">
                     {f:translate(key:'widget.pagination.next', extensionName: 'fluid')}
                 </a>
             </li>

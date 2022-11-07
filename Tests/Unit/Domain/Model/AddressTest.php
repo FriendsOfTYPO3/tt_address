@@ -299,6 +299,16 @@ class AddressTest extends BaseTestCase
     /**
      * @test
      */
+    public function instagramCanBeSet()
+    {
+        $value = 'johndoe';
+        $this->subject->setInstagram($value);
+        $this->assertEquals($value, $this->subject->getInstagram());
+    }
+
+    /**
+     * @test
+     */
     public function wrongTwitterHandleThrowsErrorCanBeSet()
     {
         $this->expectException(\InvalidArgumentException::class);

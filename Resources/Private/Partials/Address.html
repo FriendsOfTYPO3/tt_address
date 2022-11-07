@@ -99,6 +99,14 @@
                     <meta itemprop="sameAs" content="https://www.facebook.com/{address.facebook}"/>
                 </li>
             </f:if>
+            <f:if condition="{address.instagram}">
+                <li class="list-inline-item">
+                    <i class="fab fa-instagram" aria-hidden title="{f:translate(key:'label.instagram')}"></i>
+                    <span class="sr-only">{f:translate(key:'label.instagram')}:</span>
+                    <a href="https://www.instagram.com/{address.instagram}" target="_blank">{address.instagram}</a>
+                    <meta itemprop="sameAs" content="https://www.instagram.com/{address.instagram}"/>
+                </li>
+            </f:if>
             <f:if condition="{address.linkedin}">
                 <li class="list-inline-item">
                     <i class="fab fa-linkedin" aria-hidden title="{f:translate(key:'label.linkedin')}"></i>

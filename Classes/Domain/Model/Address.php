@@ -135,6 +135,11 @@ class Address extends AbstractEntity
     /**
      * @var string
      */
+    protected $instagram = '';
+
+    /**
+     * @var string
+     */
     protected $linkedin = '';
 
     /**
@@ -642,4 +647,21 @@ class Address extends AbstractEntity
             $this->country,
         ]));
     }
+
+    /**
+     * @return string
+     */
+    public function getInstagram(): string
+    {
+        return $this->instagram;
+    }
+
+    /**
+     * @param string $instagram
+     */
+    public function setInstagram(string $instagram): void
+    {
+        $this->instagram = $instagram;
+    }
+
 }

@@ -29,6 +29,7 @@ CREATE TABLE tt_address (
     skype varchar(255) DEFAULT '',
     twitter varchar(255) DEFAULT '',
     facebook varchar(255) DEFAULT '',
+    instagram varchar(255) DEFAULT '',
     linkedin varchar(255) DEFAULT '',
     latitude decimal(10,8) default NULL,
     longitude decimal(11,8) default NULL,

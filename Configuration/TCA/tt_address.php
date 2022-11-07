@@ -479,6 +479,20 @@ return [
                 ],
             ]
         ],
+        'instagram' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.instagram',
+            'config' => [
+                'type' => 'input',
+                'size' => 20,
+                'eval' => 'trim',
+                'max' => 255,
+                'placeholder' => 'johndoe',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+            ]
+        ],
         'linkedin' => [
             'exclude' => true,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.linkedin',
@@ -676,7 +690,7 @@ return [
         ],
         'social' => [
             'showitem' => 'skype, twitter, --linebreak--,
-                            facebook, linkedin'
+                            facebook, instagram, linkedin'
         ],
         'paletteHidden' => [
             'showitem' => 'hidden',

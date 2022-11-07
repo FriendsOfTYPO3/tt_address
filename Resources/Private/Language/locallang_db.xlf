@@ -60,6 +60,9 @@
             <trans-unit id="tt_address.facebook">
                 <source>Facebook</source>
             </trans-unit>
+            <trans-unit id="tt_address.instagram">
+                <source>Instagram</source>
+            </trans-unit>
             <trans-unit id="tt_address.linkedin">
                 <source>LinkedIn</source>
             </trans-unit>

@@ -1,3 +1,7 @@
+.Build/
+.php-cs-fixer.cache
+composer.lock
+
 /Build/Local/report
 /Build/Local/.phpunit.result.cache
 /Documentation-GENERATED-temp

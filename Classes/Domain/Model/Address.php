@@ -21,7 +21,6 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class Address extends AbstractEntity
 {
-
     /**
      * Hidden
      *
@@ -663,5 +662,4 @@ class Address extends AbstractEntity
     {
         $this->instagram = $instagram;
     }
-
 }

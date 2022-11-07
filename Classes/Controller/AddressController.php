@@ -33,7 +33,6 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
  */
 class AddressController extends ActionController
 {
-
     /** @var AddressRepository */
     protected $addressRepository;
 
@@ -71,7 +70,6 @@ class AddressController extends ActionController
     /**
      * Lists addresses by settings in waterfall principle.
      * singleRecords take precedence over categories which take precedence over records from pages
-     *
      */
     public function listAction(?array $override = [])
     {

@@ -153,7 +153,7 @@ class AddressController extends ActionController
     protected function createDemandFromSettings(): Demand
     {
         $demand = new Demand();
-        $demand->setCategories((string)$this->settings['groups']);
+        $demand->setCategories((string)($this->settings['groups'] ?? ''));
         $categoryCombination = (int)$this->settings['groupsCombination'] === 1 ? 'or' : 'and';
         $demand->setCategoryCombination($categoryCombination);
         $demand->setIncludeSubCategories((bool)($this->settings['includeSubcategories'] ?? false));

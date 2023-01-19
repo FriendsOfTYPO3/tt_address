@@ -39,7 +39,7 @@ class TypoScript
                     }
                 }
             } else {
-                if ($fieldName === 'sortBy' && ($previousData['sortBy'] ?? '' === 'default') && (($tsData['settings']['sortBy'] ?? '') !== '')) {
+                if ($fieldName === 'sortBy' && (($previousData['sortBy'] ?? '') === 'default') && (($tsData['settings']['sortBy'] ?? '') !== '')) {
                     unset($previousData['sortBy']);
                 }
                 // if flexform setting is empty and value is available in TS

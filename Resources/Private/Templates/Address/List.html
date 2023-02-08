@@ -8,6 +8,9 @@
 
 <f:section name="displayMode_list">
     <!--TYPO3SEARCH_end-->
+    <f:if condition="{settings.atoz}">
+    </f:if>
+
     <f:if condition="{settings.hidePagination}">
         <f:then>
             <f:for each="{addresses}" as="address" iteration="iterator">

@@ -1,0 +1,38 @@
+7.1.0 - 16th February 2023
+==========================
+
+.. include:: /Includes.rst.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+No important changes happend, just a bugfix release
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2023-01-19 [BUGFIX] Allow set sorting via TS (Commit 9cfc51a by Georg Ringer)
+   2023-01-19 Revert "[TASK] Enhance List.xml Flexform (#371)" (Commit 94a8e1f by Georg Ringer)
+   2023-01-12 [FEATURE] Support EXT:reactions (Commit cbabd36 by Georg Ringer)
+   2023-01-04 [BUGFIX] Set localization mode for gender to exclude (#449) (Commit c305640 by Peter Neumann)
+   2022-12-21 PHP Warning: Undefined array key "singleRecords" in AddressController.php line 165 (#447) (Commit 60360a8 by in-session)
+   2022-11-10 [BUGFIX] Prevent undefined array key "groups" (#446) (Commit ffb2501 by Peter Neumann)
+   2022-10-13 [TASK] Delete Commands.php in favor of Services.yaml (#441) (Commit 08d085c by Christoph Lehmann)
+   2022-10-13 [BUGFIX] Title values to new labels (#442) (Commit e9c362a by C. Riccabona)
+   2022-10-08 [DOC] Enrich routing example (Commit e8cacb4 by Georg Ringer)
+   2022-10-08 [TASK] Remove unused pagination switch (#440) (Commit 0ed9b29 by Georg Ringer)
+   2022-10-08 [DOC] Fix routing example (Commit a12422c by Georg Ringer)
+
+
+This list has been created by using:
+
+.. code-block:: shell
+
+   git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short

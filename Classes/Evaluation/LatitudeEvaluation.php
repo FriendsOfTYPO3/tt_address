@@ -17,7 +17,6 @@ use FriendsOfTYPO3\TtAddress\Utility\EvalcoordinatesUtility;
  */
 class LatitudeEvaluation
 {
-
     /**
      * JavaScript code for client side validation/evaluation
      *

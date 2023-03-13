@@ -19,7 +19,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class QueryGenerator
 {
-
     /**
      * Recursively fetch all descendants of a given page
      *

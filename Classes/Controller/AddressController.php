@@ -153,7 +153,7 @@ class AddressController extends ActionController
     protected function createDemandFromSettings(): Demand
     {
         $demand = new Demand();
-        $demand->setCategories((string)$this->settings['groups']);
+        $demand->setCategories((string)($this->settings['groups'] ?? ''));
         $categoryCombination = (int)$this->settings['groupsCombination'] === 1 ? 'or' : 'and';
         $demand->setCategoryCombination($categoryCombination);
         $demand->setIncludeSubCategories((bool)($this->settings['includeSubcategories'] ?? false));
@@ -161,7 +161,7 @@ class AddressController extends ActionController
         if ($this->settings['pages']) {
             $demand->setPages($this->getPidList());
         }
-        $demand->setSingleRecords((string)$this->settings['singleRecords']);
+        $demand->setSingleRecords((string)($this->settings['singleRecords'] ?? ''));
         $demand->setSortBy((string)($this->settings['sortBy'] ?? ''));
         $demand->setSortOrder((string)($this->settings['sortOrder'] ?? ''));
         $demand->setIgnoreWithoutCoordinates((bool)($this->settings['ignoreWithoutCoordinates'] ?? false));

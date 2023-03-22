@@ -214,6 +214,7 @@ return [
         ],
         'gender' => [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender',
+            'l10n_mode' => 'exclude',
             'l10n_display' => 'defaultAsReadonly',
             'config' => [
                 'type' => 'radio',

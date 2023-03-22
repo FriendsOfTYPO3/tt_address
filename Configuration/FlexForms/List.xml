@@ -279,10 +279,7 @@
                                 <type>input</type>
                                 <size>5</size>
                                 <max>5</max>
-                                <range>
-                                    <lower>1</lower>
-                                </range>
-                                <eval>trim,int</eval>
+                                <eval>trim, intval</eval>
                             </config>
                         </TCEforms>
                     </settings.paginate.itemsPerPage>

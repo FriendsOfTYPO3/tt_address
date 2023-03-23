@@ -108,6 +108,46 @@ class AddressController extends ActionController
         return $this->htmlResponse();
     }
 
+	/**
+	 * action abcList
+	 *
+	 * @return void
+	 */
+	public function abcListAction(?array $override = [])
+	{
+		$demand = $this->createDemandFromSettings();
+
+		if (!empty($override) && $this->settings['allowOverride']) {
+			$this->overrideDemand($demand, $override);
+		}
+
+		if ($demand->getSingleRecords()) {
+			$addresses = $this->addressRepository->getAddressesByCustomSorting($demand);
+		} else {
+			$addresses = $this->addressRepository->findByDemand($demand);
+		}
+
+		$paginator = $this->getPaginator($addresses);
+		$pagination = new SimplePagination($paginator);
+		// @todo remove with version 8
+		$this->view->assign('newPagination', true);
+		$this->view->assign('pagination', [
+			'paginator' => $paginator,
+			'pagination' => $pagination,
+		]);
+
+		$this->view->assignMultiple([
+			'demand' => $demand,
+			'addresses' => $addresses,
+			'contentObjectData' => $this->configurationManager->getContentObject()->data,
+		]);
+
+		CacheUtility::addCacheTagsByAddressRecords(
+			$addresses instanceof QueryResultInterface ? $addresses->toArray() : $addresses
+		);
+		return $this->htmlResponse();
+	}
+
     /**
      * Injects the Configuration Manager and is initializing the framework settings
      *

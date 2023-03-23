@@ -7,6 +7,14 @@ defined('TYPO3_MODE') or defined('TYPO3') or die();
     'LLL:EXT:tt_address/Resources/Private/Language/db/locallang.xlf:extbase_title'
 );
 
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+    'tt_address',
+    'AbcListView',
+    'LLL:EXT:tt_address/Resources/Private/Language/db/locallang.xlf:extbase_title'
+);
+
+
+
 $pluginSignature = 'ttaddress_listview';
 
 $GLOBALS['TCA']['tt_content']['types']['list']['previewRenderer'][$pluginSignature] = \FriendsOfTYPO3\TtAddress\FormEngine\TtAddressPreviewRenderer::class;

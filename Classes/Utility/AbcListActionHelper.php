@@ -89,6 +89,7 @@ class AbcListActionHelper {
 			$range[$firstChar]++;
 		} else $range['#']++;
 	}
+
+
 }
 
-?>

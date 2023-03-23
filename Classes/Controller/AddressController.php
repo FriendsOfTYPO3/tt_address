@@ -20,6 +20,7 @@ use FriendsOfTYPO3\TtAddress\Seo\AddressTitleProvider;
 use FriendsOfTYPO3\TtAddress\Utility\CacheUtility;
 use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
 use FriendsOfTYPO3\TtAddress\Utility\AbcListActionHelper;
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Pagination\PaginatorInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
@@ -29,6 +30,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+
 
 /**
  * AddressController
@@ -133,7 +135,8 @@ class AddressController extends ActionController
 		$range = array();
 		$addressCount = 0;
 		$groupedAddresses = array();
-		$filterChar = $this->getRequestArgument('char', '/^([A-Z]{1}|NUM)$/');
+		//$filterChar = $this->getRequestArgument('char', '/^([A-Z]{1}|NUM)$/');
+		$filterChar = $this->request->getAttribute('char');
 		$filterChar = ($filterChar === 'NUM') ? '#' : $filterChar;
 
 

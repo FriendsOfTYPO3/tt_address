@@ -10,7 +10,8 @@
     <!--TYPO3SEARCH_end-->
     <f:if condition="{settings.atoz}">
         <ul class="range"><f:spaceless>
-            <li><f:link.action>all</f:link.action></li>
+            <li>			<f:link.action>{f:translate(key:'all')}</f:link.action>
+            </li>
             <f:for each="{range}" key="char" as="count">
                 <li>
                     <f:if condition="{count} > 0">

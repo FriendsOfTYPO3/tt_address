@@ -134,8 +134,8 @@ class AddressController extends ActionController
 		$range = array();
 		$addressCount = 0;
 		$groupedAddresses = array();
-		//$filterChar = $this->getRequestArgument('char', '/^([A-Z]{1}|NUM)$/');
-		$filterChar = $this->request->getAttribute('char');
+		$arguments = $this->request->getArguments();
+		$filterChar = $arguments['char'];
 		$filterChar = ($filterChar === 'NUM') ? '#' : $filterChar;
 
 

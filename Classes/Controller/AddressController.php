@@ -106,6 +106,46 @@ class AddressController extends ActionController
             'contentObjectData' => $this->configurationManager->getContentObject()->data,
         ]);
 
+		if( $this->settings['atoz']) ) {
+		    $range = array();
+		    $addressCount = 0;
+		    $groupedAddresses = array();
+		    $arguments = $this->request->getArguments();
+		    $filterChar = $arguments['char'];
+		    $filterChar = ($filterChar === 'NUM') ? '#' : $filterChar;
+
+
+		    // Create grouping Array
+		    AbcListActionHelper::createGroupArrays($range, $groupedAddresses);
+
+		    // Put persons into groupedPerson array
+		    foreach ($addresses->toArray() as $person) {
+
+			    // many thanks to MK here!
+			    $getter = 'get' . str_replace('_', '', ucwords( $demand->getSortBy(), '_' ) );
+			    $text = $person->{$getter}();
+			    $firstChar = $text !== '' ? $text[0] : '';
+
+			    if (!empty($filterChar)) { // If filter by Char activated, show only the selected
+				    if ($filterChar === $firstChar) { // Add them to A-Z Group
+					    AbcListActionHelper::groupPerson($firstChar, $range, $addressCount, $groupedAddresses, $person);
+				    } elseif (($filterChar === '#') && (!array_key_exists($firstChar, $range))) { // Add them to # Group
+					    AbcListActionHelper::groupPerson($firstChar, $range, $addressCount, $groupedAddresses, $person);
+				    } else { // Just count
+					    AbcListActionHelper::pullUpRange($firstChar, $range);
+				    }
+			    } else { // Show all Addresses
+				    AbcListActionHelper::groupPerson($firstChar, $range, $addressCount, $groupedAddresses, $person);
+			    }
+		    }
+		    $this->view->assignMultiple([
+			    'range' => $range,
+			    'groupedAddresses' => $groupedAddresses,
+			    'addressCount' => $addressCount,
+		    ]);
+
+		}
+
         CacheUtility::addCacheTagsByAddressRecords(
             $addresses instanceof QueryResultInterface ? $addresses->toArray() : $addresses
         );

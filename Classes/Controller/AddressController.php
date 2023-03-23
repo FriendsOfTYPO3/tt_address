@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Controller;
 
+
 /**
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
@@ -18,6 +19,7 @@ use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 use FriendsOfTYPO3\TtAddress\Seo\AddressTitleProvider;
 use FriendsOfTYPO3\TtAddress\Utility\CacheUtility;
 use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
+use \FriendsOfTYPO3\TtAddress\Utility\AbcListActionHelper;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Pagination\PaginatorInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
@@ -127,8 +129,37 @@ class AddressController extends ActionController
 			$addresses = $this->addressRepository->findByDemand($demand);
 		}
 
+		$charset = AbcListActionHelper::getSystemCharset();
+		$range = array();
+		$addressCount = 0;
+		$groupedAddresses = array();
+		$filterChar = $this->getRequestArgument('char', '/^([A-Z]{1}|NUM)$/');
+		$filterChar = ($filterChar === 'NUM') ? '#' : $filterChar;
+
+
+		// Create grouping Array
+		AbcListActionHelper::createGroupArrays($range, $groupedPersons);
+
+		// Put persons into groupedPerson array
+		foreach ($addresses->toArray() as $person) {
+			$firstChar = AbcListActionHelper::getFirstChar($person, $charset, $this->orderBy);
+
+			if (!empty($filterChar)) { // If filter by Char activated, show only the selected
+				if ($filterChar === $firstChar) { // Add them to A-Z Group
+					AbcListActionHelper::groupPerson($firstChar, $range, $personCount, $groupedPersons, $person);
+				} elseif (($filterChar === '#') && (!array_key_exists($firstChar, $range))) { // Add them to # Group
+					AbcListActionHelper::groupPerson($firstChar, $range, $personCount, $groupedPersons, $person);
+				} else { // Just count
+					AbcListActionHelper::pullUpRange($firstChar, $range);
+				}
+			} else { // Show all Addresses
+				AbcListActionHelper::groupPerson($firstChar, $range, $personCount, $groupedPersons, $person);
+			}
+		}
+
 		$paginator = $this->getPaginator($addresses);
 		$pagination = new SimplePagination($paginator);
+
 		// @todo remove with version 8
 		$this->view->assign('newPagination', true);
 		$this->view->assign('pagination', [
@@ -138,13 +169,16 @@ class AddressController extends ActionController
 
 		$this->view->assignMultiple([
 			'demand' => $demand,
-			'addresses' => $addresses,
+			'range' => $range,
+			'groupedAddresses' => $groupedAddresses,
+			'addressCount' => $addressCount,
 			'contentObjectData' => $this->configurationManager->getContentObject()->data,
 		]);
 
 		CacheUtility::addCacheTagsByAddressRecords(
 			$addresses instanceof QueryResultInterface ? $addresses->toArray() : $addresses
 		);
+
 		return $this->htmlResponse();
 	}
 

@@ -1,6 +1,9 @@
 <?php
 namespace FriendsOfTYPO3\TtAddress\ViewHelpers;
 
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+
+
 /***************************************************************
  *  Copyright notice
  *
@@ -32,7 +35,7 @@ namespace FriendsOfTYPO3\TtAddress\ViewHelpers;
  * @package Vhs
  * @subpackage ViewHelpers\Iterator
  */
-class GpViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper  {
+class GpViewHelper extends AbstractViewHelper  {
 
 	/**
 	 * Initialize arguments

@@ -10,66 +10,7 @@
     <!--TYPO3SEARCH_end-->
     <f:if condition="{settings.atoz}">
         <f:then>
-            <f:if condition="{settings.atoz}">
-                <ul class="range"><f:spaceless>
-                    <li><f:link.action>{f:translate(key:'all')}</f:link.action>
-                    </li>
-                    <f:for each="{range}" key="char" as="count">
-                        <li>
-                            <f:if condition="{count} > 0">
-                                <f:then>
-                                    <f:link.action
-                                            arguments="{sword:'{sword}',group:'{selectedGroup}',orderBy:'{orderby}',order:'{order}',char:'{f:if(condition:\'{char} == \\\'#\\\'\',then:\'NUM\',else:\'{char}\')}'}">
-                                        {char}
-                                    </f:link.action>
-                                </f:then>
-                                <f:else>{char}</f:else>
-                            </f:if>
-                        </li>
-                    </f:for>
-                </f:spaceless></ul>
-            </f:if>
-
-            <f:if condition="{settings.hidePagination}">
-                <f:then>
-                    <f:for each="{groupedAddresses}" as="addresses" key="group">
-                        <f:if condition="{addresses}">
-                            <div>
-                                <h4>{group}</h4>
-                                <p>
-                                    <f:for each="{addresses}" as="address">
-                                        <f:render partial="ListItem" arguments="{_all}"/>
-                                    </f:for>
-                                </p>
-                            </div>
-                        </f:if>
-                    </f:for>
-                </f:then>
-                <f:else>
-                    <f:if condition="{settings.paginate.insertAbove}">
-                        <f:render partial="Pagination" arguments="{pagination: pagination.pagination, pages: pagination.pages, paginator: pagination.paginator}" />
-                    </f:if>
-                    <f:for each="{pagination.paginator.paginatedItems}" as="paginatedGroupedAddresses" iteration="iterator">
-                        <f:for each="{paginatedGroupedAddresses}" as="addresses" key="group">
-                            <f:if condition="{addresses}">
-                                <div>
-                                    <h4>{group}</h4>
-                                    <p>
-                                        <f:for each="{addresses}" as="address">
-                                            <f:render partial="ListItem" arguments="{_all}"/>
-                                        </f:for>
-                                    </p>
-                                </div>
-                            </f:if>
-                        </f:for>
-
-                    </f:for>
-                    <f:if condition="{settings.paginate.insertBelow}">
-                        <f:render partial="Pagination" arguments="{pagination: pagination.pagination, pages: pagination.pages, paginator: pagination.paginator}" />
-                    </f:if>
-                </f:else>
-            </f:if>
-
+            <f:render section="abclist" arguments="{_all}" />
         </f:then>
         <f:else>
             <f:if condition="{settings.hidePagination}">
@@ -103,4 +44,68 @@
 
 <f:section name="displayMode_map">
     <f:render partial="Maps" section="{settings.map.rendering}" arguments="{_all}"/>
+</f:section>
+
+<f:section name="abclist">
+    <f:if condition="{settings.atoz}">
+        <ul class="range"><f:spaceless>
+            <li><f:link.action>{f:translate(key:'all')}</f:link.action>
+            </li>
+            <f:for each="{range}" key="char" as="count">
+                <li>
+                    <f:if condition="{count} > 0">
+                        <f:then>
+                            <f:link.action
+                                    arguments="{sword:'{sword}',group:'{selectedGroup}',orderBy:'{orderby}',order:'{order}',char:'{f:if(condition:\'{char} == \\\'#\\\'\',then:\'NUM\',else:\'{char}\')}'}">
+                                {char}
+                            </f:link.action>
+                        </f:then>
+                        <f:else>{char}</f:else>
+                    </f:if>
+                </li>
+            </f:for>
+        </f:spaceless></ul>
+    </f:if>
+
+    <f:if condition="{settings.hidePagination}">
+        <f:then>
+            <f:for each="{groupedAddresses}" as="addresses" key="group">
+                <f:if condition="{addresses}">
+                    <div>
+                        <h4>{group}</h4>
+                        <p>
+                            <f:for each="{addresses}" as="address">
+                                <f:render partial="ListItem" arguments="{_all}"/>
+                            </f:for>
+                        </p>
+                    </div>
+                </f:if>
+            </f:for>
+        </f:then>
+        <f:else>
+            <f:if condition="{settings.paginate.insertAbove}">
+                <f:render partial="Pagination" arguments="{pagination: pagination.pagination, pages: pagination.pages, paginator: pagination.paginator}" />
+            </f:if>
+            <f:for each="{pagination.paginator.paginatedItems}" as="paginatedGroupedAddresses" iteration="iterator">
+                <f:for each="{paginatedGroupedAddresses}" as="addresses" key="group">
+                    <f:if condition="{addresses}">
+                        <div>
+                            <h4>{group}</h4>
+                            <p>
+                                <f:for each="{addresses}" as="address">
+                                    <f:render partial="ListItem" arguments="{_all}"/>
+                                </f:for>
+                            </p>
+                        </div>
+                    </f:if>
+                </f:for>
+
+            </f:for>
+            <f:if condition="{settings.paginate.insertBelow}">
+                <f:render partial="Pagination" arguments="{pagination: pagination.pagination, pages: pagination.pages, paginator: pagination.paginator}" />
+            </f:if>
+        </f:else>
+    </f:if>
+
+
 </f:section>

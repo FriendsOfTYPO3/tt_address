@@ -144,7 +144,7 @@ class AddressController extends ActionController
 
 		// Put persons into groupedPerson array
 		foreach ($addresses->toArray() as $person) {
-			$getter = 'get' . ucfirst($this->orderBy);
+			$getter = 'get' . ucfirst($demand->getSortBy() );
 			$text = $person->{$getter};
 			$firstChar = $text !== '' ? $text[0] : '';
 

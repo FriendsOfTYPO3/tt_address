@@ -45,50 +45,6 @@ class AbcListActionHelper {
 			$groupedPersons[$char] = array();
 		}
 	}
-	
-	/**
-	 * Looks for the system charset
-	 *
-	 * @return string
-	 */
-	public static function getSystemCharset() {
-		return $GLOBALS['TYPO3_CONF_VARS']['BE']['forceCharset'] ? $GLOBALS['TYPO3_CONF_VARS']['BE']['forceCharset'] : $GLOBALS['TSFE']->defaultCharSet;
-	}
-	
-	/**
-	 * Normalizes a string and returns the first normalized uppercase char
-	 *
-	 * @param $person
-	 * @param string $charset
-	 * @param string $field
-	 * @return string
-	 */
-	public static function getFirstChar(&$person, $charset, $field) {
-		$fieldStr  = call_user_func(array($person, 'get'.ucwords($field)));
-		if (!empty($fieldStr)) {
-		// Normalize the string
-		$fieldStr = $GLOBALS['TSFE']->csConvObj->conv_case($charset, $fieldStr, 'toUpper');
-		$fieldStr = $GLOBALS['TSFE']->csConvObj->specCharsToASCII($charset, $fieldStr);
-		
-		// Get the first char
-		return substr($fieldStr, 0, 1);
-		} else {
-			return " ";
-		}
-	}
-	
-	/**
-	 * Pull up the group range counter
-	 *
-	 * @param string $firstChar
-	 * @param array $range
-	 * @return void
-	 */
-	public static function pullUpRange(&$firstChar, &$range) {
-		if ( array_key_exists($firstChar, $range) ) {
-			$range[$firstChar]++;
-		} else $range['#']++;
-	}
 
 
 }

@@ -131,7 +131,6 @@ class AddressController extends ActionController
 			$addresses = $this->addressRepository->findByDemand($demand);
 		}
 
-		$charset = AbcListActionHelper::getSystemCharset();
 		$range = array();
 		$addressCount = 0;
 		$groupedAddresses = array();
@@ -145,7 +144,9 @@ class AddressController extends ActionController
 
 		// Put persons into groupedPerson array
 		foreach ($addresses->toArray() as $person) {
-			$firstChar = AbcListActionHelper::getFirstChar($person, $charset, $this->orderBy);
+			$getter = 'get' . ucfirst($this->orderBy);
+			$text = $person->{$getter};
+			$firstChar = $text !== '' ? $text{0} : '';
 
 			if (!empty($filterChar)) { // If filter by Char activated, show only the selected
 				if ($filterChar === $firstChar) { // Add them to A-Z Group

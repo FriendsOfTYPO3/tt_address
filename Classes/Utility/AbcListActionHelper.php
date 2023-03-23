@@ -46,6 +46,18 @@ class AbcListActionHelper {
 		}
 	}
 
+	/**
+	 * Pull up the group range counter
+	 *
+	 * @param string $firstChar
+	 * @param array $range
+	 * @return void
+	 */
+	public static function pullUpRange(&$firstChar, &$range) {
+		if ( array_key_exists($firstChar, $range) ) {
+			$range[$firstChar]++;
+		} else $range['#']++;
+	}
 
 }
 

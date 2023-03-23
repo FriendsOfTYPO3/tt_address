@@ -19,7 +19,7 @@ use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 use FriendsOfTYPO3\TtAddress\Seo\AddressTitleProvider;
 use FriendsOfTYPO3\TtAddress\Utility\CacheUtility;
 use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
-use \FriendsOfTYPO3\TtAddress\Utility\AbcListActionHelper;
+use FriendsOfTYPO3\TtAddress\Utility\AbcListActionHelper;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Pagination\PaginatorInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;

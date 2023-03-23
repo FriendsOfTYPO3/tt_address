@@ -146,7 +146,7 @@ class AddressController extends ActionController
 		foreach ($addresses->toArray() as $person) {
 			$getter = 'get' . ucfirst($this->orderBy);
 			$text = $person->{$getter};
-			$firstChar = $text !== '' ? $text{0} : '';
+			$firstChar = $text !== '' ? $text[0] : '';
 
 			if (!empty($filterChar)) { // If filter by Char activated, show only the selected
 				if ($filterChar === $firstChar) { // Add them to A-Z Group

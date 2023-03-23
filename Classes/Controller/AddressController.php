@@ -140,7 +140,7 @@ class AddressController extends ActionController
 
 
 		// Create grouping Array
-		AbcListActionHelper::createGroupArrays($range, $groupedPersons);
+		AbcListActionHelper::createGroupArrays($range, $groupedAddresses);
 
 		// Put persons into groupedPerson array
 		foreach ($addresses->toArray() as $person) {

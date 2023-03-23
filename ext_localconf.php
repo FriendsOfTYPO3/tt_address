@@ -40,7 +40,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1546531781] = [
     'TtAddress',
     'AbcListView',
     [
-       \FriendsOfTYPO3\TtAddress\Controller\AddressController::class => 'abcList,show'
+       \FriendsOfTYPO3\TtAddress\Controller\AddressController::class => 'abcList,list,show'
     ]
 );
 

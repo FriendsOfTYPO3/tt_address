@@ -106,7 +106,7 @@ class AddressController extends ActionController
             'contentObjectData' => $this->configurationManager->getContentObject()->data,
         ]);
 
-		if( $this->settings['atoz']) ) {
+		if( $this->settings['atoz'] ) {
 		    $range = array();
 		    $addressCount = 0;
 		    $groupedAddresses = array();

@@ -30,7 +30,7 @@ class AbcListActionHelper {
 	/**
 	 * Creates the grouping arrays
 	 *
-	 * @param string $range
+	 * @param array $range
 	 * @param array $groupedPersons
 	 * @return void
 	 */

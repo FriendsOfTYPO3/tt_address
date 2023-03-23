@@ -150,14 +150,14 @@ class AddressController extends ActionController
 
 			if (!empty($filterChar)) { // If filter by Char activated, show only the selected
 				if ($filterChar === $firstChar) { // Add them to A-Z Group
-					AbcListActionHelper::groupPerson($firstChar, $range, $personCount, $groupedPersons, $person);
+					AbcListActionHelper::groupPerson($firstChar, $range, $personCount, $groupedAddresses, $person);
 				} elseif (($filterChar === '#') && (!array_key_exists($firstChar, $range))) { // Add them to # Group
-					AbcListActionHelper::groupPerson($firstChar, $range, $personCount, $groupedPersons, $person);
+					AbcListActionHelper::groupPerson($firstChar, $range, $personCount, $groupedAddresses, $person);
 				} else { // Just count
 					AbcListActionHelper::pullUpRange($firstChar, $range);
 				}
 			} else { // Show all Addresses
-				AbcListActionHelper::groupPerson($firstChar, $range, $personCount, $groupedPersons, $person);
+				AbcListActionHelper::groupPerson($firstChar, $range, $personCount, $groupedAddresses, $person);
 			}
 		}
 

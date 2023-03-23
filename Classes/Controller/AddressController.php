@@ -144,7 +144,7 @@ class AddressController extends ActionController
 
 		// Put persons into groupedPerson array
 		foreach ($addresses->toArray() as $person) {
-			$getter = 'get' . ucfirst($demand->getSortBy() );
+			$getter = 'get' . ucfirst($demand->getSortOrder() );
 			$text = $person->{$getter};
 			$firstChar = $text !== '' ? $text[0] : '';
 
@@ -243,6 +243,9 @@ class AddressController extends ActionController
         $demand->setSortBy((string)($this->settings['sortBy'] ?? ''));
         $demand->setSortOrder((string)($this->settings['sortOrder'] ?? ''));
         $demand->setIgnoreWithoutCoordinates((bool)($this->settings['ignoreWithoutCoordinates'] ?? false));
+
+
+
 
         return $demand;
     }

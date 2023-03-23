@@ -144,8 +144,10 @@ class AddressController extends ActionController
 
 		// Put persons into groupedPerson array
 		foreach ($addresses->toArray() as $person) {
-			$getter = 'get' . ucfirst($demand->getSortOrder() );
-			$text = $person->{$getter};
+
+			// many thanks to MK here!
+			$getter = 'get' . str_replace('_', '', ucwords( $demand->getSortBy(), '_' ) );
+			$text = $person->{$getter}();
 			$firstChar = $text !== '' ? $text[0] : '';
 
 			if (!empty($filterChar)) { // If filter by Char activated, show only the selected

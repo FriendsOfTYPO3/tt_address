@@ -10,39 +10,39 @@ class AbcListActionHelper {
 	 * @param string $firstChar
 	 * @param array $range
      * @param integer $personCount
-	 * @param array $groupedAddresses
+	 * @param array $groupedPersons
 	 * @param $person
 	 * @return void
 	 */
-    public static function groupAddress(&$firstChar, &$range, &$personCount, &$groupedAddresses, &$person) {
+    public static function groupPerson(&$firstChar, &$range, &$personCount, &$groupedPersons, &$person) {
 		// Put it in the result array
 		if ( array_key_exists($firstChar, $range) ) {
-			$groupedAddresses[$firstChar][] = $person;
+			$groupedPersons[$firstChar][] = $person;
 			$range[$firstChar]++;
 		} else {
-			$groupedAddresses['#'][] = $person;
+			$groupedPersons['#'][] = $person;
 			$range['#']++;
 		}
 
         $personCount++;
 	}
-	
+
 	/**
 	 * Creates the grouping arrays
 	 *
 	 * @param array $range
-	 * @param array $groupedAddresses
+	 * @param array $groupedPersons
 	 * @return void
 	 */
-	public static function createGroupArrays(&$range, &$groupedAddresses) {
+	public static function createGroupArrays(&$range, &$groupedPersons) {
 		// Create ABC List Array
 		foreach ( range('A','Z') as $char ) {
 			$range[$char] = 0;
 		}
 		$range['#'] = 0;
-		
+
 		foreach ( $range as $char ) {
-			$groupedAddresses[$char] = array();
+			$groupedPersons[$char] = array();
 		}
 	}
 

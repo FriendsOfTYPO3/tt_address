@@ -127,14 +127,14 @@ class AddressController extends ActionController
 
                 if (!empty($filterChar)) { // If filter by Char activated, show only the selected
                     if ($filterChar === $firstChar) { // Add them to A-Z Group
-                        AbcListActionHelper::groupAddress($firstChar, $range, $addressCount, $groupedAddresses, $person);
+                        AbcListActionHelper::groupPerson($firstChar, $range, $addressCount, $groupedAddresses, $person);
                     } elseif (($filterChar === '#') && (!array_key_exists($firstChar, $range))) { // Add them to # Group
-                        AbcListActionHelper::groupAddress($firstChar, $range, $addressCount, $groupedAddresses, $person);
+                        AbcListActionHelper::groupPerson($firstChar, $range, $addressCount, $groupedAddresses, $person);
                     } else { // Just count
                         AbcListActionHelper::pullUpRange($firstChar, $range);
                     }
                 } else { // Show all Addresses
-                    AbcListActionHelper::groupAddress($firstChar, $range, $addressCount, $groupedAddresses, $person);
+                    AbcListActionHelper::groupPerson($firstChar, $range, $addressCount, $groupedAddresses, $person);
                 }
             }
             $this->view->assignMultiple([

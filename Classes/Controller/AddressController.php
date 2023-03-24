@@ -110,7 +110,7 @@ class AddressController extends ActionController
             $addressCount = 0;
             $groupedAddresses = array();
             $arguments = $this->request->getArguments();
-            $filterChar = $arguments['char'];
+            $filterChar = $arguments['char']  ?? null;
             $filterChar = ($filterChar === 'NUM') ? '#' : $filterChar;
 
 

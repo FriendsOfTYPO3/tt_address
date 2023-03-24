@@ -124,6 +124,7 @@ class AddressController extends ActionController
                 $getter = 'get' . str_replace('_', '', ucwords( $demand->getSortBy(), '_' ) );
                 $text = $person->{$getter}();
                 $firstChar = $text !== '' ? $text[0] : '';
+                $firstChar = ucfirst($firstChar);
 
                 if (!empty($filterChar)) { // If filter by Char activated, show only the selected
                     if ($filterChar === $firstChar) { // Add them to A-Z Group

@@ -33,7 +33,6 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
  */
 class AddressController extends ActionController
 {
-
     /** @var AddressRepository */
     protected $addressRepository;
 

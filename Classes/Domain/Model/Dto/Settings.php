@@ -23,6 +23,9 @@ class Settings
     /** @var string */
     protected $telephoneValidationPatternForJs = '/[^\d\+\s\-]/g';
 
+    /** @var bool */
+    protected $newPagination = false;
+
     /**
      */
     public function __construct()

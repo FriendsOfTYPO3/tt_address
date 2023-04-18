@@ -16,7 +16,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class AddressTest extends BaseTestCase
 {
-
     /** @var Address */
     protected $subject;
 

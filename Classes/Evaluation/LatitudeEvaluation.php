@@ -19,19 +19,6 @@ class LatitudeEvaluation
 {
 
     /**
-     * JavaScript code for client side validation/evaluation
-     *
-     * @return string JavaScript code for client side validation/evaluation
-     */
-    public function returnFieldJS()
-    {
-        // Nice to have: add javascript-code for evalution on blur
-        return '
-      return value;
-    ';
-    }
-
-    /**
      * Server-side validation/evaluation on saving the record
      * Tests if latutide is between -90 and +90, fills up with zeros to mach decimal (14,12) in database
      *

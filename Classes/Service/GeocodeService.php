@@ -25,7 +25,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class GeocodeService implements SingletonInterface
 {
-
     /** @var int */
     protected $cacheTime = 7776000;
 

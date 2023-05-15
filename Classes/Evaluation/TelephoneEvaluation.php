@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace FriendsOfTYPO3\TtAddress\Evaluation;
 
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
+use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
+use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -18,7 +20,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class TelephoneEvaluation
 {
-
     /** @var Settings */
     protected $extensionSettings;
 
@@ -29,14 +30,18 @@ class TelephoneEvaluation
 
     /**
      * JavaScript code for client side validation/evaluation
-     *
-     * @return string JavaScript code for client side validation/evaluation
      */
-    public function returnFieldJS()
+    public function returnFieldJS(): JavaScriptModuleInstruction
     {
-        return '
-         return value.replace(' . $this->extensionSettings->getTelephoneValidationPatternForJs() . ', "");
-      ';
+        GeneralUtility::makeInstance(PageRenderer::class)->addInlineSetting(
+            'TtAddress.Evaluation',
+            'telephoneValidationPattern',
+            $this->extensionSettings->getTelephoneValidationPatternForJs()
+        );
+        return JavaScriptModuleInstruction::create(
+            '@friendsoftypo3/tt-address/telephone-evaluation.js',
+            'TelephoneEvaluation'
+        );
     }
 
     /**

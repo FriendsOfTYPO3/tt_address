@@ -154,7 +154,7 @@ class AddressController extends ActionController
     {
         $demand = new Demand();
         $demand->setCategories((string)($this->settings['groups'] ?? ''));
-        $categoryCombination = (int)$this->settings['groupsCombination'] === 1 ? 'or' : 'and';
+        $categoryCombination = (int)($this->settings['groupsCombination'] ?? 1) === 1 ? 'or' : 'and';
         $demand->setCategoryCombination($categoryCombination);
         $demand->setIncludeSubCategories((bool)($this->settings['includeSubcategories'] ?? false));
 

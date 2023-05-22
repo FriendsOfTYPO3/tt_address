@@ -357,7 +357,7 @@ return [
                 'type' => 'input',
                 'eval' => 'trim',
                 'size' => 20,
-                'max' => 20,
+                'max' => 255,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -369,8 +369,8 @@ return [
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
-                'size' => 5,
-                'max' => 15,
+                'size' => 15,
+                'max' => 255,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],

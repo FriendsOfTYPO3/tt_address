@@ -18,7 +18,6 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class CategoryServiceTest extends FunctionalTestCase
 {
-
     /** @var CategoryService */
     protected $subject;
 

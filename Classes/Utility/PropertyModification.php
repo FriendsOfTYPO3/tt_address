@@ -15,7 +15,6 @@ namespace FriendsOfTYPO3\TtAddress\Utility;
  */
 class PropertyModification
 {
-
     /**
      * Get cleaned number of a given telephone, fax or mobile number.
      * It removes all chars which are not possible to enter on your cell phone.

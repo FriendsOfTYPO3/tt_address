@@ -79,6 +79,14 @@
         <source>Facebook</source>
         <target>crwdns45536:0crwdne45536:0</target>
       </trans-unit>
+      <trans-unit id="tt_address.instagram">
+        <source>Instagram</source>
+        <target>crwdns279843:0crwdne279843:0</target>
+      </trans-unit>
+      <trans-unit id="tt_address.tiktok">
+        <source>TikTok</source>
+        <target>crwdns279845:0crwdne279845:0</target>
+      </trans-unit>
       <trans-unit id="tt_address.linkedin">
         <source>LinkedIn</source>
         <target>crwdns45538:0crwdne45538:0</target>

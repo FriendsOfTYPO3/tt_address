@@ -135,6 +135,16 @@ class Address extends AbstractEntity
     /**
      * @var string
      */
+    protected $instagram = '';
+
+    /**
+     * @var string
+     */
+    protected $tiktok = '';
+
+    /**
+     * @var string
+     */
     protected $linkedin = '';
 
     /**
@@ -445,6 +455,26 @@ class Address extends AbstractEntity
     public function getFacebook(): string
     {
         return $this->facebook;
+    }
+
+    public function setInstagram(string $instagram): void
+    {
+        $this->instagram = $instagram;
+    }
+
+    public function getInstagram(): string
+    {
+        return $this->instagram;
+    }
+
+    public function setTiktok(string $tiktok): void
+    {
+        $this->tiktok = $tiktok;
+    }
+
+    public function getTiktok(): string
+    {
+        return $this->tiktok;
     }
 
     public function setLinkedin(string $linkedin): void

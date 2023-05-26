@@ -716,7 +716,8 @@ return [
         ],
         'social' => [
             'showitem' => 'skype, twitter, --linebreak--,
-                            facebook, linkedin'
+                            linkedin, tiktok, --linebreak--,
+                            facebook, instagram'
         ],
         'paletteHidden' => [
             'showitem' => 'hidden',

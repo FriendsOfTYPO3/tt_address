@@ -79,6 +79,14 @@
         <source>Facebook</source>
         <target state="final">Facebook:</target>
       </trans-unit>
+      <trans-unit id="tt_address.instagram" approved="yes">
+        <source>Instagram</source>
+        <target state="final">Instagram</target>
+      </trans-unit>
+      <trans-unit id="tt_address.tiktok" approved="yes">
+        <source>TikTok</source>
+        <target state="final">TikTok</target>
+      </trans-unit>
       <trans-unit id="tt_address.linkedin" approved="yes">
         <source>LinkedIn</source>
         <target state="final">Linkedin:</target>

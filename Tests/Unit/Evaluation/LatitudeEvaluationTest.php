@@ -15,7 +15,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class LatitudeEvaluationTest extends BaseTestCase
 {
-
     /** @var LatitudeEvaluation */
     protected $subject;
 

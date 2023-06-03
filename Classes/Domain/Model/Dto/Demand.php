@@ -10,7 +10,6 @@ namespace FriendsOfTYPO3\TtAddress\Domain\Model\Dto;
  */
 class Demand
 {
-
     /** @var array */
     protected $pages = [];
 

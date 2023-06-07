@@ -10,9 +10,9 @@ Installation
 +----------+-----+-----+-----+-----+-----+-----+
 |          | 8.x | 7.x | 6.x | 5.x | 4.x | 3.x |
 +----------+-----+-----+-----+-----+-----+-----+
-| TYPO3 12 | yes | no  | no  | no  | no  | no  |
+| TYPO3 12 | yes | yes | no  | no  | no  | no  |
 +----------+-----+-----+-----+-----+-----+-----+
-| TYPO3 11 | yes | no  | yes | no  | no  | no  |
+| TYPO3 11 | yes | yes | yes | no  | no  | no  |
 +----------+-----+-----+-----+-----+-----+-----+
 | TYPO3 10 | no  | no  | yes | yes | no  | no  |
 +----------+-----+-----+-----+-----+-----+-----+
@@ -22,6 +22,10 @@ Installation
 +----------+-----+-----+-----+-----+-----+-----+
 | TYPO3 7  | no  | no  | no  | no  | no  | yes |
 +----------+-----+-----+-----+-----+-----+-----+
+
+.. important::
+
+   Active support is only provided for the latest major version.
 
 The extension needs to be installed as any other extension of TYPO3 CMS:
 

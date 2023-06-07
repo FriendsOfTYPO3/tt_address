@@ -29,9 +29,11 @@ output those in various ways:
 
 |          | 8.x | 7.x | 6.x | 5.x | 4.x | 3.x |
 |:---------|:----|-----|:----|:----|:----|:----|
-| TYPO3 12 | yes | no  | no  | yes | no  | no  |
-| TYPO3 11 | yes | no  | yes | yes | no  | no  |
+| TYPO3 12 | yes | yes | no  | yes | no  | no  |
+| TYPO3 11 | yes | yes | yes | yes | no  | no  |
 | TYPO3 10 | no  | no  | yes | yes | no  | no  |
 | TYPO3 9  | no  | no  | no  | yes | yes | no  |
 | TYPO3 8  | no  | no  | no  | no  | yes | yes |
 | TYPO3 7  | no  | no  | no  | no  | no  | yes |
+
+Active support is only provided for the latest major version.

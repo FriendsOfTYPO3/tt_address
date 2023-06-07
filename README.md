@@ -1,11 +1,9 @@
 [![Latest Stable Version](http://poser.pugx.org/friendsoftypo3/tt-address/v)](https://extensions.typo3.org/extension/tt_address/)
 [![TYPO3 12](https://img.shields.io/badge/TYPO3-12-orange.svg)](https://get.typo3.org/version/12)
 [![TYPO3 11](https://img.shields.io/badge/TYPO3-11-orange.svg)](https://get.typo3.org/version/11)
-[![TYPO3 10](https://img.shields.io/badge/TYPO3-10-orange.svg)](https://get.typo3.org/version/10)
 [![Total Downloads](http://poser.pugx.org/friendsoftypo3/tt-address/downloads)](https://packagist.org/packages/friendsoftypo3/tt-address)
 [![Monthly Downloads](https://poser.pugx.org/friendsoftypo3/tt-address/d/monthly)](https://packagist.org/packages/friendsoftypo3/tt-address)
 [![StyleCI](https://styleci.io/repos/51592958/shield?branch=master)](https://styleci.io/repos/51592958/)
-[![Build Status](https://travis-ci.org/FriendsOfTYPO3/tt_address.svg?branch=master)](https://travis-ci.org/FriendsOfTYPO3/tt_address)
 [![Coverage Status](https://coveralls.io/repos/github/FriendsOfTYPO3/tt_address/badge.svg?branch=master)](https://coveralls.io/github/FriendsOfTYPO3/tt_address?branch=master)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/GeorgRinger/10)
 

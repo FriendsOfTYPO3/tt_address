@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace FriendsOfTYPO3\TtAddress\Evaluation;
 
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -31,17 +32,22 @@ class TelephoneEvaluation
     /**
      * JavaScript code for client side validation/evaluation
      */
-    public function returnFieldJS(): JavaScriptModuleInstruction
+    public function returnFieldJS()
     {
-        GeneralUtility::makeInstance(PageRenderer::class)->addInlineSetting(
-            'TtAddress.Evaluation',
-            'telephoneValidationPattern',
-            $this->extensionSettings->getTelephoneValidationPatternForJs()
-        );
-        return JavaScriptModuleInstruction::create(
-            '@friendsoftypo3/tt-address/telephone-evaluation.js',
-            'TelephoneEvaluation'
-        );
+        if ((new Typo3Version())->getMajorVersion() >= 12) {
+            GeneralUtility::makeInstance(PageRenderer::class)->addInlineSetting(
+                'TtAddress.Evaluation',
+                'telephoneValidationPattern',
+                $this->extensionSettings->getTelephoneValidationPatternForJs()
+            );
+            return JavaScriptModuleInstruction::create(
+                '@friendsoftypo3/tt-address/telephone-evaluation.js',
+                'TelephoneEvaluation'
+            );
+        }
+        return '
+         return value.replace(' . $this->extensionSettings->getTelephoneValidationPatternForJs() . ', "");
+      ';
     }
 
     /**

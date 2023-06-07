@@ -20,7 +20,6 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class AddressRepositoryTest extends FunctionalTestCase
 {
-
     /** @var AddressRepository */
     protected $addressRepository;
 

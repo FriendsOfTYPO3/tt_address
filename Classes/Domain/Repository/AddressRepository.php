@@ -24,7 +24,6 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
  */
 class AddressRepository extends Repository
 {
-
     /**
      * override the storagePid settings (do not use storagePid) of extbase
      */

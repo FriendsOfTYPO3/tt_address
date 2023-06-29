@@ -17,7 +17,6 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-
     /**
      * Hidden
      *

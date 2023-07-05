@@ -15,7 +15,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class TypoScript
 {
-
     /**
      * @param array $previousData
      * @param array $tsData
@@ -60,7 +59,7 @@ class TypoScript
     {
         $found = true;
 
-        for ($x = 0; ($x < count($path) && $found); $x++) {
+        for ($x = 0; $x < count($path) && $found; $x++) {
             $key = $path[$x];
 
             if (isset($data[$key])) {

@@ -1,0 +1,8 @@
+#ttaddress__records {
+    display: none;
+}
+
+#ttaddress__map {
+    width: 100%;
+    min-height: 300px;
+}

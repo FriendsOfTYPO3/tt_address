@@ -1,0 +1,54 @@
+8.0.0 - 7th June 2023
+=====================
+
+.. include:: /Includes.rst.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+♥ Thanks to StudioMitte (https://www.studiomitte.com/) for sponsoring this release!
+
+Important changes
+-----------------
+
+Better CSP support
+^^^^^^^^^^^^^^^^^^
+CSP (Content Security Policy) can be used to prevent loading inline styles.
+Therefore some styles have been extracted into a separate CSS file.
+
+Additionally the CSP configuration for TYPO3 v12 has been extended to allow calls to OpenStreetMap!
+
+Database changes
+^^^^^^^^^^^^^^^^
+
+- 2 new fields have been added: Instagram + TikTok
+- Increased size of the fields `building` + `room`
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2023-05-26 Adding Instagram + TikTok to social details (#477) (Commit df17cea by bucheggerOnline)
+   2023-05-23 [TASK] Configure CSP for FE (Commit 6fa22cf by Georg Ringer)
+   2023-05-23 [!!!][TASK] Move inline styles to external file (Commit 1399cd5 by Georg Ringer)
+   2023-05-22 [TASK] Increase field size (Commit e7086af by Georg Ringer)
+   2023-05-22 [TASK] Increase field size (Commit 76ede1e by Georg Ringer)
+   2023-05-15 [TASK] Add CSP policy (Commit 008fcc5 by Georg Ringer)
+   2023-05-15 [TASK] Migrate custom form field evaluation (returnFieldJS) (#468) (Commit 71045b7 by Oliver Hader)
+   2023-05-14 [BUGFIX] Fix notice with PHP 8 (Commit 1789c52 by Georg Ringer)
+   2023-05-04 Mark as TYPO3 12.4 compatible (#465) (Commit 80cb029 by Alexander Grein)
+   2023-04-19 [DOC] Fix typo in routing example (Commit 5600f0c by Georg Ringer)
+   2023-03-28 [TASK] Followup: Change format for pages module field (Commit b0f8c2e by Georg Ringer)
+   2023-03-28 [TASK] Support new TCA format for selects (Commit 32a3478 by Georg Ringer)
+   2023-03-13 [BUGFIX] Declare (#453) (Commit 9a24aab by Tim Dreier)
+
+
+This list has been created by using:
+
+.. code-block:: shell
+
+   git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short

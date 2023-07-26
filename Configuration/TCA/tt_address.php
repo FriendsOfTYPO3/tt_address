@@ -166,7 +166,7 @@ return [
                 'renderType' => 'selectMultipleSideBySide',
                 'size' => 5,
                 'maxitems' => 20,
-                'items' => [
+                'items' => $versionInformation->getMajorVersion() < 12 ? [
                     [
                         'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login',
                         -1,
@@ -179,6 +179,10 @@ return [
                         'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.usergroups',
                         '--div--',
                     ],
+                ] : [
+                    ['label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login', 'value' => -1],
+                    ['label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.any_login', 'value' => -2],
+                    ['label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.usergroups', 'value' => '--div--'],
                 ],
                 'exclusiveKeys' => '-1,-2',
                 'foreign_table' => 'fe_groups',
@@ -198,8 +202,10 @@ return [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'items' => [
-                    ['', 0]
+                'items' => $versionInformation->getMajorVersion() < 12 ? [
+                    ['', 0],
+                ] : [
+                    ['label' => '', 'value' => 0],
                 ],
                 'default' => 0,
                 'foreign_table' => 'tt_address',
@@ -219,11 +225,16 @@ return [
             'config' => [
                 'type' => 'radio',
                 'default' => '',
-                'items' => [
+                'items' => $versionInformation->getMajorVersion() < 12 ? [
                     ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.m', 'm'],
                     ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.f', 'f'],
                     ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.v', 'v'],
                     ['LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.undefined', '']
+                ] : [
+                    ['label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.m', 'value' => 'm'],
+                    ['label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.f', 'value' => 'f'],
+                    ['label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.v', 'value' => 'v'],
+                    ['label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.undefined', 'value' => '']
                 ]
             ]
         ],
@@ -346,7 +357,7 @@ return [
                 'type' => 'input',
                 'eval' => 'trim',
                 'size' => 20,
-                'max' => 20,
+                'max' => 255,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -358,8 +369,8 @@ return [
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
-                'size' => 5,
-                'max' => 15,
+                'size' => 15,
+                'max' => 255,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -475,6 +486,34 @@ return [
                 'eval' => 'trim',
                 'max' => 255,
                 'placeholder' => '/johndoe',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+            ]
+        ],
+        'instagram' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.instagram',
+            'config' => [
+                'type' => 'input',
+                'size' => 20,
+                'eval' => 'trim',
+                'max' => 255,
+                'placeholder' => '@johndoe',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+            ]
+        ],
+        'tiktok' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.tiktok',
+            'config' => [
+                'type' => 'input',
+                'size' => 20,
+                'eval' => 'trim',
+                'max' => 255,
+                'placeholder' => '@johndoe',
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -677,7 +716,8 @@ return [
         ],
         'social' => [
             'showitem' => 'skype, twitter, --linebreak--,
-                            facebook, linkedin'
+                            linkedin, tiktok, --linebreak--,
+                            facebook, instagram'
         ],
         'paletteHidden' => [
             'showitem' => 'hidden',

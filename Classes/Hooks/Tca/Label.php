@@ -12,6 +12,7 @@ namespace FriendsOfTYPO3\TtAddress\Hooks\Tca;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * Dynamic label of the address record based on tsconfig
@@ -29,7 +30,7 @@ class Label
             return;
         }
 
-        $row = $params['row'];
+        $row = BackendUtility::getRecord('tt_address', (int) $params['row']['uid']);
         $configuration = $this->getConfiguration((int) $row['pid']);
         if (!$configuration) {
             return;

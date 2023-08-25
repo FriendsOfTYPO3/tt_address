@@ -4,9 +4,10 @@
 
     <f:render section="rendering" arguments="{_all}"/>
 
-    <link rel="stylesheet" href="{f:uri.resource(path:'Contrib/leaflet-core-1.4.0.css')}" />
-    <script type="text/javascript" src="{f:uri.resource(path:'JavaScript/leaflet-core-1.4.0.js')}"></script>
-    <script type="text/javascript" src="{f:uri.resource(path:'JavaScript/Frontend/Leaflet.js')}"></script>
+    <f:asset.css identifier="ttaddress-leaflet" href="EXT:tt_address/Resources/Public/Contrib/leaflet-core-1.4.0.css" />
+    <f:asset.css identifier="ttaddress" href="EXT:tt_address/Resources/Public/Styles/basic.css" />
+    <f:asset.script identifier="ttaddress-leaflet-core" src="EXT:tt_address/Resources/Public/JavaScript/leaflet-core-1.4.0.js" />
+    <f:asset.script identifier="ttaddress-leaflet" src="EXT:tt_address/Resources/Public/JavaScript/Frontend/Leaflet.js" />
 </f:section>
 
 <f:section name="googleMaps">
@@ -50,8 +51,8 @@
         </div>
         <div class="col-md-9">
             <div id="ttaddress__map" data-default-lat="{settings.map.defaultPosition.lat}"
-                 data-default-lng="{settings.map.defaultPosition.lng}" style="width:100%;min-height:300px;"></div>
-            <ul id="ttaddress__records" style="display: none">
+                 data-default-lng="{settings.map.defaultPosition.lng}"></div>
+            <ul id="ttaddress__records">
                 <f:for each="{addresses}" as="address">
                     <div id="ttaddress__record-{address.uid}" data-id="{address.uid}" data-lat="{address.latitude}"
                          data-lng="{address.longitude}" data-icon="icon">

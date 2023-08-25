@@ -1,0 +1,24 @@
+8.0.1 - 8th June 2023
+=====================
+
+.. include:: /Includes.rst.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2023-06-07 [BUGFIX] Make TelephoneEvaluation work in v11 #484 (Commit b06bfad by Georg Ringer)
+
+
+This list has been created by using:
+
+.. code-block:: shell
+
+   git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short

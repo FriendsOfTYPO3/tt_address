@@ -357,7 +357,7 @@ return [
                 'type' => 'input',
                 'eval' => 'trim',
                 'size' => 20,
-                'max' => 20,
+                'max' => 255,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -369,8 +369,8 @@ return [
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
-                'size' => 5,
-                'max' => 15,
+                'size' => 15,
+                'max' => 255,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -486,6 +486,34 @@ return [
                 'eval' => 'trim',
                 'max' => 255,
                 'placeholder' => '/johndoe',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+            ]
+        ],
+        'instagram' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.instagram',
+            'config' => [
+                'type' => 'input',
+                'size' => 20,
+                'eval' => 'trim',
+                'max' => 255,
+                'placeholder' => '@johndoe',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+            ]
+        ],
+        'tiktok' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.tiktok',
+            'config' => [
+                'type' => 'input',
+                'size' => 20,
+                'eval' => 'trim',
+                'max' => 255,
+                'placeholder' => '@johndoe',
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -688,7 +716,8 @@ return [
         ],
         'social' => [
             'showitem' => 'skype, twitter, --linebreak--,
-                            facebook, linkedin'
+                            linkedin, tiktok, --linebreak--,
+                            facebook, instagram'
         ],
         'paletteHidden' => [
             'showitem' => 'hidden',

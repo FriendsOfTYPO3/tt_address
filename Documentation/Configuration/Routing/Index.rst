@@ -56,7 +56,7 @@ These are added manually in the :file:`config.yaml`:
       - routePath: '/{address-title}'
         _controller: 'Address::show'
         _arguments:
-          address_title: address
+          address-title: address
       - routePath: '/{page-label}-{page}'
         _controller: 'Address::list'
         _arguments:

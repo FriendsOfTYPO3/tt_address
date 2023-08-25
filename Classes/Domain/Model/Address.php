@@ -21,7 +21,6 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class Address extends AbstractEntity
 {
-
     /**
      * Hidden
      *
@@ -131,6 +130,16 @@ class Address extends AbstractEntity
      * @var string
      */
     protected $facebook = '';
+
+    /**
+     * @var string
+     */
+    protected $instagram = '';
+
+    /**
+     * @var string
+     */
+    protected $tiktok = '';
 
     /**
      * @var string
@@ -445,6 +454,26 @@ class Address extends AbstractEntity
     public function getFacebook(): string
     {
         return $this->facebook;
+    }
+
+    public function setInstagram(string $instagram): void
+    {
+        $this->instagram = $instagram;
+    }
+
+    public function getInstagram(): string
+    {
+        return $this->instagram;
+    }
+
+    public function setTiktok(string $tiktok): void
+    {
+        $this->tiktok = $tiktok;
+    }
+
+    public function getTiktok(): string
+    {
+        return $this->tiktok;
     }
 
     public function setLinkedin(string $linkedin): void

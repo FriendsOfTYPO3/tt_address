@@ -46,11 +46,11 @@ class LocationMapWizard extends AbstractNode
             // if we have at least some address part (saves geocoding calls)
             if ($address) {
                 // base url
-                $geoCodeUrlBase = 'https://nominatim.openstreetmap.org/search/';
+                $geoCodeUrlBase = 'https://nominatim.openstreetmap.org/search?q=';
                 $geoCodeUrlAddress = $address;
                 $geoCodeUrlCityOnly = ($row['city'] ?? '');
                 // urlparams for nominatim which are fixed.
-                $geoCodeUrlQuery = '?format=json&addressdetails=1&limit=1&polygon_svg=1';
+                $geoCodeUrlQuery = '&format=json&addressdetails=1&limit=1&polygon_svg=1';
                 // replace newlines with spaces; remove multiple spaces
                 $geoCodeUrl = trim(preg_replace('/\s\s+/', ' ', $geoCodeUrlBase . $geoCodeUrlAddress . $geoCodeUrlQuery));
                 $geoCodeUrlShort = trim(preg_replace('/\s\s+/', ' ', $geoCodeUrlBase . $geoCodeUrlCityOnly . $geoCodeUrlQuery));

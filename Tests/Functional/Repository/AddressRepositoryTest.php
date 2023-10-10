@@ -18,7 +18,6 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class AddressRepositoryTest extends FunctionalTestCase
 {
-
     /** @var ObjectManager */
     protected $objectManager;
 

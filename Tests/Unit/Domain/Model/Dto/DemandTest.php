@@ -13,7 +13,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class DemandTest extends BaseTestCase
 {
-
     /** @var Demand */
     protected $subject;
 

@@ -14,7 +14,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class AddressTitleProviderTest extends BaseTestCase
 {
-
     /**
      * @test
      * @dataProvider addressTitleProvider

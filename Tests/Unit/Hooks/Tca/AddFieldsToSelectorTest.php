@@ -14,7 +14,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class AddFieldsToSelectorTest extends BaseTestCase
 {
-
     /**
      * @test
      */

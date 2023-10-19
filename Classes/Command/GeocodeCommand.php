@@ -21,7 +21,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class GeocodeCommand extends Command
 {
-
     /**
      * Defines the allowed options for this command
      *

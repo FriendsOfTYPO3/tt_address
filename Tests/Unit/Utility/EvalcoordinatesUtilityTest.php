@@ -13,7 +13,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class EvalcoordinatesUtilityTest extends BaseTestCase
 {
-
     /**
      * @param $given
      * @param $expected

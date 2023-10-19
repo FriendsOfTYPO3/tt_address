@@ -15,7 +15,6 @@ use TYPO3\CMS\Core\Localization\LanguageService;
  */
 class AddFieldsToSelector
 {
-
     /** @var LanguageService */
     protected $languageService;
 

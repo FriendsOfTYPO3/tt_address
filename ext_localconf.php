@@ -1,5 +1,5 @@
 <?php
-defined('TYPO3_MODE') or die();
+defined('TYPO3_MODE') or die;
 
 /* ===========================================================================
   Custom cache, done with the caching framework
@@ -28,7 +28,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1546531781] = [
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:tt_address/Configuration/TSconfig/NewContentElementWizard.typoscript">');
 
-$majorVersion = (int)(explode('.', TYPO3_branch)[0]);
+$majorVersion = (int)explode('.', TYPO3_branch)[0];
 if ($majorVersion === 9) {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'FriendsOfTYPO3.tt_address',

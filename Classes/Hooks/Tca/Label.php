@@ -30,7 +30,12 @@ class Label
             return;
         }
 
-        $row = BackendUtility::getRecord('tt_address', (int) $params['row']['uid']);
+        if (is_numeric($params['row']['uid'])) {
+            $row = BackendUtility::getRecord('tt_address', (int) $params['row']['uid']);
+        } else {
+            $row = $params['row'];
+        }
+
         $configuration = $this->getConfiguration((int) $row['pid']);
         if (!$configuration) {
             return;

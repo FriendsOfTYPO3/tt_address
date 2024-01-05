@@ -1,0 +1,29 @@
+8.0.2 - 22th December 2023
+==========================
+
+.. include:: /Includes.rst.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2023-10-10 Update LocationMapWizard.php (#501) (Commit f9ac64a by Markus Söth)
+   2023-08-29 [FIX] adapt nominatim API URL (#498) (Commit b96f2c4 by Ingo Fabbri)
+   2023-08-28 Fix check for sortBy field (#451) (Commit ac3a41d by Uwe)
+   2023-08-01 [DOC] Fix example using in other extension #495 (Commit 8f77d2e by Georg Ringer)
+   2023-07-27 [TASK] Improve leavlet JS (Commit acf43a2 by Georg Ringer)
+   2023-06-15 [BUGFIX] Load full row for label #485 (Commit b27e170 by Georg Ringer)
+
+
+This list has been created by using:
+
+.. code-block:: shell
+
+   git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short

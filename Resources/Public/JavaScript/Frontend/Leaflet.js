@@ -6,6 +6,7 @@ function ttAddressLeaflet() {
 
     obj.run = function () {
         obj.map = L.map('ttaddress__map').setView([51.505, -0.09], 13);
+        obj.map.scrollWheelZoom.disable();
         var mapBounds = L.latLngBounds();
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 18,
@@ -24,8 +25,13 @@ function ttAddressLeaflet() {
             obj.markers.push(marker);
         }
         var group = new L.featureGroup(obj.markers);
-
         obj.map.fitBounds(group.getBounds());
+
+        // Zoom out if zoom level is too high
+        // var zoomLevel = obj.map.getZoom();
+        // if (zoomLevel >= 10) {
+        //     obj.map.setZoom(8);
+        // }
     };
 
     obj.openMarker = function (markerId) {

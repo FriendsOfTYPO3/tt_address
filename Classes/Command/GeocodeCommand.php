@@ -43,7 +43,7 @@ class GeocodeCommand extends Command
      * @inheritdoc
      * @return int
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->getGeocodeService($input->getArgument('key'))->calculateCoordinatesForAllRecordsInTable();
         return 0;

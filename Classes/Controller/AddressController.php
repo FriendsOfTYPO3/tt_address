@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Controller;
 
+
 /**
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
@@ -18,6 +19,7 @@ use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 use FriendsOfTYPO3\TtAddress\Seo\AddressTitleProvider;
 use FriendsOfTYPO3\TtAddress\Utility\CacheUtility;
 use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
+use FriendsOfTYPO3\TtAddress\Utility\AbcListActionHelper;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Pagination\PaginatorInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
@@ -27,6 +29,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+
 
 /**
  * AddressController
@@ -101,6 +104,47 @@ class AddressController extends ActionController
             'contentObjectData' => $this->configurationManager->getContentObject()->data,
         ]);
 
+        if( $this->settings['atoz'] ) {
+            $range = array();
+            $addressCount = 0;
+            $groupedAddresses = array();
+            $arguments = $this->request->getArguments();
+            $filterChar = $arguments['char']  ?? null;
+            $filterChar = ($filterChar === 'NUM') ? '#' : $filterChar;
+
+
+            // Create grouping Array
+            AbcListActionHelper::createGroupArrays($range, $groupedAddresses);
+
+            // Put persons into groupedPerson array
+            foreach ($addresses->toArray() as $person) {
+
+                // many thanks to MK here!
+                $getter = 'get' . str_replace('_', '', ucwords( $demand->getSortBy(), '_' ) );
+                $text = $person->{$getter}();
+                $firstChar = $text !== '' ? $text[0] : '';
+                $firstChar = ucfirst($firstChar);
+
+                if (!empty($filterChar)) { // If filter by Char activated, show only the selected
+                    if ($filterChar === $firstChar) { // Add them to A-Z Group
+                        AbcListActionHelper::groupPerson($firstChar, $range, $addressCount, $groupedAddresses, $person);
+                    } elseif (($filterChar === '#') && (!array_key_exists($firstChar, $range))) { // Add them to # Group
+                        AbcListActionHelper::groupPerson($firstChar, $range, $addressCount, $groupedAddresses, $person);
+                    } else { // Just count
+                        AbcListActionHelper::pullUpRange($firstChar, $range);
+                    }
+                } else { // Show all Addresses
+                    AbcListActionHelper::groupPerson($firstChar, $range, $addressCount, $groupedAddresses, $person);
+                }
+            }
+            $this->view->assignMultiple([
+                'range' => $range,
+                'groupedAddresses' => $groupedAddresses,
+                'addressCount' => $addressCount,
+            ]);
+
+        }
+
         CacheUtility::addCacheTagsByAddressRecords(
             $addresses instanceof QueryResultInterface ? $addresses->toArray() : $addresses
         );
@@ -164,6 +208,9 @@ class AddressController extends ActionController
         $demand->setSortBy((string)($this->settings['sortBy'] ?? ''));
         $demand->setSortOrder((string)($this->settings['sortOrder'] ?? ''));
         $demand->setIgnoreWithoutCoordinates((bool)($this->settings['ignoreWithoutCoordinates'] ?? false));
+
+
+
 
         return $demand;
     }

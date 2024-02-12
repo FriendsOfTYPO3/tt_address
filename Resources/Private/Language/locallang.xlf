@@ -76,6 +76,9 @@
       <trans-unit id="no_google_maps_key">
         <source>No Google Maps key provided with TypoScript</source>
       </trans-unit>
+      <trans-unit id="all">
+        <source>All</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

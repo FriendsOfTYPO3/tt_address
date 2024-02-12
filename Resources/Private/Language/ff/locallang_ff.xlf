@@ -75,6 +75,9 @@
         <trans-unit id="pi1_flexform.displayMode.map" xml:space="preserve">
             <source>Map view</source>
         </trans-unit>
+        <trans-unit id="pi1_flexform.atoz" xml:space="preserve">
+            <source>Show A-Z Menu</source>
+        </trans-unit>
         <trans-unit id="pi1_flexform.hidePagination" xml:space="preserve">
             <source>Do not display pagebrowser (listview)</source>
         </trans-unit>

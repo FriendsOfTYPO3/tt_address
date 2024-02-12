@@ -261,6 +261,16 @@
                         </TCEforms>
                     </settings.displayMode>
 
+                    <settings.atoz>
+                        <TCEforms>
+                            <exclude>1</exclude>
+                            <label>LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.atoz</label>
+                            <config>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.atoz>
+
                     <settings.hidePagination>
                         <TCEforms>
                             <exclude>1</exclude>

@@ -1,0 +1,26 @@
+8.0.3 - 12th February 2024
+==========================
+
+.. include:: /Includes.rst.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2024-02-12 [TASK] Explicitly require symfony/console (#517) (Commit b206771 by Mathias Brodala)
+   2024-01-25 Prevent Fatal Error in TYPO3 12.4 (#516) (Commit 95e1d6d by Lina Wolf)
+   2024-01-25 Update ext_conf_template.txt (#514) (Commit 9d326a7 by Uwe)
+   2024-01-08 [BUGFIX] Cannot add new address record in TYPO3 v12 PHP 8.2 (#512) (Commit 6dc5661 by Luca Braun)
+
+This list has been created by using:
+
+.. code-block:: shell
+
+   git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short

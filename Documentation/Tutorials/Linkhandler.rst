@@ -17,7 +17,7 @@ Configuration for the backend
 browser in the backend. See
 :ref:`Setting page TSconfig <t3tsconfig:setting-page-tsconfig>`.
 
-For all available options see :ref:`linkhandler-pagetsconfig`.
+For all available options see :ref:`t3coreapi:linkhandler-pagetsconfig`.
 
 .. code-block:: typoscript
    :caption: EXT:my_sitepackage/Configuration/page.tsconfig

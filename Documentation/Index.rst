@@ -57,4 +57,3 @@ output those in various ways:
    :hidden:
 
    Sitemap
-   genindex

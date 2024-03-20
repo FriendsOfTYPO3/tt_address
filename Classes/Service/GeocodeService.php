@@ -12,6 +12,7 @@ use TYPO3\CMS\Core\Cache\CacheManager;
  */
 use TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryHelper;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
@@ -68,10 +69,10 @@ class GeocodeService implements SingletonInterface
             ->where(
                 $queryBuilder->expr()->or(
                     $queryBuilder->expr()->isNull($latitudeField),
-                    $queryBuilder->expr()->eq($latitudeField, $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
+                    $queryBuilder->expr()->eq($latitudeField, $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
                     $queryBuilder->expr()->eq($latitudeField, 0.00000000000),
                     $queryBuilder->expr()->isNull($longitudeField),
-                    $queryBuilder->expr()->eq($longitudeField, $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
+                    $queryBuilder->expr()->eq($longitudeField, $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
                     $queryBuilder->expr()->eq($longitudeField, 0.00000000000)
                 )
             )

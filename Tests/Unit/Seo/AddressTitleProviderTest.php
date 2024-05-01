@@ -30,13 +30,13 @@ class AddressTitleProviderTest extends BaseTestCase
             $address->$setter($value);
         }
 
-        $mockedProvider = $this->getAccessibleMock(AddressTitleProvider::class, [], [], '', false);
+        $mockedProvider = $this->getAccessibleMock(AddressTitleProvider::class, null, [], '', false);
         $mockedProvider->setTitle($address, $configuration);
 
         $this->assertEquals($expected, $mockedProvider->getTitle());
     }
 
-    public static function addressTitleProvider(): array
+    public function addressTitleProvider(): array
     {
         return [
             'basic example' => [

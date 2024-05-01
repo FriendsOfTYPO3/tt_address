@@ -49,6 +49,7 @@
 		"typo3/cms-install": "^11.5 || ^12",
 		"sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": "^0.0.1",
 		"typo3/cms-extensionmanager": "^11.5 || ^12",
+		"phpunit/phpunit": "^9.6.15",
 		"php-coveralls/php-coveralls": "^2.1",
 		"phpspec/prophecy-phpunit": "^2.0"
 	},

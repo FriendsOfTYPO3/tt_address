@@ -51,7 +51,7 @@ class CategoryServiceTest extends FunctionalTestCase
         $mockedTimeTracker = $this->getAccessibleMock(TimeTracker::class, ['setTSlogMessage'], [], '', false);
         $mockedTimeTracker->expects($this->any())->method('setTSlogMessage');
 
-        $subject = $this->getAccessibleMock(CategoryService::class, ['dummy'], [], '', false);
+        $subject = $this->getAccessibleMock(CategoryService::class, null, [], '', false);
         $subject->_set('timeTracker', $mockedTimeTracker);
 
         $versionInformation = GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion();

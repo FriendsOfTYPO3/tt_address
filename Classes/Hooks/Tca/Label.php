@@ -35,6 +35,11 @@ class Label
             $row = $params['row'];
         }
 
+        // record might be in deleting process
+        if (!$row) {
+            return;
+        }
+
         $configuration = $this->getConfiguration((int) $row['pid']);
         if (!$configuration) {
             return;

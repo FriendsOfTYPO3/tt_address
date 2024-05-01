@@ -30,7 +30,7 @@ class Label
         }
 
         if (is_numeric($params['row']['uid'])) {
-            $row = BackendUtility::getRecord('tt_address', (int) $params['row']['uid']);
+            $row = BackendUtility::getRecordWSOL('tt_address', (int) $params['row']['uid']);
         } else {
             $row = $params['row'];
         }

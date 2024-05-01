@@ -32,7 +32,7 @@ class GeocodeCommandTest extends BaseTestCase
      */
     public function geocodeServiceIsReturned()
     {
-        $subject = $this->getAccessibleMock(GeocodeCommand::class, ['dummy'], [], '', false);
+        $subject = $this->getAccessibleMock(GeocodeCommand::class, null, [], '', false);
         $service = $subject->_call('getGeocodeService', '123');
         $this->assertEquals(GeocodeService::class, get_class($service));
     }
@@ -42,16 +42,16 @@ class GeocodeCommandTest extends BaseTestCase
      */
     public function geocodingIsCalled()
     {
-        $geocodeService = $this->getAccessibleMock(GeocodeCommand::class, ['calculateCoordinatesForAllRecordsInTable'], [], '', false);
+        $geocodeService = $this->getAccessibleMock(GeocodeService::class, ['calculateCoordinatesForAllRecordsInTable'], [], '', false);
         $geocodeService->expects($this->once())->method('calculateCoordinatesForAllRecordsInTable');
 
-        $subject = $this->getAccessibleMock(GeocodeCommand::class, ['calculateCoordinatesForAllRecordsInTable', 'getGeocodeService'], [], '', false);
+        $subject = $this->getAccessibleMock(GeocodeCommand::class, ['getGeocodeService'], [], '', false);
         $subject->expects($this->once())->method('getGeocodeService')->willReturn($geocodeService);
 
         $input = $this->getAccessibleMock(StringInput::class, ['getArgument'], [], '', false);
         $input->expects($this->once())->method('getArgument')->willReturn('123');
 
-        $output = $this->getAccessibleMock(ConsoleOutput::class, ['warning'], []);
+        $output = $this->getAccessibleMock(ConsoleOutput::class, null, []);
         $subject->_call('execute', $input, $output);
     }
 }

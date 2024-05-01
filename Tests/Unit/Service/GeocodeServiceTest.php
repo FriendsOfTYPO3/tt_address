@@ -31,7 +31,7 @@ class GeocodeServiceTest extends BaseTestCase
 
         GeneralUtility::addInstance(RequestFactory::class, $requestFactory->reveal());
 
-        $subject = $this->getAccessibleMock(GeocodeService::class, ['dummy'], [], '', false);
+        $subject = $this->getAccessibleMock(GeocodeService::class, null, [], '', false);
         $apiResponse = $subject->_call('getApiCallResult', 'http://dummy.com');
         $this->assertEquals($content, $apiResponse);
     }
@@ -51,7 +51,7 @@ class GeocodeServiceTest extends BaseTestCase
 
         GeneralUtility::addInstance(RequestFactory::class, $requestFactory->reveal());
 
-        $subject = $this->getAccessibleMock(GeocodeService::class, ['dummy'], [], '', false);
+        $subject = $this->getAccessibleMock(GeocodeService::class, null, [], '', false);
         $apiResponse = $subject->_call('getApiCallResult', 'http://dummy.com');
         $this->assertEquals([], $apiResponse);
     }
@@ -63,7 +63,7 @@ class GeocodeServiceTest extends BaseTestCase
     {
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionCode(1548785854);
-        $subject = $this->getAccessibleMock(GeocodeService::class, ['dummy'], [], '', false);
+        $subject = $this->getAccessibleMock(GeocodeService::class, null, [], '', false);
         $subject->_call('initializeCache', 'notExisting');
     }
 }

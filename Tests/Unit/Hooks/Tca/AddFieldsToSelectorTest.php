@@ -20,10 +20,10 @@ class AddFieldsToSelectorTest extends BaseTestCase
      */
     public function constructorIsCalled()
     {
-        $languageService = $this->getAccessibleMock(LanguageService::class, ['dummy'], [], '', false, false);
+        $languageService = $this->getAccessibleMock(LanguageService::class, null, [], '', false, false);
         $GLOBALS['LANG'] = $languageService;
 
-        $subject = $this->getAccessibleMock(AddFieldsToSelector::class, ['dummy'], [], '', true);
+        $subject = $this->getAccessibleMock(AddFieldsToSelector::class, null, [], '', true);
         $this->assertEquals($languageService, $subject->_get('languageService'));
     }
 
@@ -42,7 +42,7 @@ class AddFieldsToSelectorTest extends BaseTestCase
             ->will($this->returnCallback(function ($o) {
                 return $o;
             }));
-        $subject = $this->getAccessibleMock(AddFieldsToSelector::class, ['getRecord'], [], '', false);
+        $subject = $this->getAccessibleMock(AddFieldsToSelector::class, null, [], '', false);
         $subject->_set('languageService', $mockedLanguageService);
 
         $items = [];

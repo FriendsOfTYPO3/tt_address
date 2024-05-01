@@ -27,6 +27,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * AddressController
@@ -74,7 +75,12 @@ class AddressController extends ActionController
      */
     public function listAction(?array $override = [])
     {
+        $contentData = $this->configurationManager->getContentObject()->data;
         $demand = $this->createDemandFromSettings();
+
+        if (isset($contentData['first_name'], $contentData['birthday']) && (int)($this->settings['insertRecord'] ?? 0) === 1) {
+            $demand->setSingleRecords((string)$contentData['uid']);
+        }
 
         if (!empty($override) && $this->settings['allowOverride']) {
             $this->overrideDemand($demand, $override);
@@ -98,7 +104,7 @@ class AddressController extends ActionController
         $this->view->assignMultiple([
             'demand' => $demand,
             'addresses' => $addresses,
-            'contentObjectData' => $this->configurationManager->getContentObject()->data,
+            'contentObjectData' => $contentData,
         ]);
 
         CacheUtility::addCacheTagsByAddressRecords(

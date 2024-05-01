@@ -123,7 +123,7 @@ class AddressControllerPaginationTest extends BaseTestCase
         $mockedRequest->expects($this->once())->method('hasArgument')->with('currentPage')->willReturn(true);
         $mockedRequest->expects($this->once())->method('getArgument')->with('currentPage')->willReturn(2);
 
-        $subject = $this->getAccessibleMock(AddressController::class, ['dummy'], [], '', false);
+        $subject = $this->getAccessibleMock(AddressController::class, [], [], '', false);
         $subject->_set('settings', $settings);
         $subject->_set('request', $mockedRequest);
 

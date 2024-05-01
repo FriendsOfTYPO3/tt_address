@@ -32,7 +32,7 @@ class GeocodeCommandTest extends BaseTestCase
      */
     public function geocodeServiceIsReturned()
     {
-        $subject = $this->getAccessibleMock(GeocodeCommand::class, ['dummy'], [], '', false);
+        $subject = $this->getAccessibleMock(GeocodeCommand::class, [], [], '', false);
         $service = $subject->_call('getGeocodeService', '123');
         $this->assertEquals(GeocodeService::class, get_class($service));
     }

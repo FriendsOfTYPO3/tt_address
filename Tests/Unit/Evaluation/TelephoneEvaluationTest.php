@@ -36,7 +36,7 @@ class TelephoneEvaluationTest extends BaseTestCase
      */
     public function constructorIsCalled()
     {
-        $subject = $this->getAccessibleMock(TelephoneEvaluation::class, ['dummy'], [], '', true);
+        $subject = $this->getAccessibleMock(TelephoneEvaluation::class, [], [], '', true);
 
         $settings = new Settings();
         $this->assertEquals($settings, $subject->_get('extensionSettings'));
@@ -73,7 +73,7 @@ class TelephoneEvaluationTest extends BaseTestCase
         $this->assertEquals($expected, $this->subject->deevaluateFieldValue($params));
     }
 
-    public function telephoneIsProperlyEvaluatedDataProvider(): array
+    public static function telephoneIsProperlyEvaluatedDataProvider(): array
     {
         return [
             'empty string' => ['', ''],

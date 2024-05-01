@@ -44,7 +44,7 @@ class AddressControllerTest extends BaseTestCase
      */
     public function dotIsRemovedFromEnd($given, $expected)
     {
-        $subject = $this->getAccessibleMock(AddressController::class, ['dummy'], [], '', false);
+        $subject = $this->getAccessibleMock(AddressController::class, [], [], '', false);
         $this->assertEquals($expected, $subject->_call('removeDotAtTheEnd', $given));
     }
 
@@ -61,7 +61,7 @@ class AddressControllerTest extends BaseTestCase
      */
     public function dotsAreRemovedFromArray()
     {
-        $subject = $this->getAccessibleMock(AddressController::class, ['dummy'], [], '', false);
+        $subject = $this->getAccessibleMock(AddressController::class, [], [], '', false);
         $given = [
             'example' => 'some string',
             'example2' => '123',
@@ -91,7 +91,7 @@ class AddressControllerTest extends BaseTestCase
         $packageManagerProphecy = $this->prophesize(PackageManager::class);
         GeneralUtility::setSingletonInstance(PackageManager::class, $packageManagerProphecy->reveal());
 
-        $subject = $this->getAccessibleMock(AddressController::class, ['dummy'], [], '', false);
+        $subject = $this->getAccessibleMock(AddressController::class, [], [], '', false);
         $subject->_set('extensionConfiguration', $this->getMockedSettings());
         $subject->initializeAction();
 
@@ -105,9 +105,9 @@ class AddressControllerTest extends BaseTestCase
      */
     public function injectAddressRepositoryWorks()
     {
-        $mockedRepository = $this->getAccessibleMock(AddressRepository::class, ['dummy'], [], '', false);
+        $mockedRepository = $this->getAccessibleMock(AddressRepository::class, [], [], '', false);
 
-        $subject = $this->getAccessibleMock(AddressController::class, ['dummy'], [], '', false);
+        $subject = $this->getAccessibleMock(AddressController::class, [], [], '', false);
         $subject->injectAddressRepository($mockedRepository);
 
         $this->assertEquals($mockedRepository, $subject->_get('addressRepository'));
@@ -123,7 +123,7 @@ class AddressControllerTest extends BaseTestCase
             ->withConsecutive([123, 3], [456, 3])
             ->willReturnOnConsecutiveCalls('7,8,9', '');
 
-        $subject = $this->getAccessibleMock(AddressController::class, ['dummy'], [], '', false);
+        $subject = $this->getAccessibleMock(AddressController::class, [], [], '', false);
         $subject->_set('queryGenerator', $mockedQueryGenerator);
         $subject->_set('settings', [
             'pages' => '123,456',
@@ -166,7 +166,7 @@ class AddressControllerTest extends BaseTestCase
                 ]
             );
 
-        $subject = $this->getAccessibleMock(AddressController::class, ['dummy'], [], '', false);
+        $subject = $this->getAccessibleMock(AddressController::class, [], [], '', false);
         $expectedSettings = [
             'key1' => 'value1',
             'orderByAllowed' => 'sorting',
@@ -360,7 +360,7 @@ class AddressControllerTest extends BaseTestCase
      */
     public function overrideDemandWorks(Demand $demandIn, Demand $demandOut, array $override)
     {
-        $subject = $this->getAccessibleMock(AddressController::class, ['dummy'], [], '', false);
+        $subject = $this->getAccessibleMock(AddressController::class, [], [], '', false);
 
         $this->assertEquals($demandOut, $subject->_call('overrideDemand', $demandIn, $override));
     }

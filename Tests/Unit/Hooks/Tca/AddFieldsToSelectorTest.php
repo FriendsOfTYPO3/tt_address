@@ -20,10 +20,10 @@ class AddFieldsToSelectorTest extends BaseTestCase
      */
     public function constructorIsCalled()
     {
-        $languageService = $this->getAccessibleMock(LanguageService::class, ['dummy'], [], '', false, false);
+        $languageService = $this->getAccessibleMock(LanguageService::class, [], [], '', false, false);
         $GLOBALS['LANG'] = $languageService;
 
-        $subject = $this->getAccessibleMock(AddFieldsToSelector::class, ['dummy'], [], '', true);
+        $subject = $this->getAccessibleMock(AddFieldsToSelector::class, [], [], '', true);
         $this->assertEquals($languageService, $subject->_get('languageService'));
     }
 

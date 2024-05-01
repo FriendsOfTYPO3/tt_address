@@ -43,7 +43,6 @@ class SettingsTest extends BaseTestCase
     public function settingsAreSet()
     {
         $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['tt_address'] = [
-            'backwardsCompatFormat' => '%s%s',
             'storeBackwardsCompatName' => false,
             'readOnlyNameField' => false,
             'telephoneValidationPatternForPhp' => 'regex1',

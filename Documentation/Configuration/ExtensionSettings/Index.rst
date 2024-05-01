@@ -22,10 +22,6 @@ Property:                               Data type:  Description:                
 storeBackwardsCompatName                boolean     If set, the field `name` is populated with the values of the   1
                                                     fields `first_name`, `middle_name` and `last_name`.
 --------------------------------------  ----------  -------------------------------------------------------------  -------------------------
-backwardsCompatFormat                   string      Define the format how the name field is populated.             %1$s %3$s
-                                                    Use `%1$s` for the first name, `%2$s` for the middle name
-                                                    and `%3$s` for the last name.
---------------------------------------  ----------  -------------------------------------------------------------  -------------------------
 readOnlyNameField                       boolean     If set, the name field is set to read only which makes         1
                                                     absolutely sense if the value of the field is populated
                                                     automatically.

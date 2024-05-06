@@ -162,7 +162,7 @@ class AddressController extends ActionController
         $demand->setCategoryCombination($categoryCombination);
         $demand->setIncludeSubCategories((bool)($this->settings['includeSubcategories'] ?? false));
 
-        if ($this->settings['pages']) {
+        if ($this->settings['pages'] ?? false) {
             $demand->setPages($this->getPidList());
         }
         $demand->setSingleRecords((string)($this->settings['singleRecords'] ?? ''));

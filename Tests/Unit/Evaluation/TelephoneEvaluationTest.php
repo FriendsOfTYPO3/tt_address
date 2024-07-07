@@ -12,24 +12,24 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Utility;
  */
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation;
-use Prophecy\PhpUnit\ProphecyTrait;
 use TYPO3\CMS\Core\Package\PackageManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class TelephoneEvaluationTest extends BaseTestCase
 {
-    use ProphecyTrait;
-
-    /** @var TelephoneEvaluation */
-    protected $subject;
+    protected TelephoneEvaluation $subject;
 
     public function setUp(): void
     {
-        $this->subject = new TelephoneEvaluation();
+        $this->subject = $this->getAccessibleMock(TelephoneEvaluation::class, null, [], '', false);
 
-        $packageManagerProphecy = $this->prophesize(PackageManager::class);
-        GeneralUtility::setSingletonInstance(PackageManager::class, $packageManagerProphecy->reveal());
+        $settings = $this->getAccessibleMock(Settings::class, null, [], '', false);
+        $settings->_set('telephoneEvaluation', '/[^\d\+\s\-]/');
+        $this->subject->_set('extensionSettings', $settings);
+
+        $packageManager = $this->getAccessibleMock(PackageManager::class, null, [], '', false);
+        GeneralUtility::setSingletonInstance(PackageManager::class, $packageManager);
     }
 
     /**
@@ -41,15 +41,6 @@ class TelephoneEvaluationTest extends BaseTestCase
 
         $settings = new Settings();
         self::assertEquals($settings, $subject->_get('extensionSettings'));
-    }
-
-    /**
-     * @test
-     */
-    public function jsEvaluationIsCalled()
-    {
-        self::markTestSkipped('Skipped as PageRenderer is called which leads into issues');
-        self::assertNotEmpty($this->subject->returnFieldJS());
     }
 
     /**

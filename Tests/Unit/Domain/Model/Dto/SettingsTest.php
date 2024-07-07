@@ -10,26 +10,24 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Domain\Model\Dto;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
-use Prophecy\PhpUnit\ProphecyTrait;
 use TYPO3\CMS\Core\Package\PackageManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class SettingsTest extends BaseTestCase
 {
-    use ProphecyTrait;
-
     public function setUp(): void
     {
-        $packageManagerProphecy = $this->prophesize(PackageManager::class);
-        GeneralUtility::setSingletonInstance(PackageManager::class, $packageManagerProphecy->reveal());
+        $mockedPackageManager = $this->getAccessibleMock(PackageManager::class, null, [], '', false);
+        GeneralUtility::setSingletonInstance(PackageManager::class, $mockedPackageManager);
     }
 
     /**
      * @test
      */
-    public function defaultSettingsAreAvailable()
+    public function defaultSettingsAreAvailable(): void
     {
         $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['tt_address'] = [];
         $subject = new Settings();
@@ -41,7 +39,7 @@ class SettingsTest extends BaseTestCase
     /**
      * @test
      */
-    public function settingsAreSet()
+    public function settingsAreSet(): void
     {
         $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['tt_address'] = [
             'storeBackwardsCompatName' => false,

@@ -17,7 +17,6 @@ use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
-use Prophecy\PhpUnit\ProphecyTrait;
 use TYPO3\CMS\Core\Package\PackageManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
@@ -30,8 +29,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class AddressControllerTest extends BaseTestCase
 {
-    use ProphecyTrait;
-
     protected function setUp(): void
     {
         $GLOBALS['TSFE'] = $this->getAccessibleMock(TypoScriptFrontendController::class, ['addCacheTags'], [], '', false);
@@ -87,8 +84,8 @@ class AddressControllerTest extends BaseTestCase
      */
     public function initializeActionWorks()
     {
-        $packageManagerProphecy = $this->prophesize(PackageManager::class);
-        GeneralUtility::setSingletonInstance(PackageManager::class, $packageManagerProphecy->reveal());
+        $mockedPackageManager = $this->getAccessibleMock(PackageManager::class, null, [], '', false);
+        GeneralUtility::setSingletonInstance(PackageManager::class, $mockedPackageManager);
 
         $subject = $this->getAccessibleMock(AddressController::class, null, [], '', false);
         $subject->_set('extensionConfiguration', $this->getMockedSettings());

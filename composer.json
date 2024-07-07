@@ -52,7 +52,8 @@
 		"typo3/coding-standards": "^0.5.3",
 		"friendsofphp/php-cs-fixer": "^3",
 		"kubawerlos/php-cs-fixer-custom-fixers": "^3.21",
-		"webmozart/assert": "^1.11.0"
+		"webmozart/assert": "^1.11.0",
+		"phpspec/prophecy": "^1.19"
 	},
 	"config": {
 		"vendor-dir": ".Build/vendor",

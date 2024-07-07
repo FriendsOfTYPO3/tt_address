@@ -42,6 +42,7 @@ class LatitudeEvaluationTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider latIsProperlyEvaluatedDataProvider
      */
     public function latitudeIsProperlyEvaluated($given, $expected)
@@ -51,6 +52,7 @@ class LatitudeEvaluationTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider latIsProperlyEvaluatedDataProvider
      */
     public function latIsProperlyDeEvaluated($given, $expected)
@@ -62,12 +64,12 @@ class LatitudeEvaluationTest extends BaseTestCase
     public function latIsProperlyEvaluatedDataProvider(): array
     {
         return [
-            'empty string' => ['', ''],
-            'int' => ['12', '12.00000000'],
-            'too large number' => ['95.33', '90.00000000'],
-            'regular float' => ['13.312113', '13.31211300'],
+            'empty string'           => ['', ''],
+            'int'                    => ['12', '12.00000000'],
+            'too large number'       => ['95.33', '90.00000000'],
+            'regular float'          => ['13.312113', '13.31211300'],
             'negative regular float' => ['-13.312113', '-13.31211300'],
-            'long float' => ['-11.3121131111111111212121212', '-11.31211311'],
+            'long float'             => ['-11.3121131111111111212121212', '-11.31211311'],
         ];
     }
 }

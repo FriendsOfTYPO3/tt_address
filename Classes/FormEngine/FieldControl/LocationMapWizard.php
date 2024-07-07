@@ -17,7 +17,7 @@ use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 use TYPO3\CMS\Core\Utility\StringUtility;
 
 /**
- * Adds a wizard for location selection via map
+ * Adds a wizard for location selection via map.
  */
 class LocationMapWizard extends AbstractNode
 {
@@ -39,7 +39,7 @@ class LocationMapWizard extends AbstractNode
 
         if ($row['latitude'] || $row['longitude'] == '') {
             // remove all after first slash in address (top, floor ...)
-            $address = preg_replace('/^([^\/]*).*$/', '$1', $row['address'] ?? '') . ' ';
+            $address = preg_replace('/^([^\/]*).*$/', '$1', $row['address'] ?? '').' ';
             $address .= $row['city'] ?? '';
             // if we have at least some address part (saves geocoding calls)
             if ($address) {
@@ -50,8 +50,8 @@ class LocationMapWizard extends AbstractNode
                 // urlparams for nominatim which are fixed.
                 $geoCodeUrlQuery = '&format=json&addressdetails=1&limit=1&polygon_svg=1';
                 // replace newlines with spaces; remove multiple spaces
-                $geoCodeUrl = trim(preg_replace('/\s\s+/', ' ', $geoCodeUrlBase . $geoCodeUrlAddress . $geoCodeUrlQuery));
-                $geoCodeUrlShort = trim(preg_replace('/\s\s+/', ' ', $geoCodeUrlBase . $geoCodeUrlCityOnly . $geoCodeUrlQuery));
+                $geoCodeUrl = trim(preg_replace('/\s\s+/', ' ', $geoCodeUrlBase.$geoCodeUrlAddress.$geoCodeUrlQuery));
+                $geoCodeUrlShort = trim(preg_replace('/\s\s+/', ' ', $geoCodeUrlBase.$geoCodeUrlCityOnly.$geoCodeUrlQuery));
             }
         }
 

@@ -34,7 +34,7 @@ class AddFieldsToSelectorTest extends BaseTestCase
     public function optionsAreFilled()
     {
         foreach (AddFieldsToSelector::sortFields as $sortField) {
-            $GLOBALS['TCA']['tt_address']['columns'][$sortField]['label'] = 'label_' . $sortField;
+            $GLOBALS['TCA']['tt_address']['columns'][$sortField]['label'] = 'label_'.$sortField;
         }
 
         $mockedLanguageService = $this->getAccessibleMock(LanguageService::class, ['sL'], [], '', false);

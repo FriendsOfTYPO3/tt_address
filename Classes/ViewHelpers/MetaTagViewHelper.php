@@ -22,7 +22,7 @@ class MetaTagViewHelper extends AbstractViewHelper
     use CompileWithRenderStatic;
 
     /**
-     * Initialize arguments
+     * Initialize arguments.
      */
     public function initializeArguments()
     {

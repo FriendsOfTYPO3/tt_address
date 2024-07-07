@@ -25,7 +25,7 @@ output those in various ways:
 
 |          | 9.x | 8.x | 7.x | 6.x | 5.x | 4.x | 3.x |
 |:---------|-----|:----|-----|:----|:----|:----|:----|
-| TYPO3 13 | yes | yes | no  | no  | yes | no  | no  |
+| TYPO3 13 | yes | no  | no  | no  | yes | no  | no  |
 | TYPO3 12 | yes | yes | yes | no  | yes | no  | no  |
 | TYPO3 11 | no  | yes | yes | yes | yes | no  | no  |
 | TYPO3 10 | no  | no  | no  | yes | yes | no  | no  |

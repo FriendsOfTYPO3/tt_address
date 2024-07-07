@@ -307,7 +307,7 @@ ROOT_DIR="${PWD}"
 # Option defaults
 TEST_SUITE=""
 TYPO3_VERSION="12"
-DBMS="sqlite"
+DBMS="mysql"
 DBMS_VERSION=""
 PHP_VERSION="8.1"
 PHP_XDEBUG_ON=0

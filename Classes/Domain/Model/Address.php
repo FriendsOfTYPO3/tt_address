@@ -18,12 +18,12 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
- * The domain model of a Address
+ * The domain model of a Address.
  */
 class Address extends AbstractEntity
 {
     /**
-     * Hidden
+     * Hidden.
      *
      * @var bool
      */
@@ -555,7 +555,7 @@ class Address extends AbstractEntity
     }
 
     /**
-     * Get full name including title, first, middle and last name
+     * Get full name including title, first, middle and last name.
      */
     public function getFullName(): string
     {
@@ -568,13 +568,14 @@ class Address extends AbstractEntity
 
         $name = implode(' ', array_filter($list));
         if ($this->titleSuffix) {
-            $name .= ', ' . $this->titleSuffix;
+            $name .= ', '.$this->titleSuffix;
         }
+
         return $name;
     }
 
     /**
-     * Gets the first category
+     * Gets the first category.
      *
      * @return \TYPO3\CMS\Extbase\Domain\Model\Category|null the first category
      */
@@ -583,6 +584,7 @@ class Address extends AbstractEntity
         $categories = $this->getCategories();
         if (!is_null($categories)) {
             $categories->rewind();
+
             return $categories->current();
         }
 

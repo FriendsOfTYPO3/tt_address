@@ -28,7 +28,6 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 class AddressController extends ActionController
@@ -62,7 +61,6 @@ class AddressController extends ActionController
 
         $currentContentObject = $this->request->getAttribute('currentContentObject');
         $contentData = $currentContentObject instanceof ContentObjectRenderer ? $currentContentObject->data : [];
-
 
         $this->view->assignMultiple([
             'address' => $address,

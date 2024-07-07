@@ -11,9 +11,11 @@ namespace FriendsOfTYPO3\TtAddress\FormEngine;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use Doctrine\DBAL\Connection;
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
 use TYPO3\CMS\Core\Service\FlexFormService;
@@ -43,10 +45,15 @@ class TtAddressPreviewRenderer extends StandardContentPreviewRenderer
         ],
     ];
 
-    protected function renderContentElementPreviewFromFluidTemplate(array $row): ?string
+    #[AsEventListener('ext-ttaddress/fluid-preview/content')]
+    public function __invoke(PageContentPreviewRenderingEvent $event): void
     {
+        $row = $event->getRecord();
+        if ($row['list_type'] !== 'ttaddress_listview') {
+            return;
+        }
         $row = $this->enrichRow($row);
-        return parent::renderContentElementPreviewFromFluidTemplate($row);
+        $event->setRecord($row);
     }
 
     protected function enrichRow(array $row): array

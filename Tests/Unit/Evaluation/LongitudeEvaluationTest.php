@@ -33,6 +33,7 @@ class LongitudeEvaluationTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider lngIsProperlyEvaluatedDataProvider
      */
     public function longIsProperlyEvaluated($given, $expected)
@@ -42,6 +43,7 @@ class LongitudeEvaluationTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider lngIsProperlyEvaluatedDataProvider
      */
     public function lngIsProperlyDeEvaluated($given, $expected)
@@ -53,12 +55,12 @@ class LongitudeEvaluationTest extends BaseTestCase
     public function lngIsProperlyEvaluatedDataProvider(): array
     {
         return [
-            'empty string' => ['', ''],
-            'int' => ['12', '12.00000000'],
-            'too large number' => ['193.33', '180.00000000'],
-            'regular float' => ['13.312113', '13.31211300'],
+            'empty string'           => ['', ''],
+            'int'                    => ['12', '12.00000000'],
+            'too large number'       => ['193.33', '180.00000000'],
+            'regular float'          => ['13.312113', '13.31211300'],
             'negative regular float' => ['-13.312113', '-13.31211300'],
-            'long float' => ['-11.3121131111111111212121212', '-11.31211311'],
+            'long float'             => ['-11.3121131111111111212121212', '-11.31211311'],
         ];
     }
 }

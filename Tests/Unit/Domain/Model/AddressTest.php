@@ -150,16 +150,16 @@ class AddressTest extends BaseTestCase
     public function telephoneFormatDataProvider()
     {
         return [
-            'phone number' => ['0122333', '0122333'],
-            'phone number with spaces' => [' 0 122 333 ', '0122333'],
-            'phone number with dashes' => ['0122-333-4444', '01223334444'],
-            'phone number with slash' => ['0122/333', '0122333'],
-            'phone number with invalid chars' => ['!0"1§2$2%/&3/3(3)', '0122333'],
+            'phone number'                            => ['0122333', '0122333'],
+            'phone number with spaces'                => [' 0 122 333 ', '0122333'],
+            'phone number with dashes'                => ['0122-333-4444', '01223334444'],
+            'phone number with slash'                 => ['0122/333', '0122333'],
+            'phone number with invalid chars'         => ['!0"1§2$2%/&3/3(3)', '0122333'],
             'phone number with allowed special chars' => ['#06*', '#06*'],
-            'phone number with brackets in front' => ['(0)22333', '022333'],
-            'phone number with brackets in middle' => ['+49(0)22333', '+4922333'],
-            'phone number with number in brackets' => ['+49 (122) 333', '+49122333'],
-            'phone number with letters' => ['tel: +49 122 333', '+49122333'],
+            'phone number with brackets in front'     => ['(0)22333', '022333'],
+            'phone number with brackets in middle'    => ['+49(0)22333', '+4922333'],
+            'phone number with number in brackets'    => ['+49 (122) 333', '+49122333'],
+            'phone number with letters'               => ['tel: +49 122 333', '+49122333'],
         ];
     }
 
@@ -175,6 +175,7 @@ class AddressTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider telephoneFormatDataProvider
      */
     public function phoneWithCleanedChars($number, $expectedNumber)
@@ -199,6 +200,7 @@ class AddressTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider telephoneFormatDataProvider
      */
     public function faxWithCleanedChars($number, $expectedNumber)
@@ -223,6 +225,7 @@ class AddressTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider telephoneFormatDataProvider
      */
     public function mobileWithCleanedChars($number, $expectedNumber)
@@ -247,6 +250,7 @@ class AddressTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider simplifiedWwwIsReturnedDataProvider
      */
     public function simplifiedWwwIsReturned(string $given, string $expected)
@@ -258,10 +262,10 @@ class AddressTest extends BaseTestCase
     public function simplifiedWwwIsReturnedDataProvider()
     {
         return [
-            'empty' => ['', ''],
-            'emptyAfterTrim' => [' ', ''],
-            'simpleLink' => ['www.typo3.org', 'www.typo3.org'],
-            'linkWithAdditionalAttributes' => ['https://typo3.com _blank', 'https://typo3.com'],
+            'empty'                         => ['', ''],
+            'emptyAfterTrim'                => [' ', ''],
+            'simpleLink'                    => ['www.typo3.org', 'www.typo3.org'],
+            'linkWithAdditionalAttributes'  => ['https://typo3.com _blank', 'https://typo3.com'],
             'linkWithAdditionalAttributes2' => ['https://typo3.com _blank TYPO3', 'https://typo3.com'],
         ];
     }
@@ -518,6 +522,7 @@ class AddressTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider fullNameDataProvider
      */
     public function fullNameIsReturned(string $expected, array $nameParts): void
@@ -533,8 +538,8 @@ class AddressTest extends BaseTestCase
     public function fullNameDataProvider(): array
     {
         return [
-            'simple name' => ['John Doe', ['', 'John', 'Doe', '']],
-            'name with title' => ['Dr. Jane Doe', ['Dr.', 'Jane', 'Doe', '']],
+            'simple name'                   => ['John Doe', ['', 'John', 'Doe', '']],
+            'name with title'               => ['Dr. Jane Doe', ['Dr.', 'Jane', 'Doe', '']],
             'name with title and 2nd title' => ['Dr. Max Mustermann, Junior', ['Dr.', 'Max', 'Mustermann', 'Junior']],
         ];
     }

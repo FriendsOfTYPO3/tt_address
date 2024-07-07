@@ -38,9 +38,9 @@ class AddressControllerPaginationTest extends BaseTestCase
             self::markTestSkipped('Ignore test as new pagination is not available');
         }
         $settings = [
-            'singlePid' => 0,
+            'singlePid'     => 0,
             'singleRecords' => 1,
-            'paginate' => [
+            'paginate'      => [
                 'itemsPerPage' => 3,
             ],
         ];
@@ -52,13 +52,13 @@ class AddressControllerPaginationTest extends BaseTestCase
         $rows = [];
         for ($i = 1; $i <= 10; $i++) {
             $rows[] = [
-                'uid' => $i,
-                'title' => 'record #' . $i,
+                'uid'   => $i,
+                'title' => 'record #'.$i,
             ];
         }
         $assignments = [
-            'demand' => $demand,
-            'addresses' => $rows,
+            'demand'            => $demand,
+            'addresses'         => $rows,
             'contentObjectData' => [],
         ];
 
@@ -104,9 +104,9 @@ class AddressControllerPaginationTest extends BaseTestCase
         }
 
         $settings = [
-            'singlePid' => 0,
+            'singlePid'     => 0,
             'singleRecords' => 1,
-            'paginate' => [
+            'paginate'      => [
                 'itemsPerPage' => 3,
             ],
         ];
@@ -114,8 +114,8 @@ class AddressControllerPaginationTest extends BaseTestCase
         $rows = [];
         for ($i = 1; $i <= 10; $i++) {
             $rows[] = [
-                'uid' => $i,
-                'title' => 'record #' . $i,
+                'uid'   => $i,
+                'title' => 'record #'.$i,
             ];
         }
 

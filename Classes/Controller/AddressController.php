@@ -28,6 +28,8 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 class AddressController extends ActionController
 {
@@ -58,9 +60,13 @@ class AddressController extends ActionController
             CacheUtility::addCacheTagsByAddressRecords([$address]);
         }
 
+        $currentContentObject = $this->request->getAttribute('currentContentObject');
+        $contentData = $currentContentObject instanceof ContentObjectRenderer ? $currentContentObject->data : [];
+
+
         $this->view->assignMultiple([
             'address' => $address,
-            'contentObjectData' => $this->request->getAttribute('currentContentObject', []),
+            'contentObjectData' => $contentData,
         ]);
         return $this->htmlResponse();
     }
@@ -71,7 +77,8 @@ class AddressController extends ActionController
      */
     public function listAction(?array $override = [])
     {
-        $contentData = $this->request->getAttribute('currentContentObject', []);
+        $currentContentObject = $this->request->getAttribute('currentContentObject');
+        $contentData = $currentContentObject instanceof ContentObjectRenderer ? $currentContentObject->data : [];
         $demand = $this->createDemandFromSettings();
 
         if (isset($contentData['first_name'], $contentData['birthday']) && (int) ($this->settings['insertRecord'] ?? 0) === 1) {

@@ -11,7 +11,6 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Functional\Service;
  */
 use FriendsOfTYPO3\TtAddress\Service\CategoryService;
 use TYPO3\CMS\Core\Cache\CacheManager;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\TimeTracker\TimeTracker;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;

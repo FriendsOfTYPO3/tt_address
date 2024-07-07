@@ -42,10 +42,10 @@ class SettingsTest extends BaseTestCase
     public function settingsAreSet(): void
     {
         $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['tt_address'] = [
-            'storeBackwardsCompatName' => false,
-            'readOnlyNameField' => false,
+            'storeBackwardsCompatName'         => false,
+            'readOnlyNameField'                => false,
             'telephoneValidationPatternForPhp' => 'regex1',
-            'telephoneValidationPatternForJs' => 'regex2',
+            'telephoneValidationPatternForJs'  => 'regex2',
         ];
         $subject = new Settings();
 

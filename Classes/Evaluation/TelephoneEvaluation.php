@@ -44,7 +44,6 @@ class TelephoneEvaluation
         );
     }
 
-
     /**
      * Server-side validation/evaluation on saving the record
      *

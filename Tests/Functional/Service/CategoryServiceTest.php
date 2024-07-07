@@ -54,10 +54,7 @@ class CategoryServiceTest extends FunctionalTestCase
         $subject = $this->getAccessibleMock(CategoryService::class, null, [], '', false);
         $subject->_set('timeTracker', $mockedTimeTracker);
 
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion();
-        $cacheIdentifier = $versionInformation >= 11 ? 'ttaddress_category' : 'cache_ttaddress_category';
-        $subject->_set('cache', GeneralUtility::makeInstance(CacheManager::class)->getCache($cacheIdentifier));
-
+        $subject->_set('cache', GeneralUtility::makeInstance(CacheManager::class)->getCache('ttaddress_category'));
         $categories = $subject->getChildrenCategories('2,4', 100000);
     }
 }

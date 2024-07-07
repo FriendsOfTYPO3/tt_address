@@ -1,5 +1,6 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace FriendsOfTYPO3\TtAddress\FormEngine\FieldControl;
 
 /**
@@ -8,6 +9,7 @@ namespace FriendsOfTYPO3\TtAddress\FormEngine\FieldControl;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use TYPO3\CMS\Backend\Form\AbstractNode;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Localization\LanguageService;
@@ -77,19 +79,13 @@ class LocationMapWizard extends AbstractNode
         $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Contrib/leaflet-core-1.4.0.css';
         $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Backend/LocationMapWizard/leafletBackend.css';
 
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion();
-        if ($versionInformation > 11) {
-            $id = StringUtility::getUniqueId('t3js-formengine-fieldcontrol-');
-            $resultArray['requireJsModules'][] = JavaScriptModuleInstruction::forRequireJS(
-                'TYPO3/CMS/TtAddress/leaflet-core-1.4.0'
-            )->instance($id);
-            $resultArray['requireJsModules'][] = JavaScriptModuleInstruction::forRequireJS(
-                'TYPO3/CMS/TtAddress/LeafletBackend'
-            )->instance($id);
-        } else {
-            $resultArray['requireJsModules'][] = 'TYPO3/CMS/TtAddress/leaflet-core-1.4.0';
-            $resultArray['requireJsModules'][] = 'TYPO3/CMS/TtAddress/LeafletBackend';
-        }
+        $id = StringUtility::getUniqueId('t3js-formengine-fieldcontrol-');
+        $resultArray['requireJsModules'][] = JavaScriptModuleInstruction::forRequireJS(
+            'TYPO3/CMS/TtAddress/leaflet-core-1.4.0'
+        )->instance($id);
+        $resultArray['requireJsModules'][] = JavaScriptModuleInstruction::forRequireJS(
+            'TYPO3/CMS/TtAddress/LeafletBackend'
+        )->instance($id);
 
         return $resultArray;
     }

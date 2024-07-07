@@ -34,47 +34,46 @@ class TelephoneEvaluation
      */
     public function returnFieldJS()
     {
-        if ((new Typo3Version())->getMajorVersion() >= 12) {
-            GeneralUtility::makeInstance(PageRenderer::class)->addInlineSetting(
-                'TtAddress.Evaluation',
-                'telephoneValidationPattern',
-                $this->extensionSettings->getTelephoneValidationPatternForJs()
-            );
-            return JavaScriptModuleInstruction::create(
-                '@friendsoftypo3/tt-address/telephone-evaluation.js',
-                'TelephoneEvaluation'
-            );
-        }
-        return '
-         return value.replace(' . $this->extensionSettings->getTelephoneValidationPatternForJs() . ', "");
-      ';
+        GeneralUtility::makeInstance(PageRenderer::class)->addInlineSetting(
+            'TtAddress.Evaluation',
+            'telephoneValidationPattern',
+            $this->extensionSettings->getTelephoneValidationPatternForJs()
+        );
+        return JavaScriptModuleInstruction::create(
+            '@friendsoftypo3/tt-address/telephone-evaluation.js',
+            'TelephoneEvaluation'
+        );
     }
+}
 
-    /**
-     * Server-side validation/evaluation on saving the record
-     *
-     * @param string $value The field value to be evaluated
-     * @return string Evaluated field value
-     */
-    public function evaluateFieldValue($value)
-    {
-        return $this->evaluate($value);
-    }
+/**
+ * Server-side validation/evaluation on saving the record
+ *
+ * @param string $value The field value to be evaluated
+ * @return string Evaluated field value
+ */
+public
+function evaluateFieldValue($value)
+{
+    return $this->evaluate($value);
+}
 
-    /**
-     * Server-side validation/evaluation on opening the record
-     *
-     * @param array $parameters Array with key 'value' containing the field value from the database
-     * @return string Evaluated field value
-     */
-    public function deevaluateFieldValue(array $parameters)
-    {
-        return $this->evaluate($parameters['value']);
-    }
+/**
+ * Server-side validation/evaluation on opening the record
+ *
+ * @param array $parameters Array with key 'value' containing the field value from the database
+ * @return string Evaluated field value
+ */
+public
+function deevaluateFieldValue(array $parameters)
+{
+    return $this->evaluate($parameters['value']);
+}
 
-    private function evaluate(string $in)
-    {
-        $data = preg_replace($this->extensionSettings->getTelephoneValidationPatternForPhp(), '', $in);
-        return trim($data);
-    }
+private
+function evaluate(string $in)
+{
+    $data = preg_replace($this->extensionSettings->getTelephoneValidationPatternForPhp(), '', $in);
+    return trim($data);
+}
 }

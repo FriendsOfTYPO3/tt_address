@@ -30,12 +30,7 @@ class AddressRepositoryTest extends FunctionalTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-        if ($versionInformation->getMajorVersion() >= 11) {
-            $this->addressRepository = $this->getContainer()->get(AddressRepository::class);
-        } else {
-            $this->addressRepository = GeneralUtility::makeInstance(ObjectManager::class)->get(AddressRepository::class);
-        }
+        $this->addressRepository = $this->getContainer()->get(AddressRepository::class);
 
         $this->importCSVDataSet(__DIR__ . '/../Fixtures/tt_address.csv');
     }

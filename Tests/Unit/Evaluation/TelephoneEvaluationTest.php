@@ -10,6 +10,7 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Utility;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation;
 use TYPO3\CMS\Core\Package\PackageManager;
@@ -25,7 +26,7 @@ class TelephoneEvaluationTest extends BaseTestCase
         $this->subject = $this->getAccessibleMock(TelephoneEvaluation::class, null, [], '', false);
 
         $settings = $this->getAccessibleMock(Settings::class, null, [], '', false);
-        $settings->_set('telephoneEvaluation', '/[^\d\+\s\-]/');
+        $settings->_set('telephoneValidationPatternForPhp', '/[^\d\+\s\-]/');
         $this->subject->_set('extensionSettings', $settings);
 
         $packageManager = $this->getAccessibleMock(PackageManager::class, null, [], '', false);
@@ -56,7 +57,7 @@ class TelephoneEvaluationTest extends BaseTestCase
      * @test
      * @dataProvider telephoneIsProperlyEvaluatedDataProvider
      */
-    public function telephoneIsProperlyDeEvaluated($given, $expected)
+    public function telephoneIsProperlyDeEvaluated($given, $expected): void
     {
         $params = ['value' => $given];
         self::assertEquals($expected, $this->subject->deevaluateFieldValue($params));

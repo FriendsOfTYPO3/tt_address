@@ -13,7 +13,7 @@ namespace FriendsOfTYPO3\TtAddress\Utility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * TypoScript Utility class
+ * TypoScript Utility class.
  */
 class TypoScript
 {
@@ -48,11 +48,12 @@ class TypoScript
                 }
             }
         }
+
         return $previousData;
     }
 
     /**
-     * Get value from array by path
+     * Get value from array by path.
      *
      * @return array|null
      */
@@ -73,11 +74,12 @@ class TypoScript
         if ($found) {
             return $data;
         }
+
         return null;
     }
 
     /**
-     * Set value in array by path
+     * Set value in array by path.
      *
      * @return array
      */
@@ -89,7 +91,7 @@ class TypoScript
     }
 
     /**
-     * Set value by reference
+     * Set value by reference.
      */
     private function setValueByReference(array &$array, array $path, $value)
     {

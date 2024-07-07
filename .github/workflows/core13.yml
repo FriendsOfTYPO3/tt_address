@@ -1,0 +1,33 @@
+name: core 13
+
+on: [ push, pull_request ]
+
+jobs:
+  tests:
+    name: v13
+    runs-on: ubuntu-20.04
+    strategy:
+      # This prevents cancellation of matrix job runs, if one/two already failed and let the
+      # rest matrix jobs be executed anyway.
+      fail-fast: true
+      matrix:
+        php: ['8.2', '8.3' ]
+        composerInstall: [ 'composerInstallLowest', 'composerInstallHighest' ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install testing system
+        run: Build/Scripts/runTests.sh -t 13 -p ${{ matrix.php }}  -s ${{ matrix.composerInstall }}
+
+      - name: Lint PHP
+        run: Build/Scripts/runTests.sh -t 13 -p ${{ matrix.php }} -s lint
+
+      - name: Validate code against CGL
+        run: PHP_CS_FIXER_IGNORE_ENV=1 Build/Scripts/runTests.sh -t 13 -p 8.2 -s cgl -n
+
+      - name: Unit Tests
+        run: Build/Scripts/runTests.sh -t 13 -p ${{ matrix.php }} -s unit
+
+      - name: Functional Tests
+        run: Build/Scripts/runTests.sh -t 13 -p ${{ matrix.php }} -s functional

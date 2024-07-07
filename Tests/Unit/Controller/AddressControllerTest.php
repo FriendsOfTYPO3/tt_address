@@ -208,18 +208,15 @@ class AddressControllerTest extends BaseTestCase
         $address->setLastName('Doe');
         $assigned = [
             'address' => $address,
-            'contentObjectData' => [],
+            'contentObjectData' => null,
         ];
         $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple'], [], '', false);
         $mockedView->expects(self::once())->method('assignMultiple')->with($assigned);
-        $mockContentObject = $this->createMock(ContentObjectRenderer::class);
-        $mockConfigurationManager = $this->createMock(ConfigurationManager::class);
-        $mockConfigurationManager->method('getContentObject')
-            ->willReturn($mockContentObject);
 
         $subject = $this->getAccessibleMock(AddressController::class, ['redirectToUri', 'htmlResponse'], [], '', false);
         $subject->_set('view', $mockedView);
-        $subject->_set('configurationManager', $mockConfigurationManager);
+        $request = $this->getAccessibleMock(Request::class, ['getAttribute'], [], '', false);
+        $subject->_set('request', $request);
         $subject->expects(self::once())->method('htmlResponse');
 
         $subject->showAction($address);
@@ -248,11 +245,8 @@ class AddressControllerTest extends BaseTestCase
 
         $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
         $mockedView->expects(self::once())->method('assignMultiple')->with($assignments);
-        $mockConfigurationManager = $this->createMock(ConfigurationManager::class);
-        $mockContentObject = $this->createMock(ContentObjectRenderer::class);
-        $mockConfigurationManager->method('getContentObject')
-            ->willReturn($mockContentObject);
-        $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument'], [], '', false);
+        $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument', 'getAttribute'], [], '', false);
+        $mockedRequest->expects(self::any())->method('getAttribute')->willReturn([]);
 
         $subject = $this->getAccessibleMock(AddressController::class, ['createDemandFromSettings', 'htmlResponse'], [], '', false);
         $subject->expects(self::once())->method('createDemandFromSettings')->willReturn($demand);
@@ -262,7 +256,6 @@ class AddressControllerTest extends BaseTestCase
         $subject->_set('request', $mockedRequest);
         $subject->_set('addressRepository', $mockedRepository);
         $subject->_set('extensionConfiguration', $this->getMockedSettings());
-        $subject->_set('configurationManager', $mockConfigurationManager);
 
         $subject->listAction();
     }
@@ -281,16 +274,14 @@ class AddressControllerTest extends BaseTestCase
         $mockedRepository = $this->getAccessibleMock(AddressRepository::class, ['findByDemand'], [], '', false);
         $mockedRepository->expects(self::once())->method('findByDemand')->willReturn(['dummy return']);
         $mockContentObject = $this->createMock(ContentObjectRenderer::class);
-        $mockConfigurationManager = $this->createMock(ConfigurationManager::class);
-        $mockConfigurationManager->method('getContentObject')
-            ->willReturn($mockContentObject);
         $assignments = [
             'demand' => $demand,
             'addresses' => ['dummy return'],
             'contentObjectData' => [],
         ];
 
-        $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument'], [], '', false);
+        $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument', 'getAttribute'], [], '', false);
+        $mockedRequest->expects(self::any())->method('getAttribute')->willReturn([]);
 
         $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
         $mockedView->expects(self::once())->method('assignMultiple')->with($assignments);
@@ -303,7 +294,6 @@ class AddressControllerTest extends BaseTestCase
         $subject->_set('request', $mockedRequest);
         $subject->_set('addressRepository', $mockedRepository);
         $subject->_set('extensionConfiguration', $this->getMockedSettings());
-        $subject->_set('configurationManager', $mockConfigurationManager);
 
         $subject->listAction();
     }
@@ -313,19 +303,27 @@ class AddressControllerTest extends BaseTestCase
      */
     public function overrideDemandMethodIsCalledIfEnabled()
     {
-        $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument'], [], '', false);
+        $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument', 'getAttribute'], [], '', false);
         $mockedRepository = $this->getAccessibleMock(AddressRepository::class, ['getAddressesByCustomSorting', 'findByDemand'], [], '', false);
         $mockedRepository->expects(self::any())->method('findByDemand')->willReturn([]);
         $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
         $mockedView->expects(self::once())->method('assignMultiple');
         $mockContentObject = $this->createMock(ContentObjectRenderer::class);
         $mockConfigurationManager = $this->createMock(ConfigurationManager::class);
-        $mockConfigurationManager->method('getContentObject')
-            ->willReturn($mockContentObject);
+
+        $mockedRequest->expects(self::any())->method('getAttribute')->willReturn([]);
+
+        $mockedExtbaseRequest = $this->getMockBuilder(Request::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $mockedExtbaseRequest
+            ->method('getAttribute')
+            ->willReturn([]);
 
         $subject = $this->getAccessibleMock(AddressController::class, ['overrideDemand', 'createDemandFromSettings', 'htmlResponse'], [], '', false);
         $subject->_set('extensionConfiguration', $this->getMockedSettings());
-        $subject->_set('configurationManager', $mockConfigurationManager);
+        $subject->_set('request', $mockedExtbaseRequest);
+        //        $subject->_set('configurationManager', $mockConfigurationManager);
         $subject->expects(self::any())->method('overrideDemand');
         $subject->expects(self::any())->method('htmlResponse');
 

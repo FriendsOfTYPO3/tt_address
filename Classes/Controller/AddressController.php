@@ -60,7 +60,7 @@ class AddressController extends ActionController
 
         $this->view->assignMultiple([
             'address' => $address,
-            'contentObjectData' => $this->configurationManager->getContentObject()->data,
+            'contentObjectData' => $this->request->getAttribute('currentContentObject', []),
         ]);
         return $this->htmlResponse();
     }
@@ -71,7 +71,7 @@ class AddressController extends ActionController
      */
     public function listAction(?array $override = [])
     {
-        $contentData = $this->configurationManager->getContentObject()->data;
+        $contentData = $this->request->getAttribute('currentContentObject', []);
         $demand = $this->createDemandFromSettings();
 
         if (isset($contentData['first_name'], $contentData['birthday']) && (int) ($this->settings['insertRecord'] ?? 0) === 1) {

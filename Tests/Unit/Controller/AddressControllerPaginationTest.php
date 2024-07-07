@@ -15,10 +15,8 @@ use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 use TYPO3\CMS\Core\Pagination\PaginatorInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Mvc\Request;
 use TYPO3\CMS\Fluid\View\TemplateView;
-use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
@@ -64,17 +62,13 @@ class AddressControllerPaginationTest extends BaseTestCase
 
         $mockedRepository->expects(self::once())->method('getAddressesByCustomSorting')->willReturn($rows);
 
-        $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument'], [], '', false);
+        $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument', 'getAttribute'], [], '', false);
         $mockedRequest->expects(self::once())->method('hasArgument')->with('currentPage')->willReturn(true);
         $mockedRequest->expects(self::once())->method('getArgument')->with('currentPage')->willReturn(2);
+        $mockedRequest->expects(self::any())->method('getAttribute')->willReturn([]);
 
         $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
         $mockedView->expects(self::once())->method('assignMultiple')->with($assignments);
-
-        $mockContentObject = $this->createMock(ContentObjectRenderer::class);
-        $mockConfigurationManager = $this->createMock(ConfigurationManager::class);
-        $mockConfigurationManager->method('getContentObject')
-            ->willReturn($mockContentObject);
 
         $subject = $this->getAccessibleMock(AddressController::class, ['createDemandFromSettings', 'htmlResponse'], [], '', false);
         $subject->expects(self::once())->method('createDemandFromSettings')->willReturn($demand);
@@ -84,7 +78,6 @@ class AddressControllerPaginationTest extends BaseTestCase
         $subject->_set('request', $mockedRequest);
         $subject->_set('addressRepository', $mockedRepository);
         $subject->_set('extensionConfiguration', $this->getMockedSettings());
-        $subject->_set('configurationManager', $mockConfigurationManager);
 
         $subject->listAction();
     }

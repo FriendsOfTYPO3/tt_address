@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTypo3\TtAddress\Tests\Unit\ViewHelpers;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -20,12 +21,10 @@ class StaticGoogleMapsViewHelperTest extends BaseTestCase
 {
     use ProphecyTrait;
 
-    /**
-     * @var StaticGoogleMapsViewHelper
-     */
+    /** @var StaticGoogleMapsViewHelper */
     protected $viewHelper;
 
-    protected function setUp():void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->viewHelper = new StaticGoogleMapsViewHelper();
@@ -40,12 +39,11 @@ class StaticGoogleMapsViewHelperTest extends BaseTestCase
     {
         $actualResult = $this->viewHelper->renderStatic(
             $parameters,
-            function () {
-            },
+            function () {},
             $this->prophesize(RenderingContextInterface::class)->reveal()
         );
 
-        $this->assertEquals($result, $actualResult);
+        self::assertEquals($result, $actualResult);
     }
 
     public function staticGoogleMapsViewHelpersIsCalledDataProvider(): array
@@ -72,9 +70,9 @@ class StaticGoogleMapsViewHelperTest extends BaseTestCase
                         'key' => 'abcdefgh',
                         'size' => '300x400',
                     ],
-                    'addresses' => $addresses1
+                    'addresses' => $addresses1,
                 ],
-                'https://maps.googleapis.com/maps/api/staticmap?&key=abcdefgh&size=300x400&zoom=13&markers=1.1,1.2'
+                'https://maps.googleapis.com/maps/api/staticmap?&key=abcdefgh&size=300x400&zoom=13&markers=1.1,1.2',
             ],
             '2 addresses' => [
                 [
@@ -82,10 +80,10 @@ class StaticGoogleMapsViewHelperTest extends BaseTestCase
                         'key' => 'abcdefgh',
                         'size' => '300x400',
                     ],
-                    'addresses' => $addresses2
+                    'addresses' => $addresses2,
                 ],
-                'https://maps.googleapis.com/maps/api/staticmap?&key=abcdefgh&size=300x400&markers=1.1,1.2&markers=2.1,2.2'
-            ]
+                'https://maps.googleapis.com/maps/api/staticmap?&key=abcdefgh&size=300x400&markers=1.1,1.2&markers=2.1,2.2',
+            ],
         ];
     }
 }

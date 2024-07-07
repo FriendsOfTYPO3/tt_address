@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Hooks\Tca;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -11,9 +12,6 @@ namespace FriendsOfTYPO3\TtAddress\Hooks\Tca;
  */
 use TYPO3\CMS\Core\Localization\LanguageService;
 
-/**
- * Class AddFieldsToSelector
- */
 class AddFieldsToSelector
 {
     /** @var LanguageService */
@@ -25,7 +23,7 @@ class AddFieldsToSelector
     }
 
     // TODO consolidate with list in pi1
-    const sortFields = ['gender', 'name', 'first_name', 'middle_name', 'last_name', 'title', 'company', 'address', 'building', 'room', 'birthday', 'zip', 'city', 'region', 'country', 'email', 'www', 'phone', 'mobile', 'fax'];
+    public const sortFields = ['gender', 'name', 'first_name', 'middle_name', 'last_name', 'title', 'company', 'address', 'building', 'room', 'birthday', 'zip', 'city', 'region', 'country', 'email', 'www', 'phone', 'mobile', 'fax'];
 
     /**
      * Manipulating the input array, $params, adding new selectorbox items.
@@ -41,14 +39,14 @@ class AddFieldsToSelector
 
             $selectOptions[] = [
                 'field' => $field,
-                'label' => $label
+                'label' => $label,
             ];
         }
 
         // add sorting by order of single selection
         $selectOptions[] = [
             'field' => 'singleSelection',
-            'label' => $this->languageService->sL('LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortBy.singleSelection')
+            'label' => $this->languageService->sL('LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortBy.singleSelection'),
         ];
 
         // sort by labels
@@ -63,7 +61,7 @@ class AddFieldsToSelector
         foreach ($selectOptions as $option) {
             $params['items'][] = [
                 $option['label'],
-                $option['field']
+                $option['field'],
             ];
         }
     }

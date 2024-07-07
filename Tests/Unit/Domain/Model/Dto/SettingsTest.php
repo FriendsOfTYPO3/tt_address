@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTypo3\TtAddress\Tests\Unit\Domain\Model\Dto;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -33,8 +34,8 @@ class SettingsTest extends BaseTestCase
         $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['tt_address'] = [];
         $subject = new Settings();
 
-        $this->assertEquals('/[^\d\+\s\-]/', $subject->getTelephoneValidationPatternForPhp());
-        $this->assertEquals('/[^\d\+\s\-]/g', $subject->getTelephoneValidationPatternForJs());
+        self::assertEquals('/[^\d\+\s\-]/', $subject->getTelephoneValidationPatternForPhp());
+        self::assertEquals('/[^\d\+\s\-]/g', $subject->getTelephoneValidationPatternForJs());
     }
 
     /**
@@ -50,7 +51,7 @@ class SettingsTest extends BaseTestCase
         ];
         $subject = new Settings();
 
-        $this->assertEquals('regex1', $subject->getTelephoneValidationPatternForPhp());
-        $this->assertEquals('regex2', $subject->getTelephoneValidationPatternForJs());
+        self::assertEquals('regex1', $subject->getTelephoneValidationPatternForPhp());
+        self::assertEquals('regex2', $subject->getTelephoneValidationPatternForJs());
     }
 }

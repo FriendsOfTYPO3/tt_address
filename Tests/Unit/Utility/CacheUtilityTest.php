@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTypo3\TtAddress\Tests\Unit\Utility;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -16,7 +17,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class CacheUtilityTest extends BaseTestCase
 {
-    protected function setUp():void
+    protected function setUp(): void
     {
         $GLOBALS['TSFE'] = $this->getAccessibleMock(
             TypoScriptFrontendController::class,
@@ -34,7 +35,7 @@ class CacheUtilityTest extends BaseTestCase
     {
         $addressRecords = ['dummy string'];
 
-        $GLOBALS['TSFE']->expects($this->once())->method('addCacheTags')->with([]);
+        $GLOBALS['TSFE']->expects(self::once())->method('addCacheTags')->with([]);
 
         CacheUtility::addCacheTagsByAddressRecords($addressRecords);
     }
@@ -49,7 +50,7 @@ class CacheUtilityTest extends BaseTestCase
         $addressRecord->_setProperty('_localizedUid', 43);
         $addressRecords = [$addressRecord];
 
-        $GLOBALS['TSFE']->expects($this->once())->method('addCacheTags')->with(['tt_address_42', 'tt_address_43']);
+        $GLOBALS['TSFE']->expects(self::once())->method('addCacheTags')->with(['tt_address_42', 'tt_address_43']);
 
         CacheUtility::addCacheTagsByAddressRecords($addressRecords);
     }

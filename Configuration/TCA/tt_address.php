@@ -35,41 +35,41 @@ return [
         'pid' => [
             'label' => 'pid',
             'config' => [
-                'type' => 'passthrough'
-            ]
+                'type' => 'passthrough',
+            ],
         ],
         'crdate' => [
             'label' => 'crdate',
             'config' => [
                 'type' => 'datetime',
-            ]
+            ],
         ],
         'tstamp' => [
             'label' => 'tstamp',
             'config' => [
                 'type' => 'datetime',
-            ]
+            ],
         ],
         'hidden' => [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
             'config' => [
-                'type' => 'check'
-            ]
+                'type' => 'check',
+            ],
         ],
         'starttime' => [
             'exclude' => true,
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel',
             'config' => [
                 'type' => 'datetime',
-            ]
+            ],
         ],
         'endtime' => [
             'exclude' => true,
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel',
             'config' => [
                 'type' => 'datetime',
-            ]
+            ],
         ],
         'fe_group' => [
             'exclude' => true,
@@ -94,7 +94,7 @@ return [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
             'config' => [
                 'type' => 'language',
-            ]
+            ],
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -108,13 +108,13 @@ return [
                 'default' => 0,
                 'foreign_table' => 'tt_address',
                 'foreign_table_where' => 'AND tt_address.pid=###CURRENT_PID### AND tt_address.sys_language_uid IN (-1,0)',
-            ]
+            ],
         ],
         'l10n_diffsource' => [
             'config' => [
                 'type' => 'passthrough',
-                'default' => ''
-            ]
+                'default' => '',
+            ],
         ],
         'gender' => [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender',
@@ -127,9 +127,9 @@ return [
                     ['label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.m', 'value' => 'm'],
                     ['label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.f', 'value' => 'f'],
                     ['label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.v', 'value' => 'v'],
-                    ['label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.undefined', 'value' => '']
-                ]
-            ]
+                    ['label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.undefined', 'value' => ''],
+                ],
+            ],
         ],
         'title' => [
             'exclude' => true,
@@ -142,7 +142,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'title_suffix' => [
             'exclude' => true,
@@ -155,7 +155,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'slug' => [
             'exclude' => true,
@@ -168,13 +168,13 @@ return [
                     'fields' => ['first_name', 'middle_name', 'last_name'],
                     'fieldSeparator' => '-',
                     'replacements' => [
-                        '/' => '-'
+                        '/' => '-',
                     ],
                 ],
                 'fallbackCharacter' => '-',
                 'eval' => 'unique',
-                'default' => ''
-            ]
+                'default' => '',
+            ],
         ],
         'name' => [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.name',
@@ -182,8 +182,8 @@ return [
                 'type' => 'input',
                 'size' => 40,
                 'eval' => 'trim',
-                'max' => 255
-            ]
+                'max' => 255,
+            ],
         ],
         'first_name' => [
             'exclude' => false,
@@ -194,8 +194,8 @@ return [
                 'type' => 'input',
                 'size' => 20,
                 'eval' => 'trim',
-                'max' => 255
-            ]
+                'max' => 255,
+            ],
         ],
         'middle_name' => [
             'exclude' => false,
@@ -206,8 +206,8 @@ return [
                 'type' => 'input',
                 'size' => 20,
                 'eval' => 'trim',
-                'max' => 255
-            ]
+                'max' => 255,
+            ],
         ],
         'last_name' => [
             'exclude' => false,
@@ -218,8 +218,8 @@ return [
                 'type' => 'input',
                 'size' => 20,
                 'eval' => 'trim',
-                'max' => 255
-            ]
+                'max' => 255,
+            ],
         ],
         'birthday' => [
             'exclude' => true,
@@ -227,7 +227,7 @@ return [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.birthday',
             'config' => [
                 'type' => 'datetime',
-            ]
+            ],
         ],
         'address' => [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.address',
@@ -238,7 +238,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'building' => [
             'exclude' => true,
@@ -251,7 +251,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'room' => [
             'exclude' => true,
@@ -264,7 +264,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'phone' => [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.phone',
@@ -276,7 +276,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'fax' => [
             'exclude' => true,
@@ -289,7 +289,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'mobile' => [
             'exclude' => true,
@@ -302,7 +302,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'www' => [
             'exclude' => true,
@@ -318,7 +318,7 @@ return [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.email',
             'config' => [
                 'type' => 'email',
-            ]
+            ],
         ],
         'skype' => [
             'exclude' => true,
@@ -332,7 +332,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'twitter' => [
             'exclude' => true,
@@ -346,7 +346,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'facebook' => [
             'exclude' => true,
@@ -360,7 +360,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'instagram' => [
             'exclude' => true,
@@ -374,7 +374,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'tiktok' => [
             'exclude' => true,
@@ -388,7 +388,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'linkedin' => [
             'exclude' => true,
@@ -402,7 +402,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'company' => [
             'exclude' => true,
@@ -415,7 +415,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'position' => [
             'exclude' => true,
@@ -428,7 +428,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'city' => [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.city',
@@ -440,7 +440,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'zip' => [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.zip',
@@ -452,7 +452,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'region' => [
             'exclude' => true,
@@ -465,7 +465,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'country' => [
             'exclude' => true,
@@ -478,7 +478,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'image' => [
             'exclude' => true,
@@ -497,32 +497,32 @@ return [
                     'types' => [
                         '0' => [
                             'showitem' => '
-                                    --palette--;' . 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
                                     --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
                             'showitem' => '
-                                    --palette--;' . 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
                                     --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
                             'showitem' => '
-                                    --palette--;' . 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
                                     --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
                             'showitem' => '
-                                    --palette--;' . 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
                                     --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
                             'showitem' => '
-                                    --palette--;' . 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
                                     --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
                             'showitem' => '
-                                    --palette--;' . 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
                                     --palette--;;filePalette',
                         ],
                     ],
@@ -543,7 +543,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'categories' => [
             'exclude' => true,
@@ -553,7 +553,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'latitude' => [
             'exclude' => true,
@@ -565,7 +565,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'longitude' => [
             'exclude' => true,
@@ -576,13 +576,13 @@ return [
                 'default' => null,
                 'fieldControl' => [
                     'locationMap' => [
-                        'renderType' => 'locationMapWizard'
-                    ]
+                        'renderType' => 'locationMapWizard',
+                    ],
                 ],
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
     ],
     'types' => [
@@ -604,39 +604,39 @@ return [
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                 --palette--;;paletteHidden,
                 --palette--;;paletteAccess,
-            --div--;' . 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_category.tabs.category, categories
-            '
-        ]
+            --div--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_category.tabs.category, categories
+            ',
+        ],
     ],
     'palettes' => [
         'name' => [
             'showitem' => 'gender, title, title_suffix,--linebreak--,
-                            first_name, middle_name, last_name,--linebreak--,name,--linebreak--,slug'
+                            first_name, middle_name, last_name,--linebreak--,name,--linebreak--,slug',
         ],
         'organization' => [
-            'showitem' => 'position, company'
+            'showitem' => 'position, company',
         ],
         'address' => [
             'showitem' => 'address, --linebreak--,
                             city, zip, region, --linebreak--,
-                            country,  --linebreak--,'
+                            country,  --linebreak--,',
         ],
         'building' => [
-            'showitem' => 'building, room'
+            'showitem' => 'building, room',
         ],
         'coordinates' => [
-            'showitem' => 'latitude,longitude'
+            'showitem' => 'latitude,longitude',
         ],
         'contact' => [
             'showitem' => 'email, --linebreak--,
                             phone, mobile, fax, --linebreak--,
                             www, --linebreak--,
-                            birthday'
+                            birthday',
         ],
         'social' => [
             'showitem' => 'skype, twitter, --linebreak--,
                             linkedin, tiktok, --linebreak--,
-                            facebook, instagram'
+                            facebook, instagram',
         ],
         'paletteHidden' => [
             'showitem' => 'hidden',

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Evaluation;
@@ -43,7 +44,6 @@ class TelephoneEvaluation
             'TelephoneEvaluation'
         );
     }
-
 
     /**
      * Server-side validation/evaluation on saving the record

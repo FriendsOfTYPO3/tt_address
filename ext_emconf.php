@@ -19,10 +19,9 @@ $EM_CONF[$_EXTKEY] = [
         ],
     ],
     'autoload' => [
-        'psr-4' => ['FriendsOfTYPO3\\TtAddress\\' => 'Classes']
+        'psr-4' => ['FriendsOfTYPO3\\TtAddress\\' => 'Classes'],
     ],
-    'autoload-dev' =>
-        [
-            'psr-4' => ['FriendsOfTYPO3\\TtAddress\\Tests\\' => 'Tests']
-        ],
+    'autoload-dev' => [
+        'psr-4' => ['FriendsOfTYPO3\\TtAddress\\Tests\\' => 'Tests'],
+    ],
 ];

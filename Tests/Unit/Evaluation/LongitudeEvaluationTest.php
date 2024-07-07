@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTypo3\TtAddress\Tests\Unit\Utility;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -35,31 +36,27 @@ class LongitudeEvaluationTest extends BaseTestCase
      */
     public function jsEvaluationIsCalled()
     {
-        $this->markTestSkipped('Skipped as PageRenderer is called which leads into issues');
-        $this->assertNotEmpty($this->subject->returnFieldJS());
+        self::markTestSkipped('Skipped as PageRenderer is called which leads into issues');
+        self::assertNotEmpty($this->subject->returnFieldJS());
     }
 
     /**
-     * @param $given
-     * @param $expected
      * @test
      * @dataProvider lngIsProperlyEvaluatedDataProvider
      */
     public function longIsProperlyEvaluated($given, $expected)
     {
-        $this->assertEquals($expected, $this->subject->evaluateFieldValue($given));
+        self::assertEquals($expected, $this->subject->evaluateFieldValue($given));
     }
 
     /**
-     * @param $given
-     * @param $expected
      * @test
      * @dataProvider lngIsProperlyEvaluatedDataProvider
      */
     public function lngIsProperlyDeEvaluated($given, $expected)
     {
         $params = ['value' => $given];
-        $this->assertEquals($expected, $this->subject->deevaluateFieldValue($params));
+        self::assertEquals($expected, $this->subject->deevaluateFieldValue($params));
     }
 
     public function lngIsProperlyEvaluatedDataProvider(): array

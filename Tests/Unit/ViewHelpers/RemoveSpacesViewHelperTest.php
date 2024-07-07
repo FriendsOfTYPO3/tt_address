@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTypo3\TtAddress\Tests\Unit\ViewHelpers;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -18,9 +19,7 @@ class RemoveSpacesViewHelperTest extends BaseTestCase
 {
     use ProphecyTrait;
 
-    /**
-     * @var RemoveSpacesViewHelper
-     */
+    /** @var RemoveSpacesViewHelper */
     protected $viewHelper;
 
     protected function setUp(): void
@@ -37,11 +36,10 @@ class RemoveSpacesViewHelperTest extends BaseTestCase
     {
         $actualResult = $this->viewHelper->renderStatic(
             ['value' => ' +43 123 56 34 34 '],
-            function () {
-            },
+            function () {},
             $this->prophesize(RenderingContextInterface::class)->reveal()
         );
 
-        $this->assertEquals('+43123563434', $actualResult);
+        self::assertEquals('+43123563434', $actualResult);
     }
 }

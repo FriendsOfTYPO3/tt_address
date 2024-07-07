@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Tests\Unit\Service;
@@ -33,7 +34,7 @@ class GeocodeServiceTest extends BaseTestCase
 
         $subject = $this->getAccessibleMock(GeocodeService::class, null, [], '', false);
         $apiResponse = $subject->_call('getApiCallResult', 'http://dummy.com');
-        $this->assertEquals($content, $apiResponse);
+        self::assertEquals($content, $apiResponse);
     }
 
     /**
@@ -53,7 +54,7 @@ class GeocodeServiceTest extends BaseTestCase
 
         $subject = $this->getAccessibleMock(GeocodeService::class, null, [], '', false);
         $apiResponse = $subject->_call('getApiCallResult', 'http://dummy.com');
-        $this->assertEquals([], $apiResponse);
+        self::assertEquals([], $apiResponse);
     }
 
     /**

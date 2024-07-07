@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Tests\Unit\Seo;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -18,9 +19,7 @@ class AddressTitleProviderTest extends BaseTestCase
     /**
      * @test
      * @dataProvider addressTitleProvider
-     * @param string $expected
      * @param string[] $addressFields
-     * @param array $configuration
      */
     public function correctTitleIsGenerated(string $expected, array $addressFields, array $configuration): void
     {
@@ -33,7 +32,7 @@ class AddressTitleProviderTest extends BaseTestCase
         $mockedProvider = $this->getAccessibleMock(AddressTitleProvider::class, null, [], '', false);
         $mockedProvider->setTitle($address, $configuration);
 
-        $this->assertEquals($expected, $mockedProvider->getTitle());
+        self::assertEquals($expected, $mockedProvider->getTitle());
     }
 
     public function addressTitleProvider(): array
@@ -44,36 +43,36 @@ class AddressTitleProviderTest extends BaseTestCase
                 [
                     'firstName' => 'Max',
                     'middleName' => '',
-                    'lastName' => 'Mustermann'
+                    'lastName' => 'Mustermann',
                 ],
                 [
-                    'properties' => 'firstName,middleName,lastName'
-                ]
+                    'properties' => 'firstName,middleName,lastName',
+                ],
             ],
             'custom clue' => [
                 'Max - M. - Mustermann',
                 [
                     'firstName' => 'Max',
                     'middleName' => 'M.',
-                    'lastName' => 'Mustermann'
+                    'lastName' => 'Mustermann',
                 ],
                 [
                     'properties' => 'firstName,middleName,lastName',
-                    'glue' => '" - "'
-                ]
+                    'glue' => '" - "',
+                ],
             ],
             'empty custom clue' => [
                 'Max M. Mustermann',
                 [
                     'firstName' => 'Max',
                     'middleName' => 'M.',
-                    'lastName' => 'Mustermann'
+                    'lastName' => 'Mustermann',
                 ],
                 [
                     'properties' => 'firstName,middleName,lastName',
-                    'glue' => ''
-                ]
-            ]
+                    'glue' => '',
+                ],
+            ],
         ];
     }
 }

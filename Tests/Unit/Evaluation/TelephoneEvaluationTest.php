@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTypo3\TtAddress\Tests\Unit\Utility;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -39,7 +40,7 @@ class TelephoneEvaluationTest extends BaseTestCase
         $subject = $this->getAccessibleMock(TelephoneEvaluation::class, null, [], '', true);
 
         $settings = new Settings();
-        $this->assertEquals($settings, $subject->_get('extensionSettings'));
+        self::assertEquals($settings, $subject->_get('extensionSettings'));
     }
 
     /**
@@ -47,31 +48,27 @@ class TelephoneEvaluationTest extends BaseTestCase
      */
     public function jsEvaluationIsCalled()
     {
-        $this->markTestSkipped('Skipped as PageRenderer is called which leads into issues');
-        $this->assertNotEmpty($this->subject->returnFieldJS());
+        self::markTestSkipped('Skipped as PageRenderer is called which leads into issues');
+        self::assertNotEmpty($this->subject->returnFieldJS());
     }
 
     /**
-     * @param $given
-     * @param $expected
      * @test
      * @dataProvider telephoneIsProperlyEvaluatedDataProvider
      */
     public function telephoneIsProperlyEvaluated($given, $expected)
     {
-        $this->assertEquals($expected, $this->subject->evaluateFieldValue($given));
+        self::assertEquals($expected, $this->subject->evaluateFieldValue($given));
     }
 
     /**
-     * @param $given
-     * @param $expected
      * @test
      * @dataProvider telephoneIsProperlyEvaluatedDataProvider
      */
     public function telephoneIsProperlyDeEvaluated($given, $expected)
     {
         $params = ['value' => $given];
-        $this->assertEquals($expected, $this->subject->deevaluateFieldValue($params));
+        self::assertEquals($expected, $this->subject->deevaluateFieldValue($params));
     }
 
     public function telephoneIsProperlyEvaluatedDataProvider(): array

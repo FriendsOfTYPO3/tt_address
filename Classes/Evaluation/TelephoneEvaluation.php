@@ -17,7 +17,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 
 /**
- * Class for telephone number validation/evaluation to be used in 'eval' of TCA
+ * Class for telephone number validation/evaluation to be used in 'eval' of TCA.
  */
 class TelephoneEvaluation
 {
@@ -30,7 +30,7 @@ class TelephoneEvaluation
     }
 
     /**
-     * JavaScript code for client side validation/evaluation
+     * JavaScript code for client side validation/evaluation.
      */
     public function returnFieldJS()
     {
@@ -39,6 +39,7 @@ class TelephoneEvaluation
             'telephoneValidationPattern',
             $this->extensionSettings->getTelephoneValidationPatternForJs()
         );
+
         return JavaScriptModuleInstruction::create(
             '@friendsoftypo3/tt-address/telephone-evaluation.js',
             'TelephoneEvaluation'
@@ -46,9 +47,10 @@ class TelephoneEvaluation
     }
 
     /**
-     * Server-side validation/evaluation on saving the record
+     * Server-side validation/evaluation on saving the record.
      *
      * @param string $value The field value to be evaluated
+     *
      * @return string Evaluated field value
      */
     public function evaluateFieldValue($value)
@@ -57,9 +59,10 @@ class TelephoneEvaluation
     }
 
     /**
-     * Server-side validation/evaluation on opening the record
+     * Server-side validation/evaluation on opening the record.
      *
      * @param array $parameters Array with key 'value' containing the field value from the database
+     *
      * @return string Evaluated field value
      */
     public function deevaluateFieldValue(array $parameters)
@@ -70,6 +73,7 @@ class TelephoneEvaluation
     private function evaluate(string $in)
     {
         $data = preg_replace($this->extensionSettings->getTelephoneValidationPatternForPhp(), '', $in);
+
         return trim($data);
     }
 }

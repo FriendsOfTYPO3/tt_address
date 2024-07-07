@@ -37,10 +37,10 @@
     // SystemEnvironmentBuilder is not used. However, the binary must be called from the document
     // root since getWebRoot() uses 'getcwd()'.
     if (!getenv('TYPO3_PATH_ROOT')) {
-        putenv('TYPO3_PATH_ROOT=' . rtrim($testbase->getWebRoot(), '/'));
+        putenv('TYPO3_PATH_ROOT='.rtrim($testbase->getWebRoot(), '/'));
     }
     if (!getenv('TYPO3_PATH_WEB')) {
-        putenv('TYPO3_PATH_WEB=' . rtrim($testbase->getWebRoot(), '/'));
+        putenv('TYPO3_PATH_WEB='.rtrim($testbase->getWebRoot(), '/'));
     }
 
     $testbase->defineSitePath();
@@ -49,13 +49,13 @@
     $requestType = \TYPO3\CMS\Core\Core\SystemEnvironmentBuilder::REQUESTTYPE_BE | \TYPO3\CMS\Core\Core\SystemEnvironmentBuilder::REQUESTTYPE_CLI;
     \TYPO3\TestingFramework\Core\SystemEnvironmentBuilder::run(0, $requestType, $composerMode);
 
-    $testbase->createDirectory(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/typo3conf/ext');
-    $testbase->createDirectory(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/typo3temp/assets');
-    $testbase->createDirectory(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/typo3temp/var/tests');
-    $testbase->createDirectory(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/typo3temp/var/transient');
+    $testbase->createDirectory(\TYPO3\CMS\Core\Core\Environment::getPublicPath().'/typo3conf/ext');
+    $testbase->createDirectory(\TYPO3\CMS\Core\Core\Environment::getPublicPath().'/typo3temp/assets');
+    $testbase->createDirectory(\TYPO3\CMS\Core\Core\Environment::getPublicPath().'/typo3temp/var/tests');
+    $testbase->createDirectory(\TYPO3\CMS\Core\Core\Environment::getPublicPath().'/typo3temp/var/transient');
 
     // Retrieve an instance of class loader and inject to core bootstrap
-    $classLoader = require $testbase->getPackagesPath() . '/autoload.php';
+    $classLoader = require $testbase->getPackagesPath().'/autoload.php';
     \TYPO3\CMS\Core\Core\Bootstrap::initializeClassLoader($classLoader);
 
     // Initialize default TYPO3_CONF_VARS

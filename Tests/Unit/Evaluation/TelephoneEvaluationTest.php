@@ -45,6 +45,7 @@ class TelephoneEvaluationTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider telephoneIsProperlyEvaluatedDataProvider
      */
     public function telephoneIsProperlyEvaluated($given, $expected)
@@ -54,6 +55,7 @@ class TelephoneEvaluationTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider telephoneIsProperlyEvaluatedDataProvider
      */
     public function telephoneIsProperlyDeEvaluated($given, $expected)
@@ -66,9 +68,9 @@ class TelephoneEvaluationTest extends BaseTestCase
     {
         return [
             'empty string' => ['', ''],
-            'example 1' => ['+43 699 12 54 12 1', '+43 699 12 54 12 1'],
-            'example 2' => ['+43 (0)699 12 54 12 1', '+43 0699 12 54 12 1'],
-            'example 3' => [' +43 (0)699 12 54 12 1 DW:4 ', '+43 0699 12 54 12 1 4'],
+            'example 1'    => ['+43 699 12 54 12 1', '+43 699 12 54 12 1'],
+            'example 2'    => ['+43 (0)699 12 54 12 1', '+43 0699 12 54 12 1'],
+            'example 3'    => [' +43 (0)699 12 54 12 1 DW:4 ', '+43 0699 12 54 12 1 4'],
         ];
     }
 }

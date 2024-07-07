@@ -24,7 +24,7 @@ class GeocodeServiceTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $this->importCSVDataSet(__DIR__ . '/../Fixtures/tt_address.csv');
+        $this->importCSVDataSet(__DIR__.'/../Fixtures/tt_address.csv');
     }
 
     /**

@@ -44,7 +44,7 @@ class StaticGoogleMapsViewHelperTest extends BaseTestCase
         self::assertEquals($result, $actualResult);
     }
 
-    public function staticGoogleMapsViewHelpersIsCalledDataProvider(): array
+    public static function staticGoogleMapsViewHelpersIsCalledDataProvider(): array
     {
         $address1 = new Address();
         $address1->setLatitude(1.1);

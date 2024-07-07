@@ -35,7 +35,7 @@ class AddressTitleProviderTest extends BaseTestCase
         self::assertEquals($expected, $mockedProvider->getTitle());
     }
 
-    public function addressTitleProvider(): array
+    public static function addressTitleProvider(): array
     {
         return [
             'basic example' => [

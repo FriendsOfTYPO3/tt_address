@@ -10,6 +10,7 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Functional\Command;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use FriendsOfTYPO3\TtAddress\Service\GeocodeService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -18,7 +19,7 @@ class GeocodeServiceTest extends FunctionalTestCase
 {
     protected array $testExtensionsToLoad = ['typo3conf/ext/tt_address'];
 
-    protected array $coreExtensionsToLoad = ['fluid', 'extensionmanager'];
+    protected array $coreExtensionsToLoad = ['fluid'];
 
     public function setUp(): void
     {
@@ -33,14 +34,16 @@ class GeocodeServiceTest extends FunctionalTestCase
     public function properRecordsAreFound()
     {
         $subject = $this->getAccessibleMock(GeocodeService::class, ['getCoordinatesForAddress'], ['123']);
+        $matcher = self::exactly(4);
         $subject->expects(self::any())->method('getCoordinatesForAddress')
-            ->withConsecutive([], [], [])
-            ->willReturnOnConsecutiveCalls(
-                ['latitude' => 10.000, 'longitude' => 12.000],
-                ['latitude' => 10.000, 'longitude' => 12.000],
-                [],
-                ['latitude' => 13.000, 'longitude' => 14.000]
-            );
+            ->willReturnCallback(function (string $key, string $value) use ($matcher) {
+                return match ($matcher->numberOfInvocations()) {
+                    0 => ['latitude' => 10.000, 'longitude' => 12.000],
+                    1 => ['latitude' => 10.000, 'longitude' => 12.000],
+                    2 => [],
+                    3 => ['latitude' => 13.000, 'longitude' => 14.000]
+                };
+            });
 
         $count = $subject->calculateCoordinatesForAllRecordsInTable('pid=100');
         self::assertEquals(3, $count);

@@ -24,7 +24,7 @@ class EvalcoordinatesUtilityTest extends BaseTestCase
         self::assertEquals($expected, EvalcoordinatesUtility::formatLongitude($given));
     }
 
-    public function longIsProperlyEvaluatedDataProvider(): array
+    public static function longIsProperlyEvaluatedDataProvider(): array
     {
         return [
             'empty string' => ['', '.00000000'],
@@ -45,7 +45,7 @@ class EvalcoordinatesUtilityTest extends BaseTestCase
         self::assertEquals($expected, EvalcoordinatesUtility::formatLatitude($given));
     }
 
-    public function latIsProperlyEvaluatedDataProvider(): array
+    public static function latIsProperlyEvaluatedDataProvider(): array
     {
         return [
             'empty string' => ['', '.00000000'],

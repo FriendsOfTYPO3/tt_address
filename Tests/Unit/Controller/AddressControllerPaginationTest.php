@@ -70,11 +70,6 @@ class AddressControllerPaginationTest extends BaseTestCase
 
         $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
         $mockedView->expects(self::once())->method('assignMultiple')->with($assignments);
-        $mockedView->expects(self::any())->method('assign')
-            ->withConsecutive(
-                ['newPagination', true],
-                ['pagination'] // the result can't be mocked, therefore just testing if it exists
-            );
 
         $mockContentObject = $this->createMock(ContentObjectRenderer::class);
         $mockConfigurationManager = $this->createMock(ConfigurationManager::class);

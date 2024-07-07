@@ -62,7 +62,7 @@ class TelephoneEvaluationTest extends BaseTestCase
         self::assertEquals($expected, $this->subject->deevaluateFieldValue($params));
     }
 
-    public function telephoneIsProperlyEvaluatedDataProvider(): array
+    public static function telephoneIsProperlyEvaluatedDataProvider(): array
     {
         return [
             'empty string' => ['', ''],

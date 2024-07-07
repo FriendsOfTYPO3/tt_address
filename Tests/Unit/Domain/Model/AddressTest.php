@@ -147,7 +147,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getRoom());
     }
 
-    public function telephoneFormatDataProvider()
+    public static function telephoneFormatDataProvider()
     {
         return [
             'phone number' => ['0122333', '0122333'],
@@ -255,7 +255,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($expected, $this->subject->getWwwSimplified());
     }
 
-    public function simplifiedWwwIsReturnedDataProvider()
+    public static function simplifiedWwwIsReturnedDataProvider()
     {
         return [
             'empty' => ['', ''],
@@ -530,7 +530,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($expected, $this->subject->getFullName());
     }
 
-    public function fullNameDataProvider(): array
+    public static function fullNameDataProvider(): array
     {
         return [
             'simple name' => ['John Doe', ['', 'John', 'Doe', '']],

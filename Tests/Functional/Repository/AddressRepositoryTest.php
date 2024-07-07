@@ -23,7 +23,7 @@ class AddressRepositoryTest extends FunctionalTestCase
 
     protected array $testExtensionsToLoad = ['typo3conf/ext/tt_address'];
 
-    protected array $coreExtensionsToLoad = ['fluid', 'extensionmanager'];
+    protected array $coreExtensionsToLoad = ['fluid'];
 
     public function setUp(): void
     {

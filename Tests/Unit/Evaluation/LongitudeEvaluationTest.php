@@ -50,7 +50,7 @@ class LongitudeEvaluationTest extends BaseTestCase
         self::assertEquals($expected, $this->subject->deevaluateFieldValue($params));
     }
 
-    public function lngIsProperlyEvaluatedDataProvider(): array
+    public static function lngIsProperlyEvaluatedDataProvider(): array
     {
         return [
             'empty string' => ['', ''],

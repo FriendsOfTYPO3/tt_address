@@ -75,7 +75,6 @@ return [
         'default_sortby' => 'ORDER BY last_name, first_name, middle_name',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'prependAtCopy' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.prependAtCopy',
         'delete' => 'deleted',
         'title' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address',
@@ -104,23 +103,13 @@ return [
         'crdate' => [
             'label' => 'crdate',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime'
-            ]
-        ],
-        'cruser_id' => [
-            'label' => 'cruser_id',
-            'config' => [
-                'type' => 'passthrough'
+                'type' => 'datetime',
             ]
         ],
         'tstamp' => [
             'label' => 'tstamp',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime'
+                'type' => 'datetime',
             ]
         ],
         'hidden' => [
@@ -134,28 +123,14 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'size' => 16,
-                'eval' => 'datetime,int',
-                'default' => 0,
-                'behaviour' => [
-                    'allowLanguageSynchronization' => true,
-                ],
+                'type' => 'datetime',
             ]
         ],
         'endtime' => [
             'exclude' => true,
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'size' => 16,
-                'eval' => 'datetime,int',
-                'default' => 0,
-                'behaviour' => [
-                    'allowLanguageSynchronization' => true,
-                ],
+                'type' => 'datetime',
             ]
         ],
         'fe_group' => [
@@ -333,10 +308,7 @@ return [
             'l10n_display' => 'defaultAsReadonly',
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.birthday',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'date,int',
-                'default' => 0
+                'type' => 'datetime',
             ]
         ],
         'address' => [
@@ -418,19 +390,7 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.www',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputLink',
-                'fieldControl' => [
-                    'linkPopup' => [
-                        'options' => [
-                            'blindLinkOptions' => 'mail,file,spec,folder',
-                        ],
-                    ],
-                ],
-                'eval' => 'trim',
-                'size' => 20,
-                'max' => 255,
-                'softref' => 'typolink,url',
+                'type' => 'link',
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -439,14 +399,7 @@ return [
         'email' => [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.email',
             'config' => [
-                'type' => 'input',
-                'size' => 20,
-                'eval' => 'trim,email',
-                'max' => 255,
-                'softref' => 'email',
-                'behaviour' => [
-                    'allowLanguageSynchronization' => true,
-                ],
+                'type' => 'email',
             ]
         ],
         'skype' => [
@@ -633,7 +586,10 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_category.categories',
             'config' => [
-                'type' => 'category'
+                'type' => 'category',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'latitude' => [

@@ -40,7 +40,7 @@ class AddressController extends ActionController
     /** @var Settings */
     protected $extensionConfiguration;
 
-    public function initializeAction()
+    public function initializeAction(): void
     {
         $this->queryGenerator = GeneralUtility::makeInstance(QueryGenerator::class);
         $this->extensionConfiguration = GeneralUtility::makeInstance(Settings::class);
@@ -114,7 +114,7 @@ class AddressController extends ActionController
      *
      * @param ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
      */
-    public function injectConfigurationManager(ConfigurationManagerInterface $configurationManager)
+    public function injectConfigurationManager(ConfigurationManagerInterface $configurationManager): void
     {
         parent::injectConfigurationManager($configurationManager);
         $this->configurationManager = $configurationManager;

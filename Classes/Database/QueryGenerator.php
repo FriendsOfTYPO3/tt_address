@@ -29,6 +29,7 @@ class QueryGenerator
      * @param int $begin
      * @return string comma separated list of descendant pages
      */
+    // @extensionScannerIgnoreLine
     public function getTreeList($id, $depth, $begin = 0): string
     {
         $depth = (int) $depth;

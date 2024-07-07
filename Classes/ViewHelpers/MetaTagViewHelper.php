@@ -39,6 +39,7 @@ class MetaTagViewHelper extends AbstractViewHelper
         if ($value) {
             $property = $arguments['property'];
             $metaTagManager = GeneralUtility::makeInstance(MetaTagManagerRegistry::class)->getManagerForProperty($property);
+            // @extensionScannerIgnoreLine
             $metaTagManager->addProperty($property, $value);
         }
     }

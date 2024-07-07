@@ -237,6 +237,7 @@ class AddressController extends ActionController
 
         // iterate through root-page ids and merge to array
         foreach ($rootPIDs as $pid) {
+            // @extensionScannerIgnoreLine
             $result = $this->queryGenerator->getTreeList($pid, (int) ($this->settings['recursive'] ?? 0));
             if ($result) {
                 $subtreePids = explode(',', $result);

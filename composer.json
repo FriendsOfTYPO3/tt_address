@@ -21,8 +21,8 @@
 	],
 	"license": "GPL-2.0-or-later",
 	"require": {
-		"typo3/cms-core": "^11.5 || ^12.4",
-		"php": ">=7.4",
+		"typo3/cms-core": "^12.4 || ^13.2",
+		"php": ">=8.1",
 		"symfony/console": "^5.4 || ^6.0 || ^7.0"
 	},
 	"extra": {
@@ -46,9 +46,9 @@
 		"typo3-ter/tt-address": "self.version"
 	},
 	"require-dev": {
-		"typo3/cms-install": "^11.5 || ^12",
+		"typo3/cms-install": "^12 || ^13",
 		"sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": "^0.0.1",
-		"typo3/cms-extensionmanager": "^11.5 || ^12",
+		"typo3/cms-extensionmanager": "^12 || ^13",
 		"phpunit/phpunit": "^9.6.15",
 		"php-coveralls/php-coveralls": "^2.1",
 		"phpspec/prophecy-phpunit": "^2.0"

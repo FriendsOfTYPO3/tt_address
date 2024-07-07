@@ -28,3 +28,6 @@ jobs:
 
       - name: Unit Tests
         run: Build/Scripts/runTests.sh -t 12 -p ${{ matrix.php }} -s unit
+
+      - name: Functional Tests
+        run: Build/Scripts/runTests.sh -t 12 -p ${{ matrix.php }} -s functional

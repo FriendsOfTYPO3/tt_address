@@ -18,7 +18,7 @@ use TYPO3\CMS\Core\TimeTracker\TimeTracker;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Service for category related stuff
+ * Service for category related stuff.
  */
 class CategoryService
 {
@@ -36,14 +36,15 @@ class CategoryService
 
     /**
      * Get child categories by calling recursive function
-     * and using the caching framework to save some queries
+     * and using the caching framework to save some queries.
      *
      * @param string $idList list of category ids to start
+     *
      * @return string comma separated list of category ids
      */
     public function getChildrenCategories(string $idList, int $counter = 0)
     {
-        $cacheIdentifier = sha1('children' . $idList);
+        $cacheIdentifier = sha1('children'.$idList);
 
         $entry = $this->cache->get($cacheIdentifier);
         if (!$entry) {
@@ -55,10 +56,11 @@ class CategoryService
     }
 
     /**
-     * Get child categories
+     * Get child categories.
      *
-     * @param string $idList list of category ids to start
-     * @param int $counter
+     * @param string $idList  list of category ids to start
+     * @param int    $counter
+     *
      * @return string comma separated list of category ids
      */
     protected function getChildrenCategoriesRecursive(string $idList, $counter = 0): string
@@ -87,17 +89,18 @@ class CategoryService
             $counter++;
             if ($counter > 10000) {
                 $this->timeTracker->setTSlogMessage('EXT:tt_address: one or more recursive categories where found');
+
                 return implode(',', $result);
             }
             $subcategories = $this->getChildrenCategoriesRecursive((string) $row['uid'], $counter);
-            $result[] = $row['uid'] . ($subcategories ? ',' . $subcategories : '');
+            $result[] = $row['uid'].($subcategories ? ','.$subcategories : '');
         }
 
         return implode(',', $result);
     }
 
     /**
-     * Fetch ids again from DB to avoid false positives
+     * Fetch ids again from DB to avoid false positives.
      */
     protected function getUidListFromRecords(string $idList): string
     {

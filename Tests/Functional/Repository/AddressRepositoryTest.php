@@ -30,7 +30,7 @@ class AddressRepositoryTest extends FunctionalTestCase
         parent::setUp();
         $this->addressRepository = $this->getContainer()->get(AddressRepository::class);
 
-        $this->importCSVDataSet(__DIR__ . '/../Fixtures/tt_address.csv');
+        $this->importCSVDataSet(__DIR__.'/../Fixtures/tt_address.csv');
     }
 
     /**
@@ -44,7 +44,7 @@ class AddressRepositoryTest extends FunctionalTestCase
         $result = $this->addressRepository->getSqlQuery($demand);
         $time = $GLOBALS['SIM_ACCESS_TIME'];
 
-        $sql = 'SELECT `tt_address`.* FROM `tt_address` `tt_address` WHERE (((((`tt_address`.`pid` IN (1, 2)) AND ( NOT(((`tt_address`.`latitude` IS NULL) OR (`tt_address`.`latitude` = 0)))))) AND ( NOT(((`tt_address`.`longitude` IS NULL) OR (`tt_address`.`longitude` = 0)))))) AND (`tt_address`.`sys_language_uid` IN (0, -1)) AND (`tt_address`.`t3ver_oid` = 0) AND (((`tt_address`.`hidden` = 0) AND (`tt_address`.`starttime` <= ' . $time . ') AND (((`tt_address`.`endtime` = 0) OR (`tt_address`.`endtime` > ' . $time . ')))) AND tt_address.deleted=0)';
+        $sql = 'SELECT `tt_address`.* FROM `tt_address` `tt_address` WHERE (((((`tt_address`.`pid` IN (1, 2)) AND ( NOT(((`tt_address`.`latitude` IS NULL) OR (`tt_address`.`latitude` = 0)))))) AND ( NOT(((`tt_address`.`longitude` IS NULL) OR (`tt_address`.`longitude` = 0)))))) AND (`tt_address`.`sys_language_uid` IN (0, -1)) AND (`tt_address`.`t3ver_oid` = 0) AND (((`tt_address`.`hidden` = 0) AND (`tt_address`.`starttime` <= '.$time.') AND (((`tt_address`.`endtime` = 0) OR (`tt_address`.`endtime` > '.$time.')))) AND tt_address.deleted=0)';
         self::assertEquals($sql, $result);
     }
 
@@ -173,7 +173,7 @@ class AddressRepositoryTest extends FunctionalTestCase
         $demand->setIgnoreWithoutCoordinates(true);
         $addresses = $this->addressRepository->findByDemand($demand);
         foreach ($addresses as $a) {
-            echo $a->getUid() . ' - ' . $a->getLongitude() . '/' . $a->getLatitude() . chr(10);
+            echo $a->getUid().' - '.$a->getLongitude().'/'.$a->getLatitude().chr(10);
         }
         self::assertEquals([14], $this->getListOfIds($addresses));
     }
@@ -183,7 +183,7 @@ class AddressRepositoryTest extends FunctionalTestCase
      */
     private function getListOfIds($list, string $field = 'uid'): array
     {
-        $getter = 'get' . ucfirst($field);
+        $getter = 'get'.ucfirst($field);
         $idList = [];
         foreach ($list as $address) {
             $idList[] = $address->$getter();

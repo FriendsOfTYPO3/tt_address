@@ -208,7 +208,7 @@ class AddressControllerTest extends BaseTestCase
         $address->setLastName('Doe');
         $assigned = [
             'address' => $address,
-            'contentObjectData' => null,
+            'contentObjectData' => [],
         ];
         $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple'], [], '', false);
         $mockedView->expects(self::once())->method('assignMultiple')->with($assigned);

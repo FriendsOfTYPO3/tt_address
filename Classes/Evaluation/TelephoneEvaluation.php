@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace FriendsOfTYPO3\TtAddress\Evaluation;
 
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -44,36 +43,33 @@ class TelephoneEvaluation
             'TelephoneEvaluation'
         );
     }
-}
 
-/**
- * Server-side validation/evaluation on saving the record
- *
- * @param string $value The field value to be evaluated
- * @return string Evaluated field value
- */
-public
-function evaluateFieldValue($value)
-{
-    return $this->evaluate($value);
-}
 
-/**
- * Server-side validation/evaluation on opening the record
- *
- * @param array $parameters Array with key 'value' containing the field value from the database
- * @return string Evaluated field value
- */
-public
-function deevaluateFieldValue(array $parameters)
-{
-    return $this->evaluate($parameters['value']);
-}
+    /**
+     * Server-side validation/evaluation on saving the record
+     *
+     * @param string $value The field value to be evaluated
+     * @return string Evaluated field value
+     */
+    public function evaluateFieldValue($value)
+    {
+        return $this->evaluate($value);
+    }
 
-private
-function evaluate(string $in)
-{
-    $data = preg_replace($this->extensionSettings->getTelephoneValidationPatternForPhp(), '', $in);
-    return trim($data);
-}
+    /**
+     * Server-side validation/evaluation on opening the record
+     *
+     * @param array $parameters Array with key 'value' containing the field value from the database
+     * @return string Evaluated field value
+     */
+    public function deevaluateFieldValue(array $parameters)
+    {
+        return $this->evaluate($parameters['value']);
+    }
+
+    private function evaluate(string $in)
+    {
+        $data = preg_replace($this->extensionSettings->getTelephoneValidationPatternForPhp(), '', $in);
+        return trim($data);
+    }
 }

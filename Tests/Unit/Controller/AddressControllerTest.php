@@ -36,6 +36,7 @@ class AddressControllerTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider dotIsRemovedFromEndDataProvider
      */
     public function dotIsRemovedFromEnd($given, $expected)
@@ -48,7 +49,7 @@ class AddressControllerTest extends BaseTestCase
     {
         return [
             'empty string' => ['', ''],
-            'dot at end' => ['foBar.', 'foBar'],
+            'dot at end'   => ['foBar.', 'foBar'],
         ];
     }
 
@@ -59,20 +60,20 @@ class AddressControllerTest extends BaseTestCase
     {
         $subject = $this->getAccessibleMock(AddressController::class, null, [], '', false);
         $given = [
-            'example' => 'some string',
-            'example2' => '123',
+            'example'           => 'some string',
+            'example2'          => '123',
             'example with dot.' => 'bla',
-            'array' => [
-                'sub' => 'string',
+            'array'             => [
+                'sub'           => 'string',
                 'sub-with-dot.' => 'stringvalue',
             ],
         ];
         $expected = [
-            'example' => 'some string',
-            'example2' => '123',
+            'example'          => 'some string',
+            'example2'         => '123',
             'example with dot' => 'bla',
-            'array' => [
-                'sub' => 'string',
+            'array'            => [
+                'sub'          => 'string',
                 'sub-with-dot' => 'stringvalue',
             ],
         ];
@@ -120,7 +121,7 @@ class AddressControllerTest extends BaseTestCase
         $subject = $this->getAccessibleMock(AddressController::class, null, [], '', false);
         $subject->_set('queryGenerator', $mockedQueryGenerator);
         $subject->_set('settings', [
-            'pages' => '123,456',
+            'pages'     => '123,456',
             'recursive' => 3,
         ]);
 
@@ -141,33 +142,33 @@ class AddressControllerTest extends BaseTestCase
                     'plugin.' => [
                         'tx_ttaddress.' => [
                             'settings' => [
-                                'orderByAllowed' => 'sorting',
+                                'orderByAllowed'                  => 'sorting',
                                 'overrideFlexformSettingsIfEmpty' => 'key4,key5,key6',
-                                'key2' => 'abc',
-                                'key4' => 'fo',
-                                'key5' => '',
+                                'key2'                            => 'abc',
+                                'key4'                            => 'fo',
+                                'key5'                            => '',
                             ],
                         ],
                     ],
                 ],
                 [
-                    'key1' => 'value1',
+                    'key1'           => 'value1',
                     'orderByAllowed' => 'custom',
-                    'key2' => '',
-                    'key3' => '',
-                    'key4' => '',
-                    'key5' => '',
+                    'key2'           => '',
+                    'key3'           => '',
+                    'key4'           => '',
+                    'key5'           => '',
                 ]
             );
 
         $subject = $this->getAccessibleMock(AddressController::class, null, [], '', false);
         $expectedSettings = [
-            'key1' => 'value1',
+            'key1'           => 'value1',
             'orderByAllowed' => 'sorting',
-            'key2' => '',
-            'key3' => '',
-            'key4' => 'fo',
-            'key5' => '',
+            'key2'           => '',
+            'key3'           => '',
+            'key4'           => 'fo',
+            'key5'           => '',
         ];
         $subject->injectConfigurationManager($mockedConfigurationManager);
         self::assertEquals($expectedSettings, $subject->_get('settings'));
@@ -183,10 +184,10 @@ class AddressControllerTest extends BaseTestCase
         $subject = $this->getAccessibleMock(AddressController::class, ['getPidList'], [], '', false);
         $subject->expects(self::any())->method('getPidList')->willReturn(['123', '456']);
         $subject->_set('settings', [
-            'pages' => '123,456',
-            'singleRecords' => '7,4',
-            'recursive' => 3,
-            'groups' => '4,5,6',
+            'pages'             => '123,456',
+            'singleRecords'     => '7,4',
+            'recursive'         => 3,
+            'groups'            => '4,5,6',
             'groupsCombination' => 1,
         ]);
 
@@ -207,7 +208,7 @@ class AddressControllerTest extends BaseTestCase
         $address = new Address();
         $address->setLastName('Doe');
         $assigned = [
-            'address' => $address,
+            'address'           => $address,
             'contentObjectData' => [],
         ];
         $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple'], [], '', false);
@@ -231,7 +232,7 @@ class AddressControllerTest extends BaseTestCase
     public function listActionFillsViewForSingleRecords()
     {
         $settings = [
-            'singlePid' => 0,
+            'singlePid'     => 0,
             'singleRecords' => 1,
         ];
         $demand = new Demand();
@@ -241,8 +242,8 @@ class AddressControllerTest extends BaseTestCase
         $mockedRepository->expects(self::once())->method('getAddressesByCustomSorting')->willReturn(['dummy return single']);
 
         $assignments = [
-            'demand' => $demand,
-            'addresses' => ['dummy return single'],
+            'demand'            => $demand,
+            'addresses'         => ['dummy return single'],
             'contentObjectData' => [],
         ];
 
@@ -285,8 +286,8 @@ class AddressControllerTest extends BaseTestCase
         $mockConfigurationManager->method('getContentObject')
             ->willReturn($mockContentObject);
         $assignments = [
-            'demand' => $demand,
-            'addresses' => ['dummy return'],
+            'demand'            => $demand,
+            'addresses'         => ['dummy return'],
             'contentObjectData' => [],
         ];
 
@@ -345,6 +346,7 @@ class AddressControllerTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider overrideDemandWorksDataProvider
      */
     public function overrideDemandWorks(Demand $demandIn, Demand $demandOut, array $override)

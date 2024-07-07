@@ -15,7 +15,7 @@ use TYPO3\CMS\Core\PageTitle\AbstractPageTitleProvider;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Generate page title based on properties of the address model
+ * Generate page title based on properties of the address model.
  */
 class AddressTitleProvider extends AbstractPageTitleProvider
 {
@@ -28,7 +28,7 @@ class AddressTitleProvider extends AbstractPageTitleProvider
         $fields = GeneralUtility::trimExplode(',', $configuration['properties'] ?? self::DEFAULT_PROPERTIES, true);
 
         foreach ($fields as $field) {
-            $getter = 'get' . ucfirst($field);
+            $getter = 'get'.ucfirst($field);
             $value = $address->$getter();
             if ($value) {
                 $titleFields[] = $value;

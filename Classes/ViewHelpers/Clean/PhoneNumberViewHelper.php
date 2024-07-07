@@ -21,7 +21,7 @@ class PhoneNumberViewHelper extends AbstractViewHelper
     use CompileWithRenderStatic;
 
     /**
-     * Initialize arguments
+     * Initialize arguments.
      */
     public function initializeArguments()
     {
@@ -34,6 +34,7 @@ class PhoneNumberViewHelper extends AbstractViewHelper
     public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
     {
         $value = $arguments['value'] ?: $renderChildrenClosure();
+
         return PropertyModification::getCleanedNumber($value);
     }
 }

@@ -28,7 +28,7 @@ class CategoryServiceTest extends FunctionalTestCase
         parent::setUp();
         $this->subject = GeneralUtility::makeInstance(CategoryService::class);
 
-        $this->importCSVDataSet(__DIR__ . '/../Fixtures/sys_categories.csv');
+        $this->importCSVDataSet(__DIR__.'/../Fixtures/sys_categories.csv');
     }
 
     /**

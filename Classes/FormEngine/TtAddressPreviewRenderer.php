@@ -13,6 +13,7 @@ namespace FriendsOfTYPO3\TtAddress\FormEngine;
 use Doctrine\DBAL\Connection;
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
 use TYPO3\CMS\Core\Service\FlexFormService;
@@ -42,10 +43,10 @@ class TtAddressPreviewRenderer extends StandardContentPreviewRenderer
         ],
     ];
 
-    protected function renderContentElementPreviewFromFluidTemplate(array $row): ?string
+    protected function renderContentElementPreviewFromFluidTemplate(array $row, ?GridColumnItem $item = null): ?string
     {
         $row = $this->enrichRow($row);
-        return parent::renderContentElementPreviewFromFluidTemplate($row);
+        return parent::renderContentElementPreviewFromFluidTemplate($row, $item);
     }
 
     protected function enrichRow(array $row): array

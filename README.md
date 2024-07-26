@@ -1,7 +1,7 @@
-[![Latest Stable Version](http://poser.pugx.org/friendsoftypo3/tt-address/v)](https://extensions.typo3.org/extension/tt_address/)
+[![Latest Stable Version](https://poser.pugx.org/friendsoftypo3/tt-address/v/stable)](https://extensions.typo3.org/extension/tt_address/)
 [![TYPO3 13](https://img.shields.io/badge/TYPO3-13-orange.svg)](https://get.typo3.org/version/13)
 [![TYPO3 12](https://img.shields.io/badge/TYPO3-12-orange.svg)](https://get.typo3.org/version/12)
-[![Total Downloads](http://poser.pugx.org/friendsoftypo3/tt-address/downloads)](https://packagist.org/packages/friendsoftypo3/tt-address)
+[![Total Downloads](https://poser.pugx.org/friendsoftypo3/tt-address/downloads)](https://packagist.org/packages/friendsoftypo3/tt-address)
 [![Monthly Downloads](https://poser.pugx.org/friendsoftypo3/tt-address/d/monthly)](https://packagist.org/packages/friendsoftypo3/tt-address)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/GeorgRinger/10)
 

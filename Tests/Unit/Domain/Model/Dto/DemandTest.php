@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTypo3\TtAddress\Tests\Unit\Domain\Model\Dto;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -17,7 +18,7 @@ class DemandTest extends BaseTestCase
     /** @var Demand */
     protected $subject;
 
-    public function setup():void
+    public function setup(): void
     {
         $this->subject = new Demand();
     }
@@ -29,7 +30,7 @@ class DemandTest extends BaseTestCase
     {
         $value = ['123', '456'];
         $this->subject->setPages($value);
-        $this->assertEquals($value, $this->subject->getPages());
+        self::assertEquals($value, $this->subject->getPages());
     }
 
     /**
@@ -39,7 +40,7 @@ class DemandTest extends BaseTestCase
     {
         $value = 'title';
         $this->subject->setSortBy($value);
-        $this->assertEquals($value, $this->subject->getSortBy());
+        self::assertEquals($value, $this->subject->getSortBy());
     }
 
     /**
@@ -49,7 +50,7 @@ class DemandTest extends BaseTestCase
     {
         $value = 'desc';
         $this->subject->setSortOrder($value);
-        $this->assertEquals($value, $this->subject->getSortOrder());
+        self::assertEquals($value, $this->subject->getSortOrder());
     }
 
     /**
@@ -59,7 +60,7 @@ class DemandTest extends BaseTestCase
     {
         $value = '12,34,5';
         $this->subject->setCategories($value);
-        $this->assertEquals($value, $this->subject->getCategories());
+        self::assertEquals($value, $this->subject->getCategories());
     }
 
     /**
@@ -69,7 +70,7 @@ class DemandTest extends BaseTestCase
     {
         $value = 'AND';
         $this->subject->setCategoryCombination($value);
-        $this->assertEquals($value, $this->subject->getCategoryCombination());
+        self::assertEquals($value, $this->subject->getCategoryCombination());
     }
 
     /**
@@ -79,7 +80,7 @@ class DemandTest extends BaseTestCase
     {
         $value = '7,6,1';
         $this->subject->setSingleRecords($value);
-        $this->assertEquals($value, $this->subject->getSingleRecords());
+        self::assertEquals($value, $this->subject->getSingleRecords());
     }
 
     /**
@@ -89,7 +90,7 @@ class DemandTest extends BaseTestCase
     {
         $value = true;
         $this->subject->setIncludeSubCategories($value);
-        $this->assertEquals($value, $this->subject->getIncludeSubCategories());
+        self::assertEquals($value, $this->subject->getIncludeSubCategories());
     }
 
     /**
@@ -99,6 +100,6 @@ class DemandTest extends BaseTestCase
     {
         $value = true;
         $this->subject->setIgnoreWithoutCoordinates($value);
-        $this->assertEquals($value, $this->subject->getIgnoreWithoutCoordinates());
+        self::assertEquals($value, $this->subject->getIgnoreWithoutCoordinates());
     }
 }

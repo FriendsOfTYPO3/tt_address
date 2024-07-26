@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Utility;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -17,8 +18,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class TypoScript
 {
     /**
-     * @param array $previousData
-     * @param array $tsData
      * @return array
      */
     public function override(array $previousData, array $tsData)
@@ -42,7 +41,7 @@ class TypoScript
                     unset($previousData['sortBy']);
                 }
                 // if flexform setting is empty and value is available in TS
-                if (((!isset($previousData[$fieldName]) || (string)$previousData[$fieldName] === '') || (strlen($previousData[$fieldName]) === 0))
+                if (((!isset($previousData[$fieldName]) || (string) $previousData[$fieldName] === '') || (strlen($previousData[$fieldName]) === 0))
                     && isset($tsData['settings'][$fieldName])
                 ) {
                     $previousData[$fieldName] = $tsData['settings'][$fieldName];
@@ -55,8 +54,6 @@ class TypoScript
     /**
      * Get value from array by path
      *
-     * @param array $data
-     * @param array $path
      * @return array|null
      */
     protected function getValue(array $data, array $path)
@@ -82,9 +79,6 @@ class TypoScript
     /**
      * Set value in array by path
      *
-     * @param array $array
-     * @param $path
-     * @param $value
      * @return array
      */
     protected function setValue(array $array, $path, $value)
@@ -96,10 +90,6 @@ class TypoScript
 
     /**
      * Set value by reference
-     *
-     * @param array $array
-     * @param array $path
-     * @param $value
      */
     private function setValueByReference(array &$array, array $path, $value)
     {

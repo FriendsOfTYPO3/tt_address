@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Tests\Unit\Hooks\Tca;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -24,7 +25,7 @@ class AddFieldsToSelectorTest extends BaseTestCase
         $GLOBALS['LANG'] = $languageService;
 
         $subject = $this->getAccessibleMock(AddFieldsToSelector::class, null, [], '', true);
-        $this->assertEquals($languageService, $subject->_get('languageService'));
+        self::assertEquals($languageService, $subject->_get('languageService'));
     }
 
     /**
@@ -37,11 +38,11 @@ class AddFieldsToSelectorTest extends BaseTestCase
         }
 
         $mockedLanguageService = $this->getAccessibleMock(LanguageService::class, ['sL'], [], '', false);
-        $mockedLanguageService->expects($this->any())
+        $mockedLanguageService->expects(self::any())
             ->method('sL')
-            ->will($this->returnCallback(function ($o) {
+            ->willReturnCallback(function ($o) {
                 return $o;
-            }));
+            });
         $subject = $this->getAccessibleMock(AddFieldsToSelector::class, null, [], '', false);
         $subject->_set('languageService', $mockedLanguageService);
 
@@ -71,9 +72,9 @@ class AddFieldsToSelectorTest extends BaseTestCase
                 ['label_www', 'www'],
                 ['label_zip', 'zip'],
                 ['LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.sortBy.singleSelection', 'singleSelection'],
-            ]
+            ],
         ];
 
-        $this->assertEquals($expected, $items);
+        self::assertEquals($expected, $items);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Database;
@@ -28,11 +29,12 @@ class QueryGenerator
      * @param int $begin
      * @return string comma separated list of descendant pages
      */
+    // @extensionScannerIgnoreLine
     public function getTreeList($id, $depth, $begin = 0): string
     {
-        $depth = (int)$depth;
-        $begin = (int)$begin;
-        $id = (int)$id;
+        $depth = (int) $depth;
+        $begin = (int) $begin;
+        $id = (int) $id;
         if ($id < 0) {
             $id = abs($id);
         }
@@ -66,6 +68,6 @@ class QueryGenerator
                 }
             }
         }
-        return (string)$theList;
+        return (string) $theList;
     }
 }

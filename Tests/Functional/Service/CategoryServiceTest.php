@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Tests\Functional\Service;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -11,7 +12,6 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Functional\Service;
  */
 use FriendsOfTYPO3\TtAddress\Service\CategoryService;
 use TYPO3\CMS\Core\Cache\CacheManager;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\TimeTracker\TimeTracker;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -37,10 +37,10 @@ class CategoryServiceTest extends FunctionalTestCase
     public function findChildCategories()
     {
         $categories = $this->subject->getChildrenCategories('2,4');
-        $this->assertEquals('2,4,20,21,211,212,30,31,32', $categories);
+        self::assertEquals('2,4,20,21,211,212,30,31,32', $categories);
 
         $categories = $this->subject->getChildrenCategories('4,5,10919,6,7,8');
-        $this->assertEquals('4,5,8', $categories);
+        self::assertEquals('4,5,8', $categories);
     }
 
     /**
@@ -49,15 +49,12 @@ class CategoryServiceTest extends FunctionalTestCase
     public function loggerInvokedWithTooManyCategories()
     {
         $mockedTimeTracker = $this->getAccessibleMock(TimeTracker::class, ['setTSlogMessage'], [], '', false);
-        $mockedTimeTracker->expects($this->any())->method('setTSlogMessage');
+        $mockedTimeTracker->expects(self::any())->method('setTSlogMessage');
 
         $subject = $this->getAccessibleMock(CategoryService::class, null, [], '', false);
         $subject->_set('timeTracker', $mockedTimeTracker);
 
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion();
-        $cacheIdentifier = $versionInformation >= 11 ? 'ttaddress_category' : 'cache_ttaddress_category';
-        $subject->_set('cache', GeneralUtility::makeInstance(CacheManager::class)->getCache($cacheIdentifier));
-
+        $subject->_set('cache', GeneralUtility::makeInstance(CacheManager::class)->getCache('ttaddress_category'));
         $categories = $subject->getChildrenCategories('2,4', 100000);
     }
 }

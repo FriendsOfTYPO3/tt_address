@@ -1,14 +1,16 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Tests\Functional\Command;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use FriendsOfTYPO3\TtAddress\Service\GeocodeService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -17,7 +19,7 @@ class GeocodeServiceTest extends FunctionalTestCase
 {
     protected array $testExtensionsToLoad = ['typo3conf/ext/tt_address'];
 
-    protected array $coreExtensionsToLoad = ['fluid', 'extensionmanager'];
+    protected array $coreExtensionsToLoad = ['fluid'];
 
     public function setUp(): void
     {
@@ -32,20 +34,22 @@ class GeocodeServiceTest extends FunctionalTestCase
     public function properRecordsAreFound()
     {
         $subject = $this->getAccessibleMock(GeocodeService::class, ['getCoordinatesForAddress'], ['123']);
-        $subject->expects($this->any())->method('getCoordinatesForAddress')
-            ->withConsecutive([], [], [])
-            ->willReturnOnConsecutiveCalls(
-                ['latitude' => 10.000, 'longitude' => 12.000],
-                ['latitude' => 10.000, 'longitude' => 12.000],
-                [],
-                ['latitude' => 13.000, 'longitude' => 14.000]
-            );
+        $matcher = self::exactly(4);
+        $subject->expects(self::any())->method('getCoordinatesForAddress')
+            ->willReturnCallback(function (string $key, string $value) use ($matcher) {
+                return match ($matcher->numberOfInvocations()) {
+                    0 => ['latitude' => 10.000, 'longitude' => 12.000],
+                    1 => ['latitude' => 10.000, 'longitude' => 12.000],
+                    2 => [],
+                    3 => ['latitude' => 13.000, 'longitude' => 14.000]
+                };
+            });
 
         $count = $subject->calculateCoordinatesForAllRecordsInTable('pid=100');
-        $this->assertEquals(3, $count);
+        self::assertEquals(3, $count);
 
         $row = BackendUtility::getRecord('tt_address', 21);
-        $this->assertEquals(['latitude' => $row['latitude'], 'longitude' => $row['longitude']], ['latitude' => 10.000000000000, 'longitude' => 12.000000000000]);
+        self::assertEquals(['latitude' => 10.000000000000, 'longitude' => 12.000000000000], ['latitude' => $row['latitude'], 'longitude' => $row['longitude']]);
     }
 
     /**
@@ -57,15 +61,15 @@ class GeocodeServiceTest extends FunctionalTestCase
         $resultEmpty = ['results' => []];
 
         $subject = $this->getAccessibleMock(GeocodeService::class, ['getApiCallResult'], ['123']);
-        $subject->expects($this->any())->method('getApiCallResult')
+        $subject->expects(self::any())->method('getApiCallResult')
             ->willReturnOnConsecutiveCalls($result1, $resultEmpty);
 
         $response = $subject->getCoordinatesForAddress('DummyStr', '1', 'London', 'UK');
-        $this->assertEquals($response, ['latitude' => 11, 'longitude' => '13']);
+        self::assertEquals(['latitude' => 11, 'longitude' => '13'], $response);
         $response2 = $subject->getCoordinatesForAddress('DummyStr', '1', 'London', 'UK');
         $response3 = $subject->getCoordinatesForAddress('DummyStr', '2', 'Vienna', 'UK');
         $response4 = $subject->getCoordinatesForAddress();
-        $this->assertEquals([], $response4);
+        self::assertEquals([], $response4);
     }
 
     /**
@@ -73,6 +77,6 @@ class GeocodeServiceTest extends FunctionalTestCase
      */
     public function findRecordsByUid()
     {
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 }

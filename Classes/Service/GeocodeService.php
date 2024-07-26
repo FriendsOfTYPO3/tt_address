@@ -1,10 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Service;
 
 use TYPO3\CMS\Core\Cache\CacheManager;
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -29,7 +30,7 @@ class GeocodeService implements SingletonInterface
     /** @var int */
     protected $cacheTime = 7776000;
 
-    /** @var string  */
+    /** @var string */
     protected $geocodingUrl = 'https://maps.googleapis.com/maps/api/geocode/json?language=de&sensor=false';
 
     public function __construct(string $googleMapsKey = '')
@@ -45,7 +46,6 @@ class GeocodeService implements SingletonInterface
      * helpful when calculating a batch of addresses and save the latitude/longitude automatically
      *
      * @param string $addWhereClause
-     * @return int
      */
     public function calculateCoordinatesForAllRecordsInTable($addWhereClause = ''): int
     {
@@ -97,7 +97,7 @@ class GeocodeService implements SingletonInterface
                                 $longitudeField => $coords['longitude'],
                             ],
                             [
-                                'uid' => $record['uid']
+                                'uid' => $record['uid'],
                             ]
                         );
                     }
@@ -152,10 +152,6 @@ class GeocodeService implements SingletonInterface
         return $result;
     }
 
-    /**
-     * @param string $url
-     * @return array
-     */
     protected function getApiCallResult(string $url): array
     {
         $response = GeneralUtility::getUrl($url);
@@ -169,7 +165,6 @@ class GeocodeService implements SingletonInterface
     /**
      * Initializes the cache for the DB requests.
      *
-     * @param string $name
      * @return FrontendInterface Cache Object
      */
     protected function initializeCache(string $name = 'ttaddress_geocoding'): FrontendInterface

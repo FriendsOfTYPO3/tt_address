@@ -1,10 +1,14 @@
 <?php
+
 defined('TYPO3_MODE') or defined('TYPO3') or die;
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'tt_address',
     'ListView',
-    'LLL:EXT:tt_address/Resources/Private/Language/db/locallang.xlf:extbase_title'
+    'LLL:EXT:tt_address/Resources/Private/Language/db/locallang.xlf:extbase_title',
+    'tt-address-plugin',
+    'plugins',
+    'LLL:EXT:tt_address/Resources/Private/Language/db/locallang.xlf:extbase_description'
 );
 
 $pluginSignature = 'ttaddress_listview';

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Utility;
@@ -9,17 +10,12 @@ namespace FriendsOfTYPO3\TtAddress\Utility;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
-/**
- * Class EvalcoordinatesUtility
- */
 class EvalcoordinatesUtility
 {
-    const LATITUDE_UPPER = '90.00000000';
-    const LONGITUDE_UPPER = '180.00000000';
+    public const LATITUDE_UPPER = '90.00000000';
+    public const LONGITUDE_UPPER = '180.00000000';
 
     /**
-     * @param string $coordinate
      * @return float evaluated and well-formed coordinate
      */
     public static function formatLongitude(string $coordinate)
@@ -28,7 +24,6 @@ class EvalcoordinatesUtility
     }
 
     /**
-     * @param string $coordinate
      * @return float evaluated and well-formed coordinate
      */
     public static function formatLatitude(string $coordinate)
@@ -38,8 +33,6 @@ class EvalcoordinatesUtility
 
     /**
      * @param string $coordinate
-     * @param string $upperRange
-     * @return string
      */
     protected static function validate($coordinate, string $upperRange): string
     {

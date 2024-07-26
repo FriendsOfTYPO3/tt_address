@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Domain\Repository;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -34,7 +35,6 @@ class AddressRepository extends Repository
     }
 
     /**
-     * @param Demand $demand
      * @return QueryResultInterface
      * @throws InvalidQueryException
      */
@@ -45,8 +45,6 @@ class AddressRepository extends Repository
     }
 
     /**
-     * @param Demand $demand
-     * @return QueryInterface
      * @throws InvalidQueryException
      */
     protected function createDemandQuery(Demand $demand): QueryInterface
@@ -99,8 +97,6 @@ class AddressRepository extends Repository
     /**
      * Returns the database query to get the matching, see findByDemand()
      *
-     * @param Demand $demand
-     * @return string
      * @throws InvalidQueryException
      */
     public function getSqlQuery(Demand $demand): string
@@ -113,16 +109,14 @@ class AddressRepository extends Repository
         $params = [];
         foreach ($queryParameters as $key => $value) {
             // prefix array keys with ':'
-            $params[':' . $key] = (\is_numeric($value)) ? $value : "'" . $value . "'"; //all non numeric values have to be quoted
+            $params[':' . $key] = (\is_numeric($value)) ? $value : "'" . $value . "'"; // all non numeric values have to be quoted
             unset($params[$key]);
         }
         // replace placeholders with real values
-        $query = strtr($queryBuilder->getSQL(), $params);
-        return $query;
+        return strtr($queryBuilder->getSQL(), $params);
     }
 
     /**
-     * @param Demand $demand
      * @return array|QueryResultInterface
      * @throws InvalidQueryException
      */
@@ -138,7 +132,7 @@ class AddressRepository extends Repository
             $query->setOrderings([$sortBy => $order]);
 
             $constraints = [
-                $query->in('uid', $idList)
+                $query->in('uid', $idList),
             ];
 
             $query->matching($query->logicalAnd(...$constraints));
@@ -164,10 +158,6 @@ class AddressRepository extends Repository
      * Returns a category constraint created by
      * a given list of categories and a junction string
      *
-     * @param QueryInterface $query
-     * @param string $categories
-     * @param bool $includeSubCategories
-     * @return array
      * @throws InvalidQueryException
      */
     protected function createCategoryConstraint(QueryInterface $query, string $categories, bool $includeSubCategories = false): array

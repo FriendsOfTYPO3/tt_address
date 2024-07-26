@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Utility;
@@ -18,9 +19,6 @@ class PropertyModification
     /**
      * Get cleaned number of a given telephone, fax or mobile number.
      * It removes all chars which are not possible to enter on your cell phone.
-     *
-     * @param string $number
-     * @return string
      */
     public static function getCleanedNumber(string $number): string
     {

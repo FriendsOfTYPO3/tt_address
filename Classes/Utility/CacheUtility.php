@@ -13,7 +13,7 @@ namespace FriendsOfTYPO3\TtAddress\Utility;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 
 /**
- * Class CacheUtility handles cache tags
+ * Class CacheUtility handles cache tags.
  */
 class CacheUtility
 {
@@ -35,10 +35,10 @@ class CacheUtility
                 continue;
             }
             // cache tag for each addressRecord record
-            $cacheTags[] = $prefix . $addressRecord->getUid();
+            $cacheTags[] = $prefix.$addressRecord->getUid();
 
             if ($addressRecord->_getProperty('_localizedUid') != $addressRecord->getUid()) {
-                $cacheTags[] = $prefix . $addressRecord->_getProperty('_localizedUid');
+                $cacheTags[] = $prefix.$addressRecord->_getProperty('_localizedUid');
             }
         }
 

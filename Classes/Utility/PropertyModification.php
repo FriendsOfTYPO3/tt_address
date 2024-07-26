@@ -12,7 +12,7 @@ namespace FriendsOfTYPO3\TtAddress\Utility;
  */
 
 /**
- * Modify properties of the address model
+ * Modify properties of the address model.
  */
 class PropertyModification
 {
@@ -39,6 +39,7 @@ class PropertyModification
             return '';
         }
         $parts = str_replace(['\\\\', '\\"'], ['\\', '"'], str_getcsv($domain, ' '));
+
         return $parts[0];
     }
 }

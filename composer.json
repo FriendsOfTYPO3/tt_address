@@ -23,7 +23,6 @@
 	"require": {
 		"typo3/cms-core": "^12.4.16 || ^13.2",
 		"php": ">=8.1",
-		"doctrine/dbal": "^3.8.1 || ^4.0.2",
 		"symfony/console": "^5.4 || ^6.0 || ^7.0"
 	},
 	"extra": {

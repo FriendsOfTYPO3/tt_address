@@ -21,12 +21,12 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
- * The repository for the domain model Address
+ * The repository for the domain model Address.
  */
 class AddressRepository extends Repository
 {
     /**
-     * override the storagePid settings (do not use storagePid) of extbase
+     * override the storagePid settings (do not use storagePid) of extbase.
      */
     public function initializeObject()
     {
@@ -35,12 +35,14 @@ class AddressRepository extends Repository
     }
 
     /**
-     * @return QueryResultInterface
      * @throws InvalidQueryException
+     *
+     * @return QueryResultInterface
      */
     public function findByDemand(Demand $demand)
     {
         $query = $this->createDemandQuery($demand);
+
         return $query->execute();
     }
 
@@ -91,11 +93,12 @@ class AddressRepository extends Repository
         if (!empty($constraints)) {
             $query->matching($query->logicalAnd(...array_values($constraints)));
         }
+
         return $query;
     }
 
     /**
-     * Returns the database query to get the matching, see findByDemand()
+     * Returns the database query to get the matching, see findByDemand().
      *
      * @throws InvalidQueryException
      */
@@ -109,16 +112,18 @@ class AddressRepository extends Repository
         $params = [];
         foreach ($queryParameters as $key => $value) {
             // prefix array keys with ':'
-            $params[':' . $key] = (\is_numeric($value)) ? $value : "'" . $value . "'"; // all non numeric values have to be quoted
+            $params[':'.$key] = (\is_numeric($value)) ? $value : "'".$value."'"; // all non numeric values have to be quoted
             unset($params[$key]);
         }
+
         // replace placeholders with real values
         return strtr($queryBuilder->getSQL(), $params);
     }
 
     /**
-     * @return array|QueryResultInterface
      * @throws InvalidQueryException
+     *
+     * @return array|QueryResultInterface
      */
     public function getAddressesByCustomSorting(Demand $demand)
     {
@@ -136,6 +141,7 @@ class AddressRepository extends Repository
             ];
 
             $query->matching($query->logicalAnd(...$constraints));
+
             return $query->execute();
         }
 
@@ -156,7 +162,7 @@ class AddressRepository extends Repository
 
     /**
      * Returns a category constraint created by
-     * a given list of categories and a junction string
+     * a given list of categories and a junction string.
      *
      * @throws InvalidQueryException
      */
@@ -177,6 +183,7 @@ class AddressRepository extends Repository
         foreach ($allCategories as $category) {
             $constraints[] = $query->contains('categories', $category);
         }
+
         return $constraints;
     }
 }

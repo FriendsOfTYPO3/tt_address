@@ -30,6 +30,7 @@ class StaticGoogleMapsViewHelperTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider staticGoogleMapsViewHelpersIsCalledDataProvider
      */
     public function staticGoogleMapsViewHelpersIsCalled(array $parameters, $result)
@@ -65,7 +66,7 @@ class StaticGoogleMapsViewHelperTest extends BaseTestCase
             '1 address' => [
                 [
                     'parameters' => [
-                        'key' => 'abcdefgh',
+                        'key'  => 'abcdefgh',
                         'size' => '300x400',
                     ],
                     'addresses' => $addresses1,
@@ -75,7 +76,7 @@ class StaticGoogleMapsViewHelperTest extends BaseTestCase
             '2 addresses' => [
                 [
                     'parameters' => [
-                        'key' => 'abcdefgh',
+                        'key'  => 'abcdefgh',
                         'size' => '300x400',
                     ],
                     'addresses' => $addresses2,

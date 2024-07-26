@@ -1,6 +1,6 @@
 <?php
 
-defined('TYPO3_MODE') or defined('TYPO3') or die;
+defined('TYPO3_MODE') or defined('TYPO3') or exit;
 
 /* ===========================================================================
   Custom cache, done with the caching framework
@@ -11,7 +11,7 @@ if (!isset($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][
 if (!isset($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['ttaddress_geocoding'])) {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['ttaddress_geocoding'] = [
         'frontend' => \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class,
-        'backend' => \TYPO3\CMS\Core\Cache\Backend\Typo3DatabaseBackend::class,
+        'backend'  => \TYPO3\CMS\Core\Cache\Backend\Typo3DatabaseBackend::class,
     ];
 }
 
@@ -22,7 +22,7 @@ if (!isset($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1546531781] = [
     'nodeName' => 'locationMapWizard',
     'priority' => 30,
-    'class' => \FriendsOfTYPO3\TtAddress\FormEngine\FieldControl\LocationMapWizard::class,
+    'class'    => \FriendsOfTYPO3\TtAddress\FormEngine\FieldControl\LocationMapWizard::class,
 ];
 
 if ((new \TYPO3\CMS\Core\Information\Typo3Version())->getMajorVersion() < 13) {

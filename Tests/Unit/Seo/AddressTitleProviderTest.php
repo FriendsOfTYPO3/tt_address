@@ -18,14 +18,16 @@ class AddressTitleProviderTest extends BaseTestCase
 {
     /**
      * @test
+     *
      * @dataProvider addressTitleProvider
+     *
      * @param string[] $addressFields
      */
     public function correctTitleIsGenerated(string $expected, array $addressFields, array $configuration): void
     {
         $address = new Address();
         foreach ($addressFields as $fieldName => $value) {
-            $setter = 'set' . ucfirst($fieldName);
+            $setter = 'set'.ucfirst($fieldName);
             $address->$setter($value);
         }
 
@@ -41,9 +43,9 @@ class AddressTitleProviderTest extends BaseTestCase
             'basic example' => [
                 'Max Mustermann',
                 [
-                    'firstName' => 'Max',
+                    'firstName'  => 'Max',
                     'middleName' => '',
-                    'lastName' => 'Mustermann',
+                    'lastName'   => 'Mustermann',
                 ],
                 [
                     'properties' => 'firstName,middleName,lastName',
@@ -52,25 +54,25 @@ class AddressTitleProviderTest extends BaseTestCase
             'custom clue' => [
                 'Max - M. - Mustermann',
                 [
-                    'firstName' => 'Max',
+                    'firstName'  => 'Max',
                     'middleName' => 'M.',
-                    'lastName' => 'Mustermann',
+                    'lastName'   => 'Mustermann',
                 ],
                 [
                     'properties' => 'firstName,middleName,lastName',
-                    'glue' => '" - "',
+                    'glue'       => '" - "',
                 ],
             ],
             'empty custom clue' => [
                 'Max M. Mustermann',
                 [
-                    'firstName' => 'Max',
+                    'firstName'  => 'Max',
                     'middleName' => 'M.',
-                    'lastName' => 'Mustermann',
+                    'lastName'   => 'Mustermann',
                 ],
                 [
                     'properties' => 'firstName,middleName,lastName',
-                    'glue' => '',
+                    'glue'       => '',
                 ],
             ],
         ];

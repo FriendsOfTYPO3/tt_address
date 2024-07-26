@@ -21,7 +21,7 @@ use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Service for category related stuff
+ * Service for category related stuff.
  *
  * thanks to https://github.com/b13/t3ext-geocoding for inspiration
  */
@@ -35,7 +35,7 @@ class GeocodeService implements SingletonInterface
 
     public function __construct(string $googleMapsKey = '')
     {
-        $this->geocodingUrl .= '&key=' . $googleMapsKey;
+        $this->geocodingUrl .= '&key='.$googleMapsKey;
     }
 
     /**
@@ -93,7 +93,7 @@ class GeocodeService implements SingletonInterface
                         $connection->update(
                             $tableName,
                             [
-                                $latitudeField => $coords['latitude'],
+                                $latitudeField  => $coords['latitude'],
                                 $longitudeField => $coords['longitude'],
                             ],
                             [
@@ -104,6 +104,7 @@ class GeocodeService implements SingletonInterface
                 }
             }
         }
+
         return \count($records);
     }
 
@@ -115,12 +116,13 @@ class GeocodeService implements SingletonInterface
      * @param string $zip
      * @param string $city
      * @param string $country
+     *
      * @return array an array with latitude and longitude
      */
     public function getCoordinatesForAddress($street = null, $zip = null, $city = null, $country = ''): array
     {
         $addressParts = [];
-        foreach ([$street, $zip . ' ' . $city, $country] as $addressPart) {
+        foreach ([$street, $zip.' '.$city, $country] as $addressPart) {
             if (empty($addressPart)) {
                 continue;
             }
@@ -131,24 +133,25 @@ class GeocodeService implements SingletonInterface
             return [];
         }
         $cacheObject = $this->initializeCache();
-        $cacheKey = 'geocode-' . strtolower(str_replace(' ', '-', preg_replace('/[^0-9a-zA-Z ]/m', '', $address)));
+        $cacheKey = 'geocode-'.strtolower(str_replace(' ', '-', preg_replace('/[^0-9a-zA-Z ]/m', '', $address)));
         // Found in cache? Return it.
         if ($cacheObject->has($cacheKey)) {
             return $cacheObject->get($cacheKey);
         }
         $result = $this->getApiCallResult(
-            $this->geocodingUrl . '&address=' . urlencode($address)
+            $this->geocodingUrl.'&address='.urlencode($address)
         );
         if (empty($result) || empty($result['results']) || empty($result['results'][0]['geometry'])) {
             return [];
         }
         $geometry = $result['results'][0]['geometry'];
         $result = [
-            'latitude' => $geometry['location']['lat'],
+            'latitude'  => $geometry['location']['lat'],
             'longitude' => $geometry['location']['lng'],
         ];
         // Now store the $result in cache and return
         $cacheObject->set($cacheKey, $result, [], $this->cacheTime);
+
         return $result;
     }
 
@@ -159,6 +162,7 @@ class GeocodeService implements SingletonInterface
         if ($result['status'] !== 'OVER_QUERY_LIMIT') {
             return $result;
         }
+
         return [];
     }
 
@@ -171,6 +175,7 @@ class GeocodeService implements SingletonInterface
     {
         try {
             $cacheManager = GeneralUtility::makeInstance(CacheManager::class);
+
             return $cacheManager->getCache($name);
         } catch (NoSuchCacheException $e) {
             throw new \RuntimeException('Unable to load Cache!', 1548785854);

@@ -11,11 +11,10 @@ namespace FriendsOfTYPO3\TtAddress\FormEngine;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use Doctrine\DBAL\ArrayParameterType;
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
-use TYPO3\CMS\Core\Attribute\AsEventListener;
-use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
 use TYPO3\CMS\Core\Service\FlexFormService;
@@ -45,7 +44,6 @@ class TtAddressPreviewRenderer extends StandardContentPreviewRenderer
         ],
     ];
 
-    #[AsEventListener('ext-ttaddress/fluid-preview/content')]
     public function __invoke(PageContentPreviewRenderingEvent $event): void
     {
         $row = $event->getRecord();
@@ -86,7 +84,7 @@ class TtAddressPreviewRenderer extends StandardContentPreviewRenderer
             ->where(
                 $queryBuilder->expr()->in(
                     'uid',
-                    $queryBuilder->createNamedParameter(GeneralUtility::intExplode(',', $idList, true), Connection::PARAM_INT_ARRAY)
+                    $queryBuilder->createNamedParameter(GeneralUtility::intExplode(',', $idList, true), ArrayParameterType::INTEGER)
                 )
             )
             ->executeQuery()

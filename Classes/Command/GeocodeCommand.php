@@ -18,12 +18,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Command for geocoding coordinates
+ * Command for geocoding coordinates.
  */
 class GeocodeCommand extends Command
 {
     /**
-     * Defines the allowed options for this command
+     * Defines the allowed options for this command.
      *
      * @inheritdoc
      */
@@ -39,18 +39,20 @@ class GeocodeCommand extends Command
     }
 
     /**
-     * Geocode all records
+     * Geocode all records.
      *
      * @inheritdoc
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->getGeocodeService($input->getArgument('key'))->calculateCoordinatesForAllRecordsInTable();
+
         return 0;
     }
 
     /**
      * @param string $key Google Maps key
+     *
      * @return GeocodeService
      */
     protected function getGeocodeService(string $key)

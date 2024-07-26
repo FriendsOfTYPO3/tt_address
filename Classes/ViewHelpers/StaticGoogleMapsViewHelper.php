@@ -22,7 +22,7 @@ class StaticGoogleMapsViewHelper extends AbstractViewHelper
     use CompileWithRenderStatic;
 
     /**
-     * Initialize arguments
+     * Initialize arguments.
      */
     public function initializeArguments(): void
     {
@@ -40,12 +40,12 @@ class StaticGoogleMapsViewHelper extends AbstractViewHelper
         $markers = [];
         foreach ($arguments['addresses'] as $address) {
             /* @var Address $address */
-            $markers[] = '&markers=' . $address->getLatitude() . ',' . $address->getLongitude();
+            $markers[] = '&markers='.$address->getLatitude().','.$address->getLongitude();
         }
         if (count($markers) === 1) {
             $mapArguments['zoom'] = 13;
         }
 
-        return 'https://maps.googleapis.com/maps/api/staticmap?' . GeneralUtility::implodeArrayForUrl('', $mapArguments, '', true) . implode('', $markers);
+        return 'https://maps.googleapis.com/maps/api/staticmap?'.GeneralUtility::implodeArrayForUrl('', $mapArguments, '', true).implode('', $markers);
     }
 }

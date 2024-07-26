@@ -17,16 +17,17 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 
 /**
- * Duplication of \TYPO3\CMS\Core\Database\QueryGenerator which has been deprecated
+ * Duplication of \TYPO3\CMS\Core\Database\QueryGenerator which has been deprecated.
  */
 class QueryGenerator
 {
     /**
-     * Recursively fetch all descendants of a given page
+     * Recursively fetch all descendants of a given page.
      *
-     * @param int $id uid of the page
+     * @param int $id    uid of the page
      * @param int $depth
      * @param int $begin
+     *
      * @return string comma separated list of descendant pages
      */
     // @extensionScannerIgnoreLine
@@ -57,7 +58,7 @@ class QueryGenerator
             $statement = $queryBuilder->executeQuery();
             while ($row = $statement->fetchAssociative()) {
                 if ($begin <= 0) {
-                    $theList .= ',' . $row['uid'];
+                    $theList .= ','.$row['uid'];
                 }
                 if ($depth > 1) {
                     $theSubList = $this->getTreeList($row['uid'], $depth - 1, $begin - 1);
@@ -68,6 +69,7 @@ class QueryGenerator
                 }
             }
         }
+
         return (string) $theList;
     }
 }

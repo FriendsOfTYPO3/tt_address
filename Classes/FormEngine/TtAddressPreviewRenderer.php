@@ -21,25 +21,25 @@ use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Improve the rendering of the plugin in page module
+ * Improve the rendering of the plugin in page module.
  */
 class TtAddressPreviewRenderer extends StandardContentPreviewRenderer
 {
     protected array $recordMapping = [
         'singleRecords' => [
-            'table' => 'tt_address',
+            'table'      => 'tt_address',
             'multiValue' => true,
         ],
         'pages' => [
-            'table' => 'pages',
+            'table'      => 'pages',
             'multiValue' => true,
         ],
         'singlePid' => [
-            'table' => 'pages',
+            'table'      => 'pages',
             'multiValue' => false,
         ],
         'groups' => [
-            'table' => 'sys_category',
+            'table'      => 'sys_category',
             'multiValue' => true,
         ],
     ];
@@ -70,6 +70,7 @@ class TtAddressPreviewRenderer extends StandardContentPreviewRenderer
             }
         }
         $row['_computed']['lll'] = 'LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.';
+
         return $row;
     }
 
@@ -93,6 +94,7 @@ class TtAddressPreviewRenderer extends StandardContentPreviewRenderer
         foreach ($rows as &$row) {
             $row['_computed']['title'] = BackendUtility::getRecordTitle($table, $row);
         }
+
         return $rows;
     }
 
@@ -102,6 +104,7 @@ class TtAddressPreviewRenderer extends StandardContentPreviewRenderer
         if (!empty($flexforms)) {
             $settings = GeneralUtility::makeInstance(FlexFormService::class)->convertFlexFormContentToArray($flexforms);
         }
+
         return $settings;
     }
 }

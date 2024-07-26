@@ -1,12 +1,12 @@
 <?php
 
-defined('TYPO3_MODE') or defined('TYPO3') or die;
+defined('TYPO3_MODE') or defined('TYPO3') or exit;
 
 // Override news icon
 $GLOBALS['TCA']['pages']['columns']['module']['config']['items'][] = [
     'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address',
     'value' => 'tt_address',
-    'icon' => 'apps-pagetree-folder-contains-tt-address',
+    'icon'  => 'apps-pagetree-folder-contains-tt-address',
 ];
 
 $GLOBALS['TCA']['pages']['ctrl']['typeicon_classes']['contains-tt-address'] = 'apps-pagetree-folder-contains-tt-address';

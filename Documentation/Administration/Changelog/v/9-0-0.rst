@@ -1,0 +1,61 @@
+9.0.0 - 26th July 2024
+======================
+
+.. include:: /Includes.rst.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+This version is compatible with TYPO3 12 & 13. The minimum PHP version is 8.1.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2024-07-26 [TASK] Make csfixer happy (Commit c706373 by Georg Ringer)
+   2024-07-26 [BUGFIX] Fix wrong merge (Commit 7660fbe by Georg Ringer)
+   2024-07-26 Merge remote-tracking branch 'origin/12-13' (Commit 5cf60a5 by Georg Ringer)
+   2024-07-26 [BUGFIX] Register event the old way (Commit 93096ce by Georg Ringer)
+   2024-07-26 [TASK] Remove dbal dependency (Commit f236702 by Georg Ringer)
+   2024-07-26 [TASK] Move plugin registration (Commit 2a7ad10 by Georg Ringer)
+   2024-07-07 [BUGFIX] Fix wrong test (Commit 1f4a299 by Georg Ringer)
+   2024-07-07 [BUGFIX] Fix plugin preview (Commit a021519 by Georg Ringer)
+   2024-07-07 [TASK] Fix phpcs (Commit 525b594 by Georg Ringer)
+   2024-07-07 [TASK] Disable backend map for v13 (Commit 6819151 by Georg Ringer)
+   2024-07-07 [BUGFIX] Fix contentobjectdata (Commit ec9f1e6 by Georg Ringer)
+   2024-07-07 [TASK] Update flexform settings (Commit 2a8e426 by Georg Ringer)
+   2024-07-07 [TASK] Followup (Commit 8a1532c by Georg Ringer)
+   2024-07-07 [TASK] Update version matrix (Commit 66c43c5 by Georg Ringer)
+   2024-07-07 [TASK] Update gitignore (Commit 1390a1d by Georg Ringer)
+   2024-07-07 [TASK] Skip false positives in extension scanner (Commit 8e6ad1a by Georg Ringer)
+   2024-07-07 [TASK] Fix more tests (Commit 4ebec1a by Georg Ringer)
+   2024-07-07 allow more doctrine dbal for v13 (Commit 85f3803 by Georg Ringer)
+   2024-07-07 [TASK] Switch default DB back (Commit 38f72fc by Georg Ringer)
+   2024-07-07 [TASK] Improve tests (Commit e1a8c26 by Georg Ringer)
+   2024-07-07 [TASK] Work on tests (Commit 529ead6 by Georg Ringer)
+   2024-07-07 [TASK] Add test suite for v13 (Commit 91b60d2 by Georg Ringer)
+   2024-07-07 [TASK] Move unit test to functional (Commit 35b0308 by Georg Ringer)
+   2024-07-07 followup (Commit 21ac438 by Georg Ringer)
+   2024-07-07 [TASK] Skip outdated tests for time being (Commit 73769d3 by Georg Ringer)
+   2024-07-07 [TASK] Make tests work (Commit e8e1b17 by Georg Ringer)
+   2024-07-07 [TASK] Update testing framework (Commit 9893f02 by Georg Ringer)
+   2024-07-07 [TASK] Make php-cs-fixer happy (Commit c957dfe by Georg Ringer)
+   2024-07-07 [TASK] Repair broken class (Commit d367aec by Georg Ringer)
+   2024-07-07 [TASK] Remove version checks (Commit 65ead95 by Georg Ringer)
+   2024-07-07 [TASK] Migrate other TCA stuff (Commit 4a2b197 by Georg Ringer)
+   2024-07-07 [TASK] Integrate TCA changes (Commit 3b5e57d by Georg Ringer)
+   2024-07-07 [TASK] Change cache key (Commit b515c9d by Georg Ringer)
+   2024-07-07 [TASK] Set requirements for 12-13 (Commit e265c9e by Georg Ringer)
+
+
+This list has been created by using:
+
+.. code-block:: shell
+
+   git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short

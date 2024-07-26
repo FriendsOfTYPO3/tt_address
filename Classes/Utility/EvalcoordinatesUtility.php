@@ -72,7 +72,7 @@ class EvalcoordinatesUtility
         }
 
         // concatenate the whole string to a well-formed longitude and return
-        $coordinate = $integerPart . '.' . $decimalPart;
+        $coordinate = $integerPart.'.'.$decimalPart;
 
         // test if value is in the possible range. longitude can be -180 to +180.
         // latitude can be -90 to +90
@@ -83,6 +83,6 @@ class EvalcoordinatesUtility
         }
 
         // reapply signed/unsigned and return
-        return $negative . $coordinate;
+        return $negative.$coordinate;
     }
 }

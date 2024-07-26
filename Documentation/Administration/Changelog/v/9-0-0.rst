@@ -14,6 +14,8 @@ Important changes
 -----------------
 This version is compatible with TYPO3 12 & 13. The minimum PHP version is 8.1.
 
+Be aware: The OpenStreetMap integration in the backend to search for coordinates is currently disabled.
+
 All Changes
 -----------
 This is a list of all changes in this release: ::

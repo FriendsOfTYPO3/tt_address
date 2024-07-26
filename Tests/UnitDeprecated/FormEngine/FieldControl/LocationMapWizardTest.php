@@ -42,7 +42,7 @@ class LocationMapWizardTest extends BaseTestCase
 
         $data = [
             'databaseRow' => [
-                'latitude' => '12.1212',
+                'latitude'  => '12.1212',
                 'longitude' => '45.1212',
             ],
             'parameterArray' => [

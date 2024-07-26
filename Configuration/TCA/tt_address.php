@@ -2,128 +2,128 @@
 
 return [
     'ctrl' => [
-        'label' => 'name',
-        'label_alt' => 'last_name,first_name,email,pid',
-        'label_alt_force' => true,
-        'label_userFunc' => \FriendsOfTYPO3\TtAddress\Hooks\Tca\Label::class . '->getAddressLabel',
-        'languageField' => 'sys_language_uid',
-        'transOrigPointerField' => 'l10n_parent',
+        'label'                    => 'name',
+        'label_alt'                => 'last_name,first_name,email,pid',
+        'label_alt_force'          => true,
+        'label_userFunc'           => \FriendsOfTYPO3\TtAddress\Hooks\Tca\Label::class.'->getAddressLabel',
+        'languageField'            => 'sys_language_uid',
+        'transOrigPointerField'    => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
-        'sortby' => 'sorting',
-        'default_sortby' => 'ORDER BY last_name, first_name, middle_name',
-        'tstamp' => 'tstamp',
-        'crdate' => 'crdate',
-        'prependAtCopy' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.prependAtCopy',
-        'delete' => 'deleted',
-        'title' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address',
-        'versioningWS' => true,
-        'origUid' => 't3_origuid',
-        'thumbnail' => 'image',
-        'enablecolumns' => [
-            'disabled' => 'hidden',
+        'sortby'                   => 'sorting',
+        'default_sortby'           => 'ORDER BY last_name, first_name, middle_name',
+        'tstamp'                   => 'tstamp',
+        'crdate'                   => 'crdate',
+        'prependAtCopy'            => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.prependAtCopy',
+        'delete'                   => 'deleted',
+        'title'                    => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address',
+        'versioningWS'             => true,
+        'origUid'                  => 't3_origuid',
+        'thumbnail'                => 'image',
+        'enablecolumns'            => [
+            'disabled'  => 'hidden',
             'starttime' => 'starttime',
-            'endtime' => 'endtime',
-            'fe_group' => 'fe_group',
+            'endtime'   => 'endtime',
+            'fe_group'  => 'fe_group',
         ],
         'security' => [
             'ignorePageTypeRestriction' => true,
         ],
-        'iconfile' => 'EXT:tt_address/Resources/Public/Icons/tt_address.svg',
+        'iconfile'     => 'EXT:tt_address/Resources/Public/Icons/tt_address.svg',
         'searchFields' => 'name, first_name, middle_name, last_name, email',
     ],
     'columns' => [
         'pid' => [
-            'label' => 'pid',
+            'label'  => 'pid',
             'config' => [
                 'type' => 'passthrough',
             ],
         ],
         'crdate' => [
-            'label' => 'crdate',
+            'label'  => 'crdate',
             'config' => [
                 'type' => 'datetime',
             ],
         ],
         'tstamp' => [
-            'label' => 'tstamp',
+            'label'  => 'tstamp',
             'config' => [
                 'type' => 'datetime',
             ],
         ],
         'hidden' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
-            'config' => [
+            'label'   => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
+            'config'  => [
                 'type' => 'check',
             ],
         ],
         'starttime' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel',
-            'config' => [
+            'label'   => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel',
+            'config'  => [
                 'type' => 'datetime',
             ],
         ],
         'endtime' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel',
-            'config' => [
+            'label'   => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel',
+            'config'  => [
                 'type' => 'datetime',
             ],
         ],
         'fe_group' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.fe_group',
-            'config' => [
-                'type' => 'select',
+            'label'   => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.fe_group',
+            'config'  => [
+                'type'       => 'select',
                 'renderType' => 'selectMultipleSideBySide',
-                'size' => 5,
-                'maxitems' => 20,
-                'items' => [
+                'size'       => 5,
+                'maxitems'   => 20,
+                'items'      => [
                     ['label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login', 'value' => -1],
                     ['label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.any_login', 'value' => -2],
                     ['label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.usergroups', 'value' => '--div--'],
                 ],
-                'exclusiveKeys' => '-1,-2',
-                'foreign_table' => 'fe_groups',
+                'exclusiveKeys'       => '-1,-2',
+                'foreign_table'       => 'fe_groups',
                 'foreign_table_where' => 'ORDER BY fe_groups.title',
             ],
         ],
         'sys_language_uid' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
-            'config' => [
+            'label'   => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
+            'config'  => [
                 'type' => 'language',
             ],
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
-            'config' => [
-                'type' => 'select',
+            'label'       => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
+            'config'      => [
+                'type'       => 'select',
                 'renderType' => 'selectSingle',
-                'items' => [
+                'items'      => [
                     ['label' => '', 'value' => 0],
                 ],
-                'default' => 0,
-                'foreign_table' => 'tt_address',
+                'default'             => 0,
+                'foreign_table'       => 'tt_address',
                 'foreign_table_where' => 'AND tt_address.pid=###CURRENT_PID### AND tt_address.sys_language_uid IN (-1,0)',
             ],
         ],
         'l10n_diffsource' => [
             'config' => [
-                'type' => 'passthrough',
+                'type'    => 'passthrough',
                 'default' => '',
             ],
         ],
         'gender' => [
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender',
-            'l10n_mode' => 'exclude',
+            'label'        => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender',
+            'l10n_mode'    => 'exclude',
             'l10n_display' => 'defaultAsReadonly',
-            'config' => [
-                'type' => 'radio',
+            'config'       => [
+                'type'    => 'radio',
                 'default' => '',
-                'items' => [
+                'items'   => [
                     ['label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.m', 'value' => 'm'],
                     ['label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.f', 'value' => 'f'],
                     ['label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.gender.v', 'value' => 'v'],
@@ -133,12 +133,12 @@ return [
         ],
         'title' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.title_person',
-            'config' => [
-                'type' => 'input',
-                'size' => 8,
-                'eval' => 'trim',
-                'max' => 255,
+            'label'   => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.title_person',
+            'config'  => [
+                'type'      => 'input',
+                'size'      => 8,
+                'eval'      => 'trim',
+                'max'       => 255,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -146,95 +146,95 @@ return [
         ],
         'title_suffix' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.title_suffix',
-            'config' => [
-                'type' => 'input',
-                'size' => 8,
-                'eval' => 'trim',
-                'max' => 255,
+            'label'   => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.title_suffix',
+            'config'  => [
+                'type'      => 'input',
+                'size'      => 8,
+                'eval'      => 'trim',
+                'max'       => 255,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
             ],
         ],
         'slug' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:pages.slug',
+            'exclude'     => true,
+            'label'       => 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:pages.slug',
             'displayCond' => 'VERSION:IS:false',
-            'config' => [
-                'type' => 'slug',
-                'size' => 50,
+            'config'      => [
+                'type'             => 'slug',
+                'size'             => 50,
                 'generatorOptions' => [
-                    'fields' => ['first_name', 'middle_name', 'last_name'],
+                    'fields'         => ['first_name', 'middle_name', 'last_name'],
                     'fieldSeparator' => '-',
-                    'replacements' => [
+                    'replacements'   => [
                         '/' => '-',
                     ],
                 ],
                 'fallbackCharacter' => '-',
-                'eval' => 'unique',
-                'default' => '',
+                'eval'              => 'unique',
+                'default'           => '',
             ],
         ],
         'name' => [
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.name',
+            'label'  => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.name',
             'config' => [
                 'type' => 'input',
                 'size' => 40,
                 'eval' => 'trim',
-                'max' => 255,
+                'max'  => 255,
             ],
         ],
         'first_name' => [
-            'exclude' => false,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.first_name',
-            'l10n_mode' => 'exclude',
+            'exclude'      => false,
+            'label'        => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.first_name',
+            'l10n_mode'    => 'exclude',
             'l10n_display' => 'defaultAsReadonly',
-            'config' => [
+            'config'       => [
                 'type' => 'input',
                 'size' => 20,
                 'eval' => 'trim',
-                'max' => 255,
+                'max'  => 255,
             ],
         ],
         'middle_name' => [
-            'exclude' => false,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.middle_name',
-            'l10n_mode' => 'exclude',
+            'exclude'      => false,
+            'label'        => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.middle_name',
+            'l10n_mode'    => 'exclude',
             'l10n_display' => 'defaultAsReadonly',
-            'config' => [
+            'config'       => [
                 'type' => 'input',
                 'size' => 20,
                 'eval' => 'trim',
-                'max' => 255,
+                'max'  => 255,
             ],
         ],
         'last_name' => [
-            'exclude' => false,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.last_name',
-            'l10n_mode' => 'exclude',
+            'exclude'      => false,
+            'label'        => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.last_name',
+            'l10n_mode'    => 'exclude',
             'l10n_display' => 'defaultAsReadonly',
-            'config' => [
+            'config'       => [
                 'type' => 'input',
                 'size' => 20,
                 'eval' => 'trim',
-                'max' => 255,
+                'max'  => 255,
             ],
         ],
         'birthday' => [
-            'exclude' => true,
+            'exclude'      => true,
             'l10n_display' => 'defaultAsReadonly',
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.birthday',
-            'config' => [
+            'label'        => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.birthday',
+            'config'       => [
                 'type' => 'datetime',
             ],
         ],
         'address' => [
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.address',
+            'label'  => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.address',
             'config' => [
-                'type' => 'text',
-                'cols' => 20,
-                'rows' => 3,
+                'type'      => 'text',
+                'cols'      => 20,
+                'rows'      => 3,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -242,12 +242,12 @@ return [
         ],
         'building' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.building',
-            'config' => [
-                'type' => 'input',
-                'eval' => 'trim',
-                'size' => 20,
-                'max' => 255,
+            'label'   => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.building',
+            'config'  => [
+                'type'      => 'input',
+                'eval'      => 'trim',
+                'size'      => 20,
+                'max'       => 255,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -255,24 +255,24 @@ return [
         ],
         'room' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.room',
-            'config' => [
-                'type' => 'input',
-                'eval' => 'trim',
-                'size' => 15,
-                'max' => 255,
+            'label'   => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.room',
+            'config'  => [
+                'type'      => 'input',
+                'eval'      => 'trim',
+                'size'      => 15,
+                'max'       => 255,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
             ],
         ],
         'phone' => [
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.phone',
+            'label'  => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.phone',
             'config' => [
-                'type' => 'input',
-                'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class,
-                'size' => 20,
-                'max' => 30,
+                'type'      => 'input',
+                'eval'      => \FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class,
+                'size'      => 20,
+                'max'       => 30,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -280,12 +280,12 @@ return [
         ],
         'fax' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.fax',
-            'config' => [
-                'type' => 'input',
-                'size' => 20,
-                'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class,
-                'max' => 30,
+            'label'   => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.fax',
+            'config'  => [
+                'type'      => 'input',
+                'size'      => 20,
+                'eval'      => \FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class,
+                'max'       => 30,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -293,12 +293,12 @@ return [
         ],
         'mobile' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.mobile',
-            'config' => [
-                'type' => 'input',
-                'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class,
-                'size' => 20,
-                'max' => 30,
+            'label'   => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.mobile',
+            'config'  => [
+                'type'      => 'input',
+                'eval'      => \FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class,
+                'size'      => 20,
+                'max'       => 30,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -306,112 +306,112 @@ return [
         ],
         'www' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.www',
-            'config' => [
-                'type' => 'link',
+            'label'   => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.www',
+            'config'  => [
+                'type'      => 'link',
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
             ],
         ],
         'email' => [
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.email',
+            'label'  => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.email',
             'config' => [
                 'type' => 'email',
             ],
         ],
         'skype' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.skype',
-            'config' => [
-                'type' => 'input',
-                'size' => 20,
-                'eval' => 'trim',
-                'max' => 255,
+            'label'   => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.skype',
+            'config'  => [
+                'type'        => 'input',
+                'size'        => 20,
+                'eval'        => 'trim',
+                'max'         => 255,
                 'placeholder' => 'johndoe',
-                'behaviour' => [
+                'behaviour'   => [
                     'allowLanguageSynchronization' => true,
                 ],
             ],
         ],
         'twitter' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.twitter',
-            'config' => [
-                'type' => 'input',
-                'size' => 20,
-                'eval' => 'trim',
-                'max' => 255,
+            'label'   => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.twitter',
+            'config'  => [
+                'type'        => 'input',
+                'size'        => 20,
+                'eval'        => 'trim',
+                'max'         => 255,
                 'placeholder' => '@johndoe',
-                'behaviour' => [
+                'behaviour'   => [
                     'allowLanguageSynchronization' => true,
                 ],
             ],
         ],
         'facebook' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.facebook',
-            'config' => [
-                'type' => 'input',
-                'size' => 20,
-                'eval' => 'trim',
-                'max' => 255,
+            'label'   => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.facebook',
+            'config'  => [
+                'type'        => 'input',
+                'size'        => 20,
+                'eval'        => 'trim',
+                'max'         => 255,
                 'placeholder' => '/johndoe',
-                'behaviour' => [
+                'behaviour'   => [
                     'allowLanguageSynchronization' => true,
                 ],
             ],
         ],
         'instagram' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.instagram',
-            'config' => [
-                'type' => 'input',
-                'size' => 20,
-                'eval' => 'trim',
-                'max' => 255,
+            'label'   => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.instagram',
+            'config'  => [
+                'type'        => 'input',
+                'size'        => 20,
+                'eval'        => 'trim',
+                'max'         => 255,
                 'placeholder' => '@johndoe',
-                'behaviour' => [
+                'behaviour'   => [
                     'allowLanguageSynchronization' => true,
                 ],
             ],
         ],
         'tiktok' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.tiktok',
-            'config' => [
-                'type' => 'input',
-                'size' => 20,
-                'eval' => 'trim',
-                'max' => 255,
+            'label'   => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.tiktok',
+            'config'  => [
+                'type'        => 'input',
+                'size'        => 20,
+                'eval'        => 'trim',
+                'max'         => 255,
                 'placeholder' => '@johndoe',
-                'behaviour' => [
+                'behaviour'   => [
                     'allowLanguageSynchronization' => true,
                 ],
             ],
         ],
         'linkedin' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.linkedin',
-            'config' => [
-                'type' => 'input',
-                'size' => 20,
-                'eval' => 'trim',
-                'max' => 255,
+            'label'   => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.linkedin',
+            'config'  => [
+                'type'        => 'input',
+                'size'        => 20,
+                'eval'        => 'trim',
+                'max'         => 255,
                 'placeholder' => 'johndoe',
-                'behaviour' => [
+                'behaviour'   => [
                     'allowLanguageSynchronization' => true,
                 ],
             ],
         ],
         'company' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.organization',
-            'config' => [
-                'type' => 'input',
-                'eval' => 'trim',
-                'size' => 20,
-                'max' => 255,
+            'label'   => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.organization',
+            'config'  => [
+                'type'      => 'input',
+                'eval'      => 'trim',
+                'size'      => 20,
+                'max'       => 255,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -419,36 +419,36 @@ return [
         ],
         'position' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.position',
-            'config' => [
-                'type' => 'input',
-                'size' => 20,
-                'eval' => 'trim',
-                'max' => 255,
+            'label'   => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.position',
+            'config'  => [
+                'type'      => 'input',
+                'size'      => 20,
+                'eval'      => 'trim',
+                'max'       => 255,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
             ],
         ],
         'city' => [
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.city',
+            'label'  => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.city',
             'config' => [
-                'type' => 'input',
-                'size' => 20,
-                'eval' => 'trim',
-                'max' => 255,
+                'type'      => 'input',
+                'size'      => 20,
+                'eval'      => 'trim',
+                'max'       => 255,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
             ],
         ],
         'zip' => [
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.zip',
+            'label'  => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.zip',
             'config' => [
-                'type' => 'input',
-                'eval' => 'trim',
-                'size' => 10,
-                'max' => 20,
+                'type'      => 'input',
+                'eval'      => 'trim',
+                'size'      => 10,
+                'max'       => 20,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -456,12 +456,12 @@ return [
         ],
         'region' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.region',
-            'config' => [
-                'type' => 'input',
-                'size' => 10,
-                'eval' => 'trim',
-                'max' => 255,
+            'label'   => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.region',
+            'config'  => [
+                'type'      => 'input',
+                'size'      => 10,
+                'eval'      => 'trim',
+                'max'       => 255,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -469,12 +469,12 @@ return [
         ],
         'country' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.country',
-            'config' => [
-                'type' => 'input',
-                'size' => 20,
-                'eval' => 'trim',
-                'max' => 128,
+            'label'   => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.country',
+            'config'  => [
+                'type'      => 'input',
+                'size'      => 20,
+                'eval'      => 'trim',
+                'max'       => 128,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -482,12 +482,12 @@ return [
         ],
         'image' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.image',
-            'config' => [
-                'type' => 'file',
-                'maxItems' => 6,
+            'label'   => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.image',
+            'config'  => [
+                'type'       => 'file',
+                'maxItems'   => 6,
                 'appearance' => [
-                    'collapseAll' => true,
+                    'collapseAll'                => true,
                     'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
                 ],
                 'behaviour' => [
@@ -532,24 +532,24 @@ return [
         ],
         'description' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.description',
-            'config' => [
-                'type' => 'text',
-                'rows' => 5,
-                'cols' => 48,
-                'enableRichtext' => true,
+            'label'   => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.description',
+            'config'  => [
+                'type'                  => 'text',
+                'rows'                  => 5,
+                'cols'                  => 48,
+                'enableRichtext'        => true,
                 'richtextConfiguration' => 'default',
-                'softref' => 'typolink_tag,url',
-                'behaviour' => [
+                'softref'               => 'typolink_tag,url',
+                'behaviour'             => [
                     'allowLanguageSynchronization' => true,
                 ],
             ],
         ],
         'categories' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_category.categories',
-            'config' => [
-                'type' => 'category',
+            'label'   => 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_category.categories',
+            'config'  => [
+                'type'      => 'category',
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -557,11 +557,11 @@ return [
         ],
         'latitude' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.latitude',
-            'config' => [
-                'type' => 'input',
-                'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\LatitudeEvaluation::class,
-                'default' => null,
+            'label'   => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.latitude',
+            'config'  => [
+                'type'      => 'input',
+                'eval'      => \FriendsOfTYPO3\TtAddress\Evaluation\LatitudeEvaluation::class,
+                'default'   => null,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -569,11 +569,11 @@ return [
         ],
         'longitude' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.longitude',
-            'config' => [
-                'type' => 'input',
-                'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\LongitudeEvaluation::class,
-                'default' => null,
+            'label'   => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.longitude',
+            'config'  => [
+                'type'         => 'input',
+                'eval'         => \FriendsOfTYPO3\TtAddress\Evaluation\LongitudeEvaluation::class,
+                'default'      => null,
                 'fieldControl' => [
                     'locationMap' => ((new \TYPO3\CMS\Core\Information\Typo3Version())->getMajorVersion() < 13) ? [
                         'renderType' => 'locationMapWizard',
@@ -642,7 +642,7 @@ return [
             'showitem' => 'hidden',
         ],
         'paletteAccess' => [
-            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access',
+            'label'    => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access',
             'showitem' => '
                 starttime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel,
                 endtime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel,

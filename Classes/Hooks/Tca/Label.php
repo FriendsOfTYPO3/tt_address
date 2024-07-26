@@ -15,7 +15,7 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Dynamic label of the address record based on tsconfig
+ * Dynamic label of the address record based on tsconfig.
  */
 class Label
 {
@@ -55,6 +55,7 @@ class Label
             }
             if (!empty($label)) {
                 $params['title'] = implode(', ', $label);
+
                 return;
             }
         }
@@ -72,6 +73,7 @@ class Label
         foreach ($options as $option) {
             $configuration[] = GeneralUtility::trimExplode(',', $option, true);
         }
+
         return $configuration;
     }
 }

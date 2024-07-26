@@ -63,15 +63,16 @@ class AddressController extends ActionController
         $contentData = $currentContentObject instanceof ContentObjectRenderer ? $currentContentObject->data : [];
 
         $this->view->assignMultiple([
-            'address' => $address,
+            'address'           => $address,
             'contentObjectData' => $contentData,
         ]);
+
         return $this->htmlResponse();
     }
 
     /**
      * Lists addresses by settings in waterfall principle.
-     * singleRecords take precedence over categories which take precedence over records from pages
+     * singleRecords take precedence over categories which take precedence over records from pages.
      */
     public function listAction(?array $override = [])
     {
@@ -98,24 +99,25 @@ class AddressController extends ActionController
         // @todo remove with version 8
         $this->view->assign('newPagination', true);
         $this->view->assign('pagination', [
-            'paginator' => $paginator,
+            'paginator'  => $paginator,
             'pagination' => $pagination,
         ]);
 
         $this->view->assignMultiple([
-            'demand' => $demand,
-            'addresses' => $addresses,
+            'demand'            => $demand,
+            'addresses'         => $addresses,
             'contentObjectData' => $contentData,
         ]);
 
         CacheUtility::addCacheTagsByAddressRecords(
             $addresses instanceof QueryResultInterface ? $addresses->toArray() : $addresses
         );
+
         return $this->htmlResponse();
     }
 
     /**
-     * Injects the Configuration Manager and is initializing the framework settings
+     * Injects the Configuration Manager and is initializing the framework settings.
      *
      * @param ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
      */
@@ -197,6 +199,7 @@ class AddressController extends ActionController
                 ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
             }
         }
+
         return $demand;
     }
 
@@ -206,9 +209,10 @@ class AddressController extends ActionController
     }
 
     /**
-     * Removes dots at the end of a configuration array
+     * Removes dots at the end of a configuration array.
      *
      * @param array $settings the array to transformed
+     *
      * @return array $settings the transformed array
      */
     protected function removeDots(array $settings): array
@@ -217,11 +221,12 @@ class AddressController extends ActionController
         foreach ($settings as $key => $value) {
             $conf[$this->removeDotAtTheEnd($key)] = \is_array($value) ? $this->removeDots($value) : $value;
         }
+
         return $conf;
     }
 
     /**
-     * Removes a dot in the end of a String
+     * Removes a dot in the end of a String.
      *
      * @param string $string
      */
@@ -231,7 +236,7 @@ class AddressController extends ActionController
     }
 
     /**
-     * Retrieves subpages of given pageIds recursively until reached $this->settings['recursive']
+     * Retrieves subpages of given pageIds recursively until reached $this->settings['recursive'].
      *
      * @return array an array with all pageIds
      */
@@ -249,13 +254,16 @@ class AddressController extends ActionController
                 $pidList = array_merge($pidList, $subtreePids);
             }
         }
+
         return $pidList;
     }
 
     /**
      * @param QueryResultInterface|array $addresses
-     * @return ArrayPaginator|QueryResultPaginator
+     *
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException
+     *
+     * @return ArrayPaginator|QueryResultPaginator
      */
     protected function getPaginator($addresses): PaginatorInterface
     {
@@ -272,12 +280,13 @@ class AddressController extends ActionController
         } else {
             throw new \RuntimeException(sprintf('Only array and query result interface allowed for pagination, given "%s"', get_class($addresses)), 1611168593);
         }
+
         return $paginator;
     }
 
     /**
      * Checks if the address PID could be found in the storagePage settings of the detail plugin and
-     * if the pid is not found null is returned
+     * if the pid is not found null is returned.
      */
     protected function checkPidOfAddressRecord(Address $address): ?Address
     {

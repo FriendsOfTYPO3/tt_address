@@ -229,3 +229,4 @@ class LeafletBackendModule {
 }
 
 export default new LeafletBackendModule();
+

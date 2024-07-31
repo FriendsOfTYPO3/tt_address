@@ -575,9 +575,9 @@ return [
                 'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\LongitudeEvaluation::class,
                 'default' => null,
                 'fieldControl' => [
-                    'locationMap' => ((new \TYPO3\CMS\Core\Information\Typo3Version())->getMajorVersion() < 13) ? [
+                    'locationMap' => [
                         'renderType' => 'locationMapWizard',
-                    ] : [],
+                    ],
                 ],
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,

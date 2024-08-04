@@ -147,6 +147,21 @@ class AddressController extends ActionController
             }
         }
 
+        // Use stdWrap for given defined settings
+        if (isset($originalSettings['useStdWrap']) && !empty($originalSettings['useStdWrap'])) {
+            $typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
+            $typoScriptArray = $typoScriptService->convertPlainArrayToTypoScriptArray($originalSettings);
+            $stdWrapProperties = GeneralUtility::trimExplode(',', $originalSettings['useStdWrap'], true);
+            foreach ($stdWrapProperties as $key) {
+                if (is_array($typoScriptArray[$key . '.'])) {
+                    $originalSettings[$key] = $this->configurationManager->getContentObject()->stdWrap(
+                        $typoScriptArray[$key],
+                        $typoScriptArray[$key . '.']
+                    );
+                }
+            }
+        }
+
         // start override
         if (isset($tsSettings['settings']['overrideFlexformSettingsIfEmpty'])) {
             $typoScriptUtility = GeneralUtility::makeInstance(TypoScript::class);

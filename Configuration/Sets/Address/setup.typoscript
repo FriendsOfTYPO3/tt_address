@@ -1,0 +1,14 @@
+@import 'EXT:tt_addressConfiguration/TypoScript/setup.typoscript'
+plugin.tx_ttaddress {
+    view {
+        templateRootPaths {
+            1 = {$plugin.tx_ttaddress.view.templateRootPath ?? $tt_address.templateRootPath}
+        }
+        partialRootPaths {
+            1 = {$plugin.tx_ttaddress.view.partialRootPath ?? $tt_address.partialRootPath}
+        }
+        layoutRootPaths {
+            1 = {$plugin.tx_ttaddress.view.layoutRootPath ?? $tt_address.layoutRootPath}
+        }
+    }
+}

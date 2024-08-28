@@ -17,9 +17,9 @@ function ttAddressGoogleMaps() {
 
         var bounds = new google.maps.LatLngBounds();
 
-        var records = document.getElementById("ttaddress__records");
-        for (var i = 0; i < records.childNodes.length; i++) {
-            var item = records.childNodes[i];
+        var records = document.getElementById("ttaddress__records").children;
+        for (var i = 0; i < records.length; i++) {
+            var item = records[i];
 
             var marker = new google.maps.Marker({
                 map: obj.map,

@@ -22,11 +22,14 @@ function ttAddressGoogleMaps() {
         var records = document.getElementById("ttaddress__records").children;
         for (var i = 0; i < records.length; i++) {
             var item = records[i];
+            var recordId = item.getAttribute('data-id');
             var position = new google.maps.LatLng(item.getAttribute('data-lat'), item.getAttribute('data-lng'));
 
             var marker = new google.maps.marker.AdvancedMarkerElement({
                 map: obj.map,
                 position: position,
+                gmpClickable: true,
+                title: recordId,
             });
 
             google.maps.event.addListener(marker, 'click', function (e) {

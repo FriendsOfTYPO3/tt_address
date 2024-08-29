@@ -33,16 +33,16 @@ function ttAddressGoogleMaps() {
             });
 
             google.maps.event.addListener(marker, 'click', function (e) {
-                infoWindow.setContent(document.getElementById('ttaddress__record-' + this.recordId).innerHTML);
+                infoWindow.setContent(document.getElementById('ttaddress__record-' + marker.title).innerHTML);
                 infoWindow.open(obj.map, this);
 
                 var allLabels = document.querySelectorAll('.ttaddress__label');
                 for (var i = 0; i < allLabels.length; i++) {
                     allLabels[i].classList.remove('active')
                 }
-                document.getElementById('ttaddress__label-' + this.recordId).classList.add('active');
-
+                document.getElementById('ttaddress__label-' + marker.title).classList.add('active');
             });
+
             bounds.extend(position);
             obj.markers.push(marker);
         }

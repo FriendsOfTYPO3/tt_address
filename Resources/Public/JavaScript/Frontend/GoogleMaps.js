@@ -11,7 +11,8 @@ function ttAddressGoogleMaps() {
             zoom: 11,
             maxZoom: 15,
             streetViewControl: false,
-            fullscreenControl: false
+            fullscreenControl: false,
+            mapId: mapId, // Map ID is required for advanced markers.
         };
         obj.map = new google.maps.Map(document.getElementById('ttaddress__map'), mapOptions);
         infoWindow = new google.maps.InfoWindow();
@@ -21,12 +22,11 @@ function ttAddressGoogleMaps() {
         var records = document.getElementById("ttaddress__records").children;
         for (var i = 0; i < records.length; i++) {
             var item = records[i];
+            var position = new google.maps.LatLng(item.getAttribute('data-lat'), item.getAttribute('data-lng'));
 
-            var marker = new google.maps.Marker({
+            var marker = new google.maps.marker.AdvancedMarkerElement({
                 map: obj.map,
-                position: new google.maps.LatLng(item.getAttribute('data-lat'), item.getAttribute('data-lng')),
-                infowindow: infoWindow,
-                recordId: item.getAttribute('data-id')
+                position: position,
             });
 
             google.maps.event.addListener(marker, 'click', function (e) {
@@ -40,7 +40,7 @@ function ttAddressGoogleMaps() {
                 document.getElementById('ttaddress__label-' + this.recordId).classList.add('active');
 
             });
-            bounds.extend(marker.getPosition());
+            bounds.extend(position);
             obj.markers.push(marker);
         }
         obj.map.fitBounds(bounds);

@@ -1,5 +1,6 @@
 function ttAddressGoogleMaps() {
     var obj = {};
+    var mapId = document.getElementById("ttaddress_google_maps").getAttribute("data-mapId");
 
     obj.map = null;
     obj.markers = [];

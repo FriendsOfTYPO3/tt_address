@@ -18,7 +18,12 @@
             <script src="https://maps.googleapis.com/maps/api/js?key={settings.map.googleMaps.key}&v=weekly&libraries=marker"
                     type="text/javascript" defer></script>
 
-            <script type="text/javascript" src="{f:uri.resource(path:'JavaScript/Frontend/GoogleMaps.js')}"></script>
+            <script
+              type="text/javascript"
+              id="ttaddress_google_maps"
+              src="{f:uri.resource(path:'JavaScript/Frontend/GoogleMaps.js')}"
+              data-mapId="{settings.map.googleMaps.mapId}">
+            </script>
         </f:then>
         <f:else>
             <div class="alert alert-danger">{f:translate(key:'no_google_maps_key')}</div>

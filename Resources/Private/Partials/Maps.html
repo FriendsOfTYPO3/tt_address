@@ -15,8 +15,9 @@
         <f:then>
             <f:render section="rendering" arguments="{_all}"/>
 
-            <script src="https://maps.googleapis.com/maps/api/js?key={settings.map.googleMaps.key}"
-                    type="text/javascript"></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key={settings.map.googleMaps.key}&v=weekly&libraries=marker"
+                    type="text/javascript" defer></script>
+
             <script type="text/javascript" src="{f:uri.resource(path:'JavaScript/Frontend/GoogleMaps.js')}"></script>
         </f:then>
         <f:else>

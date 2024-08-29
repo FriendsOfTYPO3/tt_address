@@ -6,7 +6,7 @@ function ttAddressGoogleMaps() {
     obj.markers = [];
 
     obj.run = function () {
-        const mapOptions = {
+        var mapOptions = {
             center: new google.maps.LatLng(48.3057664, 14.2873126),
             zoom: 11,
             maxZoom: 15,
@@ -15,7 +15,7 @@ function ttAddressGoogleMaps() {
             mapId: mapId, // Map ID is required for advanced markers.
         };
         obj.map = new google.maps.Map(document.getElementById('ttaddress__map'), mapOptions);
-        infoWindow = new google.maps.InfoWindow();
+        var infoWindow = new google.maps.InfoWindow();
 
         var bounds = new google.maps.LatLngBounds();
 
@@ -25,7 +25,7 @@ function ttAddressGoogleMaps() {
             var recordId = item.getAttribute('data-id');
             var position = new google.maps.LatLng(item.getAttribute('data-lat'), item.getAttribute('data-lng'));
 
-            var marker = new google.maps.marker.AdvancedMarkerElement({
+            const marker = new google.maps.marker.AdvancedMarkerElement({
                 map: obj.map,
                 position: position,
                 gmpClickable: true,

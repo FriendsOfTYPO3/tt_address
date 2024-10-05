@@ -9,7 +9,7 @@
                project-issues="https://github.com/FriendsOfTYPO3/tt_address/issues"
                edit-on-github-branch="master"
                edit-on-github="https://github.com/FriendsOfTYPO3/tt_address"
-               typo3-core-preferred="stable"
+               typo3-core-preferred="main"
                interlink-shortcode="friendsoftypo3/tt-address"
     />
     <project title="Address List"

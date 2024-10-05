@@ -1,0 +1,16 @@
+settings:
+  tt_address.templateRootPath:
+    label: 'Path to template root (FE)'
+    description: ''
+    type: string
+    default: 'EXT:tt_address/Resources/Private/Templates/'
+  tt_address.partialRootPath:
+    label: 'Path to template partials (FE)'
+    description: ''
+    type: string
+    default: 'EXT:tt_address/Resources/Private/Partials/'
+  tt_address.layoutRootPath:
+    label: 'Path to template layouts (FE)'
+    description: ''
+    type: string
+    default: 'EXT:tt_address/Resources/Private/Layouts/'

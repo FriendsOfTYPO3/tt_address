@@ -1,0 +1,5 @@
+name: myvendor/my-sitepackage
+label: My Sitepackage
+dependencies:
+  - my-vendor/my-other-set
+  - friendsoftypo3/tt-address

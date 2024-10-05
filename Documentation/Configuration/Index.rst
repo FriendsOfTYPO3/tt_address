@@ -11,10 +11,11 @@ where you do all the configuration for this extension. That extension template c
 in the root template. In the extension template add the static TS configuration, otherwise it wont
 work!
 
-.. toctree::
+..  toctree::
     :maxdepth: 2
     :titlesonly:
 
+    Sets/Index
     ExtensionSettings/Index
     TypoScript/Index
     TsConfig/Index

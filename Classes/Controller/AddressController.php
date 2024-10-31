@@ -49,7 +49,7 @@ class AddressController extends ActionController
 
     public function showAction(?Address $address = null)
     {
-        if ((int)($this->settings['singleRecords'] ?? 0) && !($this->settings['allowOverride'] ?? false) && ($this->settings['displayMode'] ?? '' === 'single')) {
+        if ((int) ($this->settings['singleRecords'] ?? 0) && !($this->settings['allowOverride'] ?? false) && ($this->settings['displayMode'] ?? '' === 'single')) {
             $address = $this->addressRepository->findByUid($this->settings['singleRecords']);
         } elseif (is_a($address, Address::class) && ($this->settings['detail']['checkPidOfAddressRecord'] ?? false)) {
             $address = $this->checkPidOfAddressRecord($address);

@@ -168,6 +168,7 @@ Settings
          settings {
             map {
                googleMaps.key = ABCDEFG123
+               googleMaps.mapId = DEMO_MAP_ID
                rendering = googleMaps
             }
          }
@@ -179,6 +180,14 @@ Settings
    :type: string
 
    Key for variant **Google Maps**
+
+.. confval:: settings.map.googleMaps.mapId
+
+   :Path: plugin.tx_ttaddress
+   :type: string
+
+   Map ID for **Google Maps**
+   See: `official docs <https://developers.google.com/maps/documentation/get-map-id>`__
 
 .. confval:: map.staticGoogleMaps.parameters
 

@@ -200,31 +200,28 @@ class LeafletBackendModule {
       .classList.remove("active");
   }
 
-  geocode() {
-    async function fetchGeoData() {
-      try {
-        let response = await fetch(this.geoCodeUrl);
-        let data = await response.json();
+  async geocode() {
+    try {
+      let response = await fetch(this.geoCodeUrl);
+      let data = await response.json();
 
-        if (data.length === 0) {
-          response = await fetch(this.geoCodeUrlShort);
-          data = await response.json();
-        }
-
-        if (data.length !== 0) {
-          const firstResult = data[0];
-          if ("lat" in firstResult) {
-            this.latitude = firstResult.lat;
-          }
-          if ("lon" in firstResult) {
-            this.longitude = firstResult.lon;
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching geo data:", error);
+      if (data.length === 0) {
+        response = await fetch(this.geoCodeUrlShort);
+        data = await response.json();
       }
+
+      if (data.length !== 0) {
+        const firstResult = data[0];
+        if ("lat" in firstResult) {
+          this.latitude = firstResult.lat;
+        }
+        if ("lon" in firstResult) {
+          this.longitude = firstResult.lon;
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching geo data:", error);
     }
-    fetchGeoData();
   }
 }
 

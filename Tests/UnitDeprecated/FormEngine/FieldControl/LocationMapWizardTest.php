@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Tests\UnitDeprecated\FormEngine\FieldControl;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -21,11 +22,11 @@ class LocationMapWizardTest extends BaseTestCase
      */
     public function languageServiceIsReturned()
     {
-        $languageService = $this->getAccessibleMock(LanguageService::class, ['dummy'], [], '', false, false);
+        $languageService = $this->getAccessibleMock(LanguageService::class, null, [], '', false, false);
         $GLOBALS['LANG'] = $languageService;
 
-        $subject = $this->getAccessibleMock(LocationMapWizard::class, ['dummy'], [], '', false);
-        $this->assertEquals($languageService, $subject->_call('getLanguageService'));
+        $subject = $this->getAccessibleMock(LocationMapWizard::class, null, [], '', false);
+        self::assertEquals($languageService, $subject->_call('getLanguageService'));
     }
 
     /**
@@ -34,10 +35,10 @@ class LocationMapWizardTest extends BaseTestCase
     public function properResultArrayIsReturned()
     {
         $languageService = $this->getAccessibleMock(LanguageService::class, ['sL'], [], '', false);
-        $languageService->expects($this->any())->method('sL')->willReturn('label');
+        $languageService->expects(self::any())->method('sL')->willReturn('label');
 
         $subject = $this->getAccessibleMock(LocationMapWizard::class, ['getLanguageService'], [], '', false);
-        $subject->expects($this->any())->method('getLanguageService')->willReturn($languageService);
+        $subject->expects(self::any())->method('getLanguageService')->willReturn($languageService);
 
         $data = [
             'databaseRow' => [
@@ -51,6 +52,6 @@ class LocationMapWizardTest extends BaseTestCase
         $subject->_set('data', $data);
 
         $result = $subject->render();
-        $this->assertEquals('location-map-wizard', $result['iconIdentifier']);
+        self::assertEquals('location-map-wizard', $result['iconIdentifier']);
     }
 }

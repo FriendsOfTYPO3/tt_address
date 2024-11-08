@@ -1,0 +1,25 @@
+8.1.1 - 10th July 2024
+======================
+
+.. include:: /Includes.rst.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2024-07-09 fix: make preview renderer compatible with typo3 12.4.17 (#554) (Commit e909317 by Maik Schneider)
+   2024-05-06 [BUGFIX] Fix notice (Commit 06edeb5 by Georg Ringer)
+
+
+This list has been created by using:
+
+.. code-block:: shell
+
+   git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short

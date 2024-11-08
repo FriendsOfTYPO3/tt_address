@@ -5,6 +5,11 @@
 
 Working with the templates
 ==========================
+
+..  versionchanged:: tt_address 9.1.0 /  TYPO3 v13.3
+    You can use the :ref:`site set <configuration-extension-sets>` to configure
+    the template paths.
+
 The following tutorials describe how to work best with the provided templates
 
 Modify the templates

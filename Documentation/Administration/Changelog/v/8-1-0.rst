@@ -1,0 +1,28 @@
+8.1.0 - 1st May 2024
+====================
+
+.. include:: /Includes.rst.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2024-05-01 [FEATURE] Make insert record available #508 (Commit c596fa3 by Georg Ringer)
+   2024-05-01 [BUGFIX] Add workspace overlay in label hook #525 (Commit f8b7a93 by Georg Ringer)
+   2024-05-01 [TASK] Drop unused setting backwardsCompatFormat #510 (Commit 5bf71b5 by Georg Ringer)
+   2024-05-01 [BUGFIX] Check record in Label hook #513 (Commit 95d127a by Georg Ringer)
+   2024-03-20 [TASK] Use Connection instead of PDO (#520) (Commit 0ae85fb by Eric Harrer)
+   2024-03-04 [DOCS] Switch to PHP-based documentation rendering (#519) (Commit 197c2fc by Lina Wolf)
+
+This list has been created by using:
+
+.. code-block:: shell
+
+   git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short

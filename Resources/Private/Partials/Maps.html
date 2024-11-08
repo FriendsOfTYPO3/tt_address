@@ -4,9 +4,9 @@
 
     <f:render section="rendering" arguments="{_all}"/>
 
-    <f:asset.css identifier="ttaddress-leaflet" href="EXT:tt_address/Resources/Public/Contrib/leaflet-core-1.4.0.css" />
+    <f:asset.css identifier="ttaddress-leaflet" href="EXT:tt_address/Resources/Public/Contrib/leaflet-1.9.4.css" />
     <f:asset.css identifier="ttaddress" href="EXT:tt_address/Resources/Public/Styles/basic.css" />
-    <f:asset.script identifier="ttaddress-leaflet-core" src="EXT:tt_address/Resources/Public/JavaScript/leaflet-core-1.4.0.js" />
+    <f:asset.script identifier="ttaddress-leaflet-core" src="EXT:tt_address/Resources/Public/JavaScript/leaflet-1.9.4.min.js" />
     <f:asset.script identifier="ttaddress-leaflet" src="EXT:tt_address/Resources/Public/JavaScript/Frontend/Leaflet.js" />
 </f:section>
 
@@ -15,9 +15,15 @@
         <f:then>
             <f:render section="rendering" arguments="{_all}"/>
 
-            <script src="https://maps.googleapis.com/maps/api/js?key={settings.map.googleMaps.key}"
-                    type="text/javascript"></script>
-            <script type="text/javascript" src="{f:uri.resource(path:'JavaScript/Frontend/GoogleMaps.js')}"></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key={settings.map.googleMaps.key}&v=weekly&libraries=marker"
+                    type="text/javascript" defer></script>
+
+            <script
+              type="text/javascript"
+              id="ttaddress_google_maps"
+              src="{f:uri.resource(path:'JavaScript/Frontend/GoogleMaps.js')}"
+              data-mapId="{settings.map.googleMaps.mapId}">
+            </script>
         </f:then>
         <f:else>
             <div class="alert alert-danger">{f:translate(key:'no_google_maps_key')}</div>

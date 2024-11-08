@@ -1,18 +1,20 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\FormEngine;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\ArrayParameterType;
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
 use TYPO3\CMS\Core\Service\FlexFormService;
@@ -42,10 +44,14 @@ class TtAddressPreviewRenderer extends StandardContentPreviewRenderer
         ],
     ];
 
-    protected function renderContentElementPreviewFromFluidTemplate(array $row): ?string
+    public function __invoke(PageContentPreviewRenderingEvent $event): void
     {
+        $row = $event->getRecord();
+        if ($row['list_type'] !== 'ttaddress_listview') {
+            return;
+        }
         $row = $this->enrichRow($row);
-        return parent::renderContentElementPreviewFromFluidTemplate($row);
+        $event->setRecord($row);
     }
 
     protected function enrichRow(array $row): array
@@ -78,7 +84,7 @@ class TtAddressPreviewRenderer extends StandardContentPreviewRenderer
             ->where(
                 $queryBuilder->expr()->in(
                     'uid',
-                    $queryBuilder->createNamedParameter(GeneralUtility::intExplode(',', $idList, true), Connection::PARAM_INT_ARRAY)
+                    $queryBuilder->createNamedParameter(GeneralUtility::intExplode(',', $idList, true), ArrayParameterType::INTEGER)
                 )
             )
             ->executeQuery()

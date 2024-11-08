@@ -1,10 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Service;
 
 use TYPO3\CMS\Core\Cache\CacheManager;
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -12,6 +13,7 @@ use TYPO3\CMS\Core\Cache\CacheManager;
  */
 use TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryHelper;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
@@ -28,7 +30,7 @@ class GeocodeService implements SingletonInterface
     /** @var int */
     protected $cacheTime = 7776000;
 
-    /** @var string  */
+    /** @var string */
     protected $geocodingUrl = 'https://maps.googleapis.com/maps/api/geocode/json?language=de&sensor=false';
 
     public function __construct(string $googleMapsKey = '')
@@ -44,7 +46,6 @@ class GeocodeService implements SingletonInterface
      * helpful when calculating a batch of addresses and save the latitude/longitude automatically
      *
      * @param string $addWhereClause
-     * @return int
      */
     public function calculateCoordinatesForAllRecordsInTable($addWhereClause = ''): int
     {
@@ -68,10 +69,10 @@ class GeocodeService implements SingletonInterface
             ->where(
                 $queryBuilder->expr()->or(
                     $queryBuilder->expr()->isNull($latitudeField),
-                    $queryBuilder->expr()->eq($latitudeField, $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
+                    $queryBuilder->expr()->eq($latitudeField, $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
                     $queryBuilder->expr()->eq($latitudeField, 0.00000000000),
                     $queryBuilder->expr()->isNull($longitudeField),
-                    $queryBuilder->expr()->eq($longitudeField, $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
+                    $queryBuilder->expr()->eq($longitudeField, $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
                     $queryBuilder->expr()->eq($longitudeField, 0.00000000000)
                 )
             )
@@ -96,7 +97,7 @@ class GeocodeService implements SingletonInterface
                                 $longitudeField => $coords['longitude'],
                             ],
                             [
-                                'uid' => $record['uid']
+                                'uid' => $record['uid'],
                             ]
                         );
                     }
@@ -151,10 +152,6 @@ class GeocodeService implements SingletonInterface
         return $result;
     }
 
-    /**
-     * @param string $url
-     * @return array
-     */
     protected function getApiCallResult(string $url): array
     {
         $response = GeneralUtility::getUrl($url);
@@ -168,7 +165,6 @@ class GeocodeService implements SingletonInterface
     /**
      * Initializes the cache for the DB requests.
      *
-     * @param string $name
      * @return FrontendInterface Cache Object
      */
     protected function initializeCache(string $name = 'ttaddress_geocoding'): FrontendInterface

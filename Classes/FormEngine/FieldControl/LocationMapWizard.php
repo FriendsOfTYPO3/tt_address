@@ -1,28 +1,25 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
+
 namespace FriendsOfTYPO3\TtAddress\FormEngine\FieldControl;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use TYPO3\CMS\Backend\Form\AbstractNode;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Localization\LanguageService;
-use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\StringUtility;
 
 /**
  * Adds a wizard for location selection via map
  */
 class LocationMapWizard extends AbstractNode
 {
-    /**
-     * @return array
-     */
     public function render(): array
     {
         $row = $this->data['databaseRow'];
@@ -48,7 +45,7 @@ class LocationMapWizard extends AbstractNode
                 // base url
                 $geoCodeUrlBase = 'https://nominatim.openstreetmap.org/search?q=';
                 $geoCodeUrlAddress = $address;
-                $geoCodeUrlCityOnly = ($row['city'] ?? '');
+                $geoCodeUrlCityOnly = $row['city'] ?? '';
                 // urlparams for nominatim which are fixed.
                 $geoCodeUrlQuery = '&format=json&addressdetails=1&limit=1&polygon_svg=1';
                 // replace newlines with spaces; remove multiple spaces
@@ -74,29 +71,15 @@ class LocationMapWizard extends AbstractNode
         $resultArray['linkAttributes']['data-namelat-active'] = htmlspecialchars($nameLatitudeActive);
         $resultArray['linkAttributes']['data-tiles'] = htmlspecialchars('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
         $resultArray['linkAttributes']['data-copy'] = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
-        $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Contrib/leaflet-core-1.4.0.css';
+        $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Contrib/leaflet-1.9.4.css';
         $resultArray['stylesheetFiles'][] = 'EXT:tt_address/Resources/Public/Backend/LocationMapWizard/leafletBackend.css';
 
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion();
-        if ($versionInformation > 11) {
-            $id = StringUtility::getUniqueId('t3js-formengine-fieldcontrol-');
-            $resultArray['requireJsModules'][] = JavaScriptModuleInstruction::forRequireJS(
-                'TYPO3/CMS/TtAddress/leaflet-core-1.4.0'
-            )->instance($id);
-            $resultArray['requireJsModules'][] = JavaScriptModuleInstruction::forRequireJS(
-                'TYPO3/CMS/TtAddress/LeafletBackend'
-            )->instance($id);
-        } else {
-            $resultArray['requireJsModules'][] = 'TYPO3/CMS/TtAddress/leaflet-core-1.4.0';
-            $resultArray['requireJsModules'][] = 'TYPO3/CMS/TtAddress/LeafletBackend';
-        }
+        $pageRenderer = GeneralUtility::makeInstance('TYPO3\CMS\Core\Page\PageRenderer');
+        $pageRenderer->loadJavaScriptModule('@friendsoftypo3/tt-address/leaflet-backend.js');
 
         return $resultArray;
     }
 
-    /**
-     * @return LanguageService
-     */
     protected function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];

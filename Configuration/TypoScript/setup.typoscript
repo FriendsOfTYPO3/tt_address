@@ -85,3 +85,20 @@ plugin.tx_ttaddress {
         }
     }
 }
+
+
+# Rendering of tt_address, displayed by "Insert Record" content element
+tt_content.shortcut.variables.shortcuts.tables := addToList(tt_address)
+tt_content.shortcut.variables.shortcuts.conf.tt_address = USER
+tt_content.shortcut.variables.shortcuts.conf.tt_address {
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    extensionName = TtAddress
+    pluginName = ListView
+    vendorName = FriendsOfTYPO3
+
+    settings =< plugin.tx_ttaddress.settings
+    settings {
+        displayMode = single
+        insertRecord = 1
+    }
+}

@@ -1,8 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Database;
 
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -27,11 +29,12 @@ class QueryGenerator
      * @param int $begin
      * @return string comma separated list of descendant pages
      */
+    // @extensionScannerIgnoreLine
     public function getTreeList($id, $depth, $begin = 0): string
     {
-        $depth = (int)$depth;
-        $begin = (int)$begin;
-        $id = (int)$id;
+        $depth = (int) $depth;
+        $begin = (int) $begin;
+        $id = (int) $id;
         if ($id < 0) {
             $id = abs($id);
         }
@@ -46,7 +49,7 @@ class QueryGenerator
             $queryBuilder->select('uid')
                 ->from('pages')
                 ->where(
-                    $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT)),
+                    $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($id, Connection::PARAM_INT)),
                     $queryBuilder->expr()->eq('sys_language_uid', 0)
                 )
                 ->orderBy('uid');
@@ -65,6 +68,6 @@ class QueryGenerator
                 }
             }
         }
-        return (string)$theList;
+        return (string) $theList;
     }
 }

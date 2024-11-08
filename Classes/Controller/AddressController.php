@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Controller;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -27,10 +28,8 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
-/**
- * AddressController
- */
 class AddressController extends ActionController
 {
     /** @var AddressRepository */
@@ -42,27 +41,32 @@ class AddressController extends ActionController
     /** @var Settings */
     protected $extensionConfiguration;
 
-    public function initializeAction()
+    public function initializeAction(): void
     {
         $this->queryGenerator = GeneralUtility::makeInstance(QueryGenerator::class);
         $this->extensionConfiguration = GeneralUtility::makeInstance(Settings::class);
     }
 
-    public function showAction(Address $address = null)
+    public function showAction(?Address $address = null)
     {
-        if (is_a($address, Address::class) && ($this->settings['detail']['checkPidOfAddressRecord'] ?? false)) {
+        if ((int) ($this->settings['singleRecords'] ?? 0) && !($this->settings['allowOverride'] ?? false) && ($this->settings['displayMode'] ?? '' === 'single')) {
+            $address = $this->addressRepository->findByUid($this->settings['singleRecords']);
+        } elseif (is_a($address, Address::class) && ($this->settings['detail']['checkPidOfAddressRecord'] ?? false)) {
             $address = $this->checkPidOfAddressRecord($address);
         }
 
         if ($address !== null) {
             $provider = GeneralUtility::makeInstance(AddressTitleProvider::class);
-            $provider->setTitle($address, (array)($this->settings['seo']['pageTitle'] ?? []));
+            $provider->setTitle($address, (array) ($this->settings['seo']['pageTitle'] ?? []));
             CacheUtility::addCacheTagsByAddressRecords([$address]);
         }
 
+        $currentContentObject = $this->request->getAttribute('currentContentObject');
+        $contentData = $currentContentObject instanceof ContentObjectRenderer ? $currentContentObject->data : [];
+
         $this->view->assignMultiple([
             'address' => $address,
-            'contentObjectData' => $this->configurationManager->getContentObject()->data,
+            'contentObjectData' => $contentData,
         ]);
         return $this->htmlResponse();
     }
@@ -70,11 +74,16 @@ class AddressController extends ActionController
     /**
      * Lists addresses by settings in waterfall principle.
      * singleRecords take precedence over categories which take precedence over records from pages
-     *
      */
     public function listAction(?array $override = [])
     {
+        $currentContentObject = $this->request->getAttribute('currentContentObject');
+        $contentData = $currentContentObject instanceof ContentObjectRenderer ? $currentContentObject->data : [];
         $demand = $this->createDemandFromSettings();
+
+        if (isset($contentData['first_name'], $contentData['birthday']) && (int) ($this->settings['insertRecord'] ?? 0) === 1) {
+            $demand->setSingleRecords((string) $contentData['uid']);
+        }
 
         if (!empty($override) && $this->settings['allowOverride']) {
             $this->overrideDemand($demand, $override);
@@ -98,7 +107,7 @@ class AddressController extends ActionController
         $this->view->assignMultiple([
             'demand' => $demand,
             'addresses' => $addresses,
-            'contentObjectData' => $this->configurationManager->getContentObject()->data,
+            'contentObjectData' => $contentData,
         ]);
 
         CacheUtility::addCacheTagsByAddressRecords(
@@ -112,7 +121,7 @@ class AddressController extends ActionController
      *
      * @param ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
      */
-    public function injectConfigurationManager(ConfigurationManagerInterface $configurationManager)
+    public function injectConfigurationManager(ConfigurationManagerInterface $configurationManager): void
     {
         parent::injectConfigurationManager($configurationManager);
         $this->configurationManager = $configurationManager;
@@ -125,7 +134,7 @@ class AddressController extends ActionController
         );
 
         // correct the array to be in same shape like the _SETTINGS array
-        $tsSettings = $this->removeDots((array)($tsSettings['plugin.']['tx_ttaddress.'] ?? []));
+        $tsSettings = $this->removeDots((array) ($tsSettings['plugin.']['tx_ttaddress.'] ?? []));
 
         // get original settings
         // original means: what extbase does by munching flexform and TypoScript together, but leaving empty flexform-settings empty ...
@@ -152,18 +161,18 @@ class AddressController extends ActionController
     protected function createDemandFromSettings(): Demand
     {
         $demand = new Demand();
-        $demand->setCategories((string)($this->settings['groups'] ?? ''));
-        $categoryCombination = (int)($this->settings['groupsCombination'] ?? 1) === 1 ? 'or' : 'and';
+        $demand->setCategories((string) ($this->settings['groups'] ?? ''));
+        $categoryCombination = (int) ($this->settings['groupsCombination'] ?? 1) === 1 ? 'or' : 'and';
         $demand->setCategoryCombination($categoryCombination);
-        $demand->setIncludeSubCategories((bool)($this->settings['includeSubcategories'] ?? false));
+        $demand->setIncludeSubCategories((bool) ($this->settings['includeSubcategories'] ?? false));
 
-        if ($this->settings['pages']) {
+        if ($this->settings['pages'] ?? false) {
             $demand->setPages($this->getPidList());
         }
-        $demand->setSingleRecords((string)($this->settings['singleRecords'] ?? ''));
-        $demand->setSortBy((string)($this->settings['sortBy'] ?? ''));
-        $demand->setSortOrder((string)($this->settings['sortOrder'] ?? ''));
-        $demand->setIgnoreWithoutCoordinates((bool)($this->settings['ignoreWithoutCoordinates'] ?? false));
+        $demand->setSingleRecords((string) ($this->settings['singleRecords'] ?? ''));
+        $demand->setSortBy((string) ($this->settings['sortBy'] ?? ''));
+        $demand->setSortOrder((string) ($this->settings['sortOrder'] ?? ''));
+        $demand->setIgnoreWithoutCoordinates((bool) ($this->settings['ignoreWithoutCoordinates'] ?? false));
 
         return $demand;
     }
@@ -193,9 +202,6 @@ class AddressController extends ActionController
         return $demand;
     }
 
-    /**
-     * @param AddressRepository $addressRepository
-     */
     public function injectAddressRepository(AddressRepository $addressRepository)
     {
         $this->addressRepository = $addressRepository;
@@ -220,11 +226,10 @@ class AddressController extends ActionController
      * Removes a dot in the end of a String
      *
      * @param string $string
-     * @return string
      */
     protected function removeDotAtTheEnd($string): string
     {
-        return preg_replace('/\.$/', '', (string)$string);
+        return preg_replace('/\.$/', '', (string) $string);
     }
 
     /**
@@ -239,7 +244,8 @@ class AddressController extends ActionController
 
         // iterate through root-page ids and merge to array
         foreach ($rootPIDs as $pid) {
-            $result = $this->queryGenerator->getTreeList($pid, (int)($this->settings['recursive'] ?? 0));
+            // @extensionScannerIgnoreLine
+            $result = $this->queryGenerator->getTreeList($pid, (int) ($this->settings['recursive'] ?? 0));
             if ($result) {
                 $subtreePids = explode(',', $result);
                 $pidList = array_merge($pidList, $subtreePids);
@@ -255,8 +261,8 @@ class AddressController extends ActionController
      */
     protected function getPaginator($addresses): PaginatorInterface
     {
-        $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
-        $itemsPerPage = (int)($this->settings['paginate']['itemsPerPage'] ?? 10);
+        $currentPage = $this->request->hasArgument('currentPage') ? (int) $this->request->getArgument('currentPage') : 1;
+        $itemsPerPage = (int) ($this->settings['paginate']['itemsPerPage'] ?? 10);
         if ($itemsPerPage === 0) {
             $itemsPerPage = 10;
         }
@@ -274,9 +280,6 @@ class AddressController extends ActionController
     /**
      * Checks if the address PID could be found in the storagePage settings of the detail plugin and
      * if the pid is not found null is returned
-     *
-     * @param Address $address
-     * @return Address|null
      */
     protected function checkPidOfAddressRecord(Address $address): ?Address
     {

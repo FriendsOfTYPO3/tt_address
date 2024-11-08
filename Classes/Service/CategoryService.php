@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Service;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -13,7 +14,6 @@ use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\TimeTracker\TimeTracker;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -31,9 +31,7 @@ class CategoryService
     public function __construct()
     {
         $this->timeTracker = GeneralUtility::makeInstance(TimeTracker::class);
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion();
-        $cacheIdentifier = $versionInformation >= 11 ? 'ttaddress_category' : 'cache_ttaddress_category';
-        $this->cache = GeneralUtility::makeInstance(CacheManager::class)->getCache($cacheIdentifier);
+        $this->cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('ttaddress_category');
     }
 
     /**
@@ -41,7 +39,6 @@ class CategoryService
      * and using the caching framework to save some queries
      *
      * @param string $idList list of category ids to start
-     * @param int $counter
      * @return string comma separated list of category ids
      */
     public function getChildrenCategories(string $idList, int $counter = 0)
@@ -92,19 +89,15 @@ class CategoryService
                 $this->timeTracker->setTSlogMessage('EXT:tt_address: one or more recursive categories where found');
                 return implode(',', $result);
             }
-            $subcategories = $this->getChildrenCategoriesRecursive((string)$row['uid'], $counter);
+            $subcategories = $this->getChildrenCategoriesRecursive((string) $row['uid'], $counter);
             $result[] = $row['uid'] . ($subcategories ? ',' . $subcategories : '');
         }
 
-        $result = implode(',', $result);
-        return $result;
+        return implode(',', $result);
     }
 
     /**
      * Fetch ids again from DB to avoid false positives
-     *
-     * @param string $idList
-     * @return string
      */
     protected function getUidListFromRecords(string $idList): string
     {

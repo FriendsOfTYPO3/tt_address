@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Seo;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -21,10 +22,6 @@ class AddressTitleProvider extends AbstractPageTitleProvider
     private const DEFAULT_PROPERTIES = 'firstName,middleName,lastName';
     private const DEFAULT_GLUE = '" "';
 
-    /**
-     * @param Address $address
-     * @param array $configuration
-     */
     public function setTitle(Address $address, array $configuration = []): void
     {
         $titleFields = [];

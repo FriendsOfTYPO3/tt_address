@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Domain\Model;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -28,172 +29,106 @@ class Address extends AbstractEntity
      */
     protected $hidden = false;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $gender = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $name = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $firstName = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $middleName = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $lastName = '';
 
-    /**
-     * @var \DateTime|null
-     */
+    /** @var \DateTime|null */
     protected $birthday;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $title = '';
 
     /** @var string */
     protected $titleSuffix = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $address = '';
 
-    /**
-     * @var float
-     */
+    /** @var float */
     protected $latitude = 0;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     protected $longitude = 0;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $building = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $room = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $phone = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $fax = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $mobile = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $www = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $slug = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $skype = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $twitter = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $facebook = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $instagram = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $tiktok = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $linkedin = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $email = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $company = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $position = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $city = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $zip = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $region = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $country = '';
 
-    /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
-     */
+    /** @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> */
     protected $image;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $description = '';
 
-    /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Category>
-     */
+    /** @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Category> */
     protected $categories;
 
     public function __construct()
@@ -282,17 +217,11 @@ class Address extends AbstractEntity
         return $this->title;
     }
 
-    /**
-     * @return string
-     */
     public function getTitleSuffix(): string
     {
         return $this->titleSuffix;
     }
 
-    /**
-     * @param string $titleSuffix
-     */
     public function setTitleSuffix(string $titleSuffix): void
     {
         $this->titleSuffix = $titleSuffix;
@@ -627,8 +556,6 @@ class Address extends AbstractEntity
 
     /**
      * Get full name including title, first, middle and last name
-     *
-     * @return string
      */
     public function getFullName(): string
     {

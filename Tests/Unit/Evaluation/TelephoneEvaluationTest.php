@@ -1,34 +1,36 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTypo3\TtAddress\Tests\Unit\Utility;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation;
-use Prophecy\PhpUnit\ProphecyTrait;
 use TYPO3\CMS\Core\Package\PackageManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class TelephoneEvaluationTest extends BaseTestCase
 {
-    use ProphecyTrait;
-
-    /** @var TelephoneEvaluation */
-    protected $subject;
+    protected TelephoneEvaluation $subject;
 
     public function setUp(): void
     {
-        $this->subject = new TelephoneEvaluation();
+        $this->subject = $this->getAccessibleMock(TelephoneEvaluation::class, null, [], '', false);
 
-        $packageManagerProphecy = $this->prophesize(PackageManager::class);
-        GeneralUtility::setSingletonInstance(PackageManager::class, $packageManagerProphecy->reveal());
+        $settings = $this->getAccessibleMock(Settings::class, null, [], '', false);
+        $settings->_set('telephoneValidationPatternForPhp', '/[^\d\+\s\-]/');
+        $this->subject->_set('extensionSettings', $settings);
+
+        $packageManager = $this->getAccessibleMock(PackageManager::class, null, [], '', false);
+        GeneralUtility::setSingletonInstance(PackageManager::class, $packageManager);
     }
 
     /**
@@ -36,44 +38,32 @@ class TelephoneEvaluationTest extends BaseTestCase
      */
     public function constructorIsCalled()
     {
-        $subject = $this->getAccessibleMock(TelephoneEvaluation::class, ['dummy'], [], '', true);
+        $subject = $this->getAccessibleMock(TelephoneEvaluation::class, null, [], '', true);
 
         $settings = new Settings();
-        $this->assertEquals($settings, $subject->_get('extensionSettings'));
+        self::assertEquals($settings, $subject->_get('extensionSettings'));
     }
 
     /**
-     * @test
-     */
-    public function jsEvaluationIsCalled()
-    {
-        $this->assertNotEmpty($this->subject->returnFieldJS());
-    }
-
-    /**
-     * @param $given
-     * @param $expected
      * @test
      * @dataProvider telephoneIsProperlyEvaluatedDataProvider
      */
     public function telephoneIsProperlyEvaluated($given, $expected)
     {
-        $this->assertEquals($expected, $this->subject->evaluateFieldValue($given));
+        self::assertEquals($expected, $this->subject->evaluateFieldValue($given));
     }
 
     /**
-     * @param $given
-     * @param $expected
      * @test
      * @dataProvider telephoneIsProperlyEvaluatedDataProvider
      */
-    public function telephoneIsProperlyDeEvaluated($given, $expected)
+    public function telephoneIsProperlyDeEvaluated($given, $expected): void
     {
         $params = ['value' => $given];
-        $this->assertEquals($expected, $this->subject->deevaluateFieldValue($params));
+        self::assertEquals($expected, $this->subject->deevaluateFieldValue($params));
     }
 
-    public function telephoneIsProperlyEvaluatedDataProvider(): array
+    public static function telephoneIsProperlyEvaluatedDataProvider(): array
     {
         return [
             'empty string' => ['', ''],

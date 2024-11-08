@@ -1,0 +1,30 @@
+9.0.1 - 4th August 2024
+=======================
+
+.. include:: /Includes.rst.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+Thanks to Alexander Grein for providing a pull reguest to fix the geocoding wizard!
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2024-07-31 Create es6 js module for location map wizard (#568) (Commit 202dc72 by Alexander Grein)
+   2024-07-26 [DOC] Update badgets (Commit a842b49 by Georg Ringer)
+   2024-07-26 [DOC] Update version matrix (#567) (Commit 17743cd by Georg Ringer)
+
+
+This list has been created by using:
+
+.. code-block:: shell
+
+   git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short

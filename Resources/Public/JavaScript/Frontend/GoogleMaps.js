@@ -1,45 +1,49 @@
 function ttAddressGoogleMaps() {
     var obj = {};
+    var mapId = document.getElementById("ttaddress_google_maps").getAttribute("data-mapId");
 
     obj.map = null;
     obj.markers = [];
 
     obj.run = function () {
-        const mapOptions = {
+        var mapOptions = {
             center: new google.maps.LatLng(48.3057664, 14.2873126),
             zoom: 11,
             maxZoom: 15,
             streetViewControl: false,
-            fullscreenControl: false
+            fullscreenControl: false,
+            mapId: mapId, // Map ID is required for advanced markers.
         };
         obj.map = new google.maps.Map(document.getElementById('ttaddress__map'), mapOptions);
-        infoWindow = new google.maps.InfoWindow();
+        var infoWindow = new google.maps.InfoWindow();
 
         var bounds = new google.maps.LatLngBounds();
 
-        var records = document.getElementById("ttaddress__records");
-        for (var i = 0; i < records.childNodes.length; i++) {
-            var item = records.childNodes[i];
+        var records = document.getElementById("ttaddress__records").children;
+        for (var i = 0; i < records.length; i++) {
+            var item = records[i];
+            var recordId = item.getAttribute('data-id');
+            var position = new google.maps.LatLng(item.getAttribute('data-lat'), item.getAttribute('data-lng'));
 
-            var marker = new google.maps.Marker({
+            const marker = new google.maps.marker.AdvancedMarkerElement({
                 map: obj.map,
-                position: new google.maps.LatLng(item.getAttribute('data-lat'), item.getAttribute('data-lng')),
-                infowindow: infoWindow,
-                recordId: item.getAttribute('data-id')
+                position: position,
+                gmpClickable: true,
+                title: recordId,
             });
 
             google.maps.event.addListener(marker, 'click', function (e) {
-                infoWindow.setContent(document.getElementById('ttaddress__record-' + this.recordId).innerHTML);
+                infoWindow.setContent(document.getElementById('ttaddress__record-' + marker.title).innerHTML);
                 infoWindow.open(obj.map, this);
 
                 var allLabels = document.querySelectorAll('.ttaddress__label');
                 for (var i = 0; i < allLabels.length; i++) {
                     allLabels[i].classList.remove('active')
                 }
-                document.getElementById('ttaddress__label-' + this.recordId).classList.add('active');
-
+                document.getElementById('ttaddress__label-' + marker.title).classList.add('active');
             });
-            bounds.extend(marker.getPosition());
+
+            bounds.extend(position);
             obj.markers.push(marker);
         }
         obj.map.fitBounds(bounds);

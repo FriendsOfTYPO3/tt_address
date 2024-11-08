@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTYPO3\TtAddress\Hooks\Tca;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -30,9 +31,14 @@ class Label
         }
 
         if (is_numeric($params['row']['uid'])) {
-            $row = BackendUtility::getRecord('tt_address', (int) $params['row']['uid']);
+            $row = BackendUtility::getRecordWSOL('tt_address', (int) $params['row']['uid']);
         } else {
             $row = $params['row'];
+        }
+
+        // record might be in deleting process
+        if (!$row) {
+            return;
         }
 
         $configuration = $this->getConfiguration((int) $row['pid']);

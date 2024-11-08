@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTypo3\TtAddress\Tests\Unit\Domain\Model;
 
-/**
+/*
  * This file is part of the "tt_address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -33,7 +34,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 'm';
         $this->subject->setGender($value);
-        $this->assertEquals($value, $this->subject->getGender());
+        self::assertEquals($value, $this->subject->getGender());
     }
 
     /**
@@ -43,7 +44,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 'Max Mustermann';
         $this->subject->setName($value);
-        $this->assertEquals($value, $this->subject->getName());
+        self::assertEquals($value, $this->subject->getName());
     }
 
     /**
@@ -53,7 +54,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 'Max';
         $this->subject->setFirstName($value);
-        $this->assertEquals($value, $this->subject->getFirstName());
+        self::assertEquals($value, $this->subject->getFirstName());
     }
 
     /**
@@ -63,7 +64,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 'J.';
         $this->subject->setMiddleName($value);
-        $this->assertEquals($value, $this->subject->getMiddleName());
+        self::assertEquals($value, $this->subject->getMiddleName());
     }
 
     /**
@@ -73,7 +74,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 'Mustermann';
         $this->subject->setLastName($value);
-        $this->assertEquals($value, $this->subject->getLastName());
+        self::assertEquals($value, $this->subject->getLastName());
     }
 
     /**
@@ -83,7 +84,7 @@ class AddressTest extends BaseTestCase
     {
         $value = new \DateTime();
         $this->subject->setBirthday($value);
-        $this->assertEquals($value, $this->subject->getBirthday());
+        self::assertEquals($value, $this->subject->getBirthday());
     }
 
     /**
@@ -93,7 +94,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 'dr.';
         $this->subject->setTitle($value);
-        $this->assertEquals($value, $this->subject->getTitle());
+        self::assertEquals($value, $this->subject->getTitle());
     }
 
     /**
@@ -103,7 +104,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 'Dummystreet 134';
         $this->subject->setAddress($value);
-        $this->assertEquals($value, $this->subject->getAddress());
+        self::assertEquals($value, $this->subject->getAddress());
     }
 
     /**
@@ -113,7 +114,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 123.121221;
         $this->subject->setLatitude($value);
-        $this->assertEquals($value, $this->subject->getLatitude());
+        self::assertEquals($value, $this->subject->getLatitude());
     }
 
     /**
@@ -123,7 +124,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 10.1291;
         $this->subject->setLongitude($value);
-        $this->assertEquals($value, $this->subject->getLongitude());
+        self::assertEquals($value, $this->subject->getLongitude());
     }
 
     /**
@@ -133,7 +134,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 'building 1';
         $this->subject->setBuilding($value);
-        $this->assertEquals($value, $this->subject->getBuilding());
+        self::assertEquals($value, $this->subject->getBuilding());
     }
 
     /**
@@ -143,10 +144,10 @@ class AddressTest extends BaseTestCase
     {
         $value = 'room 1';
         $this->subject->setRoom($value);
-        $this->assertEquals($value, $this->subject->getRoom());
+        self::assertEquals($value, $this->subject->getRoom());
     }
 
-    public function telephoneFormatDataProvider()
+    public static function telephoneFormatDataProvider()
     {
         return [
             'phone number' => ['0122333', '0122333'],
@@ -169,7 +170,7 @@ class AddressTest extends BaseTestCase
     {
         $value = '+43129';
         $this->subject->setPhone($value);
-        $this->assertEquals($value, $this->subject->getPhone());
+        self::assertEquals($value, $this->subject->getPhone());
     }
 
     /**
@@ -193,7 +194,7 @@ class AddressTest extends BaseTestCase
     {
         $value = '+431294';
         $this->subject->setFax($value);
-        $this->assertEquals($value, $this->subject->getFax());
+        self::assertEquals($value, $this->subject->getFax());
     }
 
     /**
@@ -217,7 +218,7 @@ class AddressTest extends BaseTestCase
     {
         $value = '+431294111';
         $this->subject->setMobile($value);
-        $this->assertEquals($value, $this->subject->getMobile());
+        self::assertEquals($value, $this->subject->getMobile());
     }
 
     /**
@@ -241,7 +242,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 'www.typo3.org';
         $this->subject->setWww($value);
-        $this->assertEquals($value, $this->subject->getWww());
+        self::assertEquals($value, $this->subject->getWww());
     }
 
     /**
@@ -251,10 +252,10 @@ class AddressTest extends BaseTestCase
     public function simplifiedWwwIsReturned(string $given, string $expected)
     {
         $this->subject->setWww($given);
-        $this->assertEquals($expected, $this->subject->getWwwSimplified());
+        self::assertEquals($expected, $this->subject->getWwwSimplified());
     }
 
-    public function simplifiedWwwIsReturnedDataProvider()
+    public static function simplifiedWwwIsReturnedDataProvider()
     {
         return [
             'empty' => ['', ''],
@@ -272,7 +273,7 @@ class AddressTest extends BaseTestCase
     {
         $value = '/testaddress/';
         $this->subject->setSlug($value);
-        $this->assertEquals($value, $this->subject->getSlug());
+        self::assertEquals($value, $this->subject->getSlug());
     }
 
     /**
@@ -282,7 +283,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 'fo.com';
         $this->subject->setSkype($value);
-        $this->assertEquals($value, $this->subject->getSkype());
+        self::assertEquals($value, $this->subject->getSkype());
     }
 
     /**
@@ -292,7 +293,7 @@ class AddressTest extends BaseTestCase
     {
         $value = '@georg_ringer';
         $this->subject->setTwitter($value);
-        $this->assertEquals($value, $this->subject->getTwitter());
+        self::assertEquals($value, $this->subject->getTwitter());
     }
 
     /**
@@ -304,7 +305,7 @@ class AddressTest extends BaseTestCase
         $this->expectExceptionCode(1357530444);
         $value = 'georg_ringer';
         $this->subject->setTwitter($value);
-        $this->assertEquals($value, $this->subject->getTwitter());
+        self::assertEquals($value, $this->subject->getTwitter());
     }
 
     /**
@@ -314,7 +315,7 @@ class AddressTest extends BaseTestCase
     {
         $value = '/fo';
         $this->subject->setFacebook($value);
-        $this->assertEquals($value, $this->subject->getFacebook());
+        self::assertEquals($value, $this->subject->getFacebook());
     }
 
     /**
@@ -326,7 +327,7 @@ class AddressTest extends BaseTestCase
         $this->expectExceptionCode(1357530471);
         $value = 'some string';
         $this->subject->setFacebook($value);
-        $this->assertEquals($value, $this->subject->getFacebook());
+        self::assertEquals($value, $this->subject->getFacebook());
     }
 
     /**
@@ -336,7 +337,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 'www.linkedin.com/bar';
         $this->subject->setLinkedin($value);
-        $this->assertEquals($value, $this->subject->getLinkedin());
+        self::assertEquals($value, $this->subject->getLinkedin());
     }
 
     /**
@@ -346,7 +347,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 'some@example.org';
         $this->subject->setEmail($value);
-        $this->assertEquals($value, $this->subject->getEmail());
+        self::assertEquals($value, $this->subject->getEmail());
     }
 
     /**
@@ -356,7 +357,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 'ACME';
         $this->subject->setCompany($value);
-        $this->assertEquals($value, $this->subject->getCompany());
+        self::assertEquals($value, $this->subject->getCompany());
     }
 
     /**
@@ -366,7 +367,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 'Boss';
         $this->subject->setPosition($value);
-        $this->assertEquals($value, $this->subject->getPosition());
+        self::assertEquals($value, $this->subject->getPosition());
     }
 
     /**
@@ -376,7 +377,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 'Linz';
         $this->subject->setCity($value);
-        $this->assertEquals($value, $this->subject->getCity());
+        self::assertEquals($value, $this->subject->getCity());
     }
 
     /**
@@ -386,7 +387,7 @@ class AddressTest extends BaseTestCase
     {
         $value = '30210';
         $this->subject->setZip($value);
-        $this->assertEquals($value, $this->subject->getZip());
+        self::assertEquals($value, $this->subject->getZip());
     }
 
     /**
@@ -396,7 +397,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 'OOE';
         $this->subject->setRegion($value);
-        $this->assertEquals($value, $this->subject->getRegion());
+        self::assertEquals($value, $this->subject->getRegion());
     }
 
     /**
@@ -406,7 +407,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 'AT';
         $this->subject->setCountry($value);
-        $this->assertEquals($value, $this->subject->getCountry());
+        self::assertEquals($value, $this->subject->getCountry());
     }
 
     /**
@@ -416,7 +417,7 @@ class AddressTest extends BaseTestCase
     {
         $value = 'lorem ipsum';
         $this->subject->setDescription($value);
-        $this->assertEquals($value, $this->subject->getDescription());
+        self::assertEquals($value, $this->subject->getDescription());
     }
 
     /**
@@ -430,7 +431,7 @@ class AddressTest extends BaseTestCase
         $item->setPid(123);
         $value->attach($item);
         $this->subject->setImage($value);
-        $this->assertEquals($value, $this->subject->getImage());
+        self::assertEquals($value, $this->subject->getImage());
     }
 
     /**
@@ -449,7 +450,7 @@ class AddressTest extends BaseTestCase
 
         $this->subject->setImage($value);
         $this->subject->addImage($item2);
-        $this->assertEquals(2, $this->subject->getImage()->count());
+        self::assertEquals(2, $this->subject->getImage()->count());
     }
 
     /**
@@ -467,7 +468,7 @@ class AddressTest extends BaseTestCase
         $item2->setPid(345);
 
         $this->subject->setImage($value);
-        $this->assertEquals($item, $this->subject->getFirstImage());
+        self::assertEquals($item, $this->subject->getFirstImage());
     }
 
     /**
@@ -478,7 +479,7 @@ class AddressTest extends BaseTestCase
         $value = new ObjectStorage();
 
         $this->subject->setImage($value);
-        $this->assertNull($this->subject->getFirstImage());
+        self::assertNull($this->subject->getFirstImage());
     }
 
     /**
@@ -498,7 +499,7 @@ class AddressTest extends BaseTestCase
 
         $this->subject->setImage($value);
         $this->subject->removeImage($item2);
-        $this->assertEquals(1, $this->subject->getImage()->count());
+        self::assertEquals(1, $this->subject->getImage()->count());
     }
 
     /**
@@ -512,7 +513,7 @@ class AddressTest extends BaseTestCase
         $item->setPid(456);
         $value->attach($item);
         $this->subject->setCategories($value);
-        $this->assertEquals($value, $this->subject->getCategories());
+        self::assertEquals($value, $this->subject->getCategories());
     }
 
     /**
@@ -526,10 +527,10 @@ class AddressTest extends BaseTestCase
         $this->subject->setLastName($nameParts[2]);
         $this->subject->setTitleSuffix($nameParts[3]);
 
-        $this->assertEquals($expected, $this->subject->getFullName());
+        self::assertEquals($expected, $this->subject->getFullName());
     }
 
-    public function fullNameDataProvider(): array
+    public static function fullNameDataProvider(): array
     {
         return [
             'simple name' => ['John Doe', ['', 'John', 'Doe', '']],

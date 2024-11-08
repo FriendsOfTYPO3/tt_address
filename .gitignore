@@ -1,5 +1,14 @@
 /Build/Local/report
 /Build/Local/.phpunit.result.cache
+/Build/testing-docker/.env
+/Build/.phpunit.result.cache
 /Documentation-GENERATED-temp
 /tempfile.sh
 /out.txt
+/.Build
+/composer.lock
+/composer.json.testing
+/composer.list
+/.cache
+/var
+/public

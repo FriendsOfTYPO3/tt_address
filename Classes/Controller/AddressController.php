@@ -160,7 +160,7 @@ class AddressController extends ActionController
 
     protected function createDemandFromSettings(): Demand
     {
-        $demand = new Demand();
+        $demand = GeneralUtility::makeInstance(Demand::class);
         $demand->setCategories((string) ($this->settings['groups'] ?? ''));
         $categoryCombination = (int) ($this->settings['groupsCombination'] ?? 1) === 1 ? 'or' : 'and';
         $demand->setCategoryCombination($categoryCombination);

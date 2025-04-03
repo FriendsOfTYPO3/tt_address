@@ -1,0 +1,45 @@
+9.1.0 - 3rd April 2025
+======================
+
+.. include:: /Includes.rst.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+No important changes
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2025-04-03 [TASK] Make tests run on php 8.4 (#591) (Commit 8bf8fd0 by Georg Ringer)
+    2025-04-03 [BUGFIX] Fix str_getcsv for php 8.4 (Commit 8da3f0f by Georg Ringer)
+    2025-04-03 [TASK] Make it run (Commit 7832649 by Georg Ringer)
+    2025-04-03 [TASK] Enable tests for PHP 8.4 (Commit 1b26611 by Georg Ringer)
+    2025-04-03 [TASK] Enable tests for PHP 8.4 (Commit ce880a4 by Georg Ringer)
+    2025-03-17 [BUGFIX] Set order of event for page module (Commit dd563f6 by Georg Ringer)
+    2025-03-14 [TASK] Make csfixers happy (Commit 3f9ac90 by Georg Ringer)
+    2025-03-02 [TASK] Use GU::makeInstance for demand #586 (Commit 838510a by Georg Ringer)
+    2024-11-26 [FEATURE] Add Extended tab in TCA (#583) (Commit 38d2ae0 by thomasrawiel)
+    2024-11-13 [BUGFIX] Fix TypoScript inclusion (#581) (Commit b829ccb by Lina Wolf)
+    2024-10-31 [TASK] Fix cgl (Commit 3435c78 by Georg Ringer)
+    2024-10-31 [BUGFIX] Add better restriction to show view for preselected records (Commit bc7e158 by Georg Ringer)
+    2024-10-31 [FEATURE] Limit singlePid suggest to reachable pages (Commit 1606b42 by Georg Ringer)
+    2024-10-31 [FEATURE] Introduce Site Sets (#574) (Commit 398f0a5 by Lina Wolf)
+    2024-10-31 [TASK] Update .editorconfig (#575) (Commit dd0706a by Lina Wolf)
+    2024-09-09 Migrate deprecated google marker to google advanced marker (#576) (Commit c6bad72 by Caroline Löbhard)
+    2024-09-09 fix async geocode function (#577) (Commit 3d6dc84 by Roman Teitge)
+    2024-08-27 [BUGFIX]  FE Error: Uncaught TypeError: item.getAttribute #522 (#573) (Commit 1f8f25a by Caroline Löbhard)
+
+
+This list has been created by using:
+
+.. code-block:: shell
+
+   git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short

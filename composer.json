@@ -54,7 +54,7 @@
 		"friendsofphp/php-cs-fixer": "^3",
 		"kubawerlos/php-cs-fixer-custom-fixers": "^3.21",
 		"webmozart/assert": "^1.11.0",
-		"phpspec/prophecy": "^1.19"
+		"phpspec/prophecy": "^1.19 || ^2"
 	},
 	"config": {
 		"vendor-dir": ".Build/vendor",
@@ -66,8 +66,8 @@
 		}
 	},
 	"scripts": {
-		"cs": "php ./.Build/bin/php-cs-fixer fix  --dry-run -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./",
-		"csfix": "php ./.Build/bin/php-cs-fixer fix  -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./",
+		"cs": "PHP_CS_FIXER_IGNORE_ENV=1 php ./.Build/bin/php-cs-fixer fix  --dry-run -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./",
+		"csfix": "PHP_CS_FIXER_IGNORE_ENV=1 php ./.Build/bin/php-cs-fixer fix  -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./",
 		"post-autoload-dump": [
 			"TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
 		]

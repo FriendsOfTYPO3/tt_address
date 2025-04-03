@@ -38,7 +38,7 @@ class PropertyModification
         if (!$domain) {
             return '';
         }
-        $parts = str_replace(['\\\\', '\\"'], ['\\', '"'], str_getcsv($domain, ' '));
+        $parts = str_replace(['\\\\', '\\"'], ['\\', '"'], str_getcsv($domain, ' ', '"', '\\'));
         return $parts[0];
     }
 }

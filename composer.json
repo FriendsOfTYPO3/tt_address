@@ -49,7 +49,7 @@
 		"typo3/cms-install": "^12.4.2 || ^13.2",
 		"typo3/cms-composer-installers": "^3.1.3 || 4.0.0-RC1 || ^5.0",
 		"typo3/testing-framework": "^8.0.9",
-		"typo3fluid/fluid": "°^4.0.3",
+		"typo3fluid/fluid": "^4.0.3",
 		"phpunit/phpunit": "^10.5.45",
 		"typo3/coding-standards": "^0.5.3",
 		"friendsofphp/php-cs-fixer": "^3",

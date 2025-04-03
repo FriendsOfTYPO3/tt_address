@@ -36,7 +36,7 @@ class AddressTitleProvider extends AbstractPageTitleProvider
         }
         if (!empty($titleFields)) {
             $glue = isset($configuration['glue']) && !empty($configuration['glue']) ? $configuration['glue'] : self::DEFAULT_GLUE;
-            $glue = str_getcsv($glue, '', '"', '\\');
+            $glue = str_getcsv($glue, ' ', '"', '\\');
             $this->title = implode($glue[0], $titleFields);
         }
     }

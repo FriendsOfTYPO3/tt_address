@@ -36,8 +36,8 @@ The extension needs to be installed as any other extension of TYPO3 CMS:
    extension from the repository.
 
 #. **Get it from typo3.org:** You can always get current version from
-   the `TER`_ by downloading either the t3x or zip version. Upload
-   the file afterwards in the Extension Manager.
+   the `TER`_ by downloading the zip file. Upload
+   it directly in the Extension Manager or its unpacked version by FTP.
 
 #. **Use composer**: Run
 
@@ -47,12 +47,12 @@ The extension needs to be installed as any other extension of TYPO3 CMS:
 
 .. _TER: https://extensions.typo3.org/extension/tt_address
 
-The Extension Manager offers some basic configuration which is explained
+Settings -> Extension Configuration offers some basic configuration which is explained
 :ref:`here <configuration-extension-configuration>`.
 
 Latest version from git
 -----------------------
-You can get the latest version from git by using the git command:
+You can get a copy of the Git repository with the latest version by using the git command:
 
 .. code-block:: bash
 
@@ -65,8 +65,8 @@ The extension ships some TypoScript code which needs to be included.
 
 #. Switch to the root page of your site.
 
-#. Switch to the **Template module** and select *Info/Modify*.
+#. Switch to the **TypoScript** module, select your master template file and select *Edit TypoScript Record*.
 
-#. Press the link **Edit the whole template record** and switch to the tab *Includes*.
+#. Press the link **Edit the whole TypoScript record** and switch to the tab *Advanced Options*.
 
-#. Select **Addresses (Extbase/Fluid)** at the field *Include static (from extensions):*
+#. Select **Addresses (Extbase/Fluid)** at the field *Include TypoScript sets:*

@@ -9,7 +9,7 @@ Updating
 In general after every update you should update the database scheme in
 :guilabel:`Admin tools > Maintenance > Analyze Database` and flush all caches.
 
-Updating from 5.x to 6.0.0
+Updating from 5.x to 9.0.0
 --------------------------
 
 The field `name` is **not** filled automatically anymore by the first and last
@@ -21,14 +21,14 @@ activate the legacy behaviour in
 
 Translation files for languages other then English are not included directly
 in the extension anymore. You can get them from the translation server at
-:guilabel:`Admin tools > Maintenance > Manage Languages`.
+:guilabel:`Admin tools > Maintenance > Manage Language Packs`.
 
 Updating from 4.x to 5.0.0
 --------------------------
 
 .. warning::
 
-	The upgrade wizard to migrate from pibase to extbase plugins have been removed. If you need those, please install version 4.x first and upgrade afterwards.
+	The upgrade wizard to migrate from pi_base to extbase plugins have been removed. If you need those, please install version 4.x first and upgrade afterwards.
 
 With the version 5.0.0 the TYPO3 versions 9 and 10 are supported which also means that the support for version 8 has been dropped.
 
@@ -50,7 +50,7 @@ It migrates `EXT:tt_address/static/pi1` to `EXT:tt_address/Configuration/TypoScr
 
 	The upgrade wizard does not update any TS inclusion done in your site package.
 
-Another upgrade wizard migrates old piBase plugins to extbase plugins. The `Template` option is converted to
+Another upgrade wizard migrates old pi_base plugins to extbase plugins. The `Template` option is converted to
 `Display mode`. So for example your `Template` is `my_template.html`, then
 
 - Add TSconfig `TCEFORM.tt_content.pi_flexform.ttaddress_listview.sDISPLAY.settings\\.displayMode.addItems.my_template = My Template`

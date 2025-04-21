@@ -8,8 +8,7 @@ Global extension configuration
 
 After the installation has been completed, some global configuration can be defined.
 
-If you are using TYPO3 8.7, this configuration can be found in the Extension Manager.
-With version 9.5 this has been moved to the Install Tool.
+The configuration is in the Admin Tool -> Settings -> Extension Configuration.
 
 Settings
 --------

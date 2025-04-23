@@ -18,7 +18,7 @@ Benefits of this extension are:
 
 - actively maintained
 - is 100% covered by unit & functional tests
-- supports in its current version TYPO3 8.7 LTS & 9.5 LTS
+- supports in its current version TYPO3 12.4 and 13.4
 - implements all important micro data information to improve onpage search engine optimization (rich snippets)
 - Default templates are based on Twitter Bootstrap
 

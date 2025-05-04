@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2017-04-13T10:24:37Z" product-name="tt_address" target-language="es-ES">
+    <header/>
+    <body>
+      <trans-unit id="label.address" xml:space="preserve" approved="yes">
+        <source>Address</source>
+      <target state="final">Dirección</target></trans-unit>
+      <trans-unit id="label.building" xml:space="preserve" approved="yes">
+        <source>Building</source>
+      <target state="final">Edificio</target></trans-unit>
+      <trans-unit id="label.room" xml:space="preserve" approved="yes">
+        <source>Room</source>
+      <target state="final">Sala</target></trans-unit>
+      <trans-unit id="label.position" xml:space="preserve" approved="yes">
+        <source>Position</source>
+      <target state="final">Posición</target></trans-unit>
+      <trans-unit id="label.zip" xml:space="preserve" approved="yes">
+        <source>Postal code</source>
+      <target state="final">Código postal</target></trans-unit>
+      <trans-unit id="label.city" xml:space="preserve" approved="yes">
+        <source>City</source>
+      <target state="final">Ciudad</target></trans-unit>
+      <trans-unit id="label.telephone" xml:space="preserve" approved="yes">
+        <source>Telephone</source>
+      <target state="final">Teléfono</target></trans-unit>
+      <trans-unit id="label.fax" xml:space="preserve" approved="yes">
+        <source>Fax</source>
+      <target state="final">Fax</target></trans-unit>
+      <trans-unit id="label.mobile" xml:space="preserve" approved="yes">
+        <source>Mobile phone</source>
+      <target state="final">Teléfono móvil</target></trans-unit>
+      <trans-unit id="label.email" xml:space="preserve" approved="yes">
+        <source>E-mail</source>
+      <target state="final">Correo electrónico</target></trans-unit>
+      <trans-unit id="label.www" xml:space="preserve" approved="yes">
+        <source>Go to website</source>
+      <target state="final">Ir al sitio web</target></trans-unit>
+      <trans-unit id="label.socialmedia" xml:space="preserve" approved="yes">
+        <source>Social media contacts</source>
+      <target state="final">Contactos en las redes sociales</target></trans-unit>
+      <trans-unit id="label.birthday" xml:space="preserve" approved="yes">
+        <source>Birthday</source>
+      <target state="final">Fecha de nacimiento</target></trans-unit>
+      <trans-unit id="paginate_overall" xml:space="preserve" approved="yes">
+        <source>Page %s of %s</source>
+      <target state="final">Página %s de %s</target></trans-unit>
+      <trans-unit id="paginate_next" approved="yes">
+        <source>Next</source>
+        <target state="final">Siguiente</target>
+      </trans-unit>
+      <trans-unit id="paginate_previous" approved="yes">
+        <source>Previous</source>
+        <target state="final">Anterior</target>
+      </trans-unit>
+      <trans-unit id="backToList">
+        <target>Back to list</target>
+      </trans-unit>
+      <trans-unit id="more" approved="yes">
+        <source>More</source>
+        <target state="final">Más</target>
+      </trans-unit>
+      <trans-unit id="show_on_map" approved="yes">
+        <source>Show on map</source>
+        <target state="final">Mostrar en el mapa</target>
+      </trans-unit>
+      <trans-unit id="no_google_maps_key" approved="yes">
+        <source>No Google Maps key provided with TypoScript</source>
+        <target state="final">TypoScript no incluye la clave de Google Maps</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

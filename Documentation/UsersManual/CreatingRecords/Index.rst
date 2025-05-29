@@ -6,13 +6,13 @@
 Creating address records
 ------------------------
 
-#. Switch to the list view
+#. Switch to the backend list module
 
    #. Create a new page with type **Sysfolder** or
 
    #. Select an existing page
 
-#. Click the "+" icon and select *Address*.
+#. Click the "+" icon (Create new record) and select *Address* below "Address List".
 
 #. Fill out all information you need and save.
 

@@ -1,11 +1,15 @@
 <?php
 
+use FriendsOfTYPO3\TtAddress\Evaluation\LatitudeEvaluation;
+use FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation;
+use FriendsOfTYPO3\TtAddress\Hooks\Tca\Label;
+
 return [
     'ctrl' => [
         'label' => 'name',
         'label_alt' => 'last_name,first_name,email,pid',
         'label_alt_force' => true,
-        'label_userFunc' => \FriendsOfTYPO3\TtAddress\Hooks\Tca\Label::class . '->getAddressLabel',
+        'label_userFunc' => Label::class . '->getAddressLabel',
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
@@ -270,7 +274,7 @@ return [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.phone',
             'config' => [
                 'type' => 'input',
-                'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class,
+                'eval' => TelephoneEvaluation::class,
                 'size' => 20,
                 'max' => 30,
                 'behaviour' => [
@@ -284,7 +288,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 20,
-                'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class,
+                'eval' => TelephoneEvaluation::class,
                 'max' => 30,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
@@ -296,7 +300,7 @@ return [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.mobile',
             'config' => [
                 'type' => 'input',
-                'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\TelephoneEvaluation::class,
+                'eval' => TelephoneEvaluation::class,
                 'size' => 20,
                 'max' => 30,
                 'behaviour' => [
@@ -560,7 +564,7 @@ return [
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.latitude',
             'config' => [
                 'type' => 'input',
-                'eval' => \FriendsOfTYPO3\TtAddress\Evaluation\LatitudeEvaluation::class,
+                'eval' => LatitudeEvaluation::class,
                 'default' => null,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,

@@ -142,7 +142,19 @@ The extension "extender" merges with the one of `tt_address`. Be aware that it i
        }
    }
 
-ext_localconf.php
+services.yaml (from extender >= 10.0.0)
+~~~~~~~~~~~~~
+
+.. code-block:: yaml
+
+    services:
+      GeorgRinger\AddressField\Extending\Domain\Model\Address:
+        tags:
+          - name: 'extender.extends'
+            class: FriendsOfTYPO3\TtAddress\Domain\Model\Address
+
+
+ext_localconf.php (for extender < 10.0.0)
 ~~~~~~~~~~~~~~~~~
 
 .. code-block:: php

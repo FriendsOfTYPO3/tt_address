@@ -128,7 +128,7 @@ class Address extends AbstractEntity
     /** @var string */
     protected $description = '';
 
-    /** @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Category> */
+    /** @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category> */
     protected $categories;
 
     public function __construct()

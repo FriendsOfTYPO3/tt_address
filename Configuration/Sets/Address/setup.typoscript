@@ -1,4 +1,4 @@
-@import 'EXT:tt_addressConfiguration/TypoScript/setup.typoscript'
+@import 'EXT:tt_address/Configuration/TypoScript/setup.typoscript'
 plugin.tx_ttaddress {
     view {
         templateRootPaths {

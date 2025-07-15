@@ -228,12 +228,13 @@ Options:
             - 12: use TYPO3 v12 (default)
             - 13: use TYPO3 v13
 
-    -p <8.0|8.1|8.2|8.3>
+    -p <8.0|8.1|8.2|8.3|8.4>
         Specifies the PHP minor version to be used
             - 8.0: use PHP 8.0 (default)
             - 8.1: use PHP 8.1
             - 8.2: use PHP 8.2
             - 8.3: use PHP 8.3
+            - 8.4: use PHP 8.4
 
     -e "<phpunit options>"
         Only with -s docsGenerate|functional|unit
@@ -356,7 +357,7 @@ while getopts "a:b:s:d:i:p:e:t:xy:nhu" OPT; do
             ;;
         p)
             PHP_VERSION=${OPTARG}
-            if ! [[ ${PHP_VERSION} =~ ^(8.1|8.2|8.3)$ ]]; then
+            if ! [[ ${PHP_VERSION} =~ ^(8.1|8.2|8.3|8.4)$ ]]; then
                 INVALID_OPTIONS+=("-p ${OPTARG}")
             fi
             ;;
@@ -505,11 +506,11 @@ case ${TEST_SUITE} in
         ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-install-highest-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/bash -c "
             if [ ${TYPO3_VERSION} -eq 12 ]; then
               composer require --no-ansi --no-interaction --no-progress --no-install \
-                typo3/cms-core:^12.4.2 || exit 1
+                typo3/cms-core:^12.4.28 || exit 1
             fi
             if [ ${TYPO3_VERSION} -eq 13 ]; then
               composer require --no-ansi --no-interaction --no-progress --no-install \
-                typo3/cms-core:^13.1 || exit 1
+                typo3/cms-core:^13.4 || exit 1
             fi
             composer update --no-progress --no-interaction  || exit 1
             composer show || exit 1
@@ -523,11 +524,11 @@ case ${TEST_SUITE} in
         ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-install-lowest-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/bash -c "
             if [ ${TYPO3_VERSION} -eq 12 ]; then
               composer require --no-ansi --no-interaction --no-progress --no-install \
-                typo3/cms-core:^12.4.2 || exit 1
+                typo3/cms-core:^12.4.28 || exit 1
             fi
             if [ ${TYPO3_VERSION} -eq 13 ]; then
               composer require --no-ansi --no-interaction --no-progress --no-install \
-                typo3/cms-core:^13.1 || exit 1
+                typo3/cms-core:^13.4 || exit 1
             fi
             composer update --no-ansi --no-interaction --no-progress --with-dependencies --prefer-lowest || exit 1
             composer show || exit 1

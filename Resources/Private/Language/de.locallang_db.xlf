@@ -79,6 +79,14 @@
         <source>Facebook</source>
         <target state="final">Facebook</target>
       </trans-unit>
+      <trans-unit id="tt_address.instagram" approved="yes">
+        <source>Instagram</source>
+        <target state="final">Instagram</target>
+      </trans-unit>
+      <trans-unit id="tt_address.tiktok" approved="yes">
+        <source>TikTok</source>
+        <target state="final">TikTok</target>
+      </trans-unit>
       <trans-unit id="tt_address.linkedin" approved="yes">
         <source>LinkedIn</source>
         <target state="final">LinkedIn</target>
@@ -90,6 +98,10 @@
       <trans-unit id="tt_address.longitude" approved="yes">
         <source>Longitude</source>
         <target state="final">Längengrad</target>
+      </trans-unit>
+      <trans-unit id="tt_address.title_suffix" approved="yes">
+        <source>Title suffix</source>
+        <target state="final">Titel-Zusatz</target>
       </trans-unit>
       <trans-unit id="tt_address.locationMapWizard" approved="yes">
         <source>Map wizard for visual selection of coordinates</source>

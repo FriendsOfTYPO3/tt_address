@@ -3,8 +3,12 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2017-04-04T12:30:37Z" product-name="tt_address" target-language="de">
     <header/>
     <body>
-		
-		
-		</body>
+      <trans-unit id="extbase_title" xml:space="preserve" approved="yes">
+			<source>Addresses</source>
+		<target state="final">Adressen</target></trans-unit>
+      <trans-unit id="extbase_description" xml:space="preserve" approved="yes">
+			<source>Displays one or more addresses.</source>
+		<target state="final">Zeigt eine oder mehrere Adressen an.</target></trans-unit>
+    </body>
   </file>
 </xliff>

@@ -426,7 +426,7 @@ return [
                 'size' => 20,
                 'eval' => 'trim',
                 'max' => 255,
-                'placeholder' => 'johndoe',
+                'placeholder' => '4917012312312',
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -440,7 +440,7 @@ return [
                 'size' => 20,
                 'eval' => 'trim',
                 'max' => 255,
-                'placeholder' => 'johndoe',
+                'placeholder' => '@johndoe',
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],

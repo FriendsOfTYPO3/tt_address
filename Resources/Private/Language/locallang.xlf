@@ -40,7 +40,7 @@
         <source>Social media contacts</source>
       </trans-unit>
       <trans-unit id="label.twitter" xml:space="preserve" translate="no">
-        <source>Twitter</source>
+        <source>X (Twitter)</source>
       </trans-unit>
       <trans-unit id="label.facebook" xml:space="preserve" translate="no">
         <source>Facebook</source>
@@ -48,8 +48,17 @@
       <trans-unit id="label.linkedin" xml:space="preserve" translate="no">
         <source>LinkedIn</source>
       </trans-unit>
-      <trans-unit id="label.skype" xml:space="preserve" translate="no">
-        <source>Skype</source>
+      <trans-unit id="label.linkedincompany" xml:space="preserve">
+        <source>LinkedIn Company profile</source>
+      </trans-unit>
+      <trans-unit id="label.bluesky" xml:space="preserve" translate="no">
+        <source>BlueSky</source>
+      </trans-unit>
+      <trans-unit id="label.whatsapp" xml:space="preserve" translate="no">
+        <source>WhatsApp</source>
+      </trans-unit>
+      <trans-unit id="label.youtubechannel" xml:space="preserve" translate="no">
+        <source>Youtube Channel</source>
       </trans-unit>
       <trans-unit id="label.birthday" xml:space="preserve">
         <source>Birthday</source>

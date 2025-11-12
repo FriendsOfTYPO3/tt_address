@@ -84,9 +84,6 @@ class Address extends AbstractEntity
     protected $slug = '';
 
     /** @var string */
-    protected $skype = '';
-
-    /** @var string */
     protected $twitter = '';
 
     /** @var string */
@@ -100,6 +97,18 @@ class Address extends AbstractEntity
 
     /** @var string */
     protected $linkedin = '';
+
+    /** @var string */
+    protected $linkedincompany = '';
+
+    /** @var string */
+    protected $youtubechannel = '';
+
+    /** @var string */
+    protected $bluesky = '';
+
+    /** @var string */
+    protected $whatsapp = '';
 
     /** @var string */
     protected $email = '';
@@ -347,16 +356,6 @@ class Address extends AbstractEntity
         return $this->slug;
     }
 
-    public function setSkype(string $skype): void
-    {
-        $this->skype = $skype;
-    }
-
-    public function getSkype(): string
-    {
-        return $this->skype;
-    }
-
     public function setTwitter(string $twitter): void
     {
         if ($twitter[0] !== '@') {
@@ -413,6 +412,46 @@ class Address extends AbstractEntity
     public function getLinkedin(): string
     {
         return $this->linkedin;
+    }
+
+    public function setLinkedincompany(string $linkedin): void
+    {
+        $this->linkedincompany = $linkedincompany;
+    }
+
+    public function getLinkedincompany(): string
+    {
+        return $this->linkedincompany;
+    }
+
+    public function setBluesky(string $bluesky): void
+    {
+        $this->bluesky = $bluesky;
+    }
+
+    public function getBluesky(): string
+    {
+        return $this->bluesky;
+    }
+
+    public function setWhatsapp(string $whatsapp): void
+    {
+        $this->whatsapp = $whatsapp;
+    }
+
+    public function getWhatsapp(): string
+    {
+        return $this->whatsapp;
+    }
+
+     public function setYoutubechannel(string $youtubechannel): void
+    {
+        $this->youtubechannel = $youtubechannel;
+    }
+
+    public function getYoutubechannel(): string
+    {
+        return $this->youtubechannel;
     }
 
     public function setEmail(string $email): void

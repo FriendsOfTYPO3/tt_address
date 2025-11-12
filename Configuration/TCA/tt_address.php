@@ -320,20 +320,6 @@ return [
                 'type' => 'email',
             ],
         ],
-        'skype' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.skype',
-            'config' => [
-                'type' => 'input',
-                'size' => 20,
-                'eval' => 'trim',
-                'max' => 255,
-                'placeholder' => 'johndoe',
-                'behaviour' => [
-                    'allowLanguageSynchronization' => true,
-                ],
-            ],
-        ],
         'twitter' => [
             'exclude' => true,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.twitter',
@@ -370,7 +356,7 @@ return [
                 'size' => 20,
                 'eval' => 'trim',
                 'max' => 255,
-                'placeholder' => '@johndoe',
+                'placeholder' => 'johndoe',
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -393,6 +379,62 @@ return [
         'linkedin' => [
             'exclude' => true,
             'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.linkedin',
+            'config' => [
+                'type' => 'input',
+                'size' => 20,
+                'eval' => 'trim',
+                'max' => 255,
+                'placeholder' => 'johndoe',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+            ],
+        ],
+        'linkedincompany' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.linkedincompany',
+            'config' => [
+                'type' => 'input',
+                'size' => 20,
+                'eval' => 'trim',
+                'max' => 255,
+                'placeholder' => 'johndoe',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+            ],
+        ],
+        'bluesky' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.bluesky',
+            'config' => [
+                'type' => 'input',
+                'size' => 20,
+                'eval' => 'trim',
+                'max' => 255,
+                'placeholder' => 'johndoe',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+            ],
+        ],
+        'whatsapp' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.whatsapp',
+            'config' => [
+                'type' => 'input',
+                'size' => 20,
+                'eval' => 'trim',
+                'max' => 255,
+                'placeholder' => 'johndoe',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+            ],
+        ],
+        'youtubechannel' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:tt_address/Resources/Private/Language/locallang_db.xlf:tt_address.youtubechannel',
             'config' => [
                 'type' => 'input',
                 'size' => 20,

@@ -12,29 +12,15 @@ namespace FriendsOfTYPO3\TtAddress\Domain\Model\Dto;
  */
 class Demand
 {
-    /** @var array */
-    protected $pages = [];
+    protected array $pages = [];
 
-    /** @var string */
-    protected $sortBy = '';
-
-    /** @var string */
-    protected $sortOrder = '';
-
-    /** @var string */
-    protected $categories = '';
-
-    /** @var bool */
-    protected $includeSubCategories = false;
-
-    /** @var string */
-    protected $categoryCombination = '';
-
-    /** @var string */
-    protected $singleRecords = '';
-
-    /** @var bool */
-    protected $ignoreWithoutCoordinates = false;
+    protected string $sortBy = '';
+    protected string $sortOrder = '';
+    protected string $categories = '';
+    protected bool $includeSubCategories = false;
+    protected string $categoryCombination = '';
+    protected string $singleRecords = '';
+    protected bool $ignoreWithoutCoordinates = false;
 
     public function getPages(): array
     {

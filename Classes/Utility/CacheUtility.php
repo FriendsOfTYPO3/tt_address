@@ -11,6 +11,7 @@ namespace FriendsOfTYPO3\TtAddress\Utility;
  * LICENSE.txt file that was distributed with this source code.
  */
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
+use TYPO3\CMS\Core\Cache\CacheTag;
 
 /**
  * Class CacheUtility handles cache tags
@@ -42,6 +43,11 @@ class CacheUtility
             }
         }
 
-        $GLOBALS['TSFE']->addCacheTags($cacheTags);
+        if (count($cacheTags) > 0) {
+            $cacheDataCollector = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.cache.collector');
+            foreach ($cacheTags as $cacheTag) {
+                $cacheDataCollector->addCacheTags(new CacheTag($cacheTag));
+            }
+        }
     }
 }

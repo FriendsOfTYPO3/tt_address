@@ -342,7 +342,7 @@ return [
                 'size' => 20,
                 'eval' => 'trim',
                 'max' => 255,
-                'placeholder' => '/johndoe',
+                'placeholder' => 'johndoe',
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -677,9 +677,9 @@ return [
                             birthday',
         ],
         'social' => [
-            'showitem' => 'skype, twitter, --linebreak--,
-                            linkedin, tiktok, --linebreak--,
-                            facebook, instagram',
+            'showitem' => 'bluesky, twitter, linkedin, --linebreak--,
+                            linkedincompany, facebook, instagram, --linebreak--,
+                            youtubechannel, tiktok, whatsapp, --linebreak--',
         ],
         'paletteHidden' => [
             'showitem' => 'hidden',

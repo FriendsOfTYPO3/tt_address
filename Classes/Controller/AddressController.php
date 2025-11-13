@@ -19,6 +19,7 @@ use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 use FriendsOfTYPO3\TtAddress\Seo\AddressTitleProvider;
 use FriendsOfTYPO3\TtAddress\Utility\CacheUtility;
 use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Pagination\PaginatorInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
@@ -32,14 +33,9 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 class AddressController extends ActionController
 {
-    /** @var AddressRepository */
-    protected $addressRepository;
-
-    /** @var QueryGenerator */
-    protected $queryGenerator;
-
-    /** @var Settings */
-    protected $extensionConfiguration;
+    protected AddressRepository $addressRepository;
+    protected QueryGenerator$queryGenerator;
+    protected Settings $extensionConfiguration;
 
     public function initializeAction(): void
     {
@@ -75,7 +71,7 @@ class AddressController extends ActionController
      * Lists addresses by settings in waterfall principle.
      * singleRecords take precedence over categories which take precedence over records from pages
      */
-    public function listAction(?array $override = [])
+    public function listAction(?array $override = []): ResponseInterface
     {
         $currentContentObject = $this->request->getAttribute('currentContentObject');
         $contentData = $currentContentObject instanceof ContentObjectRenderer ? $currentContentObject->data : [];
@@ -202,7 +198,7 @@ class AddressController extends ActionController
         return $demand;
     }
 
-    public function injectAddressRepository(AddressRepository $addressRepository)
+    public function injectAddressRepository(AddressRepository $addressRepository): void
     {
         $this->addressRepository = $addressRepository;
     }
@@ -224,8 +220,6 @@ class AddressController extends ActionController
 
     /**
      * Removes a dot in the end of a String
-     *
-     * @param string $string
      */
     protected function removeDotAtTheEnd($string): string
     {
@@ -234,8 +228,6 @@ class AddressController extends ActionController
 
     /**
      * Retrieves subpages of given pageIds recursively until reached $this->settings['recursive']
-     *
-     * @return array an array with all pageIds
      */
     protected function getPidList(): array
     {

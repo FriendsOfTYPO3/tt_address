@@ -15,14 +15,9 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class Settings
 {
-    /** @var string */
-    protected $telephoneValidationPatternForPhp = '/[^\d\+\s\-]/';
-
-    /** @var string */
-    protected $telephoneValidationPatternForJs = '/[^\d\+\s\-]/g';
-
-    /** @var bool */
-    protected $newPagination = false;
+    protected string $telephoneValidationPatternForPhp = '/[^\d\+\s\-]/';
+    protected string $telephoneValidationPatternForJs = '/[^\d\+\s\-]/g';
+    protected bool $newPagination = false;
 
     public function __construct()
     {

@@ -22,11 +22,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class GeocodeCommand extends Command
 {
-    /**
-     * Defines the allowed options for this command
-     *
-     * @inheritdoc
-     */
     protected function configure()
     {
         $this
@@ -40,8 +35,6 @@ class GeocodeCommand extends Command
 
     /**
      * Geocode all records
-     *
-     * @inheritdoc
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
@@ -49,11 +42,7 @@ class GeocodeCommand extends Command
         return 0;
     }
 
-    /**
-     * @param string $key Google Maps key
-     * @return GeocodeService
-     */
-    protected function getGeocodeService(string $key)
+    protected function getGeocodeService(string $key): GeocodeService
     {
         return GeneralUtility::makeInstance(GeocodeService::class, $key);
     }

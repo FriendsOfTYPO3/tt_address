@@ -444,7 +444,7 @@ class Address extends AbstractEntity
         return $this->whatsapp;
     }
 
-     public function setYoutubechannel(string $youtubechannel): void
+    public function setYoutubechannel(string $youtubechannel): void
     {
         $this->youtubechannel = $youtubechannel;
     }

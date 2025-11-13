@@ -414,7 +414,7 @@ class Address extends AbstractEntity
         return $this->linkedin;
     }
 
-    public function setLinkedincompany(string $linkedin): void
+    public function setLinkedincompany(string $linkedincompany): void
     {
         $this->linkedincompany = $linkedincompany;
     }

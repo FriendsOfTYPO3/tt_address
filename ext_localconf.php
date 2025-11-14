@@ -48,5 +48,3 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals'][\FriendsOfTYPO3\Tt
         }
     }
 '));
-
-//\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('mod.web_layout.tt_content.preview.list.ttaddress_listview = EXT:tt_address/Resources/Private/Templates/Backend/PluginPreview.html');

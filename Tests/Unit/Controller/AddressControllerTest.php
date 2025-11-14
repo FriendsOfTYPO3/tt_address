@@ -12,7 +12,6 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Controller;
  */
 
 use FriendsOfTYPO3\TtAddress\Controller\AddressController;
-use FriendsOfTYPO3\TtAddress\Database\QueryGenerator;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
@@ -20,22 +19,19 @@ use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 use TYPO3\CMS\Core\Cache\CacheDataCollectorInterface;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Http\ServerRequest;
-use TYPO3\CMS\Core\Package\PackageManager;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Mvc\ExtbaseRequestParameters;
 use TYPO3\CMS\Extbase\Mvc\Request;
 use TYPO3\CMS\Fluid\View\TemplateView;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class AddressControllerTest extends BaseTestCase
 {
     protected function setUp(): void
     {
-        $mockedCacheDataCollector =$this->getMockBuilder(CacheDataCollectorInterface::class)->getMock();
+        $mockedCacheDataCollector = $this->getMockBuilder(CacheDataCollectorInterface::class)->getMock();
 
         $serverRequest = (new ServerRequest())
             ->withAttribute('extbase', new ExtbaseRequestParameters())
@@ -112,7 +108,6 @@ class AddressControllerTest extends BaseTestCase
             ->method('getPageIdsRecursive')
             ->with([123, 456], 3)
             ->willReturn([123, 456, 789]);
-        ;
 
         $subject = $this->getAccessibleMock(AddressController::class, null, [], '', false);
         $subject->_set('pageRepository', $mockedPageRepsitory);

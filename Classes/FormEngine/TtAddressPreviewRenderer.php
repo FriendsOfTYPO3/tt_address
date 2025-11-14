@@ -62,7 +62,7 @@ class TtAddressPreviewRenderer extends StandardContentPreviewRenderer
         }
         $row = $item->getRecord();
         if ((new Typo3Version())->getMajorVersion() >= 14) {
-            /** @var RecordInterface  $row */
+            /** @var RecordInterface $row */
             $row = $row->getRawRecord()->toArray();
         }
 

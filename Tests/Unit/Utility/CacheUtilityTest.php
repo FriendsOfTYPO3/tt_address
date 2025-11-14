@@ -32,9 +32,9 @@ class CacheUtilityTest extends BaseTestCase
     {
         $addressRecords = ['dummy string'];
 
-        $mockedCacheDataCollector =$this->getMockBuilder(CacheDataCollectorInterface::class)->getMock();
+        $mockedCacheDataCollector = $this->getMockBuilder(CacheDataCollectorInterface::class)->getMock();
         $mockedCacheDataCollector
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('addCacheTags');
 
         $serverRequest = (new ServerRequest())
@@ -57,9 +57,9 @@ class CacheUtilityTest extends BaseTestCase
         $addressRecords = [$addressRecord];
 
         $calls = [];
-        $mockedCacheDataCollector =$this->getMockBuilder(CacheDataCollectorInterface::class)->getMock();
+        $mockedCacheDataCollector = $this->getMockBuilder(CacheDataCollectorInterface::class)->getMock();
         $mockedCacheDataCollector
-            ->expects($this->exactly(2))
+            ->expects(self::exactly(2))
             ->method('addCacheTags')
             ->willReturnCallback(function (...$args) use (&$calls) {
                 $calls[] = $args;

@@ -11,20 +11,14 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Utility;
  * LICENSE.txt file that was distributed with this source code.
  */
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
-use FriendsOfTYPO3\TtAddress\Service\GeocodeService;
 use FriendsOfTYPO3\TtAddress\Utility\CacheUtility;
-use TYPO3\CMS\Core\Cache\CacheDataCollector;
 use TYPO3\CMS\Core\Cache\CacheDataCollectorInterface;
-use TYPO3\CMS\Core\Cache\CacheTag;
-use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Extbase\Mvc\ExtbaseRequestParameters;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class CacheUtilityTest extends BaseTestCase
 {
-
     /**
      * @test
      */

@@ -31,7 +31,7 @@ class CacheUtilityTest extends BaseTestCase
     public function nonArrayRecordInstancesAreSkippedForCacheTags()
     {
         $addressRecords = ['dummy string'];
-        
+
         $mockedCacheDataCollector =$this->getMockBuilder(CacheDataCollectorInterface::class)->getMock();
         $mockedCacheDataCollector
             ->expects($this->never())

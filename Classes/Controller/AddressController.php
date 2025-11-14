@@ -11,7 +11,6 @@ namespace FriendsOfTYPO3\TtAddress\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use FriendsOfTYPO3\TtAddress\Database\QueryGenerator;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
@@ -20,6 +19,7 @@ use FriendsOfTYPO3\TtAddress\Seo\AddressTitleProvider;
 use FriendsOfTYPO3\TtAddress\Utility\CacheUtility;
 use FriendsOfTYPO3\TtAddress\Utility\TypoScript;
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Pagination\PaginatorInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
@@ -34,12 +34,12 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 class AddressController extends ActionController
 {
     protected AddressRepository $addressRepository;
-    protected QueryGenerator$queryGenerator;
+    protected PageRepository $pageRepository;
     protected Settings $extensionConfiguration;
 
     public function initializeAction(): void
     {
-        $this->queryGenerator = GeneralUtility::makeInstance(QueryGenerator::class);
+        $this->pageRepository = GeneralUtility::makeInstance(PageRepository::class);
         $this->extensionConfiguration = GeneralUtility::makeInstance(Settings::class);
     }
 
@@ -231,19 +231,8 @@ class AddressController extends ActionController
      */
     protected function getPidList(): array
     {
-        $rootPIDs = explode(',', $this->settings['pages']);
-        $pidList = $rootPIDs;
-
-        // iterate through root-page ids and merge to array
-        foreach ($rootPIDs as $pid) {
-            // @extensionScannerIgnoreLine
-            $result = $this->queryGenerator->getTreeList($pid, (int) ($this->settings['recursive'] ?? 0));
-            if ($result) {
-                $subtreePids = explode(',', $result);
-                $pidList = array_merge($pidList, $subtreePids);
-            }
-        }
-        return $pidList;
+        $rootPIDs = explode(',', $this->settings['pages'] ?? '');
+        return $this->pageRepository->getPageIdsRecursive($rootPIDs, (int) ($this->settings['recursive'] ?? 0));
     }
 
     /**

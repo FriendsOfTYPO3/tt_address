@@ -17,10 +17,14 @@ use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
+use TYPO3\CMS\Core\Cache\CacheDataCollectorInterface;
+use TYPO3\CMS\Core\Domain\Repository\PageRepository;
+use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Package\PackageManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Mvc\ExtbaseRequestParameters;
 use TYPO3\CMS\Extbase\Mvc\Request;
 use TYPO3\CMS\Fluid\View\TemplateView;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -31,7 +35,13 @@ class AddressControllerTest extends BaseTestCase
 {
     protected function setUp(): void
     {
-        $GLOBALS['TSFE'] = $this->getAccessibleMock(TypoScriptFrontendController::class, ['addCacheTags'], [], '', false);
+        $mockedCacheDataCollector =$this->getMockBuilder(CacheDataCollectorInterface::class)->getMock();
+
+        $serverRequest = (new ServerRequest())
+            ->withAttribute('extbase', new ExtbaseRequestParameters())
+            ->withAttribute('frontend.cache.collector', $mockedCacheDataCollector);
+
+        $GLOBALS['TYPO3_REQUEST'] = $serverRequest;
     }
 
     /**
@@ -82,23 +92,6 @@ class AddressControllerTest extends BaseTestCase
     /**
      * @test
      */
-    public function initializeActionWorks()
-    {
-        $mockedPackageManager = $this->getAccessibleMock(PackageManager::class, null, [], '', false);
-        GeneralUtility::setSingletonInstance(PackageManager::class, $mockedPackageManager);
-
-        $subject = $this->getAccessibleMock(AddressController::class, null, [], '', false);
-        $subject->_set('extensionConfiguration', $this->getMockedSettings());
-        $subject->initializeAction();
-
-        $expected = new QueryGenerator();
-
-        self::assertEquals($expected, $subject->_get('queryGenerator'));
-    }
-
-    /**
-     * @test
-     */
     public function injectAddressRepositoryWorks()
     {
         $mockedRepository = $this->getAccessibleMock(AddressRepository::class, null, [], '', false);
@@ -114,17 +107,21 @@ class AddressControllerTest extends BaseTestCase
      */
     public function pidListIsReturned()
     {
-        $mockedQueryGenerator = $this->getAccessibleMock(QueryGenerator::class, ['getTreeList'], [], '', false);
-        $mockedQueryGenerator->expects(self::any())->method('getTreeList');
+        $mockedPageRepsitory = $this->getAccessibleMock(PageRepository::class, ['getPageIdsRecursive'], [], '', false);
+        $mockedPageRepsitory->expects(self::any())
+            ->method('getPageIdsRecursive')
+            ->with([123, 456], 3)
+            ->willReturn([123, 456, 789]);
+        ;
 
         $subject = $this->getAccessibleMock(AddressController::class, null, [], '', false);
-        $subject->_set('queryGenerator', $mockedQueryGenerator);
+        $subject->_set('pageRepository', $mockedPageRepsitory);
         $subject->_set('settings', [
             'pages' => '123,456',
             'recursive' => 3,
         ]);
 
-        self::assertEquals(['123', '456'], $subject->_call('getPidList'));
+        self::assertEquals([123, 456, 789], $subject->_call('getPidList'));
     }
 
     /**

@@ -33,9 +33,7 @@ class AddressRepositoryTest extends FunctionalTestCase
         $this->importCSVDataSet(__DIR__ . '/../Fixtures/tt_address.csv');
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function rawQueryReturnsCorrectQuery()
     {
         $demand = new Demand();
@@ -48,18 +46,14 @@ class AddressRepositoryTest extends FunctionalTestCase
         self::assertEquals($sql, $result);
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function findRecordsByUid()
     {
         $address = $this->addressRepository->findByIdentifier(1);
         self::assertEquals('John', $address->getFirstName());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function findRecordsByCustomSorting()
     {
         $demand = new Demand();
@@ -70,9 +64,7 @@ class AddressRepositoryTest extends FunctionalTestCase
         self::assertEquals([3, 6, 2], $this->getListOfIds($addresses));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function findRecordsByCustomSortingDesc()
     {
         $demand = new Demand();
@@ -85,9 +77,7 @@ class AddressRepositoryTest extends FunctionalTestCase
         self::assertEquals([2, 6, 3], $this->getListOfIds($addresses));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function findRecordsByCustomSortingAndSortFieldDesc()
     {
         $demand = new Demand();
@@ -99,9 +89,7 @@ class AddressRepositoryTest extends FunctionalTestCase
         self::assertEquals([3, 2, 6], $this->getListOfIds($addresses));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function findRecordsByPageAndCustomSortingDesc()
     {
         $demand = new Demand();
@@ -112,9 +100,7 @@ class AddressRepositoryTest extends FunctionalTestCase
         self::assertEquals([7, 5, 6], $this->getListOfIds($addresses));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function findRecordsByPageAndCustomSortingAsc()
     {
         $demand = new Demand();
@@ -124,9 +110,7 @@ class AddressRepositoryTest extends FunctionalTestCase
         self::assertEquals([6, 5, 7], $this->getListOfIds($addresses));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function findRecordsByCategory()
     {
         $demand = new Demand();
@@ -145,9 +129,7 @@ class AddressRepositoryTest extends FunctionalTestCase
         self::assertEquals([2, 5, 6, 7], $this->getListOfIds($addresses));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function findRecordsByCategoryWithSubCheck()
     {
         $demand = new Demand();
@@ -163,9 +145,7 @@ class AddressRepositoryTest extends FunctionalTestCase
         self::assertEquals([1, 6, 8], $this->getListOfIds($addresses));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function findRecordsByCoordinates()
     {
         $demand = new Demand();

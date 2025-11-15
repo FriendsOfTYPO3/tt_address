@@ -22,28 +22,22 @@ class LongitudeEvaluationTest extends BaseTestCase
         $this->subject = new LongitudeEvaluation();
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function jsEvaluationIsCalled()
     {
         self::markTestSkipped('Skipped as PageRenderer is called which leads into issues');
         self::assertNotEmpty($this->subject->returnFieldJS());
     }
 
-    /**
-     * @test
-     * @dataProvider lngIsProperlyEvaluatedDataProvider
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\DataProvider('lngIsProperlyEvaluatedDataProvider')]
     public function longIsProperlyEvaluated($given, $expected)
     {
         self::assertEquals($expected, $this->subject->evaluateFieldValue($given));
     }
 
-    /**
-     * @test
-     * @dataProvider lngIsProperlyEvaluatedDataProvider
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\DataProvider('lngIsProperlyEvaluatedDataProvider')]
     public function lngIsProperlyDeEvaluated($given, $expected)
     {
         $params = ['value' => $given];

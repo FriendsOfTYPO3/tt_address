@@ -14,9 +14,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class GeocodeServiceTest extends BaseTestCase
 {
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function validAPiResultIsReturned()
     {
         self::markTestSkipped('Migrate prophesizy away');
@@ -35,9 +33,7 @@ class GeocodeServiceTest extends BaseTestCase
         self::assertEquals($content, $apiResponse);
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function invalidAPiResultReturnsEmptyArray()
     {
         self::markTestSkipped('Migrate prophesizy away');
@@ -56,9 +52,7 @@ class GeocodeServiceTest extends BaseTestCase
         self::assertEquals([], $apiResponse);
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function wrongCacheThrowsException()
     {
         $this->expectException(\RuntimeException::class);

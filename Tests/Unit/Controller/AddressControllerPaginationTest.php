@@ -13,23 +13,18 @@ use FriendsOfTYPO3\TtAddress\Controller\AddressController;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
+use PHPUnit\Framework\Attributes\Test;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Pagination\PaginatorInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Extbase\Mvc\Request;
+use TYPO3\CMS\Fluid\View\FluidViewAdapter;
 use TYPO3\CMS\Fluid\View\TemplateView;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class AddressControllerPaginationTest extends BaseTestCase
 {
-    protected function setUp(): void
-    {
-        $GLOBALS['TSFE'] = $this->getAccessibleMock(TypoScriptFrontendController::class, ['addCacheTags'], [], '', false);
-    }
-
-    /**
-     * @test
-     */
+    #[Test]
     public function listActionUsesNewPaginationWithArrayRecords()
     {
         if (!class_exists(SimplePagination::class)) {
@@ -67,7 +62,7 @@ class AddressControllerPaginationTest extends BaseTestCase
         $mockedRequest->expects(self::once())->method('getArgument')->with('currentPage')->willReturn(2);
         $mockedRequest->expects(self::any())->method('getAttribute')->willReturn([]);
 
-        $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
+        $mockedView = $this->getAccessibleMock((new Typo3Version())->getMajorVersion() >= 14 ? FluidViewAdapter::class : TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
         $mockedView->expects(self::once())->method('assignMultiple')->with($assignments);
 
         $subject = $this->getAccessibleMock(AddressController::class, ['createDemandFromSettings', 'htmlResponse'], [], '', false);
@@ -82,9 +77,7 @@ class AddressControllerPaginationTest extends BaseTestCase
         $subject->listAction();
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function paginationIsCorrectlyTriggered()
     {
         if (!class_exists(SimplePagination::class)) {

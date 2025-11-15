@@ -31,9 +31,7 @@ class CategoryServiceTest extends FunctionalTestCase
         $this->importCSVDataSet(__DIR__ . '/../Fixtures/sys_categories.csv');
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function findChildCategories()
     {
         $categories = $this->subject->getChildrenCategories('2,4');
@@ -43,9 +41,7 @@ class CategoryServiceTest extends FunctionalTestCase
         self::assertEquals('4,5,8', $categories);
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function loggerInvokedWithTooManyCategories()
     {
         $mockedTimeTracker = $this->getAccessibleMock(TimeTracker::class, ['setTSlogMessage'], [], '', false);

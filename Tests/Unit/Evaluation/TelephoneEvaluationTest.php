@@ -33,9 +33,7 @@ class TelephoneEvaluationTest extends BaseTestCase
         GeneralUtility::setSingletonInstance(PackageManager::class, $packageManager);
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function constructorIsCalled()
     {
         $subject = $this->getAccessibleMock(TelephoneEvaluation::class, null, [], '', true);
@@ -44,19 +42,15 @@ class TelephoneEvaluationTest extends BaseTestCase
         self::assertEquals($settings, $subject->_get('extensionSettings'));
     }
 
-    /**
-     * @test
-     * @dataProvider telephoneIsProperlyEvaluatedDataProvider
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\DataProvider('telephoneIsProperlyEvaluatedDataProvider')]
     public function telephoneIsProperlyEvaluated($given, $expected)
     {
         self::assertEquals($expected, $this->subject->evaluateFieldValue($given));
     }
 
-    /**
-     * @test
-     * @dataProvider telephoneIsProperlyEvaluatedDataProvider
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\DataProvider('telephoneIsProperlyEvaluatedDataProvider')]
     public function telephoneIsProperlyDeEvaluated($given, $expected): void
     {
         $params = ['value' => $given];

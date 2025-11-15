@@ -78,7 +78,7 @@ $config
         'class_attributes_separation' => ['elements' => ['method' => 'one']],
         'class_definition' => true,
         'single_class_element_per_statement' => true,
-        'visibility_required' => true,
+        'modifier_keywords' => ['elements' => ['const', 'method', 'property']],
         'multiline_comment_opening_closing' => true,
         'no_empty_comment' => true,
         'single_line_comment_spacing' => true,

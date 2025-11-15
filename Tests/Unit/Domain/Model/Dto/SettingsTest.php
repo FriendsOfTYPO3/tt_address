@@ -24,9 +24,7 @@ class SettingsTest extends BaseTestCase
         GeneralUtility::setSingletonInstance(PackageManager::class, $mockedPackageManager);
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function defaultSettingsAreAvailable(): void
     {
         $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['tt_address'] = [];
@@ -36,9 +34,7 @@ class SettingsTest extends BaseTestCase
         self::assertEquals('/[^\d\+\s\-]/g', $subject->getTelephoneValidationPatternForJs());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function settingsAreSet(): void
     {
         $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['tt_address'] = [

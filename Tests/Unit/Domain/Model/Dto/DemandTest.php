@@ -23,9 +23,7 @@ class DemandTest extends BaseTestCase
         $this->subject = new Demand();
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function pagesCanBeSet()
     {
         $value = ['123', '456'];
@@ -33,9 +31,7 @@ class DemandTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getPages());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function sortByCanBeSet()
     {
         $value = 'title';
@@ -43,9 +39,7 @@ class DemandTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getSortBy());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function sortOrderCanBeSet()
     {
         $value = 'desc';
@@ -53,9 +47,7 @@ class DemandTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getSortOrder());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function categoriesCanBeSet()
     {
         $value = '12,34,5';
@@ -63,9 +55,7 @@ class DemandTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getCategories());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function categoryCombinationCanBeSet()
     {
         $value = 'AND';
@@ -73,9 +63,7 @@ class DemandTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getCategoryCombination());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function singleRecordsCanBeSet()
     {
         $value = '7,6,1';
@@ -83,9 +71,7 @@ class DemandTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getSingleRecords());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function includeSubCategoriesCanBeSet()
     {
         $value = true;
@@ -93,9 +79,7 @@ class DemandTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getIncludeSubCategories());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function ignoreWithoutCoordinatesCanBeSet()
     {
         $value = true;

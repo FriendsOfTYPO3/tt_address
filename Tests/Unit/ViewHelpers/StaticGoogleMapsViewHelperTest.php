@@ -28,10 +28,8 @@ class StaticGoogleMapsViewHelperTest extends BaseTestCase
         $this->viewHelper->initializeArguments();
     }
 
-    /**
-     * @test
-     * @dataProvider staticGoogleMapsViewHelpersIsCalledDataProvider
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\DataProvider('staticGoogleMapsViewHelpersIsCalledDataProvider')]
     public function staticGoogleMapsViewHelpersIsCalled(array $parameters, $result)
     {
         self::markTestSkipped('turn into functional test');

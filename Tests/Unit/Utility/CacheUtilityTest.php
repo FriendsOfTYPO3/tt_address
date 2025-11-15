@@ -19,9 +19,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class CacheUtilityTest extends BaseTestCase
 {
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function nonArrayRecordInstancesAreSkippedForCacheTags()
     {
         $addressRecords = ['dummy string'];
@@ -40,9 +38,7 @@ class CacheUtilityTest extends BaseTestCase
         CacheUtility::addCacheTagsByAddressRecords($addressRecords);
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function addressRecordWithLocalizedIdAddsCacheTags()
     {
         $addressRecord = new Address();

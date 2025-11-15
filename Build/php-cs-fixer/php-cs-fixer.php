@@ -134,6 +134,7 @@ $config
         'spaces_inside_parentheses' => true,
         'type_declaration_spaces' => true,
         'types_spaces' => true,
+        'php_unit_attributes' => true,
         \PhpCsFixerCustomFixers\Fixer\NoDuplicatedArrayKeyFixer::name() => true,
         \PhpCsFixerCustomFixers\Fixer\NoDuplicatedImportsFixer::name() => true,
         \PhpCsFixerCustomFixers\Fixer\NoPhpStormGeneratedCommentFixer::name() => true,

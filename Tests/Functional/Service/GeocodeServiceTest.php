@@ -28,9 +28,7 @@ class GeocodeServiceTest extends FunctionalTestCase
         $this->importCSVDataSet(__DIR__ . '/../Fixtures/tt_address.csv');
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function properRecordsAreFound()
     {
         $subject = $this->getAccessibleMock(GeocodeService::class, ['getCoordinatesForAddress'], ['123']);
@@ -52,9 +50,7 @@ class GeocodeServiceTest extends FunctionalTestCase
         self::assertEquals(['latitude' => 10.000000000000, 'longitude' => 12.000000000000], ['latitude' => $row['latitude'], 'longitude' => $row['longitude']]);
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function urlforAddressesIsBuiltCorrectly()
     {
         $result1 = ['results' => [0 => ['geometry' => ['location' => ['lat' => 11, 'lng' => '13']]]]];
@@ -72,9 +68,7 @@ class GeocodeServiceTest extends FunctionalTestCase
         self::assertEquals([], $response4);
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function findRecordsByUid()
     {
         self::assertTrue(true);

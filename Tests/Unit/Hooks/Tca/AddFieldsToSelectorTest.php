@@ -16,9 +16,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class AddFieldsToSelectorTest extends BaseTestCase
 {
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function constructorIsCalled()
     {
         $languageService = $this->getAccessibleMock(LanguageService::class, null, [], '', false, false);
@@ -28,9 +26,7 @@ class AddFieldsToSelectorTest extends BaseTestCase
         self::assertEquals($languageService, $subject->_get('languageService'));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function optionsAreFilled()
     {
         foreach (AddFieldsToSelector::sortFields as $sortField) {

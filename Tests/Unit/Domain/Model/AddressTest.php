@@ -27,9 +27,7 @@ class AddressTest extends BaseTestCase
         $this->subject = new Address();
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function genderCanBeSet()
     {
         $value = 'm';
@@ -37,9 +35,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getGender());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function nameCanBeSet()
     {
         $value = 'Max Mustermann';
@@ -47,9 +43,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getName());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function firstNameCanBeSet()
     {
         $value = 'Max';
@@ -57,9 +51,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getFirstName());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function middleNameCanBeSet()
     {
         $value = 'J.';
@@ -67,9 +59,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getMiddleName());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function lastNameCanBeSet()
     {
         $value = 'Mustermann';
@@ -77,9 +67,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getLastName());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function birthdayCanBeSet()
     {
         $value = new \DateTime();
@@ -87,9 +75,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getBirthday());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function titleCanBeSet()
     {
         $value = 'dr.';
@@ -97,9 +83,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getTitle());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function addressCanBeSet()
     {
         $value = 'Dummystreet 134';
@@ -107,9 +91,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getAddress());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function latitudeCanBeSet()
     {
         $value = 123.121221;
@@ -117,9 +99,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getLatitude());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function longitudeCanBeSet()
     {
         $value = 10.1291;
@@ -127,9 +107,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getLongitude());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function buildingCanBeSet()
     {
         $value = 'building 1';
@@ -137,9 +115,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getBuilding());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function roomCanBeSet()
     {
         $value = 'room 1';
@@ -163,9 +139,7 @@ class AddressTest extends BaseTestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function phoneCanBeSet()
     {
         $value = '+43129';
@@ -173,10 +147,8 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getPhone());
     }
 
-    /**
-     * @test
-     * @dataProvider telephoneFormatDataProvider
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\DataProvider('telephoneFormatDataProvider')]
     public function phoneWithCleanedChars($number, $expectedNumber)
     {
         $this->subject->setPhone($number);
@@ -187,9 +159,7 @@ class AddressTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function faxCanBeSet()
     {
         $value = '+431294';
@@ -197,10 +167,8 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getFax());
     }
 
-    /**
-     * @test
-     * @dataProvider telephoneFormatDataProvider
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\DataProvider('telephoneFormatDataProvider')]
     public function faxWithCleanedChars($number, $expectedNumber)
     {
         $this->subject->setFax($number);
@@ -211,9 +179,7 @@ class AddressTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function mobileCanBeSet()
     {
         $value = '+431294111';
@@ -221,10 +187,8 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getMobile());
     }
 
-    /**
-     * @test
-     * @dataProvider telephoneFormatDataProvider
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\DataProvider('telephoneFormatDataProvider')]
     public function mobileWithCleanedChars($number, $expectedNumber)
     {
         $this->subject->setMobile($number);
@@ -235,9 +199,7 @@ class AddressTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function wwwCanBeSet()
     {
         $value = 'www.typo3.org';
@@ -245,10 +207,8 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getWww());
     }
 
-    /**
-     * @test
-     * @dataProvider simplifiedWwwIsReturnedDataProvider
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\DataProvider('simplifiedWwwIsReturnedDataProvider')]
     public function simplifiedWwwIsReturned(string $given, string $expected)
     {
         $this->subject->setWww($given);
@@ -266,9 +226,7 @@ class AddressTest extends BaseTestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function slugCanBeSet()
     {
         $value = '/testaddress/';
@@ -276,9 +234,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getSlug());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function skypeCanBeSet()
     {
         $value = 'fo.com';
@@ -286,9 +242,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getSkype());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function twitterCanBeSet()
     {
         $value = '@georg_ringer';
@@ -296,9 +250,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getTwitter());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function wrongTwitterHandleThrowsErrorCanBeSet()
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -308,9 +260,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getTwitter());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function facebookCanBeSet()
     {
         $value = '/fo';
@@ -318,9 +268,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getFacebook());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function wrongFacebookHandleThrowsErrorCanBeSet()
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -330,9 +278,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getFacebook());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function linkedinCanBeSet()
     {
         $value = 'www.linkedin.com/bar';
@@ -340,9 +286,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getLinkedin());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function emailCanBeSet()
     {
         $value = 'some@example.org';
@@ -350,9 +294,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getEmail());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function companyCanBeSet()
     {
         $value = 'ACME';
@@ -360,9 +302,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getCompany());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function positionCanBeSet()
     {
         $value = 'Boss';
@@ -370,9 +310,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getPosition());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function cityCanBeSet()
     {
         $value = 'Linz';
@@ -380,9 +318,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getCity());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function zipCanBeSet()
     {
         $value = '30210';
@@ -390,9 +326,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getZip());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function regionCanBeSet()
     {
         $value = 'OOE';
@@ -400,9 +334,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getRegion());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function countryCanBeSet()
     {
         $value = 'AT';
@@ -410,9 +342,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getCountry());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function descriptionCanBeSet()
     {
         $value = 'lorem ipsum';
@@ -420,9 +350,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getDescription());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function imagesCanBeSet()
     {
         $value = new ObjectStorage();
@@ -434,9 +362,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getImage());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function imagesCanBeAttached()
     {
         $value = new ObjectStorage();
@@ -453,9 +379,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals(2, $this->subject->getImage()->count());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function firstImageCanBeRetrieved()
     {
         $value = new ObjectStorage();
@@ -471,9 +395,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals($item, $this->subject->getFirstImage());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function firstImageIsNullIfNoImages()
     {
         $value = new ObjectStorage();
@@ -482,9 +404,7 @@ class AddressTest extends BaseTestCase
         self::assertNull($this->subject->getFirstImage());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function imagesCanBeRemoved()
     {
         $value = new ObjectStorage();
@@ -502,9 +422,7 @@ class AddressTest extends BaseTestCase
         self::assertEquals(1, $this->subject->getImage()->count());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function categoriesCanBeSet()
     {
         $value = new ObjectStorage();
@@ -516,10 +434,8 @@ class AddressTest extends BaseTestCase
         self::assertEquals($value, $this->subject->getCategories());
     }
 
-    /**
-     * @test
-     * @dataProvider fullNameDataProvider
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\DataProvider('fullNameDataProvider')]
     public function fullNameIsReturned(string $expected, array $nameParts): void
     {
         $this->subject->setTitle($nameParts[0]);

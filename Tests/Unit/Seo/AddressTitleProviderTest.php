@@ -17,10 +17,10 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 class AddressTitleProviderTest extends BaseTestCase
 {
     /**
-     * @test
-     * @dataProvider addressTitleProvider
      * @param string[] $addressFields
      */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\DataProvider('addressTitleProvider')]
     public function correctTitleIsGenerated(string $expected, array $addressFields, array $configuration): void
     {
         $address = new Address();

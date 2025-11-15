@@ -42,10 +42,8 @@ class AddressControllerTest extends BaseTestCase
         $GLOBALS['TYPO3_REQUEST'] = $serverRequest;
     }
 
-    /**
-     * @test
-     * @dataProvider dotIsRemovedFromEndDataProvider
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\DataProvider('dotIsRemovedFromEndDataProvider')]
     public function dotIsRemovedFromEnd($given, $expected)
     {
         $subject = $this->getAccessibleMock(AddressController::class, null, [], '', false);
@@ -60,9 +58,7 @@ class AddressControllerTest extends BaseTestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function dotsAreRemovedFromArray()
     {
         $subject = $this->getAccessibleMock(AddressController::class, null, [], '', false);
@@ -87,9 +83,7 @@ class AddressControllerTest extends BaseTestCase
         self::assertEquals($expected, $subject->_call('removeDots', $given));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function injectAddressRepositoryWorks()
     {
         $mockedRepository = $this->getAccessibleMock(AddressRepository::class, null, [], '', false);
@@ -100,9 +94,7 @@ class AddressControllerTest extends BaseTestCase
         self::assertEquals($mockedRepository, $subject->_get('addressRepository'));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function pidListIsReturned()
     {
         $mockedPageRepsitory = $this->getAccessibleMock(PageRepository::class, ['getPageIdsRecursive'], [], '', false);
@@ -121,9 +113,7 @@ class AddressControllerTest extends BaseTestCase
         self::assertEquals([123, 456, 789], $subject->_call('getPidList'));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function settingsAreProperlyInjected()
     {
         self::markTestSkipped('Skipped until fixed');
@@ -167,9 +157,7 @@ class AddressControllerTest extends BaseTestCase
         self::assertEquals($expectedSettings, $subject->_get('settings'));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function demandIsCreated()
     {
         $demand = new Demand();
@@ -193,9 +181,7 @@ class AddressControllerTest extends BaseTestCase
         self::assertEquals($expected, $subject->_call('createDemandFromSettings'));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function showActionFillsView()
     {
         $address = new Address();
@@ -216,9 +202,7 @@ class AddressControllerTest extends BaseTestCase
         $subject->showAction($address);
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function listActionFillsViewForSingleRecords()
     {
         $settings = [
@@ -254,9 +238,7 @@ class AddressControllerTest extends BaseTestCase
         $subject->listAction();
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function listActionFillsViewForDemand()
     {
         $settings = [
@@ -292,9 +274,7 @@ class AddressControllerTest extends BaseTestCase
         $subject->listAction();
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function overrideDemandMethodIsCalledIfEnabled()
     {
         $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument', 'getAttribute'], [], '', false);
@@ -335,10 +315,8 @@ class AddressControllerTest extends BaseTestCase
         $subject->listAction(['not', 'empty']);
     }
 
-    /**
-     * @test
-     * @dataProvider overrideDemandWorksDataProvider
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\DataProvider('overrideDemandWorksDataProvider')]
     public function overrideDemandWorks(Demand $demandIn, Demand $demandOut, array $override)
     {
         $subject = $this->getAccessibleMock(AddressController::class, null, [], '', false);

@@ -15,10 +15,8 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class EvalcoordinatesUtilityTest extends BaseTestCase
 {
-    /**
-     * @test
-     * @dataProvider longIsProperlyEvaluatedDataProvider
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\DataProvider('longIsProperlyEvaluatedDataProvider')]
     public function longIsProperlyEvaluated($given, $expected)
     {
         self::assertEquals($expected, EvalcoordinatesUtility::formatLongitude($given));
@@ -36,10 +34,8 @@ class EvalcoordinatesUtilityTest extends BaseTestCase
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider latIsProperlyEvaluatedDataProvider
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\DataProvider('latIsProperlyEvaluatedDataProvider')]
     public function latIsProperlyEvaluated($given, $expected)
     {
         self::assertEquals($expected, EvalcoordinatesUtility::formatLatitude($given));

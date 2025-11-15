@@ -13,21 +13,18 @@ use FriendsOfTYPO3\TtAddress\Controller\AddressController;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Pagination\PaginatorInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Extbase\Mvc\Request;
 use TYPO3\CMS\Fluid\View\FluidViewAdapter;
 use TYPO3\CMS\Fluid\View\TemplateView;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class AddressControllerPaginationTest extends BaseTestCase
 {
-
-    /**
-     * @test
-     */
+    #[Test]
     public function listActionUsesNewPaginationWithArrayRecords()
     {
         if (!class_exists(SimplePagination::class)) {
@@ -80,9 +77,7 @@ class AddressControllerPaginationTest extends BaseTestCase
         $subject->listAction();
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function paginationIsCorrectlyTriggered()
     {
         if (!class_exists(SimplePagination::class)) {

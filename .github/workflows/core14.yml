@@ -1,10 +1,10 @@
-name: core 13
+name: core 14
 
 on: [ push, pull_request ]
 
 jobs:
   tests:
-    name: v13
+    name: v14
     runs-on: ubuntu-22.04
     strategy:
       # This prevents cancellation of matrix job runs, if one/two already failed and let the

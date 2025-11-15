@@ -541,8 +541,13 @@ case ${TEST_SUITE} in
                 typo3/cms-core:^13.4.17 || exit 1
             fi
             if [ ${TYPO3_VERSION} -eq 14 ]; then
+              composer config minimum-stability dev
               composer require --no-ansi --no-interaction --no-progress --no-install \
-                typo3/cms-core:dev-main || exit 1
+                typo3/cms-core:dev-main \
+                typo3/cms-install:dev-main \
+                typo3/testing-framework:dev-main \
+                phpunit/phpunit:^11 \
+                 || exit 1
             fi
             composer update --no-ansi --no-interaction --no-progress --with-dependencies --prefer-lowest || exit 1
             composer show || exit 1

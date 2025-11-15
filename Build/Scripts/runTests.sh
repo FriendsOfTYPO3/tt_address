@@ -519,7 +519,7 @@ case ${TEST_SUITE} in
                 typo3/cms-core:dev-main \
                 typo3/cms-install:dev-main \
                 typo3/testing-framework:dev-main \
-                phpunit/phpunit:^11 \
+                phpunit/phpunit:^11.5.44 \
                  || exit 1
             fi
             composer update --no-progress --no-interaction  || exit 1
@@ -546,7 +546,7 @@ case ${TEST_SUITE} in
                 typo3/cms-core:dev-main \
                 typo3/cms-install:dev-main \
                 typo3/testing-framework:dev-main \
-                phpunit/phpunit:^11 \
+                phpunit/phpunit:^11.5.44 \
                  || exit 1
             fi
             composer update --no-ansi --no-interaction --no-progress --with-dependencies --prefer-lowest || exit 1

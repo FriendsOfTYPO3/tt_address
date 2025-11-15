@@ -19,10 +19,12 @@ use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
 use TYPO3\CMS\Core\Cache\CacheDataCollectorInterface;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Http\ServerRequest;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Mvc\ExtbaseRequestParameters;
 use TYPO3\CMS\Extbase\Mvc\Request;
+use TYPO3\CMS\Fluid\View\FluidViewAdapter;
 use TYPO3\CMS\Fluid\View\TemplateView;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\TestingFramework\Core\BaseTestCase;
@@ -202,7 +204,7 @@ class AddressControllerTest extends BaseTestCase
             'address' => $address,
             'contentObjectData' => [],
         ];
-        $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple'], [], '', false);
+        $mockedView = $this->getAccessibleMock((new Typo3Version())->getMajorVersion() >= 14 ? FluidViewAdapter::class : TemplateView::class, ['assignMultiple'], [], '', false);
         $mockedView->expects(self::once())->method('assignMultiple')->with($assigned);
 
         $subject = $this->getAccessibleMock(AddressController::class, ['redirectToUri', 'htmlResponse'], [], '', false);
@@ -235,7 +237,7 @@ class AddressControllerTest extends BaseTestCase
             'contentObjectData' => [],
         ];
 
-        $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
+        $mockedView = $this->getAccessibleMock((new Typo3Version())->getMajorVersion() >= 14 ? FluidViewAdapter::class : TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
         $mockedView->expects(self::once())->method('assignMultiple')->with($assignments);
         $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument', 'getAttribute'], [], '', false);
         $mockedRequest->expects(self::any())->method('getAttribute')->willReturn([]);
@@ -275,7 +277,7 @@ class AddressControllerTest extends BaseTestCase
         $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument', 'getAttribute'], [], '', false);
         $mockedRequest->expects(self::any())->method('getAttribute')->willReturn([]);
 
-        $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
+        $mockedView = $this->getAccessibleMock((new Typo3Version())->getMajorVersion() >= 14 ? FluidViewAdapter::class : TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
         $mockedView->expects(self::once())->method('assignMultiple')->with($assignments);
 
         $subject = $this->getAccessibleMock(AddressController::class, ['createDemandFromSettings', 'htmlResponse'], [], '', false);
@@ -298,7 +300,7 @@ class AddressControllerTest extends BaseTestCase
         $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument', 'getAttribute'], [], '', false);
         $mockedRepository = $this->getAccessibleMock(AddressRepository::class, ['getAddressesByCustomSorting', 'findByDemand'], [], '', false);
         $mockedRepository->expects(self::any())->method('findByDemand')->willReturn([]);
-        $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
+        $mockedView = $this->getAccessibleMock((new Typo3Version())->getMajorVersion() >= 14 ? FluidViewAdapter::class : TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
         $mockedView->expects(self::once())->method('assignMultiple');
         $mockContentObject = $this->createMock(ContentObjectRenderer::class);
         $mockConfigurationManager = $this->createMock(ConfigurationManager::class);

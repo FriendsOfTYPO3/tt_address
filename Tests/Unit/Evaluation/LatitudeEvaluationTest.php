@@ -22,28 +22,22 @@ class LatitudeEvaluationTest extends BaseTestCase
         $this->subject = new LatitudeEvaluation();
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function jsEvaluationIsCalled()
     {
         self::markTestSkipped('Skipped as PageRenderer is called which leads into issues');
         self::assertNotEmpty($this->subject->returnFieldJS());
     }
 
-    /**
-     * @test
-     * @dataProvider latIsProperlyEvaluatedDataProvider
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\DataProvider('latIsProperlyEvaluatedDataProvider')]
     public function latitudeIsProperlyEvaluated($given, $expected)
     {
         self::assertEquals($expected, $this->subject->evaluateFieldValue($given));
     }
 
-    /**
-     * @test
-     * @dataProvider latIsProperlyEvaluatedDataProvider
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\DataProvider('latIsProperlyEvaluatedDataProvider')]
     public function latIsProperlyDeEvaluated($given, $expected)
     {
         $params = ['value' => $given];

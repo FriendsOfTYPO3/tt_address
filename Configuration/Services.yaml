@@ -15,10 +15,3 @@ services:
         description: 'Geocode tt_address records'
         schedulable: true
         hidden: false
-
-  FriendsOfTYPO3\TtAddress\FormEngine\TtAddressPreviewRenderer:
-    tags:
-      - name: event.listener
-        identifier: 'ext-ttaddress/fluid-preview/content'
-        event: TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent
-        before: 'typo3-backend/fluid-preview/content'

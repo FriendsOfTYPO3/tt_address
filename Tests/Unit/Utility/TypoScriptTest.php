@@ -15,9 +15,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class TypoScriptTest extends BaseTestCase
 {
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function tsIsOverloadedCorrectly()
     {
         $subject = new TypoScript();

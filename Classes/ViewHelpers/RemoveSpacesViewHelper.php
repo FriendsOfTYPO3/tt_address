@@ -10,18 +10,11 @@ namespace FriendsOfTYPO3\TtAddress\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 class RemoveSpacesViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
-
-    /**
-     * Initialize arguments
-     */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('value', 'string', 'value');
     }
@@ -29,9 +22,9 @@ class RemoveSpacesViewHelper extends AbstractViewHelper
     /**
      * @return string
      */
-    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
+    public function render()
     {
-        $value = $arguments['value'] ?: $renderChildrenClosure();
+        $value = $this->arguments['value'] ?: $this->renderChildren();
         return str_replace(' ', '', $value);
     }
 }

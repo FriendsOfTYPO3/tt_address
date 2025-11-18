@@ -25,16 +25,14 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1546531781] = [
     'class' => \FriendsOfTYPO3\TtAddress\FormEngine\FieldControl\LocationMapWizard::class,
 ];
 
-if ((new \TYPO3\CMS\Core\Information\Typo3Version())->getMajorVersion() < 13) {
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:tt_address/Configuration/TSconfig/NewContentElementWizard.typoscript">');
-}
-
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
     'TtAddress',
     'ListView',
     [
         \FriendsOfTYPO3\TtAddress\Controller\AddressController::class => 'list,show',
-    ]
+    ],
+    [],
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
 );
 
 // Register evaluations for TCA
@@ -50,5 +48,3 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals'][\FriendsOfTYPO3\Tt
         }
     }
 '));
-
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('mod.web_layout.tt_content.preview.list.ttaddress_listview = EXT:tt_address/Resources/Private/Templates/Backend/PluginPreview.html');

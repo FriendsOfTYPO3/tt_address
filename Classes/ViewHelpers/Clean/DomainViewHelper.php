@@ -12,18 +12,11 @@ namespace FriendsOfTYPO3\TtAddress\ViewHelpers\Clean;
  */
 
 use FriendsOfTYPO3\TtAddress\Utility\PropertyModification;
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 class DomainViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
-
-    /**
-     * Initialize arguments
-     */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('value', 'string', 'value');
     }
@@ -31,9 +24,9 @@ class DomainViewHelper extends AbstractViewHelper
     /**
      * @return string
      */
-    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
+    public function render()
     {
-        $value = $arguments['value'] ?: $renderChildrenClosure();
+        $value = $this->arguments['value'] ?: $this->renderChildren();
         return PropertyModification::getCleanedDomain($value);
     }
 }

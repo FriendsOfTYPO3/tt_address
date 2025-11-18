@@ -18,9 +18,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class GeocodeCommandTest extends BaseTestCase
 {
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function configurationIsProperlyConfigured()
     {
         $subject = $this->getAccessibleMock(GeocodeCommand::class, ['addArgument'], [], '', false);
@@ -28,9 +26,7 @@ class GeocodeCommandTest extends BaseTestCase
         self::assertEquals('Geocode tt_address records', $subject->getDescription());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function geocodeServiceIsReturned()
     {
         $subject = $this->getAccessibleMock(GeocodeCommand::class, null, [], '', false);
@@ -38,9 +34,7 @@ class GeocodeCommandTest extends BaseTestCase
         self::assertInstanceOf(GeocodeService::class, $service);
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function geocodingIsCalled()
     {
         $geocodeService = $this->getAccessibleMock(GeocodeService::class, ['calculateCoordinatesForAllRecordsInTable'], [], '', false);

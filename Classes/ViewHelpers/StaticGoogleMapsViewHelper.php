@@ -13,17 +13,10 @@ namespace FriendsOfTYPO3\TtAddress\ViewHelpers;
 
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 class StaticGoogleMapsViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
-
-    /**
-     * Initialize arguments
-     */
     public function initializeArguments(): void
     {
         $this->registerArgument('addresses', 'mixed', 'Addresses', true);
@@ -33,12 +26,12 @@ class StaticGoogleMapsViewHelper extends AbstractViewHelper
     /**
      * @return string
      */
-    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
+    public function render()
     {
-        $mapArguments = $arguments['parameters'];
+        $mapArguments = $this->arguments['parameters'];
 
         $markers = [];
-        foreach ($arguments['addresses'] as $address) {
+        foreach ($this->arguments['addresses'] as $address) {
             /* @var Address $address */
             $markers[] = '&markers=' . $address->getLatitude() . ',' . $address->getLongitude();
         }

@@ -12,37 +12,33 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Utility;
  */
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\Utility\CacheUtility;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
+use TYPO3\CMS\Core\Cache\CacheDataCollectorInterface;
+use TYPO3\CMS\Core\Http\ServerRequest;
+use TYPO3\CMS\Extbase\Mvc\ExtbaseRequestParameters;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class CacheUtilityTest extends BaseTestCase
 {
-    protected function setUp(): void
-    {
-        $GLOBALS['TSFE'] = $this->getAccessibleMock(
-            TypoScriptFrontendController::class,
-            ['addCacheTags'],
-            [],
-            '',
-            false
-        );
-    }
-
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function nonArrayRecordInstancesAreSkippedForCacheTags()
     {
         $addressRecords = ['dummy string'];
 
-        $GLOBALS['TSFE']->expects(self::once())->method('addCacheTags')->with([]);
+        $mockedCacheDataCollector = $this->getMockBuilder(CacheDataCollectorInterface::class)->getMock();
+        $mockedCacheDataCollector
+            ->expects(self::never())
+            ->method('addCacheTags');
+
+        $serverRequest = (new ServerRequest())
+            ->withAttribute('extbase', new ExtbaseRequestParameters())
+            ->withAttribute('frontend.cache.collector', $mockedCacheDataCollector);
+
+        $GLOBALS['TYPO3_REQUEST'] = $serverRequest;
 
         CacheUtility::addCacheTagsByAddressRecords($addressRecords);
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function addressRecordWithLocalizedIdAddsCacheTags()
     {
         $addressRecord = new Address();
@@ -50,8 +46,23 @@ class CacheUtilityTest extends BaseTestCase
         $addressRecord->_setProperty('_localizedUid', 43);
         $addressRecords = [$addressRecord];
 
-        $GLOBALS['TSFE']->expects(self::once())->method('addCacheTags')->with(['tt_address_42', 'tt_address_43']);
+        $calls = [];
+        $mockedCacheDataCollector = $this->getMockBuilder(CacheDataCollectorInterface::class)->getMock();
+        $mockedCacheDataCollector
+            ->expects(self::exactly(2))
+            ->method('addCacheTags')
+            ->willReturnCallback(function (...$args) use (&$calls) {
+                $calls[] = $args;
+            });
+
+        $serverRequest = (new ServerRequest())
+            ->withAttribute('extbase', new ExtbaseRequestParameters())
+            ->withAttribute('frontend.cache.collector', $mockedCacheDataCollector);
+
+        $GLOBALS['TYPO3_REQUEST'] = $serverRequest;
 
         CacheUtility::addCacheTagsByAddressRecords($addressRecords);
+        self::assertEquals('tt_address_42', $calls[0][0]->name);
+        self::assertEquals('tt_address_43', $calls[1][0]->name);
     }
 }

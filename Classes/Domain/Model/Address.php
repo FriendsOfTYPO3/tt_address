@@ -22,120 +22,50 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class Address extends AbstractEntity
 {
-    /**
-     * Hidden
-     *
-     * @var bool
-     */
-    protected $hidden = false;
-
-    /** @var string */
-    protected $gender = '';
-
-    /** @var string */
-    protected $name = '';
-
-    /** @var string */
-    protected $firstName = '';
-
-    /** @var string */
-    protected $middleName = '';
-
-    /** @var string */
-    protected $lastName = '';
+    protected bool $hidden = false;
+    protected string $gender = '';
+    protected string $name = '';
+    protected string $firstName = '';
+    protected string $middleName = '';
+    protected string $lastName = '';
 
     /** @var \DateTime|null */
     protected $birthday;
 
-    /** @var string */
-    protected $title = '';
+    protected string $title = '';
+    protected string $titleSuffix = '';
+    protected string $address = '';
+    protected float $latitude = 0;
+    protected float $longitude = 0;
+    protected string $building = '';
+    protected string $room = '';
+    protected string $phone = '';
+    protected string $fax = '';
+    protected string $mobile = '';
+    protected string $www = '';
+    protected string $slug = '';
+    protected string $linkedincompany = '';
+    protected string $youtubechannel = '';
+    protected string $bluesky = '';
+    protected string $whatsapp = '';
 
-    /** @var string */
-    protected $titleSuffix = '';
-
-    /** @var string */
-    protected $address = '';
-
-    /** @var float */
-    protected $latitude = 0;
-
-    /** @var float */
-    protected $longitude = 0;
-
-    /** @var string */
-    protected $building = '';
-
-    /** @var string */
-    protected $room = '';
-
-    /** @var string */
-    protected $phone = '';
-
-    /** @var string */
-    protected $fax = '';
-
-    /** @var string */
-    protected $mobile = '';
-
-    /** @var string */
-    protected $www = '';
-
-    /** @var string */
-    protected $slug = '';
-
-    /** @var string */
-    protected $twitter = '';
-
-    /** @var string */
-    protected $facebook = '';
-
-    /** @var string */
-    protected $instagram = '';
-
-    /** @var string */
-    protected $tiktok = '';
-
-    /** @var string */
-    protected $linkedin = '';
-
-    /** @var string */
-    protected $linkedincompany = '';
-
-    /** @var string */
-    protected $youtubechannel = '';
-
-    /** @var string */
-    protected $bluesky = '';
-
-    /** @var string */
-    protected $whatsapp = '';
-
-    /** @var string */
-    protected $email = '';
-
-    /** @var string */
-    protected $company = '';
-
-    /** @var string */
-    protected $position = '';
-
-    /** @var string */
-    protected $city = '';
-
-    /** @var string */
-    protected $zip = '';
-
-    /** @var string */
-    protected $region = '';
-
-    /** @var string */
-    protected $country = '';
+    protected string $twitter = '';
+    protected string $facebook = '';
+    protected string $instagram = '';
+    protected string $tiktok = '';
+    protected string $linkedin = '';
+    protected string $email = '';
+    protected string $company = '';
+    protected string $position = '';
+    protected string $city = '';
+    protected string $zip = '';
+    protected string $region = '';
+    protected string $country = '';
 
     /** @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> */
     protected $image;
 
-    /** @var string */
-    protected $description = '';
+    protected string $description = '';
 
     /** @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category> */
     protected $categories;

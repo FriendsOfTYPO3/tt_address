@@ -12,32 +12,38 @@ namespace FriendsOfTypo3\TtAddress\Tests\Unit\Controller;
  */
 
 use FriendsOfTYPO3\TtAddress\Controller\AddressController;
-use FriendsOfTYPO3\TtAddress\Database\QueryGenerator;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Address;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Demand;
 use FriendsOfTYPO3\TtAddress\Domain\Model\Dto\Settings;
 use FriendsOfTYPO3\TtAddress\Domain\Repository\AddressRepository;
-use TYPO3\CMS\Core\Package\PackageManager;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Cache\CacheDataCollectorInterface;
+use TYPO3\CMS\Core\Domain\Repository\PageRepository;
+use TYPO3\CMS\Core\Http\ServerRequest;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Mvc\ExtbaseRequestParameters;
 use TYPO3\CMS\Extbase\Mvc\Request;
+use TYPO3\CMS\Fluid\View\FluidViewAdapter;
 use TYPO3\CMS\Fluid\View\TemplateView;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class AddressControllerTest extends BaseTestCase
 {
     protected function setUp(): void
     {
-        $GLOBALS['TSFE'] = $this->getAccessibleMock(TypoScriptFrontendController::class, ['addCacheTags'], [], '', false);
+        $mockedCacheDataCollector = $this->getMockBuilder(CacheDataCollectorInterface::class)->getMock();
+
+        $serverRequest = (new ServerRequest())
+            ->withAttribute('extbase', new ExtbaseRequestParameters())
+            ->withAttribute('frontend.cache.collector', $mockedCacheDataCollector);
+
+        $GLOBALS['TYPO3_REQUEST'] = $serverRequest;
     }
 
-    /**
-     * @test
-     * @dataProvider dotIsRemovedFromEndDataProvider
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\DataProvider('dotIsRemovedFromEndDataProvider')]
     public function dotIsRemovedFromEnd($given, $expected)
     {
         $subject = $this->getAccessibleMock(AddressController::class, null, [], '', false);
@@ -52,9 +58,7 @@ class AddressControllerTest extends BaseTestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function dotsAreRemovedFromArray()
     {
         $subject = $this->getAccessibleMock(AddressController::class, null, [], '', false);
@@ -79,26 +83,7 @@ class AddressControllerTest extends BaseTestCase
         self::assertEquals($expected, $subject->_call('removeDots', $given));
     }
 
-    /**
-     * @test
-     */
-    public function initializeActionWorks()
-    {
-        $mockedPackageManager = $this->getAccessibleMock(PackageManager::class, null, [], '', false);
-        GeneralUtility::setSingletonInstance(PackageManager::class, $mockedPackageManager);
-
-        $subject = $this->getAccessibleMock(AddressController::class, null, [], '', false);
-        $subject->_set('extensionConfiguration', $this->getMockedSettings());
-        $subject->initializeAction();
-
-        $expected = new QueryGenerator();
-
-        self::assertEquals($expected, $subject->_get('queryGenerator'));
-    }
-
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function injectAddressRepositoryWorks()
     {
         $mockedRepository = $this->getAccessibleMock(AddressRepository::class, null, [], '', false);
@@ -109,27 +94,26 @@ class AddressControllerTest extends BaseTestCase
         self::assertEquals($mockedRepository, $subject->_get('addressRepository'));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function pidListIsReturned()
     {
-        $mockedQueryGenerator = $this->getAccessibleMock(QueryGenerator::class, ['getTreeList'], [], '', false);
-        $mockedQueryGenerator->expects(self::any())->method('getTreeList');
+        $mockedPageRepsitory = $this->getAccessibleMock(PageRepository::class, ['getPageIdsRecursive'], [], '', false);
+        $mockedPageRepsitory->expects(self::any())
+            ->method('getPageIdsRecursive')
+            ->with([123, 456], 3)
+            ->willReturn([123, 456, 789]);
 
         $subject = $this->getAccessibleMock(AddressController::class, null, [], '', false);
-        $subject->_set('queryGenerator', $mockedQueryGenerator);
+        $subject->_set('pageRepository', $mockedPageRepsitory);
         $subject->_set('settings', [
             'pages' => '123,456',
             'recursive' => 3,
         ]);
 
-        self::assertEquals(['123', '456'], $subject->_call('getPidList'));
+        self::assertEquals([123, 456, 789], $subject->_call('getPidList'));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function settingsAreProperlyInjected()
     {
         self::markTestSkipped('Skipped until fixed');
@@ -173,9 +157,7 @@ class AddressControllerTest extends BaseTestCase
         self::assertEquals($expectedSettings, $subject->_get('settings'));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function demandIsCreated()
     {
         $demand = new Demand();
@@ -199,9 +181,7 @@ class AddressControllerTest extends BaseTestCase
         self::assertEquals($expected, $subject->_call('createDemandFromSettings'));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function showActionFillsView()
     {
         $address = new Address();
@@ -210,7 +190,7 @@ class AddressControllerTest extends BaseTestCase
             'address' => $address,
             'contentObjectData' => [],
         ];
-        $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple'], [], '', false);
+        $mockedView = $this->getAccessibleMock((new Typo3Version())->getMajorVersion() >= 14 ? FluidViewAdapter::class : TemplateView::class, ['assignMultiple'], [], '', false);
         $mockedView->expects(self::once())->method('assignMultiple')->with($assigned);
 
         $subject = $this->getAccessibleMock(AddressController::class, ['redirectToUri', 'htmlResponse'], [], '', false);
@@ -222,9 +202,7 @@ class AddressControllerTest extends BaseTestCase
         $subject->showAction($address);
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function listActionFillsViewForSingleRecords()
     {
         $settings = [
@@ -243,7 +221,7 @@ class AddressControllerTest extends BaseTestCase
             'contentObjectData' => [],
         ];
 
-        $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
+        $mockedView = $this->getAccessibleMock((new Typo3Version())->getMajorVersion() >= 14 ? FluidViewAdapter::class : TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
         $mockedView->expects(self::once())->method('assignMultiple')->with($assignments);
         $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument', 'getAttribute'], [], '', false);
         $mockedRequest->expects(self::any())->method('getAttribute')->willReturn([]);
@@ -260,9 +238,7 @@ class AddressControllerTest extends BaseTestCase
         $subject->listAction();
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function listActionFillsViewForDemand()
     {
         $settings = [
@@ -283,7 +259,7 @@ class AddressControllerTest extends BaseTestCase
         $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument', 'getAttribute'], [], '', false);
         $mockedRequest->expects(self::any())->method('getAttribute')->willReturn([]);
 
-        $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
+        $mockedView = $this->getAccessibleMock((new Typo3Version())->getMajorVersion() >= 14 ? FluidViewAdapter::class : TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
         $mockedView->expects(self::once())->method('assignMultiple')->with($assignments);
 
         $subject = $this->getAccessibleMock(AddressController::class, ['createDemandFromSettings', 'htmlResponse'], [], '', false);
@@ -298,15 +274,13 @@ class AddressControllerTest extends BaseTestCase
         $subject->listAction();
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function overrideDemandMethodIsCalledIfEnabled()
     {
         $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument', 'getAttribute'], [], '', false);
         $mockedRepository = $this->getAccessibleMock(AddressRepository::class, ['getAddressesByCustomSorting', 'findByDemand'], [], '', false);
         $mockedRepository->expects(self::any())->method('findByDemand')->willReturn([]);
-        $mockedView = $this->getAccessibleMock(TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
+        $mockedView = $this->getAccessibleMock((new Typo3Version())->getMajorVersion() >= 14 ? FluidViewAdapter::class : TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
         $mockedView->expects(self::once())->method('assignMultiple');
         $mockContentObject = $this->createMock(ContentObjectRenderer::class);
         $mockConfigurationManager = $this->createMock(ConfigurationManager::class);
@@ -341,10 +315,8 @@ class AddressControllerTest extends BaseTestCase
         $subject->listAction(['not', 'empty']);
     }
 
-    /**
-     * @test
-     * @dataProvider overrideDemandWorksDataProvider
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\DataProvider('overrideDemandWorksDataProvider')]
     public function overrideDemandWorks(Demand $demandIn, Demand $demandOut, array $override)
     {
         $subject = $this->getAccessibleMock(AddressController::class, null, [], '', false);

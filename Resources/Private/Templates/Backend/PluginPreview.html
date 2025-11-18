@@ -13,34 +13,34 @@
     <tbody>
     <f:if condition="{flex.displayMode}">
         <tr>
-            <th>{f:translate(key:'{_computed.lll}displayMode')}</th>
+            <th>{f:translate(key:'{computed.lll}displayMode')}</th>
             <td>
                 <f:switch expression="{flex.displayMode}">
-                    <f:case value="list">{f:translate(key:'{_computed.lll}displayMode.listView')}</f:case>
-                    <f:case value="single">{f:translate(key:'{_computed.lll}displayMode.singleView')}
+                    <f:case value="list">{f:translate(key:'{computed.lll}displayMode.listView')}</f:case>
+                    <f:case value="single">{f:translate(key:'{computed.lll}displayMode.singleView')}
                     </f:case>
-                    <f:case value="map">{f:translate(key:'{_computed.lll}displayMode.map')}</f:case>
+                    <f:case value="map">{f:translate(key:'{computed.lll}displayMode.map')}</f:case>
                     <f:defaultCase>{flex.displayMode}</f:defaultCase>
                 </f:switch>
             </td>
         </tr>
     </f:if>
-    <f:if condition="{_computed.singleRecords}">
+    <f:if condition="{computed.singleRecords}">
         <tr>
-            <th>{f:translate(key:'{_computed.lll}single_records')}</th>
+            <th>{f:translate(key:'{computed.lll}single_records')}</th>
             <td>
-                <f:for each="{_computed.singleRecords}" as="row">
+                <f:for each="{computed.singleRecords}" as="row">
                     <f:render section="rowElement" arguments="{table:'tt_address', row:row}"/>
                 </f:for>
             </td>
         </tr>
     </f:if>
-    <f:if condition="{_computed.pages}">
+    <f:if condition="{computed.pages}">
         <tr>
             <th>{f:translate(key:'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.startingpoint')}
             </th>
             <td>
-                <f:for each="{_computed.pages}" as="row">
+                <f:for each="{computed.pages}" as="row">
                     <f:render section="rowElement" arguments="{table:'pages', row:row}"/>
                 </f:for>
                 <f:if condition="{flex.recursive}">
@@ -50,35 +50,35 @@
             </td>
         </tr>
     </f:if>
-    <f:if condition="{_computed.singlePid}">
+    <f:if condition="{computed.singlePid}">
         <tr>
-            <th>{f:translate(key:'{_computed.lll}singlePid')}</th>
+            <th>{f:translate(key:'{computed.lll}singlePid')}</th>
             <td>
-                <f:render section="rowElement" arguments="{table:'pages', row:_computed.singlePid}"/>
+                <f:render section="rowElement" arguments="{table:'pages', row:computed.singlePid}"/>
             </td>
         </tr>
     </f:if>
-    <f:if condition="{_computed.groups}">
+    <f:if condition="{computed.groups}">
         <tr>
-            <th>{f:translate(key:'{_computed.lll}group_selection')}</th>
+            <th>{f:translate(key:'{computed.lll}group_selection')}</th>
             <td>
-                <f:for each="{_computed.groups}" as="row">
+                <f:for each="{computed.groups}" as="row">
                     <f:render section="rowElement" arguments="{table:'sys_category', row:row}"/>
                 </f:for>
                 <hr style="margin:5px"/>
-                {f:translate(key:'{_computed.lll}combination')}:
+                {f:translate(key:'{computed.lll}combination')}:
                 <f:if condition="{flex.groupsCombination}">
                     <f:then>
-                        {f:translate(key:'{_computed.lll}combination.or')}
+                        {f:translate(key:'{computed.lll}combination.or')}
                     </f:then>
                     <f:else>
-                        {f:translate(key:'{_computed.lll}combination.and')}
+                        {f:translate(key:'{computed.lll}combination.and')}
                     </f:else>
                 </f:if>
                 <br>
                 <f:if condition="{flex.includeSubcategories}">
                     <core:icon identifier="actions-check" size="small"/>
-                    {f:translate(key:'{_computed.lll}includeSubcategories')}
+                    {f:translate(key:'{computed.lll}includeSubcategories')}
                 </f:if>
             </td>
         </tr>
@@ -90,6 +90,6 @@
     <a href="#" class="t3js-contextmenutrigger" data-table="{table}" data-uid="{row.uid}" title="id={row.uid}">
         <core:iconForRecord row="{row}" table="{table}"/>
     </a>
-    {row._computed.title}<br>
+    {row.computed.title}<br>
 </f:section>
 </html>

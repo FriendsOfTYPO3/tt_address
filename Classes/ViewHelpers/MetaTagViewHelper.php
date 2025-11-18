@@ -13,18 +13,14 @@ namespace FriendsOfTYPO3\TtAddress\ViewHelpers;
 
 use TYPO3\CMS\Core\MetaTag\MetaTagManagerRegistry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 class MetaTagViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
-
     /**
      * Initialize arguments
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('property', 'string', 'Property to be set', true);
         $this->registerArgument('value', 'string', 'value');
@@ -33,11 +29,11 @@ class MetaTagViewHelper extends AbstractViewHelper
     /**
      * @return string
      */
-    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
+    public function render()
     {
-        $value = trim($arguments['value'] ?: $renderChildrenClosure());
+        $value = trim($this->arguments['value'] ?: $this->renderChildren());
         if ($value) {
-            $property = $arguments['property'];
+            $property = $this->arguments['property'];
             $metaTagManager = GeneralUtility::makeInstance(MetaTagManagerRegistry::class)->getManagerForProperty($property);
             // @extensionScannerIgnoreLine
             $metaTagManager->addProperty($property, $value);

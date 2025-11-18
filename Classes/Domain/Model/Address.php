@@ -44,7 +44,10 @@ class Address extends AbstractEntity
     protected string $mobile = '';
     protected string $www = '';
     protected string $slug = '';
-    protected string $skype = '';
+    protected string $linkedincompany = '';
+    protected string $youtubechannel = '';
+    protected string $bluesky = '';
+    protected string $whatsapp = '';
 
     protected string $twitter = '';
     protected string $facebook = '';
@@ -283,16 +286,6 @@ class Address extends AbstractEntity
         return $this->slug;
     }
 
-    public function setSkype(string $skype): void
-    {
-        $this->skype = $skype;
-    }
-
-    public function getSkype(): string
-    {
-        return $this->skype;
-    }
-
     public function setTwitter(string $twitter): void
     {
         if ($twitter[0] !== '@') {
@@ -349,6 +342,46 @@ class Address extends AbstractEntity
     public function getLinkedin(): string
     {
         return $this->linkedin;
+    }
+
+    public function setLinkedincompany(string $linkedincompany): void
+    {
+        $this->linkedincompany = $linkedincompany;
+    }
+
+    public function getLinkedincompany(): string
+    {
+        return $this->linkedincompany;
+    }
+
+    public function setBluesky(string $bluesky): void
+    {
+        $this->bluesky = $bluesky;
+    }
+
+    public function getBluesky(): string
+    {
+        return $this->bluesky;
+    }
+
+    public function setWhatsapp(string $whatsapp): void
+    {
+        $this->whatsapp = $whatsapp;
+    }
+
+    public function getWhatsapp(): string
+    {
+        return $this->whatsapp;
+    }
+
+    public function setYoutubechannel(string $youtubechannel): void
+    {
+        $this->youtubechannel = $youtubechannel;
+    }
+
+    public function getYoutubechannel(): string
+    {
+        return $this->youtubechannel;
     }
 
     public function setEmail(string $email): void

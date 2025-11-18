@@ -73,19 +73,11 @@
 </f:section>
 
 <f:section name="social">
-    <f:if condition="{address.skype} || {address.twitter} || {address.facebook} || {address.linkedin}">
+    <f:if condition="{address.twitter} || {address.facebook} || {address.linkedin} || {address.linkedincompany} || {address.whatsapp} || {address.bluesky} || {address.youtubechannel}">
         <ul class="list-inline">
-            <f:if condition="{address.skype}">
-                <li class="list-inline-item">
-                    <i class="fab fa-skype" aria-hidden title="{f:translate(key:'label.skype')}"></i>
-                    <span class="sr-only">{f:translate(key:'label.skype')}:</span>
-                    <a href="skype:{address.skype}?call">{address.skype}</a>
-                    <meta itemprop="sameAs" content="skype:{address.skype}?call"/>
-                </li>
-            </f:if>
             <f:if condition="{address.twitter}">
                 <li class="list-inline-item">
-                    <i class="fab fa-twitter" aria-hidden title="{f:translate(key:'label.twitter')}"></i>
+                    <i class="fab fa-x-twitter" aria-hidden title="{f:translate(key:'label.twitter')}"></i>
                     <span class="sr-only">{f:translate(key:'label.twitter')}:</span>
                     <a href="https://twitter.com/{address.twitter}" target="_blank">{address.twitter}</a>
                     <meta itemprop="sameAs" content="https://twitter.com/{address.twitter}"/>
@@ -105,6 +97,38 @@
                     <span class="sr-only">{f:translate(key:'label.linkedin')}:</span>
                     <a href="https://www.linkedin.com/in/{address.linkedin}" target="_blank">{address.linkedin}</a>
                     <meta itemprop="sameAs" content="https://www.linkedin.com/in/{address.linkedin}"/>
+                </li>
+            </f:if>
+            <f:if condition="{address.linkedincompany}">
+                <li class="list-inline-item">
+                    <i class="fab fa-linkedin" aria-hidden title="{f:translate(key:'label.linkedin')}"></i>
+                    <span class="sr-only">{f:translate(key:'label.linkedin')}:</span>
+                    <a href="https://www.linkedin.com/company/{address.linkedincompany}" target="_blank">{address.linkedincompany}</a>
+                    <meta itemprop="sameAs" content="https://www.linkedin.com/company/{address.linkedincompany}"/>
+                </li>
+            </f:if>
+            <f:if condition="{address.whatsapp}">
+                <li class="list-inline-item">
+                    <i class="fab fa-whatsapp" aria-hidden title="{f:translate(key:'label.whatsapp')}"></i>
+                    <span class="sr-only">{f:translate(key:'label.whatsapp')}:</span>
+                    <a href="https://wa.me/{address.whatsapp}">{address.whatsapp}</a>
+                    <meta itemprop="sameAs" content="https://wa.me/{address.whatsapp}"/>
+                </li>
+            </f:if>
+            <f:if condition="{address.bluesky}">
+                <li class="list-inline-item">
+                    <i class="fab fa-bluesky" aria-hidden title="{f:translate(key:'label.bluesky')}"></i>
+                    <span class="sr-only">{f:translate(key:'label.bluesky')}:</span>
+                    <a href="https://bsky.app/profile/{address.bluesky}" target="_blank">{address.bluesky}</a>
+                    <meta itemprop="sameAs" content="https://bsky.app/profile/{address.bluesky}"/>
+                </li>
+            </f:if>
+            <f:if condition="{address.youtubechannel}">
+                <li class="list-inline-item">
+                    <i class="fab fa-youtube" aria-hidden title="{f:translate(key:'label.youtubechannel')}"></i>
+                    <span class="sr-only">{f:translate(key:'label.youtubechannel')}:</span>
+                    <a href="https://www.youtube.com/{address.youtubechannel}" target="_blank">{address.youtubechannel}</a>
+                    <meta itemprop="sameAs" content="https://www.youtube.com/{address.youtubechannel}"/>
                 </li>
             </f:if>
         </ul>

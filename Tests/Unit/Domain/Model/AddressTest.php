@@ -235,14 +235,6 @@ class AddressTest extends BaseTestCase
     }
 
     #[\PHPUnit\Framework\Attributes\Test]
-    public function skypeCanBeSet()
-    {
-        $value = 'fo.com';
-        $this->subject->setSkype($value);
-        self::assertEquals($value, $this->subject->getSkype());
-    }
-
-    #[\PHPUnit\Framework\Attributes\Test]
     public function twitterCanBeSet()
     {
         $value = '@georg_ringer';
@@ -284,6 +276,38 @@ class AddressTest extends BaseTestCase
         $value = 'www.linkedin.com/bar';
         $this->subject->setLinkedin($value);
         self::assertEquals($value, $this->subject->getLinkedin());
+    }
+
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function linkedincompanyCanBeSet()
+    {
+        $value = 'bar';
+        $this->subject->setLinkedincompany($value);
+        self::assertEquals($value, $this->subject->getLinkedincompany());
+    }
+
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function blueskyCanBeSet()
+    {
+        $value = 'bar';
+        $this->subject->setBluesky($value);
+        self::assertEquals($value, $this->subject->getBluesky());
+    }
+
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function whatsappCanBeSet()
+    {
+        $value = '49123123123123';
+        $this->subject->setWhatsapp($value);
+        self::assertEquals($value, $this->subject->getWhatsapp());
+    }
+
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function youtubechannelCanBeSet()
+    {
+        $value = 'bar';
+        $this->subject->setYoutubechannel($value);
+        self::assertEquals($value, $this->subject->getYoutubechannel());
     }
 
     #[\PHPUnit\Framework\Attributes\Test]

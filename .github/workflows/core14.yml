@@ -30,20 +30,20 @@ jobs:
       - name: Unit Tests
         run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -s unit
 
-#      - name: Functional Tests with mariadb and mysqli
-#        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -d mariadb -a mysqli -s functional
-#
-#      - name: Functional Tests with mariadb and pdo_mysql
-#        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -d mariadb -a pdo_mysql -s functional
-#
-#      - name: Functional Tests with mysql and mysqli
-#        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -d mysql -a mysqli -s functional
-#
-#      - name: Functional Tests with mysql and pdo_mysql
-#        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -d mysql -a pdo_mysql -s functional
-#
-#      - name: Functional Tests with postgres
-#        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -d postgres -s functional
+      - name: Functional Tests with mariadb and mysqli
+        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -d mariadb -a mysqli -s functional
+
+      - name: Functional Tests with mariadb and pdo_mysql
+        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -d mariadb -a pdo_mysql -s functional
+
+      - name: Functional Tests with mysql and mysqli
+        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -d mysql -a mysqli -s functional
+
+      - name: Functional Tests with mysql and pdo_mysql
+        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -d mysql -a pdo_mysql -s functional
+
+      - name: Functional Tests with postgres
+        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -d postgres -s functional
 
       # @todo disabled, due cross dbmns issues in code. Should be fixed first
       # - name: Functional Tests with sqlite

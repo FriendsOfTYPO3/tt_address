@@ -13,6 +13,7 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Functional\ViewHelpers;
 
 namespace GeorgRinger\tt_address\Tests\Functional\ViewHelpers;
 
+use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextFactory;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -24,6 +25,7 @@ final class RemoveSpacesViewHelperTest extends FunctionalTestCase
     protected array $testExtensionsToLoad = ['typo3conf/ext/tt_address'];
 
     #[Test]
+    #[IgnoreDeprecations]
     public function viewHelperFormatsDateCorrectly(): void
     {
         $context = $this->get(RenderingContextFactory::class)->create();

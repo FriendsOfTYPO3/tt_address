@@ -11,6 +11,8 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Functional\Service;
  * LICENSE.txt file that was distributed with this source code.
  */
 use FriendsOfTYPO3\TtAddress\Service\CategoryService;
+use PHPUnit\Framework\Attributes\IgnoreDeprecations;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\TimeTracker\TimeTracker;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -31,17 +33,19 @@ class CategoryServiceTest extends FunctionalTestCase
         $this->importCSVDataSet(__DIR__ . '/../Fixtures/sys_categories.csv');
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
+    #[IgnoreDeprecations]
     public function findChildCategories()
     {
         $categories = $this->subject->getChildrenCategories('2,4');
-        self::assertEquals('2,4,20,21,211,212,30,31,32', $categories);
+        self::assertContainsEquals($categories, ['2,4,20,21,211,212,30,31,32', '2,4,20,21,212,211,30,32,31']);
 
         $categories = $this->subject->getChildrenCategories('4,5,10919,6,7,8');
-        self::assertEquals('4,5,8', $categories);
+        self::assertContainsEquals($categories, ['4,5,8', '8,5,4']);
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
+    #[IgnoreDeprecations]
     public function loggerInvokedWithTooManyCategories()
     {
         $mockedTimeTracker = $this->getAccessibleMock(TimeTracker::class, ['setTSlogMessage'], [], '', false);

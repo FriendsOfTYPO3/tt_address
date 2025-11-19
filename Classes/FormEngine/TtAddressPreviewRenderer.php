@@ -80,13 +80,13 @@ class TtAddressPreviewRenderer extends StandardContentPreviewRenderer
                 $records = $this->getRecords($fieldConfiguration['table'], $settings['settings'][$fieldName]);
 
                 if ($fieldConfiguration['multiValue']) {
-                    $row['_computed'][$fieldName] = $records;
+                    $row['computed'][$fieldName] = $records;
                 } else {
-                    $row['_computed'][$fieldName] = $records[0] ?: [];
+                    $row['computed'][$fieldName] = $records[0] ?: [];
                 }
             }
         }
-        $row['_computed']['lll'] = 'LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.';
+        $row['computed']['lll'] = 'LLL:EXT:tt_address/Resources/Private/Language/ff/locallang_ff.xlf:pi1_flexform.';
         return $row;
     }
 
@@ -108,7 +108,7 @@ class TtAddressPreviewRenderer extends StandardContentPreviewRenderer
             ->fetchAllAssociative();
 
         foreach ($rows as &$row) {
-            $row['_computed']['title'] = BackendUtility::getRecordTitle($table, $row);
+            $row['computed']['title'] = BackendUtility::getRecordTitle($table, $row);
         }
         return $rows;
     }

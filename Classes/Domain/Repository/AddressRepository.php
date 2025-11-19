@@ -59,7 +59,7 @@ class AddressRepository extends Repository
         }
 
         $constraints = [];
-        $pages = $demand->getPages();
+        $pages = array_map('intval', array_filter($demand->getPages(), 'is_numeric'));
         if (!empty($pages)) {
             $constraints['pages'] = $query->in('pid', $pages);
         }
@@ -109,7 +109,7 @@ class AddressRepository extends Repository
         $params = [];
         foreach ($queryParameters as $key => $value) {
             // prefix array keys with ':'
-            $params[':' . $key] = (\is_numeric($value)) ? $value : "'" . $value . "'"; // all non numeric values have to be quoted
+            $params[':' . $key] = "'" . $value . "'";
             unset($params[$key]);
         }
         // replace placeholders with real values

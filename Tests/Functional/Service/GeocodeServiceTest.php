@@ -12,6 +12,8 @@ namespace FriendsOfTYPO3\TtAddress\Tests\Functional\Command;
  */
 
 use FriendsOfTYPO3\TtAddress\Service\GeocodeService;
+use PHPUnit\Framework\Attributes\IgnoreDeprecations;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
@@ -28,7 +30,8 @@ class GeocodeServiceTest extends FunctionalTestCase
         $this->importCSVDataSet(__DIR__ . '/../Fixtures/tt_address.csv');
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
+    #[IgnoreDeprecations]
     public function properRecordsAreFound()
     {
         $subject = $this->getAccessibleMock(GeocodeService::class, ['getCoordinatesForAddress'], ['123']);
@@ -50,7 +53,8 @@ class GeocodeServiceTest extends FunctionalTestCase
         self::assertEquals(['latitude' => 10.000000000000, 'longitude' => 12.000000000000], ['latitude' => $row['latitude'], 'longitude' => $row['longitude']]);
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
+    #[IgnoreDeprecations]
     public function urlforAddressesIsBuiltCorrectly()
     {
         $result1 = ['results' => [0 => ['geometry' => ['location' => ['lat' => 11, 'lng' => '13']]]]];

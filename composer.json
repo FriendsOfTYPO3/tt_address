@@ -24,7 +24,7 @@
 		"typo3/cms-core": "^13.4.20 || ^14.0",
 		"typo3/cms-install": "^13.4.20 || ^14.0",
 		"php": ">=8.2",
-		"symfony/console": "^6.0 || ^7.0"
+		"symfony/console": "^7.2"
 	},
 	"extra": {
 		"typo3/cms": {

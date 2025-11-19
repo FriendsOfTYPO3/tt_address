@@ -170,6 +170,8 @@ Options:
             - composerInstallHighest: "composer update", handy if host has no PHP
             - coveralls: Generate coverage
             - docsGenerate: Renders the extension ReST documentation.
+            - rector: Run rector
+            - fractor: Run Fractor
             - functional: functional tests
             - lint: PHP linting
             - unit: PHP unit tests
@@ -222,20 +224,18 @@ Options:
             - 15    maintained until 2027-11-11
             - 16    maintained until 2028-11-09
 
-    -t <12|13|14>
+    -t <13|14>
         Only with -s composerInstall|composerInstallMin|composerInstallMax
         Specifies the TYPO3 CORE Version to be used
-            - 12: use TYPO3 v12 (default)
-            - 13: use TYPO3 v13
+            - 13: use TYPO3 v13 (default)
             - 14: use TYPO3 v14
 
-    -p <8.2|8.3|8.4>
+    -p <8.2|8.3|8.4|8.5>
         Specifies the PHP minor version to be used
-            - 8.0: use PHP 8.0 (default)
-            - 8.1: use PHP 8.1
             - 8.2: use PHP 8.2
             - 8.3: use PHP 8.3
             - 8.4: use PHP 8.4
+            - 8.5: use PHP 8.5
 
     -e "<phpunit options>"
         Only with -s docsGenerate|functional|unit
@@ -260,7 +260,7 @@ Options:
         is not listening on default port.
 
     -n
-        Only with -s cgl|composerNormalize
+        Only with -s cgl|composerNormalize|fractor
         Activate dry-run in CGL check that does not actively change files and only prints broken ones.
 
     -u
@@ -272,14 +272,14 @@ Options:
         Show this help.
 
 Examples:
-    # Run all core unit tests using PHP 7.4
+    # Run all core unit tests
     ./Build/Scripts/runTests.sh -s unit
 
     # Run all core units tests and enable xdebug (have a PhpStorm listening on port 9003!)
     ./Build/Scripts/runTests.sh -x -s unit
 
-    # Run unit tests in phpunit verbose mode with xdebug on PHP 8.1 and filter for test canRetrieveValueWithGP
-    ./Build/Scripts/runTests.sh -x -p 8.1 -- --filter 'classCanBeRegistered'
+    # Run unit tests in phpunit verbose mode with xdebug on PHP 8.2 and filter for test canRetrieveValueWithGP
+    ./Build/Scripts/runTests.sh -x -p 8.2 -- --filter 'classCanBeRegistered'
 
     # Run functional tests in phpunit with a filtered test method name in a specified file
     # example will currently execute two tests, both of which start with the search term
@@ -309,22 +309,22 @@ ROOT_DIR="${PWD}"
 # Option defaults
 TEST_SUITE=""
 TYPO3_VERSION="13"
-DBMS="mysql"
+DBMS="sqlite"
 DBMS_VERSION=""
 PHP_VERSION="8.2"
 PHP_XDEBUG_ON=0
 PHP_XDEBUG_PORT=9003
 EXTRA_TEST_OPTIONS=""
-CGLCHECK_DRY_RUN=0
+DRY_RUN=0
 DATABASE_DRIVER=""
 CONTAINER_BIN=""
-COMPOSER_ROOT_VERSION="12.0.0-dev"
+COMPOSER_ROOT_VERSION="13.0.0-dev"
 CONTAINER_INTERACTIVE="-it --init"
 HOST_UID=$(id -u)
 HOST_PID=$(id -g)
 USERSET=""
 SUFFIX=$(echo $RANDOM)
-NETWORK="friendsoftypo3-tea-${SUFFIX}"
+NETWORK="friendsoftypo3-ttaddress-${SUFFIX}"
 CI_PARAMS="${CI_PARAMS:-}"
 CONTAINER_HOST="host.docker.internal"
 PHPSTAN_CONFIG_FILE="phpstan.neon"
@@ -358,7 +358,7 @@ while getopts "a:b:s:d:i:p:e:t:xy:nhu" OPT; do
             ;;
         p)
             PHP_VERSION=${OPTARG}
-            if ! [[ ${PHP_VERSION} =~ ^(8.1|8.2|8.3|8.4)$ ]]; then
+            if ! [[ ${PHP_VERSION} =~ ^(8.2|8.3|8.4|8.5)$ ]]; then
                 INVALID_OPTIONS+=("-p ${OPTARG}")
             fi
             ;;
@@ -367,7 +367,7 @@ while getopts "a:b:s:d:i:p:e:t:xy:nhu" OPT; do
             ;;
         t)
             TYPO3_VERSION=${OPTARG}
-            if ! [[ ${TYPO3_VERSION} =~ ^(12|13|14)$ ]]; then
+            if ! [[ ${TYPO3_VERSION} =~ ^(13|14)$ ]]; then
                 INVALID_OPTIONS+=("-t ${OPTARG}")
             fi
             ;;
@@ -378,7 +378,7 @@ while getopts "a:b:s:d:i:p:e:t:xy:nhu" OPT; do
             PHP_XDEBUG_PORT=${OPTARG}
             ;;
         n)
-            CGLCHECK_DRY_RUN=1
+            DRY_RUN=1
             ;;
         h)
             loadHelp
@@ -471,7 +471,7 @@ fi
 case ${TEST_SUITE} in
     cgl)
         DRY_RUN_OPTIONS=''
-        if [ "${CGLCHECK_DRY_RUN}" -eq 1 ]; then
+        if [ "${DRY_RUN}" -eq 1 ]; then
             DRY_RUN_OPTIONS='--dry-run --diff'
         fi
         COMMAND="php -dxdebug.mode=off .Build/bin/php-cs-fixer fix -v ${DRY_RUN_OPTIONS} --config=Build/php-cs-fixer/php-cs-fixer.php --using-cache=no"
@@ -505,10 +505,6 @@ case ${TEST_SUITE} in
         cleanComposer
         stashComposerFiles
         ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-install-highest-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/bash -c "
-            if [ ${TYPO3_VERSION} -eq 12 ]; then
-              composer require --no-ansi --no-interaction --no-progress --no-install \
-                typo3/cms-core:^12.4.28 || exit 1
-            fi
             if [ ${TYPO3_VERSION} -eq 13 ]; then
               composer require --no-ansi --no-interaction --no-progress --no-install \
                 typo3/cms-core:^13.4 || exit 1
@@ -532,13 +528,9 @@ case ${TEST_SUITE} in
         cleanComposer
         stashComposerFiles
         ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-install-lowest-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/bash -c "
-            if [ ${TYPO3_VERSION} -eq 12 ]; then
-              composer require --no-ansi --no-interaction --no-progress --no-install \
-                typo3/cms-core:^12.4.28 || exit 1
-            fi
             if [ ${TYPO3_VERSION} -eq 13 ]; then
               composer require --no-ansi --no-interaction --no-progress --no-install \
-                typo3/cms-core:^13.4.17 || exit 1
+                typo3/cms-core:^13.4.20 || exit 1
             fi
             if [ ${TYPO3_VERSION} -eq 14 ]; then
               composer config minimum-stability dev
@@ -605,6 +597,24 @@ case ${TEST_SUITE} in
     lint)
         COMMAND="php -v | grep '^PHP'; find . -name '*.php' ! -path '*.Build/*' -print0 | xargs -0 -n1 -P4 php -dxdebug.mode=off -l >/dev/null"
         ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-command-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/bash -c "${COMMAND}"
+        SUITE_EXIT_CODE=$?
+        ;;
+    rector)
+        DRY_RUN_OPTIONS=''
+        if [ "${DRY_RUN}" -eq 1 ]; then
+            DRY_RUN_OPTIONS='--dry-run'
+        fi
+        COMMAND="php -dxdebug.mode=off .Build/bin/rector process ${DRY_RUN_OPTIONS} --config=Build/rector/rector.php --no-progress-bar --ansi"
+        ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-command-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/sh -c "${COMMAND}"
+        SUITE_EXIT_CODE=$?
+        ;;
+    fractor)
+        DRY_RUN_OPTIONS=''
+        if [ "${DRY_RUN}" -eq 1 ]; then
+            DRY_RUN_OPTIONS='--dry-run'
+        fi
+        COMMAND="php -dxdebug.mode=off .Build/bin/fractor process ${DRY_RUN_OPTIONS} --config=Build/fractor/fractor.php --ansi"
+        ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-command-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/sh -c "${COMMAND}"
         SUITE_EXIT_CODE=$?
         ;;
     unit)

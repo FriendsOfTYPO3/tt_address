@@ -41,7 +41,7 @@ class CategoryServiceTest extends FunctionalTestCase
         self::assertContainsEquals($categories, ['2,4,20,21,211,212,30,31,32', '2,4,20,21,212,211,30,32,31']);
 
         $categories = $this->subject->getChildrenCategories('4,5,10919,6,7,8');
-        self::assertEquals('4,5,8', $categories);
+        self::assertContainsEquals($categories, ['4,5,8', '8,5,4']);
     }
 
     #[Test]

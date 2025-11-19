@@ -59,7 +59,7 @@ class AddressRepository extends Repository
         }
 
         $constraints = [];
-        $pages = $demand->getPages();
+        $pages = array_map('intval', array_filter($demand->getPages(), 'is_numeric'));
         if (!empty($pages)) {
             $constraints['pages'] = $query->in('pid', $pages);
         }

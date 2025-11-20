@@ -69,6 +69,19 @@
             <trans-unit id="tt_address.linkedin">
                 <source>LinkedIn</source>
             </trans-unit>
+            <trans-unit id="tt_address.linkedincompany">
+                <source>LinkedIn Company</source>
+            </trans-unit>
+			<trans-unit id="tt_address.bluesky">
+                <source>Bluesky</source>
+            </trans-unit>
+            <trans-unit id="tt_address.whatsapp">
+                <source>Whatsapp</source>
+            </trans-unit>
+             <trans-unit id="tt_address.youtubechannel">
+                <source>Youtube Channel</source>
+            </trans-unit>
+
             <trans-unit id="tt_address.latitude">
                 <source>Latitude</source>
             </trans-unit>

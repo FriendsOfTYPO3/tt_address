@@ -1,0 +1,113 @@
+10.0.0 - xxth November 2025
+===========================
+
+This release
+
+.. include:: /Includes.rst.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Breaking Changes
+-----------------
+
+Changed plugin registration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The usage of the field `list_type` of tt_content has been removed.
+
+Please use the Upgrade Wizard in the Install to migrate existing elements!
+
+Records of hidden storage pages are not rendered
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If a storage page (e.g., a *sysfolder*) containing address records is set to **hidden**,
+the related address records will also **not be rendered**.
+
+This behavior allows editors to quickly show or hide groups of news records by simply toggling the visibility of their storage page.
+
+This also enables editors to quickly hide & unhide address records by changing the
+visibility of the storage pages.
+
+Drop field `skype`
+^^^^^^^^^^^^^^^^^^
+As skype has been announced as end of life, the field has also been removed from
+the address record.
+
+Features
+--------
+
+New social fields
+^^^^^^^^^^^^^^^^^
+The following social fields have been added:
+
+- linkedincompany
+- bluesky
+- whatsapp
+- youtubechannel
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2025-11-20 [TASK] Remove xml:space=reserve (Commit b9cd568 by Georg Ringer)
+    2025-11-20 [BUGFIX] Fix missing labels (Commit 415d975 by Georg Ringer)
+    2025-11-20 [TASK] Enable functional tests (Commit 79a7448 by Georg Ringer)
+    2025-11-20 [TASK] Cast pid list (Commit 2cfacad by Georg Ringer)
+    2025-11-20 [TASK] Make functionals work (Commit 4238d63 by Georg Ringer)
+    2025-11-20 [TASK] Make functionals work (Commit fcd3326 by Georg Ringer)
+    2025-11-20 [TASK] Make functionals work (Commit c2fa6ab by Georg Ringer)
+    2025-11-19 [TASK] Update runtests.sh (Commit ccd9f75 by Georg Ringer)
+    2025-11-19 [TASK] Raise dev dependencies (Commit b7649a7 by Georg Ringer)
+    2025-11-19 [TASK] Enable functional tests (Commit 58b4c19 by Georg Ringer)
+    2025-11-19 [TASK] Make tests green (Commit f30a601 by Georg Ringer)
+    2025-11-19 [TASK] Handle deprecations (Commit d856d6a by Georg Ringer)
+    2025-11-18 Merge pull request #606 from BastianBalthasarBux/master (Commit c4be1e7 by Georg Ringer)
+    2025-11-18 [TASK] Change fluid variable _computed to computed (Commit 430af2e by Georg Ringer)
+    2025-11-18 Merge branch 'v14' into master (Commit 2039cac by Georg Ringer)
+    2025-11-18 [TASK] Fix ViewHelpers (Commit 37fdc98 by Georg Ringer)
+    2025-11-18 [TASK] Fix ViewHelpers (Commit 6e457fb by Georg Ringer)
+    2025-11-15 [TASK] Enable tests for v14 (#608) (Commit be9ac5a by Georg Ringer)
+    2025-11-14 [TASK] Fix cs (Commit 1d80405 by Georg Ringer)
+    2025-11-14 [TASK] Provide update wizard for ctypes (Commit 7220111 by Georg Ringer)
+    2025-11-14 [TASK] Fix preview in backend (Commit 6922db9 by Georg Ringer)
+    2025-11-14 [TASK] Update flexforms (Commit 6ae4600 by Georg Ringer)
+    2025-11-14 [TASK] Remove outdated tsconfig call (Commit 3fbc93c by Georg Ringer)
+    2025-11-14 [TASK] Fix cs issues (Commit 6865177 by Georg Ringer)
+    2025-11-14 [TASK] Fix cs issues (Commit 385cc0b by Georg Ringer)
+    2025-11-14 [TASK] Drop testing of v12 (Commit 5eda4df by Georg Ringer)
+    2025-11-14 [!!!][TASK] Replace QueryGenerator with PageRepository (Commit 6e18511 by Georg Ringer)
+    2025-11-14 [BUGFIX] Fix test for CacheUtility (Commit 6d44745 by Georg Ringer)
+    2025-11-13 [TASK] Update plugin registration (Commit 8a77a0b by Georg Ringer)
+    2025-11-13 [TASK] Update types II (Commit 906464b by Georg Ringer)
+    2025-11-13 [TASK] Update CacheUtility (Commit 560fa86 by Georg Ringer)
+    2025-11-13 [TASK] Cleanup Classes I (Commit 456f4b4 by Georg Ringer)
+    2025-11-13 [TASK] Update main TCA (Commit 2eb964a by Georg Ringer)
+    2025-11-13 [TASK] Define allowed versions (Commit b6bc5ae by Georg Ringer)
+    2025-11-13 [TASK] Add new fields to palette (Commit 3d94b81 by Clemens Riccabona)
+    2025-11-13 [FIX] dumb error of mine. (Commit 43244e3 by Clemens Riccabona)
+    2025-11-13 [FIX TESTS] remove obsolete test, add new ones (Commit b7c386e by Clemens Riccabona)
+    2025-11-13 [FIX CGL] remove an unnecessary space in front of function name (Commit df55862 by Clemens Riccabona)
+    2025-11-12 [TASK] Add/remove code in partial for social media accounts (Commit 093531c by Clemens Riccabona)
+    2025-11-12 [TASK] Add/remove getters and setters in domain model (Commit dbed7d5 by Clemens Riccabona)
+    2025-11-12 [TASK] Add/remove/adjust language labels (Commit df532cd by Clemens Riccabona)
+    2025-11-12 [TASK] Remove Skype, add WhatsApp, YoutubeChannel, LinkedIn Company, Bluesky (Commit 25979f0 by Clemens Riccabona)
+    2025-07-15 Merge branch 'FriendsOfTYPO3:master' into master (Commit c24b32a by C. Riccabona)
+    2025-05-05 remove constant TYPO3_MODE (#596) (Commit 11eb211 by Franz Holzinger)
+    2025-04-23 update supported version TYPO3 12 and 13 (#595) (Commit 0c3a8d4 by Franz Holzinger)
+    2025-04-07 [BUGFIX] Fixes unspecific Category Class (#592) (Commit 822a690 by Jan Storm)
+    2024-11-08 Merge branch 'FriendsOfTYPO3:master' into master (Commit bd1555f by C. Riccabona)
+    2024-02-06 Merge branch 'FriendsOfTYPO3:master' into master (Commit bbb7cc2 by C. Riccabona)
+    2024-01-05 Merge branch 'FriendsOfTYPO3:master' into master (Commit 554be14 by C. Riccabona)
+    2023-07-26 Merge branch 'FriendsOfTYPO3:master' into master (Commit 70af97e by C. Riccabona)
+    2023-03-22 Merge branch 'FriendsOfTYPO3:master' into master (Commit b684a05 by C. Riccabona)
+    2022-10-13 Merge branch 'FriendsOfTYPO3:master' into master (Commit 5d97497 by C. Riccabona)
+    2022-10-13 [BUGFIX] Title values to new labels (Commit 8eb4229 by C. Riccabona)
+
+This list has been created by using:
+
+.. code-block:: shell
+
+   git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short

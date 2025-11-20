@@ -3,85 +3,85 @@
     <file source-language="en" datatype="plaintext" original="messages" date="2017-04-05T08:11:35Z" product-name="tt_address">
     <header/>
     <body>
-        <trans-unit id="pi1_flexform.sheet_selection" xml:space="preserve">
+        <trans-unit id="pi1_flexform.sheet_selection">
           <source>Selection</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.single_records" xml:space="preserve">
+        <trans-unit id="pi1_flexform.single_records">
            <source>Single addresses</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.group_selection" xml:space="preserve">
+        <trans-unit id="pi1_flexform.group_selection">
            <source>Categories</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.includeSubcategories" xml:space="preserve">
+        <trans-unit id="pi1_flexform.includeSubcategories">
            <source>Include subcategories</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.combination" xml:space="preserve">
+        <trans-unit id="pi1_flexform.combination">
          <source>Combination</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.combination.and" xml:space="preserve">
+        <trans-unit id="pi1_flexform.combination.and">
           <source>AND</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.combination.or" xml:space="preserve">
+        <trans-unit id="pi1_flexform.combination.or">
            <source>OR</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.sortBy" xml:space="preserve">
+        <trans-unit id="pi1_flexform.sortBy">
            <source>Sort By</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.sortBy.singleSelection" xml:space="preserve">
+        <trans-unit id="pi1_flexform.sortBy.singleSelection">
             <source>Order of single addresses</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.sortBy.sorting" xml:space="preserve" approved="yes">
+        <trans-unit id="pi1_flexform.sortBy.sorting" approved="yes">
             <source>Order of addresses</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.sortBy.sorting.default" xml:space="preserve" approved="yes">
+        <trans-unit id="pi1_flexform.sortBy.sorting.default" approved="yes">
             <source>Default</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.sortBy.sorting.sorting" xml:space="preserve" approved="yes">
+        <trans-unit id="pi1_flexform.sortBy.sorting.sorting" approved="yes">
             <source>Manual sorting</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.sortOrder" xml:space="preserve">
+        <trans-unit id="pi1_flexform.sortOrder">
             <source>Sort Order</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.sortOrder.ascending" xml:space="preserve">
+        <trans-unit id="pi1_flexform.sortOrder.ascending">
             <source>Ascending</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.sortOrder.descending" xml:space="preserve">
+        <trans-unit id="pi1_flexform.sortOrder.descending">
             <source>Descending</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.ignoreWithoutCoordinates" xml:space="preserve">
+        <trans-unit id="pi1_flexform.ignoreWithoutCoordinates">
             <source>Ignore records with no latitude/longitude</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.allowOverride" xml:space="preserve">
+        <trans-unit id="pi1_flexform.allowOverride">
             <source>Allow override configuration by GET/POST</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.sheet_display" xml:space="preserve">
+        <trans-unit id="pi1_flexform.sheet_display">
             <source>Display</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.templateFile" xml:space="preserve">
+        <trans-unit id="pi1_flexform.templateFile">
             <source>Template</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.templateFile.I.0" xml:space="preserve">
+        <trans-unit id="pi1_flexform.templateFile.I.0">
             <source>Default</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.displayMode" xml:space="preserve">
+        <trans-unit id="pi1_flexform.displayMode">
             <source>Select display mode</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.displayMode.listView" xml:space="preserve">
+        <trans-unit id="pi1_flexform.displayMode.listView">
             <source>List view</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.displayMode.singleView" xml:space="preserve">
+        <trans-unit id="pi1_flexform.displayMode.singleView">
             <source>Single view</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.displayMode.map" xml:space="preserve">
+        <trans-unit id="pi1_flexform.displayMode.map">
             <source>Map view</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.hidePagination" xml:space="preserve">
+        <trans-unit id="pi1_flexform.hidePagination">
             <source>Do not display pagebrowser (listview)</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.itemsPerPage" xml:space="preserve">
+        <trans-unit id="pi1_flexform.itemsPerPage">
             <source>Number of items to be displayed (listview)</source>
         </trans-unit>
-        <trans-unit id="pi1_flexform.singlePid" xml:space="preserve">
+        <trans-unit id="pi1_flexform.singlePid">
             <source>Page for single view</source>
         </trans-unit>
     </body>

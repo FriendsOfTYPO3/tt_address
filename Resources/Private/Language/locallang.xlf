@@ -3,68 +3,68 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2017-04-13T10:24:37Z" product-name="tt_address">
     <header/>
     <body>
-      <trans-unit id="label.address" xml:space="preserve">
+      <trans-unit id="label.address">
         <source>Address</source>
       </trans-unit>
-      <trans-unit id="label.building" xml:space="preserve">
+      <trans-unit id="label.building">
         <source>Building</source>
       </trans-unit>
-      <trans-unit id="label.room" xml:space="preserve">
+      <trans-unit id="label.room">
         <source>Room</source>
       </trans-unit>
-      <trans-unit id="label.position" xml:space="preserve">
+      <trans-unit id="label.position">
         <source>Position</source>
       </trans-unit>
-      <trans-unit id="label.zip" xml:space="preserve">
+      <trans-unit id="label.zip">
         <source>Postal code</source>
       </trans-unit>
-      <trans-unit id="label.city" xml:space="preserve">
+      <trans-unit id="label.city">
         <source>City</source>
       </trans-unit>
-      <trans-unit id="label.telephone" xml:space="preserve">
+      <trans-unit id="label.telephone">
         <source>Telephone</source>
       </trans-unit>
-      <trans-unit id="label.fax" xml:space="preserve">
+      <trans-unit id="label.fax">
         <source>Fax</source>
       </trans-unit>
-      <trans-unit id="label.mobile" xml:space="preserve">
+      <trans-unit id="label.mobile">
         <source>Mobile phone</source>
       </trans-unit>
-      <trans-unit id="label.email" xml:space="preserve">
+      <trans-unit id="label.email">
         <source>E-mail</source>
       </trans-unit>
-      <trans-unit id="label.www" xml:space="preserve">
+      <trans-unit id="label.www">
         <source>Go to website</source>
       </trans-unit>
-      <trans-unit id="label.socialmedia" xml:space="preserve">
+      <trans-unit id="label.socialmedia">
         <source>Social media contacts</source>
       </trans-unit>
-      <trans-unit id="label.twitter" xml:space="preserve" translate="no">
+      <trans-unit id="label.twitter" translate="no">
         <source>X (Twitter)</source>
       </trans-unit>
-      <trans-unit id="label.facebook" xml:space="preserve" translate="no">
+      <trans-unit id="label.facebook" translate="no">
         <source>Facebook</source>
       </trans-unit>
-      <trans-unit id="label.linkedin" xml:space="preserve" translate="no">
+      <trans-unit id="label.linkedin" translate="no">
         <source>LinkedIn</source>
       </trans-unit>
-      <trans-unit id="label.linkedincompany" xml:space="preserve">
+      <trans-unit id="label.linkedincompany">
         <source>LinkedIn Company profile</source>
       </trans-unit>
-      <trans-unit id="label.bluesky" xml:space="preserve" translate="no">
+      <trans-unit id="label.bluesky" translate="no">
         <source>BlueSky</source>
       </trans-unit>
-      <trans-unit id="label.whatsapp" xml:space="preserve" translate="no">
+      <trans-unit id="label.whatsapp" translate="no">
         <source>WhatsApp</source>
       </trans-unit>
-      <trans-unit id="label.youtubechannel" xml:space="preserve" translate="no">
+      <trans-unit id="label.youtubechannel" translate="no">
         <source>Youtube Channel</source>
       </trans-unit>
-      <trans-unit id="label.birthday" xml:space="preserve">
+      <trans-unit id="label.birthday">
         <source>Birthday</source>
       </trans-unit>
 
-      <trans-unit id="paginate_overall" xml:space="preserve">
+      <trans-unit id="paginate_overall">
         <source>Page %s of %s</source>
       </trans-unit>
       <trans-unit id="paginate_next">

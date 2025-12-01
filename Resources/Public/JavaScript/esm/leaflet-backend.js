@@ -87,14 +87,14 @@ class LeafletBackendModule {
     document.body.appendChild(locationMapDiv);
   }
 
-  createMap() {
+  async createMap() {
     if (
       (!this.latitude ||
         !this.longitude ||
         (this.latitude == 0 && this.longitude == 0)) &&
       this.geoCodeUrl != null
     ) {
-      this.geocode();
+      await this.geocode();
     }
 
     // The ultimate fallback: if one of the coordinates is empty, fallback to Kopenhagen.

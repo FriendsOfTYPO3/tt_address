@@ -82,7 +82,7 @@ class TtAddressPreviewRenderer extends StandardContentPreviewRenderer
                 if ($fieldConfiguration['multiValue']) {
                     $row['computed'][$fieldName] = $records;
                 } else {
-                    $row['computed'][$fieldName] = $records[0] ?: [];
+                    $row['computed'][$fieldName] = ($records[0] ?? null) ?: [];
                 }
             }
         }

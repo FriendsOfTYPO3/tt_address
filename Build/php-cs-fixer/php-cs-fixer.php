@@ -1,7 +1,17 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-    ->in(realpath(__DIR__ . '/../../'));
+    ->in(realpath(__DIR__ . '/../../'))
+    // Never look at anything git ignores - most importantly the generated
+    // TYPO3 DI container below var/cache/, which would otherwise be reported.
+    ->ignoreVCSIgnored(true)
+    ->exclude([
+        '.Build',
+        '.cache',
+        'Documentation-GENERATED-temp',
+        'public',
+        'var',
+    ]);
 
 $config = new PhpCsFixer\Config();
 $config

@@ -168,9 +168,6 @@ class AddressRepositoryTest extends FunctionalTestCase
         $demand->setPages(['25']);
         $demand->setIgnoreWithoutCoordinates(true);
         $addresses = $this->addressRepository->findByDemand($demand);
-        foreach ($addresses as $a) {
-            echo $a->getUid() . ' - ' . $a->getLongitude() . '/' . $a->getLatitude() . chr(10);
-        }
         self::assertEquals([14], $this->getListOfIds($addresses));
     }
 

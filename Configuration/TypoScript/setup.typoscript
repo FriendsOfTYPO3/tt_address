@@ -21,26 +21,26 @@ plugin.tx_ttaddress {
         overrideFlexformSettingsIfEmpty = paginate.itemsPerPage, singlePid, pages, recursive, hidePagination, sortBy, sortOrder, groupsCombination
 
         # comma separated list of page IDs containing address records
-        pages = 
-        
+        pages =
+
         # recursion level: same_page_only=0
-        recursive = 
-        
+        recursive =
+
         # display mode: List=0, Detail=1, Map=2
-        displayMode = 
-        
+        displayMode =
+
         # groups combination: AND=0, OR=1
-        groupsCombination = 
-        
+        groupsCombination =
+
         # sort by field
-        sortBy = 
-        
+        sortBy =
+
         # order: ASC, DESC
-        sortOrder = 
-        
+        sortOrder =
+
         # page ID of single view
-        singlePid = 
-        
+        singlePid =
+
         detail {
             ## Set your lightbox here. The address records UID is appended, see fluid template
             imageClass = lightbox lightbox_

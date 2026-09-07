@@ -10,7 +10,7 @@ return [
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
         'sortby' => 'sorting',
-        'default_sortby' => 'ORDER BY last_name, first_name, middle_name',
+        'default_sortby' => 'last_name, first_name, middle_name',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'prependAtCopy' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.prependAtCopy',

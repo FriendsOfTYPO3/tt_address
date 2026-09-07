@@ -316,6 +316,46 @@ class AddressControllerTest extends BaseTestCase
     }
 
     #[\PHPUnit\Framework\Attributes\Test]
+    public function overrideDemandMethodIsNotCalledIfNotEnabled()
+    {
+        $mockedRequest = $this->getAccessibleMock(Request::class, ['hasArgument', 'getArgument', 'getAttribute'], [], '', false);
+        $mockedRepository = $this->getAccessibleMock(AddressRepository::class, ['getAddressesByCustomSorting', 'findByDemand'], [], '', false);
+        $mockedRepository->expects(self::any())->method('findByDemand')->willReturn([]);
+        $mockedView = $this->getAccessibleMock((new Typo3Version())->getMajorVersion() >= 14 ? FluidViewAdapter::class : TemplateView::class, ['assignMultiple', 'assign'], [], '', false);
+        $mockedView->expects(self::once())->method('assignMultiple');
+        $mockContentObject = $this->createMock(ContentObjectRenderer::class);
+        $mockConfigurationManager = $this->createMock(ConfigurationManager::class);
+
+        $mockedRequest->expects(self::any())->method('getAttribute')->willReturn([]);
+
+        $mockedExtbaseRequest = $this->getMockBuilder(Request::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $mockedExtbaseRequest
+            ->method('getAttribute')
+            ->willReturn([]);
+
+        $subject = $this->getAccessibleMock(AddressController::class, ['overrideDemand', 'createDemandFromSettings', 'htmlResponse'], [], '', false);
+        $subject->_set('extensionConfiguration', $this->getMockedSettings());
+        $subject->_set('request', $mockedExtbaseRequest);
+        //        $subject->_set('configurationManager', $mockConfigurationManager);
+        $subject->expects(self::never())->method('overrideDemand');
+        $subject->expects(self::any())->method('htmlResponse');
+
+        $demand = new Demand();
+        $subject->expects(self::any())->method('createDemandFromSettings')->willReturn($demand);
+
+        $settings = [
+        ];
+        $subject->_set('settings', $settings);
+        $subject->_set('addressRepository', $mockedRepository);
+        $subject->_set('view', $mockedView);
+        $subject->_set('request', $mockedRequest);
+
+        $subject->listAction(['not', 'empty']);
+    }
+
+    #[\PHPUnit\Framework\Attributes\Test]
     #[\PHPUnit\Framework\Attributes\DataProvider('overrideDemandWorksDataProvider')]
     public function overrideDemandWorks(Demand $demandIn, Demand $demandOut, array $override)
     {

@@ -81,7 +81,7 @@ class AddressController extends ActionController
             $demand->setSingleRecords((string) $contentData['uid']);
         }
 
-        if (!empty($override) && $this->settings['allowOverride']) {
+        if (!empty($override) && (int) ($this->settings['allowOverride'] ?? 0) === 1) {
             $this->overrideDemand($demand, $override);
         }
 

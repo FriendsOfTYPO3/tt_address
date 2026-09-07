@@ -2,7 +2,7 @@
 
 <f:section name="address">
     <f:if condition="{address.address}">
-        <div class="address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+        <div class="address" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
             <address>
                 <span itemprop="streetAddress">{address.address}</span><br>
                 <span itemprop="postalCode">{address.zip}</span>&nbsp;<span
@@ -111,7 +111,7 @@
                 <li class="list-inline-item">
                     <i class="fab fa-whatsapp" aria-hidden title="{f:translate(key:'label.whatsapp')}"></i>
                     <span class="sr-only">{f:translate(key:'label.whatsapp')}:</span>
-                    <a href="https://wa.me/{address.whatsapp}">{address.whatsapp}</a>
+                    <a href="https://wa.me/{address.whatsapp}" target="_blank" rel="noopener noreferrer">{address.whatsapp}</a>
                     <meta itemprop="sameAs" content="https://wa.me/{address.whatsapp}"/>
                 </li>
             </f:if>

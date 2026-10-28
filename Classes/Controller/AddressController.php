@@ -242,9 +242,15 @@ class AddressController extends ActionController
      */
     protected function getPaginator($addresses): PaginatorInterface
     {
-        $currentPage = $this->request->hasArgument('currentPage') ? (int) $this->request->getArgument('currentPage') : 1;
+        $currentPage = 1;
+        if ($this->request->hasArgument('currentPage')) {
+            $argument = $this->request->getArgument('currentPage');
+            if (is_scalar($argument)) {
+                $currentPage = max(1, (int) $argument);
+            }
+        }
         $itemsPerPage = (int) ($this->settings['paginate']['itemsPerPage'] ?? 10);
-        if ($itemsPerPage === 0) {
+        if ($itemsPerPage <= 0) {
             $itemsPerPage = 10;
         }
 
